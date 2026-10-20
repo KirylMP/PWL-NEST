@@ -1,0 +1,219 @@
+{
+  "initial_scores": [
+    {
+      "label": "spectral",
+      "total_loss": 14616243.987658773
+    },
+    {
+      "label": "tangent",
+      "total_loss": 14614231.423270045
+    },
+    {
+      "label": "field",
+      "total_loss": 5343.191990238146
+    }
+  ],
+  "training_data_loss": 1628.268641628212,
+  "training_total_loss": 1628.272353019203,
+  "bounds": [
+    [
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -0.5,
+      -12.0,
+      -8.0,
+      -4.0,
+      -8.0,
+      -8.0
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      0.5,
+      2.0,
+      3.0,
+      1.5,
+      8.0,
+      8.0
+    ]
+  ],
+  "history": [
+    {
+      "evaluation": 1,
+      "total_loss": 14616243.987658773,
+      "data_loss": 14616243.987658774,
+      "seconds": 0.0021965110008750344
+    },
+    {
+      "evaluation": 51,
+      "total_loss": 2255.960380797368,
+      "data_loss": 2255.958287381108,
+      "seconds": 0.11010362100023485
+    },
+    {
+      "evaluation": 121,
+      "total_loss": 1900.9340796001932,
+      "data_loss": 1900.9307152294864,
+      "seconds": 0.27280451800106675
+    },
+    {
+      "evaluation": 172,
+      "total_loss": 1654.690820952107,
+      "data_loss": 1654.6871437361906,
+      "seconds": 0.399107062999974
+    },
+    {
+      "evaluation": 222,
+      "total_loss": 1628.8448566787206,
+      "data_loss": 1628.8411459963502,
+      "seconds": 0.5250680860008288
+    },
+    {
+      "evaluation": 274,
+      "total_loss": 1628.294428983111,
+      "data_loss": 1628.29071761204,
+      "seconds": 0.6578715600007854
+    }
+  ],
+  "optimizer_runs": [
+    {
+      "start": "field",
+      "method": "least_squares",
+      "status": 3,
+      "nfev": 24,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "start": "tangent",
+      "method": "least_squares",
+      "status": 2,
+      "nfev": 16,
+      "message": "`ftol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": 0,
+      "nfev": 679,
+      "message": "Optimization terminated successfully."
+    }
+  ],
+  "evaluations": 1210,
+  "training_protocols": [
+    {
+      "name": "fixed_lower_rest",
+      "initial": [
+        1.3,
+        0.8,
+        0.48
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.48
+    },
+    {
+      "name": "fixed_0.55",
+      "initial": [
+        1.3,
+        0.8,
+        0.55
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.55
+    },
+    {
+      "name": "fixed_0.7",
+      "initial": [
+        1.3,
+        0.8,
+        0.7
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.7
+    },
+    {
+      "name": "fixed_1.0",
+      "initial": [
+        1.3,
+        0.8,
+        1.0
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.0
+    },
+    {
+      "name": "fixed_1.2",
+      "initial": [
+        1.3,
+        0.8,
+        1.2
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.2
+    },
+    {
+      "name": "decay_tau_20.0",
+      "initial": [
+        0.08,
+        0.8,
+        1.15
+      ],
+      "duration": 180.0,
+      "tau": 20.0,
+      "baseline": 0.45
+    },
+    {
+      "name": "decay_tau_100.0",
+      "initial": [
+        0.08,
+        0.8,
+        1.15
+      ],
+      "duration": 180.0,
+      "tau": 100.0,
+      "baseline": 0.45
+    }
+  ],
+  "latent_thresholds": [
+    0.0009321201902224495,
+    0.0011424328786131025,
+    0.001313854897042796,
+    0.0017574282185816473,
+    0.010445453728260683,
+    0.037113507123782016,
+    0.0908930940201298
+  ],
+  "reference_calcium": 0.02812613673817445,
+  "reference_h": 0.8371177795140701
+}

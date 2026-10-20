@@ -1,0 +1,135 @@
+{
+  "max_step": 0.01,
+  "rtol": 2e-11,
+  "atol": 2e-13,
+  "failures": [
+    {
+      "case": "AM",
+      "kind": "square",
+      "protocol": {
+        "name": "novel_initial_h_0.9",
+        "initial": [
+          0.08,
+          0.9,
+          0.65
+        ],
+        "duration": 180.0,
+        "tau": 35.0,
+        "baseline": 0.3
+      },
+      "original_exit_time": 7.08879868,
+      "refined_exit_time": 7.08879868,
+      "absolute_difference": 0.0,
+      "error": "Latent solver incomplete near t=7.08879868: positive-root branch exit"
+    },
+    {
+      "case": "FM",
+      "kind": "cube",
+      "protocol": {
+        "name": "decay_tau_2.0",
+        "initial": [
+          0.08,
+          0.8,
+          1.15
+        ],
+        "duration": 180.0,
+        "tau": 2.0,
+        "baseline": 0.45
+      },
+      "original_exit_time": 1.06166889,
+      "refined_exit_time": 1.06166878,
+      "absolute_difference": 1.0999999999761201e-07,
+      "error": "Latent solver incomplete near t=1.06166878: positive-root branch exit"
+    },
+    {
+      "case": "FM",
+      "kind": "cube",
+      "protocol": {
+        "name": "periodic_jumps_then_stop",
+        "initial": [
+          0.08,
+          0.8,
+          0.45
+        ],
+        "duration": 200.0,
+        "tau": 20.0,
+        "baseline": 0.45,
+        "jumps": [
+          [
+            10.0,
+            0.3
+          ],
+          [
+            30.0,
+            0.3
+          ],
+          [
+            50.0,
+            0.3
+          ],
+          [
+            70.0,
+            0.3
+          ],
+          [
+            90.0,
+            0.3
+          ]
+        ]
+      },
+      "original_exit_time": 0.100782813,
+      "refined_exit_time": 0.10078373,
+      "absolute_difference": 9.170000000030543e-07,
+      "error": "Latent solver incomplete near t=0.10078373: positive-root branch exit"
+    },
+    {
+      "case": "FM",
+      "kind": "cube",
+      "protocol": {
+        "name": "irregular_jumps_then_stop",
+        "initial": [
+          0.08,
+          0.8,
+          0.45
+        ],
+        "duration": 220.0,
+        "tau": 12.0,
+        "baseline": 0.45,
+        "jumps": [
+          [
+            16.64304825317406,
+            0.3
+          ],
+          [
+            25.957412805045294,
+            0.3
+          ],
+          [
+            43.98209033931113,
+            0.3
+          ],
+          [
+            55.00861406125256,
+            0.3
+          ],
+          [
+            68.34959311700122,
+            0.3
+          ],
+          [
+            86.60868459064335,
+            0.3
+          ],
+          [
+            104.46142310437918,
+            0.3
+          ]
+        ]
+      },
+      "original_exit_time": 0.100782813,
+      "refined_exit_time": 0.10078373,
+      "absolute_difference": 9.170000000030543e-07,
+      "error": "Latent solver incomplete near t=0.10078373: positive-root branch exit"
+    }
+  ]
+}

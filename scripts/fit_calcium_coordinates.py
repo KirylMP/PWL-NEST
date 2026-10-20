@@ -36,17 +36,19 @@ def training_data(case):
     return training,refs,points,source,cref,ctop
 
 
-def run_kind(case,kind,data,budget):
+def run_kind(case,kind,data,budget,*,normalize_span=False,models_root=MODELS,results_root=OUT):
     training,refs,points,source,cref,ctop=data
-    directory=MODELS/kind;destination=OUT/kind
+    directory=models_root/kind;destination=results_root/kind
     directory.mkdir(parents=True,exist_ok=True);destination.mkdir(parents=True,exist_ok=True)
     physical_theta=np.array([e['C'] for e in source['events']]);n=len(physical_theta)+1
-    co=CalciumCoordinate(kind,cref);theta=co.forward(physical_theta);href=float(equilibrium_h(cref,0.));zref=float(logit(href))
+    scale=float(CalciumCoordinate(kind,cref).forward(C_MAX)/C_MAX) if normalize_span else 1.
+    co=CalciumCoordinate(kind,cref,scale);theta=co.forward(physical_theta);href=float(equilibrium_h(cref,0.));zref=float(logit(href))
     meta={**source,'class_name':'PWA_in_transformed_calcium_and_logit_h','coordinates':['u','v','I'],
           'calcium_transform':kind,'physical_thresholds_C':physical_theta.tolist(),
           'physical_field_PWA':False,'enforce_types':True,'accepted':False,
           'source_chain_rule':'udot=phi_prime(C)*fC; vdot=fh/[h*(1-h)]',
-          'calcium_reference':cref,'h_reference':href,'normalization':'phi(Cref)=0; phi_prime(Cref)=1',
+          'calcium_reference':cref,'h_reference':href,'coordinate_scale':scale,
+          'normalization':'phi(Cref)=0; phi(C_MAX)=C_MAX' if normalize_span else 'phi(Cref)=0; phi_prime(Cref)=1',
           'q0_parameterization':'q0=qb*IP3_offset; source rest u=0',
           'parameter_count':2*n+6}
     dummy=CalciumTransformPWA(CalciumStrips(case,theta,np.zeros((2,n+3)),meta.copy()),co,href)
@@ -71,6 +73,7 @@ def run_kind(case,kind,data,budget):
     previous=LogitPWA.load(ROOT/f'models/logit_pwa/{case}.json').latent
     matrix=previous.matrix.copy()
     matrix[:,0]+=matrix[:,1]*cref+matrix[:,2]*zref
+    matrix[:,1]*=scale;matrix[:,4:]*=scale;matrix[0]/=scale
     warm=CalciumStrips(case,theta,matrix,meta.copy())
     wm,wk,wq,wqb=warm.spectral_coefficients()
     tangent=encode_parts(wm,wk,wq[0],wqb,matrix[0,2],matrix[1,2],matrix[0,3],matrix[0,0])

@@ -1,0 +1,132 @@
+{
+  "AM": {
+    "sqrt": {
+      "regions": 4,
+      "parameters": 14,
+      "continuity_max_abs_error": 1.1102230246251565e-16,
+      "latent_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 2.220446049250313e-16,
+      "IP3_error": 0.0,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.05563833512124773,
+      "coordinate_scale": 0.29719782567894054,
+      "h_reference": 0.722072295839805,
+      "root_branch_guard": true
+    },
+    "square": {
+      "regions": 4,
+      "parameters": 14,
+      "continuity_max_abs_error": 1.1102230246251565e-16,
+      "latent_flow_error": 2.7755575615628914e-17,
+      "physical_readout_flow_error": 0.0,
+      "IP3_error": 0.0,
+      "source_Jacobian_similarity_error": 6.772360450213455e-15,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.05563833512124773,
+      "coordinate_scale": 15.1507908350209,
+      "h_reference": 0.722072295839805,
+      "root_branch_guard": true
+    },
+    "cube": {
+      "regions": 4,
+      "parameters": 14,
+      "continuity_max_abs_error": 1.1102230246251565e-16,
+      "latent_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 1.1102230246251565e-16,
+      "IP3_error": 1.1102230246251565e-16,
+      "source_Jacobian_similarity_error": 2.842170943040401e-14,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.05563833512124773,
+      "coordinate_scale": 306.71726641812774,
+      "h_reference": 0.722072295839805,
+      "root_branch_guard": true
+    }
+  },
+  "FM": {
+    "sqrt": {
+      "regions": 8,
+      "parameters": 22,
+      "continuity_max_abs_error": 4.440892098500626e-16,
+      "latent_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 1.1102230246251565e-16,
+      "IP3_error": 0.0,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "unstable_node",
+        "saddle",
+        "unstable_node",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.02812613673817445,
+      "coordinate_scale": 0.22485446253415442,
+      "h_reference": 0.8371177795140701,
+      "root_branch_guard": true
+    },
+    "square": {
+      "regions": 8,
+      "parameters": 22,
+      "continuity_max_abs_error": 2.220446049250313e-16,
+      "latent_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 2.220446049250313e-16,
+      "IP3_error": 2.220446049250313e-16,
+      "source_Jacobian_similarity_error": 7.749356711883593e-14,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "unstable_node",
+        "saddle",
+        "unstable_node",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.02812613673817445,
+      "coordinate_scale": 29.995143203334823,
+      "h_reference": 0.8371177795140701,
+      "root_branch_guard": true
+    },
+    "cube": {
+      "regions": 8,
+      "parameters": 22,
+      "continuity_max_abs_error": 5.551115123125783e-17,
+      "latent_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 1.1102230246251565e-16,
+      "IP3_error": 1.1102230246251565e-16,
+      "source_Jacobian_similarity_error": 1.5565326805244695e-13,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "unstable_node",
+        "saddle",
+        "unstable_node",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.02812613673817445,
+      "coordinate_scale": 1200.2725069016033,
+      "h_reference": 0.8371177795140701,
+      "root_branch_guard": true
+    }
+  }
+}

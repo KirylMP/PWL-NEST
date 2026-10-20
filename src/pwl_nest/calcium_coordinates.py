@@ -1,6 +1,6 @@
 """PWA in (u=phi(C),v=logit(h)-logit(h_ref),I).
 
-phi is a fixed, tangent-normalized square root, cube root or logarithm.
+phi is a fixed power or logarithm, with optional constant scale normalization.
 All variants have identical physical spectral thresholds and parameter counts.
 """
 from dataclasses import dataclass
@@ -18,36 +18,43 @@ from .models import ROOT
 class CalciumCoordinate:
     kind: str
     reference: float
+    scale: float = 1.
 
     def __post_init__(self):
-        if self.kind not in ('identity','sqrt','cbrt','log') or not np.isfinite(self.reference) or self.reference<=0:
+        if (self.kind not in ('identity','sqrt','cbrt','log','square','cube')
+                or not np.isfinite(self.reference) or self.reference<=0
+                or not np.isfinite(self.scale) or self.scale<=0):
             raise ValueError('Invalid calcium coordinate')
 
     @property
-    def power(self):return {'identity':1.,'sqrt':.5,'cbrt':1/3,'log':0.}[self.kind]
+    def power(self):return {'identity':1.,'sqrt':.5,'cbrt':1/3,'log':0.,'square':2.,'cube':3.}[self.kind]
 
     @property
-    def lower(self):return -np.inf if self.kind=='log' else -self.reference/self.power
+    def lower(self):return -np.inf if self.kind=='log' else -self.reference/(self.power*self.scale)
 
     def forward(self,c):
         c=np.asarray(c)
         if not np.isfinite(c).all() or np.any(c.real<=0):raise ValueError('Require C>0; no clipping')
-        if self.kind=='log':return self.reference*np.log(c/self.reference)
+        if self.kind=='log':return self.reference*np.log(c/self.reference)/self.scale
         p=self.power
-        return self.reference/p*((c/self.reference)**p-1)
+        u=self.reference/(p*self.scale)*((c/self.reference)**p-1)
+        if not np.iscomplexobj(c) and np.any(u<=self.lower):
+            raise ValueError('Coordinate loses positive branch at floating-point precision')
+        return u
 
     def derivative(self,c):
         c=np.asarray(c)
         if np.any(c.real<=0):raise ValueError('Require C>0')
-        return self.reference/c if self.kind=='log' else (c/self.reference)**(self.power-1)
+        return (self.reference/c if self.kind=='log' else (c/self.reference)**(self.power-1))/self.scale
 
     def inverse(self,u):
         u=np.asarray(u)
         if not np.isfinite(u).all():raise ValueError('Nonfinite calcium coordinate')
         with np.errstate(over='raise',invalid='raise',under='ignore'):
-            if self.kind=='log':c=self.reference*np.exp(u/self.reference)
+            if self.kind=='log':c=self.reference*np.exp(u*self.scale/self.reference)
             else:
-                base=1+self.power*u/self.reference
+                if np.any(u.real<=self.lower):raise ValueError('Root coordinate left the positive branch')
+                base=1+self.power*u*self.scale/self.reference
                 if np.any(base.real<=0):raise ValueError('Root coordinate left the positive branch')
                 c=self.reference*base**(1/self.power)
         if not np.isfinite(c).all() or np.any(c.real<=0):raise ValueError('Calcium inverse overflow/underflow or nonpositive C')
@@ -87,8 +94,8 @@ class CalciumTransformPWA:
 
     def save(self,path):
         Path(path).write_text(json.dumps(dict(case=self.case,
-            calcium_coordinate=dict(kind=self.coordinate.kind,reference=self.coordinate.reference,
-                                    normalization='phi(C_ref)=0, phi_prime(C_ref)=1'),h_reference=self.h_reference,
+            calcium_coordinate=dict(kind=self.coordinate.kind,reference=self.coordinate.reference,scale=self.coordinate.scale,
+                                    normalization='phi(C_ref)=0, phi_prime(C_ref)=1/scale'),h_reference=self.h_reference,
             thresholds_u=self.latent.thresholds.tolist(),thresholds_C=self.metadata['physical_thresholds_C'],
             basis=['1','u','v','I']+[f'max(0,u-{t:.17g})' for t in self.latent.thresholds],
             coefficients=self.latent.matrix.tolist(),metadata=self.metadata),indent=2,allow_nan=False)+'\n')
@@ -97,7 +104,7 @@ class CalciumTransformPWA:
     def load(cls,path):
         z=json.loads(Path(path).read_text());co=z['calcium_coordinate']
         return cls(CalciumStrips(z['case'],np.array(z['thresholds_u']),np.array(z['coefficients']),z['metadata']),
-                   CalciumCoordinate(co['kind'],co['reference']),float(z['h_reference']))
+                   CalciumCoordinate(co['kind'],co['reference'],co.get('scale',1.)),float(z['h_reference']))
 
 
 def decode_coordinates(case,thresholds,parameters,mu_sign,k_sign,metadata,coordinate,h_reference):

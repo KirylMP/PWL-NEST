@@ -7,7 +7,7 @@ from pwl_nest.calcium_coordinates import (CalciumCoordinate,CalciumTransformPWA,
 from pwl_nest.calcium_strips import CalciumStrips,NativeDynamic
 from pwl_nest.strict_pwa import regional_flow,lr_field,spectral_events
 
-KINDS=['identity','sqrt','cbrt','log']
+KINDS=['identity','sqrt','cbrt','log','square','cube']
 
 
 def simple_model(kind):
@@ -21,8 +21,8 @@ def simple_model(kind):
 
 class CalciumCoordinatesTest(unittest.TestCase):
     def test_round_trip_derivative_and_normalization(self):
-        c=np.array([1e-6,.01,.05,.1,1.6])
         for kind in KINDS:
+            c=np.array([.001 if kind in ('square','cube') else 1e-6,.01,.05,.1,1.6])
             co=CalciumCoordinate(kind,.05)
             np.testing.assert_allclose(co.inverse(co.forward(c)),c,rtol=1e-11,atol=1e-14)
             self.assertAlmostEqual(float(co.forward(.05)),0.,places=14)
@@ -74,12 +74,37 @@ class CalciumCoordinatesTest(unittest.TestCase):
             np.testing.assert_allclose(rk,expected[:,:2],atol=2e-11)
 
     def test_root_exit_terminates_simulation_and_native_fit(self):
-        for kind in ['sqrt','cbrt']:
+        for kind in ['sqrt','cbrt','square','cube']:
             model=simple_model(kind)
             model.latent.matrix[0]=0.;model.latent.matrix[0,0]=-1.
             with self.assertRaisesRegex(RuntimeError,'positive-root branch exit'):
                 simulate_coordinates(model,[.1,.8,.2],1.,baseline=.2)
             self.assertIsNone(NativeCoordinateDynamic().run(model,[.1,.8,.2],1.,2.,.2,outputs=2,maxdt=.01))
+
+    def test_range_normalization_and_precision_loss(self):
+        from pwl_nest.strict_pwa import C_MAX
+        for kind in ['sqrt','square','cube']:
+            scale=float(CalciumCoordinate(kind,.05).forward(C_MAX)/C_MAX)
+            co=CalciumCoordinate(kind,.05,scale)
+            self.assertAlmostEqual(float(co.forward(C_MAX)),C_MAX,places=14)
+            self.assertAlmostEqual(float(co.derivative(.05)),1/scale,places=13)
+            with self.assertRaises(ValueError):co.inverse(co.lower)
+            c=np.array([.001,.03,.1,1.3])
+            np.testing.assert_allclose(co.inverse(co.forward(c)),c,rtol=1e-10)
+            model=simple_model(kind);model.coordinate=co
+            with tempfile.TemporaryDirectory() as tmp:
+                path=Path(tmp)/'scaled.json';model.save(path)
+                restored=CalciumTransformPWA.load(path)
+                self.assertEqual(restored.coordinate.scale,scale)
+                np.testing.assert_allclose(restored.coordinate.forward(c),co.forward(c))
+        model=simple_model('sqrt')
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'legacy.json';model.save(path)
+            record=json.loads(path.read_text());record['calcium_coordinate'].pop('scale')
+            path.write_text(json.dumps(record))
+            self.assertEqual(CalciumTransformPWA.load(path).coordinate.scale,1.)
+        with self.assertRaisesRegex(ValueError,'floating-point precision'):
+            CalciumCoordinate('cube',.05).forward(1e-12)
 
     def test_jump_preserves_physical_C_h_and_recorded_latent_basis(self):
         for kind in KINDS:

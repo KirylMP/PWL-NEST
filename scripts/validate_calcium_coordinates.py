@@ -1,5 +1,5 @@
 """Validate all calcium-coordinate variants on common physical protocols."""
-import json
+import argparse,json
 import numpy as np
 from scipy.special import expit
 from scipy.signal import find_peaks
@@ -20,7 +20,7 @@ def new_initial_C(case):
     return [dict(name=f'new_initial_C_{c}',initial=[c,.8,start],duration=180.,tau=35.,baseline=base) for c in [.03,.15]]
 
 
-def validate(case,models=None,training=None,refs=None):
+def validate(case,models=None,training=None,refs=None,*,output_root=OUT):
     if models is None:models=[CalciumTransformPWA.load(ROOT/f'models/calcium_coordinates/{kind}/{case}.json') for kind in KINDS]
     if training is None:
         training=protocols(case)
@@ -45,7 +45,7 @@ def validate(case,models=None,training=None,refs=None):
                 baseline_cache[p['name']]=dict(completed=True,rmse=np.sqrt(np.mean((y-truth)**2,axis=0)).tolist(),physical=meta['physical'])
     native=NativeStatistics();fast=NativeCoordinateDynamic()
     for model in models:
-        kind=model.coordinate.kind;destination=OUT/kind;destination.mkdir(parents=True,exist_ok=True);records=[]
+        kind=model.coordinate.kind;destination=output_root/kind;destination.mkdir(parents=True,exist_ok=True);records=[]
         for split,protos in sets:
             for p in protos:
                 print(f'{case} {kind}: {split} {p["name"]}',flush=True)
@@ -93,4 +93,11 @@ def validate(case,models=None,training=None,refs=None):
             unrun=['full analytic first-exit solver','unstable cycle continuation','SIC','NEST','global optimum']),indent=2,allow_nan=False)+'\n')
 
 if __name__=='__main__':
-    for case in ['AM','FM']:validate(case)
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers'],default='calcium_coordinates')
+    parser.add_argument('--case',choices=['AM','FM','both'],default='both')
+    args=parser.parse_args()
+    kinds=['sqrt','square','cube'] if args.experiment=='calcium_powers' else KINDS
+    for case in (['AM','FM'] if args.case=='both' else [args.case]):
+        models=[CalciumTransformPWA.load(ROOT/f'models/{args.experiment}/{kind}/{case}.json') for kind in kinds]
+        validate(case,models,output_root=ROOT/'results'/args.experiment)

@@ -1,0 +1,10 @@
+{
+  "selected": "sqrt",
+  "training_scores": {
+    "sqrt": 120.55967002785121,
+    "square": 1628.268641628212,
+    "cube": 2801.289830075992
+  },
+  "selection": "training data only; sqrt/square/cube refitted with equal budgets and common coordinate span",
+  "normalization": "phi(Cref)=0, phi(C_MAX)=C_MAX; no fitted normalization parameters"
+}

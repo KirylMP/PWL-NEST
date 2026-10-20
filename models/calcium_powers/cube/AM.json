@@ -1,0 +1,165 @@
+{
+  "case": "AM",
+  "calcium_coordinate": {
+    "kind": "cube",
+    "reference": 0.05563833512124773,
+    "scale": 306.71726641812774,
+    "normalization": "phi(C_ref)=0, phi_prime(C_ref)=1/scale"
+  },
+  "h_reference": 0.722072295839805,
+  "thresholds_u": [
+    0.00043213459370326497,
+    0.0012643940082941948,
+    0.011803361358889826
+  ],
+  "thresholds_C": [
+    0.11195264540328671,
+    0.1556894888082622,
+    0.3233038346842266
+  ],
+  "basis": [
+    "1",
+    "u",
+    "v",
+    "I",
+    "max(0,u-0.00043213459370326497)",
+    "max(0,u-0.0012643940082941948)",
+    "max(0,u-0.011803361358889826)"
+  ],
+  "coefficients": [
+    [
+      0.00035100972837223124,
+      -18.683325982874884,
+      0.012022148807256402,
+      0.008922597662801273,
+      18.321840660503877,
+      0.5459655087008062,
+      -0.10630388885944517
+    ],
+    [
+      0.0022357698166951957,
+      225.9478375744023,
+      -0.1642705353205494,
+      -0.05928401386412334,
+      -259.28483400036157,
+      30.793221205711056,
+      -0.8688273681407681
+    ]
+  ],
+  "metadata": {
+    "class_name": "PWA_in_transformed_calcium_and_logit_h",
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "thresholds_policy": "source equilibrium spectral type changes; fixed across all IP3 and trajectories",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.11195264540328671,
+        "h": 0.7578765554494843,
+        "I": 0.27802575097364235,
+        "trace": -1.026643693352243,
+        "determinant": 0.26349931827487577,
+        "discriminant": 4.312106227644108e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.1556894888082622,
+        "h": 0.7155282974000192,
+        "I": 0.35453381865657696,
+        "trace": 1.3739009929736312e-15,
+        "determinant": 0.25048138443817525,
+        "discriminant": -1.001925537752701
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3233038346842266,
+        "h": 0.6115837408558975,
+        "I": 0.6368818163953753,
+        "trace": -4.543587728278453e-14,
+        "determinant": 0.3584212537104145,
+        "discriminant": -1.433685014841658
+      }
+    ],
+    "source_average_trace": [
+      -3.978715536777417,
+      -0.438944199916516,
+      0.15905769157025726,
+      -0.3233758185057667
+    ],
+    "source_average_determinant": [
+      0.29295936298491265,
+      0.25372910867094683,
+      0.3014382398040492,
+      0.4406812055884304
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      4.937035534683918,
+      1.749281880599346,
+      1.6845097372974123,
+      3.3813540795061536
+    ],
+    "restoring_scale": 0.10184201032657797,
+    "regions": 4,
+    "free_parameters": 14,
+    "target_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "calcium_transform": "cube",
+    "physical_thresholds_C": [
+      0.11195264540328671,
+      0.1556894888082622,
+      0.3233038346842266
+    ],
+    "physical_field_PWA": false,
+    "enforce_types": true,
+    "accepted": false,
+    "source_chain_rule": "udot=phi_prime(C)*fC; vdot=fh/[h*(1-h)]",
+    "calcium_reference": 0.05563833512124773,
+    "h_reference": 0.722072295839805,
+    "coordinate_scale": 306.71726641812774,
+    "normalization": "phi(Cref)=0; phi(C_MAX)=C_MAX",
+    "q0_parameterization": "q0=qb*IP3_offset; source rest u=0",
+    "parameter_count": 14,
+    "parameters": [
+      2.9363854000984566,
+      -0.6429183228702299,
+      -3.9015950159368327,
+      -2.4523127937113705,
+      -5.524516542931644,
+      -0.9388970557638798,
+      -8.651423301655633,
+      -3.63698176311871,
+      0.1122702046341014,
+      -7.191447112433823,
+      -4.421004596529911,
+      -1.8062406046497193,
+      0.008922597662801273,
+      0.00035100972837223124
+    ],
+    "mu_sign": [
+      -1.0,
+      -1.0,
+      1.0,
+      -1.0
+    ],
+    "k_sign": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "training_data_loss": 887.2977710416998,
+    "training_total_loss": 887.3014698889538,
+    "selected_by": "common physical training residual; diagnostics excluded"
+  }
+}

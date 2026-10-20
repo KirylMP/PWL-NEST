@@ -1,16 +1,20 @@
 """Verify actual saved coordinate variants: thresholds, continuity and exact flow."""
-import json
+import argparse,json
 import numpy as np
 from scipy.integrate import solve_ivp
 from pwl_nest.models import ROOT
 from pwl_nest.strict_pwa import C_MAX,lr_field,regional_flow
 from pwl_nest.calcium_coordinates import CalciumTransformPWA
 
-OUT=ROOT/'results/calcium_coordinates';report={}
+parser=argparse.ArgumentParser()
+parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers'],default='calcium_coordinates')
+args=parser.parse_args()
+OUT=ROOT/'results'/args.experiment;MODELS=ROOT/'models'/args.experiment;report={}
+KINDS=['sqrt','square','cube'] if args.experiment=='calcium_powers' else ['identity','sqrt','cbrt','log']
 for case in ['AM','FM']:
     report[case]={}
-    for kind in ['identity','sqrt','cbrt','log']:
-        model=CalciumTransformPWA.load(ROOT/f'models/calcium_coordinates/{kind}/{case}.json')
+    for kind in KINDS:
+        model=CalciumTransformPWA.load(MODELS/kind/f'{case}.json')
         latent=model.latent;local=latent.local_coefficients();theta=latent.thresholds;co=model.coordinate
         np.testing.assert_allclose(theta,co.forward(model.metadata['physical_thresholds_C']),atol=2e-14)
         continuity=0.;flow_error=0.;physical_flow_error=0.;ip3_error=0.;jac_error=0.;types=[]
@@ -44,6 +48,6 @@ for case in ['AM','FM']:
         report[case][kind]=dict(regions=latent.region_count,parameters=model.metadata['parameter_count'],
             continuity_max_abs_error=continuity,latent_flow_error=flow_error,physical_readout_flow_error=physical_flow_error,
             IP3_error=ip3_error,source_Jacobian_similarity_error=jac_error,regional_types=types,
-            calcium_reference=co.reference,h_reference=model.h_reference,root_branch_guard=kind!='log')
+            calcium_reference=co.reference,coordinate_scale=co.scale,h_reference=model.h_reference,root_branch_guard=kind!='log')
 (OUT/'structure.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))
