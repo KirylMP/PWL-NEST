@@ -1,0 +1,12 @@
+{
+  "cell": [
+    "FM",
+    "sqrt",
+    "logit"
+  ],
+  "restart": 0,
+  "status": "verified",
+  "exit_code": 0,
+  "seconds": 23.539536538999528,
+  "path": "trials/FM/sqrt__logit/r0000"
+}

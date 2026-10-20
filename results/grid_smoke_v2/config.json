@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "code_sha256": "842f3c4c0fd256919a11c11a4f7ecd149e8c11b9cf67e25b320b7adaaa389165",
+  "cases": [
+    "AM",
+    "FM"
+  ],
+  "c_kinds": [
+    "sqrt",
+    "sqrt_tails"
+  ],
+  "h_kinds": [
+    "logit",
+    "cube"
+  ],
+  "budget": 25,
+  "seed": 20261022,
+  "train_selection": "independent DOP; no held-out selection",
+  "pre_input_delay_s": 20.0,
+  "source_models": {
+    "AM": "fa9f42ef9cfe61db967759aaa80098266d7b9ec3b5680de5a7daa5581e7eae54",
+    "FM": "5b2c801fe41e7578e0ba95112fdac88463b449a86f82f728403175550cbaf8e1"
+  }
+}

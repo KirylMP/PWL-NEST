@@ -1,0 +1,2 @@
+case,C,h,verified_restarts,restart,verified_train_loss,test_C_RMSE,test_phase_aligned_C_RMSE,test_peak_count_matches,test_all_physical,regions,active_parameters,model
+FM,sqrt_tails,cube,2,1,102.18529232113254,0.11538294451125206,0.050454466650365445,4,True,8,29,trials/FM/sqrt_tails__cube/r0001/candidate.json

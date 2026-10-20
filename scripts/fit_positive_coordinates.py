@@ -116,17 +116,19 @@ class CalibrationResidual:
         return (result,groups) if parts else result
 
 
-def fit(case,variant,seed,data,objective,budget):
+def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind=None,rng_seed=20261021,checkpoint_path=None):
     n=seed.latent.region_count;nc=2*n+6;m=n-1;knots=seed.input_thresholds
     physical=np.array(seed.metadata['physical_thresholds_C']);mapping=OrderedThresholds(physical,data[4],data[5])
     ckind={'sixth_C':'sixth','sixth_root_C':'sixth_root','bounded_C':'bounded_logit','sqrt_tails':'sqrt_tails'}.get(variant,seed.coordinate.kind)
     hkind='sixth' if variant=='sixth_h' else seed.h_kind
+    ckind=coordinate_kind or ckind;hkind=gate_kind or hkind
     if ckind==seed.coordinate.kind:co=seed.coordinate
     elif ckind=='sqrt_tails':co=CalciumCoordinate(ckind,seed.coordinate.reference,seed.coordinate.scale)
     else:
-        raw=CalciumCoordinate(ckind,seed.coordinate.reference)
+        half=(.1 if case=='AM' else .05) if ckind=='hill' else None
+        raw=CalciumCoordinate(ckind,seed.coordinate.reference,half_saturation=half)
         endpoint=.9*C_MAX if ckind=='bounded_logit' else C_MAX
-        co=CalciumCoordinate(ckind,raw.reference,float(raw.forward(endpoint)/endpoint))
+        co=CalciumCoordinate(ckind,raw.reference,float(raw.forward(endpoint)/endpoint),half)
     z=np.r_[seed.metadata['parameters'],np.zeros(m),seed.metadata.get('extra_parameters',[]) if len(knots) else []]
     if len(z)!=nc+m+2*len(knots):raise ValueError('Unexpected input geometry parameter count')
     factor=seed.coordinate.derivative(co.reference)/co.derivative(co.reference)
@@ -176,8 +178,11 @@ def fit(case,variant,seed,data,objective,budget):
             if not history or count-history[-1]['evaluation']>=100:
                 history.append(dict(evaluation=count,calibration_loss=float(r@r),seconds=time.monotonic()-started))
                 print(f'{case} {variant} {count}: {r@r:.7g}',flush=True)
+                if checkpoint_path is not None:
+                    checkpoint=make(p);checkpoint.metadata.update(checkpoint_unverified=True,raw_fit_vector=p.tolist())
+                    checkpoint.save(checkpoint_path)
         return full
-    rng=np.random.default_rng(20261021);perturb=np.clip(z+rng.normal(0,.02,len(z)),lower+1e-8,upper-1e-8)
+    rng=np.random.default_rng(rng_seed);perturb=np.clip(z+rng.normal(0,.02,len(z)),lower+1e-8,upper-1e-8)
     candidates=[('tangent',z),('field',field.x),('perturbed',perturb)]
     ranks=sorted([(float(np.dot(r:=residual(p),r)),name,p) for name,p in candidates],key=lambda q:q[0])
     runs=[]

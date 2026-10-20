@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "code_sha256": "5859cdb65a310cf0a86f43e49f5c5299ba0609bd07fe000f06061dcc6066d7aa",
+  "cases": [
+    "FM"
+  ],
+  "c_kinds": [
+    "sqrt_tails"
+  ],
+  "h_kinds": [
+    "cube"
+  ],
+  "budget": 8,
+  "libraries": {
+    "python": "3.12",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "seed": 20261022,
+  "train_selection": "independent DOP; no held-out selection",
+  "pre_input_delay_s": 20.0,
+  "source_models": {
+    "FM": "5b2c801fe41e7578e0ba95112fdac88463b449a86f82f728403175550cbaf8e1"
+  }
+}

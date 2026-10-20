@@ -1,0 +1,12 @@
+{
+  "cell": [
+    "FM",
+    "sqrt_tails",
+    "cube"
+  ],
+  "restart": 1,
+  "status": "verified",
+  "exit_code": 0,
+  "seconds": 24.03684315999999,
+  "path": "trials/FM/sqrt_tails__cube/r0001"
+}

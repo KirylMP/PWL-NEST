@@ -1,0 +1,12 @@
+{
+  "cell": [
+    "AM",
+    "sqrt",
+    "cube"
+  ],
+  "restart": 0,
+  "status": "verified",
+  "exit_code": 0,
+  "seconds": 23.039659107999796,
+  "path": "trials/AM/sqrt__cube/r0000"
+}

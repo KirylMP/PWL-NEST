@@ -1,0 +1,9 @@
+case,C,h,verified_restarts,restart,verified_train_loss,test_C_RMSE,test_phase_aligned_C_RMSE,test_peak_count_matches,test_all_physical,regions,active_parameters,model
+AM,sqrt,logit,1,0,69.54584089389544,0.018547168618144424,0.013197467208263397,4,True,12,21,trials/AM/sqrt__logit/r0000/candidate.json
+AM,sqrt,cube,1,0,71.85260385477835,0.018299700942895878,0.013269446876788774,4,True,12,21,trials/AM/sqrt__cube/r0000/candidate.json
+AM,sqrt_tails,logit,1,0,69.54584128404545,0.018547167037583478,0.013197470373989089,4,True,12,21,trials/AM/sqrt_tails__logit/r0000/candidate.json
+AM,sqrt_tails,cube,1,0,71.85260510780819,0.018299701314580665,0.013269446275284359,4,True,12,21,trials/AM/sqrt_tails__cube/r0000/candidate.json
+FM,sqrt,logit,1,0,117.6449728219588,0.11672631667377231,0.049773581339234235,4,True,8,29,trials/FM/sqrt__logit/r0000/candidate.json
+FM,sqrt,cube,1,0,117.15851125279997,0.1116742863339901,0.054091853385503735,4,True,8,29,trials/FM/sqrt__cube/r0000/candidate.json
+FM,sqrt_tails,logit,1,0,101.47155605832047,0.11652156626151716,0.049773581339234235,4,True,8,29,trials/FM/sqrt_tails__logit/r0000/candidate.json
+FM,sqrt_tails,cube,1,0,101.7189461989538,0.11278699129482885,0.05264114080664503,4,True,8,29,trials/FM/sqrt_tails__cube/r0000/candidate.json

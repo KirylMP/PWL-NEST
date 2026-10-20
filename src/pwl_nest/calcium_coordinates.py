@@ -148,16 +148,18 @@ class GateCoordinate:
     reference: float
 
     def __post_init__(self):
-        if self.kind not in ('logit','log','exp','cube','sixth') or not 0<self.reference<1:
+        if self.kind not in ('identity','logit','log','exp','cube','sixth') or not 0<self.reference<1:
             raise ValueError('Invalid gate coordinate')
 
     @property
     def lower(self):
+        if self.kind=='identity':return -1/(1-self.reference)
         if self.kind in ('cube','sixth'):return -1/(self.power*(1-self.reference))
         return float(np.expm1(-self.reference)/(self.reference*(1-self.reference))) if self.kind=='exp' else -np.inf
 
     @property
     def upper(self):
+        if self.kind=='identity':return 1/self.reference
         if self.kind=='logit':return np.inf
         if self.kind=='log':return float(-np.log(self.reference)/(1-self.reference))
         if self.kind in ('cube','sixth'):return (1-self.reference**self.power)/(self.power*self.reference**self.power*(1-self.reference))
@@ -166,6 +168,7 @@ class GateCoordinate:
     def forward(self,h):
         h=np.asarray(h)
         if not np.isfinite(h).all() or np.any(h.real<=0) or np.any(h.real>=1):raise ValueError('Require 0<h<1')
+        if self.kind=='identity':return (h-self.reference)/(self.reference*(1-self.reference))
         if self.kind=='logit':return np.log(h/(1-h))-logit(self.reference)
         if self.kind=='log':return np.log(h/self.reference)/(1-self.reference)
         if self.kind=='cube':return (h**3-self.reference**3)/(3*self.reference**3*(1-self.reference))
@@ -175,6 +178,7 @@ class GateCoordinate:
     def derivative(self,h):
         h=np.asarray(h)
         if np.any(h.real<=0) or np.any(h.real>=1):raise ValueError('Require 0<h<1')
+        if self.kind=='identity':return np.ones_like(h)/(self.reference*(1-self.reference))
         if self.kind=='logit':return 1/(h*(1-h))
         if self.kind=='log':return 1/(h*(1-self.reference))
         if self.kind=='cube':return h**2/(self.reference**3*(1-self.reference))
@@ -187,7 +191,8 @@ class GateCoordinate:
             raise ValueError('Gate coordinate left 0<h<1')
         if self.kind=='logit':
             return 1/(1+np.exp(-v-logit(self.reference))) if np.iscomplexobj(v) else expit(v+logit(self.reference))
-        if self.kind=='log':h=self.reference*np.exp((1-self.reference)*v)
+        if self.kind=='identity':h=self.reference+self.reference*(1-self.reference)*v
+        elif self.kind=='log':h=self.reference*np.exp((1-self.reference)*v)
         elif self.kind=='cube':h=(self.reference**3+3*self.reference**3*(1-self.reference)*v)**(1/3)
         elif self.kind=='sixth':h=self.reference*(1+6*(1-self.reference)*v)**(1/6)
         else:h=self.reference+np.log1p(self.reference*(1-self.reference)*v)

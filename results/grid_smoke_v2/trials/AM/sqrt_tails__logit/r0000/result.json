@@ -1,0 +1,633 @@
+{
+  "case": "AM",
+  "C": "sqrt_tails",
+  "h": "logit",
+  "restart": 0,
+  "seed": 20261028,
+  "verified_train_loss": 69.54584128404545,
+  "train_parts": {
+    "fixed_and_spectral_anchors": 45.28949766582381,
+    "pulse_tau_20.0": 11.234347687632095,
+    "pulse_tau_100.0": 5.071839940554344,
+    "periodic": 7.528420852591992,
+    "own_rest": 0.42173513744319907
+  },
+  "physical_field_PWA": false,
+  "regional_matrices_constant": true,
+  "regions": 12,
+  "active_parameters": 21,
+  "model": "trials/AM/sqrt_tails__logit/r0000/candidate.json",
+  "status": "verified",
+  "test": [
+    {
+      "name": "pulse_tau_7.0",
+      "completed": true,
+      "raw_full_RMSE": [
+        0.011712779636601004,
+        0.005495459225579553,
+        2.374029606607958e-16
+      ],
+      "global_shift": {
+        "shift_s": -0.4368576307565359,
+        "raw_fit_rmse": 0.008572719860564218,
+        "aligned_fit_rmse": 0.006591493302072296,
+        "raw_eval_rmse": 0.008572719860564218,
+        "aligned_eval_rmse": 0.006591493302072296,
+        "fit_window": [
+          25.0,
+          195.0
+        ],
+        "eval_window": [
+          25.0,
+          195.0
+        ],
+        "max_shift_s": 5.0,
+        "at_search_boundary": false,
+        "convention": "positive shift means candidate is late; compare candidate(t+shift) to LR(t)"
+      },
+      "early_shift_late_test": {
+        "shift_s": -0.43685762751870016,
+        "raw_fit_rmse": 0.010237804092079625,
+        "aligned_fit_rmse": 0.0066890068392064924,
+        "raw_eval_rmse": 0.006492456775962179,
+        "aligned_eval_rmse": 0.006492456684410647,
+        "fit_window": [
+          25.0,
+          110.0
+        ],
+        "eval_window": [
+          110.0,
+          195.0
+        ],
+        "max_shift_s": 5.0,
+        "at_search_boundary": false,
+        "convention": "positive shift means candidate is late; compare candidate(t+shift) to LR(t)"
+      },
+      "peaks": {
+        "LR_times": [
+          22.0
+        ],
+        "PWA_times": [
+          22.15
+        ],
+        "counts": [
+          1,
+          1
+        ],
+        "first_peak_latency_LR": 2.0,
+        "first_peak_latency_PWA": 2.1499999999999986,
+        "LR_widths_half_prominence_s": [
+          3.5074704587265373
+        ],
+        "LR_heights": [
+          0.7357574229402333
+        ],
+        "PWA_widths_half_prominence_s": [
+          3.0216396289227347
+        ],
+        "PWA_heights": [
+          0.7290022349913209
+        ],
+        "lags_s": [
+          0.14999999999999858
+        ],
+        "first_lag_s": 0.14999999999999858,
+        "last_lag_s": 0.14999999999999858,
+        "lag_span_s": 0.0,
+        "peak_amplitude_MAE": 0.006755187948912389,
+        "peak_centered_shape": {
+          "RMSE": 0.06024872050060827,
+          "used_peak_indices": [
+            0
+          ],
+          "half_window_s": 3.0,
+          "amplitude_rescaled": false,
+          "scope": "individual peak centering is a morphology diagnostic, not causal response accuracy"
+        }
+      },
+      "C_ranges": [
+        [
+          0.08072763633791719,
+          0.7357574229402333
+        ],
+        [
+          0.08188339911544454,
+          0.7290022349913209
+        ]
+      ],
+      "physical": true
+    },
+    {
+      "name": "pulse_tau_50.0",
+      "completed": true,
+      "raw_full_RMSE": [
+        0.018537405442373124,
+        0.009744920756705983,
+        4.494598610071245e-16
+      ],
+      "global_shift": {
+        "shift_s": -0.29111041324334613,
+        "raw_fit_rmse": 0.017731956217551224,
+        "aligned_fit_rmse": 0.013807135158144822,
+        "raw_eval_rmse": 0.017731956217551224,
+        "aligned_eval_rmse": 0.013807135158144822,
+        "fit_window": [
+          25.0,
+          195.0
+        ],
+        "eval_window": [
+          25.0,
+          195.0
+        ],
+        "max_shift_s": 5.0,
+        "at_search_boundary": false,
+        "convention": "positive shift means candidate is late; compare candidate(t+shift) to LR(t)"
+      },
+      "early_shift_late_test": {
+        "shift_s": -0.28681114901072274,
+        "raw_fit_rmse": 0.024118604705439844,
+        "aligned_fit_rmse": 0.018545147469827255,
+        "raw_eval_rmse": 0.006853188468700272,
+        "aligned_eval_rmse": 0.006109641205924975,
+        "fit_window": [
+          25.0,
+          110.0
+        ],
+        "eval_window": [
+          110.0,
+          195.0
+        ],
+        "max_shift_s": 5.0,
+        "at_search_boundary": false,
+        "convention": "positive shift means candidate is late; compare candidate(t+shift) to LR(t)"
+      },
+      "peaks": {
+        "LR_times": [
+          22.1,
+          33.85,
+          45.400000000000006,
+          57.35,
+          69.85,
+          82.9,
+          96.3,
+          109.45,
+          122.0
+        ],
+        "PWA_times": [
+          22.3,
+          33.45,
+          44.85,
+          56.9,
+          69.9,
+          83.55000000000001,
+          96.75,
+          109.30000000000001,
+          120.75
+        ],
+        "counts": [
+          9,
+          9
+        ],
+        "first_peak_latency_LR": 2.1000000000000014,
+        "first_peak_latency_PWA": 2.3000000000000007,
+        "LR_widths_half_prominence_s": [
+          3.8722466731770027,
+          4.785313838392437,
+          4.661125096033935,
+          4.699925236860786,
+          4.826061868674145,
+          5.0531323333703,
+          5.427107583276154,
+          5.723068929996828,
+          6.380428364417298
+        ],
+        "LR_heights": [
+          0.7740055102076785,
+          0.49225453210301623,
+          0.44688484362197783,
+          0.40397086546662236,
+          0.3563498996402545,
+          0.30339823854276654,
+          0.24621204830935572,
+          0.1961521913507434,
+          0.16416037879183573
+        ],
+        "PWA_widths_half_prominence_s": [
+          3.2768325951648336,
+          4.715333016729147,
+          4.579452914006822,
+          4.6374991985614145,
+          4.843054668351698,
+          5.080192990331639,
+          5.214013104790709,
+          5.343400975781961,
+          5.347372531059847
+        ],
+        "PWA_heights": [
+          0.8158683437467498,
+          0.46197799632589304,
+          0.4272184917853894,
+          0.39462915209437627,
+          0.3590157332325587,
+          0.292713411922577,
+          0.23912476834145,
+          0.20309404697691405,
+          0.17307695784894644
+        ],
+        "lags_s": [
+          0.1999999999999993,
+          -0.3999999999999986,
+          -0.5500000000000043,
+          -0.45000000000000284,
+          0.05000000000001137,
+          0.6500000000000057,
+          0.45000000000000284,
+          -0.14999999999999147,
+          -1.25
+        ],
+        "first_lag_s": 0.1999999999999993,
+        "last_lag_s": -1.25,
+        "lag_span_s": 1.9000000000000057,
+        "peak_amplitude_MAE": 0.015271534376523316,
+        "lag_trend_s_per_100s": -0.265109478403332,
+        "peak_amplitude_MAE_after_first": 0.01194762198120482,
+        "peak_centered_shape": {
+          "RMSE": 0.02175559741040192,
+          "used_peak_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "half_window_s": 3.0,
+          "amplitude_rescaled": false,
+          "scope": "individual peak centering is a morphology diagnostic, not causal response accuracy"
+        }
+      },
+      "C_ranges": [
+        [
+          0.10059192018020977,
+          0.7740055102076785
+        ],
+        [
+          0.10188001498182733,
+          0.8158683437467498
+        ]
+      ],
+      "physical": true
+    },
+    {
+      "name": "pulse_tau_65.0",
+      "completed": true,
+      "raw_full_RMSE": [
+        0.025075563460120933,
+        0.011660194325356336,
+        1.0337109589627335e-15
+      ],
+      "global_shift": {
+        "shift_s": -0.38893218684895375,
+        "raw_fit_rmse": 0.02483520846636699,
+        "aligned_fit_rmse": 0.01793691482975687,
+        "raw_eval_rmse": 0.02483520846636699,
+        "aligned_eval_rmse": 0.01793691482975687,
+        "fit_window": [
+          25.0,
+          195.0
+        ],
+        "eval_window": [
+          25.0,
+          195.0
+        ],
+        "max_shift_s": 5.0,
+        "at_search_boundary": false,
+        "convention": "positive shift means candidate is late; compare candidate(t+shift) to LR(t)"
+      },
+      "early_shift_late_test": {
+        "shift_s": -0.4124698466311726,
+        "raw_fit_rmse": 0.03377170713535018,
+        "aligned_fit_rmse": 0.022614888267232038,
+        "raw_eval_rmse": 0.009668523885908286,
+        "aligned_eval_rmse": 0.011682440054947629,
+        "fit_window": [
+          25.0,
+          110.0
+        ],
+        "eval_window": [
+          110.0,
+          195.0
+        ],
+        "max_shift_s": 5.0,
+        "at_search_boundary": false,
+        "convention": "positive shift means candidate is late; compare candidate(t+shift) to LR(t)"
+      },
+      "peaks": {
+        "LR_times": [
+          22.1,
+          33.75,
+          45.05,
+          56.65,
+          68.55000000000001,
+          80.9,
+          93.65,
+          106.75,
+          120.10000000000001,
+          133.25,
+          145.95,
+          158.35
+        ],
+        "PWA_times": [
+          22.3,
+          33.25,
+          44.400000000000006,
+          55.9,
+          67.95,
+          80.65,
+          94.15,
+          107.55000000000001,
+          120.55000000000001,
+          133.05,
+          145.0,
+          156.25
+        ],
+        "counts": [
+          12,
+          12
+        ],
+        "first_peak_latency_LR": 2.1000000000000014,
+        "first_peak_latency_PWA": 2.3000000000000007,
+        "LR_widths_half_prominence_s": [
+          3.889788897452082,
+          4.82947924978388,
+          4.686233623810146,
+          4.6815284116816684,
+          4.715994571043197,
+          4.7959031884966095,
+          4.931632084201922,
+          5.149080537774196,
+          5.4502492021718325,
+          5.709250123932065,
+          5.7800331920635415,
+          6.285786548307215
+        ],
+        "LR_heights": [
+          0.7754655207502866,
+          0.5051061394687401,
+          0.46854770943457197,
+          0.43859508161191735,
+          0.40562507998286024,
+          0.3699050202580483,
+          0.33123010383973117,
+          0.2892957758637957,
+          0.24540013134890049,
+          0.20528522648838585,
+          0.17524969579041674,
+          0.15550606854131444
+        ],
+        "PWA_widths_half_prominence_s": [
+          3.2973108033986804,
+          4.771880652808804,
+          4.601376379230743,
+          4.609008656695231,
+          4.653999271281862,
+          4.778553611927137,
+          5.024863162262577,
+          5.131213964196903,
+          5.233891647059593,
+          5.334215101870598,
+          5.447009472203121,
+          5.309188560365953
+        ],
+        "PWA_heights": [
+          0.8186027860046199,
+          0.47515234657416383,
+          0.4468889598599708,
+          0.4211252057881676,
+          0.3961261127803356,
+          0.36988980135070043,
+          0.3294264571392257,
+          0.2768338438986867,
+          0.2383240148065874,
+          0.20983436215691104,
+          0.1885954888982481,
+          0.16323974535927963
+        ],
+        "lags_s": [
+          0.1999999999999993,
+          -0.5,
+          -0.6499999999999915,
+          -0.75,
+          -0.6000000000000085,
+          -0.25,
+          0.5,
+          0.8000000000000114,
+          0.45000000000000284,
+          -0.19999999999998863,
+          -0.9499999999999886,
+          -2.0999999999999943
+        ],
+        "first_lag_s": 0.1999999999999993,
+        "last_lag_s": -2.0999999999999943,
+        "lag_span_s": 2.9000000000000057,
+        "peak_amplitude_MAE": 0.01405868087161518,
+        "lag_trend_s_per_100s": -0.43800587454512746,
+        "peak_amplitude_MAE_after_first": 0.01141517320045899,
+        "peak_centered_shape": {
+          "RMSE": 0.020103267441967835,
+          "used_peak_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "half_window_s": 3.0,
+          "amplitude_rescaled": false,
+          "scope": "individual peak centering is a morphology diagnostic, not causal response accuracy"
+        }
+      },
+      "C_ranges": [
+        [
+          0.1011513434840252,
+          0.7754655207502866
+        ],
+        [
+          0.10355026623359775,
+          0.8186027860046199
+        ]
+      ],
+      "physical": true
+    },
+    {
+      "name": "irregular",
+      "completed": true,
+      "raw_full_RMSE": [
+        0.018862919611238847,
+        0.012056954490850575,
+        2.682969432038074e-16
+      ],
+      "global_shift": {
+        "shift_s": -0.20916776350710256,
+        "raw_fit_rmse": 0.018145161519195537,
+        "aligned_fit_rmse": 0.014454338205982367,
+        "raw_eval_rmse": 0.018145161519195537,
+        "aligned_eval_rmse": 0.014454338205982367,
+        "fit_window": [
+          25.0,
+          235.0
+        ],
+        "eval_window": [
+          25.0,
+          235.0
+        ],
+        "max_shift_s": 5.0,
+        "at_search_boundary": false,
+        "convention": "positive shift means candidate is late; compare candidate(t+shift) to LR(t)"
+      },
+      "early_shift_late_test": {
+        "shift_s": -0.20917939195159233,
+        "raw_fit_rmse": 0.024850728647975936,
+        "aligned_fit_rmse": 0.019416762315114227,
+        "raw_eval_rmse": 0.00637655675791688,
+        "aligned_eval_rmse": 0.006378483284823507,
+        "fit_window": [
+          25.0,
+          130.0
+        ],
+        "eval_window": [
+          130.0,
+          235.0
+        ],
+        "max_shift_s": 5.0,
+        "at_search_boundary": false,
+        "convention": "positive shift means candidate is late; compare candidate(t+shift) to LR(t)"
+      },
+      "peaks": {
+        "LR_times": [
+          22.496539912429128,
+          34.6740932381367,
+          45.24668607284063,
+          56.179809791739274,
+          68.16756621789605,
+          79.70156084894685,
+          91.89138375726792,
+          106.73723560475068
+        ],
+        "PWA_times": [
+          22.496539912429128,
+          34.52454620134448,
+          44.84742792564245,
+          55.88006336316284,
+          67.96787301743967,
+          79.45181462832375,
+          91.69143962464189,
+          106.98716577053322
+        ],
+        "counts": [
+          8,
+          8
+        ],
+        "first_peak_latency_LR": 2.496539912429128,
+        "first_peak_latency_PWA": 2.496539912429128,
+        "LR_widths_half_prominence_s": [
+          3.570520783373702,
+          4.084188798694136,
+          4.255732461227659,
+          4.144512371879173,
+          4.061133668259899,
+          4.1237995343510505,
+          4.0497926529995425,
+          5.679949442203508
+        ],
+        "LR_heights": [
+          0.5655815931790075,
+          0.48360806129079126,
+          0.4574832744089401,
+          0.4956191879705932,
+          0.5218458454356051,
+          0.5032117798062885,
+          0.5255084995118889,
+          0.1628447388305922
+        ],
+        "PWA_widths_half_prominence_s": [
+          3.4048630799938273,
+          4.0191131681572685,
+          4.1286819961413315,
+          3.9727520505266583,
+          3.8726806635966824,
+          3.952086185747234,
+          3.859948402044793,
+          5.284898764358658
+        ],
+        "PWA_heights": [
+          0.5170424590409148,
+          0.44193924448138666,
+          0.43339451729065337,
+          0.4665275387325948,
+          0.4881604330706213,
+          0.4713144769528707,
+          0.49102085193936285,
+          0.1786696317635512
+        ],
+        "lags_s": [
+          0.0,
+          -0.14954703679222092,
+          -0.3992581471981822,
+          -0.29974642857643374,
+          -0.19969320045638028,
+          -0.24974622062310914,
+          -0.1999441326260296,
+          0.24993016578254412
+        ],
+        "first_lag_s": 0.0,
+        "last_lag_s": 0.24993016578254412,
+        "lag_span_s": 0.6491883129807263,
+        "peak_amplitude_MAE": 0.032410451628458625,
+        "lag_trend_s_per_100s": 0.23030828354438618,
+        "peak_amplitude_MAE_after_first": 0.030106354127082343,
+        "peak_centered_shape": {
+          "RMSE": 0.029346399574151985,
+          "used_peak_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "half_window_s": 3.0,
+          "amplitude_rescaled": false,
+          "scope": "individual peak centering is a morphology diagnostic, not causal response accuracy"
+        }
+      },
+      "C_ranges": [
+        [
+          0.08312950259583105,
+          0.5655815931790075
+        ],
+        [
+          0.09058351365935317,
+          0.5170424590409148
+        ]
+      ],
+      "physical": true
+    }
+  ],
+  "test_C_RMSE": 0.018547167037583478,
+  "test_phase_aligned_C_RMSE": 0.013197470373989089,
+  "test_all_physical": true,
+  "test_peak_count_matches": 4
+}

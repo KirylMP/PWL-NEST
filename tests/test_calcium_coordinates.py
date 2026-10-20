@@ -199,7 +199,7 @@ class CalciumCoordinatesTest(unittest.TestCase):
 
     def test_gate_transforms_chain_rule_flow_jumps_and_serialization(self):
         x=np.array([.12,.65,.6]);f=lr_field(x,'AM')
-        for kind in ['logit','log','exp']:
+        for kind in ['identity','logit','log','exp']:
             gate=GateCoordinate(kind,.75);h=np.array([.001,.1,.65,.75,.999])
             np.testing.assert_allclose(gate.inverse(gate.forward(h)),h,atol=2e-15)
             self.assertAlmostEqual(float(gate.forward(.75)),0.,places=14)

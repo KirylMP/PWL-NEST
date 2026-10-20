@@ -1,0 +1,12 @@
+{
+  "cell": [
+    "AM",
+    "sqrt_tails",
+    "logit"
+  ],
+  "restart": 0,
+  "status": "verified",
+  "exit_code": 0,
+  "seconds": 23.037271443000463,
+  "path": "trials/AM/sqrt_tails__logit/r0000"
+}
