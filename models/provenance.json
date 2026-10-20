@@ -1,0 +1,24 @@
+{
+  "AM": {
+    "source_archive": "AM_two_movable_thresholds_2026-10-18.zip",
+    "source_model": "compact_models/AM_baseline4_F.json",
+    "regions": 5,
+    "coordinates": [
+      "C",
+      "w"
+    ],
+    "continuous_at_fixed_I": true,
+    "model_sha256": "e7914377684b238a34b93b137353bf328c0cca57c99422928b16b3ee9d59e6dd"
+  },
+  "FM": {
+    "source_archive": "li_rinzel_AM_FM_affine_fit.zip",
+    "source_model": "FM_fitted_parameters.json",
+    "regions": 8,
+    "coordinates": [
+      "C",
+      "v"
+    ],
+    "continuous_at_fixed_I": false,
+    "model_sha256": "0ddc511400981c6a88c69491422e08e09edb2ab66d2fbc273e94b652ce1d0a5e"
+  }
+}
