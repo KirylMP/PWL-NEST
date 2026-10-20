@@ -1,0 +1,44 @@
+{
+  "AM": {
+    "regions": 209664,
+    "nodes": 38313,
+    "affine_max_abs_error": 8.881784197001252e-16,
+    "continuity_max_abs_error": 1.3322676295501878e-15,
+    "regional_flow_max_abs_error": 2.220446049250313e-16,
+    "IP3_max_abs_error": 2.220446049250313e-16,
+    "random_interior_checks": 120,
+    "inward_boundary": [
+      {
+        "axis": 0,
+        "min_lower_velocity": 0.22,
+        "max_upper_velocity": -0.8968515465924647
+      },
+      {
+        "axis": 1,
+        "min_lower_velocity": 0.028910324358702562,
+        "max_upper_velocity": 0.0
+      }
+    ]
+  },
+  "FM": {
+    "regions": 408000,
+    "nodes": 73185,
+    "affine_max_abs_error": 1.3100631690576847e-14,
+    "continuity_max_abs_error": 2.842170943040401e-14,
+    "regional_flow_max_abs_error": 2.220446049250313e-16,
+    "IP3_max_abs_error": 2.220446049250313e-16,
+    "random_interior_checks": 120,
+    "inward_boundary": [
+      {
+        "axis": 0,
+        "min_lower_velocity": 0.22,
+        "max_upper_velocity": -0.8992108160573877
+      },
+      {
+        "axis": 1,
+        "min_lower_velocity": 0.028910324358702562,
+        "max_upper_velocity": 0.0
+      }
+    ]
+  }
+}

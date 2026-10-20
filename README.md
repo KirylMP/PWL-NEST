@@ -1,4 +1,48 @@
-# PWL-NEST: стартовые AM/FM модели
+# PWL-NEST: непрерывная 3D PWA для AM/FM
+
+Текущая работа — строгая идентификация полного поля в физических `(C,h,I)`
+по [блюпринту](docs/research_blueprint.md), с точной экспоненциальной релаксацией IP3.
+Сохранены первые подобранные модели, аффинные внутри тетраэдров и непрерывные
+на общих гранях. Полиномиальные вложения не используются.
+
+- [Эвристика, ограничения класса и протокол подбора](docs/strict_pwa_identification.md).
+- [Отчёт первого эксперимента](results/strict_pwa/REPORT.md).
+- [Графики динамических ответов и сложности](results/strict_pwa/strict_pwa_summary.png).
+- Модели: `models/strict_pwa/AM.npz`, `models/strict_pwa/FM.npz`.
+
+Это плотные стартовые кандидаты: 209664 области AM и 408000 FM.
+Выявлены ошибки около верхней границы AM и в фазе FM при медленном спаде IP3;
+полная динамическая приёмка не пройдена. NEST, SIC и ускорение ещё не проверены.
+
+Из `/workspace/PWL-NEST`:
+
+```bash
+bash scripts/setup.sh
+.venv/bin/python -m unittest discover -s tests -v
+# Проверить уже подобранные модели:
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/check_strict.py
+# Полностью повторить подбор (перезапишет результаты):
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/fit_strict.py
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/check_strict_convergence.py
+.venv/bin/python scripts/summarize_strict.py
+```
+
+Использование модели:
+
+```python
+from pwl_nest.strict_pwa import StrictPWA, regional_flow
+from pwl_nest.protocols import simulate
+model = StrictPWA.load('models/strict_pwa/AM.npz')
+t, state, info = simulate('AM', [.08, .8, .65], 180., tau=50., baseline=.3, model=model)
+A, b, tetrahedron = model.region([.08, .8, .65], tau=50., baseline=.3)
+# Аналитический поток только до первого выхода из данного тетраэдра:
+x_short = regional_flow(A, b, [.08, .8, .65], 1e-6)
+```
+
+Полные траектории пока проверяются DOP853; общий аналитический событийный
+решатель ещё не реализован. `regional_flow` не ищет первый выход из региона.
+
+## Исторические legacy baselines
 
 Первый воспроизводимый baseline по двум legacy-архивам. Код для NEST пока не реализован.
 

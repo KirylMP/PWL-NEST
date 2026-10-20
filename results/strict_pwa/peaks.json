@@ -1,0 +1,86 @@
+{
+  "AM": {
+    "decay_tau_2.0": {
+      "reference_peaks": 1,
+      "pwa_peaks": 1,
+      "same_count": true,
+      "max_abs_peak_time_error_s": 0.0,
+      "max_abs_peak_height_error_uM": 0.0004214294610920266,
+      "prominence_uM": 0.02,
+      "time_sample_spacing_approx_s": 0.2,
+      "caveat": "Peaks paired chronologically only when counts agree; sampled, no sub-grid refinement"
+    },
+    "decay_tau_50.0": {
+      "reference_peaks": 9,
+      "pwa_peaks": 9,
+      "same_count": true,
+      "max_abs_peak_time_error_s": 0.20000000000000284,
+      "max_abs_peak_height_error_uM": 0.0037930017934228177,
+      "prominence_uM": 0.02,
+      "time_sample_spacing_approx_s": 0.2,
+      "caveat": "Peaks paired chronologically only when counts agree; sampled, no sub-grid refinement"
+    },
+    "periodic_jumps_then_stop": {
+      "reference_peaks": 11,
+      "pwa_peaks": 11,
+      "same_count": true,
+      "max_abs_peak_time_error_s": 0.20000000000000284,
+      "max_abs_peak_height_error_uM": 0.007107793275159757,
+      "prominence_uM": 0.02,
+      "time_sample_spacing_approx_s": 0.2,
+      "caveat": "Peaks paired chronologically only when counts agree; sampled, no sub-grid refinement"
+    },
+    "irregular_jumps_then_stop": {
+      "reference_peaks": 9,
+      "pwa_peaks": 9,
+      "same_count": true,
+      "max_abs_peak_time_error_s": 0.19836376126373523,
+      "max_abs_peak_height_error_uM": 0.004683841699541169,
+      "prominence_uM": 0.02,
+      "time_sample_spacing_approx_s": 0.2,
+      "caveat": "Peaks paired chronologically only when counts agree; sampled, no sub-grid refinement"
+    }
+  },
+  "FM": {
+    "decay_tau_2.0": {
+      "reference_peaks": 1,
+      "pwa_peaks": 1,
+      "same_count": true,
+      "max_abs_peak_time_error_s": 0.0,
+      "max_abs_peak_height_error_uM": 0.00037449614050699687,
+      "prominence_uM": 0.02,
+      "time_sample_spacing_approx_s": 0.2,
+      "caveat": "Peaks paired chronologically only when counts agree; sampled, no sub-grid refinement"
+    },
+    "decay_tau_50.0": {
+      "reference_peaks": 5,
+      "pwa_peaks": 5,
+      "same_count": true,
+      "max_abs_peak_time_error_s": 0.7999999999999972,
+      "max_abs_peak_height_error_uM": 0.0035603240942863046,
+      "prominence_uM": 0.02,
+      "time_sample_spacing_approx_s": 0.2,
+      "caveat": "Peaks paired chronologically only when counts agree; sampled, no sub-grid refinement"
+    },
+    "periodic_jumps_then_stop": {
+      "reference_peaks": 5,
+      "pwa_peaks": 5,
+      "same_count": true,
+      "max_abs_peak_time_error_s": 0.20000000000000284,
+      "max_abs_peak_height_error_uM": 0.0009348060473495234,
+      "prominence_uM": 0.02,
+      "time_sample_spacing_approx_s": 0.2,
+      "caveat": "Peaks paired chronologically only when counts agree; sampled, no sub-grid refinement"
+    },
+    "irregular_jumps_then_stop": {
+      "reference_peaks": 4,
+      "pwa_peaks": 4,
+      "same_count": true,
+      "max_abs_peak_time_error_s": 0.19836376126373523,
+      "max_abs_peak_height_error_uM": 0.0016518886880778627,
+      "prominence_uM": 0.02,
+      "time_sample_spacing_approx_s": 0.2,
+      "caveat": "Peaks paired chronologically only when counts agree; sampled, no sub-grid refinement"
+    }
+  }
+}

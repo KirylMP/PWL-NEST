@@ -1,0 +1,18 @@
+{
+  "implementation": "shared-vertex 3D simplicial PWA, first identification experiment",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "files": {
+    "AM.npz": "9792d90f0844bcc777ec2fcb635d213af12bc05bfe658dd5cd51e2448ea1b8a4",
+    "AM_coarse_fit.npz": "288aecffea4bddb1e355c28a5452320082e6c0fab85aa0b03e5b1e8eb853924f",
+    "AM_coarse_interpolation.npz": "9051ff6f624eca2844103e4f7946cd238aa83b7bbb0dc0d5bb188ee6a2a43400",
+    "AM_refined_fit.npz": "6e5e5d8387145f6722d988611cce13b31cbbef1de5ea2e233d528811c0e9095b",
+    "AM_refined_interpolation.npz": "9cc2a55d64f503c34245714a04092c41ffbd9193c145c6311fe60a51ba2fd39e",
+    "FM.npz": "8a70400ea5a886cfccb0fb1cf7ced3a2b75ed1045f66a3bac9f63788cde75f61",
+    "FM_coarse_fit.npz": "53c49f7cacb1dee27dbccba534a35ae2f862e5cabdf0f4e5e2c88ba064b46769",
+    "FM_coarse_interpolation.npz": "e44138624734c10f5dc3ed6fdb1bf0e0e5cc68e4ba24b955d3f7ce3ae1cc9cd4",
+    "FM_refined_fit.npz": "bf1a5beda4e1e0cdf4d42c6cd764e709151c5a6cb691f0b74c8192fac0b0c476",
+    "FM_refined_interpolation.npz": "cf1ba9a1e6f384da69ed7aa8a0c1374dfe11add580bdbd7212f1a1bfb52b5ba5"
+  }
+}

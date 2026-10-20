@@ -1,0 +1,22 @@
+{
+  "AM": {
+    "lr": {
+      "max_abs_C_difference": 2.0011324847191148e-07,
+      "C_RMSE_difference": 8.993793161435344e-09
+    },
+    "pwa": {
+      "max_abs_C_difference": 7.960148763991315e-05,
+      "C_RMSE_difference": 1.851376240171179e-05
+    }
+  },
+  "FM": {
+    "lr": {
+      "max_abs_C_difference": 1.8182146965806112e-06,
+      "C_RMSE_difference": 1.392806070738882e-07
+    },
+    "pwa": {
+      "max_abs_C_difference": 0.0010300115595214265,
+      "C_RMSE_difference": 8.724795588898233e-05
+    }
+  }
+}
