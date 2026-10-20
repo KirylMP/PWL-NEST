@@ -1,0 +1,541 @@
+{
+  "case": "AM",
+  "variant": "sixth_C",
+  "metadata": {
+    "class_name": "PWA_in_transformed_calcium_and_gate",
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "thresholds_policy": "ordered physical C gaps fitted; +/-ln(2)",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.11195264540328671,
+        "h": 0.7578765554494843,
+        "I": 0.27802575097364235,
+        "trace": -1.026643693352243,
+        "determinant": 0.26349931827487577,
+        "discriminant": 4.312106227644108e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.1556894888082622,
+        "h": 0.7155282974000192,
+        "I": 0.35453381865657696,
+        "trace": 1.3739009929736312e-15,
+        "determinant": 0.25048138443817525,
+        "discriminant": -1.001925537752701
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3233038346842266,
+        "h": 0.6115837408558975,
+        "I": 0.6368818163953753,
+        "trace": -4.543587728278453e-14,
+        "determinant": 0.3584212537104145,
+        "discriminant": -1.433685014841658
+      }
+    ],
+    "source_average_trace": [
+      -3.978715536777417,
+      -0.438944199916516,
+      0.15905769157025726,
+      -0.3233758185057667
+    ],
+    "source_average_determinant": [
+      0.29295936298491265,
+      0.25372910867094683,
+      0.3014382398040492,
+      0.4406812055884304
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      4.937035534683918,
+      1.749281880599346,
+      1.6845097372974123,
+      3.3813540795061536
+    ],
+    "restoring_scale": 0.10184201032657797,
+    "regions": 4,
+    "free_parameters": 18,
+    "target_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "calcium_transform": "sixth",
+    "h_transform": "log",
+    "variant": "sqrt_h_log",
+    "physical_thresholds_C": [
+      0.10815893852960877,
+      0.13952582644058475,
+      0.3219899875093226
+    ],
+    "physical_field_PWA": false,
+    "enforce_types": true,
+    "accepted": false,
+    "source_chain_rule": "udot=phi_prime(C)*fC; vdot=psi_prime(h)*fh",
+    "calcium_reference": 0.05563833512124773,
+    "h_reference": 0.722072295839805,
+    "coordinate_scale": 4280912.444926625,
+    "normalization": "phi(Cref)=0; phi(C_MAX)=C_MAX",
+    "q0_parameterization": "q0=qb*IP3_offset; source rest u=0",
+    "parameter_count": 21,
+    "parameters": [
+      1.116682362428661,
+      -1.1020217397608105,
+      -3.593762741904704,
+      -2.942277701530149,
+      -1.2515606532347756,
+      -2.243388665044276,
+      -6.974464762373005,
+      -10.811003721823136,
+      0.1257369392596151,
+      -15.575626471225732,
+      -13.555303581340867,
+      -3.623491577746581,
+      5.649771430645549e-06,
+      -2.8321006045625968e-06
+    ],
+    "mu_sign": [
+      -1.0,
+      -1.0,
+      1.0,
+      -1.0
+    ],
+    "k_sign": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "training_data_loss": 1.1109390860356152,
+    "training_total_loss": 1.115036973876117,
+    "selected_by": "event-weighted calibration with promoted failure cases; fresh tests excluded",
+    "experiment_variant": "sixth_C",
+    "seed_model": "models/extended_pwa/selected_AM.json",
+    "reported_previous_training_loss": 1.396793826903889,
+    "threshold_parameter_count": 3,
+    "coefficient_parameter_count": 14,
+    "threshold_reference_C": [
+      0.11195264540328671,
+      0.1556894888082622,
+      0.3233038346842266
+    ],
+    "threshold_domain_C": [
+      0.05563833512124773,
+      0.51941408164821
+    ],
+    "coefficient_prior_strength": 0.005,
+    "threshold_gap_prior_strength": 0.05,
+    "threshold_shifts": [
+      -0.15873622949396993,
+      -0.12165540179123982,
+      -0.05568141366947631
+    ],
+    "active_fit_parameters": 21,
+    "new_geometry_parameters": 4,
+    "held_incumbent_C_thresholds": [
+      0.11422041509904675,
+      0.14793381200235634,
+      0.33152698054352964
+    ],
+    "input_thresholds": [
+      0.35,
+      0.64
+    ],
+    "input_knot_locations_fitted": false,
+    "reference_input": 0.65,
+    "pilot": "standalone branches, not all Cartesian feature combinations",
+    "extra_parameters": [
+      -6.099022311399641e-06,
+      -4.495500071839459e-05,
+      0.958016508786188,
+      -0.9584504336692015
+    ],
+    "verified_training_data_loss": 1.111049157715056,
+    "verified_training_method": "native static + independent DOP853 training paths + original source-I anchors",
+    "calcium_clipping": false,
+    "dynamic_peak_count_residual_weight": 25.0,
+    "fixed_status_residual_weight": 25.0,
+    "fixed_status_policy": "explicit known status; unresolved references carry no hard label",
+    "optimizer_calibration_loss": 43563894.01822649,
+    "verified_calibration_loss": null,
+    "verified_calibration_method": "all calibration paths DOP853; fresh tests excluded"
+  },
+  "results": [
+    {
+      "name": "fixed_lower_rest",
+      "split": "calibration",
+      "completed": false,
+      "error": "Latent solver incomplete near t=129.176749: positive-root branch exit"
+    },
+    {
+      "name": "fixed_0.4",
+      "split": "calibration",
+      "completed": false,
+      "error": "Latent solver incomplete near t=140.54153: positive-root branch exit"
+    },
+    {
+      "name": "fixed_0.5",
+      "split": "calibration",
+      "completed": false,
+      "error": "Latent solver incomplete near t=166.916616: positive-root branch exit"
+    },
+    {
+      "name": "fixed_0.6",
+      "split": "calibration",
+      "completed": false,
+      "error": "Latent solver incomplete near t=275.586204: gate domain exit h=1"
+    },
+    {
+      "name": "fixed_0.7",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.3297908000551806,
+        0.5999999999999999
+      ],
+      "h_range": [
+        0.6237923595218643,
+        0.8
+      ],
+      "rmse": [
+        0.04844584021787721,
+        0.13633177272260308,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.3515441385133635,
+        "Cmax": 0.3515441385133729,
+        "amplitude": 9.381384558082573e-15,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      },
+      "candidate": {
+        "Cmin": 0.3297977291924659,
+        "Cmax": 0.329797729192485,
+        "amplitude": 1.9095836023552692e-14,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      }
+    },
+    {
+      "name": "decay_tau_20.0",
+      "split": "calibration",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.0196813995: positive-root branch exit"
+    },
+    {
+      "name": "decay_tau_100.0",
+      "split": "calibration",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.0195539074: positive-root branch exit"
+    },
+    {
+      "name": "fixed_0.637",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.32531047287440545,
+        0.5999999999999999
+      ],
+      "h_range": [
+        0.3743482390719048,
+        0.8
+      ],
+      "rmse": [
+        0.10414566021763824,
+        0.2180097385869479,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.20059875227972074,
+        "Cmax": 0.4536105491331971,
+        "amplitude": 0.25301179685347636,
+        "period": 10.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.32531302533949735,
+        "Cmax": 0.32531302533951173,
+        "amplitude": 1.4377388168895777e-14,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      }
+    },
+    {
+      "name": "fixed_0.638",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.32570178094984226,
+        0.5999999999999999
+      ],
+      "h_range": [
+        0.3755737619105114,
+        0.8
+      ],
+      "rmse": [
+        0.09730095619083316,
+        0.21573671518759233,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.21399387912710463,
+        "Cmax": 0.4393384137435269,
+        "amplitude": 0.22534453461642226,
+        "period": 10.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.3257043318412521,
+        "Cmax": 0.32570433184126635,
+        "amplitude": 1.426636586643326e-14,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      }
+    },
+    {
+      "name": "fixed_0.64",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.32647741744106057,
+        0.5999999999999999
+      ],
+      "h_range": [
+        0.3780344413185331,
+        0.8
+      ],
+      "rmse": [
+        0.07032894956247121,
+        0.21029992267417308,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.3031184032737051,
+        "Cmax": 0.3463697691683268,
+        "amplitude": 0.043251365894621696,
+        "period": null,
+        "envelope_converged": false,
+        "observed_status": "unresolved"
+      },
+      "candidate": {
+        "Cmin": 0.32647996556431974,
+        "Cmax": 0.32647996556433395,
+        "amplitude": 1.4210854715202004e-14,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      }
+    },
+    {
+      "name": "novel_initial_h_0.9",
+      "split": "calibration",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.0459176189: positive-root branch exit"
+    },
+    {
+      "name": "fixed_0.37",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=135.311441: positive-root branch exit"
+    },
+    {
+      "name": "fixed_0.47",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=156.905208: positive-root branch exit"
+    },
+    {
+      "name": "fixed_0.59",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=238.505245: positive-root branch exit"
+    },
+    {
+      "name": "fixed_0.65",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.3270417332958621,
+        0.5999999999999999
+      ],
+      "h_range": [
+        0.41418306725118836,
+        0.8
+      ],
+      "rmse": [
+        0.05429265869036648,
+        0.1652659999036829,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.32942827735893787,
+        "Cmax": 0.3294331398723369,
+        "amplitude": 4.8625133990398695e-06,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      },
+      "candidate": {
+        "Cmin": 0.32704471830633464,
+        "Cmax": 0.32704471830634985,
+        "amplitude": 1.5210055437364645e-14,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      }
+    },
+    {
+      "name": "decay_tau_2.0",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.0213958847: positive-root branch exit"
+    },
+    {
+      "name": "decay_tau_50.0",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.0195854746: positive-root branch exit"
+    },
+    {
+      "name": "periodic_jumps_then_stop",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.0281661102: positive-root branch exit"
+    },
+    {
+      "name": "irregular_jumps_then_stop",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.0281661102: positive-root branch exit"
+    },
+    {
+      "name": "novel_initial_h_0.65",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.0098235739: positive-root branch exit"
+    },
+    {
+      "name": "new_initial_C_0.03",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=5.57887529e-05: positive-root branch exit"
+    },
+    {
+      "name": "new_initial_C_0.15",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.752210221: positive-root branch exit"
+    },
+    {
+      "name": "fresh_fixed_0.405",
+      "split": "fresh_validation",
+      "completed": false,
+      "error": "Latent solver incomplete near t=141.494459: positive-root branch exit"
+    },
+    {
+      "name": "fresh_fixed_0.515",
+      "split": "fresh_validation",
+      "completed": false,
+      "error": "Latent solver incomplete near t=173.076019: positive-root branch exit"
+    },
+    {
+      "name": "fresh_fixed_0.625",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.3143516851991828,
+        0.5999999999999999
+      ],
+      "h_range": [
+        0.3598919836969656,
+        0.8
+      ],
+      "rmse": [
+        0.12830443685129891,
+        0.22212612875220353,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.160194510675892,
+        "Cmax": 0.49093666951542747,
+        "amplitude": 0.3307421588395355,
+        "period": 10.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.31559606818614044,
+        "Cmax": 0.3258235391440411,
+        "amplitude": 0.010227470957900664,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "unresolved"
+      }
+    },
+    {
+      "name": "fresh_tau_7.0",
+      "split": "fresh_validation",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.00328391373: positive-root branch exit"
+    },
+    {
+      "name": "fresh_tau_65.0",
+      "split": "fresh_validation",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.00326621492: positive-root branch exit"
+    },
+    {
+      "name": "fresh_irregular",
+      "split": "fresh_validation",
+      "completed": false,
+      "error": "Latent solver incomplete near t=0.00636602976: positive-root branch exit"
+    }
+  ],
+  "verified_calibration_loss": null,
+  "optimizer_recomputed_loss": 43563894.01822649,
+  "calibration_parts": null,
+  "failed_calibration": [
+    "fixed_lower_rest",
+    "fixed_0.4",
+    "fixed_0.5",
+    "fixed_0.6",
+    "decay_tau_20.0",
+    "decay_tau_100.0",
+    "novel_initial_h_0.9"
+  ],
+  "DOP_atol": [
+    2.7382496554565075e-24,
+    2e-12,
+    2e-12
+  ],
+  "all_candidates_unaccepted": true,
+  "full_event_solver_implemented": false
+}

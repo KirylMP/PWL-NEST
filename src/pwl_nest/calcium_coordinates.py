@@ -13,6 +13,7 @@ from .calcium_strips import CalciumStrips,decode
 from .strict_pwa import lr_field,C_MAX
 from .models import ROOT
 
+CALCIUM_TAIL_JOINS=(.005,1.3)
 
 @dataclass(frozen=True)
 class CalciumCoordinate:
@@ -22,12 +23,14 @@ class CalciumCoordinate:
     half_saturation: float | None = None
 
     def __post_init__(self):
-        if (self.kind not in ('identity','sqrt','cbrt','log','square','cube','exp','inverse','inverse_sqrt','hill')
+        if (self.kind not in ('identity','sqrt','sqrt_tails','cbrt','log','bounded_logit','square','cube','sixth','sixth_root','exp','inverse','inverse_sqrt','hill')
                 or not np.isfinite(self.reference) or self.reference<=0
                 or not np.isfinite(self.scale) or self.scale<=0):
             raise ValueError('Invalid calcium coordinate')
         if self.kind=='hill' and (self.half_saturation is None or not np.isfinite(self.half_saturation) or self.half_saturation<=0):
             raise ValueError('Hill coordinate requires a positive pump half-saturation')
+        if self.kind=='bounded_logit' and self.reference>=C_MAX:raise ValueError('Require reference<C_MAX')
+        if self.kind=='sqrt_tails' and not CALCIUM_TAIL_JOINS[0]<self.reference<CALCIUM_TAIL_JOINS[1]:raise ValueError('Reference outside tail joins')
 
     def saturation(self,c):return np.asarray(c)**2/(self.half_saturation**2+np.asarray(c)**2)
 
@@ -35,22 +38,36 @@ class CalciumCoordinate:
         return 2*self.half_saturation**2*np.asarray(c)/(self.half_saturation**2+np.asarray(c)**2)**2
 
     @property
-    def power(self):return {'identity':1.,'sqrt':.5,'cbrt':1/3,'log':0.,'square':2.,'cube':3.,'inverse':-1.,'inverse_sqrt':-.5}[self.kind]
+    def power(self):return {'identity':1.,'sqrt':.5,'cbrt':1/3,'log':0.,'square':2.,'cube':3.,'sixth':6.,'sixth_root':1/6,'inverse':-1.,'inverse_sqrt':-.5}[self.kind]
 
     @property
     def lower(self):
+        if self.kind in ('bounded_logit','sqrt_tails'):return -np.inf
         if self.kind=='exp':return float(np.expm1(-self.reference)/self.scale)
         if self.kind=='hill':return float(-self.saturation(self.reference)/(self.saturation_derivative(self.reference)*self.scale))
         return -np.inf if self.power<=0 else -self.reference/(self.power*self.scale)
 
     @property
     def upper(self):
+        if self.kind in ('bounded_logit','sqrt_tails'):return np.inf
         if self.kind=='hill':return float((1-self.saturation(self.reference))/(self.saturation_derivative(self.reference)*self.scale))
         return -self.reference/(self.power*self.scale) if self.kind!='exp' and self.power<0 else np.inf
 
     def forward(self,c):
         c=np.asarray(c)
         if not np.isfinite(c).all() or np.any(c.real<=0):raise ValueError('Require C>0; no clipping')
+        if self.kind=='sqrt_tails':
+            if np.any(c.real>=C_MAX):raise ValueError('Require C<C_MAX; no clipping')
+            base=CalciumCoordinate('sqrt',self.reference,self.scale);lo,hi=CALCIUM_TAIL_JOINS
+            low=c.real<lo;high=c.real>hi;middle=~(low|high)
+            u=np.empty_like(c,dtype=np.result_type(c,float))
+            u[low]=base.forward(lo)+lo*base.derivative(lo)*np.log(c[low]/lo)
+            u[high]=base.forward(hi)-(C_MAX-hi)*base.derivative(hi)*np.log((C_MAX-c[high])/(C_MAX-hi))
+            u[middle]=base.forward(c[middle])
+            return u
+        if self.kind=='bounded_logit':
+            if np.any(c.real>=C_MAX):raise ValueError('Require C<C_MAX; no clipping')
+            return self.reference*(1-self.reference/C_MAX)*(np.log(c/(C_MAX-c))-logit(self.reference/C_MAX))/self.scale
         if self.kind=='log':return self.reference*np.log(c/self.reference)/self.scale
         if self.kind=='hill':
             u=(self.saturation(c)-self.saturation(self.reference))/(self.saturation_derivative(self.reference)*self.scale)
@@ -63,7 +80,8 @@ class CalciumCoordinate:
                 raise ValueError('Exponential coordinate loses positive branch or overflows')
             return u
         p=self.power
-        u=self.reference/(p*self.scale)*((c/self.reference)**p-1)
+        difference=np.expm1(p*np.log(c/self.reference)) if self.kind in ('sixth','sixth_root') else (c/self.reference)**p-1
+        u=self.reference/(p*self.scale)*difference
         if not np.iscomplexobj(c) and (np.any(u<=self.lower) or np.any(u>=self.upper)):
             raise ValueError('Coordinate loses positive branch at floating-point precision')
         return u
@@ -71,6 +89,14 @@ class CalciumCoordinate:
     def derivative(self,c):
         c=np.asarray(c)
         if np.any(c.real<=0):raise ValueError('Require C>0')
+        if self.kind=='sqrt_tails':
+            if np.any(c.real>=C_MAX):raise ValueError('Require C<C_MAX')
+            base=CalciumCoordinate('sqrt',self.reference,self.scale);lo,hi=CALCIUM_TAIL_JOINS
+            return np.where(c.real<lo,lo*base.derivative(lo)/c,
+                np.where(c.real>hi,(C_MAX-hi)*base.derivative(hi)/(C_MAX-c),base.derivative(c)))
+        if self.kind=='bounded_logit':
+            if np.any(c.real>=C_MAX):raise ValueError('Require C<C_MAX')
+            return self.reference*(C_MAX-self.reference)/(c*(C_MAX-c)*self.scale)
         if self.kind=='exp':return np.exp(c-self.reference)/self.scale
         if self.kind=='hill':return self.saturation_derivative(c)/(self.saturation_derivative(self.reference)*self.scale)
         return (self.reference/c if self.kind=='log' else (c/self.reference)**(self.power-1))/self.scale
@@ -79,7 +105,20 @@ class CalciumCoordinate:
         u=np.asarray(u)
         if not np.isfinite(u).all():raise ValueError('Nonfinite calcium coordinate')
         with np.errstate(over='raise',invalid='raise',under='ignore'):
-            if self.kind=='log':c=self.reference*np.exp(u*self.scale/self.reference)
+            if self.kind=='sqrt_tails':
+                base=CalciumCoordinate('sqrt',self.reference,self.scale);lo,hi=CALCIUM_TAIL_JOINS
+                left,right=base.forward(lo),base.forward(hi)
+                low=u.real<left;high=u.real>right;middle=~(low|high)
+                c=np.empty_like(u,dtype=np.result_type(u,float))
+                c[low]=lo*np.exp((u[low]-left)/(lo*base.derivative(lo)))
+                c[high]=C_MAX-(C_MAX-hi)*np.exp(-(u[high]-right)/((C_MAX-hi)*base.derivative(hi)))
+                c[middle]=base.inverse(u[middle])
+                if np.any(c.real>=C_MAX):raise ValueError('Bounded inverse saturated at C_MAX')
+            elif self.kind=='bounded_logit':
+                arg=logit(self.reference/C_MAX)+u*self.scale/(self.reference*(1-self.reference/C_MAX))
+                c=C_MAX/(1+np.exp(-arg)) if np.iscomplexobj(arg) else C_MAX*expit(arg)
+                if np.any(c.real>=C_MAX):raise ValueError('Bounded inverse saturated at C_MAX')
+            elif self.kind=='log':c=self.reference*np.exp(u*self.scale/self.reference)
             elif self.kind=='hill':
                 value=self.saturation(self.reference)+u*self.scale*self.saturation_derivative(self.reference)
                 if np.any(u.real<=self.lower) or np.any(u.real>=self.upper) or np.any(value.real<=0) or np.any(value.real>=1):
@@ -96,6 +135,11 @@ class CalciumCoordinate:
         if not np.isfinite(c).all() or np.any(c.real<=0):raise ValueError('Calcium inverse overflow/underflow or nonpositive C')
         return c
 
+    @property
+    def guard_upper(self):
+        """Runaway guard, distinct from the physical acceptance boundary."""
+        return np.inf if self.kind in ('bounded_logit','sqrt_tails') else float(self.forward(20.))
+
 
 @dataclass(frozen=True)
 class GateCoordinate:
@@ -104,19 +148,19 @@ class GateCoordinate:
     reference: float
 
     def __post_init__(self):
-        if self.kind not in ('logit','log','exp','cube') or not 0<self.reference<1:
+        if self.kind not in ('logit','log','exp','cube','sixth') or not 0<self.reference<1:
             raise ValueError('Invalid gate coordinate')
 
     @property
     def lower(self):
-        if self.kind=='cube':return -1/(3*(1-self.reference))
+        if self.kind in ('cube','sixth'):return -1/(self.power*(1-self.reference))
         return float(np.expm1(-self.reference)/(self.reference*(1-self.reference))) if self.kind=='exp' else -np.inf
 
     @property
     def upper(self):
         if self.kind=='logit':return np.inf
         if self.kind=='log':return float(-np.log(self.reference)/(1-self.reference))
-        if self.kind=='cube':return (1-self.reference**3)/(3*self.reference**3*(1-self.reference))
+        if self.kind in ('cube','sixth'):return (1-self.reference**self.power)/(self.power*self.reference**self.power*(1-self.reference))
         return float(np.expm1(1-self.reference)/(self.reference*(1-self.reference)))
 
     def forward(self,h):
@@ -125,6 +169,7 @@ class GateCoordinate:
         if self.kind=='logit':return np.log(h/(1-h))-logit(self.reference)
         if self.kind=='log':return np.log(h/self.reference)/(1-self.reference)
         if self.kind=='cube':return (h**3-self.reference**3)/(3*self.reference**3*(1-self.reference))
+        if self.kind=='sixth':return np.expm1(6*np.log(h/self.reference))/(6*(1-self.reference))
         return np.expm1(h-self.reference)/(self.reference*(1-self.reference))
 
     def derivative(self,h):
@@ -133,6 +178,7 @@ class GateCoordinate:
         if self.kind=='logit':return 1/(h*(1-h))
         if self.kind=='log':return 1/(h*(1-self.reference))
         if self.kind=='cube':return h**2/(self.reference**3*(1-self.reference))
+        if self.kind=='sixth':return (h/self.reference)**5/(self.reference*(1-self.reference))
         return np.exp(h-self.reference)/(self.reference*(1-self.reference))
 
     def inverse(self,v):
@@ -143,9 +189,13 @@ class GateCoordinate:
             return 1/(1+np.exp(-v-logit(self.reference))) if np.iscomplexobj(v) else expit(v+logit(self.reference))
         if self.kind=='log':h=self.reference*np.exp((1-self.reference)*v)
         elif self.kind=='cube':h=(self.reference**3+3*self.reference**3*(1-self.reference)*v)**(1/3)
+        elif self.kind=='sixth':h=self.reference*(1+6*(1-self.reference)*v)**(1/6)
         else:h=self.reference+np.log1p(self.reference*(1-self.reference)*v)
         if not np.isfinite(h).all() or np.any(h.real<=0) or np.any(h.real>=1):raise ValueError('Gate inverse lost 0<h<1')
         return h
+
+    @property
+    def power(self):return 6 if self.kind=='sixth' else 3
 
 
 @dataclass
@@ -294,6 +344,7 @@ class CalciumTransformPWA:
             basis=['1','u','v','I']+[f'max(0,u-{t:.17g})' for t in self.latent.thresholds],
             coefficients=self.latent.matrix.tolist(),metadata=self.metadata)
         if self.coordinate.kind=='hill':record['calcium_coordinate']['half_saturation']=self.coordinate.half_saturation
+        if self.coordinate.kind=='sqrt_tails':record['calcium_coordinate']['tail_joins_C']=list(CALCIUM_TAIL_JOINS)
         if self.has_geometry:
             record['basis']=['1','u','v','I']+[f'max(0,u-({t:.17g})-({s:.17g})*(I-{self.reference_input:.17g}))' for t,s in zip(self.latent.thresholds,self.threshold_slopes)]
             record['geometry']=dict(input_thresholds=self.input_thresholds.tolist(),input_weights=self.input_weights.tolist(),
@@ -304,6 +355,8 @@ class CalciumTransformPWA:
     @classmethod
     def load(cls,path):
         z=json.loads(Path(path).read_text());co=z['calcium_coordinate']
+        if co['kind']=='sqrt_tails' and co.get('tail_joins_C',list(CALCIUM_TAIL_JOINS))!=list(CALCIUM_TAIL_JOINS):
+            raise ValueError('Unsupported calcium tail joins')
         geometry=z.get('geometry',{})
         return cls(CalciumStrips(z['case'],np.array(z['thresholds_u']),np.array(z['coefficients']),z['metadata']),
                    CalciumCoordinate(co['kind'],co['reference'],co.get('scale',1.),co.get('half_saturation')),float(z['h_reference']),z.get('h_coordinate',{}).get('kind','logit'),
@@ -347,11 +400,11 @@ class NativeCoordinateDynamic:
             code=self.lib.strips_rk4_geometry(np.ascontiguousarray(model.latent.thresholds),np.ascontiguousarray(model.threshold_slopes),
                 model.latent.region_count,model.reference_input,np.ascontiguousarray(model.input_thresholds),len(model.input_thresholds),
                 np.ascontiguousarray(model.geometry_coefficients()),np.ascontiguousarray(y0),baseline,tau,duration,outputs,maxdt,out,
-                model.coordinate.lower,float(model.coordinate.forward(20.)),model.gate.lower,model.gate.upper)
+                model.coordinate.lower,model.coordinate.guard_upper,model.gate.lower,model.gate.upper)
             return None if code else out
         code=self.lib.strips_rk4_box(np.ascontiguousarray(model.latent.thresholds),model.latent.region_count,
             np.ascontiguousarray(model.latent.local_coefficients()),np.ascontiguousarray(y0),baseline,tau,
-            duration,outputs,maxdt,out,model.coordinate.lower,float(model.coordinate.forward(20.)),model.gate.lower,model.gate.upper)
+            duration,outputs,maxdt,out,model.coordinate.lower,model.coordinate.guard_upper,model.gate.lower,model.gate.upper)
         return None if code else out
 
 
@@ -366,7 +419,7 @@ def simulate_coordinates(model,initial,duration,tau=20.,baseline=.2,jumps=(),dt=
     if not 0<=state[2]<=1.3:raise ValueError('IP3 outside fitted domain')
     left=0.;parts=[];times=[];log=[];error=0.;evaluations=0
     rhs=model.rhs(tau,baseline)
-    upper=float(model.coordinate.forward(20.))
+    upper=model.coordinate.guard_upper
     def runaway(t,y):return min(upper-y[0],100.-abs(y[1]))
     runaway.terminal=True;runaway.direction=-1
     safety=[runaway];reasons=['runaway']

@@ -1,0 +1,228 @@
+{
+  "calibration": [
+    {
+      "name": "fixed_lower_rest",
+      "initial": [
+        0.6,
+        0.8,
+        0.3
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "fixed_0.4",
+      "initial": [
+        0.6,
+        0.8,
+        0.4
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.4
+    },
+    {
+      "name": "fixed_0.5",
+      "initial": [
+        0.6,
+        0.8,
+        0.5
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.5
+    },
+    {
+      "name": "fixed_0.6",
+      "initial": [
+        0.6,
+        0.8,
+        0.6
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.6
+    },
+    {
+      "name": "fixed_0.7",
+      "initial": [
+        0.6,
+        0.8,
+        0.7
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.7
+    },
+    {
+      "name": "decay_tau_20.0",
+      "initial": [
+        0.08,
+        0.8,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 20.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "decay_tau_100.0",
+      "initial": [
+        0.08,
+        0.8,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 100.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "fixed_0.637",
+      "initial": [
+        0.6,
+        0.8,
+        0.637
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.637
+    },
+    {
+      "name": "fixed_0.638",
+      "initial": [
+        0.6,
+        0.8,
+        0.638
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.638
+    },
+    {
+      "name": "fixed_0.64",
+      "initial": [
+        0.6,
+        0.8,
+        0.64
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.64
+    },
+    {
+      "name": "novel_initial_h_0.9",
+      "initial": [
+        0.08,
+        0.9,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 35.0,
+      "baseline": 0.3
+    }
+  ],
+  "promoted_failure_cases": [
+    "fixed_0.637",
+    "fixed_0.638",
+    "fixed_0.64",
+    "novel_initial_h_0.9"
+  ],
+  "fresh_validation": [
+    {
+      "name": "fresh_fixed_0.405",
+      "initial": [
+        0.6,
+        0.8,
+        0.405
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.405
+    },
+    {
+      "name": "fresh_fixed_0.515",
+      "initial": [
+        0.6,
+        0.8,
+        0.515
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.515
+    },
+    {
+      "name": "fresh_fixed_0.625",
+      "initial": [
+        0.6,
+        0.8,
+        0.625
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.625
+    },
+    {
+      "name": "fresh_tau_7.0",
+      "initial": [
+        0.055,
+        0.86,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 7.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "fresh_tau_65.0",
+      "initial": [
+        0.055,
+        0.86,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 65.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "fresh_irregular",
+      "initial": [
+        0.055,
+        0.86,
+        0.3
+      ],
+      "duration": 220.0,
+      "tau": 17.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          13.366266687500255,
+          0.1734074037846843
+        ],
+        [
+          24.651116447758348,
+          0.18175078404726996
+        ],
+        [
+          37.444687348613236,
+          0.11979531377739223
+        ],
+        [
+          49.86260964424954,
+          0.1632224837984515
+        ],
+        [
+          61.43556616559858,
+          0.1252019786695671
+        ],
+        [
+          75.57267465165302,
+          0.16243707485998732
+        ]
+      ]
+    }
+  ],
+  "selection": "verified calibration loss only; no fresh validation",
+  "objective": "static extrema/period, known rest/cycling status x25 (unresolved targets unlabelled), half waveform weight, peak count x25, C-bound penalty; no clipping",
+  "peak_count_residual_weight": 25.0
+}

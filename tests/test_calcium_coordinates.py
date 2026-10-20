@@ -21,6 +21,93 @@ def simple_model(kind):
 
 
 class CalciumCoordinatesTest(unittest.TestCase):
+    def test_bounded_tails_preserve_core_and_join_derivatives(self):
+        from pwl_nest.strict_pwa import C_MAX
+        core=CalciumCoordinate('sqrt',.05,1.7);co=CalciumCoordinate('sqrt_tails',.05,1.7)
+        middle=np.linspace(.005,1.3,100)
+        np.testing.assert_array_equal(co.forward(middle),core.forward(middle))
+        np.testing.assert_array_equal(co.derivative(middle),core.derivative(middle))
+        c=np.r_[1e-8,.001,middle,C_MAX-1e-7]
+        np.testing.assert_allclose(co.inverse(co.forward(c)),c,rtol=1e-12,atol=1e-15)
+        self.assertAlmostEqual(float(co.inverse(co.forward(1e-200)))/1e-200,1.,places=12)
+        for join in [.005,1.3]:
+            for delta in [-1e-9,1e-9]:
+                np.testing.assert_allclose(co.derivative(join+delta),core.derivative(join),rtol=1e-6)
+        for point in [.001,.1,1.6]:
+            numeric=(co.forward(point+1e-7)-co.forward(point-1e-7))/2e-7
+            np.testing.assert_allclose(numeric,co.derivative(point),rtol=1e-8)
+        self.assertGreater(float(co.inverse(core.lower-.1)),0.)
+        self.assertLess(float(co.inverse(core.forward(2.))),C_MAX)
+        for invalid in [0.,C_MAX]:
+            with self.assertRaises(ValueError):co.forward(invalid)
+        with self.assertRaises(ValueError):co.inverse(-1e6)
+        with self.assertRaises(ValueError):co.inverse(1e6)
+        model=simple_model('sqrt_tails')
+        x=np.array([1.5,.8,.7]);f=lr_field(x,'AM');eps=1e-6
+        numeric=(model.to_latent(x+eps*np.r_[f,0])-model.to_latent(x-eps*np.r_[f,0]))/(2*eps)
+        np.testing.assert_allclose(model.source_field(model.to_latent(x)),numeric[:2],atol=1e-8)
+        model.latent.matrix[:]=0.;model.latent.matrix[0,0]=.2
+        y0=model.to_latent([1.25,.8,.7]);a,b,_=model.region(y0,2.,.2)
+        t,x,meta=simulate_coordinates(model,[1.25,.8,.7],2.,tau=2.,baseline=.2,dt=.02)
+        exact=np.array([regional_flow(a,b,y0,float(s)) for s in t])
+        np.testing.assert_allclose(meta['latent'],exact,atol=2e-12)
+        np.testing.assert_allclose(x,model.to_physical(exact),atol=2e-12)
+        self.assertGreater(x[-1,0],1.3)
+        self.assertLess(x[-1,0],C_MAX)
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'tails.json';model.save(path)
+            restored=CalciumTransformPWA.load(path)
+            np.testing.assert_allclose(restored.to_physical(exact),x)
+            record=json.loads(path.read_text());record['calcium_coordinate']['tail_joins_C']=[.01,1.4]
+            path.write_text(json.dumps(record))
+            with self.assertRaises(ValueError):CalciumTransformPWA.load(path)
+
+    def test_bounded_calcium_bijection_and_source_chain_rule(self):
+        from pwl_nest.strict_pwa import C_MAX
+        co=CalciumCoordinate('bounded_logit',.05)
+        c=np.array([1e-5,.03,.1,1.,C_MAX-1e-5])
+        np.testing.assert_allclose(co.inverse(co.forward(c)),c,rtol=1e-12)
+        for invalid in [0.,-1.,C_MAX,C_MAX+.01]:
+            with self.assertRaises(ValueError):co.forward(invalid)
+        with self.assertRaises(ValueError):co.inverse(1e6)
+        with self.assertRaises(ValueError):co.inverse(-1e6)
+        self.assertTrue(np.isinf(co.guard_upper))
+        model=simple_model('bounded_logit');x=np.array([.12,.65,.6]);f=lr_field(x,'AM')
+        y=model.to_latent(x);eps=1e-6
+        numeric=(model.to_latent(x+eps*np.r_[f,0])-model.to_latent(x-eps*np.r_[f,0]))/(2*eps)
+        np.testing.assert_allclose(model.source_field(y),numeric[:2],atol=1e-8)
+        _,physical,_=simulate_coordinates(model,[.1,.8,.7],1.,tau=2.,baseline=.2)
+        self.assertTrue(np.all((physical[:,0]>0)&(physical[:,0]<C_MAX)))
+
+    def test_sixth_power_branches_and_analytic_flow(self):
+        for kind in ['sixth','sixth_root']:
+            co=CalciumCoordinate(kind,.05)
+            c=np.array([.02,.05,.1,.7,1.6])
+            np.testing.assert_allclose(co.inverse(co.forward(c)),c,rtol=2e-12)
+            for point in [.03,.08,.3]:
+                numeric=(co.forward(point+1e-7)-co.forward(point-1e-7))/2e-7
+                np.testing.assert_allclose(numeric,co.derivative(point),rtol=1e-8)
+            with self.assertRaises(ValueError):co.inverse(co.lower-.01)
+            model=simple_model(kind);model.h_kind='sixth'
+            y=model.to_latent([.1,.8,.7]);a,b,_=model.region(y,2.,.2)
+            t,x,meta=simulate_coordinates(model,[.1,.8,.7],.1,tau=2.,baseline=.2,dt=.01)
+            expected=np.array([regional_flow(a,b,y,float(s)) for s in t])
+            np.testing.assert_allclose(meta['latent'],expected,rtol=1e-10,atol=1e-12)
+            f=lr_field([.1,.8,.7],'AM')
+            np.testing.assert_allclose(model.source_field(y),[co.derivative(.1)*f[0],model.gate.derivative(.8)*f[1]])
+            with tempfile.TemporaryDirectory() as tmp:
+                path=Path(tmp)/'sixth.json';model.save(path)
+                restored=CalciumTransformPWA.load(path)
+                np.testing.assert_allclose(restored.to_physical(meta['latent']),x)
+        gate=GateCoordinate('sixth',.75)
+        h=np.array([.1,.5,.75,.99])
+        np.testing.assert_allclose(gate.inverse(gate.forward(h)),h,rtol=1e-11)
+        for invalid in [gate.lower,gate.lower-.1,gate.upper]:
+            with self.assertRaises(ValueError):gate.inverse(invalid)
+        # A sixth root readout is only invertible on its chosen positive branch.
+        co=CalciumCoordinate('sixth',.05)
+        with self.assertRaisesRegex(ValueError,'floating-point precision'):co.forward(1e-12)
+
     def test_round_trip_derivative_and_normalization(self):
         for kind in KINDS:
             c=np.array([.001 if kind in ('square','cube') else 1e-6,.01,.05,.1,1.6])

@@ -1,0 +1,1075 @@
+{
+  "case": "AM",
+  "variant": "sqrt_tails",
+  "metadata": {
+    "class_name": "PWA_in_transformed_calcium_and_gate",
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "thresholds_policy": "ordered physical C gaps fitted; +/-ln(2)",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.11195264540328671,
+        "h": 0.7578765554494843,
+        "I": 0.27802575097364235,
+        "trace": -1.026643693352243,
+        "determinant": 0.26349931827487577,
+        "discriminant": 4.312106227644108e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.1556894888082622,
+        "h": 0.7155282974000192,
+        "I": 0.35453381865657696,
+        "trace": 1.3739009929736312e-15,
+        "determinant": 0.25048138443817525,
+        "discriminant": -1.001925537752701
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3233038346842266,
+        "h": 0.6115837408558975,
+        "I": 0.6368818163953753,
+        "trace": -4.543587728278453e-14,
+        "determinant": 0.3584212537104145,
+        "discriminant": -1.433685014841658
+      }
+    ],
+    "source_average_trace": [
+      -3.978715536777417,
+      -0.438944199916516,
+      0.15905769157025726,
+      -0.3233758185057667
+    ],
+    "source_average_determinant": [
+      0.29295936298491265,
+      0.25372910867094683,
+      0.3014382398040492,
+      0.4406812055884304
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      4.937035534683918,
+      1.749281880599346,
+      1.6845097372974123,
+      3.3813540795061536
+    ],
+    "restoring_scale": 0.10184201032657797,
+    "regions": 4,
+    "free_parameters": 18,
+    "target_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "calcium_transform": "sqrt_tails",
+    "h_transform": "log",
+    "variant": "sqrt_h_log",
+    "physical_thresholds_C": [
+      0.12583694617507657,
+      0.1427335340602458,
+      0.34376725299395466
+    ],
+    "physical_field_PWA": false,
+    "enforce_types": true,
+    "accepted": false,
+    "source_chain_rule": "udot=phi_prime(C)*fC; vdot=psi_prime(h)*fh",
+    "calcium_reference": 0.05563833512124773,
+    "h_reference": 0.722072295839805,
+    "coordinate_scale": 0.29719782567894054,
+    "normalization": "phi(Cref)=0; phi(C_MAX)=C_MAX",
+    "q0_parameterization": "q0=qb*IP3_offset; source rest u=0",
+    "parameter_count": 21,
+    "parameters": [
+      1.0619479279458925,
+      -0.9520326434176377,
+      -1.266953496523831,
+      -0.37034193586216946,
+      -1.5160523670740176,
+      -0.7127344578765965,
+      -1.4046343873751064,
+      -0.5720407370573211,
+      -0.1007948102051802,
+      -0.984451228509871,
+      -0.19326489220081963,
+      -1.4005880468581682,
+      2.7529982128257,
+      -0.39468871423139207
+    ],
+    "mu_sign": [
+      -1.0,
+      -1.0,
+      1.0,
+      -1.0
+    ],
+    "k_sign": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "training_data_loss": 1.1109390860356152,
+    "training_total_loss": 1.115036973876117,
+    "selected_by": "event-weighted calibration with promoted failure cases; fresh tests excluded",
+    "experiment_variant": "sqrt_tails",
+    "seed_model": "models/extended_pwa/selected_AM.json",
+    "reported_previous_training_loss": 1.396793826903889,
+    "threshold_parameter_count": 3,
+    "coefficient_parameter_count": 14,
+    "threshold_reference_C": [
+      0.11195264540328671,
+      0.1556894888082622,
+      0.3233038346842266
+    ],
+    "threshold_domain_C": [
+      0.05563833512124773,
+      0.51941408164821
+    ],
+    "coefficient_prior_strength": 0.005,
+    "threshold_gap_prior_strength": 0.05,
+    "threshold_shifts": [
+      0.24826561065756214,
+      -0.6234176585580222,
+      0.15811631353475716
+    ],
+    "active_fit_parameters": 21,
+    "new_geometry_parameters": 4,
+    "held_incumbent_C_thresholds": [
+      0.11422041509904675,
+      0.14793381200235634,
+      0.33152698054352964
+    ],
+    "input_thresholds": [
+      0.35,
+      0.64
+    ],
+    "input_knot_locations_fitted": false,
+    "reference_input": 0.65,
+    "pilot": "standalone branches, not all Cartesian feature combinations",
+    "extra_parameters": [
+      -1.567007804160712,
+      -1.3692944783274748,
+      -0.27846714439507,
+      -1.2629321215777523
+    ],
+    "verified_training_data_loss": 1.111049157715056,
+    "verified_training_method": "native static + independent DOP853 training paths + original source-I anchors",
+    "calcium_clipping": false,
+    "dynamic_peak_count_residual_weight": 25.0,
+    "fixed_status_residual_weight": 25.0,
+    "fixed_status_policy": "explicit known status; unresolved references carry no hard label",
+    "optimizer_calibration_loss": 49.97826597672199,
+    "verified_calibration_loss": 49.94361578371789,
+    "verified_calibration_method": "all calibration paths DOP853; fresh tests excluded"
+  },
+  "results": [
+    {
+      "name": "fixed_lower_rest",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.07800408484515665,
+        0.681803529228485
+      ],
+      "h_range": [
+        0.6405693401102542,
+        0.8
+      ],
+      "rmse": [
+        0.005836171975611604,
+        0.0076474620799659426,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.12312143866999191,
+        "Cmax": 0.12312143866999191,
+        "amplitude": 0.0,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      },
+      "candidate": {
+        "Cmin": 0.1287399696553888,
+        "Cmax": 0.1287399696553888,
+        "amplitude": 0.0,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      }
+    },
+    {
+      "name": "fixed_0.4",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08380763252398693,
+        0.8082173952110643
+      ],
+      "h_range": [
+        0.5991330681236379,
+        0.8
+      ],
+      "rmse": [
+        0.09987155093721221,
+        0.0275536126470859,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.10501539360251097,
+        "Cmax": 0.31300856958617884,
+        "amplitude": 0.20799317598366787,
+        "period": 12.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.10846492472412268,
+        "Cmax": 0.3059500501719426,
+        "amplitude": 0.19748512544781993,
+        "period": 13.200000000000045,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.5",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.09012079759385358,
+        0.9098523019087057
+      ],
+      "h_range": [
+        0.5764119872223966,
+        0.8
+      ],
+      "rmse": [
+        0.1704282543070675,
+        0.039109940983062405,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.10769506777635336,
+        "Cmax": 0.44455875530219136,
+        "amplitude": 0.336863687525838,
+        "period": 11.400000000000091,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.11019833521080094,
+        "Cmax": 0.41895511756595066,
+        "amplitude": 0.3087567823551497,
+        "period": 11.400000000000091,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.6",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.09710988972961919,
+        1.022182622638804
+      ],
+      "h_range": [
+        0.5538652905279701,
+        0.8
+      ],
+      "rmse": [
+        0.04655488810347979,
+        0.011800659669642478,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.13567705417565143,
+        "Cmax": 0.5000461617169445,
+        "amplitude": 0.36436910754129304,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.13664204125935525,
+        "Cmax": 0.465778615220315,
+        "amplitude": 0.32913657396095974,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.7",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.10336904805303575,
+        1.066245917759386
+      ],
+      "h_range": [
+        0.5487613355123797,
+        0.8
+      ],
+      "rmse": [
+        0.013594019863267026,
+        0.0058975679776783274,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.3515441385133635,
+        "Cmax": 0.3515441385133729,
+        "amplitude": 9.381384558082573e-15,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      },
+      "candidate": {
+        "Cmin": 0.3473707863134716,
+        "Cmax": 0.3473707863134716,
+        "amplitude": 0.0,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      }
+    },
+    {
+      "name": "decay_tau_20.0",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.8801383980484424
+      ],
+      "h_range": [
+        0.5611242451816669,
+        0.8
+      ],
+      "rmse": [
+        0.017623449867784205,
+        0.008781717533278617,
+        1.4373612246524346e-16
+      ],
+      "ip3_error": 3.3306690738754696e-16,
+      "peaks": {
+        "reference": 4,
+        "candidate": 4,
+        "max_time_error": 0.5
+      },
+      "RK_C_errors_vs_DOP": {
+        "0.005": 5.293527036709378e-07,
+        "0.001": 5.291795723838533e-09
+      }
+    },
+    {
+      "name": "decay_tau_100.0",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.8996724058536516
+      ],
+      "h_range": [
+        0.5541246780743372,
+        0.8
+      ],
+      "rmse": [
+        0.0614088502880451,
+        0.016908054415811932,
+        8.790342756676736e-16
+      ],
+      "ip3_error": 1.5543122344752192e-15,
+      "peaks": {
+        "reference": 15,
+        "candidate": 15,
+        "max_time_error": 1.75
+      },
+      "RK_C_errors_vs_DOP": {
+        "0.005": 4.857784877132509e-07,
+        "0.001": 2.838717361175469e-08
+      }
+    },
+    {
+      "name": "fixed_0.637",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.09996342869263829,
+        1.0681101441496168
+      ],
+      "h_range": [
+        0.5457478388305645,
+        0.8
+      ],
+      "rmse": [
+        0.09652477905935421,
+        0.025106553578965657,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.20059875227972074,
+        "Cmax": 0.4536105491331971,
+        "amplitude": 0.25301179685347636,
+        "period": 10.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.27628317875563413,
+        "Cmax": 0.3766247606763783,
+        "amplitude": 0.10034158192074416,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.638",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.10005210058434615,
+        1.0693654353970243
+      ],
+      "h_range": [
+        0.545530107295595,
+        0.8
+      ],
+      "rmse": [
+        0.08615139967192105,
+        0.023407956232343964,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.21399387912710463,
+        "Cmax": 0.4393384137435269,
+        "amplitude": 0.22534453461642226,
+        "period": 10.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.280973661387839,
+        "Cmax": 0.37416841608155077,
+        "amplitude": 0.09319475469371175,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.64",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.10023166204549186,
+        1.071878229504825
+      ],
+      "h_range": [
+        0.5450949047894932,
+        0.8
+      ],
+      "rmse": [
+        0.053612249329787844,
+        0.018289877040406397,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.3031184032737051,
+        "Cmax": 0.3463697691683268,
+        "amplitude": 0.043251365894621696,
+        "period": null,
+        "envelope_converged": false,
+        "observed_status": "unresolved"
+      },
+      "candidate": {
+        "Cmin": 0.29047324799098057,
+        "Cmax": 0.3692798635950488,
+        "amplitude": 0.07880661560406821,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "novel_initial_h_0.9",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        1.2071608485200085
+      ],
+      "h_range": [
+        0.5415104485348525,
+        0.9000000000000001
+      ],
+      "rmse": [
+        0.029310386865057866,
+        0.00991476548520758,
+        2.1600522520456231e-16
+      ],
+      "ip3_error": 6.661338147750939e-16,
+      "peaks": {
+        "reference": 7,
+        "candidate": 7,
+        "max_time_error": 1.0
+      },
+      "RK_C_errors_vs_DOP": {
+        "0.005": 5.526614096362792e-07,
+        "0.001": 3.708275914116044e-08
+      }
+    },
+    {
+      "name": "fixed_0.37",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08210401565088998,
+        0.7824497818189741
+      ],
+      "h_range": [
+        0.606026749668044,
+        0.8
+      ],
+      "rmse": [
+        0.056965692061401896,
+        0.01997554795404456,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.11634468713617739,
+        "Cmax": 0.23403728533911858,
+        "amplitude": 0.11769259820294119,
+        "period": 13.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.11653259560885298,
+        "Cmax": 0.23212440262653267,
+        "amplitude": 0.11559180701767968,
+        "period": 12.599999999999909,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.47",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08812340076217608,
+        0.8787299787818749
+      ],
+      "h_range": [
+        0.5831457115226821,
+        0.8
+      ],
+      "rmse": [
+        0.15122908420708797,
+        0.03528486208231336,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.10467999227661527,
+        "Cmax": 0.41565835013516744,
+        "amplitude": 0.31097835785855216,
+        "period": 11.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.10738008793460166,
+        "Cmax": 0.3993636501009795,
+        "amplitude": 0.2919835621663779,
+        "period": 12.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.59",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.0964509227847685,
+        1.0099430220045351
+      ],
+      "h_range": [
+        0.5560798477089101,
+        0.8
+      ],
+      "rmse": [
+        0.18642555783541295,
+        0.04026096427769307,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.13020918782304786,
+        "Cmax": 0.4984387470613778,
+        "amplitude": 0.36822955923832995,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.1268182416611816,
+        "Cmax": 0.46728482813728184,
+        "amplitude": 0.34046658647610023,
+        "period": 10.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.65",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.10079503994767419,
+        1.070938480544994
+      ],
+      "h_range": [
+        0.5457042709969498,
+        0.8
+      ],
+      "rmse": [
+        0.027421793278461438,
+        0.01430740380836435,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.32942827735893787,
+        "Cmax": 0.3294331398723369,
+        "amplitude": 4.8625133990398695e-06,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      },
+      "candidate": {
+        "Cmin": 0.30864333338280636,
+        "Cmax": 0.36023313176497435,
+        "amplitude": 0.051589798382167984,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "decay_tau_2.0",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.06973201805713239,
+        0.6972984128739116
+      ],
+      "h_range": [
+        0.6074218155454126,
+        0.8
+      ],
+      "rmse": [
+        0.014971908422838279,
+        0.008646559686011156,
+        4.2064213430687704e-17
+      ],
+      "ip3_error": 3.3306690738754696e-16,
+      "peaks": {
+        "reference": 1,
+        "candidate": 1,
+        "max_time_error": 0.25
+      }
+    },
+    {
+      "name": "decay_tau_50.0",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.8971245646926804
+      ],
+      "h_range": [
+        0.5557472854863464,
+        0.8
+      ],
+      "rmse": [
+        0.030683899275868284,
+        0.011928483322474565,
+        1.5711809111255487e-16
+      ],
+      "ip3_error": 4.440892098500626e-16,
+      "peaks": {
+        "reference": 9,
+        "candidate": 9,
+        "max_time_error": 1.0
+      }
+    },
+    {
+      "name": "periodic_jumps_then_stop",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.42500809129797973
+      ],
+      "h_range": [
+        0.6113481044342413,
+        0.8
+      ],
+      "rmse": [
+        0.02315950145035821,
+        0.01027736011103113,
+        2.836566114727063e-16
+      ],
+      "ip3_error": 4.440892098500626e-16,
+      "peaks": {
+        "reference": 11,
+        "candidate": 11,
+        "max_time_error": 1.0
+      }
+    },
+    {
+      "name": "irregular_jumps_then_stop",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.4740953727667418
+      ],
+      "h_range": [
+        0.6089145468027645,
+        0.8
+      ],
+      "rmse": [
+        0.0272293233721073,
+        0.010903083831091011,
+        1.4582420383949886e-16
+      ],
+      "ip3_error": 2.7755575615628914e-16,
+      "peaks": {
+        "reference": 9,
+        "candidate": 9,
+        "max_time_error": 0.4968074105425093
+      }
+    },
+    {
+      "name": "novel_initial_h_0.65",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.5009642780095904
+      ],
+      "h_range": [
+        0.5846509275681684,
+        0.7376546315663892
+      ],
+      "rmse": [
+        0.01881988092418416,
+        0.010178678050691094,
+        2.1636108248899064e-16
+      ],
+      "ip3_error": 9.43689570931383e-16,
+      "peaks": {
+        "reference": 7,
+        "candidate": 6,
+        "max_time_error": null
+      }
+    },
+    {
+      "name": "new_initial_C_0.03",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.029999999999999995,
+        0.8797823163208476
+      ],
+      "h_range": [
+        0.558317172746734,
+        0.8
+      ],
+      "rmse": [
+        0.024289943618475675,
+        0.010741702527401989,
+        2.4349056747989887e-16
+      ],
+      "ip3_error": 5.551115123125783e-16,
+      "peaks": {
+        "reference": 7,
+        "candidate": 7,
+        "max_time_error": 1.0
+      }
+    },
+    {
+      "name": "new_initial_C_0.15",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.09755400861419519,
+        0.9102168479753698
+      ],
+      "h_range": [
+        0.5561674802889455,
+        0.8
+      ],
+      "rmse": [
+        0.02227605947037217,
+        0.010213063535921864,
+        1.9598370908100937e-16
+      ],
+      "ip3_error": 5.551115123125783e-16,
+      "peaks": {
+        "reference": 7,
+        "candidate": 7,
+        "max_time_error": 0.75
+      }
+    },
+    {
+      "name": "fresh_fixed_0.405",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08410839999092624,
+        0.8131562218407665
+      ],
+      "h_range": [
+        0.59798519122714,
+        0.8
+      ],
+      "rmse": [
+        0.10845629091234757,
+        0.029578778771030052,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.10436875831798222,
+        "Cmax": 0.3230987845830953,
+        "amplitude": 0.21873002626511312,
+        "period": 12.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.1071542493324549,
+        "Cmax": 0.31923498537318173,
+        "amplitude": 0.21208073604072683,
+        "period": 13.399999999999864,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fresh_fixed_0.515",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.09120274903489238,
+        0.9256165584741364
+      ],
+      "h_range": [
+        0.5729737259760733,
+        0.8
+      ],
+      "rmse": [
+        0.17455703776959744,
+        0.039565083823894204,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.1097742779963602,
+        "Cmax": 0.4569358349990075,
+        "amplitude": 0.3471615570026473,
+        "period": 11.399999999999977,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.1118497786928838,
+        "Cmax": 0.42801026651235335,
+        "amplitude": 0.31616048781946954,
+        "period": 11.200000000000045,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fresh_fixed_0.625",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.0989527986029041,
+        1.053104151118387
+      ],
+      "h_range": [
+        0.5483674054450212,
+        0.8
+      ],
+      "rmse": [
+        0.13277757841290347,
+        0.030021860316532176,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.160194510675892,
+        "Cmax": 0.49093666951542747,
+        "amplitude": 0.3307421588395355,
+        "period": 10.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.22307613407777893,
+        "Cmax": 0.40672773566127374,
+        "amplitude": 0.1836516015834948,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fresh_tau_7.0",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.05499999999999999,
+        1.0032252344790895
+      ],
+      "h_range": [
+        0.565800764846187,
+        0.86
+      ],
+      "rmse": [
+        0.020723146790671932,
+        0.00841379419303867,
+        1.2525780416941606e-16
+      ],
+      "ip3_error": 3.3306690738754696e-16,
+      "peaks": {
+        "reference": 1,
+        "candidate": 1,
+        "max_time_error": 0.25
+      }
+    },
+    {
+      "name": "fresh_tau_65.0",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.05499999999999999,
+        1.0775460086620796
+      ],
+      "h_range": [
+        0.5457023694720237,
+        0.86
+      ],
+      "rmse": [
+        0.04119174288094534,
+        0.013590925683686765,
+        3.111059758362724e-16
+      ],
+      "ip3_error": 5.551115123125783e-16,
+      "peaks": {
+        "reference": 12,
+        "candidate": 12,
+        "max_time_error": 1.25
+      }
+    },
+    {
+      "name": "fresh_irregular",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.05499999999999999,
+        0.5563997075746602
+      ],
+      "h_range": [
+        0.5967396424757313,
+        0.86
+      ],
+      "rmse": [
+        0.02580176090070556,
+        0.010231383418186517,
+        1.3926314426143353e-16
+      ],
+      "ip3_error": 3.885780586188048e-16,
+      "peaks": {
+        "reference": 9,
+        "candidate": 9,
+        "max_time_error": 0.49974853061712565
+      }
+    }
+  ],
+  "verified_calibration_loss": 49.94361578371789,
+  "optimizer_recomputed_loss": 49.97826597672199,
+  "calibration_parts": {
+    "fixed_lower_rest": 0.09431185864816205,
+    "fixed_0.4": 0.21587963256429482,
+    "fixed_0.5": 0.2846585253835893,
+    "fixed_0.6": 0.4721726450065174,
+    "fixed_0.7": 0.050737481398894335,
+    "decay_tau_20.0": 0.09383093373701074,
+    "decay_tau_100.0": 1.0756293695252424,
+    "fixed_0.637": 16.73460275357981,
+    "fixed_0.638": 13.078290300964595,
+    "fixed_0.64": 16.139955596596014,
+    "novel_initial_h_0.9": 0.24820753531538767,
+    "spectral_I_anchors": 1.4553391509983642
+  },
+  "failed_calibration": [],
+  "DOP_atol": [
+    2e-12,
+    2e-12,
+    2e-12
+  ],
+  "all_candidates_unaccepted": true,
+  "full_event_solver_implemented": false
+}

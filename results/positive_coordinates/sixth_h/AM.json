@@ -1,0 +1,974 @@
+{
+  "case": "AM",
+  "variant": "sixth_h",
+  "metadata": {
+    "class_name": "PWA_in_transformed_calcium_and_gate",
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "thresholds_policy": "ordered physical C gaps fitted; +/-ln(2)",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.11195264540328671,
+        "h": 0.7578765554494843,
+        "I": 0.27802575097364235,
+        "trace": -1.026643693352243,
+        "determinant": 0.26349931827487577,
+        "discriminant": 4.312106227644108e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.1556894888082622,
+        "h": 0.7155282974000192,
+        "I": 0.35453381865657696,
+        "trace": 1.3739009929736312e-15,
+        "determinant": 0.25048138443817525,
+        "discriminant": -1.001925537752701
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3233038346842266,
+        "h": 0.6115837408558975,
+        "I": 0.6368818163953753,
+        "trace": -4.543587728278453e-14,
+        "determinant": 0.3584212537104145,
+        "discriminant": -1.433685014841658
+      }
+    ],
+    "source_average_trace": [
+      -3.978715536777417,
+      -0.438944199916516,
+      0.15905769157025726,
+      -0.3233758185057667
+    ],
+    "source_average_determinant": [
+      0.29295936298491265,
+      0.25372910867094683,
+      0.3014382398040492,
+      0.4406812055884304
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      4.937035534683918,
+      1.749281880599346,
+      1.6845097372974123,
+      3.3813540795061536
+    ],
+    "restoring_scale": 0.10184201032657797,
+    "regions": 4,
+    "free_parameters": 18,
+    "target_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "calcium_transform": "sqrt",
+    "h_transform": "sixth",
+    "variant": "sqrt_h_log",
+    "physical_thresholds_C": [
+      0.10893313892787806,
+      0.14258123092720157,
+      0.3296153944012182
+    ],
+    "physical_field_PWA": false,
+    "enforce_types": true,
+    "accepted": false,
+    "source_chain_rule": "udot=phi_prime(C)*fC; vdot=psi_prime(h)*fh",
+    "calcium_reference": 0.05563833512124773,
+    "h_reference": 0.722072295839805,
+    "coordinate_scale": 0.29719782567894054,
+    "normalization": "phi(Cref)=0; phi(C_MAX)=C_MAX",
+    "q0_parameterization": "q0=qb*IP3_offset; source rest u=0",
+    "parameter_count": 21,
+    "parameters": [
+      2.1965156313668293,
+      -2.076787402929357,
+      -11.999994227064514,
+      -8.249820031794437,
+      -2.1577262140155087,
+      -11.198797872230646,
+      -0.3894215176785579,
+      -12.300738303074148,
+      0.4352291226748192,
+      -0.9484048384678663,
+      -1.9835058824318885,
+      -1.7406829196739388,
+      1.8928850065269724,
+      0.21908483216862587
+    ],
+    "mu_sign": [
+      -1.0,
+      -1.0,
+      1.0,
+      -1.0
+    ],
+    "k_sign": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "training_data_loss": 1.1109390860356152,
+    "training_total_loss": 1.115036973876117,
+    "selected_by": "event-weighted calibration with promoted failure cases; fresh tests excluded",
+    "experiment_variant": "sixth_h",
+    "seed_model": "models/extended_pwa/selected_AM.json",
+    "reported_previous_training_loss": 1.396793826903889,
+    "threshold_parameter_count": 3,
+    "coefficient_parameter_count": 14,
+    "threshold_reference_C": [
+      0.11195264540328671,
+      0.1556894888082622,
+      0.3233038346842266
+    ],
+    "threshold_domain_C": [
+      0.05563833512124773,
+      0.51941408164821
+    ],
+    "coefficient_prior_strength": 0.005,
+    "threshold_gap_prior_strength": 0.05,
+    "threshold_shifts": [
+      -0.10471272376848796,
+      -0.012061652701588349,
+      0.00844631018807114
+    ],
+    "active_fit_parameters": 21,
+    "new_geometry_parameters": 4,
+    "held_incumbent_C_thresholds": [
+      0.11422041509904675,
+      0.14793381200235634,
+      0.33152698054352964
+    ],
+    "input_thresholds": [
+      0.35,
+      0.64
+    ],
+    "input_knot_locations_fitted": false,
+    "reference_input": 0.65,
+    "pilot": "standalone branches, not all Cartesian feature combinations",
+    "extra_parameters": [
+      -1.441419745435507,
+      1.999994371326411,
+      0.07092817736388905,
+      1.3456289075492254
+    ],
+    "verified_training_data_loss": 1.111049157715056,
+    "verified_training_method": "native static + independent DOP853 training paths + original source-I anchors",
+    "calcium_clipping": false,
+    "dynamic_peak_count_residual_weight": 25.0,
+    "fixed_status_residual_weight": 25.0,
+    "fixed_status_policy": "explicit known status; unresolved references carry no hard label",
+    "optimizer_calibration_loss": 3213.147823875489,
+    "verified_calibration_loss": null,
+    "verified_calibration_method": "all calibration paths DOP853; fresh tests excluded"
+  },
+  "results": [
+    {
+      "name": "fixed_lower_rest",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08471502265426607,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.4835329967616124,
+        0.9730904809608685
+      ],
+      "rmse": [
+        0.025008592438974214,
+        0.22639210918938912,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.12312143866999191,
+        "Cmax": 0.12312143866999191,
+        "amplitude": 0.0,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      },
+      "candidate": {
+        "Cmin": 0.10336997389619336,
+        "Cmax": 0.10336997389620431,
+        "amplitude": 1.0949574580365606e-14,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      }
+    },
+    {
+      "name": "fixed_0.4",
+      "split": "calibration",
+      "completed": false,
+      "error": "Latent solver incomplete near t=1.10719505: gate domain exit h=0"
+    },
+    {
+      "name": "fixed_0.5",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.09371080761277169,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.5175634467645475,
+        0.9880930221049036
+      ],
+      "rmse": [
+        0.14396709670195196,
+        0.3062069227945445,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.10769506777635336,
+        "Cmax": 0.44455875530219136,
+        "amplitude": 0.336863687525838,
+        "period": 11.400000000000091,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.14248087559259517,
+        "Cmax": 0.2269550280327573,
+        "amplitude": 0.08447415244016213,
+        "period": 7.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.6",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.0982016634094712,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.6235895623142785,
+        0.988445682470517
+      ],
+      "rmse": [
+        0.16500968938474406,
+        0.30577558506435804,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.13567705417565143,
+        "Cmax": 0.5000461617169445,
+        "amplitude": 0.36436910754129304,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.1424080944328048,
+        "Cmax": 0.3067267214242099,
+        "amplitude": 0.16431862699140512,
+        "period": 7.599999999999909,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.7",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.24708084174445855,
+        0.6302932010050025
+      ],
+      "h_range": [
+        0.7335294817491804,
+        0.8825486037604601
+      ],
+      "rmse": [
+        0.15779352138294847,
+        0.2007307763098714,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.3515441385133635,
+        "Cmax": 0.3515441385133729,
+        "amplitude": 9.381384558082573e-15,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      },
+      "candidate": {
+        "Cmin": 0.25210323112545663,
+        "Cmax": 0.5783878014205184,
+        "amplitude": 0.32628457029506175,
+        "period": 18.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "decay_tau_20.0",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.32162943897939245
+      ],
+      "h_range": [
+        0.8,
+        0.9877123297803112
+      ],
+      "rmse": [
+        0.09865405205810206,
+        0.24467341509075222,
+        1.4174499318323243e-16
+      ],
+      "ip3_error": 4.440892098500626e-16,
+      "peaks": {
+        "reference": 4,
+        "candidate": 3,
+        "max_time_error": null
+      },
+      "RK_C_errors_vs_DOP": {
+        "0.005": 6.012019236611987e-08,
+        "0.001": 3.867351786035478e-09
+      }
+    },
+    {
+      "name": "decay_tau_100.0",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.38721050019951075
+      ],
+      "h_range": [
+        0.8,
+        0.9883609962546707
+      ],
+      "rmse": [
+        0.1483443370105725,
+        0.29473166823721353,
+        4.664322351528183e-16
+      ],
+      "ip3_error": 6.661338147750939e-16,
+      "peaks": {
+        "reference": 15,
+        "candidate": 16,
+        "max_time_error": null
+      },
+      "RK_C_errors_vs_DOP": {
+        "0.005": 1.2904062185459253e-07,
+        "0.001": 1.7235027988116158e-08
+      }
+    },
+    {
+      "name": "fixed_0.637",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.10025169758175165,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.6470829031908911,
+        0.9885299476862335
+      ],
+      "rmse": [
+        0.1455353589256239,
+        0.305217083747741,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.20059875227972074,
+        "Cmax": 0.4536105491331971,
+        "amplitude": 0.25301179685347636,
+        "period": 10.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.14242808460106685,
+        "Cmax": 0.3396530216447296,
+        "amplitude": 0.19722493704366276,
+        "period": 7.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.638",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.10032365433017565,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.6478036310504853,
+        0.9885242533489437
+      ],
+      "rmse": [
+        0.14107062311587729,
+        0.305525886507423,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.21399387912710463,
+        "Cmax": 0.4393384137435269,
+        "amplitude": 0.22534453461642226,
+        "period": 10.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.14242258957956716,
+        "Cmax": 0.34054464745160434,
+        "amplitude": 0.19812205787203718,
+        "period": 7.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.64",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.10048471411843218,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.6492588546660663,
+        0.9885084061014718
+      ],
+      "rmse": [
+        0.1260102818874806,
+        0.30692301715848436,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.3031184032737051,
+        "Cmax": 0.3463697691683268,
+        "amplitude": 0.043251365894621696,
+        "period": null,
+        "envelope_converged": false,
+        "observed_status": "unresolved"
+      },
+      "candidate": {
+        "Cmin": 0.14243998726696183,
+        "Cmax": 0.3426109427662555,
+        "amplitude": 0.20017095549929365,
+        "period": 7.7999999999999545,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "novel_initial_h_0.9",
+      "split": "calibration",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.36390561483803635
+      ],
+      "h_range": [
+        0.8346540206987464,
+        0.9881104877733591
+      ],
+      "rmse": [
+        0.12489349661449849,
+        0.2573559766977642,
+        4.0780148026129673e-16
+      ],
+      "ip3_error": 5.551115123125783e-16,
+      "peaks": {
+        "reference": 7,
+        "candidate": 6,
+        "max_time_error": null
+      },
+      "RK_C_errors_vs_DOP": {
+        "0.005": 1.43893426410302e-07,
+        "0.001": 5.053537768806571e-09
+      }
+    },
+    {
+      "name": "fixed_0.37",
+      "split": "historical_diagnostic",
+      "completed": false,
+      "error": "Latent solver incomplete near t=1.02098647: gate domain exit h=0"
+    },
+    {
+      "name": "fixed_0.47",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.09224932554287747,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.4381213807010756,
+        0.9875777996117158
+      ],
+      "rmse": [
+        0.13150243893671337,
+        0.30370423703360816,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.10467999227661527,
+        "Cmax": 0.41565835013516744,
+        "amplitude": 0.31097835785855216,
+        "period": 11.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.14250435842917922,
+        "Cmax": 0.20535780923982203,
+        "amplitude": 0.06285345081064281,
+        "period": 7.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.59",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.09786995890475772,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.6141982767785199,
+        0.9885889595564648
+      ],
+      "rmse": [
+        0.1651350772597601,
+        0.3062892373357104,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.13020918782304786,
+        "Cmax": 0.4984387470613778,
+        "amplitude": 0.36822955923832995,
+        "period": 11.0,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.1424151928055306,
+        "Cmax": 0.29821398515636344,
+        "amplitude": 0.15579879235083283,
+        "period": 7.599999999999909,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fixed_0.65",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.10330817780209817,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.6614024687296353,
+        0.985737642059081
+      ],
+      "rmse": [
+        0.11791171468714758,
+        0.2947553318942408,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.32942827735893787,
+        "Cmax": 0.3294331398723369,
+        "amplitude": 4.8625133990398695e-06,
+        "period": null,
+        "envelope_converged": true,
+        "observed_status": "rest"
+      },
+      "candidate": {
+        "Cmin": 0.14296728537409129,
+        "Cmax": 0.3852181140626844,
+        "amplitude": 0.24225082868859313,
+        "period": 8.200000000000045,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "decay_tau_2.0",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.10415641175553456
+      ],
+      "h_range": [
+        0.8,
+        0.9730904809608676
+      ],
+      "rmse": [
+        0.07847498601368202,
+        0.23229722644215453,
+        4.3018627476322045e-17
+      ],
+      "ip3_error": 3.3306690738754696e-16,
+      "peaks": {
+        "reference": 1,
+        "candidate": 0,
+        "max_time_error": null
+      }
+    },
+    {
+      "name": "decay_tau_50.0",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.3686182465168605
+      ],
+      "h_range": [
+        0.8,
+        0.988263200755566
+      ],
+      "rmse": [
+        0.120723205227972,
+        0.26857684496622,
+        1.9163949055543966e-16
+      ],
+      "ip3_error": 4.440892098500626e-16,
+      "peaks": {
+        "reference": 9,
+        "candidate": 8,
+        "max_time_error": null
+      }
+    },
+    {
+      "name": "periodic_jumps_then_stop",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.2888259617126405
+      ],
+      "h_range": [
+        0.8,
+        0.9925367173180307
+      ],
+      "rmse": [
+        0.08804785997693312,
+        0.26747929201752907,
+        1.9443500434166954e-16
+      ],
+      "ip3_error": 4.440892098500626e-16,
+      "peaks": {
+        "reference": 11,
+        "candidate": 9,
+        "max_time_error": null
+      }
+    },
+    {
+      "name": "irregular_jumps_then_stop",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.26984109579288135
+      ],
+      "h_range": [
+        0.8,
+        0.9919401062952296
+      ],
+      "rmse": [
+        0.09677082687414451,
+        0.26273997306164426,
+        1.563551533153222e-16
+      ],
+      "ip3_error": 3.3306690738754696e-16,
+      "peaks": {
+        "reference": 9,
+        "candidate": 7,
+        "max_time_error": null
+      }
+    },
+    {
+      "name": "novel_initial_h_0.65",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.08,
+        0.34702932403531817
+      ],
+      "h_range": [
+        0.65,
+        0.988042354943152
+      ],
+      "rmse": [
+        0.07949998229763525,
+        0.25661720676101085,
+        2.37933162532431e-16
+      ],
+      "ip3_error": 4.440892098500626e-16,
+      "peaks": {
+        "reference": 7,
+        "candidate": 5,
+        "max_time_error": null
+      }
+    },
+    {
+      "name": "new_initial_C_0.03",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.029999999999999995,
+        0.3540296205228838
+      ],
+      "h_range": [
+        0.8,
+        0.9880988322957405
+      ],
+      "rmse": [
+        0.11141732627340738,
+        0.2573105057177562,
+        1.8584254968056753e-16
+      ],
+      "ip3_error": 6.661338147750939e-16,
+      "peaks": {
+        "reference": 7,
+        "candidate": 5,
+        "max_time_error": null
+      }
+    },
+    {
+      "name": "new_initial_C_0.15",
+      "split": "historical_diagnostic",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.1035201102317654,
+        0.35204110319445703
+      ],
+      "h_range": [
+        0.8,
+        0.9880501276430249
+      ],
+      "rmse": [
+        0.11392904691168822,
+        0.25771427270511155,
+        2.5357632170818604e-16
+      ],
+      "ip3_error": 4.996003610813204e-16,
+      "peaks": {
+        "reference": 7,
+        "candidate": 5,
+        "max_time_error": null
+      }
+    },
+    {
+      "name": "fresh_fixed_0.405",
+      "split": "fresh_validation",
+      "completed": false,
+      "error": "Latent solver incomplete near t=1.12388856: gate domain exit h=0"
+    },
+    {
+      "name": "fresh_fixed_0.515",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.0941886157186359,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.5403259226198237,
+        0.9882443209058734
+      ],
+      "rmse": [
+        0.14910391867000602,
+        0.3070079611974697,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.1097742779963602,
+        "Cmax": 0.4569358349990075,
+        "amplitude": 0.3471615570026473,
+        "period": 11.399999999999977,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.14247409057725102,
+        "Cmax": 0.23815494238133342,
+        "amplitude": 0.0956808518040824,
+        "period": 7.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fresh_fixed_0.625",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.09967705765549986,
+        0.6000000000000001
+      ],
+      "h_range": [
+        0.6387897739637531,
+        0.9884602186625502
+      ],
+      "rmse": [
+        0.1603389156291664,
+        0.3047073936943397,
+        0.0
+      ],
+      "ip3_error": 0.0,
+      "reference": {
+        "Cmin": 0.160194510675892,
+        "Cmax": 0.49093666951542747,
+        "amplitude": 0.3307421588395355,
+        "period": 10.799999999999955,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      },
+      "candidate": {
+        "Cmin": 0.14238874815910296,
+        "Cmax": 0.3285488761894428,
+        "amplitude": 0.18616012803033982,
+        "period": 7.600000000000136,
+        "envelope_converged": true,
+        "observed_status": "cycling"
+      }
+    },
+    {
+      "name": "fresh_tau_7.0",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.05499999999999999,
+        0.24007354152970128
+      ],
+      "h_range": [
+        0.86,
+        0.9862212152231968
+      ],
+      "rmse": [
+        0.10291812323377703,
+        0.23497115246265232,
+        8.628527292161085e-17
+      ],
+      "ip3_error": 2.220446049250313e-16,
+      "peaks": {
+        "reference": 1,
+        "candidate": 1,
+        "max_time_error": 3.75
+      }
+    },
+    {
+      "name": "fresh_tau_65.0",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.05499999999999999,
+        0.38039417438261763
+      ],
+      "h_range": [
+        0.8248445762713653,
+        0.9882530118571246
+      ],
+      "rmse": [
+        0.13975688460082356,
+        0.2783381725271372,
+        2.7686196204093134e-16
+      ],
+      "ip3_error": 4.440892098500626e-16,
+      "peaks": {
+        "reference": 12,
+        "candidate": 10,
+        "max_time_error": null
+      }
+    },
+    {
+      "name": "fresh_irregular",
+      "split": "fresh_validation",
+      "completed": true,
+      "physical": true,
+      "C_range": [
+        0.05499999999999999,
+        0.30327638411622787
+      ],
+      "h_range": [
+        0.86,
+        0.993472663370209
+      ],
+      "rmse": [
+        0.10854433996203366,
+        0.26320581430371576,
+        1.9252247300857418e-16
+      ],
+      "ip3_error": 3.3306690738754696e-16,
+      "peaks": {
+        "reference": 9,
+        "candidate": 9,
+        "max_time_error": 16.491701510364877
+      }
+    }
+  ],
+  "verified_calibration_loss": null,
+  "optimizer_recomputed_loss": 3213.147823875489,
+  "calibration_parts": null,
+  "failed_calibration": [
+    "fixed_0.4"
+  ],
+  "DOP_atol": [
+    2e-12,
+    1.2337305937703883e-18,
+    2e-12
+  ],
+  "all_candidates_unaccepted": true,
+  "full_event_solver_implemented": false
+}

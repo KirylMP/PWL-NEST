@@ -1,0 +1,194 @@
+{
+  "selected": "sqrt_tails",
+  "verified_calibration_scores": {
+    "baseline": 416.06610224526156,
+    "control": 313.47265645757375,
+    "sixth_C": null,
+    "sixth_root_C": 3575.3796718945855,
+    "sixth_h": 3840.166014488621,
+    "bounded_C": 1813.2471822433436,
+    "sqrt_tails": 35.34381224568401
+  },
+  "selection": "lowest independently verified new calibration loss among structural passes; fresh validation excluded",
+  "variants": [
+    "baseline",
+    "control",
+    "sixth_C",
+    "sixth_root_C",
+    "sixth_h",
+    "bounded_C",
+    "sqrt_tails"
+  ],
+  "accepted": false,
+  "structures": {
+    "baseline": {
+      "passed": true,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "regional_readout_error": 1.1102230246251565e-16,
+      "constant_input_reduction_error": 0.0,
+      "types": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "regions": 8,
+      "active_parameters": 0,
+      "minimum_latent_C_threshold_gap": 0.008606371863810636,
+      "C_positive_branch_lower": -0.2501719238407573,
+      "no_clipping": true
+    },
+    "control": {
+      "passed": true,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 2.220446049250313e-16,
+      "regional_readout_error": 3.3306690738754696e-16,
+      "constant_input_reduction_error": 0.0,
+      "types": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "regions": 8,
+      "active_parameters": 29,
+      "minimum_latent_C_threshold_gap": 0.008606895013281074,
+      "C_positive_branch_lower": -0.2501719238407573,
+      "no_clipping": true
+    },
+    "sixth_C": {
+      "passed": true,
+      "continuity_error": 1.318767317570746e-11,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "regional_readout_error": 1.1102230246251565e-16,
+      "constant_input_reduction_error": 0.0,
+      "types": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "regions": 8,
+      "active_parameters": 29,
+      "minimum_latent_C_threshold_gap": 4.93961161423395e-10,
+      "C_positive_branch_lower": -3.6149498457618235e-11,
+      "no_clipping": true
+    },
+    "sixth_root_C": {
+      "passed": true,
+      "continuity_error": 5.273559366969494e-16,
+      "regional_flow_error": 2.220446049250313e-16,
+      "regional_readout_error": 6.661338147750939e-16,
+      "constant_input_reduction_error": 0.0,
+      "types": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "regions": 8,
+      "active_parameters": 29,
+      "minimum_latent_C_threshold_gap": 0.012021698061340319,
+      "C_positive_branch_lower": -1.724600051036531,
+      "no_clipping": true
+    },
+    "sixth_h": {
+      "passed": true,
+      "continuity_error": 6.661338147750939e-16,
+      "regional_flow_error": 2.220446049250313e-16,
+      "regional_readout_error": 1.1102230246251565e-16,
+      "constant_input_reduction_error": 0.0,
+      "types": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "regions": 8,
+      "active_parameters": 29,
+      "minimum_latent_C_threshold_gap": 0.003746934636498375,
+      "C_positive_branch_lower": -0.2501719238407573,
+      "no_clipping": true
+    },
+    "bounded_C": {
+      "passed": true,
+      "continuity_error": 1.7763568394002505e-15,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "regional_readout_error": 1.1102230246251565e-16,
+      "constant_input_reduction_error": 0.0,
+      "types": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "regions": 8,
+      "active_parameters": 29,
+      "minimum_latent_C_threshold_gap": 0.015644686136590064,
+      "C_positive_branch_lower": null,
+      "no_clipping": true
+    },
+    "sqrt_tails": {
+      "passed": true,
+      "continuity_error": 2.7755575615628914e-16,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "regional_readout_error": 1.1102230246251565e-16,
+      "constant_input_reduction_error": 0.0,
+      "types": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "regions": 8,
+      "active_parameters": 29,
+      "minimum_latent_C_threshold_gap": 0.00860637155234456,
+      "C_positive_branch_lower": null,
+      "no_clipping": true
+    }
+  },
+  "refined_selected_calibration_loss": 35.344625439674466
+}

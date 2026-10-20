@@ -1,0 +1,244 @@
+{
+  "case": "AM",
+  "calcium_coordinate": {
+    "kind": "sixth",
+    "reference": 0.05563833512124773,
+    "scale": 4280912.444926625,
+    "normalization": "phi(C_ref)=0, phi_prime(C_ref)=1/scale"
+  },
+  "h_reference": 0.722072295839805,
+  "h_coordinate": {
+    "kind": "log",
+    "normalization": "psi(h_ref)=0, psi_prime(h_ref)=1/[h_ref*(1-h_ref)]"
+  },
+  "thresholds_u": [
+    1.1473433412294658e-07,
+    5.365616706295554e-07,
+    8.137376619319219e-05
+  ],
+  "thresholds_C": [
+    0.10815893852960877,
+    0.13952582644058475,
+    0.3219899875093226
+  ],
+  "basis": [
+    "1",
+    "u",
+    "v",
+    "I",
+    "max(0,u-(1.1473433412294658e-07)-(0)*(I-0.65000000000000002))",
+    "max(0,u-(5.3656167062955539e-07)-(0)*(I-0.65000000000000002))",
+    "max(0,u-(8.1373766193192193e-05)-(0)*(I-0.65000000000000002))"
+  ],
+  "coefficients": [
+    [
+      -2.8321006045625968e-06,
+      -3.0280136504337545,
+      1.2971985486576244e-06,
+      5.649771430645549e-06,
+      2.7225041913660446,
+      0.3596934649843791,
+      -0.08024013357051345
+    ],
+    [
+      0.07494361058281886,
+      -337704.55909277813,
+      -0.026689325760908815,
+      0.01637091911050281,
+      240931.76396023977,
+      94791.14715940227,
+      1966.0169824756338
+    ]
+  ],
+  "metadata": {
+    "class_name": "PWA_in_transformed_calcium_and_gate",
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "thresholds_policy": "ordered physical C gaps fitted; +/-ln(2)",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.11195264540328671,
+        "h": 0.7578765554494843,
+        "I": 0.27802575097364235,
+        "trace": -1.026643693352243,
+        "determinant": 0.26349931827487577,
+        "discriminant": 4.312106227644108e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.1556894888082622,
+        "h": 0.7155282974000192,
+        "I": 0.35453381865657696,
+        "trace": 1.3739009929736312e-15,
+        "determinant": 0.25048138443817525,
+        "discriminant": -1.001925537752701
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3233038346842266,
+        "h": 0.6115837408558975,
+        "I": 0.6368818163953753,
+        "trace": -4.543587728278453e-14,
+        "determinant": 0.3584212537104145,
+        "discriminant": -1.433685014841658
+      }
+    ],
+    "source_average_trace": [
+      -3.978715536777417,
+      -0.438944199916516,
+      0.15905769157025726,
+      -0.3233758185057667
+    ],
+    "source_average_determinant": [
+      0.29295936298491265,
+      0.25372910867094683,
+      0.3014382398040492,
+      0.4406812055884304
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      4.937035534683918,
+      1.749281880599346,
+      1.6845097372974123,
+      3.3813540795061536
+    ],
+    "restoring_scale": 0.10184201032657797,
+    "regions": 4,
+    "free_parameters": 18,
+    "target_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "calcium_transform": "sixth",
+    "h_transform": "log",
+    "variant": "sqrt_h_log",
+    "physical_thresholds_C": [
+      0.10815893852960877,
+      0.13952582644058475,
+      0.3219899875093226
+    ],
+    "physical_field_PWA": false,
+    "enforce_types": true,
+    "accepted": false,
+    "source_chain_rule": "udot=phi_prime(C)*fC; vdot=psi_prime(h)*fh",
+    "calcium_reference": 0.05563833512124773,
+    "h_reference": 0.722072295839805,
+    "coordinate_scale": 4280912.444926625,
+    "normalization": "phi(Cref)=0; phi(C_MAX)=C_MAX",
+    "q0_parameterization": "q0=qb*IP3_offset; source rest u=0",
+    "parameter_count": 21,
+    "parameters": [
+      1.116682362428661,
+      -1.1020217397608105,
+      -3.593762741904704,
+      -2.942277701530149,
+      -1.2515606532347756,
+      -2.243388665044276,
+      -6.974464762373005,
+      -10.811003721823136,
+      0.1257369392596151,
+      -15.575626471225732,
+      -13.555303581340867,
+      -3.623491577746581,
+      5.649771430645549e-06,
+      -2.8321006045625968e-06
+    ],
+    "mu_sign": [
+      -1.0,
+      -1.0,
+      1.0,
+      -1.0
+    ],
+    "k_sign": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "training_data_loss": 1.1109390860356152,
+    "training_total_loss": 1.115036973876117,
+    "selected_by": "event-weighted calibration with promoted failure cases; fresh tests excluded",
+    "experiment_variant": "sixth_C",
+    "seed_model": "models/extended_pwa/selected_AM.json",
+    "reported_previous_training_loss": 1.396793826903889,
+    "threshold_parameter_count": 3,
+    "coefficient_parameter_count": 14,
+    "threshold_reference_C": [
+      0.11195264540328671,
+      0.1556894888082622,
+      0.3233038346842266
+    ],
+    "threshold_domain_C": [
+      0.05563833512124773,
+      0.51941408164821
+    ],
+    "coefficient_prior_strength": 0.005,
+    "threshold_gap_prior_strength": 0.05,
+    "threshold_shifts": [
+      -0.15873622949396993,
+      -0.12165540179123982,
+      -0.05568141366947631
+    ],
+    "active_fit_parameters": 21,
+    "new_geometry_parameters": 4,
+    "held_incumbent_C_thresholds": [
+      0.11422041509904675,
+      0.14793381200235634,
+      0.33152698054352964
+    ],
+    "input_thresholds": [
+      0.35,
+      0.64
+    ],
+    "input_knot_locations_fitted": false,
+    "reference_input": 0.65,
+    "pilot": "standalone branches, not all Cartesian feature combinations",
+    "extra_parameters": [
+      -6.099022311399641e-06,
+      -4.495500071839459e-05,
+      0.958016508786188,
+      -0.9584504336692015
+    ],
+    "verified_training_data_loss": 1.111049157715056,
+    "verified_training_method": "native static + independent DOP853 training paths + original source-I anchors",
+    "calcium_clipping": false,
+    "dynamic_peak_count_residual_weight": 25.0,
+    "fixed_status_residual_weight": 25.0,
+    "fixed_status_policy": "explicit known status; unresolved references carry no hard label",
+    "optimizer_calibration_loss": 43563894.01822649,
+    "verified_calibration_loss": null,
+    "verified_calibration_method": "all calibration paths DOP853; fresh tests excluded"
+  },
+  "geometry": {
+    "input_thresholds": [
+      0.35,
+      0.64
+    ],
+    "input_weights": [
+      [
+        -6.099022311399641e-06,
+        -4.495500071839459e-05
+      ],
+      [
+        0.33852990465024296,
+        0.6301281271913421
+      ]
+    ],
+    "threshold_slopes": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reference_input": 0.65,
+    "definition": "base affine + sum wj*(u-theta_j-sj*(I-Iref))_+ + sum zk*(I-eta_k)_+"
+  }
+}

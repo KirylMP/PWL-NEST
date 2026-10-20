@@ -1,5 +1,37 @@
 # PWL-NEST: компактные AM/FM при экспоненциальном I
 
+Последний опыт проверяет **C⁶, C¹ᐟ⁶, h⁶ и ограниченные C-координаты**,
+с повторным подбором коэффициентов и самих C-порогов. Добавлены проблемные
+режимы в обучение и шесть новых проверочных входов на case. C не обрезается.
+
+У FM полезнее оказались **плавные ограниченные хвосты прежнего √C-readout**:
+все 26 проверок завершились в физических диапазонах на сетке выдачи,
+сохранились 5/8 пиков при tau50/tau100. При h0=.9 максимум C снизился
+с 1.727 до 1.548 мкМ, ниже физического Cmax≈1.688. Рабочая часть координаты
+и прежние 8 PWA-областей сохранены; высокий пик всё ещё отличается от LR.
+Шестые степени не улучшили повторный подбор прежних координат.
+
+У AM выбран bounded_C: нужный цикл при I=.638 восстановлен, но амплитуда
+и часть входных откликов ухудшились. **Общая приёмка не пройдена.** Выбор
+`selected` — минимум нового калибровочного критерия, не одобрение модели.
+Все сравнения и неудачные пилоты сохранены.
+
+- [Отчёт, успехи и ухудшения](results/positive_coordinates/REPORT.md).
+- [Графики](results/positive_coordinates/positive_coordinates_summary.png).
+- [Формулы, ветви обратимости, критерий и команды](docs/positive_coordinates.md).
+- Модели: `models/positive_coordinates/selected_AM.json` — bounded_C,
+  `selected_FM.json` — sqrt_tails.
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/fit_positive_coordinates.py --budget 1200
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/validate_positive_coordinates.py
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/check_positive_numerics.py
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/summarize_positive_coordinates.py
+.venv/bin/python -m unittest discover -s tests -q
+```
+
+## Предыдущий эксперимент: h³, I-пороги и наклонные границы
+
 Проверены **h³, один/два I-порога и наклонные C-границы**, а также
 ln(C)+h³ и насыщение насоса+h³. На AM и FM по 8 кандидатов, по 20 протоколов.
 В каждом регионе сохраняются постоянные матрицы и точная экспонента I.
