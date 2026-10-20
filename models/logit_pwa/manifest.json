@@ -1,0 +1,14 @@
+{
+  "transform": "C,logit(h),I",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "files": {
+    "AM.json": "3bc6074b3cfb01e999ea0f9592f7a078a77fb1cdd3cebf6ec7953fd45fdc6a11",
+    "AM_calcium_matched_control.json": "32d9057133e8463b6c465fa93c3beeb3a750da497bbc894ad4be7c3856faf2fc",
+    "AM_transformed_field_seed.json": "1fea1c07bef9b4abdfaef41529f1244d7d7fc1b56f71408bf8048efb52ce02f4",
+    "FM.json": "9cf561cce3c0d3f96e8ee26f8590aa6de6879d3709a214ee965677d097f41fd8",
+    "FM_calcium_matched_control.json": "f46b5b759ea43764404032a20453c5bbc9206af34a59d3c103c4d2d97920524e",
+    "FM_transformed_field_seed.json": "8d3a3b0c2d9dd70f923ffe61f269a6869c465b4ce59d7a695da4f3f2801d65b3"
+  }
+}

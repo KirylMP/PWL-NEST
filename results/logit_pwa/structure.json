@@ -1,0 +1,48 @@
+{
+  "AM": {
+    "regions": 4,
+    "parameters": 14,
+    "continuity_max_abs_error": 4.440892098500626e-16,
+    "regional_flow_max_abs_error": 1.1102230246251565e-16,
+    "IP3_max_abs_error": 0.0,
+    "source_equilibrium_Jacobian_similarity_error": 1.1102230246251565e-16,
+    "calcium_matched_control_invariant_error": 8.881784197001252e-16,
+    "regional_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "coordinates": [
+      "C",
+      "logit(h)",
+      "I"
+    ],
+    "physical_field_PWA": false
+  },
+  "FM": {
+    "regions": 8,
+    "parameters": 22,
+    "continuity_max_abs_error": 4.440892098500626e-16,
+    "regional_flow_max_abs_error": 1.249000902703301e-16,
+    "IP3_max_abs_error": 1.1102230246251565e-16,
+    "source_equilibrium_Jacobian_similarity_error": 4.440892098500626e-16,
+    "calcium_matched_control_invariant_error": 1.6653345369377348e-16,
+    "regional_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "unstable_node",
+      "saddle",
+      "unstable_node",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "coordinates": [
+      "C",
+      "logit(h)",
+      "I"
+    ],
+    "physical_field_PWA": false
+  }
+}
