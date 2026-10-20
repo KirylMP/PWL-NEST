@@ -1,0 +1,523 @@
+{
+  "shape_loss": 45.07401650410912,
+  "joint_loss": 260.9096962307152,
+  "history": [
+    {
+      "evaluation": 1,
+      "loss": 360.14605081614326,
+      "seconds": 2.4042312440001297
+    },
+    {
+      "evaluation": 53,
+      "loss": 292.4726954798318,
+      "seconds": 2.543694942000002
+    },
+    {
+      "evaluation": 104,
+      "loss": 278.144048425518,
+      "seconds": 2.682477261000031
+    },
+    {
+      "evaluation": 155,
+      "loss": 271.3134160860943,
+      "seconds": 2.8324983909999446
+    },
+    {
+      "evaluation": 216,
+      "loss": 268.8594343569251,
+      "seconds": 3.007914389000007
+    },
+    {
+      "evaluation": 268,
+      "loss": 267.89737517514254,
+      "seconds": 3.174763883999958
+    },
+    {
+      "evaluation": 319,
+      "loss": 267.6294262754952,
+      "seconds": 3.3436249020001014
+    },
+    {
+      "evaluation": 379,
+      "loss": 267.40857608579125,
+      "seconds": 3.5070382250000876
+    },
+    {
+      "evaluation": 432,
+      "loss": 267.30550055620665,
+      "seconds": 3.6504994090000764
+    },
+    {
+      "evaluation": 485,
+      "loss": 267.2544741547994,
+      "seconds": 3.7962387160000617
+    },
+    {
+      "evaluation": 541,
+      "loss": 267.2475787303854,
+      "seconds": 3.9505809889999455
+    },
+    {
+      "evaluation": 592,
+      "loss": 267.2468898542467,
+      "seconds": 4.090763247000041
+    },
+    {
+      "evaluation": 868,
+      "loss": 265.8644040723247,
+      "seconds": 4.840325994000068
+    },
+    {
+      "evaluation": 920,
+      "loss": 261.3783361964752,
+      "seconds": 4.9904864780000935
+    },
+    {
+      "evaluation": 972,
+      "loss": 261.3776244108234,
+      "seconds": 5.126964575000102
+    },
+    {
+      "evaluation": 1026,
+      "loss": 261.36718767898446,
+      "seconds": 5.264875874999916
+    },
+    {
+      "evaluation": 1091,
+      "loss": 261.318221184747,
+      "seconds": 5.440805602999944
+    },
+    {
+      "evaluation": 1142,
+      "loss": 261.2710853197536,
+      "seconds": 5.5657390619999205
+    },
+    {
+      "evaluation": 1205,
+      "loss": 261.26899801284105,
+      "seconds": 5.720135894000123
+    },
+    {
+      "evaluation": 1256,
+      "loss": 261.2559995801507,
+      "seconds": 5.853331358000105
+    },
+    {
+      "evaluation": 1307,
+      "loss": 261.25120835266233,
+      "seconds": 5.982545520000031
+    },
+    {
+      "evaluation": 1358,
+      "loss": 261.2371330751182,
+      "seconds": 6.104730568999912
+    },
+    {
+      "evaluation": 1409,
+      "loss": 261.2315430816228,
+      "seconds": 6.227930964000052
+    },
+    {
+      "evaluation": 1466,
+      "loss": 261.2199975061767,
+      "seconds": 6.365632940000069
+    },
+    {
+      "evaluation": 1576,
+      "loss": 261.056059767753,
+      "seconds": 6.638432947999945
+    },
+    {
+      "evaluation": 1627,
+      "loss": 261.04300481349463,
+      "seconds": 6.772151738000048
+    },
+    {
+      "evaluation": 1694,
+      "loss": 261.0333215561202,
+      "seconds": 6.939126080000051
+    },
+    {
+      "evaluation": 1791,
+      "loss": 261.0316922549591,
+      "seconds": 7.18017691099999
+    },
+    {
+      "evaluation": 1977,
+      "loss": 261.0312568603242,
+      "seconds": 7.657418921000044
+    },
+    {
+      "evaluation": 2034,
+      "loss": 261.0304906677468,
+      "seconds": 7.800919628999964
+    },
+    {
+      "evaluation": 2097,
+      "loss": 261.0205618393125,
+      "seconds": 7.956822114000033
+    },
+    {
+      "evaluation": 2175,
+      "loss": 261.0185507217759,
+      "seconds": 8.145161369000107
+    },
+    {
+      "evaluation": 2228,
+      "loss": 261.0051058963411,
+      "seconds": 8.278918396000108
+    },
+    {
+      "evaluation": 2298,
+      "loss": 260.99704592393323,
+      "seconds": 8.45455615600008
+    },
+    {
+      "evaluation": 2369,
+      "loss": 260.9943288837386,
+      "seconds": 8.628638007000063
+    },
+    {
+      "evaluation": 2612,
+      "loss": 260.99089690537716,
+      "seconds": 9.290144684000097
+    },
+    {
+      "evaluation": 2668,
+      "loss": 260.9833643579376,
+      "seconds": 9.490238741999974
+    },
+    {
+      "evaluation": 2721,
+      "loss": 260.98137187305036,
+      "seconds": 9.633544208000103
+    },
+    {
+      "evaluation": 2786,
+      "loss": 260.98121266846067,
+      "seconds": 9.839497644999938
+    },
+    {
+      "evaluation": 2840,
+      "loss": 260.96994837107167,
+      "seconds": 10.009897935000026
+    },
+    {
+      "evaluation": 2903,
+      "loss": 260.967988716295,
+      "seconds": 10.18881000400006
+    },
+    {
+      "evaluation": 2971,
+      "loss": 260.96535765917446,
+      "seconds": 10.395638266000105
+    },
+    {
+      "evaluation": 3069,
+      "loss": 260.9618214297361,
+      "seconds": 10.679064060999963
+    },
+    {
+      "evaluation": 3182,
+      "loss": 260.9618116160131,
+      "seconds": 10.972311283999943
+    },
+    {
+      "evaluation": 3236,
+      "loss": 260.95968407522696,
+      "seconds": 11.105381019000106
+    },
+    {
+      "evaluation": 3298,
+      "loss": 260.9519576112522,
+      "seconds": 11.285246510999968
+    },
+    {
+      "evaluation": 3377,
+      "loss": 260.94749967759026,
+      "seconds": 11.507829753000124
+    },
+    {
+      "evaluation": 3440,
+      "loss": 260.9369424587711,
+      "seconds": 11.666439829999945
+    },
+    {
+      "evaluation": 3494,
+      "loss": 260.9357758141113,
+      "seconds": 11.799712450000015
+    },
+    {
+      "evaluation": 3560,
+      "loss": 260.9337587017438,
+      "seconds": 11.964471423000077
+    },
+    {
+      "evaluation": 3769,
+      "loss": 260.9291636735724,
+      "seconds": 12.487446852999938
+    },
+    {
+      "evaluation": 3825,
+      "loss": 260.92623916893996,
+      "seconds": 12.621151701999906
+    },
+    {
+      "evaluation": 3877,
+      "loss": 260.9192446675686,
+      "seconds": 12.74754513500011
+    }
+  ],
+  "joint_evaluations": 3948,
+  "training_protocols": [
+    {
+      "name": "fixed_lower_rest",
+      "initial": [
+        1.3,
+        0.8,
+        0.48
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.48
+    },
+    {
+      "name": "fixed_0.55",
+      "initial": [
+        1.3,
+        0.8,
+        0.55
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.55
+    },
+    {
+      "name": "fixed_0.7",
+      "initial": [
+        1.3,
+        0.8,
+        0.7
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.7
+    },
+    {
+      "name": "fixed_1.0",
+      "initial": [
+        1.3,
+        0.8,
+        1.0
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.0
+    },
+    {
+      "name": "fixed_1.2",
+      "initial": [
+        1.3,
+        0.8,
+        1.2
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.2
+    },
+    {
+      "name": "decay_tau_20.0",
+      "initial": [
+        0.08,
+        0.8,
+        1.15
+      ],
+      "duration": 180.0,
+      "tau": 20.0,
+      "baseline": 0.45
+    },
+    {
+      "name": "decay_tau_100.0",
+      "initial": [
+        0.08,
+        0.8,
+        1.15
+      ],
+      "duration": 180.0,
+      "tau": 100.0,
+      "baseline": 0.45
+    }
+  ],
+  "metadata": {
+    "class_name": "continuous_3D_C_strips",
+    "coordinates": [
+      "C",
+      "h",
+      "I"
+    ],
+    "thresholds_policy": "source equilibrium spectral type changes; fixed across all IP3 and trajectories",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.048619351113710484,
+        "h": 0.9048240074087905,
+        "I": 0.5107261652060473,
+        "trace": -0.9371213109720676,
+        "determinant": 0.21954908786955274,
+        "discriminant": -2.042810365310288e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.05214116272147648,
+        "h": 0.9000491800100884,
+        "I": 0.5290700389163677,
+        "trace": -4.496403249731884e-15,
+        "determinant": 0.1425073815620356,
+        "discriminant": -0.5700295262481424
+      },
+      {
+        "kind": "node_focus",
+        "C": 0.054844693127646865,
+        "h": 0.896054433705267,
+        "I": 0.5373937039464934,
+        "trace": 0.6067227301414392,
+        "determinant": 0.09202811781756895,
+        "discriminant": 5.828670879282072e-15
+      },
+      {
+        "kind": "fold",
+        "C": 0.06128930910964823,
+        "h": 0.8857884628661977,
+        "I": 0.543991943247855,
+        "trace": 1.7283315292743897,
+        "determinant": 5.218048215738236e-15,
+        "discriminant": 2.9871298750839297
+      },
+      {
+        "kind": "fold",
+        "C": 0.13570424237991197,
+        "h": 0.768511022734427,
+        "I": 0.48230398233782174,
+        "trace": 2.9026660520000007,
+        "determinant": 1.1102230246251565e-16,
+        "discriminant": 8.425470209433271
+      },
+      {
+        "kind": "node_focus",
+        "C": 0.25181841575269986,
+        "h": 0.6591403501982817,
+        "I": 0.574731535562183,
+        "trace": 0.9807551016266955,
+        "determinant": 0.2404701423416976,
+        "discriminant": -5.551115123125783e-16
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3926251934101711,
+        "h": 0.59460186533488,
+        "I": 0.86002055575706,
+        "trace": 1.3877787807814457e-16,
+        "determinant": 0.39257039244245817,
+        "discriminant": -1.5702815697698327
+      }
+    ],
+    "source_average_trace": [
+      -7.4745408979558015,
+      -0.49515903859884447,
+      0.28510835169471715,
+      0.9905526353919251,
+      3.2162933997474545,
+      1.5532635195136915,
+      0.3658238619293699,
+      -0.24429506555601127
+    ],
+    "source_average_determinant": [
+      0.5184687988602612,
+      0.18337236470663948,
+      0.11879390254423844,
+      0.06025653395333744,
+      -0.08793570454283689,
+      0.16778785771636465,
+      0.3314231702853263,
+      0.44446044397767603
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      24.921720714332224,
+      5.208647069556499,
+      3.078813173740622,
+      1.0238374667768082,
+      -0.8289728714261155,
+      0.7960057806863937,
+      2.0261028974675885,
+      3.823777207278767
+    ],
+    "restoring_scale": 0.023277457581257092,
+    "regions": 8,
+    "free_parameters": 22,
+    "target_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "unstable_node",
+      "saddle",
+      "unstable_node",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "enforce_types": true,
+    "shape_parameterization": "log traces; positive focus gap or node determinant/trace-square ratio",
+    "attempt": "autonomous_then_joint_v2",
+    "training_loss": 260.9096962307152,
+    "accepted": false,
+    "selected_by": "v2 training loss only; no v2 holdout selection",
+    "optimizer_scope": "two local autonomous starts, then two joint starts and bounded Powell",
+    "parameters": [
+      2.2055139015453054,
+      0.2614598309129424,
+      -2.796319278115604,
+      -0.6328823061734761,
+      0.9729020868761022,
+      -0.011939147102316416,
+      -1.084433044342756,
+      -0.9393886026916224,
+      -3.406131999870342,
+      -3.028656120499333,
+      -1.3050794244705464,
+      -0.5171628166432473,
+      -3.668044135583584,
+      -2.3356571928856384,
+      -3.576974672138528,
+      -2.0719458426590283,
+      0.3764328508338741,
+      -3.5332057040301468,
+      1.0679223052104534,
+      -1.7279661949548908,
+      1.11664069023552,
+      -2.9765579389081993
+    ],
+    "mu_sign": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      -1.0
+    ],
+    "k_sign": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      -1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  }
+}

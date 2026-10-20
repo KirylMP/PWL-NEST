@@ -9,7 +9,7 @@ from .strict_pwa import lr_field
 
 
 def simulate(case, initial, duration, tau=20., baseline=.2, jumps=(), model=None, dt=.2,
-             rtol=2e-7, atol=2e-9, max_step=.5):
+             rtol=2e-7, atol=2e-9, max_step=.5, enforce_domain=True):
     initial = np.asarray(initial,dtype=float)
     if (initial.shape != (3,) or not np.isfinite(initial).all() or duration <= 0
             or dt <= 0 or not np.isfinite(tau) or tau <= 0 or not 0 <= baseline <= 1.3):
@@ -37,7 +37,7 @@ def simulate(case, initial, duration, tau=20., baseline=.2, jumps=(), model=None
                         rtol=rtol,atol=atol,max_step=max_step)
         if not sol.success or sol.t[-1] != right or not np.isfinite(sol.y).all():
             raise RuntimeError(sol.message)
-        if model is not None:
+        if model is not None and enforce_domain:
             for d,axis in enumerate(model.axes):
                 if sol.y[d].min() < axis[0]-1e-7 or sol.y[d].max() > axis[-1]+1e-7:
                     raise RuntimeError('Accepted numerical trajectory left fitted box')

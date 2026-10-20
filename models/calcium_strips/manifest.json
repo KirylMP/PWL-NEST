@@ -1,0 +1,19 @@
+{
+  "current": "v2 staged local fit, fixed spectral thresholds, hard source subtypes",
+  "files": {
+    "AM.json": "57f61bd1f1d7974d57055c95d9e5b871f15d132c204423cf65ec0f256018f19a",
+    "AM_autonomous_seed.json": "bff1b3fdca93b73ff5bdf9a221af5e61a4d70f3191a78c2ad99311f5104caaba",
+    "AM_field_seed.json": "8904f97ed56484504112284427507be61ba4f69f3002055f36db51f71812173f",
+    "AM_spectral_seed.json": "91c98fb2f535d1b59a88817d4f6d88d22d5eabdeb959c420f845b683381af9fd",
+    "FM.json": "f458a7e95a177c2e87cd397cbf6d78cc8a917170236e85c11758dc70749956f5",
+    "FM_autonomous_seed.json": "0d8a1a6c1208beae14807381fe90a1da6e1dd0f7833607ef6703e5c5a94fd130",
+    "FM_field_seed.json": "46ae6f5436968c2afb448400cb5a8ba4b6de6a508b7619d6a89ba34b20427c00",
+    "FM_spectral_seed.json": "8e585d075e75bcd37c59b7c26c3774e309a23e0b2ae4782e54784cb08e39c66d",
+    "joint_v1/AM.json": "3b21c2ddee9494114b71f0237abf18b07b284e210792ae8872646253edac2819",
+    "joint_v1/AM_field_seed.json": "8904f97ed56484504112284427507be61ba4f69f3002055f36db51f71812173f",
+    "joint_v1/AM_spectral_seed.json": "91c98fb2f535d1b59a88817d4f6d88d22d5eabdeb959c420f845b683381af9fd",
+    "joint_v1/FM.json": "06799ba9c6baa6c8b1aac0ed7f4504c36b8f62c8545f328da593032172ed4f57",
+    "joint_v1/FM_field_seed.json": "46ae6f5436968c2afb448400cb5a8ba4b6de6a508b7619d6a89ba34b20427c00",
+    "joint_v1/FM_spectral_seed.json": "8e585d075e75bcd37c59b7c26c3774e309a23e0b2ae4782e54784cb08e39c66d"
+  }
+}

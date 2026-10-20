@@ -1,4 +1,47 @@
-# PWL-NEST: непрерывная 3D PWA для AM/FM
+# PWL-NEST: компактная AM/FM PWA на спектральных C-порогах
+
+Текущий эксперимент сохраняет исходную эвристику legacy: найти смену типа
+равновесия Li–Rinzel по спектру якобиана и поставить постоянный порог по C.
+**AM: 3 порога / 4 области / 14 параметров. FM: 7 порогов / 8 областей / 22 параметра.**
+Поле непрерывно, внутри полос аффинно в физических `(C,h,I)`;
+`Idot=-(I-I_b)/tau` точно. Дополнительных h/I-порогов и полиномов нет.
+
+- [Результаты, включая неудачные проверки](results/calcium_strips/REPORT.md).
+- [Графики](results/calcium_strips/compact_summary.png).
+- [Эвристика, уравнения и воспроизведение](docs/calcium_strips.md).
+- Модели: `models/calcium_strips/AM.json`, `models/calcium_strips/FM.json`.
+
+Обе модели пока **не прошли приёмку**. AM воспроизводит основные колебания,
+но теряет цикл в протоколе I=.638 и даёт лишний пик на периодическом входе.
+FM сохраняет региональные типы, но имеет большие ошибки периода/отклика и
+нарушения физических диапазонов. Это результаты локального подбора,
+а не доказательство невозможности улучшить этот компактный класс.
+
+Из `/workspace/PWL-NEST`:
+
+```bash
+bash scripts/setup.sh
+.venv/bin/python -m unittest discover -s tests -v
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/check_strips.py
+# Повторный подбор перезапишет текущие результаты:
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/refine_strips.py
+.venv/bin/python scripts/summarize_strips.py
+```
+
+```python
+from pwl_nest.calcium_strips import CalciumStrips
+from pwl_nest.protocols import simulate
+model = CalciumStrips.load('models/calcium_strips/AM.json')
+t, x, diagnostics = simulate('AM', [.08, .8, .65], 180., tau=50., baseline=.3,
+                             model=model, enforce_domain=False)
+# Диагностический режим: явно проверить C,h, а не обрезать нарушения.
+```
+
+Полные траектории проверяются DOP853. Аналитический региональный поток
+проверен отдельно; общий событийный решатель для динамического I ещё впереди.
+Предыдущие плотные модели и legacy сохранены ниже как отдельные baselines.
+
+## Предыдущий плотный 3D baseline
 
 Текущая работа — строгая идентификация полного поля в физических `(C,h,I)`
 по [блюпринту](docs/research_blueprint.md), с точной экспоненциальной релаксацией IP3.

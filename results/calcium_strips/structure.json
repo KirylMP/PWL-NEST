@@ -1,0 +1,86 @@
+{
+  "AM": {
+    "regions": 4,
+    "free_parameters": 14,
+    "continuity_max_abs_error": 2.220446049250313e-16,
+    "regional_flow_max_abs_error": 1.1102230246251565e-16,
+    "IP3_max_abs_error": 1.1102230246251565e-16,
+    "regional_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "thresholds": [
+      {
+        "C": 0.11195264540328671,
+        "source_I": 0.27802575097364235,
+        "candidate_equilibrium_crossing_I": 0.2801083958129907
+      },
+      {
+        "C": 0.1556894888082622,
+        "source_I": 0.35453381865657696,
+        "candidate_equilibrium_crossing_I": 0.3493433220175947
+      },
+      {
+        "C": 0.3233038346842266,
+        "source_I": 0.6368818163953753,
+        "candidate_equilibrium_crossing_I": 0.626025446270094
+      }
+    ]
+  },
+  "FM": {
+    "regions": 8,
+    "free_parameters": 22,
+    "continuity_max_abs_error": 4.440892098500626e-16,
+    "regional_flow_max_abs_error": 2.220446049250313e-16,
+    "IP3_max_abs_error": 1.1102230246251565e-16,
+    "regional_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "unstable_node",
+      "saddle",
+      "unstable_node",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "thresholds": [
+      {
+        "C": 0.048619351113710484,
+        "source_I": 0.5107261652060473,
+        "candidate_equilibrium_crossing_I": 0.4558141785644808
+      },
+      {
+        "C": 0.05214116272147648,
+        "source_I": 0.5290700389163677,
+        "candidate_equilibrium_crossing_I": 0.5124933991661451
+      },
+      {
+        "C": 0.054844693127646865,
+        "source_I": 0.5373937039464934,
+        "candidate_equilibrium_crossing_I": 0.5376749968228727
+      },
+      {
+        "C": 0.06128930910964823,
+        "source_I": 0.543991943247855,
+        "candidate_equilibrium_crossing_I": 0.5434850927359115
+      },
+      {
+        "C": 0.13570424237991197,
+        "source_I": 0.48230398233782174,
+        "candidate_equilibrium_crossing_I": 0.47845707584351915
+      },
+      {
+        "C": 0.25181841575269986,
+        "source_I": 0.574731535562183,
+        "candidate_equilibrium_crossing_I": 0.564049895708252
+      },
+      {
+        "C": 0.3926251934101711,
+        "source_I": 0.86002055575706,
+        "candidate_equilibrium_crossing_I": 0.8365757218141511
+      }
+    ]
+  }
+}

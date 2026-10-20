@@ -1,0 +1,153 @@
+{
+  "case": "AM",
+  "thresholds_C": [
+    0.11195264540328671,
+    0.1556894888082622,
+    0.3233038346842266
+  ],
+  "basis": [
+    "1",
+    "C",
+    "h",
+    "I",
+    "max(0,C-0.11195264540328671)",
+    "max(0,C-0.15568948880826219)",
+    "max(0,C-0.32330383468422658)"
+  ],
+  "coefficients": [
+    [
+      -1.4591171889853771,
+      -6.121557956867622,
+      2.544172133029824,
+      0.9064609999901856,
+      5.775006712523759,
+      0.8206500469182849,
+      -0.6368784001748694
+    ],
+    [
+      0.17695664295409944,
+      -0.47141750138082034,
+      -0.17151134713888627,
+      0.010889740319510363,
+      0.3912966780767863,
+      -0.06414832374431244,
+      -0.011328624418233346
+    ]
+  ],
+  "metadata": {
+    "class_name": "continuous_3D_C_strips",
+    "coordinates": [
+      "C",
+      "h",
+      "I"
+    ],
+    "thresholds_policy": "source equilibrium spectral type changes; fixed across all IP3 and trajectories",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.11195264540328671,
+        "h": 0.7578765554494843,
+        "I": 0.27802575097364235,
+        "trace": -1.026643693352243,
+        "determinant": 0.26349931827487577,
+        "discriminant": 4.312106227644108e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.1556894888082622,
+        "h": 0.7155282974000192,
+        "I": 0.35453381865657696,
+        "trace": 1.3739009929736312e-15,
+        "determinant": 0.25048138443817525,
+        "discriminant": -1.001925537752701
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3233038346842266,
+        "h": 0.6115837408558975,
+        "I": 0.6368818163953753,
+        "trace": -4.543587728278453e-14,
+        "determinant": 0.3584212537104145,
+        "discriminant": -1.433685014841658
+      }
+    ],
+    "source_average_trace": [
+      -3.978715536777417,
+      -0.438944199916516,
+      0.15905769157025726,
+      -0.3233758185057667
+    ],
+    "source_average_determinant": [
+      0.29295936298491265,
+      0.25372910867094683,
+      0.3014382398040492,
+      0.4406812055884304
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      4.937035534683918,
+      1.749281880599346,
+      1.6845097372974123,
+      3.3813540795061536
+    ],
+    "restoring_scale": 0.10184201032657797,
+    "regions": 4,
+    "free_parameters": 14,
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "selected_by": "training loss only; holdouts excluded",
+    "loss": 2.434659053515163,
+    "parameters": [
+      1.839448917356634,
+      -0.6576592110440906,
+      -1.1953849344173537,
+      -1.0957435731519858,
+      0.8106119085870593,
+      -1.334542352514504,
+      -1.2527002030204664,
+      -0.8585265213763528,
+      3.999060100838824,
+      -1.697320280841153,
+      0.9338053055433725,
+      -1.7631058504897497,
+      0.9064609999901856,
+      -1.4591171889853771
+    ],
+    "mu_sign": [
+      -1.0,
+      -1.0,
+      1.0,
+      -1.0
+    ],
+    "k_sign": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "accepted": false,
+    "optimizer_runs": [
+      {
+        "start": "spectral",
+        "method": "least_squares",
+        "status": 3,
+        "nfev": 28,
+        "message": "`xtol` termination condition is satisfied."
+      },
+      {
+        "start": "field",
+        "method": "least_squares",
+        "status": 2,
+        "nfev": 83,
+        "message": "`ftol` termination condition is satisfied."
+      },
+      {
+        "method": "Powell",
+        "status": 0,
+        "nfev": 224,
+        "message": "Optimization terminated successfully."
+      }
+    ]
+  }
+}
