@@ -1,0 +1,285 @@
+{
+  "initial_scores": [
+    {
+      "label": "spectral",
+      "total_loss": 14633222.081845723
+    },
+    {
+      "label": "tangent",
+      "total_loss": 2284.1526733236765
+    },
+    {
+      "label": "field",
+      "total_loss": 1279.3061884797066
+    }
+  ],
+  "training_data_loss": 324.7977432787117,
+  "training_total_loss": 324.7984965182019,
+  "bounds": [
+    [
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -0.5,
+      -12.0,
+      -8.0,
+      -4.0,
+      -8.0,
+      -8.0
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      0.5,
+      2.0,
+      3.0,
+      1.5,
+      8.0,
+      8.0
+    ]
+  ],
+  "history": [
+    {
+      "evaluation": 1,
+      "total_loss": 14633222.081845723,
+      "data_loss": 14633222.081845723,
+      "seconds": 0.0024846989999787183
+    },
+    {
+      "evaluation": 53,
+      "total_loss": 980.575787614219,
+      "data_loss": 980.5750225058882,
+      "seconds": 0.1654603879997012
+    },
+    {
+      "evaluation": 109,
+      "total_loss": 966.5611756593482,
+      "data_loss": 966.5604113276154,
+      "seconds": 0.33611243099949206
+    },
+    {
+      "evaluation": 170,
+      "total_loss": 427.3093210003731,
+      "data_loss": 427.3085524307126,
+      "seconds": 0.532820725999045
+    },
+    {
+      "evaluation": 222,
+      "total_loss": 369.859950607189,
+      "data_loss": 369.859177242655,
+      "seconds": 0.7049192899994523
+    },
+    {
+      "evaluation": 274,
+      "total_loss": 355.21002411487785,
+      "data_loss": 355.20925033307,
+      "seconds": 0.8771620440002152
+    },
+    {
+      "evaluation": 335,
+      "total_loss": 353.4861364157988,
+      "data_loss": 353.48536217643806,
+      "seconds": 1.080285324000215
+    },
+    {
+      "evaluation": 387,
+      "total_loss": 352.2585139573279,
+      "data_loss": 352.2577392697242,
+      "seconds": 1.2548847100006242
+    },
+    {
+      "evaluation": 437,
+      "total_loss": 351.33163670741465,
+      "data_loss": 351.3308615855035,
+      "seconds": 1.4198142320001352
+    },
+    {
+      "evaluation": 811,
+      "total_loss": 349.9981313312919,
+      "data_loss": 349.99735653994037,
+      "seconds": 2.7583059080006933
+    },
+    {
+      "evaluation": 863,
+      "total_loss": 347.97935918158305,
+      "data_loss": 347.9785990406775,
+      "seconds": 2.9368551209990983
+    },
+    {
+      "evaluation": 915,
+      "total_loss": 328.73625795535963,
+      "data_loss": 328.735514887979,
+      "seconds": 3.1212000960003934
+    },
+    {
+      "evaluation": 967,
+      "total_loss": 326.0523871999071,
+      "data_loss": 326.051643399124,
+      "seconds": 3.297720238999318
+    },
+    {
+      "evaluation": 1040,
+      "total_loss": 325.72041253029397,
+      "data_loss": 325.719667808429,
+      "seconds": 3.5455604220005625
+    },
+    {
+      "evaluation": 1098,
+      "total_loss": 324.89673691715217,
+      "data_loss": 324.8959841479501,
+      "seconds": 3.7387538959992526
+    },
+    {
+      "evaluation": 1149,
+      "total_loss": 324.8145812318771,
+      "data_loss": 324.8138281211206,
+      "seconds": 3.9053541779994703
+    },
+    {
+      "evaluation": 1199,
+      "total_loss": 324.7984965182019,
+      "data_loss": 324.7977432787117,
+      "seconds": 4.086021171999164
+    }
+  ],
+  "optimizer_runs": [
+    {
+      "start": "field",
+      "method": "least_squares",
+      "status": 3,
+      "nfev": 35,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "start": "tangent",
+      "method": "least_squares",
+      "status": 3,
+      "nfev": 26,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": 0,
+      "nfev": 594,
+      "message": "Optimization terminated successfully."
+    }
+  ],
+  "evaluations": 1388,
+  "training_protocols": [
+    {
+      "name": "fixed_lower_rest",
+      "initial": [
+        1.3,
+        0.8,
+        0.48
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.48
+    },
+    {
+      "name": "fixed_0.55",
+      "initial": [
+        1.3,
+        0.8,
+        0.55
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.55
+    },
+    {
+      "name": "fixed_0.7",
+      "initial": [
+        1.3,
+        0.8,
+        0.7
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.7
+    },
+    {
+      "name": "fixed_1.0",
+      "initial": [
+        1.3,
+        0.8,
+        1.0
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.0
+    },
+    {
+      "name": "fixed_1.2",
+      "initial": [
+        1.3,
+        0.8,
+        1.2
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.2
+    },
+    {
+      "name": "decay_tau_20.0",
+      "initial": [
+        0.08,
+        0.8,
+        1.15
+      ],
+      "duration": 180.0,
+      "tau": 20.0,
+      "baseline": 0.45
+    },
+    {
+      "name": "decay_tau_100.0",
+      "initial": [
+        0.08,
+        0.8,
+        1.15
+      ],
+      "duration": 180.0,
+      "tau": 100.0,
+      "baseline": 0.45
+    }
+  ],
+  "latent_thresholds": [
+    0.008207944248395061,
+    0.009635515707648087,
+    0.010734811886152508,
+    0.013367307267371752,
+    0.04502567710503036,
+    0.099379525853267,
+    0.17434703300994472
+  ],
+  "reference_calcium": 0.02812613673817445,
+  "reference_h": 0.8371177795140701
+}

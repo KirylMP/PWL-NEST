@@ -4,7 +4,7 @@
 #include <algorithm>
 struct S {double c,h;};
 static int run_rk4(const double*theta,int n,const double*p,const double*initial,
- double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper){
+ double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper,double hlower,double hupper){
  auto rhs=[&](S s,double I){
   int j=std::upper_bound(theta,theta+n-1,s.c)-theta;
   const double*a=p+8*j;
@@ -23,6 +23,7 @@ static int run_rk4(const double*theta,int n,const double*p,const double*initial,
    s={s.c+dt*(a.c+2*b.c+2*c.c+d.c)/6,s.h+dt*(a.h+2*b.h+2*c.h+d.h)/6};time+=dt;
    if(!std::isfinite(s.c)||!std::isfinite(s.h)||fabs(s.c)>20||fabs(s.h)>20)return 1;
    if(s.c<=lower||s.c>=upper)return 2;
+   if(s.h<=hlower||s.h>=hupper)return 3;
   }
   dest[2*i]=s.c;dest[2*i+1]=s.h;
  }
@@ -31,9 +32,13 @@ static int run_rk4(const double*theta,int n,const double*p,const double*initial,
 
 extern "C" int strips_rk4(const double*theta,int n,const double*p,const double*initial,
  double base,double tau,double duration,int outputs,double maxdt,double*dest){
- return run_rk4(theta,n,p,initial,base,tau,duration,outputs,maxdt,dest,-INFINITY,INFINITY);
+ return run_rk4(theta,n,p,initial,base,tau,duration,outputs,maxdt,dest,-INFINITY,INFINITY,-INFINITY,INFINITY);
 }
 extern "C" int strips_rk4_domain(const double*theta,int n,const double*p,const double*initial,
  double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper){
- return run_rk4(theta,n,p,initial,base,tau,duration,outputs,maxdt,dest,lower,upper);
+ return run_rk4(theta,n,p,initial,base,tau,duration,outputs,maxdt,dest,lower,upper,-INFINITY,INFINITY);
+}
+extern "C" int strips_rk4_box(const double*theta,int n,const double*p,const double*initial,
+ double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper,double hlower,double hupper){
+ return run_rk4(theta,n,p,initial,base,tau,duration,outputs,maxdt,dest,lower,upper,hlower,hupper);
 }

@@ -1,0 +1,228 @@
+{
+  "records": [
+    {
+      "case": "AM",
+      "variant": "sqrt",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 4.996003610813204e-16,
+      "jump_error": 3.3306690738754696e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "sqrt",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 3.3306690738754696e-16,
+      "jump_error": 3.3306690738754696e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "exp",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 4.440892098500626e-16,
+      "jump_error": 1.1102230246251565e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "exp",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 4.440892098500626e-16,
+      "jump_error": 3.3306690738754696e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "log",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 3.3306690738754696e-16,
+      "jump_error": 2.220446049250313e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "log",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 4.440892098500626e-16,
+      "jump_error": 2.220446049250313e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "inverse",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 4.440892098500626e-16,
+      "jump_error": 1.6653345369377348e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "inverse",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 3.3306690738754696e-16,
+      "jump_error": 1.1102230246251565e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "inverse_sqrt",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 3.3306690738754696e-16,
+      "jump_error": 2.220446049250313e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "inverse_sqrt",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 3.3306690738754696e-16,
+      "jump_error": 1.1102230246251565e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "sqrt_h_log",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 4.440892098500626e-16,
+      "jump_error": 2.220446049250313e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "sqrt_h_log",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 3.3306690738754696e-16,
+      "jump_error": 1.6653345369377348e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "sqrt_h_exp",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 5.551115123125783e-16,
+      "jump_error": 3.3306690738754696e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "AM",
+      "variant": "sqrt_h_exp",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 3.885780586188048e-16,
+      "jump_error": 1.1102230246251565e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "sqrt",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 5.551115123125783e-16,
+      "jump_error": 3.3306690738754696e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "sqrt",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 6.661338147750939e-16,
+      "jump_error": 4.440892098500626e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "exp",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 9.992007221626409e-16,
+      "jump_error": 7.771561172376096e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "exp",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 7.771561172376096e-16,
+      "jump_error": 4.440892098500626e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "log",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 6.661338147750939e-16,
+      "jump_error": 4.440892098500626e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "log",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 7.771561172376096e-16,
+      "jump_error": 4.440892098500626e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "inverse",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 7.771561172376096e-16,
+      "jump_error": 6.661338147750939e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "inverse",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 7.771561172376096e-16,
+      "jump_error": 2.220446049250313e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "inverse_sqrt",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 7.771561172376096e-16,
+      "jump_error": 5.551115123125783e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "inverse_sqrt",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 6.661338147750939e-16,
+      "jump_error": 4.440892098500626e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "sqrt_h_log",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 9.992007221626409e-16,
+      "jump_error": 8.881784197001252e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "sqrt_h_log",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 6.661338147750939e-16,
+      "jump_error": 4.440892098500626e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "sqrt_h_exp",
+      "protocol": "periodic_jumps_then_stop",
+      "trace_error": 6.661338147750939e-16,
+      "jump_error": 6.661338147750939e-16,
+      "C_h_jump_error": 0.0
+    },
+    {
+      "case": "FM",
+      "variant": "sqrt_h_exp",
+      "protocol": "irregular_jumps_then_stop",
+      "trace_error": 8.881784197001252e-16,
+      "jump_error": 6.661338147750939e-16,
+      "C_h_jump_error": 0.0
+    }
+  ]
+}

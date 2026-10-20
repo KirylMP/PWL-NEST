@@ -1,0 +1,26 @@
+{
+  "max_step": 0.01,
+  "rtol": 2e-11,
+  "atol": 2e-13,
+  "failures": [
+    {
+      "case": "AM",
+      "kind": "inverse_sqrt",
+      "protocol": {
+        "name": "novel_initial_h_0.9",
+        "initial": [
+          0.08,
+          0.9,
+          0.65
+        ],
+        "duration": 180.0,
+        "tau": 35.0,
+        "baseline": 0.3
+      },
+      "original_exit_time": 1.38515897,
+      "refined_exit_time": 1.38515897,
+      "absolute_difference": 0.0,
+      "error": "Latent solver incomplete near t=1.38515897: physical C reached 20 uM"
+    }
+  ]
+}

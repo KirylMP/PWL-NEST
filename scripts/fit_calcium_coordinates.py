@@ -2,12 +2,12 @@
 import argparse,json,time
 import numpy as np
 from scipy.optimize import brentq,lsq_linear,least_squares,minimize
-from scipy.special import expit,logit
+from scipy.special import logit
 from pwl_nest.models import ROOT
 from pwl_nest.strict_pwa import C_MAX,lr_field,equilibrium_h
 from pwl_nest.calcium_strips import CalciumStrips,spectral_seed,NativeStatistics
 from pwl_nest.logit_pwa import LogitPWA
-from pwl_nest.calcium_coordinates import (CalciumCoordinate,CalciumTransformPWA,decode_coordinates,NativeCoordinateDynamic)
+from pwl_nest.calcium_coordinates import (CalciumCoordinate,GateCoordinate,CalciumTransformPWA,decode_coordinates,NativeCoordinateDynamic)
 from pwl_nest.protocols import simulate
 from fit_strict import protocols,stats
 
@@ -36,22 +36,24 @@ def training_data(case):
     return training,refs,points,source,cref,ctop
 
 
-def run_kind(case,kind,data,budget,*,normalize_span=False,models_root=MODELS,results_root=OUT):
+def run_kind(case,kind,data,budget,*,normalize_span=False,models_root=MODELS,results_root=OUT,h_kind='logit'):
     training,refs,points,source,cref,ctop=data
-    directory=models_root/kind;destination=results_root/kind
+    variant=kind if h_kind=='logit' else f'{kind}_h_{h_kind}'
+    directory=models_root/variant;destination=results_root/variant
     directory.mkdir(parents=True,exist_ok=True);destination.mkdir(parents=True,exist_ok=True)
     physical_theta=np.array([e['C'] for e in source['events']]);n=len(physical_theta)+1
     scale=float(CalciumCoordinate(kind,cref).forward(C_MAX)/C_MAX) if normalize_span else 1.
     co=CalciumCoordinate(kind,cref,scale);theta=co.forward(physical_theta);href=float(equilibrium_h(cref,0.));zref=float(logit(href))
-    meta={**source,'class_name':'PWA_in_transformed_calcium_and_logit_h','coordinates':['u','v','I'],
-          'calcium_transform':kind,'physical_thresholds_C':physical_theta.tolist(),
+    gate=GateCoordinate(h_kind,href)
+    meta={**source,'class_name':'PWA_in_transformed_calcium_and_gate','coordinates':['u','v','I'],
+          'calcium_transform':kind,'h_transform':h_kind,'variant':variant,'physical_thresholds_C':physical_theta.tolist(),
           'physical_field_PWA':False,'enforce_types':True,'accepted':False,
-          'source_chain_rule':'udot=phi_prime(C)*fC; vdot=fh/[h*(1-h)]',
+          'source_chain_rule':'udot=phi_prime(C)*fC; vdot=psi_prime(h)*fh',
           'calcium_reference':cref,'h_reference':href,'coordinate_scale':scale,
           'normalization':'phi(Cref)=0; phi(C_MAX)=C_MAX' if normalize_span else 'phi(Cref)=0; phi_prime(Cref)=1',
           'q0_parameterization':'q0=qb*IP3_offset; source rest u=0',
           'parameter_count':2*n+6}
-    dummy=CalciumTransformPWA(CalciumStrips(case,theta,np.zeros((2,n+3)),meta.copy()),co,href)
+    dummy=CalciumTransformPWA(CalciumStrips(case,theta,np.zeros((2,n+3)),meta.copy()),co,href,h_kind)
     transformed=dummy.to_latent(points);truth=dummy.source_field(transformed)
     # Monotone inverse-equilibrium chords in the transformed calcium coordinate.
     cs=np.r_[cref,physical_theta,ctop];inputs=np.r_[0.,[e['I'] for e in source['events']],1.3]
@@ -82,9 +84,9 @@ def run_kind(case,kind,data,budget,*,normalize_span=False,models_root=MODELS,res
     for j,label in enumerate(source['target_types']):
         if label.endswith('node'):upper[n+j]=12.
     starts=[np.clip(z,lower+1e-6,upper-1e-6) for z in [spectral,tangent]]
-    make=lambda z:decode_coordinates(case,theta,z,ms,ks,meta,co,href)
+    make=lambda z:decode_coordinates(case,theta,z,ms,ks,meta,co,href,h_kind)
     for label,z in zip(['spectral_seed','tangent_seed'],starts):make(z).save(directory/f'{case}_{label}.json')
-    inverse_derivatives=np.column_stack([1/co.derivative(points[:,0]),points[:,1]*(1-points[:,1])])
+    inverse_derivatives=np.column_stack([1/co.derivative(points[:,0]),1/gate.derivative(points[:,1])])
     def field_residual(z):
         physical_error=(make(z).latent.field(transformed)-truth)*inverse_derivatives
         return np.r_[(physical_error/np.array([.2,.05])).ravel()/np.sqrt(len(points)),.01*(z-starts[0])]
@@ -111,19 +113,24 @@ def run_kind(case,kind,data,budget,*,normalize_span=False,models_root=MODELS,res
             if minall<=co.lower or diag['max_C']>=upper_guard:
                 gap=max(0.,co.lower-minall,diag['max_C']-upper_guard)
                 rr.extend([50.+1000*gap]*7);continue
-            try:cmin,cmax,cminall,cmaxall=map(float,co.inverse(np.array([mn,mx,minall,diag['max_C']])))
+            if diag['min_h']<=gate.lower or diag['max_h']>=gate.upper:
+                gap=max(0.,gate.lower-diag['min_h'],diag['max_h']-gate.upper)
+                rr.extend([50.+1000*gap]*7);continue
+            try:
+                cmin,cmax,cminall,cmaxall=map(float,co.inverse(np.array([mn,mx,minall,diag['max_C']])))
+                hmin,hmax=map(float,gate.inverse(np.array([diag['min_h'],diag['max_h']])))
             except (ValueError,FloatingPointError):rr.extend([100.]*7);continue
             target=targets[p['name']]
             rr.extend([(cmin-target['Cmin'])/.02,(cmax-target['Cmax'])/.05,
                 (period-target['period'])/(1 if case=='AM' else 3) if target['period'] is not None and np.isfinite(period)
                 else (15. if target['period'] is not None else (cmax-cmin)/.02),
                 min(0,cminall)/.005,max(0,cmaxall-C_MAX)/.02,
-                (expit(diag['min_h']+zref)-htargets[p['name']][0])/.1,
-                (expit(diag['max_h']+zref)-htargets[p['name']][1])/.1])
+                (hmin-htargets[p['name']][0])/.1,
+                (hmax-htargets[p['name']][1])/.1])
         for p in decays:
             y=dynamic.run(model,p['initial'],p['duration'],p['tau'],p['baseline'])
             if y is None:rr.extend(np.full(724,100.));continue
-            try:x=np.column_stack([co.inverse(y[:,0]),expit(y[:,1]+zref)])
+            try:x=np.column_stack([co.inverse(y[:,0]),gate.inverse(y[:,1])])
             except (ValueError,FloatingPointError):rr.extend(np.full(724,100.));continue
             rr.extend(((x-sampled[p['name']])/np.array([.03,.05])/np.sqrt(361)).ravel())
             rr.extend([min(0,x[:,0].min())/.005,max(0,x[:,0].max()-C_MAX)/.02])

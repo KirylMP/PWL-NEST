@@ -1,0 +1,457 @@
+{
+  "initial_scores": [
+    {
+      "label": "spectral",
+      "total_loss": 23515703.752528604
+    },
+    {
+      "label": "tangent",
+      "total_loss": 6443675338.422756
+    },
+    {
+      "label": "field",
+      "total_loss": 78369.17595971661
+    }
+  ],
+  "training_data_loss": 36.81528638372333,
+  "training_total_loss": 36.817526805849305,
+  "bounds": [
+    [
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -0.5,
+      -12.0,
+      -8.0,
+      -4.0,
+      -8.0,
+      -8.0
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      5.0,
+      0.5,
+      2.0,
+      3.0,
+      1.5,
+      8.0,
+      8.0
+    ]
+  ],
+  "history": [
+    {
+      "evaluation": 1,
+      "total_loss": 23515703.752528604,
+      "data_loss": 23515703.752528604,
+      "seconds": 0.0016712599990569288
+    },
+    {
+      "evaluation": 53,
+      "total_loss": 2417.2514874103467,
+      "data_loss": 2417.2511135676727,
+      "seconds": 0.11764154899901769
+    },
+    {
+      "evaluation": 110,
+      "total_loss": 187.9650965650688,
+      "data_loss": 187.9646359198103,
+      "seconds": 0.2574949200006813
+    },
+    {
+      "evaluation": 162,
+      "total_loss": 112.44679202049127,
+      "data_loss": 112.44628567623523,
+      "seconds": 0.38785489600013534
+    },
+    {
+      "evaluation": 216,
+      "total_loss": 88.00108994081972,
+      "data_loss": 88.00058465980744,
+      "seconds": 0.5204200030002539
+    },
+    {
+      "evaluation": 268,
+      "total_loss": 76.33755492333486,
+      "data_loss": 76.33702905933441,
+      "seconds": 0.6489531959996384
+    },
+    {
+      "evaluation": 318,
+      "total_loss": 72.76732379722309,
+      "data_loss": 72.76679032506588,
+      "seconds": 0.7718180569991091
+    },
+    {
+      "evaluation": 371,
+      "total_loss": 70.8801165472371,
+      "data_loss": 70.87957789597053,
+      "seconds": 0.9028408190006303
+    },
+    {
+      "evaluation": 421,
+      "total_loss": 69.41177924500111,
+      "data_loss": 69.41123867068133,
+      "seconds": 1.0276440659999935
+    },
+    {
+      "evaluation": 471,
+      "total_loss": 68.84666070448847,
+      "data_loss": 68.84611742783233,
+      "seconds": 1.151529730999755
+    },
+    {
+      "evaluation": 523,
+      "total_loss": 68.3761808916585,
+      "data_loss": 68.37563464147007,
+      "seconds": 1.2801522980007576
+    },
+    {
+      "evaluation": 574,
+      "total_loss": 67.93474981529448,
+      "data_loss": 67.9341994280778,
+      "seconds": 1.407044006000433
+    },
+    {
+      "evaluation": 624,
+      "total_loss": 67.49509214465856,
+      "data_loss": 67.49453863811577,
+      "seconds": 1.5600546539990319
+    },
+    {
+      "evaluation": 675,
+      "total_loss": 67.24124522484406,
+      "data_loss": 67.24068847324045,
+      "seconds": 1.6857128899991949
+    },
+    {
+      "evaluation": 726,
+      "total_loss": 66.85001798164718,
+      "data_loss": 66.84945387032165,
+      "seconds": 1.8117026639993128
+    },
+    {
+      "evaluation": 776,
+      "total_loss": 66.47129728174818,
+      "data_loss": 66.47072690055407,
+      "seconds": 1.9344715610004641
+    },
+    {
+      "evaluation": 828,
+      "total_loss": 66.13652481219157,
+      "data_loss": 66.13594326076345,
+      "seconds": 2.0622595849999925
+    },
+    {
+      "evaluation": 878,
+      "total_loss": 65.75715881668658,
+      "data_loss": 65.75654006608754,
+      "seconds": 2.1854124189994764
+    },
+    {
+      "evaluation": 931,
+      "total_loss": 65.0332949952529,
+      "data_loss": 65.03260650566165,
+      "seconds": 2.3154877569995733
+    },
+    {
+      "evaluation": 982,
+      "total_loss": 64.90739892093755,
+      "data_loss": 64.90666225792695,
+      "seconds": 2.4409930410001834
+    },
+    {
+      "evaluation": 1034,
+      "total_loss": 64.55707830468461,
+      "data_loss": 64.55595727990082,
+      "seconds": 2.5701369979997253
+    },
+    {
+      "evaluation": 1084,
+      "total_loss": 64.3568979743794,
+      "data_loss": 64.35560998815122,
+      "seconds": 2.6932376950007892
+    },
+    {
+      "evaluation": 1140,
+      "total_loss": 64.32308580887998,
+      "data_loss": 64.3217570283164,
+      "seconds": 2.8310406870004954
+    },
+    {
+      "evaluation": 1193,
+      "total_loss": 64.04436021436379,
+      "data_loss": 64.04273515973341,
+      "seconds": 2.961505321000004
+    },
+    {
+      "evaluation": 1249,
+      "total_loss": 64.02399879671893,
+      "data_loss": 64.0223584573188,
+      "seconds": 3.1003683269991598
+    },
+    {
+      "evaluation": 1302,
+      "total_loss": 63.87060757882302,
+      "data_loss": 63.86884326891723,
+      "seconds": 3.2307206919995224
+    },
+    {
+      "evaluation": 2977,
+      "total_loss": 63.86519530753561,
+      "data_loss": 63.86342775003824,
+      "seconds": 7.076490286999615
+    },
+    {
+      "evaluation": 3027,
+      "total_loss": 63.86424708527098,
+      "data_loss": 63.86247951132418,
+      "seconds": 7.201581909999732
+    },
+    {
+      "evaluation": 3077,
+      "total_loss": 60.098658964554,
+      "data_loss": 60.09654955278552,
+      "seconds": 7.323403762999078
+    },
+    {
+      "evaluation": 3135,
+      "total_loss": 58.72982944110615,
+      "data_loss": 58.72675265314456,
+      "seconds": 7.46796198300035
+    },
+    {
+      "evaluation": 3185,
+      "total_loss": 57.824017319643325,
+      "data_loss": 57.82095308025848,
+      "seconds": 7.605618108000272
+    },
+    {
+      "evaluation": 3247,
+      "total_loss": 54.4043560477952,
+      "data_loss": 54.401287355997056,
+      "seconds": 7.764510679000523
+    },
+    {
+      "evaluation": 3297,
+      "total_loss": 54.33018004264901,
+      "data_loss": 54.32711275670286,
+      "seconds": 7.888685546000488
+    },
+    {
+      "evaluation": 3348,
+      "total_loss": 49.11561458806095,
+      "data_loss": 49.112591414509936,
+      "seconds": 8.014855887999147
+    },
+    {
+      "evaluation": 3399,
+      "total_loss": 48.43930677083315,
+      "data_loss": 48.43625226173771,
+      "seconds": 8.143774137999571
+    },
+    {
+      "evaluation": 3452,
+      "total_loss": 47.96704399734351,
+      "data_loss": 47.96365175533259,
+      "seconds": 8.278643863999605
+    },
+    {
+      "evaluation": 3502,
+      "total_loss": 46.522773859189535,
+      "data_loss": 46.519385877335395,
+      "seconds": 8.402199019999898
+    },
+    {
+      "evaluation": 3562,
+      "total_loss": 44.84351735411028,
+      "data_loss": 44.84012555689553,
+      "seconds": 8.55043332599962
+    },
+    {
+      "evaluation": 3614,
+      "total_loss": 44.83142647208256,
+      "data_loss": 44.82803453809754,
+      "seconds": 8.683312101999036
+    },
+    {
+      "evaluation": 3667,
+      "total_loss": 38.90635590009705,
+      "data_loss": 38.9029519045929,
+      "seconds": 8.818605624999691
+    },
+    {
+      "evaluation": 3722,
+      "total_loss": 38.575707867474016,
+      "data_loss": 38.57142693860474,
+      "seconds": 8.956841346000147
+    },
+    {
+      "evaluation": 3772,
+      "total_loss": 38.354020271065856,
+      "data_loss": 38.35091475607499,
+      "seconds": 9.08385933200043
+    },
+    {
+      "evaluation": 3843,
+      "total_loss": 37.22132935630531,
+      "data_loss": 37.218222932848505,
+      "seconds": 9.260883508999541
+    },
+    {
+      "evaluation": 3903,
+      "total_loss": 37.220924595076674,
+      "data_loss": 37.217818174750576,
+      "seconds": 9.40657386500061
+    },
+    {
+      "evaluation": 3962,
+      "total_loss": 37.18643347632522,
+      "data_loss": 37.18332604248006,
+      "seconds": 9.552174946000378
+    },
+    {
+      "evaluation": 4022,
+      "total_loss": 36.929371496302934,
+      "data_loss": 36.92714387448271,
+      "seconds": 9.705128227000387
+    },
+    {
+      "evaluation": 4073,
+      "total_loss": 36.91855126524012,
+      "data_loss": 36.91631125632356,
+      "seconds": 9.833281768000234
+    },
+    {
+      "evaluation": 4136,
+      "total_loss": 36.83295684203808,
+      "data_loss": 36.830716431335844,
+      "seconds": 9.988586089999444
+    },
+    {
+      "evaluation": 4195,
+      "total_loss": 36.81773803715436,
+      "data_loss": 36.81549761356527,
+      "seconds": 10.134427761999177
+    }
+  ],
+  "optimizer_runs": [
+    {
+      "start": "field",
+      "method": "least_squares",
+      "status": 0,
+      "nfev": 120,
+      "message": "The maximum number of function evaluations is exceeded."
+    },
+    {
+      "start": "spectral",
+      "method": "least_squares",
+      "status": 0,
+      "nfev": 120,
+      "message": "The maximum number of function evaluations is exceeded."
+    },
+    {
+      "method": "Powell",
+      "status": 0,
+      "nfev": 1610,
+      "message": "Optimization terminated successfully."
+    }
+  ],
+  "evaluations": 4559,
+  "training_protocols": [
+    {
+      "name": "fixed_lower_rest",
+      "initial": [
+        0.6,
+        0.8,
+        0.3
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "fixed_0.4",
+      "initial": [
+        0.6,
+        0.8,
+        0.4
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.4
+    },
+    {
+      "name": "fixed_0.5",
+      "initial": [
+        0.6,
+        0.8,
+        0.5
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.5
+    },
+    {
+      "name": "fixed_0.6",
+      "initial": [
+        0.6,
+        0.8,
+        0.6
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.6
+    },
+    {
+      "name": "fixed_0.7",
+      "initial": [
+        0.6,
+        0.8,
+        0.7
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.7
+    },
+    {
+      "name": "decay_tau_20.0",
+      "initial": [
+        0.08,
+        0.8,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 20.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "decay_tau_100.0",
+      "initial": [
+        0.08,
+        0.8,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 100.0,
+      "baseline": 0.3
+    }
+  ],
+  "latent_thresholds": [
+    0.8779184620910255,
+    1.121586003745466,
+    1.44494499178995
+  ],
+  "reference_calcium": 0.05563833512124773,
+  "reference_h": 0.722072295839805
+}

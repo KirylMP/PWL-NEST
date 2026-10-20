@@ -1,0 +1,29 @@
+{
+  "selected": "sqrt_h_exp",
+  "C_stage_selected": "sqrt",
+  "variants": [
+    "sqrt",
+    "exp",
+    "log",
+    "inverse",
+    "inverse_sqrt",
+    "sqrt_h_log",
+    "sqrt_h_exp"
+  ],
+  "training_scores": {
+    "sqrt": 157.11988558236632,
+    "exp": 324.7977432787117,
+    "log": 266.8732864951297,
+    "inverse": 474.6264546398332,
+    "inverse_sqrt": 189.6512042544264,
+    "sqrt_h_log": 597.7770058192284,
+    "sqrt_h_exp": 136.57745311565486
+  },
+  "selection": "stage 1: best of five C transforms with logit h; stage 2: log/exp h at selected C; training only",
+  "normalization": "C: phi(Cref)=0,phi(C_MAX)=C_MAX; h: psi(href)=0,psi_prime(href)=logit_prime(href)",
+  "budgets": {
+    "least_squares_per_start": 120,
+    "refined_starts": 2,
+    "Powell_maxfev": 2400
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "trigger_uM": 0.001,
+  "records": [
+    {
+      "case": "FM",
+      "variant": "inverse",
+      "protocol": "decay_tau_100.0",
+      "original_check": {
+        "max_abs_C_vs_DOP": 0.0071175649363790505,
+        "max_abs_C_step_refinement": 0.0068454390834606915,
+        "max_abs_h_vs_DOP": 0.0044123733969879675
+      },
+      "refined_errors": {
+        "0.001": 1.3098408245371118e-05,
+        "0.0002": 2.6472152390155657e-06
+      }
+    }
+  ]
+}

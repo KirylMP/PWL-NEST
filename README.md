@@ -1,5 +1,39 @@
 # PWL-NEST: компактные AM/FM при экспоненциальном I
 
+Последний опыт сравнивает exp(C), ln(C), C⁻¹ и C⁻¹ᐟ² с √C, затем log/exp
+для h. **AM: 4 области / 14 параметров. FM: 8 / 22.** Физические пороги
+исходной спектральной эвристики сохранены. PWA и региональная аналитика
+определены в преобразованных координатах, обратные функции дают C,h.
+
+Среди новых C-координат √C сохранил лучший обучающий критерий. Для AM
+добавление ln(h) снизило loss 2.181→1.834 и сохранило физические диапазоны
+на всех 20 протоколах; точность около границы колебаний ещё недостаточна.
+Для FM exp(h) улучшил новый контроль, но прежний sqrt из calcium_powers
+лучше воспроизводит спад tau=50. Все кандидаты пока **не прошли приёмку**.
+
+- [Отчёт о C/h-преобразованиях](results/coordinate_families/REPORT.md).
+- [Графики сравнений](results/coordinate_families/coordinate_families_summary.png).
+- [Методы, области определения и команды](docs/coordinate_families.md).
+- [I через производную и δ-импульсы](docs/impulsive_ip3.md),
+  [график](results/coordinate_families/impulsive_ip3.png).
+- Текущий пилот: `models/coordinate_families/selected_AM.json` — √C+ln(h),
+  `selected_FM.json` — √C+exp(h). Выбор внутри пилота по обучению;
+  прежние модели сохранены, включая FM `models/calcium_powers/sqrt/FM.json`.
+
+Точно: J=Idot+(I−Ib)/tau=Σak*δ(t−tk). J задаётся событиями,
+I хранит их экспоненциальный след. На событии меняется только I.
+Региональное движение остаётся аналитическим; полный событийный solver,
+SIC, NEST и измерение ускорения пока не выполнены.
+
+```bash
+bash scripts/setup.sh
+.venv/bin/python -m unittest discover -s tests -v
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/check_calcium_coordinates.py --experiment coordinate_families
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/check_impulsive_ip3.py
+```
+
+## Предыдущий эксперимент: квадрат и куб
+
 Проверены степени **C² и C³** с заново подобранным контролем **√C**.
 Сохраняются logit(h), исходные спектральные C-пороги и размеры моделей:
 **AM: 4 области / 14 параметров. FM: 8 / 22.** Все три координаты приведены

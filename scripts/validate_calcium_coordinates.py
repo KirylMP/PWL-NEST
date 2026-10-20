@@ -1,7 +1,6 @@
 """Validate all calcium-coordinate variants on common physical protocols."""
 import argparse,json
 import numpy as np
-from scipy.special import expit
 from scipy.signal import find_peaks
 from pwl_nest.models import ROOT
 from pwl_nest.strict_pwa import C_MAX
@@ -45,7 +44,7 @@ def validate(case,models=None,training=None,refs=None,*,output_root=OUT):
                 baseline_cache[p['name']]=dict(completed=True,rmse=np.sqrt(np.mean((y-truth)**2,axis=0)).tolist(),physical=meta['physical'])
     native=NativeStatistics();fast=NativeCoordinateDynamic()
     for model in models:
-        kind=model.coordinate.kind;destination=output_root/kind;destination.mkdir(parents=True,exist_ok=True);records=[]
+        kind=model.variant;destination=output_root/kind;destination.mkdir(parents=True,exist_ok=True);records=[]
         for split,protos in sets:
             for p in protos:
                 print(f'{case} {kind}: {split} {p["name"]}',flush=True)
@@ -79,7 +78,7 @@ def validate(case,models=None,training=None,refs=None,*,output_root=OUT):
                             if rk is None or rk2 is None:raise RuntimeError('RK convergence check failed domain guard')
                             grid=np.linspace(0,p['duration'],361)
                             numeric=np.column_stack([np.interp(grid,t,y[:,d]) for d in [0,1]])
-                            mapped=np.column_stack([model.coordinate.inverse(rk[:,0]),expit(rk[:,1]+model.zref)])
+                            mapped=np.column_stack([model.coordinate.inverse(rk[:,0]),model.gate.inverse(rk[:,1])])
                             refined=model.coordinate.inverse(rk2[:,0])
                             r['RK_check']=dict(max_abs_C_vs_DOP=float(abs(mapped[:,0]-numeric[:,0]).max()),
                                                max_abs_C_step_refinement=float(abs(mapped[:,0]-refined).max()),
@@ -94,10 +93,11 @@ def validate(case,models=None,training=None,refs=None,*,output_root=OUT):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers'],default='calcium_coordinates')
+    parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers','coordinate_families'],default='calcium_coordinates')
     parser.add_argument('--case',choices=['AM','FM','both'],default='both')
     args=parser.parse_args()
     kinds=['sqrt','square','cube'] if args.experiment=='calcium_powers' else KINDS
     for case in (['AM','FM'] if args.case=='both' else [args.case]):
+        if args.experiment=='coordinate_families':kinds=json.loads((ROOT/f'results/coordinate_families/{case}_selection.json').read_text())['variants']
         models=[CalciumTransformPWA.load(ROOT/f'models/{args.experiment}/{kind}/{case}.json') for kind in kinds]
         validate(case,models,output_root=ROOT/'results'/args.experiment)

@@ -7,12 +7,13 @@ from pwl_nest.strict_pwa import C_MAX,lr_field,regional_flow
 from pwl_nest.calcium_coordinates import CalciumTransformPWA
 
 parser=argparse.ArgumentParser()
-parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers'],default='calcium_coordinates')
+parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers','coordinate_families'],default='calcium_coordinates')
 args=parser.parse_args()
 OUT=ROOT/'results'/args.experiment;MODELS=ROOT/'models'/args.experiment;report={}
 KINDS=['sqrt','square','cube'] if args.experiment=='calcium_powers' else ['identity','sqrt','cbrt','log']
 for case in ['AM','FM']:
     report[case]={}
+    if args.experiment=='coordinate_families':KINDS=json.loads((OUT/f'{case}_selection.json').read_text())['variants']
     for kind in KINDS:
         model=CalciumTransformPWA.load(MODELS/kind/f'{case}.json')
         latent=model.latent;local=latent.local_coefficients();theta=latent.thresholds;co=model.coordinate
@@ -41,13 +42,15 @@ for case in ['AM','FM']:
             x=np.array([event['C'],event['h'],event['I']]);y=model.to_latent(x)
             jx=np.column_stack([lr_field(x.astype(complex)+1e-25j*np.eye(3)[d],case).imag/1e-25 for d in [0,1]])
             jy=np.column_stack([model.source_field(y.astype(complex)+1e-25j*np.eye(3)[d]).imag/1e-25 for d in [0,1]])
-            t=np.diag([co.derivative(x[0]),1/(x[1]*(1-x[1]))])
+            t=np.diag([co.derivative(x[0]),model.gate.derivative(x[1])])
             jac_error=max(jac_error,float(abs(jy-t@jx@np.linalg.inv(t)).max()))
         if continuity>1e-11 or flow_error>1e-10 or physical_flow_error>1e-9 or ip3_error>1e-13 or jac_error>1e-9:
             raise AssertionError('Structural error')
         report[case][kind]=dict(regions=latent.region_count,parameters=model.metadata['parameter_count'],
             continuity_max_abs_error=continuity,latent_flow_error=flow_error,physical_readout_flow_error=physical_flow_error,
             IP3_error=ip3_error,source_Jacobian_similarity_error=jac_error,regional_types=types,
-            calcium_reference=co.reference,coordinate_scale=co.scale,h_reference=model.h_reference,root_branch_guard=kind!='log')
+            calcium_reference=co.reference,coordinate_scale=co.scale,h_reference=model.h_reference,
+            h_transform=model.h_kind,calcium_lower_boundary_guard=bool(np.isfinite(co.lower)),
+            h_lower_boundary_guard=bool(np.isfinite(model.gate.lower)),h_upper_boundary_guard=bool(np.isfinite(model.gate.upper)))
 (OUT/'structure.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))

@@ -3,17 +3,18 @@ from pathlib import Path
 import numpy as np
 from scipy.integrate import solve_ivp
 from scipy.special import expit,logit
-from pwl_nest.calcium_coordinates import (CalciumCoordinate,CalciumTransformPWA,NativeCoordinateDynamic,simulate_coordinates)
+from pwl_nest.calcium_coordinates import (CalciumCoordinate,GateCoordinate,CalciumTransformPWA,NativeCoordinateDynamic,simulate_coordinates)
 from pwl_nest.calcium_strips import CalciumStrips,NativeDynamic
 from pwl_nest.strict_pwa import regional_flow,lr_field,spectral_events
 
-KINDS=['identity','sqrt','cbrt','log','square','cube']
+KINDS=['identity','sqrt','cbrt','log','square','cube','exp','inverse','inverse_sqrt']
 
 
 def simple_model(kind):
     co=CalciumCoordinate(kind,.05)
     matrix=np.zeros((2,7))
     matrix[0,:4]=[.05,-1.,0.,.02]
+    if kind=='inverse':matrix[0,0]=.01
     matrix[1,:4]=[0.,.1,-1.,-.1]
     theta=np.array([.08,.15,.3])
     return CalciumTransformPWA(CalciumStrips('AM',co.forward(theta),matrix,dict(physical_thresholds_C=theta.tolist())),co,.75)
@@ -39,6 +40,9 @@ class CalciumCoordinatesTest(unittest.TestCase):
             if kind!='log':
                 for u in [co.lower,co.lower-.1]:
                     with self.assertRaises(ValueError):co.inverse(u)
+                if np.isfinite(co.upper):
+                    for u in [co.upper,co.upper+.1]:
+                        with self.assertRaises(ValueError):co.inverse(u)
             else:
                 self.assertGreater(float(co.inverse(-1.)),0.)
                 with self.assertRaises(ValueError):co.inverse(-1e6)
@@ -105,6 +109,42 @@ class CalciumCoordinatesTest(unittest.TestCase):
             self.assertEqual(CalciumTransformPWA.load(path).coordinate.scale,1.)
         with self.assertRaisesRegex(ValueError,'floating-point precision'):
             CalciumCoordinate('cube',.05).forward(1e-12)
+
+    def test_gate_transforms_chain_rule_flow_jumps_and_serialization(self):
+        x=np.array([.12,.65,.6]);f=lr_field(x,'AM')
+        for kind in ['logit','log','exp']:
+            gate=GateCoordinate(kind,.75);h=np.array([.001,.1,.65,.75,.999])
+            np.testing.assert_allclose(gate.inverse(gate.forward(h)),h,atol=2e-15)
+            self.assertAlmostEqual(float(gate.forward(.75)),0.,places=14)
+            self.assertAlmostEqual(float(gate.derivative(.75)),1/(.75*.25),places=14)
+            for value in [gate.lower,gate.upper]:
+                with self.assertRaises(ValueError):gate.inverse(value)
+            model=simple_model('sqrt');model.h_kind=kind;y=model.to_latent(x)
+            np.testing.assert_allclose(model.source_field(y),[model.coordinate.derivative(x[0])*f[0],gate.derivative(x[1])*f[1]],atol=1e-13)
+            eps=1e-6
+            numeric=(model.to_latent(x+eps*np.r_[f,0])-model.to_latent(x-eps*np.r_[f,0]))/(2*eps)
+            np.testing.assert_allclose(numeric[:2],model.source_field(y),atol=1e-8)
+            initial=[.1,.8,.2];a,b,_=model.latent.region(model.to_latent(initial),3,.2)
+            t,physical,meta=simulate_coordinates(model,initial,2.,tau=3,baseline=.2,jumps=[(1.,.1)],dt=.02)
+            at_jump=meta['jumps'][0]
+            np.testing.assert_array_equal(at_jump['physical_before'][:2],at_jump['physical_after'][:2])
+            np.testing.assert_allclose(meta['latent'][t==1.][0],regional_flow(a,b,model.to_latent(initial),1.),atol=2e-12)
+            with tempfile.TemporaryDirectory() as tmp:
+                path=Path(tmp)/'gate.json';model.save(path);restored=CalciumTransformPWA.load(path)
+                self.assertEqual(restored.h_kind,kind)
+                np.testing.assert_allclose(restored.to_physical(meta['latent']),physical,atol=1e-14)
+
+    def test_gate_exit_guard_on_internal_steps(self):
+        for kind in ['log','exp']:
+            model=simple_model('sqrt');model.h_kind=kind
+            model.latent.matrix[1]=0;model.latent.matrix[1,0]=3.
+            with self.assertRaisesRegex(RuntimeError,'gate domain exit h=1'):
+                simulate_coordinates(model,[.1,.8,.2],1.,baseline=.2)
+            self.assertIsNone(NativeCoordinateDynamic().run(model,[.1,.8,.2],1.,2.,.2,outputs=2,maxdt=.01))
+        model.h_kind='exp';model.latent.matrix[1,0]=-5.
+        with self.assertRaisesRegex(RuntimeError,'gate domain exit h=0'):
+            simulate_coordinates(model,[.1,.8,.2],1.,baseline=.2)
+        self.assertIsNone(NativeCoordinateDynamic().run(model,[.1,.8,.2],1.,2.,.2,outputs=2,maxdt=.01))
 
     def test_jump_preserves_physical_C_h_and_recorded_latent_basis(self):
         for kind in KINDS:

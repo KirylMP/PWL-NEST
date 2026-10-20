@@ -1,0 +1,277 @@
+{
+  "initial_scores": [
+    {
+      "label": "spectral",
+      "total_loss": 55.75008027573996
+    },
+    {
+      "label": "tangent",
+      "total_loss": 75230.0019808742
+    },
+    {
+      "label": "field",
+      "total_loss": 48.33221832064525
+    }
+  ],
+  "training_data_loss": 2.1811940523460103,
+  "training_total_loss": 2.181318654338299,
+  "bounds": [
+    [
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -0.5,
+      -12.0,
+      -8.0,
+      -4.0,
+      -8.0,
+      -8.0
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      5.0,
+      0.5,
+      2.0,
+      3.0,
+      1.5,
+      8.0,
+      8.0
+    ]
+  ],
+  "history": [
+    {
+      "evaluation": 1,
+      "total_loss": 55.75008027573996,
+      "data_loss": 55.75008027573996,
+      "seconds": 0.0034508360004110727
+    },
+    {
+      "evaluation": 52,
+      "total_loss": 37.09757349782715,
+      "data_loss": 37.09755277696466,
+      "seconds": 0.14472299400040356
+    },
+    {
+      "evaluation": 112,
+      "total_loss": 29.367877950151307,
+      "data_loss": 29.36783972234731,
+      "seconds": 0.31091005300004326
+    },
+    {
+      "evaluation": 162,
+      "total_loss": 25.374887445409346,
+      "data_loss": 25.374848522596697,
+      "seconds": 0.4472316249994037
+    },
+    {
+      "evaluation": 218,
+      "total_loss": 17.55126520556335,
+      "data_loss": 17.551217303535054,
+      "seconds": 0.6014002209994942
+    },
+    {
+      "evaluation": 268,
+      "total_loss": 13.299832857552529,
+      "data_loss": 13.299751029011219,
+      "seconds": 0.7422157069995592
+    },
+    {
+      "evaluation": 323,
+      "total_loss": 4.174084852555923,
+      "data_loss": 4.173978048775424,
+      "seconds": 0.8970584559992858
+    },
+    {
+      "evaluation": 373,
+      "total_loss": 2.2716049055129717,
+      "data_loss": 2.2714901743391502,
+      "seconds": 1.0377327499991225
+    },
+    {
+      "evaluation": 445,
+      "total_loss": 2.188056915841575,
+      "data_loss": 2.187934237308914,
+      "seconds": 1.2398106629989343
+    },
+    {
+      "evaluation": 502,
+      "total_loss": 2.1828491956842093,
+      "data_loss": 2.1827251069303233,
+      "seconds": 1.4021311209999112
+    },
+    {
+      "evaluation": 554,
+      "total_loss": 2.181436849358347,
+      "data_loss": 2.1813122059401544,
+      "seconds": 1.5464517549989978
+    },
+    {
+      "evaluation": 610,
+      "total_loss": 2.1813870375331645,
+      "data_loss": 2.1812624075985565,
+      "seconds": 1.7019338749996678
+    },
+    {
+      "evaluation": 667,
+      "total_loss": 2.181376333498044,
+      "data_loss": 2.1812517060707886,
+      "seconds": 1.8609565269998711
+    },
+    {
+      "evaluation": 727,
+      "total_loss": 2.1813732041270906,
+      "data_loss": 2.1812485774975143,
+      "seconds": 2.0442505279988836
+    },
+    {
+      "evaluation": 787,
+      "total_loss": 2.1813709159838996,
+      "data_loss": 2.181246289528269,
+      "seconds": 2.212288067999907
+    },
+    {
+      "evaluation": 1701,
+      "total_loss": 2.1813694182784955,
+      "data_loss": 2.181244791495942,
+      "seconds": 4.795953439999721
+    },
+    {
+      "evaluation": 1751,
+      "total_loss": 2.1813690331165803,
+      "data_loss": 2.181244406505302,
+      "seconds": 4.936783827999534
+    },
+    {
+      "evaluation": 1805,
+      "total_loss": 2.1813650825464332,
+      "data_loss": 2.181240459808624,
+      "seconds": 5.085060092998901
+    },
+    {
+      "evaluation": 1865,
+      "total_loss": 2.181350292597582,
+      "data_loss": 2.181225670532097,
+      "seconds": 5.252067183999316
+    }
+  ],
+  "optimizer_runs": [
+    {
+      "start": "field",
+      "method": "least_squares",
+      "status": 2,
+      "nfev": 58,
+      "message": "`ftol` termination condition is satisfied."
+    },
+    {
+      "start": "spectral",
+      "method": "least_squares",
+      "status": 3,
+      "nfev": 77,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": 0,
+      "nfev": 259,
+      "message": "Optimization terminated successfully."
+    }
+  ],
+  "evaluations": 1941,
+  "training_protocols": [
+    {
+      "name": "fixed_lower_rest",
+      "initial": [
+        0.6,
+        0.8,
+        0.3
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "fixed_0.4",
+      "initial": [
+        0.6,
+        0.8,
+        0.4
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.4
+    },
+    {
+      "name": "fixed_0.5",
+      "initial": [
+        0.6,
+        0.8,
+        0.5
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.5
+    },
+    {
+      "name": "fixed_0.6",
+      "initial": [
+        0.6,
+        0.8,
+        0.6
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.6
+    },
+    {
+      "name": "fixed_0.7",
+      "initial": [
+        0.6,
+        0.8,
+        0.7
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.7
+    },
+    {
+      "name": "decay_tau_20.0",
+      "initial": [
+        0.08,
+        0.8,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 20.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "decay_tau_100.0",
+      "initial": [
+        0.08,
+        0.8,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 100.0,
+      "baseline": 0.3
+    }
+  ],
+  "latent_thresholds": [
+    0.15669552356612723,
+    0.2519073882093488,
+    0.5281420834408502
+  ],
+  "reference_calcium": 0.05563833512124773,
+  "reference_h": 0.722072295839805
+}
