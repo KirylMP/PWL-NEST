@@ -7,17 +7,24 @@ from pwl_nest.strict_pwa import C_MAX,lr_field,regional_flow
 from pwl_nest.calcium_coordinates import CalciumTransformPWA
 
 parser=argparse.ArgumentParser()
-parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers','coordinate_families'],default='calcium_coordinates')
+parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers','coordinate_families','movable_thresholds'],default='calcium_coordinates')
 args=parser.parse_args()
 OUT=ROOT/'results'/args.experiment;MODELS=ROOT/'models'/args.experiment;report={}
 KINDS=['sqrt','square','cube'] if args.experiment=='calcium_powers' else ['identity','sqrt','cbrt','log']
 for case in ['AM','FM']:
     report[case]={}
-    if args.experiment=='coordinate_families':KINDS=json.loads((OUT/f'{case}_selection.json').read_text())['variants']
+    if args.experiment in ('coordinate_families','movable_thresholds'):KINDS=json.loads((OUT/f'{case}_selection.json').read_text())['variants']
     for kind in KINDS:
         model=CalciumTransformPWA.load(MODELS/kind/f'{case}.json')
         latent=model.latent;local=latent.local_coefficients();theta=latent.thresholds;co=model.coordinate
         np.testing.assert_allclose(theta,co.forward(model.metadata['physical_thresholds_C']),atol=2e-14)
+        if np.any(np.diff(theta)<=0):raise AssertionError('Unordered thresholds')
+        if args.experiment=='movable_thresholds' and kind=='moving_joint':
+            from pwl_nest.thresholds import OrderedThresholds
+            reference=model.metadata['threshold_reference_C'];low,high=model.metadata['threshold_domain_C']
+            mapping=OrderedThresholds(reference,low,high)
+            np.testing.assert_allclose(mapping.decode(model.metadata['threshold_shifts']),model.metadata['physical_thresholds_C'],atol=1e-15)
+            if model.metadata['parameter_count']!=3*latent.region_count+5:raise AssertionError('Wrong joint parameter count')
         continuity=0.;flow_error=0.;physical_flow_error=0.;ip3_error=0.;jac_error=0.;types=[]
         for j,th in enumerate(theta):
             for v in [-3.,0.,3.]:
@@ -51,6 +58,7 @@ for case in ['AM','FM']:
             IP3_error=ip3_error,source_Jacobian_similarity_error=jac_error,regional_types=types,
             calcium_reference=co.reference,coordinate_scale=co.scale,h_reference=model.h_reference,
             h_transform=model.h_kind,calcium_lower_boundary_guard=bool(np.isfinite(co.lower)),
+            physical_thresholds_C=model.metadata['physical_thresholds_C'],
             h_lower_boundary_guard=bool(np.isfinite(model.gate.lower)),h_upper_boundary_guard=bool(np.isfinite(model.gate.upper)))
 (OUT/'structure.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))

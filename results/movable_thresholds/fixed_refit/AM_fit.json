@@ -1,0 +1,221 @@
+{
+  "training_data_loss": 1.6468228507915617,
+  "training_total_loss": 1.6468323973392687,
+  "evaluations": 2737,
+  "history": [
+    {
+      "evaluation": 1,
+      "data_loss": 1.8344700339147129,
+      "total_loss": 1.8344700339147126,
+      "seconds": 0.002962290998766548
+    },
+    {
+      "evaluation": 104,
+      "data_loss": 1.6486461412066913,
+      "total_loss": 1.6486558182031523,
+      "seconds": 0.2963169539998489
+    },
+    {
+      "evaluation": 754,
+      "data_loss": 1.6484352077380415,
+      "total_loss": 1.6484448853010412,
+      "seconds": 2.17865823199827
+    },
+    {
+      "evaluation": 861,
+      "data_loss": 1.6483964086236849,
+      "total_loss": 1.6484060789510617,
+      "seconds": 2.4763983649991133
+    },
+    {
+      "evaluation": 971,
+      "data_loss": 1.6483593581312166,
+      "total_loss": 1.6483690273967329,
+      "seconds": 2.778786131999368
+    },
+    {
+      "evaluation": 1074,
+      "data_loss": 1.6483504851032544,
+      "total_loss": 1.6483601527867446,
+      "seconds": 3.062708543999179
+    },
+    {
+      "evaluation": 1185,
+      "data_loss": 1.6483250425942009,
+      "total_loss": 1.6483347101122818,
+      "seconds": 3.3690993129985145
+    },
+    {
+      "evaluation": 1294,
+      "data_loss": 1.6480506804250425,
+      "total_loss": 1.6480603051940463,
+      "seconds": 3.6732654699990235
+    },
+    {
+      "evaluation": 1404,
+      "data_loss": 1.648026261409984,
+      "total_loss": 1.648035887973996,
+      "seconds": 3.976135513999907
+    },
+    {
+      "evaluation": 1510,
+      "data_loss": 1.64798000928456,
+      "total_loss": 1.6479896187202534,
+      "seconds": 4.263284993998241
+    },
+    {
+      "evaluation": 1621,
+      "data_loss": 1.6479471770248457,
+      "total_loss": 1.64795678879334,
+      "seconds": 4.564073004999955
+    },
+    {
+      "evaluation": 1729,
+      "data_loss": 1.6478205266968124,
+      "total_loss": 1.6478300927118619,
+      "seconds": 4.855497537999327
+    },
+    {
+      "evaluation": 1835,
+      "data_loss": 1.6477702381544599,
+      "total_loss": 1.6477798111810404,
+      "seconds": 5.145887436998237
+    },
+    {
+      "evaluation": 1936,
+      "data_loss": 1.6477383579205365,
+      "total_loss": 1.6477479253060863,
+      "seconds": 5.422414756998478
+    },
+    {
+      "evaluation": 2040,
+      "data_loss": 1.6477142095780357,
+      "total_loss": 1.6477237753175433,
+      "seconds": 5.703916511998614
+    },
+    {
+      "evaluation": 2142,
+      "data_loss": 1.6476839564045447,
+      "total_loss": 1.6476935250577773,
+      "seconds": 5.987841636999292
+    },
+    {
+      "evaluation": 2254,
+      "data_loss": 1.6470389471138724,
+      "total_loss": 1.6470484939533858,
+      "seconds": 6.306001558999924
+    },
+    {
+      "evaluation": 2355,
+      "data_loss": 1.6470278819108417,
+      "total_loss": 1.6470374291485372,
+      "seconds": 6.581256858999041
+    },
+    {
+      "evaluation": 2463,
+      "data_loss": 1.6469836002709284,
+      "total_loss": 1.6469931457515177,
+      "seconds": 6.878809087998889
+    },
+    {
+      "evaluation": 2563,
+      "data_loss": 1.6469672050693083,
+      "total_loss": 1.6469767542678235,
+      "seconds": 7.16028931999972
+    },
+    {
+      "evaluation": 2663,
+      "data_loss": 1.6469496423754466,
+      "total_loss": 1.6469591927558402,
+      "seconds": 7.44199687299988
+    }
+  ],
+  "optimizer_runs": [
+    {
+      "method": "least_squares",
+      "start": "incumbent",
+      "status": 3,
+      "nfev": 20,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "least_squares",
+      "start": "perturbed",
+      "status": 3,
+      "nfev": 41,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": 1,
+      "nfev": 2000,
+      "message": "Maximum number of function evaluations has been exceeded."
+    }
+  ],
+  "bounds": [
+    [
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -0.5,
+      -12.0,
+      -8.0,
+      -4.0,
+      -8.0,
+      -8.0
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      5.0,
+      0.5,
+      2.0,
+      3.0,
+      1.5,
+      8.0,
+      8.0
+    ]
+  ],
+  "thresholds_initial_C": [
+    0.11195264540328671,
+    0.1556894888082622,
+    0.3233038346842266
+  ],
+  "thresholds_final_C": [
+    0.11195264540328671,
+    0.1556894888082622,
+    0.3233038346842266
+  ],
+  "threshold_domain_C": [
+    0.05563833512124773,
+    0.51941408164821
+  ],
+  "parameters": [
+    1.9778784351324692,
+    -1.3053198488355144,
+    -1.1021547268460594,
+    -0.6785756581644501,
+    -2.121098500186667,
+    -1.3657673772284742,
+    -1.2750788228311467,
+    -0.9732086454882536,
+    0.44357672789299285,
+    -1.187461196197838,
+    -0.34122442663832775,
+    -1.5309351492515781,
+    1.1947165959433867,
+    0.6821454628726682
+  ],
+  "max_residual_evaluations_per_LS_start": 1500,
+  "Powell_max_evaluations": 2000
+}

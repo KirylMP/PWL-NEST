@@ -133,7 +133,9 @@ class CalciumTransformPWA:
     def gate(self):return GateCoordinate(self.h_kind,self.h_reference)
 
     @property
-    def variant(self):return self.coordinate.kind if self.h_kind=='logit' else f'{self.coordinate.kind}_h_{self.h_kind}'
+    def variant(self):
+        intrinsic=self.coordinate.kind if self.h_kind=='logit' else f'{self.coordinate.kind}_h_{self.h_kind}'
+        return self.metadata.get('experiment_variant',intrinsic)
 
     @property
     def case(self):return self.latent.case

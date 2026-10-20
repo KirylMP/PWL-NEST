@@ -4,7 +4,7 @@ from pwl_nest.models import ROOT
 from pwl_nest.calcium_coordinates import CalciumTransformPWA,simulate_coordinates
 
 parser=argparse.ArgumentParser()
-parser.add_argument('--experiment',choices=['calcium_powers','coordinate_families'],default='calcium_powers')
+parser.add_argument('--experiment',choices=['calcium_powers','coordinate_families','movable_thresholds'],default='calcium_powers')
 args=parser.parse_args()
 OUT=ROOT/'results'/args.experiment;report=[]
 for case in ['AM','FM']:

@@ -1,0 +1,192 @@
+{
+  "AM": {
+    "baseline": {
+      "regions": 4,
+      "parameters": 14,
+      "continuity_max_abs_error": 4.440892098500626e-16,
+      "latent_flow_error": 2.7755575615628914e-17,
+      "physical_readout_flow_error": 0.0,
+      "IP3_error": 0.0,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.05563833512124773,
+      "coordinate_scale": 0.29719782567894054,
+      "h_reference": 0.722072295839805,
+      "h_transform": "log",
+      "calcium_lower_boundary_guard": true,
+      "physical_thresholds_C": [
+        0.11195264540328671,
+        0.1556894888082622,
+        0.3233038346842266
+      ],
+      "h_lower_boundary_guard": false,
+      "h_upper_boundary_guard": true
+    },
+    "fixed_refit": {
+      "regions": 4,
+      "parameters": 14,
+      "continuity_max_abs_error": 8.881784197001252e-16,
+      "latent_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 3.3306690738754696e-16,
+      "IP3_error": 0.0,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.05563833512124773,
+      "coordinate_scale": 0.29719782567894054,
+      "h_reference": 0.722072295839805,
+      "h_transform": "log",
+      "calcium_lower_boundary_guard": true,
+      "physical_thresholds_C": [
+        0.11195264540328671,
+        0.1556894888082622,
+        0.3233038346842266
+      ],
+      "h_lower_boundary_guard": false,
+      "h_upper_boundary_guard": true
+    },
+    "moving_joint": {
+      "regions": 4,
+      "parameters": 17,
+      "continuity_max_abs_error": 4.440892098500626e-16,
+      "latent_flow_error": 5.551115123125783e-17,
+      "physical_readout_flow_error": 2.7755575615628914e-17,
+      "IP3_error": 0.0,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.05563833512124773,
+      "coordinate_scale": 0.29719782567894054,
+      "h_reference": 0.722072295839805,
+      "h_transform": "log",
+      "calcium_lower_boundary_guard": true,
+      "physical_thresholds_C": [
+        0.11422041509904675,
+        0.14793381200235634,
+        0.33152698054352964
+      ],
+      "h_lower_boundary_guard": false,
+      "h_upper_boundary_guard": true
+    }
+  },
+  "FM": {
+    "baseline": {
+      "regions": 8,
+      "parameters": 22,
+      "continuity_max_abs_error": 4.440892098500626e-16,
+      "latent_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 1.1102230246251565e-16,
+      "IP3_error": 0.0,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "unstable_node",
+        "saddle",
+        "unstable_node",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.02812613673817445,
+      "coordinate_scale": 0.22485446253415442,
+      "h_reference": 0.8371177795140701,
+      "h_transform": "logit",
+      "calcium_lower_boundary_guard": true,
+      "physical_thresholds_C": [
+        0.048619351113710484,
+        0.05214116272147648,
+        0.054844693127646865,
+        0.06128930910964823,
+        0.13570424237991197,
+        0.25181841575269986,
+        0.3926251934101711
+      ],
+      "h_lower_boundary_guard": false,
+      "h_upper_boundary_guard": false
+    },
+    "fixed_refit": {
+      "regions": 8,
+      "parameters": 22,
+      "continuity_max_abs_error": 4.440892098500626e-16,
+      "latent_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 5.551115123125783e-16,
+      "IP3_error": 0.0,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "unstable_node",
+        "saddle",
+        "unstable_node",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.02812613673817445,
+      "coordinate_scale": 0.22485446253415442,
+      "h_reference": 0.8371177795140701,
+      "h_transform": "logit",
+      "calcium_lower_boundary_guard": true,
+      "physical_thresholds_C": [
+        0.048619351113710484,
+        0.05214116272147648,
+        0.054844693127646865,
+        0.06128930910964823,
+        0.13570424237991197,
+        0.25181841575269986,
+        0.3926251934101711
+      ],
+      "h_lower_boundary_guard": false,
+      "h_upper_boundary_guard": false
+    },
+    "moving_joint": {
+      "regions": 8,
+      "parameters": 29,
+      "continuity_max_abs_error": 4.440892098500626e-16,
+      "latent_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 5.551115123125783e-17,
+      "IP3_error": 0.0,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types": [
+        "stable_node",
+        "stable_focus",
+        "unstable_focus",
+        "unstable_node",
+        "saddle",
+        "unstable_node",
+        "unstable_focus",
+        "stable_focus"
+      ],
+      "calcium_reference": 0.02812613673817445,
+      "coordinate_scale": 0.22485446253415442,
+      "h_reference": 0.8371177795140701,
+      "h_transform": "logit",
+      "calcium_lower_boundary_guard": true,
+      "physical_thresholds_C": [
+        0.048548547573493264,
+        0.05203973009583146,
+        0.05470530916436547,
+        0.061084272036948745,
+        0.13511814404411937,
+        0.24987128254247906,
+        0.3928588572786892
+      ],
+      "h_lower_boundary_guard": false,
+      "h_upper_boundary_guard": false
+    }
+  }
+}

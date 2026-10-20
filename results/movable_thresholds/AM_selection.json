@@ -1,0 +1,17 @@
+{
+  "selected": "moving_joint",
+  "variants": [
+    "baseline",
+    "fixed_refit",
+    "moving_joint"
+  ],
+  "training_scores": {
+    "baseline": 1.8344700339147129,
+    "fixed_refit": 1.6468228507915617,
+    "moving_joint": 1.396793826903889
+  },
+  "source_seed": "models/coordinate_families/selected_AM.json",
+  "selection": "lowest common training data-loss; diagnostics excluded",
+  "control": "same incumbent and two coefficient starts; fixed/joint same maximum residual budgets",
+  "threshold_bounds": "m independent log interval ratios bounded by +/-ln(2); endpoints source C equilibrium at I=0,1.3"
+}

@@ -1,0 +1,17 @@
+{
+  "selected": "moving_joint",
+  "variants": [
+    "baseline",
+    "fixed_refit",
+    "moving_joint"
+  ],
+  "training_scores": {
+    "baseline": 120.55967002785121,
+    "fixed_refit": 107.51201435665743,
+    "moving_joint": 71.13896404304266
+  },
+  "source_seed": "models/calcium_powers/sqrt/FM.json",
+  "selection": "lowest common training data-loss; diagnostics excluded",
+  "control": "same incumbent and two coefficient starts; fixed/joint same maximum residual budgets",
+  "threshold_bounds": "m independent log interval ratios bounded by +/-ln(2); endpoints source C equilibrium at I=0,1.3"
+}

@@ -1,0 +1,188 @@
+{
+  "case": "AM",
+  "calcium_coordinate": {
+    "kind": "sqrt",
+    "reference": 0.05563833512124773,
+    "scale": 0.29719782567894054,
+    "normalization": "phi(C_ref)=0, phi_prime(C_ref)=1/scale"
+  },
+  "h_reference": 0.722072295839805,
+  "h_coordinate": {
+    "kind": "log",
+    "normalization": "psi(h_ref)=0, psi_prime(h_ref)=1/[h_ref*(1-h_ref)]"
+  },
+  "thresholds_u": [
+    0.15669552356612723,
+    0.2519073882093488,
+    0.5281420834408502
+  ],
+  "thresholds_C": [
+    0.11195264540328671,
+    0.1556894888082622,
+    0.3233038346842266
+  ],
+  "basis": [
+    "1",
+    "u",
+    "v",
+    "I",
+    "max(0,u-0.15669552356612723)",
+    "max(0,u-0.25190738820934883)",
+    "max(0,u-0.52814208344085023)"
+  ],
+  "coefficients": [
+    [
+      0.6821454628726682,
+      -7.011060055707039,
+      0.7108993455517129,
+      1.1947165959433867,
+      6.956307509811492,
+      0.6032404243134154,
+      -0.8394937119039521
+    ],
+    [
+      -0.01727705847795737,
+      0.16684605232600672,
+      -0.2163332687999368,
+      0.06546307467143714,
+      -0.5349879868873609,
+      -0.23060216756884605,
+      0.06524713846399244
+    ]
+  ],
+  "metadata": {
+    "class_name": "PWA_in_transformed_calcium_and_gate",
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "thresholds_policy": "fixed source spectral C thresholds",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.11195264540328671,
+        "h": 0.7578765554494843,
+        "I": 0.27802575097364235,
+        "trace": -1.026643693352243,
+        "determinant": 0.26349931827487577,
+        "discriminant": 4.312106227644108e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.1556894888082622,
+        "h": 0.7155282974000192,
+        "I": 0.35453381865657696,
+        "trace": 1.3739009929736312e-15,
+        "determinant": 0.25048138443817525,
+        "discriminant": -1.001925537752701
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3233038346842266,
+        "h": 0.6115837408558975,
+        "I": 0.6368818163953753,
+        "trace": -4.543587728278453e-14,
+        "determinant": 0.3584212537104145,
+        "discriminant": -1.433685014841658
+      }
+    ],
+    "source_average_trace": [
+      -3.978715536777417,
+      -0.438944199916516,
+      0.15905769157025726,
+      -0.3233758185057667
+    ],
+    "source_average_determinant": [
+      0.29295936298491265,
+      0.25372910867094683,
+      0.3014382398040492,
+      0.4406812055884304
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      4.937035534683918,
+      1.749281880599346,
+      1.6845097372974123,
+      3.3813540795061536
+    ],
+    "restoring_scale": 0.10184201032657797,
+    "regions": 4,
+    "free_parameters": 14,
+    "target_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "calcium_transform": "sqrt",
+    "h_transform": "log",
+    "variant": "sqrt_h_log",
+    "physical_thresholds_C": [
+      0.11195264540328671,
+      0.1556894888082622,
+      0.3233038346842266
+    ],
+    "physical_field_PWA": false,
+    "enforce_types": true,
+    "accepted": false,
+    "source_chain_rule": "udot=phi_prime(C)*fC; vdot=psi_prime(h)*fh",
+    "calcium_reference": 0.05563833512124773,
+    "h_reference": 0.722072295839805,
+    "coordinate_scale": 0.29719782567894054,
+    "normalization": "phi(Cref)=0; phi(C_MAX)=C_MAX",
+    "q0_parameterization": "q0=qb*IP3_offset; source rest u=0",
+    "parameter_count": 14,
+    "parameters": [
+      1.9778784351324692,
+      -1.3053198488355144,
+      -1.1021547268460594,
+      -0.6785756581644501,
+      -2.121098500186667,
+      -1.3657673772284742,
+      -1.2750788228311467,
+      -0.9732086454882536,
+      0.44357672789299285,
+      -1.187461196197838,
+      -0.34122442663832775,
+      -1.5309351492515781,
+      1.1947165959433867,
+      0.6821454628726682
+    ],
+    "mu_sign": [
+      -1.0,
+      -1.0,
+      1.0,
+      -1.0
+    ],
+    "k_sign": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "training_data_loss": 1.6468228507915617,
+    "training_total_loss": 1.6468323973392687,
+    "selected_by": "common physical residual plus unchanged spectral-I anchors; excludes regularization",
+    "experiment_variant": "fixed_refit",
+    "seed_model": "models/coordinate_families/selected_AM.json",
+    "reported_previous_training_loss": 1.8344700339147129,
+    "threshold_parameter_count": 0,
+    "coefficient_parameter_count": 14,
+    "threshold_reference_C": [
+      0.11195264540328671,
+      0.1556894888082622,
+      0.3233038346842266
+    ],
+    "threshold_domain_C": [
+      0.05563833512124773,
+      0.51941408164821
+    ],
+    "coefficient_prior_strength": 0.005,
+    "threshold_gap_prior_strength": 0.0,
+    "threshold_shifts": []
+  }
+}

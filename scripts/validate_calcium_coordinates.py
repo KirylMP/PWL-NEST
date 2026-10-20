@@ -93,11 +93,11 @@ def validate(case,models=None,training=None,refs=None,*,output_root=OUT):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers','coordinate_families'],default='calcium_coordinates')
+    parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers','coordinate_families','movable_thresholds'],default='calcium_coordinates')
     parser.add_argument('--case',choices=['AM','FM','both'],default='both')
     args=parser.parse_args()
     kinds=['sqrt','square','cube'] if args.experiment=='calcium_powers' else KINDS
     for case in (['AM','FM'] if args.case=='both' else [args.case]):
-        if args.experiment=='coordinate_families':kinds=json.loads((ROOT/f'results/coordinate_families/{case}_selection.json').read_text())['variants']
+        if args.experiment in ('coordinate_families','movable_thresholds'):kinds=json.loads((ROOT/f'results/{args.experiment}/{case}_selection.json').read_text())['variants']
         models=[CalciumTransformPWA.load(ROOT/f'models/{args.experiment}/{kind}/{case}.json') for kind in kinds]
         validate(case,models,output_root=ROOT/'results'/args.experiment)
