@@ -1,0 +1,10 @@
+{
+  "selected": "sqrt",
+  "training_scores": {
+    "sqrt": 2.1687515307499923,
+    "cbrt": 2.6135374242086953,
+    "log": 4.1957340745930525,
+    "identity": 2.5391098037522726
+  },
+  "selection": "best of three nonlinear C transforms on training data only; identity is a procedure-matched control"
+}

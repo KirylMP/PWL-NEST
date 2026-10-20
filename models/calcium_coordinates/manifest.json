@@ -1,0 +1,51 @@
+{
+  "kinds": [
+    "identity",
+    "sqrt",
+    "cbrt",
+    "log"
+  ],
+  "selected": {
+    "AM": "sqrt",
+    "FM": "sqrt"
+  },
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "files": {
+    "cbrt/AM.json": "4853f4491074cfa1f273e52d5f7d93b4461f8daf7eb84eb4f9b4eb2710289bb1",
+    "cbrt/AM_field_seed.json": "63da19ffd4f71fa174bb8a629baaa12d178acaff59636853bef5877e020a77e4",
+    "cbrt/AM_spectral_seed.json": "acb564cdbf176d9f9012e35d81f7b96a3e7509c4e13ea7a9eb76f351a37dfd62",
+    "cbrt/AM_tangent_seed.json": "5d80a3874563c3fc23f19525fc909cd6d45486490cd43f17cb0edc1f0f8cce26",
+    "cbrt/FM.json": "40b895dcf7ebbbd920225ff9f9339f89401c52f85b302a117aac11c5994c8151",
+    "cbrt/FM_field_seed.json": "0f36c420facece5208a71400c0c15edbbb46b67bcb07689441ecdeb198b3e6c7",
+    "cbrt/FM_spectral_seed.json": "f4765a1a3ff3acc32150d14988a51f5ab5012b022b322e47d8a1c648c13243f0",
+    "cbrt/FM_tangent_seed.json": "607e9753cc079d573bda2f9d5e35dbec85113cd19608dc487c12a9b697a8c253",
+    "identity/AM.json": "e4399cfe2deb90389545682405ce12281b3c26bbc4f23f05a8327d9c0681db2f",
+    "identity/AM_field_seed.json": "436bd5acce99ee01d8a850fa87d22d8809a8629a9d2405ad74f27735d2bf91dc",
+    "identity/AM_spectral_seed.json": "c35e48a7205df1ee02744a7447ec9440c7d15149378e5e6cf3ba33807fa56d9a",
+    "identity/AM_tangent_seed.json": "2ea0684213699cca7972f6472635591deb5faeca789d203fac1756b475cd08ea",
+    "identity/FM.json": "3cba763bec4b6cddb6e80bcac03870168cd13664f75b36931808f1a373412009",
+    "identity/FM_field_seed.json": "3d1b7c56ee2424cfdd4c8b4978ad3851c2b6ac0dd3bba663cfeac9e607a96e63",
+    "identity/FM_spectral_seed.json": "60cbc00b067c2a378b04b4557174e60011990855ccd93e90a6c465a93fcf6b9c",
+    "identity/FM_tangent_seed.json": "efa0704a4e9d6a2c1b5c288338edee11d32d7c38acb323551406805455ebf9e7",
+    "log/AM.json": "7d2248a72c309437e0cc865b701bad06ed3c56e602fbb2159eec1a625426912c",
+    "log/AM_field_seed.json": "e0d1e6d6358f17d0ffaa8b64e7e961c0de8ac4128e9ce5650922252d903ea3a2",
+    "log/AM_spectral_seed.json": "2cd16e5a4c18c010f959ea38a8d7d77a2d33daf0d6afc4287866b969bc5e17cf",
+    "log/AM_tangent_seed.json": "9239fb9cf9d9772b10daf0967a50a76b1331b539754c8b7f90e6b04180780250",
+    "log/FM.json": "fe8e91cf117afad7c8d888d9e65f555914516d95957b9013af0ff0d96ad6654c",
+    "log/FM_field_seed.json": "18ffc8bac3112fabec1f5f20b88b6f68f2c5180446216cb4e06074968012a249",
+    "log/FM_spectral_seed.json": "c61ba6afaf05e403419aeca229c03c012759ce71c695b7b1f2f4dc63ad77c26b",
+    "log/FM_tangent_seed.json": "196270657a6e974e3feaaf2a4724123aaefb2aa3a524584bd0dac3f632a06882",
+    "selected_AM.json": "936d5fc391ccca449641cdef69169e07df5581438d3836f70378bcd867709ee9",
+    "selected_FM.json": "b71e110aabc218cabc8efac8451cae52495411c5844b5bf3d4c00c920ce8160c",
+    "sqrt/AM.json": "936d5fc391ccca449641cdef69169e07df5581438d3836f70378bcd867709ee9",
+    "sqrt/AM_field_seed.json": "2760303174d36420dc1e4ad7edd825f4a00f972a6c84a2ebef5c916006460509",
+    "sqrt/AM_spectral_seed.json": "101adbd4eba483fbae18dbc41cda0d3fc6fa11e66c3fcac23b0dfb43739be271",
+    "sqrt/AM_tangent_seed.json": "98d13830060ee1ae1720a2bece8d34722c9f700eea6c832f279e1aaf8c32f30e",
+    "sqrt/FM.json": "b71e110aabc218cabc8efac8451cae52495411c5844b5bf3d4c00c920ce8160c",
+    "sqrt/FM_field_seed.json": "1ae4b235e30b137c737f3d8cc8c039711f4e60d5639116d1dff3b05fc96208ff",
+    "sqrt/FM_spectral_seed.json": "c729124795cbc226795453ffd35c16b3eb7fbec4014cf531a28093a253f3d095",
+    "sqrt/FM_tangent_seed.json": "46b7fa7df4d5664a9be8068ee3f157a8d73a53f81738b7b1df192bb6ee201c44"
+  }
+}

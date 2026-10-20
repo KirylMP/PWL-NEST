@@ -1,0 +1,409 @@
+{
+  "initial_scores": [
+    {
+      "label": "spectral",
+      "total_loss": 58.34212963614562
+    },
+    {
+      "label": "tangent",
+      "total_loss": 2.5654267945382014
+    },
+    {
+      "label": "field",
+      "total_loss": 77.26102879337216
+    }
+  ],
+  "training_data_loss": 2.5391098037522726,
+  "training_total_loss": 2.539175951364987,
+  "bounds": [
+    [
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -0.5,
+      -12.0,
+      -8.0,
+      -4.0,
+      -8.0,
+      -8.0
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      5.0,
+      0.5,
+      2.0,
+      3.0,
+      1.5,
+      8.0,
+      8.0
+    ]
+  ],
+  "history": [
+    {
+      "evaluation": 1,
+      "total_loss": 58.34212963614562,
+      "data_loss": 58.34212963614561,
+      "seconds": 0.0027349430001777364
+    },
+    {
+      "evaluation": 53,
+      "total_loss": 2.543709373844308,
+      "data_loss": 2.543643726917195,
+      "seconds": 0.13955292899936467
+    },
+    {
+      "evaluation": 110,
+      "total_loss": 2.539385230504459,
+      "data_loss": 2.5393190085518946,
+      "seconds": 0.28066975899946556
+    },
+    {
+      "evaluation": 170,
+      "total_loss": 2.5392992894591195,
+      "data_loss": 2.5392330917583457,
+      "seconds": 0.4293782069998997
+    },
+    {
+      "evaluation": 1980,
+      "total_loss": 2.5392979255451125,
+      "data_loss": 2.5392317309017267,
+      "seconds": 5.8718844269997135
+    },
+    {
+      "evaluation": 2049,
+      "total_loss": 2.5392950079659755,
+      "data_loss": 2.5392288125187874,
+      "seconds": 6.034039326999846
+    },
+    {
+      "evaluation": 2099,
+      "total_loss": 2.5392929342717023,
+      "data_loss": 2.539226735503933,
+      "seconds": 6.154215505999673
+    },
+    {
+      "evaluation": 2157,
+      "total_loss": 2.539292725535769,
+      "data_loss": 2.5392265248660095,
+      "seconds": 6.291803506999713
+    },
+    {
+      "evaluation": 2216,
+      "total_loss": 2.5392845254409884,
+      "data_loss": 2.539218318371329,
+      "seconds": 6.427855508999528
+    },
+    {
+      "evaluation": 2267,
+      "total_loss": 2.5392824949745374,
+      "data_loss": 2.539216292873375,
+      "seconds": 6.549810056999377
+    },
+    {
+      "evaluation": 2322,
+      "total_loss": 2.5392814635556404,
+      "data_loss": 2.5392152617712953,
+      "seconds": 6.678582239999741
+    },
+    {
+      "evaluation": 2396,
+      "total_loss": 2.5392810976860876,
+      "data_loss": 2.539214897769747,
+      "seconds": 6.853347575000043
+    },
+    {
+      "evaluation": 2450,
+      "total_loss": 2.5392728427619384,
+      "data_loss": 2.539206632852409,
+      "seconds": 6.981873156999427
+    },
+    {
+      "evaluation": 2503,
+      "total_loss": 2.539266182744308,
+      "data_loss": 2.539199985379718,
+      "seconds": 7.1087613159998
+    },
+    {
+      "evaluation": 2555,
+      "total_loss": 2.5392640746901463,
+      "data_loss": 2.539197881193907,
+      "seconds": 7.229823042000135
+    },
+    {
+      "evaluation": 2611,
+      "total_loss": 2.5392635669024073,
+      "data_loss": 2.539197373503846,
+      "seconds": 7.364477260000058
+    },
+    {
+      "evaluation": 2667,
+      "total_loss": 2.5392623267772745,
+      "data_loss": 2.539196140040233,
+      "seconds": 7.496297357000003
+    },
+    {
+      "evaluation": 2717,
+      "total_loss": 2.539251214729526,
+      "data_loss": 2.539185030722083,
+      "seconds": 7.615262728999369
+    },
+    {
+      "evaluation": 2777,
+      "total_loss": 2.539249528859315,
+      "data_loss": 2.5391833523400407,
+      "seconds": 7.758446347000245
+    },
+    {
+      "evaluation": 2832,
+      "total_loss": 2.539247366638687,
+      "data_loss": 2.5391811900671133,
+      "seconds": 7.88687115599987
+    },
+    {
+      "evaluation": 2892,
+      "total_loss": 2.539246205835566,
+      "data_loss": 2.5391800339918773,
+      "seconds": 8.028239412999937
+    },
+    {
+      "evaluation": 2942,
+      "total_loss": 2.539242321782758,
+      "data_loss": 2.539176148045926,
+      "seconds": 8.147884617999807
+    },
+    {
+      "evaluation": 2996,
+      "total_loss": 2.5392092777889883,
+      "data_loss": 2.5391432138558665,
+      "seconds": 8.277324314999532
+    },
+    {
+      "evaluation": 3048,
+      "total_loss": 2.5392057610959653,
+      "data_loss": 2.5391397078646696,
+      "seconds": 8.401928088000204
+    },
+    {
+      "evaluation": 3099,
+      "total_loss": 2.5392027684105947,
+      "data_loss": 2.539136714942455,
+      "seconds": 8.522794946999966
+    },
+    {
+      "evaluation": 3149,
+      "total_loss": 2.5392015965549164,
+      "data_loss": 2.5391355434440253,
+      "seconds": 8.640378105999844
+    },
+    {
+      "evaluation": 3204,
+      "total_loss": 2.5392009878140844,
+      "data_loss": 2.5391349286247626,
+      "seconds": 8.821225927999876
+    },
+    {
+      "evaluation": 3259,
+      "total_loss": 2.5392002373275884,
+      "data_loss": 2.539134173945344,
+      "seconds": 8.961712749000071
+    },
+    {
+      "evaluation": 3312,
+      "total_loss": 2.539200018928918,
+      "data_loss": 2.539133954407064,
+      "seconds": 9.084664433999933
+    },
+    {
+      "evaluation": 3366,
+      "total_loss": 2.5391991026736633,
+      "data_loss": 2.539133038443955,
+      "seconds": 9.213730413999656
+    },
+    {
+      "evaluation": 3423,
+      "total_loss": 2.539198498785423,
+      "data_loss": 2.5391324343215893,
+      "seconds": 9.347340659999645
+    },
+    {
+      "evaluation": 3480,
+      "total_loss": 2.539189707133419,
+      "data_loss": 2.53912359766821,
+      "seconds": 9.483773584999653
+    },
+    {
+      "evaluation": 3530,
+      "total_loss": 2.5391861194858527,
+      "data_loss": 2.5391200238131377,
+      "seconds": 9.609020832999704
+    },
+    {
+      "evaluation": 3586,
+      "total_loss": 2.5391836060537667,
+      "data_loss": 2.539117505507169,
+      "seconds": 9.740142924999418
+    },
+    {
+      "evaluation": 3642,
+      "total_loss": 2.539182847772457,
+      "data_loss": 2.539116747709262,
+      "seconds": 9.874590575000184
+    },
+    {
+      "evaluation": 3701,
+      "total_loss": 2.5391821845684333,
+      "data_loss": 2.5391160869373564,
+      "seconds": 10.013425723000182
+    },
+    {
+      "evaluation": 3752,
+      "total_loss": 2.5391798996309083,
+      "data_loss": 2.5391137746101897,
+      "seconds": 10.135426003000248
+    },
+    {
+      "evaluation": 3807,
+      "total_loss": 2.539179114800394,
+      "data_loss": 2.5391129879661287,
+      "seconds": 10.266907416999857
+    },
+    {
+      "evaluation": 3862,
+      "total_loss": 2.5391786455011527,
+      "data_loss": 2.5391125195481385,
+      "seconds": 10.395615376999558
+    },
+    {
+      "evaluation": 3913,
+      "total_loss": 2.53917833125742,
+      "data_loss": 2.5391122051944337,
+      "seconds": 10.515494350000154
+    },
+    {
+      "evaluation": 3965,
+      "total_loss": 2.5391775772149727,
+      "data_loss": 2.539111448738789,
+      "seconds": 10.64065043499977
+    }
+  ],
+  "optimizer_runs": [
+    {
+      "start": "tangent",
+      "method": "least_squares",
+      "status": 3,
+      "nfev": 16,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "start": "spectral",
+      "method": "least_squares",
+      "status": 0,
+      "nfev": 120,
+      "message": "The maximum number of function evaluations is exceeded."
+    },
+    {
+      "method": "Powell",
+      "status": 0,
+      "nfev": 2260,
+      "message": "Optimization terminated successfully."
+    }
+  ],
+  "evaluations": 4209,
+  "training_protocols": [
+    {
+      "name": "fixed_lower_rest",
+      "initial": [
+        0.6,
+        0.8,
+        0.3
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "fixed_0.4",
+      "initial": [
+        0.6,
+        0.8,
+        0.4
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.4
+    },
+    {
+      "name": "fixed_0.5",
+      "initial": [
+        0.6,
+        0.8,
+        0.5
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.5
+    },
+    {
+      "name": "fixed_0.6",
+      "initial": [
+        0.6,
+        0.8,
+        0.6
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.6
+    },
+    {
+      "name": "fixed_0.7",
+      "initial": [
+        0.6,
+        0.8,
+        0.7
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.7
+    },
+    {
+      "name": "decay_tau_20.0",
+      "initial": [
+        0.08,
+        0.8,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 20.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "decay_tau_100.0",
+      "initial": [
+        0.08,
+        0.8,
+        0.65
+      ],
+      "duration": 180.0,
+      "tau": 100.0,
+      "baseline": 0.3
+    }
+  ],
+  "latent_thresholds": [
+    0.056314310282038996,
+    0.10005115368701448,
+    0.26766549956297886
+  ],
+  "reference_calcium": 0.05563833512124773,
+  "reference_h": 0.722072295839805
+}

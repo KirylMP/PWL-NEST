@@ -1,0 +1,132 @@
+{
+  "case": "AM",
+  "calcium_coordinate": {
+    "kind": "identity",
+    "reference": 0.05563833512124773,
+    "normalization": "phi(C_ref)=0, phi_prime(C_ref)=1"
+  },
+  "h_reference": 0.722072295839805,
+  "thresholds_u": [
+    0.056314310282038996,
+    0.10005115368701448,
+    0.26766549956297886
+  ],
+  "thresholds_C": [
+    0.11195264540328671,
+    0.1556894888082622,
+    0.3233038346842266
+  ],
+  "basis": [
+    "1",
+    "u",
+    "v",
+    "I",
+    "max(0,u-0.056314310282038996)",
+    "max(0,u-0.10005115368701448)",
+    "max(0,u-0.26766549956297886)"
+  ],
+  "coefficients": [
+    [
+      0.02677602927547905,
+      -4.3478772658917535,
+      0.4389555888199931,
+      0.6406068382574694,
+      4.402688266116226,
+      0.19852650474756212,
+      -0.3257643191071347
+    ],
+    [
+      -0.01700662626847429,
+      0.17685791100451195,
+      -0.14724765449575483,
+      0.09275126816054378,
+      -1.0029078323094696,
+      0.28876739921677763,
+      -0.044549767285567254
+    ]
+  ],
+  "metadata": {
+    "class_name": "PWA_in_transformed_calcium_and_logit_h",
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "thresholds_policy": "source equilibrium spectral type changes; fixed across all IP3 and trajectories",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.11195264540328671,
+        "h": 0.7578765554494843,
+        "I": 0.27802575097364235,
+        "trace": -1.026643693352243,
+        "determinant": 0.26349931827487577,
+        "discriminant": 4.312106227644108e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.1556894888082622,
+        "h": 0.7155282974000192,
+        "I": 0.35453381865657696,
+        "trace": 1.3739009929736312e-15,
+        "determinant": 0.25048138443817525,
+        "discriminant": -1.001925537752701
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3233038346842266,
+        "h": 0.6115837408558975,
+        "I": 0.6368818163953753,
+        "trace": -4.543587728278453e-14,
+        "determinant": 0.3584212537104145,
+        "discriminant": -1.433685014841658
+      }
+    ],
+    "source_average_trace": [
+      -3.978715536777417,
+      -0.438944199916516,
+      0.15905769157025726,
+      -0.3233758185057667
+    ],
+    "source_average_determinant": [
+      0.29295936298491265,
+      0.25372910867094683,
+      0.3014382398040492,
+      0.4406812055884304
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      4.937035534683918,
+      1.749281880599346,
+      1.6845097372974123,
+      3.3813540795061536
+    ],
+    "restoring_scale": 0.10184201032657797,
+    "regions": 4,
+    "free_parameters": 14,
+    "target_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "calcium_transform": "identity",
+    "physical_thresholds_C": [
+      0.11195264540328671,
+      0.1556894888082622,
+      0.3233038346842266
+    ],
+    "physical_field_PWA": false,
+    "enforce_types": true,
+    "accepted": false,
+    "source_chain_rule": "udot=phi_prime(C)*fC; vdot=fh/[h*(1-h)]",
+    "calcium_reference": 0.05563833512124773,
+    "h_reference": 0.722072295839805,
+    "normalization": "phi(Cref)=0; phi_prime(Cref)=1",
+    "q0_parameterization": "q0=qb*IP3_offset; source rest u=0",
+    "parameter_count": 14
+  }
+}
