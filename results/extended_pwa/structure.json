@@ -1,0 +1,818 @@
+{
+  "AM": {
+    "baseline": {
+      "C_regions": 4,
+      "input_bands": 1,
+      "total_regions": 4,
+      "active_fit_parameters": 0,
+      "continuity_error": 2.220446049250313e-16,
+      "regional_flow_error": 5.551115123125783e-17,
+      "physical_readout_flow_error": 1.1102230246251565e-16,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "log",
+      "input_restoring_slopes_first_C_region": [
+        0.30574285273557467
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.27628832836708983,
+        0.3547728884936506,
+        0.6425044241164051
+      ],
+      "equilibrium_intersection_error": 4.440892098500626e-16,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "control": {
+      "C_regions": 4,
+      "input_bands": 1,
+      "total_regions": 4,
+      "active_fit_parameters": 14,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 3.3306690738754696e-16,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "log",
+      "input_restoring_slopes_first_C_region": [
+        0.3049465756168486
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.2762328634061952,
+        0.354641680758445,
+        0.6424117297931605
+      ],
+      "equilibrium_intersection_error": 5.551115123125783e-17,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "sqrt_cube": {
+      "C_regions": 4,
+      "input_bands": 1,
+      "total_regions": 4,
+      "active_fit_parameters": 14,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 2.220446049250313e-16,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "cube",
+      "input_restoring_slopes_first_C_region": [
+        0.30795948379567445
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.2761458389980925,
+        0.3557595385761874,
+        0.6435045763685656
+      ],
+      "equilibrium_intersection_error": 4.440892098500626e-16,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "log_cube": {
+      "C_regions": 4,
+      "input_bands": 1,
+      "total_regions": 4,
+      "active_fit_parameters": 14,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 3.3306690738754696e-16,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 6.772360450213455e-15,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "log",
+      "h_coordinate": "cube",
+      "input_restoring_slopes_first_C_region": [
+        0.4073795534299481
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.2712733853335217,
+        0.3636237739862287,
+        0.6518350521334135
+      ],
+      "equilibrium_intersection_error": 1.1102230246251565e-16,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "hill_cube": {
+      "C_regions": 4,
+      "input_bands": 1,
+      "total_regions": 4,
+      "active_fit_parameters": 14,
+      "continuity_error": 1.6653345369377348e-14,
+      "regional_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 1.1102230246251565e-16,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 1.1601830607332886e-14,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "hill",
+      "h_coordinate": "cube",
+      "input_restoring_slopes_first_C_region": [
+        0.0318946018487527
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.006240640718684668,
+        0.4293009748728141,
+        0.5000065553716874
+      ],
+      "equilibrium_intersection_error": 1.1102230246251565e-16,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "input_one": {
+      "C_regions": 4,
+      "input_bands": 2,
+      "total_regions": 8,
+      "active_fit_parameters": 16,
+      "continuity_error": 2.220446049250313e-16,
+      "regional_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 4.440892098500626e-16,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 2.220446049250313e-16,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ],
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [
+        0.64
+      ],
+      "example_input_crossings": [
+        [
+          16.419611041396607,
+          0.64
+        ]
+      ],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "log",
+      "input_restoring_slopes_first_C_region": [
+        0.31217653074805846,
+        0.19755073647135313
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.2771485770413429,
+        0.35558048983613005,
+        0.6366850898450693
+      ],
+      "equilibrium_intersection_error": 2.7755575615628914e-16,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "input_two": {
+      "C_regions": 4,
+      "input_bands": 3,
+      "total_regions": 12,
+      "active_fit_parameters": 18,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 1.1102230246251565e-16,
+      "input_exact_error": 5.551115123125783e-17,
+      "constant_input_reduction_error": 3.3306690738754696e-16,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ],
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ],
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [
+        0.35,
+        0.64
+      ],
+      "example_input_crossings": [
+        [
+          16.419611041396607,
+          0.64
+        ],
+        [
+          37.94239969771763,
+          0.35
+        ]
+      ],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "log",
+      "input_restoring_slopes_first_C_region": [
+        0.34472892106184594,
+        0.303289072876335,
+        0.1980653161442938
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.2783892567319423,
+        0.35373258496163673,
+        0.6359662514635709
+      ],
+      "equilibrium_intersection_error": 7.771561172376096e-16,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "tilted": {
+      "C_regions": 4,
+      "input_bands": 1,
+      "total_regions": 4,
+      "active_fit_parameters": 17,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 2.220446049250313e-16,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 2.55351295663786e-15,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "log",
+      "input_restoring_slopes_first_C_region": [
+        0.33873176896874474
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.27421064513852766,
+        0.3547610098413364,
+        0.642646088615106
+      ],
+      "equilibrium_intersection_error": 4.440892098500626e-16,
+      "threshold_slopes": [
+        0.019469895970241773,
+        -0.011363824398535508,
+        -0.07411899880031128
+      ],
+      "reference_input": 0.65
+    }
+  },
+  "FM": {
+    "baseline": {
+      "C_regions": 8,
+      "input_bands": 1,
+      "total_regions": 8,
+      "active_fit_parameters": 0,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 5.551115123125783e-17,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "logit",
+      "input_restoring_slopes_first_C_region": [
+        0.15038288150545084
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.46684114357716966,
+        0.4849906322211674,
+        0.5077556963526257,
+        0.5954411104425916,
+        0.46004976152864074,
+        0.6354638157274634,
+        0.8465922110341868
+      ],
+      "equilibrium_intersection_error": 2.609024107869118e-15,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "control": {
+      "C_regions": 8,
+      "input_bands": 1,
+      "total_regions": 8,
+      "active_fit_parameters": 22,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 2.220446049250313e-16,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "logit",
+      "input_restoring_slopes_first_C_region": [
+        0.1504050861371778
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.4644869805527072,
+        0.48264393270480505,
+        0.505428461243417,
+        0.5932234033597875,
+        0.45784975110243886,
+        0.6333636680333057,
+        0.8445345702132983
+      ],
+      "equilibrium_intersection_error": 2.4424906541753444e-15,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "sqrt_cube": {
+      "C_regions": 8,
+      "input_bands": 1,
+      "total_regions": 8,
+      "active_fit_parameters": 22,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 5.551115123125783e-17,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "cube",
+      "input_restoring_slopes_first_C_region": [
+        0.15091245831399958
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.4846281311629732,
+        0.5176714578338105,
+        0.5381283988380346,
+        0.5771393359170585,
+        0.491742400757463,
+        0.65004147076653,
+        0.863932686174298
+      ],
+      "equilibrium_intersection_error": 2.402592014227878e-15,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "log_cube": {
+      "C_regions": 8,
+      "input_bands": 1,
+      "total_regions": 8,
+      "active_fit_parameters": 22,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 5.551115123125783e-17,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 7.482903185973555e-14,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "log",
+      "h_coordinate": "cube",
+      "input_restoring_slopes_first_C_region": [
+        0.136271392870475
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.49966288655271435,
+        0.5242341250550754,
+        0.5368603739046947,
+        0.5442332070024372,
+        0.4821572740173972,
+        0.6001797436574731,
+        0.8726156706668218
+      ],
+      "equilibrium_intersection_error": 1.3600232051658168e-15,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "hill_cube": {
+      "C_regions": 8,
+      "input_bands": 1,
+      "total_regions": 8,
+      "active_fit_parameters": 22,
+      "continuity_error": 6.994405055138486e-15,
+      "regional_flow_error": 2.220446049250313e-16,
+      "physical_readout_flow_error": 3.6637359812630166e-15,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 2.3003821070233244e-13,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "hill",
+      "h_coordinate": "cube",
+      "input_restoring_slopes_first_C_region": [
+        2.416685959941495
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        1.17864888466954,
+        1.1815355595339199,
+        1.2138067631474692,
+        1.2138067695779047,
+        1.1892249317297845,
+        1.1892250999672498,
+        1.1982937208057933
+      ],
+      "equilibrium_intersection_error": 3.552713678800501e-15,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "input_one": {
+      "C_regions": 8,
+      "input_bands": 2,
+      "total_regions": 16,
+      "active_fit_parameters": 24,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 1.1102230246251565e-16,
+      "input_exact_error": 2.220446049250313e-16,
+      "constant_input_reduction_error": 9.992007221626409e-16,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ],
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [
+        1.1
+      ],
+      "example_input_crossings": [
+        [
+          2.1072103131565227,
+          1.1
+        ]
+      ],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "logit",
+      "input_restoring_slopes_first_C_region": [
+        0.1503949958485955,
+        0.15039294255526708
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.46545589371809737,
+        0.4836044980216328,
+        0.5063778750905784,
+        0.5941851707640154,
+        0.45881052596854954,
+        0.6342232596033616,
+        0.8453465095565412
+      ],
+      "equilibrium_intersection_error": 2.831068712794149e-15,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "input_two": {
+      "C_regions": 8,
+      "input_bands": 3,
+      "total_regions": 24,
+      "active_fit_parameters": 26,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 1.1102230246251565e-16,
+      "physical_readout_flow_error": 1.1102230246251565e-16,
+      "input_exact_error": 2.220446049250313e-16,
+      "constant_input_reduction_error": 5.10702591327572e-15,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ],
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ],
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [
+        0.53,
+        1.1
+      ],
+      "example_input_crossings": [
+        [
+          2.1072103131565227,
+          1.1
+        ],
+        [
+          22.173252490432223,
+          0.53
+        ]
+      ],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "logit",
+      "input_restoring_slopes_first_C_region": [
+        0.15039481559541876,
+        0.15039870754245932,
+        0.15039278288735025
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.4648931757830184,
+        0.4830418053599096,
+        0.5058152626480236,
+        0.593540185491751,
+        0.4581669948666324,
+        0.633578052294183,
+        0.8446963544602271
+      ],
+      "equilibrium_intersection_error": 3.5841555418025806e-15,
+      "threshold_slopes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_input": 0.65
+    },
+    "tilted": {
+      "C_regions": 8,
+      "input_bands": 1,
+      "total_regions": 8,
+      "active_fit_parameters": 29,
+      "continuity_error": 4.440892098500626e-16,
+      "regional_flow_error": 5.551115123125783e-17,
+      "physical_readout_flow_error": 8.326672684688674e-17,
+      "input_exact_error": 0.0,
+      "constant_input_reduction_error": 0.0,
+      "source_Jacobian_similarity_error": 3.574918139293004e-14,
+      "regional_types_by_input_band": [
+        [
+          "stable_node",
+          "stable_focus",
+          "unstable_focus",
+          "unstable_node",
+          "saddle",
+          "unstable_node",
+          "unstable_focus",
+          "stable_focus"
+        ]
+      ],
+      "input_thresholds": [],
+      "example_input_crossings": [],
+      "C_coordinate": "sqrt",
+      "h_coordinate": "logit",
+      "input_restoring_slopes_first_C_region": [
+        0.15045970501779024
+      ],
+      "equilibrium_inputs_at_thresholds": [
+        0.46218172169393135,
+        0.48035494644627313,
+        0.5031265267534056,
+        0.5909408388526642,
+        0.4556864355498422,
+        0.5904665629334499,
+        0.8575335116370559
+      ],
+      "equilibrium_intersection_error": 3.552713678800501e-15,
+      "threshold_slopes": [
+        -1.7329280443315695e-07,
+        9.290379521242897e-07,
+        1.5825723371413277e-06,
+        3.7671986859060088e-06,
+        -8.93820615624272e-06,
+        1.3972706894379486e-05,
+        4.532412080350012e-06
+      ],
+      "reference_input": 0.65
+    }
+  }
+}

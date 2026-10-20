@@ -1,7 +1,7 @@
 """PWA in (u=phi(C),v=psi(h),I).
 
-phi is a fixed power or logarithm, with optional constant scale normalization.
-All variants have identical physical spectral thresholds and parameter counts.
+Coordinates include powers, logarithms and pump saturation. Optional input
+hinges and ordered oblique calcium planes preserve constant regional matrices.
 """
 from dataclasses import dataclass
 from pathlib import Path
@@ -19,12 +19,20 @@ class CalciumCoordinate:
     kind: str
     reference: float
     scale: float = 1.
+    half_saturation: float | None = None
 
     def __post_init__(self):
-        if (self.kind not in ('identity','sqrt','cbrt','log','square','cube','exp','inverse','inverse_sqrt')
+        if (self.kind not in ('identity','sqrt','cbrt','log','square','cube','exp','inverse','inverse_sqrt','hill')
                 or not np.isfinite(self.reference) or self.reference<=0
                 or not np.isfinite(self.scale) or self.scale<=0):
             raise ValueError('Invalid calcium coordinate')
+        if self.kind=='hill' and (self.half_saturation is None or not np.isfinite(self.half_saturation) or self.half_saturation<=0):
+            raise ValueError('Hill coordinate requires a positive pump half-saturation')
+
+    def saturation(self,c):return np.asarray(c)**2/(self.half_saturation**2+np.asarray(c)**2)
+
+    def saturation_derivative(self,c):
+        return 2*self.half_saturation**2*np.asarray(c)/(self.half_saturation**2+np.asarray(c)**2)**2
 
     @property
     def power(self):return {'identity':1.,'sqrt':.5,'cbrt':1/3,'log':0.,'square':2.,'cube':3.,'inverse':-1.,'inverse_sqrt':-.5}[self.kind]
@@ -32,16 +40,23 @@ class CalciumCoordinate:
     @property
     def lower(self):
         if self.kind=='exp':return float(np.expm1(-self.reference)/self.scale)
+        if self.kind=='hill':return float(-self.saturation(self.reference)/(self.saturation_derivative(self.reference)*self.scale))
         return -np.inf if self.power<=0 else -self.reference/(self.power*self.scale)
 
     @property
     def upper(self):
+        if self.kind=='hill':return float((1-self.saturation(self.reference))/(self.saturation_derivative(self.reference)*self.scale))
         return -self.reference/(self.power*self.scale) if self.kind!='exp' and self.power<0 else np.inf
 
     def forward(self,c):
         c=np.asarray(c)
         if not np.isfinite(c).all() or np.any(c.real<=0):raise ValueError('Require C>0; no clipping')
         if self.kind=='log':return self.reference*np.log(c/self.reference)/self.scale
+        if self.kind=='hill':
+            u=(self.saturation(c)-self.saturation(self.reference))/(self.saturation_derivative(self.reference)*self.scale)
+            if not np.iscomplexobj(c) and (np.any(u<=self.lower) or np.any(u>=self.upper)):
+                raise ValueError('Hill coordinate loses positive branch at floating-point precision')
+            return u
         if self.kind=='exp':
             u=np.expm1(c-self.reference)/self.scale
             if not np.isfinite(u).all() or (not np.iscomplexobj(c) and np.any(u<=self.lower)):
@@ -57,6 +72,7 @@ class CalciumCoordinate:
         c=np.asarray(c)
         if np.any(c.real<=0):raise ValueError('Require C>0')
         if self.kind=='exp':return np.exp(c-self.reference)/self.scale
+        if self.kind=='hill':return self.saturation_derivative(c)/(self.saturation_derivative(self.reference)*self.scale)
         return (self.reference/c if self.kind=='log' else (c/self.reference)**(self.power-1))/self.scale
 
     def inverse(self,u):
@@ -64,6 +80,11 @@ class CalciumCoordinate:
         if not np.isfinite(u).all():raise ValueError('Nonfinite calcium coordinate')
         with np.errstate(over='raise',invalid='raise',under='ignore'):
             if self.kind=='log':c=self.reference*np.exp(u*self.scale/self.reference)
+            elif self.kind=='hill':
+                value=self.saturation(self.reference)+u*self.scale*self.saturation_derivative(self.reference)
+                if np.any(u.real<=self.lower) or np.any(u.real>=self.upper) or np.any(value.real<=0) or np.any(value.real>=1):
+                    raise ValueError('Hill inverse left 0<saturation<1')
+                c=self.half_saturation*(value/(1-value))**.5
             elif self.kind=='exp':
                 if np.any(u.real<=self.lower):raise ValueError('Exponential coordinate left C>0')
                 c=self.reference+np.log1p(u*self.scale)
@@ -83,17 +104,19 @@ class GateCoordinate:
     reference: float
 
     def __post_init__(self):
-        if self.kind not in ('logit','log','exp') or not 0<self.reference<1:
+        if self.kind not in ('logit','log','exp','cube') or not 0<self.reference<1:
             raise ValueError('Invalid gate coordinate')
 
     @property
     def lower(self):
+        if self.kind=='cube':return -1/(3*(1-self.reference))
         return float(np.expm1(-self.reference)/(self.reference*(1-self.reference))) if self.kind=='exp' else -np.inf
 
     @property
     def upper(self):
         if self.kind=='logit':return np.inf
         if self.kind=='log':return float(-np.log(self.reference)/(1-self.reference))
+        if self.kind=='cube':return (1-self.reference**3)/(3*self.reference**3*(1-self.reference))
         return float(np.expm1(1-self.reference)/(self.reference*(1-self.reference)))
 
     def forward(self,h):
@@ -101,6 +124,7 @@ class GateCoordinate:
         if not np.isfinite(h).all() or np.any(h.real<=0) or np.any(h.real>=1):raise ValueError('Require 0<h<1')
         if self.kind=='logit':return np.log(h/(1-h))-logit(self.reference)
         if self.kind=='log':return np.log(h/self.reference)/(1-self.reference)
+        if self.kind=='cube':return (h**3-self.reference**3)/(3*self.reference**3*(1-self.reference))
         return np.expm1(h-self.reference)/(self.reference*(1-self.reference))
 
     def derivative(self,h):
@@ -108,6 +132,7 @@ class GateCoordinate:
         if np.any(h.real<=0) or np.any(h.real>=1):raise ValueError('Require 0<h<1')
         if self.kind=='logit':return 1/(h*(1-h))
         if self.kind=='log':return 1/(h*(1-self.reference))
+        if self.kind=='cube':return h**2/(self.reference**3*(1-self.reference))
         return np.exp(h-self.reference)/(self.reference*(1-self.reference))
 
     def inverse(self,v):
@@ -117,6 +142,7 @@ class GateCoordinate:
         if self.kind=='logit':
             return 1/(1+np.exp(-v-logit(self.reference))) if np.iscomplexobj(v) else expit(v+logit(self.reference))
         if self.kind=='log':h=self.reference*np.exp((1-self.reference)*v)
+        elif self.kind=='cube':h=(self.reference**3+3*self.reference**3*(1-self.reference)*v)**(1/3)
         else:h=self.reference+np.log1p(self.reference*(1-self.reference)*v)
         if not np.isfinite(h).all() or np.any(h.real<=0) or np.any(h.real>=1):raise ValueError('Gate inverse lost 0<h<1')
         return h
@@ -128,6 +154,103 @@ class CalciumTransformPWA:
     coordinate: CalciumCoordinate
     h_reference: float
     h_kind: str = 'logit'
+    input_thresholds: np.ndarray | None = None
+    input_weights: np.ndarray | None = None
+    threshold_slopes: np.ndarray | None = None
+    reference_input: float = .65
+
+    def __post_init__(self):
+        self.input_thresholds=np.array([] if self.input_thresholds is None else self.input_thresholds,dtype=float)
+        self.input_weights=np.zeros((2,len(self.input_thresholds))) if self.input_weights is None else np.array(self.input_weights,dtype=float)
+        self.threshold_slopes=np.zeros(len(self.latent.thresholds)) if self.threshold_slopes is None else np.array(self.threshold_slopes,dtype=float)
+        if (self.input_weights.shape!=(2,len(self.input_thresholds)) or self.threshold_slopes.shape!=self.latent.thresholds.shape
+                or not np.isfinite(np.r_[self.input_thresholds,self.input_weights.ravel(),self.threshold_slopes,self.reference_input]).all()
+                or np.any(np.diff(self.input_thresholds)<=0) or np.any(self.input_thresholds<=0) or np.any(self.input_thresholds>=1.3)):
+            raise ValueError('Invalid input thresholds or oblique geometry')
+        for ip3 in [0.,1.3]:
+            theta=self.thresholds_at_input(ip3)
+            if np.any(np.diff(theta)<=0) or np.any(theta<=self.coordinate.lower):raise ValueError('Crossed thresholds or invalid calcium domain')
+
+    @property
+    def has_geometry(self):return bool(len(self.input_thresholds) or np.any(self.threshold_slopes!=0))
+
+    def thresholds_at_input(self,ip3):
+        return self.latent.thresholds+self.threshold_slopes*(ip3-self.reference_input)
+
+    def field(self,y):
+        if not self.has_geometry:return self.latent.field(y)
+        y=np.asarray(y);theta=self.latent.thresholds
+        hinges=np.maximum(0,y[...,0,None]-theta-self.threshold_slopes*(y[...,2,None]-self.reference_input))
+        basis=np.concatenate([np.ones(y.shape[:-1]+(1,)),y,hinges],axis=-1)
+        return basis@self.latent.matrix.T+np.maximum(0,y[...,2,None]-self.input_thresholds)@self.input_weights.T
+
+    def geometry_coefficients(self):
+        local=self.latent.local_coefficients().copy()
+        tilt=self.latent.matrix[:,4:]*self.threshold_slopes
+        accumulated=np.column_stack([np.zeros(2),np.cumsum(tilt,axis=1)]).T
+        local[:,:,0]+=self.reference_input*accumulated
+        local[:,:,3]-=accumulated
+        result=np.repeat(local[None],len(self.input_thresholds)+1,axis=0)
+        for j,knot in enumerate(self.input_thresholds):
+            result[j+1:,:,:,0]-=self.input_weights[:,j]*knot
+            result[j+1:,:,:,3]+=self.input_weights[:,j]
+        return result
+
+    def rhs(self,tau,baseline):
+        if not self.has_geometry:return self.latent.rhs(tau,baseline)
+        if not np.isfinite(tau) or tau<=0 or not 0<=baseline<=1.3:raise ValueError('Invalid IP3 dynamics')
+        from bisect import bisect_right
+        local=self.geometry_coefficients();knots=self.input_thresholds.tolist()
+        theta=self.latent.thresholds;slopes=self.threshold_slopes;iref=self.reference_input
+        def evaluate(t,y):
+            j=np.searchsorted(theta+slopes*(y[2]-iref),y[0],side='right');s=bisect_right(knots,y[2]);p=local[s,j]
+            return [p[0,0]+p[0,1]*y[0]+p[0,2]*y[1]+p[0,3]*y[2],
+                    p[1,0]+p[1,1]*y[0]+p[1,2]*y[1]+p[1,3]*y[2],-(y[2]-baseline)/tau]
+        return evaluate
+
+    def region(self,y,tau,baseline):
+        if not self.has_geometry:return self.latent.region(y,tau,baseline)
+        j=np.searchsorted(self.thresholds_at_input(y[2]),y[0],side='right')
+        s=np.searchsorted(self.input_thresholds,y[2],side='right');local=self.geometry_coefficients()[s,j]
+        a,b=np.zeros((3,3)),np.zeros(3);a[:2],b[:2]=local[:,1:],local[:,0]
+        a[2,2],b[2]=-1/tau,baseline/tau
+        return a,b,int(s*self.latent.region_count+j)
+
+    def at_input(self,ip3):
+        """Exact constant-I planar model for existing autonomous statistics."""
+        if not self.has_geometry:return self
+        active=self.input_thresholds<ip3;matrix=self.latent.matrix.copy()
+        matrix[:,0]-=self.input_weights[:,active]@self.input_thresholds[active]
+        matrix[:,3]+=self.input_weights[:,active].sum(axis=1)
+        latent=CalciumStrips(self.case,self.thresholds_at_input(ip3),matrix,self.metadata)
+        return CalciumTransformPWA(latent,self.coordinate,self.h_reference,self.h_kind)
+
+    def equilibrium_inputs_at_thresholds(self,anchors=None):
+        mu,k,q,qb=self.latent.spectral_coefficients();theta=self.latent.thresholds
+        if not self.has_geometry:return (k[:-1]*theta-q[:-1])/qb
+        local=self.geometry_coefficients();B,D=self.latent.matrix[:,2]
+        edges=np.r_[-np.inf,self.input_thresholds,np.inf];roots=[]
+        anchors=np.zeros(len(theta)) if anchors is None else np.asarray(anchors)
+        for j,th in enumerate(theta):
+            candidates=[]
+            for s in range(len(edges)-1):
+                q0=B*local[s,j,1,0]-D*local[s,j,0,0]
+                qi=B*local[s,j,1,3]-D*local[s,j,0,3]
+                denominator=qi-k[j]*self.threshold_slopes[j]
+                if abs(denominator)<1e-12:continue
+                root=(k[j]*(th-self.threshold_slopes[j]*self.reference_input)-q0)/denominator
+                if edges[s]-1e-12<=root<=edges[s+1]+1e-12:candidates.append(root)
+            roots.append(min(candidates,key=lambda v:abs(v-anchors[j])) if candidates else 10.)
+        return np.array(roots)
+
+    def input_crossing_times(self,initial_ip3,tau,baseline,duration):
+        if not np.isfinite(tau) or tau<=0:raise ValueError('Invalid tau')
+        result=[]
+        for knot in self.input_thresholds:
+            if min(initial_ip3,baseline)<knot<max(initial_ip3,baseline):
+                when=tau*np.log((initial_ip3-baseline)/(knot-baseline))
+                if 0<when<duration:result.append((float(when),float(knot)))
+        return sorted(result)
 
     @property
     def gate(self):return GateCoordinate(self.h_kind,self.h_reference)
@@ -163,19 +286,28 @@ class CalciumTransformPWA:
         return np.stack([self.coordinate.derivative(x[...,0])*f[...,0],self.gate.derivative(h)*f[...,1]],axis=-1)
 
     def save(self,path):
-        Path(path).write_text(json.dumps(dict(case=self.case,
+        record=dict(case=self.case,
             calcium_coordinate=dict(kind=self.coordinate.kind,reference=self.coordinate.reference,scale=self.coordinate.scale,
                                     normalization='phi(C_ref)=0, phi_prime(C_ref)=1/scale'),h_reference=self.h_reference,
             h_coordinate=dict(kind=self.h_kind,normalization='psi(h_ref)=0, psi_prime(h_ref)=1/[h_ref*(1-h_ref)]'),
             thresholds_u=self.latent.thresholds.tolist(),thresholds_C=self.metadata['physical_thresholds_C'],
             basis=['1','u','v','I']+[f'max(0,u-{t:.17g})' for t in self.latent.thresholds],
-            coefficients=self.latent.matrix.tolist(),metadata=self.metadata),indent=2,allow_nan=False)+'\n')
+            coefficients=self.latent.matrix.tolist(),metadata=self.metadata)
+        if self.coordinate.kind=='hill':record['calcium_coordinate']['half_saturation']=self.coordinate.half_saturation
+        if self.has_geometry:
+            record['basis']=['1','u','v','I']+[f'max(0,u-({t:.17g})-({s:.17g})*(I-{self.reference_input:.17g}))' for t,s in zip(self.latent.thresholds,self.threshold_slopes)]
+            record['geometry']=dict(input_thresholds=self.input_thresholds.tolist(),input_weights=self.input_weights.tolist(),
+                threshold_slopes=self.threshold_slopes.tolist(),reference_input=self.reference_input,
+                definition='base affine + sum wj*(u-theta_j-sj*(I-Iref))_+ + sum zk*(I-eta_k)_+')
+        Path(path).write_text(json.dumps(record,indent=2,allow_nan=False)+'\n')
 
     @classmethod
     def load(cls,path):
         z=json.loads(Path(path).read_text());co=z['calcium_coordinate']
+        geometry=z.get('geometry',{})
         return cls(CalciumStrips(z['case'],np.array(z['thresholds_u']),np.array(z['coefficients']),z['metadata']),
-                   CalciumCoordinate(co['kind'],co['reference'],co.get('scale',1.)),float(z['h_reference']),z.get('h_coordinate',{}).get('kind','logit'))
+                   CalciumCoordinate(co['kind'],co['reference'],co.get('scale',1.),co.get('half_saturation')),float(z['h_reference']),z.get('h_coordinate',{}).get('kind','logit'),
+                   geometry.get('input_thresholds'),geometry.get('input_weights'),geometry.get('threshold_slopes'),geometry.get('reference_input',.65))
 
 
 def decode_coordinates(case,thresholds,parameters,mu_sign,k_sign,metadata,coordinate,h_reference,h_kind='logit'):
@@ -202,11 +334,21 @@ class NativeCoordinateDynamic:
         lib.strips_rk4_domain.restype=ct.c_int
         lib.strips_rk4_box.argtypes=lib.strips_rk4_domain.argtypes+[ct.c_double,ct.c_double]
         lib.strips_rk4_box.restype=ct.c_int
+        lib.strips_rk4_geometry.argtypes=[ptr,ptr,ct.c_int,ct.c_double,ptr,ct.c_int,ptr,ptr,
+            ct.c_double,ct.c_double,ct.c_double,ct.c_int,ct.c_double,ptr,
+            ct.c_double,ct.c_double,ct.c_double,ct.c_double]
+        lib.strips_rk4_geometry.restype=ct.c_int
 
     def run(self,model,initial,duration,tau,baseline,outputs=361,maxdt=.025):
         mu,k,_,_=model.latent.spectral_coefficients()
         maxdt=min(maxdt,.7/max(1.,float(abs(mu).max()),float(np.sqrt(abs(k).max()))))
         out=np.empty((outputs,2));y0=model.to_latent(initial)
+        if model.has_geometry:
+            code=self.lib.strips_rk4_geometry(np.ascontiguousarray(model.latent.thresholds),np.ascontiguousarray(model.threshold_slopes),
+                model.latent.region_count,model.reference_input,np.ascontiguousarray(model.input_thresholds),len(model.input_thresholds),
+                np.ascontiguousarray(model.geometry_coefficients()),np.ascontiguousarray(y0),baseline,tau,duration,outputs,maxdt,out,
+                model.coordinate.lower,float(model.coordinate.forward(20.)),model.gate.lower,model.gate.upper)
+            return None if code else out
         code=self.lib.strips_rk4_box(np.ascontiguousarray(model.latent.thresholds),model.latent.region_count,
             np.ascontiguousarray(model.latent.local_coefficients()),np.ascontiguousarray(y0),baseline,tau,
             duration,outputs,maxdt,out,model.coordinate.lower,float(model.coordinate.forward(20.)),model.gate.lower,model.gate.upper)
@@ -223,7 +365,7 @@ def simulate_coordinates(model,initial,duration,tau=20.,baseline=.2,jumps=(),dt=
     if len({t for t,_ in events})!=len(events):raise ValueError('Combine simultaneous jumps')
     if not 0<=state[2]<=1.3:raise ValueError('IP3 outside fitted domain')
     left=0.;parts=[];times=[];log=[];error=0.;evaluations=0
-    rhs=model.latent.rhs(tau,baseline)
+    rhs=model.rhs(tau,baseline)
     upper=float(model.coordinate.forward(20.))
     def runaway(t,y):return min(upper-y[0],100.-abs(y[1]))
     runaway.terminal=True;runaway.direction=-1

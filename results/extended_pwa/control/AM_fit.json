@@ -1,0 +1,185 @@
+{
+  "training_data_loss": 1.3910781363065956,
+  "training_total_loss": 1.3910782046667707,
+  "initial_scores": [
+    {
+      "start": "incumbent_tangent",
+      "total_loss": 1.396793826903889
+    },
+    {
+      "start": "perturbed",
+      "total_loss": 20.807169354306666
+    },
+    {
+      "start": "field",
+      "total_loss": 36.31326699679726
+    }
+  ],
+  "optimizer_runs": [
+    {
+      "method": "least_squares",
+      "start": "incumbent_tangent",
+      "status": 3,
+      "nfev": 16,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "least_squares",
+      "start": "perturbed",
+      "status": 3,
+      "nfev": 20,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": 1,
+      "nfev": 2000,
+      "message": "Maximum number of function evaluations has been exceeded."
+    }
+  ],
+  "evaluations": 2249,
+  "history": [
+    {
+      "evaluation": 1,
+      "data_loss": 1.396793826903889,
+      "total_loss": 1.396793826903889,
+      "seconds": 0.0038327209999806655
+    },
+    {
+      "evaluation": 190,
+      "data_loss": 1.3914364585163717,
+      "total_loss": 1.3914365339167885,
+      "seconds": 0.7304025329999604
+    },
+    {
+      "evaluation": 347,
+      "data_loss": 1.3911663501729568,
+      "total_loss": 1.39116642414669,
+      "seconds": 1.3222992930000146
+    },
+    {
+      "evaluation": 553,
+      "data_loss": 1.3911479489620118,
+      "total_loss": 1.3911480224440307,
+      "seconds": 2.0617207479999706
+    },
+    {
+      "evaluation": 778,
+      "data_loss": 1.391140391099461,
+      "total_loss": 1.3911404635893394,
+      "seconds": 2.900138554000023
+    },
+    {
+      "evaluation": 928,
+      "data_loss": 1.391134049938567,
+      "total_loss": 1.3911341218343638,
+      "seconds": 3.445185863000006
+    },
+    {
+      "evaluation": 1078,
+      "data_loss": 1.3911248316775946,
+      "total_loss": 1.3911249027023975,
+      "seconds": 3.9778263250000236
+    },
+    {
+      "evaluation": 1244,
+      "data_loss": 1.391121653032851,
+      "total_loss": 1.3911217238061473,
+      "seconds": 4.562555688999964
+    },
+    {
+      "evaluation": 1418,
+      "data_loss": 1.391110819101656,
+      "total_loss": 1.3911108879389142,
+      "seconds": 5.184617699
+    },
+    {
+      "evaluation": 1577,
+      "data_loss": 1.3911047724173704,
+      "total_loss": 1.3911048413701677,
+      "seconds": 5.747500754000043
+    },
+    {
+      "evaluation": 1758,
+      "data_loss": 1.39110068869515,
+      "total_loss": 1.391100757344524,
+      "seconds": 6.688369190000003
+    },
+    {
+      "evaluation": 1908,
+      "data_loss": 1.3910990254296864,
+      "total_loss": 1.3910990938967058,
+      "seconds": 7.44122616300001
+    },
+    {
+      "evaluation": 2075,
+      "data_loss": 1.3910818942271364,
+      "total_loss": 1.3910819624853836,
+      "seconds": 8.135371063999969
+    },
+    {
+      "evaluation": 2241,
+      "data_loss": 1.3910781363065956,
+      "total_loss": 1.3910782046667707,
+      "seconds": 8.768520172999956
+    }
+  ],
+  "field_nfev": 27,
+  "bounds": [
+    [
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -0.5,
+      -12.0,
+      -8.0,
+      -4.0,
+      -8.0,
+      -8.0
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      5.0,
+      0.5,
+      2.0,
+      3.0,
+      1.5,
+      8.0,
+      8.0
+    ]
+  ],
+  "parameters": [
+    1.8959506744954657,
+    -1.3313494532665833,
+    -1.1441748681496382,
+    -0.5541706724192921,
+    -1.8853645416889464,
+    -1.1860903323115457,
+    -1.332412199404051,
+    -0.9236325497439305,
+    0.49999762750321525,
+    -1.1876186796293364,
+    -0.304741332091322,
+    -1.4792193706823176,
+    1.277120391187483,
+    0.5970769344351009
+  ],
+  "max_evaluations": {
+    "LS_per_start": 1500,
+    "Powell": 2000,
+    "field_max_nfev": 80
+  },
+  "active_parameters": 14,
+  "input_knots": []
+}

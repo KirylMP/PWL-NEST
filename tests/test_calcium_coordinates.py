@@ -135,13 +135,17 @@ class CalciumCoordinatesTest(unittest.TestCase):
                 np.testing.assert_allclose(restored.to_physical(meta['latent']),physical,atol=1e-14)
 
     def test_gate_exit_guard_on_internal_steps(self):
-        for kind in ['log','exp']:
+        for kind in ['log','exp','cube']:
             model=simple_model('sqrt');model.h_kind=kind
             model.latent.matrix[1]=0;model.latent.matrix[1,0]=3.
             with self.assertRaisesRegex(RuntimeError,'gate domain exit h=1'):
                 simulate_coordinates(model,[.1,.8,.2],1.,baseline=.2)
             self.assertIsNone(NativeCoordinateDynamic().run(model,[.1,.8,.2],1.,2.,.2,outputs=2,maxdt=.01))
         model.h_kind='exp';model.latent.matrix[1,0]=-5.
+        with self.assertRaisesRegex(RuntimeError,'gate domain exit h=0'):
+            simulate_coordinates(model,[.1,.8,.2],1.,baseline=.2)
+        self.assertIsNone(NativeCoordinateDynamic().run(model,[.1,.8,.2],1.,2.,.2,outputs=2,maxdt=.01))
+        model.h_kind='cube'
         with self.assertRaisesRegex(RuntimeError,'gate domain exit h=0'):
             simulate_coordinates(model,[.1,.8,.2],1.,baseline=.2)
         self.assertIsNone(NativeCoordinateDynamic().run(model,[.1,.8,.2],1.,2.,.2,outputs=2,maxdt=.01))

@@ -60,7 +60,7 @@ def validate(case,models=None,training=None,refs=None,*,output_root=OUT):
                            logit_only_baseline=baseline_cache[p['name']])
                     if p['name'].startswith('fixed'):
                         r['reference'],r['candidate']=stats(reference[0],reference[1]),stats(t,y)
-                        obs=native.run(model.latent,p['baseline'],model.to_latent(p['initial']),p['duration'])
+                        obs=native.run(model.at_input(p['baseline']).latent,p['baseline'],model.to_latent(p['initial']),p['duration'])
                         if obs is not None and obs[4]>model.coordinate.lower:
                             cmn,cmx=map(float,model.coordinate.inverse(obs[:2]))
                             r['native_physical_extrema']=[cmn,cmx]
@@ -93,11 +93,11 @@ def validate(case,models=None,training=None,refs=None,*,output_root=OUT):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers','coordinate_families','movable_thresholds'],default='calcium_coordinates')
+    parser.add_argument('--experiment',choices=['calcium_coordinates','calcium_powers','coordinate_families','movable_thresholds','extended_pwa'],default='calcium_coordinates')
     parser.add_argument('--case',choices=['AM','FM','both'],default='both')
     args=parser.parse_args()
     kinds=['sqrt','square','cube'] if args.experiment=='calcium_powers' else KINDS
     for case in (['AM','FM'] if args.case=='both' else [args.case]):
-        if args.experiment in ('coordinate_families','movable_thresholds'):kinds=json.loads((ROOT/f'results/{args.experiment}/{case}_selection.json').read_text())['variants']
+        if args.experiment in ('coordinate_families','movable_thresholds','extended_pwa'):kinds=json.loads((ROOT/f'results/{args.experiment}/{case}_selection.json').read_text())['variants']
         models=[CalciumTransformPWA.load(ROOT/f'models/{args.experiment}/{kind}/{case}.json') for kind in kinds]
         validate(case,models,output_root=ROOT/'results'/args.experiment)

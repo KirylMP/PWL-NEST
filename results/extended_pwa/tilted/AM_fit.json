@@ -1,0 +1,140 @@
+{
+  "training_data_loss": 1.2254343209929175,
+  "training_total_loss": 1.226362118512641,
+  "initial_scores": [
+    {
+      "start": "incumbent_tangent",
+      "total_loss": 1.396793826903889
+    },
+    {
+      "start": "perturbed",
+      "total_loss": 22.6927244958159
+    },
+    {
+      "start": "field",
+      "total_loss": 32.38826023025831
+    }
+  ],
+  "optimizer_runs": [
+    {
+      "method": "least_squares",
+      "start": "incumbent_tangent",
+      "status": 3,
+      "nfev": 25,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "least_squares",
+      "start": "perturbed",
+      "status": 3,
+      "nfev": 27,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": 0,
+      "nfev": 358,
+      "message": "Optimization terminated successfully."
+    }
+  ],
+  "evaluations": 1133,
+  "history": [
+    {
+      "evaluation": 1,
+      "data_loss": 1.396793826903889,
+      "total_loss": 1.396793826903889,
+      "seconds": 0.0038219559999106423
+    },
+    {
+      "evaluation": 155,
+      "data_loss": 1.2305505516034858,
+      "total_loss": 1.2314396203187956,
+      "seconds": 0.6779299730000048
+    },
+    {
+      "evaluation": 319,
+      "data_loss": 1.2280820804938741,
+      "total_loss": 1.229072976322774,
+      "seconds": 1.4123589769999398
+    },
+    {
+      "evaluation": 581,
+      "data_loss": 1.2256590053997327,
+      "total_loss": 1.2265851227858064,
+      "seconds": 2.796908382999959
+    },
+    {
+      "evaluation": 790,
+      "data_loss": 1.2254430237264984,
+      "total_loss": 1.2263708140752818,
+      "seconds": 4.078400365999983
+    }
+  ],
+  "field_nfev": 39,
+  "bounds": [
+    [
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -0.5,
+      -12.0,
+      -8.0,
+      -4.0,
+      -8.0,
+      -8.0,
+      -0.6931471805599453,
+      -0.6931471805599453,
+      -0.6931471805599453
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      5.0,
+      0.5,
+      2.0,
+      3.0,
+      1.5,
+      8.0,
+      8.0,
+      0.6931471805599453,
+      0.6931471805599453,
+      0.6931471805599453
+    ]
+  ],
+  "parameters": [
+    1.9656743077360384,
+    -1.1694055493396205,
+    -1.1245684095103436,
+    -0.517098729809786,
+    -1.8610778300490578,
+    -1.324568680543707,
+    -1.298637431737561,
+    -0.9493508835493417,
+    0.49998701131201473,
+    -1.082546726778947,
+    -0.30838105582831427,
+    -1.5060634124926755,
+    1.4445696068964975,
+    0.5656638206471443,
+    -0.1317606965537707,
+    -0.4821265510413424,
+    -0.3468745557217516
+  ],
+  "max_evaluations": {
+    "LS_per_start": 1500,
+    "Powell": 2000,
+    "field_max_nfev": 80
+  },
+  "active_parameters": 17,
+  "input_knots": []
+}

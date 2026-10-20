@@ -1,0 +1,131 @@
+{
+  "note": "Frozen learned coefficients, all new geometry removed; original RK4 training helper, no refit, no selection",
+  "results": {
+    "AM": [
+      {
+        "variant": "input_one",
+        "original_helper_loss": 1.158050726393702,
+        "remove_geometry_keep_coefficients_loss": 1.5330742137457516,
+        "max_threshold_change_C_over_input_domain": 0.0,
+        "input_hinge_weights": [
+          [
+            -1.041973585304186
+          ],
+          [
+            0.14007403462669726
+          ]
+        ],
+        "threshold_slopes": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "variant": "input_two",
+        "original_helper_loss": 1.1109390860356152,
+        "remove_geometry_keep_coefficients_loss": 101.52117123232378,
+        "max_threshold_change_C_over_input_domain": 0.0,
+        "input_hinge_weights": [
+          [
+            -0.6673956361501278,
+            -0.9295339392220455
+          ],
+          [
+            0.14311200348778202,
+            0.13361322954236274
+          ]
+        ],
+        "threshold_slopes": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "variant": "tilted",
+        "original_helper_loss": 1.2254343209929175,
+        "remove_geometry_keep_coefficients_loss": 12.35349213328146,
+        "max_threshold_change_C_over_input_domain": 0.06976728845991342,
+        "input_hinge_weights": [
+          [],
+          []
+        ],
+        "threshold_slopes": [
+          0.019469895970241773,
+          -0.011363824398535508,
+          -0.07411899880031128
+        ]
+      }
+    ],
+    "FM": [
+      {
+        "variant": "input_one",
+        "original_helper_loss": 67.2114012362069,
+        "remove_geometry_keep_coefficients_loss": 67.2124289676328,
+        "max_threshold_change_C_over_input_domain": 0.0,
+        "input_hinge_weights": [
+          [
+            1.5345778408761422e-05
+          ],
+          [
+            -5.126916991880418e-06
+          ]
+        ],
+        "threshold_slopes": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "variant": "input_two",
+        "original_helper_loss": 65.40053335246722,
+        "remove_geometry_keep_coefficients_loss": 68.21351886705435,
+        "max_threshold_change_C_over_input_domain": 0.0,
+        "input_hinge_weights": [
+          [
+            0.0010233720959295126,
+            1.5764322929120727e-05
+          ],
+          [
+            -0.0001448812431165727,
+            -1.0604741576410814e-05
+          ]
+        ],
+        "threshold_slopes": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "variant": "tilted",
+        "original_helper_loss": 51.13468177194772,
+        "remove_geometry_keep_coefficients_loss": 141.11588965262052,
+        "max_threshold_change_C_over_input_domain": 1.2173866743930839e-05,
+        "input_hinge_weights": [
+          [],
+          []
+        ],
+        "threshold_slopes": [
+          -1.7329280443315695e-07,
+          9.290379521242897e-07,
+          1.5825723371413277e-06,
+          3.7671986859060088e-06,
+          -8.93820615624272e-06,
+          1.3972706894379486e-05,
+          4.532412080350012e-06
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "selected": "sqrt_cube",
+  "variants": [
+    "baseline",
+    "control",
+    "sqrt_cube",
+    "log_cube",
+    "hill_cube",
+    "input_one",
+    "input_two",
+    "tilted"
+  ],
+  "training_scores": {
+    "baseline": 71.14034393684416,
+    "control": 64.12120543366457,
+    "sqrt_cube": 50.31887630079412,
+    "log_cube": 137.2285207516026,
+    "hill_cube": 5776.982324252572,
+    "input_one": 67.21171965835478,
+    "input_two": 65.40003995574708,
+    "tilted": 51.1362418243718
+  },
+  "selection": "minimum common training residual verified by independent DOP paths; no diagnostics",
+  "controls": "preserved movable-threshold incumbent plus equally refitted control; C geometry frozen except tilted branch",
+  "input_knots": [
+    0.53,
+    1.1
+  ],
+  "optimizer_training_scores": {
+    "baseline": 71.13896404304266,
+    "control": 64.11667667535261,
+    "sqrt_cube": 49.98953084637727,
+    "log_cube": 137.22856945094793,
+    "hill_cube": 5776.9823273654265,
+    "input_one": 67.2114012362069,
+    "input_two": 65.40053335246722,
+    "tilted": 51.13468177194772
+  },
+  "verified_training_scores": {
+    "baseline": 71.14034393684416,
+    "control": 64.12120543366457,
+    "sqrt_cube": 50.31887630079412,
+    "log_cube": 137.2285207516026,
+    "hill_cube": 5776.982324252572,
+    "input_one": 67.21171965835478,
+    "input_two": 65.40003995574708,
+    "tilted": 51.1362418243718
+  },
+  "selected_before_numerical_audit": "sqrt_cube"
+}

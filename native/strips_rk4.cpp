@@ -4,10 +4,14 @@
 #include <algorithm>
 struct S {double c,h;};
 static int run_rk4(const double*theta,int n,const double*p,const double*initial,
- double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper,double hlower,double hupper){
+ double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper,double hlower,double hupper,
+ const double*slopes=nullptr,double iref=0.,const double*knots=nullptr,int knot_count=0){
  auto rhs=[&](S s,double I){
-  int j=std::upper_bound(theta,theta+n-1,s.c)-theta;
-  const double*a=p+8*j;
+  int j=0;
+  if(slopes){while(j<n-1 && s.c>=theta[j]+slopes[j]*(I-iref))++j;}
+  else j=std::upper_bound(theta,theta+n-1,s.c)-theta;
+  int band=knot_count?std::upper_bound(knots,knots+knot_count,I)-knots:0;
+  const double*a=p+8*(band*n+j);
   return S{a[0]+a[1]*s.c+a[2]*s.h+a[3]*I,a[4]+a[5]*s.c+a[6]*s.h+a[7]*I};
  };
  S s{initial[0],initial[1]};dest[0]=s.c;dest[1]=s.h;
@@ -41,4 +45,9 @@ extern "C" int strips_rk4_domain(const double*theta,int n,const double*p,const d
 extern "C" int strips_rk4_box(const double*theta,int n,const double*p,const double*initial,
  double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper,double hlower,double hupper){
  return run_rk4(theta,n,p,initial,base,tau,duration,outputs,maxdt,dest,lower,upper,hlower,hupper);
+}
+extern "C" int strips_rk4_geometry(const double*theta,const double*slopes,int n,double iref,
+ const double*knots,int knot_count,const double*p,const double*initial,
+ double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper,double hlower,double hupper){
+ return run_rk4(theta,n,p,initial,base,tau,duration,outputs,maxdt,dest,lower,upper,hlower,hupper,slopes,iref,knots,knot_count);
 }

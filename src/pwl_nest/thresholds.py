@@ -37,3 +37,15 @@ class OrderedThresholds:
             raise ValueError('Invalid physical thresholds')
         ratio=np.log(gaps/self.gaps)
         return ratio[:-1]-ratio[-1]
+
+
+def oblique_thresholds(mapping,shifts,upper_input=1.3):
+    """Ordered affine thresholds from antisymmetric endpoint gap shifts.
+
+    Returned centers apply at I=upper_input/2. Both ordered endpoints imply
+    ordered planes throughout the whole input interval, with m parameters.
+    """
+    if not np.isfinite(upper_input) or upper_input<=0:raise ValueError('Invalid input interval')
+    shifts=np.asarray(shifts,dtype=float)
+    lower=mapping.decode(-shifts);upper=mapping.decode(shifts)
+    return (lower+upper)/2,(upper-lower)/upper_input

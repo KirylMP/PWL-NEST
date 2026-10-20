@@ -34,7 +34,8 @@ class CommonResidual:
         co,gate=model.coordinate,model.gate;theta=model.latent.thresholds
         upper_guard=float(co.forward(20.));rr=[]
         for p in self.fixed:
-            obs=self.static.run(model.latent,p['baseline'],model.to_latent(p['initial']),p['duration'],diagnostics=True)
+            effective=model.at_input(p['baseline'])
+            obs=self.static.run(effective.latent,p['baseline'],model.to_latent(p['initial']),p['duration'],diagnostics=True)
             if obs is None:rr.extend([100.]*7);continue
             ob,diag=obs;mn,mx,period,ratio,minall,stopped=ob
             if minall<=co.lower or diag['max_C']>=upper_guard:
@@ -58,8 +59,7 @@ class CommonResidual:
             except (ValueError,FloatingPointError):rr.extend(np.full(724,100.));continue
             rr.extend(((x-self.sampled[p['name']])/np.array([.03,.05])/np.sqrt(361)).ravel())
             rr.extend([min(0,x[:,0].min())/.005,max(0,x[:,0].max()-C_MAX)/.02])
-        mu,k,q,qb=model.latent.spectral_coefficients()
-        rr.extend(((k[:-1]*theta-q[:-1])/qb-self.anchors)/.03)
+        rr.extend((model.equilibrium_inputs_at_thresholds(self.anchors)-self.anchors)/.03)
         return np.array(rr)
 
 

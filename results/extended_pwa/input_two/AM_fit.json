@@ -1,0 +1,206 @@
+{
+  "training_data_loss": 1.1109390860356152,
+  "training_total_loss": 1.115036973876117,
+  "initial_scores": [
+    {
+      "start": "incumbent_tangent",
+      "total_loss": 1.396793826903889
+    },
+    {
+      "start": "perturbed",
+      "total_loss": 23.614236967773483
+    },
+    {
+      "start": "field",
+      "total_loss": 45.64123789559097
+    }
+  ],
+  "optimizer_runs": [
+    {
+      "method": "least_squares",
+      "start": "incumbent_tangent",
+      "status": 3,
+      "nfev": 15,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "least_squares",
+      "start": "perturbed",
+      "status": 3,
+      "nfev": 19,
+      "message": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": 1,
+      "nfev": 2000,
+      "message": "Maximum number of function evaluations has been exceeded."
+    }
+  ],
+  "evaluations": 2607,
+  "history": [
+    {
+      "evaluation": 1,
+      "data_loss": 1.396793826903889,
+      "total_loss": 1.396793826903889,
+      "seconds": 0.004698993000033624
+    },
+    {
+      "evaluation": 165,
+      "data_loss": 1.1113064878017351,
+      "total_loss": 1.1152689340174433,
+      "seconds": 0.7705278099999759
+    },
+    {
+      "evaluation": 624,
+      "data_loss": 1.111304199298592,
+      "total_loss": 1.115266698590618,
+      "seconds": 2.8641968949999637
+    },
+    {
+      "evaluation": 835,
+      "data_loss": 1.111300573199215,
+      "total_loss": 1.1152630849955945,
+      "seconds": 3.9597119589999465
+    },
+    {
+      "evaluation": 985,
+      "data_loss": 1.1111175646316829,
+      "total_loss": 1.1151514344507198,
+      "seconds": 4.995997915999965
+    },
+    {
+      "evaluation": 1135,
+      "data_loss": 1.1111107911817995,
+      "total_loss": 1.1151446684984159,
+      "seconds": 5.785978711999974
+    },
+    {
+      "evaluation": 1289,
+      "data_loss": 1.1110417423259786,
+      "total_loss": 1.1151180056769596,
+      "seconds": 6.558356003999961
+    },
+    {
+      "evaluation": 1444,
+      "data_loss": 1.111038781943042,
+      "total_loss": 1.1151129519856435,
+      "seconds": 7.261285544999964
+    },
+    {
+      "evaluation": 1604,
+      "data_loss": 1.110995910308051,
+      "total_loss": 1.1150906497947666,
+      "seconds": 8.116764934000003
+    },
+    {
+      "evaluation": 1754,
+      "data_loss": 1.1110050351984242,
+      "total_loss": 1.1150848647117237,
+      "seconds": 9.023991480999939
+    },
+    {
+      "evaluation": 1925,
+      "data_loss": 1.1109728635591636,
+      "total_loss": 1.1150706566080064,
+      "seconds": 9.848626680999928
+    },
+    {
+      "evaluation": 2081,
+      "data_loss": 1.1109635026873168,
+      "total_loss": 1.1150547000541404,
+      "seconds": 10.652284563999956
+    },
+    {
+      "evaluation": 2240,
+      "data_loss": 1.11094899861789,
+      "total_loss": 1.1150465514502215,
+      "seconds": 11.335064835000026
+    },
+    {
+      "evaluation": 2402,
+      "data_loss": 1.1109453074185391,
+      "total_loss": 1.1150412829987342,
+      "seconds": 12.048001789999944
+    },
+    {
+      "evaluation": 2565,
+      "data_loss": 1.110941556397439,
+      "total_loss": 1.115037538061248,
+      "seconds": 12.771626287000004
+    }
+  ],
+  "field_nfev": 33,
+  "bounds": [
+    [
+      -9.0,
+      -9.0,
+      -9.0,
+      -9.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -0.5,
+      -12.0,
+      -8.0,
+      -4.0,
+      -8.0,
+      -8.0,
+      -2.0,
+      -2.0,
+      -1.3862943611198906,
+      -1.3862943611198906
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      5.0,
+      5.0,
+      5.0,
+      0.5,
+      2.0,
+      3.0,
+      1.5,
+      8.0,
+      8.0,
+      2.0,
+      2.0,
+      1.3862943611198906,
+      1.3862943611198906
+    ]
+  ],
+  "parameters": [
+    1.9590121491617831,
+    -0.9032518222403968,
+    -1.1126721278863312,
+    -0.5806023824116402,
+    -1.8862632407878024,
+    -1.179095200999682,
+    -1.3661568738648564,
+    -0.9084011068745722,
+    0.49995612169215986,
+    -1.0649969068557648,
+    -0.324369054423957,
+    -1.5272877844467094,
+    1.901853581000301,
+    0.46980276892569495,
+    -0.6673956361501278,
+    -0.9295339392220455,
+    -0.12807198552451035,
+    -0.5541615163134866
+  ],
+  "max_evaluations": {
+    "LS_per_start": 1500,
+    "Powell": 2000,
+    "field_max_nfev": 80
+  },
+  "active_parameters": 18,
+  "input_knots": [
+    0.35,
+    0.64
+  ]
+}
