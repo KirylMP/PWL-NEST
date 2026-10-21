@@ -1,0 +1,35 @@
+[
+  {
+    "case": "AM",
+    "C": "sqrt_tails",
+    "h": "cube",
+    "file": "models/server_candidates/AM_sqrt_tails__cube.json",
+    "sha256": "365e1d0327b5308e89aaccec601fb9f6d6edf073156b30825eb82d4518b03294",
+    "original_filename": "candidate.json",
+    "server_trial": "trials/AM/sqrt_tails__cube/r0009/candidate.json",
+    "fit_seed": 21161022,
+    "fit_restart": 9
+  },
+  {
+    "case": "FM",
+    "C": "identity",
+    "h": "identity",
+    "file": "models/server_candidates/FM_identity__identity.json",
+    "sha256": "a388167733f0f80002a024d08415b80755a302cb8bd62461c7cb88996f5462cd",
+    "original_filename": "candidate (2).json",
+    "server_trial": "trials/FM/identity__identity/r0016/candidate.json",
+    "fit_seed": 21861033,
+    "fit_restart": 16
+  },
+  {
+    "case": "AM",
+    "C": "sqrt_tails",
+    "h": "log",
+    "file": "models/server_candidates/AM_sqrt_tails__log.json",
+    "sha256": "dd996cf412d6d80933d385ca0645250615a9a94b0ee3116d30cb9b764049ffc8",
+    "original_filename": "candidate (1).json",
+    "server_trial": "trials/AM/sqrt_tails__log/r0016/candidate.json",
+    "fit_seed": 21861030,
+    "fit_restart": 16
+  }
+]

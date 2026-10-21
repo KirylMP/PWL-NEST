@@ -1,0 +1,23 @@
+{
+  "base_commit": "4d4447b7837f2353d2e181ad11216798f97933a8",
+  "code_snapshot": null,
+  "references_sha256": {
+    "cache/AM/pulse_tau_100.0.npz": "b923cbe4b9194375eb96040e8ae9e71d79d0978a2a91ef4f824238f36eacc667",
+    "cache/AM/fixed_0.637.npz": "133ba638f0ba7adc73ce389883562e8c32776a80be8a1ab436091a17270740e1",
+    "cache/AM/fixed_0.638.npz": "dbb194f2b36bbf4403017101cb377db230c7c64acf48173d7a52e7e68b72bef3",
+    "cache/AM/pulse_tau_65.0.npz": "c265b9b7ffb2f18faa6bbedfb46017ebb1a182c47793a0052ba58c03281d1cd9",
+    "cache/AM/data.json": "54622a36b07b9856234adac492ddae80846eb44e6cdb9154f560b6c8a2cde95a",
+    "cache/AM/fixed_0.7.npz": "dfcf81b32875a32672640a8c563addc119ec67aa506024fe3ee7ade37990dcd6",
+    "cache/AM/fixed_0.6.npz": "ff4a6586a0ad8d954e25f3f8e50717c2f6c0b5c7b821193570069c3ef75ad42c",
+    "cache/AM/fixed_0.4.npz": "158e613c890da9f4bfd4b01f89fe8247feb67e736763c3338adf839971b70c20",
+    "cache/AM/pulse_tau_20.0.npz": "224d21bf6357637089115b9ef9f9cbafec7881ab7742921ef06e87b6364135b4",
+    "cache/AM/fixed_lower_rest.npz": "a4a5e582916e95466026619efa31b17639a9fd219f3ff5fa90a44f92451637c1",
+    "cache/AM/pulse_tau_50.0.npz": "a23af006437b1e4b5fdef794bc4a451a23a2863b57a26ffef58d347465e13cc7",
+    "cache/AM/fixed_0.64.npz": "49785e799ee5b9fd52a0c88c3f201412e1ebe582fd2053795f8911363dca6961",
+    "cache/AM/pulse_tau_7.0.npz": "6cffa9ffa34f06755b634d735f130a98628549545823e4070e9eafdeee29664b",
+    "cache/AM/irregular.npz": "57b6876feb866cdc66ac5aea87c54fd204ee4dcf96801c6177c5a3deda61008d",
+    "cache/AM/field.npz": "cbc51b7908d1fbc841043fd9836df7031584cd1b88f14df895830716e32668d6",
+    "cache/AM/periodic.npz": "7cfac55740de6b70578f88f7fd35e98dab4547928ec9b2a3b013112dd837e8d1",
+    "cache/AM/fixed_0.5.npz": "cc8397655d053c25ae2c6b57096bb40b426db4c868bbe2dd67e8bb7e1cbca1ff"
+  }
+}

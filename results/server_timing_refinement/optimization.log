@@ -1,0 +1,26 @@
+{"model": "FM_identity__identity", "baseline_train_loss": 255.62370628166346, "parts": {"fixed_and_spectral_anchors": 10.151052157040416, "pulse_tau_20.0": 2.100440154517926, "pulse_tau_100.0": 9.169748698940229, "periodic": 7.58261673674872, "own_rest": 0.02617691195401011, "pulse_tau_20.0_absolute_peak_times": 3.7637666998707737, "pulse_tau_100.0_absolute_peak_times": 114.10949549468016, "periodic_absolute_peak_times": 108.72040942791122}}
+FM timing 1: 255.6203
+FM timing 102: 177.9629
+FM timing 217: 173.6715
+FM timing 344: 173.5372
+{"candidate_name": "FM_identity__identity", "restart": 0, "status": "verified", "verified_train_loss": 173.58472820985412, "train_parts": {"fixed_and_spectral_anchors": 14.433578240394274, "pulse_tau_20.0": 2.290693826268709, "pulse_tau_100.0": 7.88962341917888, "periodic": 6.212433304031709, "own_rest": 0.027950981387840936, "pulse_tau_20.0_absolute_peak_times": 2.345131070635163, "pulse_tau_100.0_absolute_peak_times": 57.88971177766763, "periodic_absolute_peak_times": 82.49560559028993}, "seconds": 45.906959293999535, "model": "trials/FM_identity__identity/r0000/candidate.json"}
+FM timing 1: 173.5341
+FM timing 124: 173.0949
+{"candidate_name": "FM_identity__identity", "restart": 1, "status": "verified", "verified_train_loss": 173.29984197186977, "train_parts": {"fixed_and_spectral_anchors": 14.637101707145925, "pulse_tau_20.0": 2.289416385088908, "pulse_tau_100.0": 7.897543794674869, "periodic": 6.209250380354841, "own_rest": 0.02797862410728584, "pulse_tau_20.0_absolute_peak_times": 2.337749840354262, "pulse_tau_100.0_absolute_peak_times": 57.557226008479276, "periodic_absolute_peak_times": 82.3435752316644}, "seconds": 49.710332764996565, "model": "trials/FM_identity__identity/r0001/candidate.json"}
+FM timing 1: 173.0781
+FM timing 106: 172.7755
+{"candidate_name": "FM_identity__identity", "restart": 2, "status": "verified", "verified_train_loss": 172.83146234219285, "train_parts": {"fixed_and_spectral_anchors": 14.643652125643886, "pulse_tau_20.0": 2.2882368347135564, "pulse_tau_100.0": 7.909694485199283, "periodic": 6.2067135549943195, "own_rest": 0.028005849893192266, "pulse_tau_20.0_absolute_peak_times": 2.330529363376437, "pulse_tau_100.0_absolute_peak_times": 57.2298920948024, "periodic_absolute_peak_times": 82.19473803356978}, "seconds": 46.458915325994894, "model": "trials/FM_identity__identity/r0002/candidate.json"}
+Traceback (most recent call last):
+  File "/workspace/PWL-NEST/scripts/refine_server_candidates.py", line 191, in <module>
+    run(args)
+  File "/workspace/PWL-NEST/scripts/refine_server_candidates.py", line 157, in run
+    incumbent.save(selected)
+  File "/workspace/PWL-NEST/src/pwl_nest/calcium_coordinates.py", line 358, in save
+    Path(path).write_text(json.dumps(record,indent=2,allow_nan=False)+'\n')
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/PWL-NEST/results/server_timing_refinement/selected/FM_identity__identity.json'

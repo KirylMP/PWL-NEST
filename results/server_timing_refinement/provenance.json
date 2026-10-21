@@ -1,0 +1,23 @@
+{
+  "base_commit": "4d4447b7837f2353d2e181ad11216798f97933a8",
+  "code_snapshot": "source_snapshot/initial",
+  "references_sha256": {
+    "cache/FM/fixed_1.13.npz": "a0e64d64a79408535223fcba0aea281dd114d33c7f10256b787686c3d8e5ecbc",
+    "cache/FM/pulse_tau_100.0.npz": "653d513b4654924f7d0ea8bced8dfbdf80f4b9592a9b854bd060b9f6b249bb38",
+    "cache/FM/pulse_tau_65.0.npz": "222d00b883bd1c7a3296fc9b38bf3faf6cdeb5461f941424ce3a42c22fd9851b",
+    "cache/FM/fixed_1.2.npz": "e06b0b3c62f52846c940707fcaeae180f98121829a910e3c169aad8dcb4893f6",
+    "cache/FM/data.json": "cc8af46661bd8868619b2002606efa7c3f7d8fbbfb91eb3199c84c8ce05e4f00",
+    "cache/FM/fixed_1.12.npz": "21497281220d74313a2a89b71160592fb441f24379744154c08b61b5ba0b396f",
+    "cache/FM/fixed_0.7.npz": "a658e80cc8beba3e955283fcf3ff0fe49ab10c17bd5e6b6d30973578cebde1e3",
+    "cache/FM/pulse_tau_20.0.npz": "70bf40c9dc14105a27c2a4eb5d2dba6863787dcf7a9eeb176d663963a70c8910",
+    "cache/FM/fixed_lower_rest.npz": "6b8dd3f7c9caea9df474176efaf99e895c0213fcd856653d8f0fe728776acc58",
+    "cache/FM/pulse_tau_50.0.npz": "f7dea5ea6bb654184d3ed11a1c7ca746a00f28f8a3a6c6991b5ec9963b188238",
+    "cache/FM/fixed_1.0.npz": "b57ded15e5b5587e1635ba97dbc19015ef9373e8768d4cc8496e5d38a1f2e6c0",
+    "cache/FM/fixed_0.53.npz": "d40b50b04cb7ca2387a514c9fd98c8886aba9dc081e213e08af57cfd46798252",
+    "cache/FM/pulse_tau_7.0.npz": "9f8775f8ab8e71ab42814d1a31e0999b00aebd3d7e286d43e63121f0d045a172",
+    "cache/FM/irregular.npz": "51b4a181491f9b00e26cfd9b9eb3e05a1182d6aece4cb66876f33c9f756b4db0",
+    "cache/FM/field.npz": "a9e2819765fbabce84673348b8ed1d1a031501ab964aa53c66de34238e14e5ae",
+    "cache/FM/periodic.npz": "1bede59f3471f4c99559b09fed9fd5c072da0fc1d6878ecc5e42449441ee10f2",
+    "cache/FM/fixed_0.55.npz": "f098275cfeb37efc1138e86e04a92f9a2f0bbe5210e5c0194196fbb44f2394c7"
+  }
+}

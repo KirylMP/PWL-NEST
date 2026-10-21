@@ -1,0 +1,65 @@
+[
+  {
+    "case": "AM",
+    "C": "sqrt_tails",
+    "h": "cube",
+    "file": "models/server_candidates/AM_sqrt_tails__cube.json",
+    "sha256": "365e1d0327b5308e89aaccec601fb9f6d6edf073156b30825eb82d4518b03294",
+    "original_filename": "candidate.json",
+    "server_trial": "trials/AM/sqrt_tails__cube/r0009/candidate.json",
+    "fit_seed": 21161022,
+    "fit_restart": 9,
+    "verified_train_loss": 28.151380919207647,
+    "server_verified_train_loss": 28.151381068466456,
+    "difference": -1.492588097562475e-07,
+    "parts": {
+      "fixed_and_spectral_anchors": 4.653902836542629,
+      "pulse_tau_20.0": 6.818429203468904,
+      "pulse_tau_100.0": 6.191604649549881,
+      "periodic": 10.233007631203257,
+      "own_rest": 0.254436598442961
+    }
+  },
+  {
+    "case": "FM",
+    "C": "identity",
+    "h": "identity",
+    "file": "models/server_candidates/FM_identity__identity.json",
+    "sha256": "a388167733f0f80002a024d08415b80755a302cb8bd62461c7cb88996f5462cd",
+    "original_filename": "candidate (2).json",
+    "server_trial": "trials/FM/identity__identity/r0016/candidate.json",
+    "fit_seed": 21861033,
+    "fit_restart": 16,
+    "verified_train_loss": 29.030034659201302,
+    "server_verified_train_loss": 29.03003481554195,
+    "difference": -1.5634064709502127e-07,
+    "parts": {
+      "fixed_and_spectral_anchors": 10.151052157040416,
+      "pulse_tau_20.0": 2.100440154517926,
+      "pulse_tau_100.0": 9.169748698940229,
+      "periodic": 7.58261673674872,
+      "own_rest": 0.02617691195401011
+    }
+  },
+  {
+    "case": "AM",
+    "C": "sqrt_tails",
+    "h": "log",
+    "file": "models/server_candidates/AM_sqrt_tails__log.json",
+    "sha256": "dd996cf412d6d80933d385ca0645250615a9a94b0ee3116d30cb9b764049ffc8",
+    "original_filename": "candidate (1).json",
+    "server_trial": "trials/AM/sqrt_tails__log/r0016/candidate.json",
+    "fit_seed": 21861030,
+    "fit_restart": 16,
+    "verified_train_loss": 17.742868010015783,
+    "server_verified_train_loss": 17.74286803883772,
+    "difference": -2.88219368371756e-08,
+    "parts": {
+      "fixed_and_spectral_anchors": 5.390133403719323,
+      "pulse_tau_20.0": 1.7512320644987254,
+      "pulse_tau_100.0": 4.023447373564342,
+      "periodic": 6.517107667183241,
+      "own_rest": 0.060947501050156984
+    }
+  }
+]

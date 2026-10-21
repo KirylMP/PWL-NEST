@@ -1,0 +1,17 @@
+{
+  "restart": 0,
+  "status": "verified",
+  "verified_train_loss": 173.58472820985412,
+  "train_parts": {
+    "fixed_and_spectral_anchors": 14.433578240394274,
+    "pulse_tau_20.0": 2.290693826268709,
+    "pulse_tau_100.0": 7.88962341917888,
+    "periodic": 6.212433304031709,
+    "own_rest": 0.027950981387840936,
+    "pulse_tau_20.0_absolute_peak_times": 2.345131070635163,
+    "pulse_tau_100.0_absolute_peak_times": 57.88971177766763,
+    "periodic_absolute_peak_times": 82.49560559028993
+  },
+  "seconds": 45.906959293999535,
+  "model": "trials/FM_identity__identity/r0000/candidate.json"
+}
