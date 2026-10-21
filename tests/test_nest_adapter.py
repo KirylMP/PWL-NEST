@@ -5,7 +5,7 @@ import numpy as np
 from pwl_nest.models import ROOT
 from pwl_nest.calcium_coordinates import simulate_coordinates
 from pwl_nest.protocols import simulate
-from pwl_nest.nest_adapter import build_network, load_candidate, sic
+from pwl_nest.nest_adapter import build_network, load_candidate, sic, install
 
 try:
     import nest
@@ -16,6 +16,40 @@ except ImportError:
 
 @unittest.skipUnless(HAVE_NEST,'Build the NEST module first')
 class NestAdapterTests(unittest.TestCase):
+    def test_explicit_ip3_extrapolation_above_fit_domain(self):
+        nest.ResetKernel(); install()
+        nest.SetKernelStatus(dict(resolution=1.))
+        # Exactly soluble field u'=IP3, v'=-v, with IP3 held at 8 µM.
+        params=dict(thresholds=[], input_thresholds=[],
+                    coefficients=[0.,0.,0.,1.,0.,0.,-1.,0.],
+                    c_coordinate=0, h_coordinate=0,
+                    u=0.,v=0.,IP3=8.,IP3_0=8.,tau_IP3=1000.)
+        node=nest.Create('astrocyte_lr_pwa')
+        with self.assertRaises(Exception):
+            node.set(params)
+        node.set(dict(params,allow_ip3_extrapolation=True))
+        self.assertTrue(node.get('allow_ip3_extrapolation'))
+        nest.Simulate(100.)
+        self.assertAlmostEqual(node.get('IP3'),8.,places=12)
+        self.assertAlmostEqual(node.get('u'),.8,places=12)
+        with self.assertRaises(Exception):
+            node.set(allow_ip3_extrapolation=False)
+
+    def test_high_ip3_hinge_crossing_matches_exact_integral(self):
+        nest.ResetKernel(); install()
+        nest.SetKernelStatus(dict(resolution=10.))
+        # u'=I-2*(I-10)+; I(t)=8+4*exp(-t). Cross I=10 at log(2) s.
+        node=nest.Create('astrocyte_lr_pwa',params=dict(
+            thresholds=[],input_thresholds=[10.],
+            coefficients=[0.,0.,0.,1.,0.,0.,-1.,0.,
+                          20.,0.,0.,-1.,0.,0.,-1.,0.],
+            c_coordinate=0,h_coordinate=0,u=0.,v=0.,IP3=12.,IP3_0=8.,
+            tau_IP3=1000.,allow_ip3_extrapolation=True))
+        nest.Simulate(2000.)
+        expected=16+4*(1-np.exp(-2))-4+4*np.log(2)
+        self.assertAlmostEqual(node.get('u'),expected,places=10)
+        self.assertEqual(node.get('input_crossings'),1)
+
     def test_both_models_and_sic_delivery_against_independent_reference(self):
         for case in ['AM','FM']:
             model,_=load_candidate(case)

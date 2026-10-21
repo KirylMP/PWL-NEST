@@ -35,6 +35,7 @@ public:
   void get_status(Dictionary& d) const override {
     d["thresholds"]=solver_.thresholds;d["coefficients"]=solver_.coefficients;
     d["input_thresholds"]=solver_.input_thresholds;
+    d["allow_ip3_extrapolation"]=allow_extrapolation_;
     d["IP3_0"]=solver_.baseline;d["tau_IP3"]=solver_.tau*1000.;
     d["delta_IP3"]=delta_;d["SIC_scale"]=sic_scale_;d["SIC_th"]=sic_th_;
     d["c_reference"]=c_ref_;d["c_scale"]=c_scale_;d["h_reference"]=h_ref_;
@@ -49,6 +50,8 @@ public:
     auto p=solver_; auto y=y_;
     double cr=c_ref_,cs=c_scale_,hr=h_ref_,delta=delta_,ss=sic_scale_,st=sic_th_,tau=p.tau*1000.;
     long ck=c_kind_,hk=h_kind_;
+    bool extrapolate=allow_extrapolation_;
+    d.update_value("allow_ip3_extrapolation",extrapolate);
     d.update_value("thresholds",p.thresholds);d.update_value("coefficients",p.coefficients);
     d.update_value("input_thresholds",p.input_thresholds);
     d.update_value("IP3_0",p.baseline);d.update_value("tau_IP3",tau);
@@ -57,20 +60,21 @@ public:
     d.update_value("c_coordinate",ck);d.update_value("h_coordinate",hk);
     d.update_value("u",y[0]);d.update_value("v",y[1]);d.update_value("IP3",y[2]);
     if (p.coefficients.size()!=8*(p.thresholds.size()+1)*(p.input_thresholds.size()+1) || !(tau>0) || !(cr>0&&cs>0&&hr>0&&hr<1)
-      || ck<0 || ck>1 || hk<0 || hk>2 || p.baseline<0 || p.baseline>1.3 || delta<0
-      || y[2]<0 || y[2]>1.3 || !std::isfinite(tau+cr+cs+hr+delta+ss+st+p.baseline))
+      || ck<0 || ck>1 || hk<0 || hk>2 || p.baseline<0 || (!extrapolate&&p.baseline>1.3) || delta<0
+      || y[2]<0 || (!extrapolate&&y[2]>1.3) || !std::isfinite(tau+cr+cs+hr+delta+ss+st+p.baseline))
       throw BadProperty("Invalid PWA coefficients, coordinates, IP3 or tau");
     for(size_t j=0;j<p.thresholds.size();++j)
       if (!std::isfinite(p.thresholds[j]) || (j && p.thresholds[j]<=p.thresholds[j-1]))
         throw BadProperty("Thresholds must be finite and strictly increasing");
     for(double a:p.coefficients) if(!std::isfinite(a)) throw BadProperty("Nonfinite coefficients");
     for(size_t j=0;j<p.input_thresholds.size();++j)
-      if(!std::isfinite(p.input_thresholds[j]) || p.input_thresholds[j]<=0 || p.input_thresholds[j]>=1.3
+      if(!std::isfinite(p.input_thresholds[j]) || p.input_thresholds[j]<=0
         || (j&&p.input_thresholds[j]<=p.input_thresholds[j-1])) throw BadProperty("Invalid IP3 thresholds");
     for(double a:y) if(!std::isfinite(a)) throw BadProperty("Nonfinite state");
     p.tau=tau/1000.;
     solver_=p;y_=y;c_ref_=cr;c_scale_=cs;h_ref_=hr;c_kind_=ck;h_kind_=hk;
     delta_=delta;sic_scale_=ss;sic_th_=st;
+    allow_extrapolation_=extrapolate;
   }
 private:
   friend class RecordablesMap<AstrocytePWA>;
@@ -80,6 +84,7 @@ private:
   double c_ref_=.05,c_scale_=1.,h_ref_=.8;
   long c_kind_=0,h_kind_=0; // C: identity/sqrt_tails; h: identity/cube/log
   double delta_=.0002,sic_scale_=1.,sic_th_=.19669;
+  bool allow_extrapolation_=false;
   long input_spikes_=0;
   RingBuffer spikes_;
   UniversalDataLogger<AstrocytePWA> logger_;
@@ -120,7 +125,8 @@ private:
       double input=spikes_.get_value(lag);
       y_[2]+=delta_*input;
       if(input!=0) ++input_spikes_; // occupied delivery bins, not multiplicity
-      if(y_[2]<0 || y_[2]>1.3) throw BadProperty("Input drove IP3 outside fitted [0,1.3]");
+      if(!std::isfinite(y_[2]) || y_[2]<0 || (!allow_extrapolation_&&y_[2]>1.3))
+        throw BadProperty("Input drove IP3 outside allowed range (enable allow_ip3_extrapolation for IP3 > 1.3)");
       sic_[lag]=sic_value();
       logger_.record_data(origin.get_steps()+lag);
     }

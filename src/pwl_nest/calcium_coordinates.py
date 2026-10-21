@@ -225,7 +225,7 @@ class CalciumTransformPWA:
         self.threshold_slopes=np.zeros(len(self.latent.thresholds)) if self.threshold_slopes is None else np.array(self.threshold_slopes,dtype=float)
         if (self.input_weights.shape!=(2,len(self.input_thresholds)) or self.threshold_slopes.shape!=self.latent.thresholds.shape
                 or not np.isfinite(np.r_[self.input_thresholds,self.input_weights.ravel(),self.threshold_slopes,self.reference_input]).all()
-                or np.any(np.diff(self.input_thresholds)<=0) or np.any(self.input_thresholds<=0) or np.any(self.input_thresholds>=1.3)):
+                or np.any(np.diff(self.input_thresholds)<=0) or np.any(self.input_thresholds<=0)):
             raise ValueError('Invalid input thresholds or oblique geometry')
         for ip3 in [0.,1.3]:
             theta=self.thresholds_at_input(ip3)

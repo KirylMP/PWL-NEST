@@ -1,0 +1,244 @@
+{
+  "condition": {
+    "duration_ms": 30000.0,
+    "delta_IP3": 0.2,
+    "record_ms": 10.0,
+    "allow_ip3_extrapolation": true
+  },
+  "seed": 20261029,
+  "resolution_ms": 0.1,
+  "model_sha256": {
+    "full_AM": "365e1d0327b5308e89aaccec601fb9f6d6edf073156b30825eb82d4518b03294",
+    "AM_2C": "dc10725912dc31c3e8e55071aaadb94ca376ddbd39c87b2e7452eb775d778a4c",
+    "AM_2C_2I": "2a0c800c9f57199e5a3a01005aa74fefe8c3b602a33341baaa51a2d3b9dc6101"
+  },
+  "results": {
+    "LR": {
+      "completed": true,
+      "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+      "recorded_simulate_seconds": 3.4478892649931367,
+      "pre_spikes": 8520,
+      "post_spikes": 9860,
+      "post_rate_hz": 32.86666666666667,
+      "mean_SIC_pA": 64.30958170594084,
+      "max_SIC_pA": 69.23477670250094,
+      "C_range": [
+        0.0745275237765318,
+        1.2125375632149116
+      ],
+      "IP3_range": [
+        0.399664194821858,
+        33.16666898230965
+      ],
+      "h_range": [
+        0.5459467856422789,
+        0.7957184163271632
+      ],
+      "physical_recorded_states": true,
+      "astro_Ca_astro_tail_range": [
+        0.8244894937944298,
+        0.8247389382642222
+      ],
+      "post_I_SIC_tail_range": [
+        64.42220745500124,
+        64.42618060727453
+      ],
+      "identical_presynaptic_spikes": true,
+      "astro_Ca_astro_RMSE_vs_LR": 0.0,
+      "post_I_SIC_RMSE_vs_LR": 0.0,
+      "population_rate_RMSE_vs_LR": 0.0
+    },
+    "full_AM": {
+      "completed": true,
+      "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+      "recorded_simulate_seconds": 2.73542355200334,
+      "pre_spikes": 8520,
+      "post_spikes": 9810,
+      "post_rate_hz": 32.7,
+      "mean_SIC_pA": 61.803303851428296,
+      "max_SIC_pA": 73.07251752228245,
+      "C_range": [
+        8.832382510089763e-08,
+        1.6877637130801686
+      ],
+      "IP3_range": [
+        0.3996641948218552,
+        33.16666898214926
+      ],
+      "h_range": [
+        0.7926902215284226,
+        1.7483402580290193
+      ],
+      "physical_recorded_states": false,
+      "astro_Ca_astro_tail_range": [
+        1.6877637130801686,
+        1.6877637130801686
+      ],
+      "post_I_SIC_tail_range": [
+        73.07251752228245,
+        73.07251752228245
+      ],
+      "identical_presynaptic_spikes": true,
+      "astro_Ca_astro_RMSE_vs_LR": 0.8806998237141158,
+      "post_I_SIC_RMSE_vs_LR": 26.53102447147299,
+      "population_rate_RMSE_vs_LR": 6.557438524302,
+      "outer_region_at_frozen_terminal_IP3": {
+        "IP3": 33.02831511648182,
+        "eigenvalue_real": [
+          -0.21440323538491812,
+          -0.21440323538491812
+        ],
+        "eigenvalue_imag": [
+          0.6987758440869899,
+          -0.6987758440869899
+        ],
+        "latent_equilibrium": [
+          14.357573619233737,
+          15.778624833703805
+        ],
+        "physical_equilibrium": null,
+        "self_consistent_C_region": true
+      }
+    },
+    "AM_2C": {
+      "completed": true,
+      "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+      "recorded_simulate_seconds": 2.8900376379897352,
+      "pre_spikes": 8520,
+      "post_spikes": 10030,
+      "post_rate_hz": 33.43333333333333,
+      "mean_SIC_pA": 72.77266947059393,
+      "max_SIC_pA": 73.07251752228245,
+      "C_range": [
+        0.0753196644507432,
+        1.6877637130801686
+      ],
+      "IP3_range": [
+        0.3996641948218552,
+        33.16666898214926
+      ],
+      "h_range": [
+        9.675340697398919e-06,
+        0.7924756474363696
+      ],
+      "physical_recorded_states": true,
+      "astro_Ca_astro_tail_range": [
+        1.6877637130801686,
+        1.6877637130801686
+      ],
+      "post_I_SIC_tail_range": [
+        73.07251752228245,
+        73.07251752228245
+      ],
+      "identical_presynaptic_spikes": true,
+      "astro_Ca_astro_RMSE_vs_LR": 0.8370172801955681,
+      "post_I_SIC_RMSE_vs_LR": 8.91836110061816,
+      "population_rate_RMSE_vs_LR": 6.3508529610858835,
+      "outer_region_at_frozen_terminal_IP3": {
+        "IP3": 33.02831511648182,
+        "eigenvalue_real": [
+          -0.15784108554271264,
+          -0.15784108554271264
+        ],
+        "eigenvalue_imag": [
+          0.6537108186832691,
+          -0.6537108186832691
+        ],
+        "latent_equilibrium": [
+          20.647442907216085,
+          -40.371772607222425
+        ],
+        "physical_equilibrium": null,
+        "self_consistent_C_region": true
+      }
+    },
+    "AM_2C_2I": {
+      "completed": true,
+      "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+      "recorded_simulate_seconds": 2.962075247996836,
+      "pre_spikes": 8520,
+      "post_spikes": 9670,
+      "post_rate_hz": 32.233333333333334,
+      "mean_SIC_pA": 54.93594439065721,
+      "max_SIC_pA": 73.07251752223613,
+      "C_range": [
+        2.0469792036050366e-35,
+        1.6877637130732628
+      ],
+      "IP3_range": [
+        0.3996641948218552,
+        33.16666898214926
+      ],
+      "h_range": [
+        0.792677202945034,
+        663.854864513622
+      ],
+      "physical_recorded_states": false,
+      "astro_Ca_astro_tail_range": [
+        1.6877637130521483,
+        1.6877637130732628
+      ],
+      "post_I_SIC_tail_range": [
+        73.07251752209447,
+        73.07251752223613
+      ],
+      "identical_presynaptic_spikes": true,
+      "astro_Ca_astro_RMSE_vs_LR": 0.8772441783936845,
+      "post_I_SIC_RMSE_vs_LR": 32.99735489276916,
+      "population_rate_RMSE_vs_LR": 6.658328118479393,
+      "outer_region_at_frozen_terminal_IP3": {
+        "IP3": 33.02831511648182,
+        "eigenvalue_real": [
+          -0.18350613830832413,
+          -0.18350613830832413
+        ],
+        "eigenvalue_imag": [
+          0.6913787366398215,
+          -0.6913787366398215
+        ],
+        "latent_equilibrium": [
+          8.171079822064687,
+          24.485150004647796
+        ],
+        "physical_equilibrium": null,
+        "self_consistent_C_region": true
+      }
+    },
+    "no_SIC": {
+      "completed": true,
+      "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+      "recorded_simulate_seconds": 3.5508432039932813,
+      "pre_spikes": 8520,
+      "post_spikes": 8570,
+      "post_rate_hz": 28.566666666666666,
+      "mean_SIC_pA": 0.0,
+      "max_SIC_pA": 0.0,
+      "C_range": [
+        0.0745275237765318,
+        1.2125375632149116
+      ],
+      "IP3_range": [
+        0.399664194821858,
+        33.16666898230965
+      ],
+      "h_range": [
+        0.5459467856422789,
+        0.7957184163271632
+      ],
+      "physical_recorded_states": true,
+      "astro_Ca_astro_tail_range": [
+        0.8244894937944298,
+        0.8247389382642222
+      ],
+      "post_I_SIC_tail_range": [
+        0.0,
+        0.0
+      ],
+      "identical_presynaptic_spikes": true,
+      "astro_Ca_astro_RMSE_vs_LR": 0.0,
+      "post_I_SIC_RMSE_vs_LR": 64.52369268289338,
+      "population_rate_RMSE_vs_LR": 7.187952884282608
+    }
+  },
+  "identical_topology": true
+}
