@@ -1,0 +1,11 @@
+{
+  "protocol": "phase_heldout_irregular",
+  "peak_index": 5,
+  "input_jump_s": 117.88116059929665,
+  "reference_peak_s": 115.03479397715256,
+  "reference_width_s": 3.75467801699007,
+  "old_width_s": 4.505405155296344,
+  "trial_width_s": 4.4997326106108915,
+  "old_width_relative_error": 0.19994447857025377,
+  "trial_width_relative_error": 0.1984336846593555
+}

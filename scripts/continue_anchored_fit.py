@@ -34,7 +34,7 @@ def prepare(out,args):
     spec['train']+=promoted
     spec['previous_tests_not_blind']+=old_tests
     spec['promoted_prior_failures']+=promoted
-    phase=args.new_protocols=='phase'
+    phase=args.new_protocols=='phase';irregular=args.new_protocols=='irregular'
     prefix='phase' if phase else 'continuation'
     taus=[9.,29.,58.,105.,170.] if phase else [8.,33.,54.,115.,180.]
     spec['test']=[dict(name=f'{prefix}_heldout_tau_{tau}',duration=(510. if phase else 540.) if tau==taus[-1] else 360.,
@@ -43,6 +43,13 @@ def prepare(out,args):
     times=20.+np.r_[0.,np.cumsum(rng.uniform(16.,30.,7))]
     spec['test'].append(dict(name=f'{prefix}_heldout_irregular',duration=340.,tau=31. if phase else 22.,baseline=.45,
         jumps=list(map(list,zip(times.tolist(),rng.uniform(.2,.3,len(times)).tolist())))))
+    if irregular:
+        spec['test']=[dict(name=f'width_heldout_tau_{tau}',duration=480. if tau==150. else 360.,
+            tau=tau,baseline=.45,jumps=[[20.,.7]]) for tau in [12.,52.,150.]]
+        for j,tau in enumerate([19.,28.,40.]):
+            rng=np.random.default_rng(20261102+j);times=20.+np.r_[0.,np.cumsum(rng.uniform(16.,30.,7))]
+            spec['test'].append(dict(name=f'width_heldout_irregular_{tau}',duration=340.,tau=tau,baseline=.45,
+                jumps=list(map(list,zip(times.tolist(),rng.uniform(.2,.28,len(times)).tolist())))))
     for p in spec['fixed']+spec['train']:
         shutil.copyfile(previous/f'{p["name"]}.npz',cache/f'{p["name"]}.npz')
     for p in spec['test']:
@@ -50,12 +57,14 @@ def prepare(out,args):
             rtol=2e-11,atol=2e-13,max_step=.05)
         np.savez_compressed(cache/f'{p["name"]}.npz',t=t,x=x)
     atomic(cache/'data.json',spec);rebuild_training_field(cache)
-    jobs=[dict(name=f'control_{i}',family='control',restart=i,seed=20261030+i,
+    jobs=[dict(name=f'control_{i}',family='control',restart=i,seed=args.search_seed+i,
+        search_space=['default','thresholds','kinetics'][i%3] if args.diverse_directions else 'default',
         starting_model=str(seed),starting_sha256=hashlib.sha256(seed.read_bytes()).hexdigest()) for i in range(args.restarts)]
     atomic(out/'config.json',dict(continuation=True,jobs=jobs,budget=args.budget,
         global_iterations=args.global_iterations,workers=args.workers,regions=8,parameters=27,
         constraints=f'unchanged exact LR rest, 8 static morphology/regime checks, all {len(spec["train"])} training peak counts/heights/widths',
         source_model=str(seed),reference_cache=str(previous),timing_weight=args.timing_weight,
+        phase_ceiling=args.phase_ceiling,search_seed=args.search_seed,
         heldout_protocols=spec['test'],
         promoted=[p['name'] for p in promoted],heldout_used_for_field_initialization=False,
         selection='minimum independently verified eligible training loss; if none, keep incumbent and report diagnostic best',
@@ -104,11 +113,15 @@ def main():
     parser.add_argument('--seed-model',default=str(SEED))
     parser.add_argument('--reference-cache',default=str(PREVIOUS))
     parser.add_argument('--promote',nargs='*',help='Names of previous tests to move into training')
-    parser.add_argument('--new-protocols',choices=['continuation','phase'],default='continuation')
+    parser.add_argument('--new-protocols',choices=['continuation','phase','irregular'],default='continuation')
+    parser.add_argument('--search-seed',type=int,default=20261030)
+    parser.add_argument('--diverse-directions',action='store_true')
+    parser.add_argument('--phase-ceiling',type=float,help='Optional hard ceiling on training mean absolute peak timing error, seconds')
     parser.add_argument('--timing-weight',type=float,default=1.,help='Multiplier on absolute peak-time residuals; hard gates stay fixed')
     args=parser.parse_args();out=Path(args.output).resolve()
     if min(args.budget,args.restarts,args.workers)<1 or args.global_iterations<0:parser.error('Invalid optimization limits')
     if not np.isfinite(args.timing_weight) or args.timing_weight<=0:parser.error('Invalid timing weight')
+    if args.phase_ceiling is not None and (not np.isfinite(args.phase_ceiling) or args.phase_ceiling<=0):parser.error('Invalid phase ceiling')
     if args.stage=='fit':
         if not args.job:parser.error('--job required')
         fit_job(out,args.job);return

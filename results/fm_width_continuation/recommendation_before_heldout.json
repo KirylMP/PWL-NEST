@@ -1,0 +1,8 @@
+{
+  "name": "incumbent",
+  "eligible_new_fit": false,
+  "diagnostic_best": "control_2",
+  "diagnostic_best_loss": 20538.0779194077,
+  "verified_train_loss": 21309.01717545441,
+  "reason": "no eligible improvement; retain previous model"
+}

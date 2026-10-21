@@ -23,6 +23,8 @@ parser.add_argument('--export-model',default='models/continued_shape_candidates/
 parser.add_argument('--training-plots',nargs=2,default=['anchored_heldout_tau_48.0','anchored_heldout_tau_160.0'])
 args=parser.parse_args();out=Path(args.output)
 summary=json.loads((out/'summary.json').read_text());old,new=summary['compared']
+candidate_label='Continuation' if summary['recommendation']['name']==new['name'] else 'Diagnostic trial'
+config=json.loads((out/'config.json').read_text())
 model=CalciumTransformPWA.load(out/new['model'])
 baseline_model=CalciumTransformPWA.load(old['model'])
 spec=json.loads((out/'cache/FM/data.json').read_text());checks=[];phase_training=[]
@@ -55,14 +57,18 @@ for a,b in zip(old['heldout']['protocols'],new['heldout']['protocols']):
     phase_heldout.append(dict(name=a['name'],reference_peaks=times.tolist(),
         old_errors=(old_times-times).tolist() if a['completed'] and len(times)==len(old_times) else None,
         new_errors=(new_times-times).tolist() if b['completed'] and len(times)==len(new_times) else None))
+fine_training_phase=phase_aggregate(phase_training,'new_errors')
+phase_ceiling=config.get('phase_ceiling')
+fine_phase_passes=bool(fine_training_phase is not None and (phase_ceiling is None or fine_training_phase['mean_absolute_error_s']<=phase_ceiling))
 atomic(out/'phase_audit.json',dict(training=phase_training,heldout=phase_heldout,
+    phase_ceiling_s=phase_ceiling,fine_training_phase_passes=fine_phase_passes,
     training_aggregate={key:phase_aggregate(phase_training,key) for key in ['old_errors','new_errors']},
     heldout_aggregate={key:phase_aggregate(phase_heldout,key) for key in ['old_errors','new_errors']},
     definition='Chronological absolute peak-time differences, without shifting trajectories. Aggregate unavailable on any count mismatch.'))
 
 fig,axes=plt.subplots(3,2,figsize=(11,8),constrained_layout=True)
 for ax,row in zip(axes.flat,phase_heldout):
-    for key,color,label in [('old_errors','tab:orange','Previous'),('new_errors','tab:blue','Continuation')]:
+    for key,color,label in [('old_errors','tab:orange','Previous'),('new_errors','tab:blue',candidate_label)]:
         if row[key] is not None:ax.plot(row['reference_peaks'],row[key],'o-',ms=3,color=color,label=label)
         else:ax.text(.05,.85 if key=='old_errors' else .7,label+': peak count mismatch',transform=ax.transAxes,color=color)
     ax.axhline(0,color='black',lw=.8);ax.grid(alpha=.2)
@@ -85,7 +91,7 @@ for ax,p,a,b in zip(axes.flat,spec['test'],old['heldout']['protocols'],new['held
         ax.plot(d['t'],d['lr'][:,0],color='black',lw=1.2,label='Li–Rinzel')
         ax.plot(d['t'],d['candidate'][:,0],color='tab:orange',lw=.9,alpha=.8,label='Previous')
     with np.load(out/'diagnostics'/new['name']/f'{p["name"]}.npz') as d:
-        ax.plot(d['t'],d['candidate'][:,0],color='tab:blue',lw=.9,label='Continuation')
+        ax.plot(d['t'],d['candidate'][:,0],color='tab:blue',lw=.9,label=candidate_label)
     label=f'tau={p["tau"]:g} s' if 'irregular' not in p['name'] else f'Irregular, tau={p["tau"]:g} s'
     ax.set(title=f'{label} | peaks LR / old / new: {a["peaks"]["counts"][0]} / {a["peaks"]["counts"][1]} / {b["peaks"]["counts"][1]}',
         xlabel='Time (s)',ylabel='C (μM)',xlim=(0,p['duration']))
@@ -99,20 +105,21 @@ fig,axes=plt.subplots(1,2,figsize=(13,3.6),constrained_layout=True)
 for ax,name in zip(axes,args.training_plots):
     p=next(p for p in spec['train'] if p['name']==name)
     with np.load(out/'cache/FM'/f'{p["name"]}.npz') as d:ax.plot(d['t'],d['x'][:,0],color='black',lw=1.2,label='Li–Rinzel')
-    with np.load(out/f'fine_train_{p["name"]}.npz') as d:ax.plot(d['t'],d['candidate'][:,0],color='tab:blue',lw=1,label='Continuation')
+    with np.load(out/f'fine_train_{p["name"]}.npz') as d:ax.plot(d['t'],d['candidate'][:,0],color='tab:blue',lw=1,label=candidate_label)
     label='irregular' if 'irregular' in name else 'pulse'
     ax.set(title=f'Promoted training {label}: tau={p["tau"]:g} s',xlabel='Time (s)',ylabel='C (μM)',xlim=(0,p['duration']));ax.grid(alpha=.15)
 axes[0].legend()
 for suffix in ['png','pdf']:fig.savefig(out/f'promoted_training.{suffix}',dpi=170)
 plt.close(fig)
 
-if new['checks']['eligible'] and all(p['passes'] for p in checks) and summary['recommendation']['name']==new['name']:
+if new['checks']['eligible'] and all(p['passes'] for p in checks) and fine_phase_passes and summary['recommendation']['name']==new['name']:
     exported=copy.deepcopy(model)
     for key in list(exported.metadata):
         if 'loss' in key:exported.metadata.pop(key)
     exported.metadata.update(accepted=False,current_validation=str(out),
         recommended_by_training_only=True,verified_train_loss=new['verified_train_loss'],
         training_checks=new['checks'],fine_training_shape_passes=len(checks),
+        fine_training_phase_check=dict(passes=fine_phase_passes,ceiling_s=phase_ceiling,**fine_training_phase),
         heldout_shape_passes=new['heldout']['shape_passes'],heldout_protocol_count=len(spec['test']),
         source_model=old['model'],selection_scope='expanded training only; frozen before fresh-input readout')
     path=Path(args.export_model);path.parent.mkdir(parents=True,exist_ok=True);exported.save(path)

@@ -1,0 +1,107 @@
+{
+  "reason": "Remove inherited positive seed validation from rejected trial models; numerical model unchanged",
+  "models": [
+    {
+      "model": "trials/control_3/checkpoint.json",
+      "before_sha256": "a0f5d56efe7bb733c7e09ac2d763f5c6444ede0270de650bb4722ae7c0c66951",
+      "after_sha256": "9000d66fdd5600bffdfafaa775f179ce4ad55df6727ecb061a46b76df50fa512",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_3/unconstrained_best.json",
+      "before_sha256": "897c633f0e0b28e91d5dfc84c82e6f186f310007fb9b977d6149627a4b1fc0f9",
+      "after_sha256": "8cd788bf484366a47851430fc5d26ecbc27a5a260c173115547caae8bd62d574",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_3/candidate.json",
+      "before_sha256": "897c633f0e0b28e91d5dfc84c82e6f186f310007fb9b977d6149627a4b1fc0f9",
+      "after_sha256": "5d97ad4786770554e9ca4aeb10dbd3fc62cbaccfae22ca8020a356a4477d8ea2",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_2/checkpoint.json",
+      "before_sha256": "2840299963f40847bfd1bfdd2db471efc1a02b7d709c14117fa0ec0abeaf00a7",
+      "after_sha256": "455c34313c320883dc45ec902b4a1981accab009bcb0bce26f038dd67c879fd2",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_2/unconstrained_best.json",
+      "before_sha256": "373e4cd046ed6c8a91a0344212d05a6cff24f522a21901bd0665eebe3a97083d",
+      "after_sha256": "4a88bcb2278eed22540595281ba24b39453d1ff83a6385ad89a8cf86a134a098",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_2/candidate.json",
+      "before_sha256": "373e4cd046ed6c8a91a0344212d05a6cff24f522a21901bd0665eebe3a97083d",
+      "after_sha256": "61f97ca44b6bb7237e0ecd13b0dd60de0b95240d604b14a87cf731cd758960f5",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_0/checkpoint.json",
+      "before_sha256": "a0f5d56efe7bb733c7e09ac2d763f5c6444ede0270de650bb4722ae7c0c66951",
+      "after_sha256": "9000d66fdd5600bffdfafaa775f179ce4ad55df6727ecb061a46b76df50fa512",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_0/unconstrained_best.json",
+      "before_sha256": "897c633f0e0b28e91d5dfc84c82e6f186f310007fb9b977d6149627a4b1fc0f9",
+      "after_sha256": "8cd788bf484366a47851430fc5d26ecbc27a5a260c173115547caae8bd62d574",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_0/candidate.json",
+      "before_sha256": "897c633f0e0b28e91d5dfc84c82e6f186f310007fb9b977d6149627a4b1fc0f9",
+      "after_sha256": "5d97ad4786770554e9ca4aeb10dbd3fc62cbaccfae22ca8020a356a4477d8ea2",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_1/checkpoint.json",
+      "before_sha256": "ffd62e649af574e9da5a3f4c45163700ac81626608edbde5533ee01b45300599",
+      "after_sha256": "5ae127ada62b74ecc5675ef0c4077fd3c7bd18a81055fabed402b62da0fa2522",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_1/unconstrained_best.json",
+      "before_sha256": "783c740cfc0891cbc5c16748b7216fcb4e9f5b698800675785130413102c7041",
+      "after_sha256": "e56a8e11a17dd250709c5c6c12243d19dcbf30bd5a1ce700bae7d852ed71ec47",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "trials/control_1/candidate.json",
+      "before_sha256": "783c740cfc0891cbc5c16748b7216fcb4e9f5b698800675785130413102c7041",
+      "after_sha256": "2fc92b5965c60c25ca9c1eb3d29be8f555635bf6f84c8a62468efcd2c1d42888",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "embedding_scan/seed_1.json",
+      "before_sha256": "4d2b285f4ebeb61ec91977c76233ac7753f4fb226eae146e45d60d66719000e8",
+      "after_sha256": "29c2035af955e7b782777ec4c1a6cf1c19eae4143ed09d6eef08c3f40d569b87",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "embedding_scan/seed_2.json",
+      "before_sha256": "a769a9a8f4ab68a53f4acd0360a6d3e1c79fa8fe5259e04ee9182de6981ef56f",
+      "after_sha256": "05fb5d9999e1afa2dbfb4c8f5c567c3bba8e1cd5549ab537186f40dcee743270",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "embedding_scan/seed_4.json",
+      "before_sha256": "d49d5e5348da1f6d4948b8d564f2f6cc35b3024c8fa5cb482c2c378930c9a608",
+      "after_sha256": "c00e2cfc2f342695a8aeebfecc2b88cbeadc91be314beedc0e35abf221ca5ca7",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "embedding_scan/seed_3.json",
+      "before_sha256": "c752cf4d170918ee43a2d835848a063114c320e6b5a64426ab9f53776e743248",
+      "after_sha256": "66ab9e6a45e5bec090ade068465496979662d587d47464f9b29b669a5511bf21",
+      "physical_coefficients_and_coordinates_unchanged": true
+    },
+    {
+      "model": "embedding_scan/seed_0.json",
+      "before_sha256": "2f8b23af8c717812313b8adc2f79fe03009310777ab8b5e853f2cb28d75ab957",
+      "after_sha256": "b5765db83fda5174cb9bda06ad1ad7cdccf7d53921f7f882187a90c4093b1979",
+      "physical_coefficients_and_coordinates_unchanged": true
+    }
+  ]
+}

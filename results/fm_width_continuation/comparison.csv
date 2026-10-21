@@ -1,0 +1,7 @@
+protocol,old_C_RMSE,new_C_RMSE,LR_peaks,old_peaks,new_peaks,old_shape_pass,new_shape_pass
+width_heldout_tau_12.0,0.019366041333824278,0.019355660407648592,1,1,1,True,True
+width_heldout_tau_52.0,0.0905458995966876,0.08757783116086222,5,5,5,True,True
+width_heldout_tau_150.0,0.24397856495197343,0.2405940337837942,14,14,14,True,True
+width_heldout_irregular_19.0,0.20995785355870306,0.2091265937641478,8,8,8,True,True
+width_heldout_irregular_28.0,0.09645952516650427,0.09227425861258014,9,9,9,True,True
+width_heldout_irregular_40.0,0.32005122172685274,0.3180742353869318,11,11,11,True,True

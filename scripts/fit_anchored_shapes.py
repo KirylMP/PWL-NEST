@@ -19,6 +19,7 @@ from scipy.optimize import differential_evolution,least_squares,minimize
 from pwl_nest.calcium_coordinates import CalciumTransformPWA,decode_coordinates,simulate_coordinates
 from pwl_nest.equilibrium_constraints import anchor_equilibrium
 from pwl_nest.peak_shape import peak_shape_check,peak_shape_residual,autonomous_shape_check
+from pwl_nest.peak_timing import interpolated_peak_times
 from pwl_nest.protocols import simulate
 from pwl_nest.rest_protocols import stable_rest
 from pwl_nest.thresholds import OrderedThresholds
@@ -40,6 +41,21 @@ class ShapeObjective(MixedObjective):
         self.timing_weight=float(config.get('timing_weight',1.))
         if not np.isfinite(self.timing_weight) or self.timing_weight<=0:
             raise ValueError('Timing weight must be positive and finite')
+        self.phase_ceiling=config.get('phase_ceiling')
+        if self.phase_ceiling is not None and (not np.isfinite(self.phase_ceiling) or self.phase_ceiling<=0):
+            raise ValueError('Phase ceiling must be positive and finite')
+
+    def phase_check(self):
+        errors=[];matched=self.last_train_paths is not None
+        if matched:
+            for p in self.spec['train']:
+                t,x,_=self.last_train_paths[p['name']];tr,truth,_=self.refs[p['name']]
+                a=interpolated_peak_times(t,x);b=interpolated_peak_times(tr,truth)
+                if len(a)!=len(b):matched=False;break
+                errors.extend(a-b)
+        mae=float(np.mean(abs(np.array(errors)))) if matched and errors else None
+        return dict(mean_absolute_error_s=mae,ceiling_s=self.phase_ceiling,counts_match=bool(matched),
+            passes=bool(mae is not None and (self.phase_ceiling is None or mae<=self.phase_ceiling)))
 
     def __call__(self,model,precise=False,parts=False):
         residual,groups=super().__call__(model,precise=precise,parts=True)
@@ -72,6 +88,10 @@ class ShapeObjective(MixedObjective):
                 errors=np.asarray(check['relative_errors']);tolerances=np.asarray(check['tolerances'])
                 extra=np.r_[errors/.03,10*np.maximum(abs(errors)-.8*tolerances,0.)/.01]
             groups[p['name']+'_static_shape']=float(extra@extra);residual=np.r_[residual,extra]
+        if self.phase_ceiling is not None:
+            check=self.phase_check();mae=check['mean_absolute_error_s']
+            extra=100. if mae is None else 100.*max(mae-self.phase_ceiling,0.)/.05
+            groups['phase_ceiling_barrier']=extra*extra;residual=np.r_[residual,extra]
         return (residual,groups) if parts else residual
 
 
@@ -96,6 +116,9 @@ def shape_checks(objective,model):
     static_shape=[dict(name=p['name'],**objective.last_static_shapes[p['name']]) for p in objective.spec['fixed']]
     checks.update(static_shape=static_shape,static_shape_passes=sum(s['passes'] for s in static_shape))
     checks['eligible']=bool(checks['eligible'] and rest_ok and all(s['passes'] for s in shape) and all(s['passes'] for s in static_shape))
+    if objective.phase_ceiling is not None:
+        checks['phase_constraint']=objective.phase_check()
+        checks['eligible']=bool(checks['eligible'] and checks['phase_constraint']['passes'])
     return checks
 
 
@@ -120,14 +143,18 @@ def parameterization(seed,spec,family):
     def make(p):
         coefficients=np.zeros(nc);coefficients[active]=p[:na]
         theta=mapping.decode(p[na:na+m]);meta=copy.deepcopy(seed.metadata)
+        for key in ['training_checks','fine_training_shape_passes','fine_training_phase_check',
+                    'heldout_shape_passes','heldout_protocol_count','verified_train_loss','recommended_by_training_only']:
+            meta.pop(key,None)
         meta.update(parameters=coefficients.tolist(),accepted=False,model_family=family,
+            recommended_by_training_only=False,
             active_fit_parameters=len(p),parameter_count=len(p),free_coefficient_parameters=na,
             threshold_parameter_count=m,mixing_parameter_count=dim,
             physical_thresholds_C=seed.coordinate.inverse(theta).tolist(),
             threshold_shifts=p[na:na+m].tolist(),raw_fit_vector=p.tolist(),
             thresholds_policy='ordered U gaps +/-ln(4); first threshold strictly above exact baseline rest',
             source_chain_rule='Udot=phi_prime*fC-(a+2*b*(V-center))*psi_prime*fh; Vdot=psi_prime*fh',
-            current_validation='results/fm_anchored_shapes/; inherited legacy losses are historical',
+            current_validation='independent checks in trial result.json; no acceptance implied',
             initialization='exact fixed LR stable rest; two constants derived; 20 s input delay',
             calcium_clipping=False)
         model=decode_coordinates(seed.case,theta,coefficients,meta['mu_sign'],meta['k_sign'],meta,
@@ -273,6 +300,12 @@ def fit_job(out,name):
              'quadratic':[loc[2*n+1],loc[2*n+4],na+m,na+m+1]}[family]
     widths={'control':[.6,.35,.6,.6],'linear':[.6,.35,.6,.08],'quadratic':[.6,.35,.08,.02]}[family]
     if continuation:widths=[w*.3 for w in widths]
+    search_space=job.get('search_space','default')
+    if search_space=='thresholds':
+        indices=[loc[2*n+1],loc[2*n+4],na,na+1];widths=[.18,.105,.25,.25]
+    elif search_space=='kinetics':
+        indices=[loc[0],loc[n],loc[2*n+2],loc[2*n+3]];widths=[.6,.6,.18,.18]
+    elif search_space!='default':raise ValueError('Unknown global search space')
     base=min(ranks,key=lambda a:a[0])[2]
     bounds=[(max(lo[j],base[j]-w),min(hi[j],base[j]+w)) for j,w in zip(indices,widths)]
     def unpack(s):p=base.copy();p[indices]=s;return p

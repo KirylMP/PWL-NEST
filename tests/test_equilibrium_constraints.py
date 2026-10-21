@@ -78,6 +78,26 @@ class EquilibriumConstraintsTest(unittest.TestCase):
         objective.timing_weight=1.;objective(seed)
         self.assertEqual(checks_before,shape_checks(objective,seed))
 
+    def test_phase_ceiling_rejects_late_or_incomplete_paths(self):
+        seed=CalciumTransformPWA.load(ROOT/'models/continued_shape_candidates/FM_control.json')
+        objective=ShapeObjective(ROOT/'results/fm_shift_continuation','FM',seed)
+        objective(seed);original=shape_checks(objective,seed)
+        self.assertTrue(original['eligible'])
+        z,_,_,_,_,make=parameterization(seed,objective.spec,'control')
+        rebuilt=make(z)
+        self.assertFalse(rebuilt.metadata['recommended_by_training_only'])
+        self.assertNotIn('training_checks',rebuilt.metadata)
+        objective.phase_ceiling=.001
+        check=shape_checks(objective,seed)
+        self.assertFalse(check['eligible'])
+        self.assertFalse(check['phase_constraint']['passes'])
+        self.assertTrue(check['exact_rest'])
+        good=objective(seed)
+        with patch.object(objective.dynamic,'run',return_value=None):failed=objective(seed)
+        self.assertEqual(good.shape,failed.shape)
+        self.assertFalse(objective.phase_check()['passes'])
+        self.assertIsNone(objective.phase_check()['mean_absolute_error_s'])
+
     def test_legacy_fitters_cannot_silently_unfix_rest(self):
         seed=CalciumTransformPWA.load(ROOT/'models/server_candidates/FM_identity__identity.json')
         anchored=anchor_equilibrium(seed,[.04252319858338,.911256065186791,.45])
