@@ -1,0 +1,163 @@
+{
+  "continuation": true,
+  "jobs": [
+    {
+      "name": "control_0",
+      "family": "control",
+      "restart": 0,
+      "seed": 20261030,
+      "starting_model": "models/continued_shape_candidates/FM_control.json",
+      "starting_sha256": "87550cc088ae868ee2cbaede8706e06452f9e2d15c9d277bb355e63a0603be41"
+    },
+    {
+      "name": "control_1",
+      "family": "control",
+      "restart": 1,
+      "seed": 20261031,
+      "starting_model": "models/continued_shape_candidates/FM_control.json",
+      "starting_sha256": "87550cc088ae868ee2cbaede8706e06452f9e2d15c9d277bb355e63a0603be41"
+    },
+    {
+      "name": "control_2",
+      "family": "control",
+      "restart": 2,
+      "seed": 20261032,
+      "starting_model": "models/continued_shape_candidates/FM_control.json",
+      "starting_sha256": "87550cc088ae868ee2cbaede8706e06452f9e2d15c9d277bb355e63a0603be41"
+    },
+    {
+      "name": "control_3",
+      "family": "control",
+      "restart": 3,
+      "seed": 20261033,
+      "starting_model": "models/continued_shape_candidates/FM_control.json",
+      "starting_sha256": "87550cc088ae868ee2cbaede8706e06452f9e2d15c9d277bb355e63a0603be41"
+    }
+  ],
+  "budget": 1600,
+  "global_iterations": 35,
+  "workers": 4,
+  "regions": 8,
+  "parameters": 27,
+  "constraints": "unchanged exact LR rest, 8 static morphology/regime checks, all 10 training peak counts/heights/widths",
+  "source_model": "models/continued_shape_candidates/FM_control.json",
+  "reference_cache": "results/fm_shift_continuation/cache/FM",
+  "timing_weight": 3.0,
+  "heldout_protocols": [
+    {
+      "name": "phase_heldout_tau_9.0",
+      "duration": 360.0,
+      "tau": 9.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_tau_29.0",
+      "duration": 360.0,
+      "tau": 29.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_tau_58.0",
+      "duration": 360.0,
+      "tau": 58.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_tau_105.0",
+      "duration": 360.0,
+      "tau": 105.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_tau_170.0",
+      "duration": 510.0,
+      "tau": 170.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_irregular",
+      "duration": 340.0,
+      "tau": 31.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.22655353944659054
+        ],
+        [
+          44.28199003397335,
+          0.24326033483773124
+        ],
+        [
+          65.2942200979505,
+          0.24338660652715507
+        ],
+        [
+          88.06921545157691,
+          0.2249885000608466
+        ],
+        [
+          117.88116059929665,
+          0.23009002619547864
+        ],
+        [
+          135.78433658108997,
+          0.23162171257601255
+        ],
+        [
+          151.79894881989784,
+          0.2631410742747492
+        ],
+        [
+          175.0551948162992,
+          0.2898018741166536
+        ]
+      ]
+    }
+  ],
+  "promoted": [
+    "continuation_heldout_tau_180.0",
+    "continuation_heldout_irregular"
+  ],
+  "heldout_used_for_field_initialization": false,
+  "selection": "minimum independently verified eligible training loss; if none, keep incumbent and report diagnostic best",
+  "source_sha256": {
+    "/workspace/PWL-NEST/scripts/continue_anchored_fit.py": "19c4e08551c3a0a3ea9b0ab40ea1c1cbb03f7711ac22918e37f77ef481e6d2fd",
+    "scripts/fit_anchored_shapes.py": "f8c00fd8773d3f73a9a361b5627b463c3ddce321a734ef80e7024789b61bd059",
+    "scripts/fit_mixed_coordinates.py": "bafdab2f1a1cf829da13e200f1cf3f68dcd0011fd5983e9707bbbfb81f1d5644",
+    "src/pwl_nest/peak_shape.py": "3579b3993df9d5572d5969ec27bc04c664690464145973e3e6154863ea00273e"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0"
+}

@@ -33,6 +33,14 @@ FIT_SHAPE_TOLERANCE=.08
 
 
 class ShapeObjective(MixedObjective):
+    def __init__(self,out,case,seed):
+        super().__init__(out,case,seed)
+        config_path=Path(out)/'config.json'
+        config=json.loads(config_path.read_text()) if config_path.exists() else {}
+        self.timing_weight=float(config.get('timing_weight',1.))
+        if not np.isfinite(self.timing_weight) or self.timing_weight<=0:
+            raise ValueError('Timing weight must be positive and finite')
+
     def __call__(self,model,precise=False,parts=False):
         residual,groups=super().__call__(model,precise=precise,parts=True)
         for p in self.spec['train']:

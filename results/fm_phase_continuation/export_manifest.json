@@ -1,0 +1,7 @@
+{
+  "model": "models/phase_shape_candidates/FM_control.json",
+  "sha256": "0ca19de746443885a503467acc0292df89d1604caa3bbf1cc34c02432f7eef96",
+  "raw_source": "trials/control_0/candidate.json",
+  "physical_coefficients_unchanged": true,
+  "accepted": false
+}

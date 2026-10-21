@@ -8,7 +8,7 @@ from pwl_nest.rest_protocols import stable_rest
 from pwl_nest.calcium_coordinates import CalciumTransformPWA,simulate_coordinates
 from pwl_nest.models import ROOT
 sys.path.insert(0,str(ROOT/'scripts'))
-from fit_anchored_shapes import parameterization,translated_start,ShapeObjective
+from fit_anchored_shapes import parameterization,translated_start,ShapeObjective,shape_checks
 from fit_positive_coordinates import fit as legacy_fit
 from fit_mixed_coordinates import parameterization as legacy_parameterization
 
@@ -64,6 +64,19 @@ class EquilibriumConstraintsTest(unittest.TestCase):
         with patch.object(objective.dynamic,'run',return_value=None):failed=objective(seed)
         self.assertEqual(valid.shape,failed.shape)
         self.assertTrue(np.isfinite(failed).all())
+
+    def test_phase_weight_changes_only_absolute_timing_terms(self):
+        seed=CalciumTransformPWA.load(ROOT/'models/continued_shape_candidates/FM_control.json')
+        objective=ShapeObjective(ROOT/'results/fm_shift_continuation','FM',seed)
+        original,parts=objective(seed,parts=True)
+        objective.timing_weight=3.
+        weighted,new_parts=objective(seed,parts=True)
+        self.assertEqual(original.shape,weighted.shape)
+        for key,value in parts.items():
+            self.assertAlmostEqual(new_parts[key],value*(9. if key.endswith('_timing') else 1.),places=7)
+        checks_before=shape_checks(objective,seed)
+        objective.timing_weight=1.;objective(seed)
+        self.assertEqual(checks_before,shape_checks(objective,seed))
 
     def test_legacy_fitters_cannot_silently_unfix_rest(self):
         seed=CalciumTransformPWA.load(ROOT/'models/server_candidates/FM_identity__identity.json')

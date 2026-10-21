@@ -1,0 +1,7 @@
+protocol,old_C_RMSE,new_C_RMSE,LR_peaks,old_peaks,new_peaks,old_shape_pass,new_shape_pass
+phase_heldout_tau_9.0,0.018284150169304122,0.018267207890550093,1,1,1,True,True
+phase_heldout_tau_29.0,0.04850355355676539,0.04753662405325969,3,3,3,True,True
+phase_heldout_tau_58.0,0.11387560286765316,0.09585756130628786,5,5,5,True,True
+phase_heldout_tau_105.0,0.23798201763604424,0.19324012530409587,10,10,10,True,True
+phase_heldout_tau_170.0,0.28803744226798517,0.26666070708823775,16,16,16,True,True
+phase_heldout_irregular,0.11933014241589972,0.08684501141734235,9,9,9,False,False

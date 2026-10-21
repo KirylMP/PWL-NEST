@@ -1,0 +1,180 @@
+{
+  "evaluations": 2193,
+  "history": [
+    {
+      "evaluation": 1,
+      "loss": 12405.553109875731,
+      "seconds": 0.16400098100712057,
+      "eligible": true,
+      "shape_passes": 10
+    },
+    {
+      "evaluation": 139,
+      "loss": 11147.242046064694,
+      "seconds": 24.892868076000013,
+      "eligible": true,
+      "shape_passes": 10
+    },
+    {
+      "evaluation": 276,
+      "loss": 9148.52441541335,
+      "seconds": 49.380981892005366,
+      "eligible": true,
+      "shape_passes": 10
+    },
+    {
+      "evaluation": 391,
+      "loss": 8816.80787580409,
+      "seconds": 70.58025864100637,
+      "eligible": true,
+      "shape_passes": 10
+    },
+    {
+      "evaluation": 518,
+      "loss": 8780.625332121259,
+      "seconds": 93.73438987200643,
+      "eligible": true,
+      "shape_passes": 10
+    },
+    {
+      "evaluation": 691,
+      "loss": 8662.767956281978,
+      "seconds": 122.0617290490045,
+      "eligible": true,
+      "shape_passes": 10
+    },
+    {
+      "evaluation": 879,
+      "loss": 8661.797116944603,
+      "seconds": 152.86010519700358,
+      "eligible": true,
+      "shape_passes": 10
+    },
+    {
+      "evaluation": 1069,
+      "loss": 8659.848580172395,
+      "seconds": 184.80062344500038,
+      "eligible": true,
+      "shape_passes": 10
+    },
+    {
+      "evaluation": 1169,
+      "loss": 8559.483851360897,
+      "seconds": 202.86944971100456,
+      "eligible": true,
+      "shape_passes": 10
+    },
+    {
+      "evaluation": 1469,
+      "loss": 7074.877223304912,
+      "seconds": 255.4063795970069,
+      "eligible": true,
+      "shape_passes": 10
+    }
+  ],
+  "runs": [
+    {
+      "method": "least_squares",
+      "start": "global",
+      "status": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "least_squares",
+      "start": "incumbent",
+      "status": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": "Optimization terminated successfully."
+    }
+  ],
+  "bounds": [
+    [
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -28.0,
+      -10.0,
+      -10.0,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      10.0,
+      10.0,
+      12.0,
+      10.0,
+      12.0,
+      10.0,
+      10.0,
+      8.0,
+      8.0,
+      2.0,
+      10.0,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906
+    ]
+  ],
+  "global_search": {
+    "indices": [
+      16,
+      19,
+      17,
+      18
+    ],
+    "bounds": [
+      [
+        -2.343953463575136,
+        -1.983953463575136
+      ],
+      [
+        0.3210600169237272,
+        0.5310600169237272
+      ],
+      [
+        -1.0971915010410977,
+        -0.7371915010410979
+      ],
+      [
+        -2.524094686337252,
+        -2.164094686337252
+      ]
+    ],
+    "evaluations": 1152,
+    "loss": 8653.941442763551
+  },
+  "source_field_nfev": 0
+}

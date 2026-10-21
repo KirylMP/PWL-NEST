@@ -1,0 +1,106 @@
+{
+  "dt": 0.05,
+  "protocols": [
+    {
+      "name": "pulse_tau_20.0",
+      "reference_peaks": 2,
+      "candidate_peaks": 2,
+      "counts_match": true,
+      "max_height_relative_error": 0.05770524044224912,
+      "max_width_relative_error": 0.06998201782930469,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "pulse_tau_100.0",
+      "reference_peaks": 8,
+      "candidate_peaks": 8,
+      "counts_match": true,
+      "max_height_relative_error": 0.07296240457901404,
+      "max_width_relative_error": 0.07599760792917398,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "periodic",
+      "reference_peaks": 5,
+      "candidate_peaks": 5,
+      "counts_match": true,
+      "max_height_relative_error": 0.04334736629717628,
+      "max_width_relative_error": 0.0566954410283691,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "promoted_tau_35.0",
+      "reference_peaks": 3,
+      "candidate_peaks": 3,
+      "counts_match": true,
+      "max_height_relative_error": 0.0657196670032254,
+      "max_width_relative_error": 0.06943807178799077,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "promoted_tau_65.0",
+      "reference_peaks": 6,
+      "candidate_peaks": 6,
+      "counts_match": true,
+      "max_height_relative_error": 0.07083346423483916,
+      "max_width_relative_error": 0.08312733665526162,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "promoted_tau_80.0",
+      "reference_peaks": 7,
+      "candidate_peaks": 7,
+      "counts_match": true,
+      "max_height_relative_error": 0.07197099661983919,
+      "max_width_relative_error": 0.08076088965325612,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "anchored_heldout_tau_48.0",
+      "reference_peaks": 4,
+      "candidate_peaks": 4,
+      "counts_match": true,
+      "max_height_relative_error": 0.06843948822777346,
+      "max_width_relative_error": 0.07242563844793093,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "anchored_heldout_tau_160.0",
+      "reference_peaks": 15,
+      "candidate_peaks": 15,
+      "counts_match": true,
+      "max_height_relative_error": 0.07419133103156983,
+      "max_width_relative_error": 0.08710794309512049,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "continuation_heldout_tau_180.0",
+      "reference_peaks": 17,
+      "candidate_peaks": 17,
+      "counts_match": true,
+      "max_height_relative_error": 0.07446961355046766,
+      "max_width_relative_error": 0.0880463152802855,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "continuation_heldout_irregular",
+      "reference_peaks": 8,
+      "candidate_peaks": 8,
+      "counts_match": true,
+      "max_height_relative_error": 0.07749829642547468,
+      "max_width_relative_error": 0.06796604337052026,
+      "tolerance": 0.1,
+      "passes": true
+    }
+  ],
+  "passes": true
+}

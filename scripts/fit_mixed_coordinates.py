@@ -70,6 +70,7 @@ class MixedObjective(TimingObjective):
                 event=event_residual(t,x,tr,truth)
                 timing=absolute_peak_time_residual(t,x,tr,truth)
                 end=burst_end_residual(t,x,tr,truth)
+            timing=timing*getattr(self,'timing_weight',1.)
             for label,r in [('events',event),('timing',timing),('burst_end',end)]:
                 residual=np.r_[residual,r];groups[p['name']+'_'+label]=float(r@r)
         residual=np.r_[residual,anchor];groups['own_rest']=float(anchor@anchor)
