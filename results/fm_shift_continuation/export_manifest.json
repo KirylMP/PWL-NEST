@@ -1,0 +1,7 @@
+{
+  "model": "models/continued_shape_candidates/FM_control.json",
+  "sha256": "87550cc088ae868ee2cbaede8706e06452f9e2d15c9d277bb355e63a0603be41",
+  "raw_source": "trials/control_0/candidate.json",
+  "physical_coefficients_unchanged": true,
+  "accepted": false
+}

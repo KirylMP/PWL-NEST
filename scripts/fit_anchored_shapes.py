@@ -210,8 +210,10 @@ def fit_job(out,name):
         physical=np.column_stack([(error[:,0]+model.mix_derivative(latent[:,1])*error[:,1])/model.coordinate.derivative(points[:,0]),
                                   error[:,1]/model.gate.derivative(points[:,1])])
         return np.r_[(physical/[.2,.05]).ravel()/np.sqrt(len(points)),.01*(p[:na]-z[:na])]
-    started=time.monotonic();field=least_squares(field_residual,z,bounds=(lo,hi),max_nfev=100)
-    make(field.x).save(directory/'field_seed.json')
+    started=time.monotonic()
+    continuation=config.get('continuation',False)
+    field=None if continuation else least_squares(field_residual,z,bounds=(lo,hi),max_nfev=100)
+    if field is not None:make(field.x).save(directory/'field_seed.json')
     count=0;limit=10**9;best=np.inf;bestz=z.copy();eligible_best=np.inf;eligiblez=None;history=[];snapshots=[]
     class Limit(Exception):pass
     def residual(p):
@@ -236,9 +238,15 @@ def fit_job(out,name):
                 if not snapshots or loss<snapshots[-1][0]*.98:
                     snapshots.append((loss,p.copy()))
         return full
-    candidates=[('incumbent',z),('field',field.x)]
+    candidates=[('incumbent',z)]
+    if field is not None:candidates.append(('field',field.x))
+    if continuation and job.get('restart',0):
+        rng=np.random.default_rng(job['seed']);p=z.copy()
+        p[:na]+=rng.normal(0,.015,na);p[na:na+m]+=rng.normal(0,.025,m)
+        candidates.append(('local_perturbation',np.clip(p,lo+1e-8,hi-1e-8)))
     common=CalciumTransformPWA.load(SOURCE)
-    for label,start in [('translated_common',common),('translated_incumbent',seed)]:
+    translations=[] if continuation else [('translated_common',common),('translated_incumbent',seed)]
+    for label,start in translations:
         try:
             p=translated_start(start,objective.spec,z,active,m,make)
             if np.all(p>=lo) and np.all(p<=hi):candidates.append((label,p))
@@ -256,6 +264,7 @@ def fit_job(out,name):
              'linear':[loc[2*n+1],loc[2*n+4],loc[2*n+2],na+m],
              'quadratic':[loc[2*n+1],loc[2*n+4],na+m,na+m+1]}[family]
     widths={'control':[.6,.35,.6,.6],'linear':[.6,.35,.6,.08],'quadratic':[.6,.35,.08,.02]}[family]
+    if continuation:widths=[w*.3 for w in widths]
     base=min(ranks,key=lambda a:a[0])[2]
     bounds=[(max(lo[j],base[j]-w),min(hi[j],base[j]+w)) for j,w in zip(indices,widths)]
     def unpack(s):p=base.copy();p[indices]=s;return p
@@ -304,7 +313,7 @@ def fit_job(out,name):
         all_verifications=verified,evaluations=count,seconds=time.monotonic()-started,parameters=len(z),regions=8,
         selection_scope='eligible training candidate' if eligible else 'diagnostic only: no eligible candidate')
     atomic(directory/'fit.json',dict(evaluations=count,history=history,runs=runs,bounds=[lo.tolist(),hi.tolist()],
-        global_search=dict(indices=indices,bounds=bounds,evaluations=de.nfev,loss=float(de.fun)),source_field_nfev=field.nfev))
+        global_search=dict(indices=indices,bounds=bounds,evaluations=de.nfev,loss=float(de.fun)),source_field_nfev=field.nfev if field is not None else 0))
     atomic(directory/'result.json',result)
     print(json.dumps(dict(job=name,loss=result.get('verified_train_loss'),checks=result['checks'],evaluations=count)),flush=True)
 

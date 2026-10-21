@@ -1,0 +1,49 @@
+{
+  "continuation": true,
+  "jobs": [
+    {
+      "name": "control_0",
+      "family": "control",
+      "restart": 0,
+      "seed": 20261030,
+      "starting_model": "models/anchored_shape_candidates/FM_control.json",
+      "starting_sha256": "520d2dcd271ab762456057834fe7e8f46ebfc7ab9cb5616b1dc697215d0753ad"
+    },
+    {
+      "name": "control_1",
+      "family": "control",
+      "restart": 1,
+      "seed": 20261031,
+      "starting_model": "models/anchored_shape_candidates/FM_control.json",
+      "starting_sha256": "520d2dcd271ab762456057834fe7e8f46ebfc7ab9cb5616b1dc697215d0753ad"
+    },
+    {
+      "name": "control_2",
+      "family": "control",
+      "restart": 2,
+      "seed": 20261032,
+      "starting_model": "models/anchored_shape_candidates/FM_control.json",
+      "starting_sha256": "520d2dcd271ab762456057834fe7e8f46ebfc7ab9cb5616b1dc697215d0753ad"
+    }
+  ],
+  "budget": 1200,
+  "global_iterations": 25,
+  "workers": 3,
+  "regions": 8,
+  "parameters": 27,
+  "constraints": "unchanged exact LR rest, 8 static morphology/regime checks, all 8 training peak counts/heights/widths",
+  "promoted": [
+    "anchored_heldout_tau_48.0",
+    "anchored_heldout_tau_160.0"
+  ],
+  "heldout_used_for_field_initialization": false,
+  "selection": "minimum independently verified eligible training loss; if none, keep incumbent and report diagnostic best",
+  "source_sha256": {
+    "/workspace/PWL-NEST/scripts/continue_anchored_fit.py": "d503ea0db586d58d8a0a8e8bda31bff0a2287c3d91484276c2a74ee59fc76f5e",
+    "scripts/fit_anchored_shapes.py": "e1deb6cd163402d8dc2486831de2849bbc7af54f68004a3db70bc4a0e45e0678",
+    "src/pwl_nest/peak_shape.py": "3579b3993df9d5572d5969ec27bc04c664690464145973e3e6154863ea00273e"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0"
+}

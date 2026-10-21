@@ -1,0 +1,166 @@
+{
+  "evaluations": 1858,
+  "history": [
+    {
+      "evaluation": 1,
+      "loss": 4703.936423779205,
+      "seconds": 0.16726333299448015,
+      "eligible": false,
+      "shape_passes": 7
+    },
+    {
+      "evaluation": 239,
+      "loss": 3107.956374962471,
+      "seconds": 29.140172957995674,
+      "eligible": true,
+      "shape_passes": 8
+    },
+    {
+      "evaluation": 381,
+      "loss": 2945.384711316907,
+      "seconds": 44.07288457099639,
+      "eligible": true,
+      "shape_passes": 8
+    },
+    {
+      "evaluation": 496,
+      "loss": 2924.173119694174,
+      "seconds": 57.398950809998496,
+      "eligible": true,
+      "shape_passes": 8
+    },
+    {
+      "evaluation": 620,
+      "loss": 2923.998581105154,
+      "seconds": 71.59358315699501,
+      "eligible": true,
+      "shape_passes": 8
+    },
+    {
+      "evaluation": 728,
+      "loss": 2904.1655116274114,
+      "seconds": 84.42795652199857,
+      "eligible": true,
+      "shape_passes": 8
+    },
+    {
+      "evaluation": 852,
+      "loss": 2895.36144259688,
+      "seconds": 99.23495173799893,
+      "eligible": true,
+      "shape_passes": 8
+    },
+    {
+      "evaluation": 1165,
+      "loss": 2666.616252465045,
+      "seconds": 138.42948016899754,
+      "eligible": true,
+      "shape_passes": 8
+    }
+  ],
+  "runs": [
+    {
+      "method": "least_squares",
+      "start": "global",
+      "status": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "least_squares",
+      "start": "incumbent",
+      "status": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": "Optimization terminated successfully."
+    }
+  ],
+  "bounds": [
+    [
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -28.0,
+      -10.0,
+      -10.0,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      10.0,
+      10.0,
+      12.0,
+      10.0,
+      12.0,
+      10.0,
+      10.0,
+      8.0,
+      8.0,
+      2.0,
+      10.0,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906
+    ]
+  ],
+  "global_search": {
+    "indices": [
+      16,
+      19,
+      17,
+      18
+    ],
+    "bounds": [
+      [
+        -2.341692618185393,
+        -1.981692618185393
+      ],
+      [
+        0.22310591325887957,
+        0.43310591325887954
+      ],
+      [
+        -1.10509266833435,
+        -0.7450926683343502
+      ],
+      [
+        -2.6778398476611853,
+        -2.317839847661185
+      ]
+    ],
+    "evaluations": 832,
+    "loss": 2895.369203960587
+  },
+  "source_field_nfev": 0
+}
