@@ -1,0 +1,355 @@
+{
+  "case": "FM",
+  "calcium_coordinate": {
+    "kind": "identity",
+    "reference": 0.02812613673817445,
+    "scale": 0.9833352639826316,
+    "normalization": "phi(C_ref)=0, phi_prime(C_ref)=1/scale"
+  },
+  "h_reference": 0.8371177795140701,
+  "h_coordinate": {
+    "kind": "identity",
+    "normalization": "psi(h_ref)=0, psi_prime(h_ref)=1/[h_ref*(1-h_ref)]"
+  },
+  "thresholds_u": [
+    0.021614704228864867,
+    0.023914766722166848,
+    0.02528190161188192,
+    0.03226867743107938,
+    0.14490054097670646,
+    0.26978925291118316,
+    0.3633060030462036
+  ],
+  "thresholds_C": [
+    0.049380637626971785,
+    0.051642370185999445,
+    0.05298672213367728,
+    0.05985706517823529,
+    0.17061194845073024,
+    0.2934194229692697,
+    0.3853777411500878
+  ],
+  "basis": [
+    "1",
+    "u",
+    "v",
+    "I",
+    "max(0,u-(0.021614704228864867)-(0)*(I-0.65000000000000002))",
+    "max(0,u-(0.023914766722166848)-(0)*(I-0.65000000000000002))",
+    "max(0,u-(0.025281901611881919)-(0)*(I-0.65000000000000002))",
+    "max(0,u-(0.032268677431079383)-(0)*(I-0.65000000000000002))",
+    "max(0,u-(0.14490054097670646)-(0)*(I-0.65000000000000002))",
+    "max(0,u-(0.26978925291118316)-(0)*(I-0.65000000000000002))",
+    "max(0,u-(0.36330600304620358)-(0)*(I-0.65000000000000002))"
+  ],
+  "coefficients": [
+    [
+      0.36438108551555254,
+      -30.440707182950398,
+      0.5271594350011315,
+      0.40810967839446705,
+      30.57626633188742,
+      0.07232489253808491,
+      0.0015608610011420554,
+      -0.0013755760558666064,
+      2.6636438622075302,
+      -2.181862434876755,
+      -1.0345639572649439
+    ],
+    [
+      -0.2113003251811253,
+      9.378478836184172,
+      -0.20785786642527737,
+      0.08743857716717973,
+      -11.751345506713175,
+      0.6178562331898503,
+      1.6724267292072368,
+      0.13349784944817117,
+      -1.3154185351250303,
+      -0.16752218035514121,
+      0.8788146130443346
+    ]
+  ],
+  "metadata": {
+    "class_name": "PWA_in_transformed_calcium_and_gate",
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "thresholds_policy": "ordered physical C gaps fitted; +/-ln(2)",
+    "events": [
+      {
+        "kind": "node_focus",
+        "C": 0.048619351113710484,
+        "h": 0.9048240074087905,
+        "I": 0.5107261652060473,
+        "trace": -0.9371213109720676,
+        "determinant": 0.21954908786955274,
+        "discriminant": -2.042810365310288e-13
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.05214116272147648,
+        "h": 0.9000491800100884,
+        "I": 0.5290700389163677,
+        "trace": -4.496403249731884e-15,
+        "determinant": 0.1425073815620356,
+        "discriminant": -0.5700295262481424
+      },
+      {
+        "kind": "node_focus",
+        "C": 0.054844693127646865,
+        "h": 0.896054433705267,
+        "I": 0.5373937039464934,
+        "trace": 0.6067227301414392,
+        "determinant": 0.09202811781756895,
+        "discriminant": 5.828670879282072e-15
+      },
+      {
+        "kind": "fold",
+        "C": 0.06128930910964823,
+        "h": 0.8857884628661977,
+        "I": 0.543991943247855,
+        "trace": 1.7283315292743897,
+        "determinant": 5.218048215738236e-15,
+        "discriminant": 2.9871298750839297
+      },
+      {
+        "kind": "fold",
+        "C": 0.13570424237991197,
+        "h": 0.768511022734427,
+        "I": 0.48230398233782174,
+        "trace": 2.9026660520000007,
+        "determinant": 1.1102230246251565e-16,
+        "discriminant": 8.425470209433271
+      },
+      {
+        "kind": "node_focus",
+        "C": 0.25181841575269986,
+        "h": 0.6591403501982817,
+        "I": 0.574731535562183,
+        "trace": 0.9807551016266955,
+        "determinant": 0.2404701423416976,
+        "discriminant": -5.551115123125783e-16
+      },
+      {
+        "kind": "trace_zero",
+        "C": 0.3926251934101711,
+        "h": 0.59460186533488,
+        "I": 0.86002055575706,
+        "trace": 1.3877787807814457e-16,
+        "determinant": 0.39257039244245817,
+        "discriminant": -1.5702815697698327
+      }
+    ],
+    "source_average_trace": [
+      -7.4745408979558015,
+      -0.49515903859884447,
+      0.28510835169471715,
+      0.9905526353919251,
+      3.2162933997474545,
+      1.5532635195136915,
+      0.3658238619293699,
+      -0.24429506555601127
+    ],
+    "source_average_determinant": [
+      0.5184687988602612,
+      0.18337236470663948,
+      0.11879390254423844,
+      0.06025653395333744,
+      -0.08793570454283689,
+      0.16778785771636465,
+      0.3314231702853263,
+      0.44446044397767603
+    ],
+    "spectral_weight": "absolute dI along the full equilibrium branch",
+    "source_inverse_equilibrium_slopes": [
+      24.921720714332224,
+      5.208647069556499,
+      3.078813173740622,
+      1.0238374667768082,
+      -0.8289728714261155,
+      0.7960057806863937,
+      2.0261028974675885,
+      3.823777207278767
+    ],
+    "restoring_scale": 0.023277457581257092,
+    "regions": 8,
+    "free_parameters": 22,
+    "target_types": [
+      "stable_node",
+      "stable_focus",
+      "unstable_focus",
+      "unstable_node",
+      "saddle",
+      "unstable_node",
+      "unstable_focus",
+      "stable_focus"
+    ],
+    "IP3": "exact -(I-baseline)/tau; no fitted row",
+    "source": "Li-Rinzel legacy parameter set; not yet compared against NEST implementation",
+    "scope": "candidate, not accepted; fixed threshold heuristic under test",
+    "calcium_transform": "identity",
+    "physical_thresholds_C": [
+      0.049380637626971785,
+      0.051642370185999445,
+      0.05298672213367728,
+      0.05985706517823529,
+      0.17061194845073024,
+      0.2934194229692697,
+      0.3853777411500878
+    ],
+    "physical_field_PWA": false,
+    "enforce_types": true,
+    "accepted": false,
+    "source_chain_rule": "udot=phi_prime(C)*fC; vdot=fh/[h*(1-h)]",
+    "calcium_reference": 0.02812613673817445,
+    "h_reference": 0.8371177795140701,
+    "coordinate_scale": 0.9833352639826316,
+    "normalization": "phi(Cref)=0; phi(C_MAX)=C_MAX",
+    "q0_parameterization": "q0=qb*IP3_offset; source rest u=0",
+    "parameter_count": 32,
+    "parameters": [
+      3.42258584397388,
+      -2.626948888726445,
+      -10.550703897394648,
+      -6.445887121265883,
+      -8.46147472579524,
+      0.9797744427208903,
+      -0.7298259216257215,
+      -0.5931732204889261,
+      -5.128434257406019,
+      0.19999384607227236,
+      -0.12560860147360411,
+      -4.090973563618718,
+      -2.657993464686576,
+      -3.1969182851623077,
+      -0.5916089299544862,
+      -1.248452316091307,
+      -0.2722937777858085,
+      -2.0331468470416305,
+      -0.6402522429857399,
+      -1.5709007673541078,
+      0.40810967839446705,
+      0.36438108551555254
+    ],
+    "mu_sign": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      -1.0
+    ],
+    "k_sign": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      -1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "training_data_loss": 49.98953084637727,
+    "training_total_loss": 49.98957283076839,
+    "selected_by": "event-weighted calibration with promoted failure cases; fresh tests excluded",
+    "experiment_variant": "input_threshold",
+    "seed_model": "models/extended_pwa/selected_FM.json",
+    "reported_previous_training_loss": 71.13896404304266,
+    "threshold_parameter_count": 7,
+    "coefficient_parameter_count": 22,
+    "threshold_reference_C": [
+      0.048619351113710484,
+      0.05214116272147648,
+      0.054844693127646865,
+      0.06128930910964823,
+      0.13570424237991197,
+      0.25181841575269986,
+      0.3926251934101711
+    ],
+    "threshold_domain_C": [
+      0.02812613673817445,
+      0.5076892832858616
+    ],
+    "coefficient_prior_strength": 0.005,
+    "threshold_gap_prior_strength": 0.05,
+    "threshold_shifts": [
+      0.26408958756594714,
+      -0.5070153179192554,
+      -0.6931422606668873,
+      -0.1664323159624921,
+      0.004165505719774137,
+      0.10833941980851519,
+      -0.10219013809858701
+    ],
+    "h_transform": "identity",
+    "active_fit_parameters": 32,
+    "new_geometry_parameters": 0,
+    "held_incumbent_C_thresholds": [
+      0.048548547573493264,
+      0.05203973009583146,
+      0.05470530916436547,
+      0.061084272036948745,
+      0.13511814404411937,
+      0.24987128254247906,
+      0.3928588572786892
+    ],
+    "input_thresholds": [
+      0.6281746581544576
+    ],
+    "input_knot_locations_fitted": true,
+    "reference_input": 0.65,
+    "pilot": "standalone branches, not all Cartesian feature combinations",
+    "extra_parameters": [
+      0.258403299928354,
+      0.0011059551423134664
+    ],
+    "verified_training_data_loss": 50.31887630079412,
+    "verified_training_method": "native static + independent DOP853 training paths + original source-I anchors",
+    "calcium_clipping": false,
+    "dynamic_peak_count_residual_weight": 25.0,
+    "fixed_status_residual_weight": 25.0,
+    "fixed_status_policy": "explicit known status; unresolved references carry no hard label",
+    "optimizer_calibration_loss": 1795.0445751880661,
+    "verified_calibration_loss": 35.34381224568401,
+    "verified_calibration_method": "all calibration paths DOP853; fresh tests excluded",
+    "refined_calibration_loss": 35.344625439674466,
+    "source_seed": "models/positive_coordinates/sqrt_tails/FM.json",
+    "initialization": "own stable physical equilibrium; 20 s before IP3 pulse",
+    "fit_seed": 21861033,
+    "fit_restart": 16,
+    "objective": "absolute peak times + last peak + excess postburst calcium + original criterion",
+    "parent_model": "trials/FM/identity__identity/r0015/candidate.json",
+    "source_server_candidate": "models/server_candidates/FM_identity__identity.json",
+    "model_family": "one_I_knot",
+    "actual_region_count": 16
+  },
+  "geometry": {
+    "input_thresholds": [
+      0.6281746581544576
+    ],
+    "input_weights": [
+      [
+        0.258403299928354
+      ],
+      [
+        -0.10161306070961926
+      ]
+    ],
+    "threshold_slopes": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "reference_input": 0.65,
+    "definition": "base affine + sum wj*(u-theta_j-sj*(I-Iref))_+ + sum zk*(I-eta_k)_+"
+  }
+}

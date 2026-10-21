@@ -91,6 +91,21 @@ def aggregate(records):
                 protocol_count=len(records))
 
 
+def rebuild_training_field(cache):
+    """Discard cached field seeds that may contain held-out trajectory points."""
+    cache = Path(cache)
+    spec = json.loads((cache / 'data.json').read_text())
+    training = spec['fixed'] + spec['train']
+    points = []
+    for p in training:
+        with np.load(cache / f'{p["name"]}.npz') as data:
+            points.append(data['x'][::max(1, len(data['t']) // 200)])
+    np.savez_compressed(cache / 'field.npz', points=np.vstack(points))
+    spec.update(field_initialization_protocols=[p['name'] for p in training],
+                heldout_used_for_field_initialization=False)
+    atomic(cache / 'data.json', spec)
+
+
 def run(args):
     out = Path(args.output).resolve()
     if out.exists() and any(out.iterdir()) and not args.replay_trials:
@@ -103,6 +118,7 @@ def run(args):
         budget=args.budget, restarts=args.restarts, sigma_s=args.timing_sigma, seed=args.seed,
         objective='original rest/event criterion + every absolute peak time / sigma_s; quadratic peak interpolation',
         selection='all training independently recomputed with DOP853; tests excluded',
+        field_initialization='frozen cache; no optimization' if args.replay_trials else 'fixed and dynamic training paths only',
         code_sha256=hashlib.sha256(Path(__file__).read_bytes() + code_hash().encode()).hexdigest(),
         python=sys.version, numpy=np.__version__, scipy=__import__('scipy').__version__)
     if args.replay_trials:
@@ -114,12 +130,13 @@ def run(args):
     else:
         atomic(out / 'config.json', config)
     for case in dict.fromkeys(model.case for model in seeds):
-        if (out / 'cache' / case / 'data.json').exists():
-            continue
-        elif args.reference_cache:
-            shutil.copytree(Path(args.reference_cache) / case, out / 'cache' / case)
-        else:
-            prepare(out, case)
+        if not (out / 'cache' / case / 'data.json').exists():
+            if args.reference_cache:
+                shutil.copytree(Path(args.reference_cache) / case, out / 'cache' / case)
+            else:
+                prepare(out, case)
+        if not args.replay_trials:
+            rebuild_training_field(out / 'cache' / case)
     results = []
     for name, source, original in zip(args.models, sources, seeds):
         case = original.case

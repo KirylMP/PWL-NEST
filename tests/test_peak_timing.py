@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from pwl_nest.peak_timing import interpolated_peak_times, absolute_peak_time_residual
+from pwl_nest.peak_timing import interpolated_peak_times, absolute_peak_time_residual, burst_end_residual
 
 
 def pulses(t, centers):
@@ -39,6 +39,25 @@ class PeakTimingTest(unittest.TestCase):
         residual = absolute_peak_time_residual(coarse, pulses(coarse, centers + .1),
                                                fine, pulses(fine, centers))
         np.testing.assert_allclose(residual, .1, atol=.003)
+
+    def test_burst_end_penalizes_an_extra_late_impulse(self):
+        t = np.linspace(0, 100, 1001)
+        truth = pulses(t, [30., 50.])
+        extra = pulses(t, [30., 50., 80.])
+        same = burst_end_residual(t, truth, t, truth)
+        wrong = burst_end_residual(t, extra, t, truth)
+        np.testing.assert_allclose(same, 0., atol=1e-12)
+        self.assertEqual(len(wrong), len(same))
+        self.assertAlmostEqual(wrong[0], 30.)
+        self.assertGreater(np.linalg.norm(wrong[1:]), 1.)
+
+    def test_burst_end_keeps_missed_last_peak_distinct_from_tiny_tail(self):
+        t = np.linspace(0, 100, 1001)
+        truth = pulses(t, [30., 50.])
+        early_stop = pulses(t, [30.])
+        self.assertAlmostEqual(burst_end_residual(t, early_stop, t, truth)[0], -20.)
+        tiny = truth.copy();tiny[t >= 60., 0] += .01
+        np.testing.assert_allclose(burst_end_residual(t, tiny, t, truth), 0., atol=1e-12)
 
 
 if __name__ == '__main__':

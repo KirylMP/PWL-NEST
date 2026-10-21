@@ -1,0 +1,39 @@
+{
+  "base_commit": "bde4b85b81a337f861b61b6f970d8b4c1942a35c",
+  "snapshots": [
+    "scripts/fit_fm_input_threshold.py",
+    "scripts/warmstart_fm_input_threshold.py",
+    "scripts/fit_positive_coordinates.py",
+    "scripts/overnight_coordinate_grid.py",
+    "scripts/refine_server_candidates.py",
+    "src/pwl_nest/peak_timing.py"
+  ],
+  "reference_sha256": {
+    "cache/FM/fixed_1.13.npz": "a0e64d64a79408535223fcba0aea281dd114d33c7f10256b787686c3d8e5ecbc",
+    "cache/FM/heldout_irregular.npz": "11d2753f119221bd713aa61930a03c1b96af186240fbe2e648aa52c6a169d113",
+    "cache/FM/pulse_tau_100.0.npz": "653d513b4654924f7d0ea8bced8dfbdf80f4b9592a9b854bd060b9f6b249bb38",
+    "cache/FM/pulse_tau_65.0.npz": "222d00b883bd1c7a3296fc9b38bf3faf6cdeb5461f941424ce3a42c22fd9851b",
+    "cache/FM/fixed_1.2.npz": "e06b0b3c62f52846c940707fcaeae180f98121829a910e3c169aad8dcb4893f6",
+    "cache/FM/data.json": "54e70a11cf41f43fe9d55f95a506d3665a9d1254a2d76de6e8baa9b937022251",
+    "cache/FM/fixed_1.12.npz": "21497281220d74313a2a89b71160592fb441f24379744154c08b61b5ba0b396f",
+    "cache/FM/fixed_0.7.npz": "a658e80cc8beba3e955283fcf3ff0fe49ab10c17bd5e6b6d30973578cebde1e3",
+    "cache/FM/pulse_tau_20.0.npz": "70bf40c9dc14105a27c2a4eb5d2dba6863787dcf7a9eeb176d663963a70c8910",
+    "cache/FM/heldout_tau_95.0.npz": "d95382890809455a4045a62dc01488d88404ce3785d0ed176610adfd3f5bde9b",
+    "cache/FM/promoted_tau_80.0.npz": "31407b64cbe9744989d4771fd02f342e9af21ca85d5a552864f02fbfa31d8371",
+    "cache/FM/fixed_lower_rest.npz": "6b8dd3f7c9caea9df474176efaf99e895c0213fcd856653d8f0fe728776acc58",
+    "cache/FM/pulse_tau_50.0.npz": "f7dea5ea6bb654184d3ed11a1c7ca746a00f28f8a3a6c6991b5ec9963b188238",
+    "cache/FM/heldout_tau_170.0.npz": "1bd4c956c50ddcfc3642298a02e5137bed2f7752ac7f1eab82889973206cb65f",
+    "cache/FM/fixed_1.0.npz": "b57ded15e5b5587e1635ba97dbc19015ef9373e8768d4cc8496e5d38a1f2e6c0",
+    "cache/FM/promoted_tau_35.0.npz": "07ea33ce72b6ce13c053495619c7f780df3a513526fa97969dcb070d801fb000",
+    "cache/FM/fixed_0.53.npz": "d40b50b04cb7ca2387a514c9fd98c8886aba9dc081e213e08af57cfd46798252",
+    "cache/FM/heldout_tau_57.0.npz": "6c1d3214c415a679549503813000bcea315e8cf4152267a9e7cfcb5efaf8c348",
+    "cache/FM/pulse_tau_7.0.npz": "9f8775f8ab8e71ab42814d1a31e0999b00aebd3d7e286d43e63121f0d045a172",
+    "cache/FM/irregular.npz": "51b4a181491f9b00e26cfd9b9eb3e05a1182d6aece4cb66876f33c9f756b4db0",
+    "cache/FM/field.npz": "17c00b4c15296f3f7a52ed60e29f0efecd4aae3d8648704afc23dddf09a5fe64",
+    "cache/FM/heldout_tau_9.0.npz": "782afc1a856dfc8aeb6be601edc59815f08711c4ce71c6c2f1e6962a64c0503e",
+    "cache/FM/periodic.npz": "1bede59f3471f4c99559b09fed9fd5c072da0fc1d6878ecc5e42449441ee10f2",
+    "cache/FM/fixed_0.55.npz": "f098275cfeb37efc1138e86e04a92f9a2f0bbe5210e5c0194196fbb44f2394c7",
+    "cache/FM/heldout_tau_28.0.npz": "0f59b4c02f6600a119c54a8d1cf8a94c575549eb3d7d87b97f6598641af068eb",
+    "cache/FM/promoted_tau_65.0.npz": "bc0e81f346604e1b4b9efcae5666c93ed3f17cadcd49e506e3f5ef7624331280"
+  }
+}

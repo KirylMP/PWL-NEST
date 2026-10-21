@@ -1,0 +1,30 @@
+{
+  "parent": "trials/one_I_knot_2/candidate.json",
+  "parent_sha256": "ffb6619e27b58bd4f84cbee79bc3a42db9fdd598e1d95cbcc55b10e3488e8d2a",
+  "family": "one_I_knot",
+  "bounds": [
+    [
+      0.46,
+      1.12
+    ],
+    [
+      -0.07632685710673535,
+      0.08367314289326465
+    ],
+    [
+      -0.532629976063421,
+      0.8673700239365789
+    ]
+  ],
+  "start": [
+    0.6505423356854382,
+    0.0036731428932646483,
+    0.16737002393657893
+  ],
+  "global_maxiter": 25,
+  "population_size_factor": 8,
+  "joint_budget": 1500,
+  "seed": 20261027,
+  "code_sha256": "e7958e865a11b78a9002457124bdb4d0f36ab00cbdc8ec3220df66db0c69f4f4",
+  "selection": "training only; equal DE and joint budgets for both families"
+}

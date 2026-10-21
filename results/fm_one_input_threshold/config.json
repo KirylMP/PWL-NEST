@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "budget": 1500,
+  "jobs": [
+    {
+      "name": "control_0",
+      "family": "control",
+      "seed": 20261024,
+      "initial_knot": null
+    },
+    {
+      "name": "one_I_knot_0",
+      "family": "one_I_knot",
+      "seed": 20261024,
+      "initial_knot": 0.6058011220143737
+    },
+    {
+      "name": "control_1",
+      "family": "control",
+      "seed": 20261025,
+      "initial_knot": null
+    },
+    {
+      "name": "one_I_knot_1",
+      "family": "one_I_knot",
+      "seed": 20261025,
+      "initial_knot": 0.628177239908253
+    },
+    {
+      "name": "control_2",
+      "family": "control",
+      "seed": 20261026,
+      "initial_knot": null
+    },
+    {
+      "name": "one_I_knot_2",
+      "family": "one_I_knot",
+      "seed": 20261026,
+      "initial_knot": 0.6505533578021323
+    }
+  ],
+  "workers": 3,
+  "input_bounds": [
+    0.46,
+    1.12
+  ],
+  "source_model": "models/server_candidates/FM_identity__identity.json",
+  "source_sha256": "a388167733f0f80002a024d08415b80755a302cb8bd62461c7cb88996f5462cd",
+  "code_sha256": "e5cc23cb7f95f3c095b4f263c49976175e286b3b3ac570977dd2402a74ad3167",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "field_initialization": "fixed + dynamic TRAIN ONLY; no test trajectory points",
+  "selection": "physical + all training peak counts + known static regimes; then independent training loss",
+  "promoted_prior_failures": [
+    {
+      "name": "promoted_tau_35.0",
+      "duration": 220.0,
+      "tau": 35.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "promoted_tau_65.0",
+      "duration": 200.0,
+      "tau": 65.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "promoted_tau_80.0",
+      "duration": 220.0,
+      "tau": 80.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    }
+  ],
+  "heldout_protocols": [
+    {
+      "name": "heldout_tau_9.0",
+      "duration": 240.0,
+      "tau": 9.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "heldout_tau_28.0",
+      "duration": 240.0,
+      "tau": 28.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "heldout_tau_57.0",
+      "duration": 240.0,
+      "tau": 57.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "heldout_tau_95.0",
+      "duration": 240.0,
+      "tau": 95.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "heldout_tau_170.0",
+      "duration": 360.0,
+      "tau": 170.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "heldout_irregular",
+      "duration": 300.0,
+      "tau": 23.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.24750679593255093
+        ],
+        [
+          41.58387072897463,
+          0.2375695169827703
+        ],
+        [
+          60.49512389028567,
+          0.2588750520037873
+        ],
+        [
+          77.86559523217034,
+          0.3183827868538137
+        ],
+        [
+          98.6870867086518,
+          0.2589984829651924
+        ],
+        [
+          119.14759568230792,
+          0.20978333304394406
+        ],
+        [
+          133.5416259156289,
+          0.24764954791934168
+        ],
+        [
+          155.21993236308737,
+          0.2657860099686738
+        ]
+      ]
+    }
+  ]
+}

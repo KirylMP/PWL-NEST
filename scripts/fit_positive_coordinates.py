@@ -116,8 +116,14 @@ class CalibrationResidual:
         return (result,groups) if parts else result
 
 
-def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind=None,rng_seed=20261021,checkpoint_path=None):
+def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind=None,rng_seed=20261021,checkpoint_path=None,input_threshold_bounds=None):
     n=seed.latent.region_count;nc=2*n+6;m=n-1;knots=seed.input_thresholds
+    move_input=input_threshold_bounds is not None
+    if move_input:
+        bounds=np.asarray(input_threshold_bounds,dtype=float)
+        if (len(knots)!=1 or bounds.shape!=(2,) or not np.isfinite(bounds).all()
+                or not 0<bounds[0]<knots[0]<bounds[1]<1.3):
+            raise ValueError('Movable input knot requires one threshold inside valid bounds')
     physical=np.array(seed.metadata['physical_thresholds_C']);mapping=OrderedThresholds(physical,data[4],data[5])
     ckind={'sixth_C':'sixth','sixth_root_C':'sixth_root','bounded_C':'bounded_logit','sqrt_tails':'sqrt_tails'}.get(variant,seed.coordinate.kind)
     hkind='sixth' if variant=='sixth_h' else seed.h_kind
@@ -129,12 +135,14 @@ def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind
         raw=CalciumCoordinate(ckind,seed.coordinate.reference,half_saturation=half)
         endpoint=.9*C_MAX if ckind=='bounded_logit' else C_MAX
         co=CalciumCoordinate(ckind,raw.reference,float(raw.forward(endpoint)/endpoint),half)
-    z=np.r_[seed.metadata['parameters'],np.zeros(m),seed.metadata.get('extra_parameters',[]) if len(knots) else []]
-    if len(z)!=nc+m+2*len(knots):raise ValueError('Unexpected input geometry parameter count')
+    z=np.r_[seed.metadata['parameters'],np.zeros(m),seed.metadata.get('extra_parameters',[]) if len(knots) else [],knots if move_input else []]
+    if len(z)!=nc+m+2*len(knots)+int(move_input):raise ValueError('Unexpected input geometry parameter count')
     factor=seed.coordinate.derivative(co.reference)/co.derivative(co.reference)
     z[2*n+1:2*n+3]-=np.log(factor);z[2*n+4:2*n+6]/=factor
     lower=np.r_[np.full(n,-12.),np.full(n,-40.),-.5,-40.,-28.,-10.,-10.,-10.,np.full(m,-np.log(2)),np.full(len(knots),-2.),np.full(len(knots),-np.log(4))]
     upper=np.r_[np.full(n,5.),np.full(n,10.),.5,8.,8.,2.,10.,10.,np.full(m,np.log(2)),np.full(len(knots),2.),np.full(len(knots),np.log(4))]
+    if move_input:
+        lower=np.r_[lower,bounds[0]];upper=np.r_[upper,bounds[1]]
     for j,label in enumerate(seed.metadata['target_types']):
         if label.endswith('node'):upper[n+j]=12.
     z=np.clip(z,lower+1e-8,upper-1e-8)
@@ -143,21 +151,22 @@ def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind
         coordinate_scale=co.scale,threshold_parameter_count=m,coefficient_parameter_count=nc,
         parameter_count=len(z),active_fit_parameters=len(z),accepted=False,
         thresholds_policy='ordered physical C gaps fitted; +/-ln(2)',
-        input_knot_locations_fitted=False,calcium_clipping=False,
+        input_knot_locations_fitted=move_input,calcium_clipping=False,
         seed_model=f'models/extended_pwa/selected_{case}.json',
         selected_by='event-weighted calibration with promoted failure cases; fresh tests excluded',
         dynamic_peak_count_residual_weight=objective.peak_weight,fixed_status_residual_weight=25.,
         fixed_status_policy='explicit known status; unresolved references carry no hard label' if objective.explicit_status else 'period presence only')
     def make(p):
-        ph=mapping.decode(p[nc:nc+m]);metadata={**meta,'physical_thresholds_C':ph.tolist()}
+        ph=mapping.decode(p[nc:nc+m]);eta=p[-1:] if move_input else knots
+        metadata={**meta,'physical_thresholds_C':ph.tolist(),'input_thresholds':eta.tolist()}
         model=decode_coordinates(case,co.forward(ph),p[:nc],seed.metadata['mu_sign'],seed.metadata['k_sign'],
             metadata,co,seed.h_reference,hkind)
         weights=np.zeros((2,len(knots)))
         if len(knots):
-            extra=p[nc+m:];B,D=model.latent.matrix[:,2];qb=model.latent.spectral_coefficients()[3]
+            extra=p[nc+m:nc+m+2*len(knots)];B,D=model.latent.matrix[:,2];qb=model.latent.spectral_coefficients()[3]
             slopes=qb*np.r_[1.,np.exp(extra[len(knots):])];a=extra[:len(knots)]
             weights=np.array([a,(np.diff(slopes)+D*a)/B])
-        return CalciumTransformPWA(model.latent,co,seed.h_reference,hkind,knots,weights)
+        return CalciumTransformPWA(model.latent,co,seed.h_reference,hkind,eta,weights)
     directory=MODELS/variant;directory.mkdir(parents=True,exist_ok=True)
     make(z).save(directory/f'{case}_initial.json')
     points=data[2];template=make(z);transformed=template.to_latent(points);truth=template.source_field(transformed)
@@ -208,7 +217,7 @@ def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind
     runs.append(dict(method='Powell',status=status))
     model=make(bestz);r,parts=objective(model,parts=True)
     model.metadata.update(parameters=bestz[:nc].tolist(),threshold_shifts=bestz[nc:nc+m].tolist(),
-        extra_parameters=bestz[nc+m:].tolist(),optimizer_calibration_loss=float(r@r))
+        extra_parameters=bestz[nc+m:nc+m+2*len(knots)].tolist(),optimizer_calibration_loss=float(r@r))
     model.save(directory/f'{case}.json')
     destination=OUT/variant;destination.mkdir(parents=True,exist_ok=True)
     dump(destination/f'{case}_fit.json',dict(evaluations=count,history=history,runs=runs,

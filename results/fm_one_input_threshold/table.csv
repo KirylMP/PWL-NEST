@@ -1,0 +1,4 @@
+family,name,verified_train_loss,parameters,regions,input_thresholds,training_eligible,test_C_RMSE,test_peak_count_matches,test_all_physical
+original,original,3759.755450012355,29,8,[],False,0.2339125324781214,5,True
+control,global_control,1380.2546027874669,29,8,[],True,0.2454441097056963,6,True
+one_I_knot,global_one_I_knot,1071.247107850778,32,16,[0.5480519205557433],True,0.2617891048556377,6,True

@@ -45,3 +45,22 @@ def absolute_peak_time_residual(t, x, target_t, target_x, onset=20., sigma_s=1.)
     residual = np.full(len(reference), 25.)
     residual[:paired] = (candidate[:paired] - reference[:paired]) / sigma_s
     return residual
+
+
+def burst_end_residual(t, x, target_t, target_x, onset=20., sigma_s=1.):
+    """Penalize last-peak timing and excess calcium after the reference burst.
+
+    The tail mask is fixed by the reference, starting five seconds after its
+    last peak. A 0.02 uM tolerance avoids treating tiny tail differences as
+    full impulses. The original peak-count criterion remains unchanged.
+    """
+    if not np.isfinite(sigma_s) or sigma_s <= 0:
+        raise ValueError('Burst timing sigma must be positive')
+    reference = interpolated_peak_times(target_t, target_x, onset)
+    candidate = interpolated_peak_times(t, x, onset)
+    last = reference[-1] if len(reference) else 0.
+    timing = ((candidate[-1] - last) / sigma_s if len(candidate) else 25.) if len(reference) else 25. * bool(len(candidate))
+    mask = np.asarray(target_t) >= onset + last + 5.
+    calcium = np.interp(np.asarray(target_t)[mask], t, np.asarray(x)[:, 0])
+    tail = 2. * np.maximum(calcium - np.asarray(target_x)[mask, 0] - .02, 0.) / .05 / np.sqrt(max(1, int(mask.sum())))
+    return np.r_[timing, tail]

@@ -50,7 +50,8 @@ def prepare(out,case):
             trace=simulate(case,rest,**{k:v for k,v in p.items() if k!='name'},dt=.25 if split=='train' else .05,
                 rtol=2e-11,atol=2e-13,max_step=.05)
             if np.max(abs(trace[1][trace[0]<20]-rest))>1e-8:raise AssertionError('LR does not remain at prepared rest')
-            refs[p['name']]=trace;points.append(trace[1][::max(1,len(trace[0])//150)])
+            refs[p['name']]=trace
+            if split=='train':points.append(trace[1][::max(1,len(trace[0])//150)])
     for name,(t,x,_) in refs.items():np.savez_compressed(directory/f'{name}.npz',t=t,x=x)
     np.savez_compressed(directory/'field.npz',points=np.vstack(points))
     atomic(directory/'data.json',dict(case=case,fixed=fixed,train=train,test=test,rest=rest,
@@ -78,11 +79,13 @@ class RestObjective:
         return rest,count,paths
     def __call__(self,model,precise=False,parts=False):
         groups={}
+        self.last_static_replay=None
         if precise:
             replay={}
             for p in self.spec['fixed']:
                 replay[p['name']]=simulate_coordinates(model,**{k:v for k,v in p.items() if k!='name'},dt=.2,
                     rtol=2e-11,atol=np.array([min(2e-13,float(model.coordinate.derivative(.005))*2e-13),2e-14,2e-13]),max_step=.25)
+            self.last_static_replay=replay
             r=self.static(model,replay=replay)
         else:r=self.static(model)
         groups['fixed_and_spectral_anchors']=float(r@r)

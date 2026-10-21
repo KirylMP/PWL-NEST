@@ -1,0 +1,30 @@
+{
+  "parent": "trials/control_2/candidate.json",
+  "parent_sha256": "7d967207a3e992f641ec17596de05c01f4b4909b8bca472f4eaccf91af122765",
+  "family": "control",
+  "bounds": [
+    [
+      -0.3025928521913587,
+      -0.24259285219135865
+    ],
+    [
+      -2.333053036680513,
+      -1.733053036680513
+    ],
+    [
+      0.32792479022364074,
+      0.48792479022364077
+    ]
+  ],
+  "start": [
+    -0.27259285219135865,
+    -2.033053036680513,
+    0.40792479022364075
+  ],
+  "global_maxiter": 25,
+  "population_size_factor": 8,
+  "joint_budget": 1500,
+  "seed": 20261027,
+  "code_sha256": "e7958e865a11b78a9002457124bdb4d0f36ab00cbdc8ec3220df66db0c69f4f4",
+  "selection": "training only; equal DE and joint budgets for both families"
+}
