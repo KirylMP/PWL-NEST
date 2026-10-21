@@ -1,0 +1,114 @@
+[
+  {
+    "path": "src/pwl_nest/__init__.py",
+    "sha256": "e961bc0763de7c49773db97a34acca79b96d5a0ba9477bb1ca5a09e43f3c7ad9"
+  },
+  {
+    "path": "src/pwl_nest/calcium_coordinates.py",
+    "sha256": "376520857a495106c1e71d7010d0351376ecbfa7a19606903d427b282741caaf"
+  },
+  {
+    "path": "src/pwl_nest/calcium_strips.py",
+    "sha256": "863d9dd3bb00f6f4554354d4b7e66ada4e5ac4aa1eb67b5f442759a5da861ddb"
+  },
+  {
+    "path": "src/pwl_nest/impulsive_ip3.py",
+    "sha256": "ae7e5dabc370cfa18aa485eeb12b787c2c6c10a83f35cce6f57efe41c8b6e027"
+  },
+  {
+    "path": "src/pwl_nest/logit_pwa.py",
+    "sha256": "7df13ab3a984c0531ee8b0ae82a14afccab55f283ac98d2c6f9ff8620dc5b47f"
+  },
+  {
+    "path": "src/pwl_nest/models.py",
+    "sha256": "1ef429e2da7d4f54c7bc55492b63d450d82e5892e80c068e771f15f0f1260602"
+  },
+  {
+    "path": "src/pwl_nest/native.py",
+    "sha256": "b78a2906f9e9e64dfd4031e0a15b5f0b44e00d5cf4ce4617d6b1b1f8bb0aedf7"
+  },
+  {
+    "path": "src/pwl_nest/protocols.py",
+    "sha256": "79f637de37ff2449b438733e20a0318bcd4c938ce93b644edacc1be1a9f25a29"
+  },
+  {
+    "path": "src/pwl_nest/strict_pwa.py",
+    "sha256": "cbf3266a81e37a9c794e92b7ea99b8d93a30f99ec8ba7ba7a138fbeeeedd66ca"
+  },
+  {
+    "path": "src/pwl_nest/thresholds.py",
+    "sha256": "c2b05676484daf6fb3121c7a59ed1908ebc8b05c2845c4d5855e1f6e47e1288a"
+  },
+  {
+    "path": "src/pwl_nest/rest_protocols.py",
+    "sha256": "6dc47d18c56ec1b0c38e11661607aa3880980ad0e146a7194abb2a7c54194320"
+  },
+  {
+    "path": "src/pwl_nest/peak_shape.py",
+    "sha256": "c09084a70fa2ec41a3eb0d4c43827e7ae0039e14fb03c313166c661c424d4653"
+  },
+  {
+    "path": "src/pwl_nest/phase_comparison.py",
+    "sha256": "05fe6cc0e995fec84df6ab7c70d416cde49446b1b78fb21c68c4911570cc64b8"
+  },
+  {
+    "path": "src/pwl_nest/peak_timing.py",
+    "sha256": "9b50bf532390de3d4ad007d374891bf6bedf1c5c9496db6b1c1a3659a8eebbb5"
+  },
+  {
+    "path": "src/pwl_nest/equilibrium_constraints.py",
+    "sha256": "de82666925bd99bd905b5bfe6ffccb7e63196967e996094444cf954c2b06ce63"
+  },
+  {
+    "path": "native/am_engine.cpp",
+    "sha256": "3216425738ae14eb36b7a4d7f1c2e42880112b1230b75994653068366d6e3316"
+  },
+  {
+    "path": "native/fm_engine.cpp",
+    "sha256": "c78db2a6e21f34ad33571bb037a9b6fa5bb8095ce15c49f8b956520d3db7da45"
+  },
+  {
+    "path": "native/strips_rk4.cpp",
+    "sha256": "a0dd0f764d2dc1c711e11b7e965e60046c0023ac3892fe74b92057f15c62e964"
+  },
+  {
+    "path": "scripts/fit_anchored_shapes.py",
+    "sha256": "0e365cb87016485cc55175f8ac4f9f376f058175274653b245bb6b46012abbee"
+  },
+  {
+    "path": "scripts/report_anchored_shapes.py",
+    "sha256": "ebc84a7b61661264a73e00f3b3b0d47f0623617daae896dabb3f00ec3eae49c2"
+  },
+  {
+    "path": "scripts/fit_mixed_coordinates.py",
+    "sha256": "4bb20728f73c75ce720f1233d5f14baa584673d4484ccfd4eb92f465c53e6961"
+  },
+  {
+    "path": "scripts/fit_fm_input_threshold.py",
+    "sha256": "6dfd1cb8ffcfe578d41ea3276aaf244f16d31dc37f4f03c52e8aff7ddde6065e"
+  },
+  {
+    "path": "scripts/overnight_coordinate_grid.py",
+    "sha256": "fdd9d62aa0f9cfbd7b797f1aae3578f5d801430d0c8addcb47ec97c3fd7bf944"
+  },
+  {
+    "path": "scripts/fit_positive_coordinates.py",
+    "sha256": "87a272229221e6c59a951068cdabcbab10ea8d0992f9568d9e31f38df102d933"
+  },
+  {
+    "path": "scripts/refine_server_candidates.py",
+    "sha256": "e5dcbad4ca7dc4e288ea01ef5d95d50a15bc24aa25caf344b6b749dd9de63c47"
+  },
+  {
+    "path": "scripts/fit_strict.py",
+    "sha256": "f6221e1bc36b55c7a1d0c5c34edc8c686c52db0f69933fe1ff5211a3f1650e67"
+  },
+  {
+    "path": "scripts/fit_calcium_coordinates.py",
+    "sha256": "b0a3af786a85f4676f760437258d37a56e1c6ee26f68c159a31630272f2a7081"
+  },
+  {
+    "path": "scripts/check_rest_and_phase.py",
+    "sha256": "07b88d851e3dbf96f2d02e931480ce62855d67d6d76696c6ba1c2fb35fe8eff7"
+  }
+]

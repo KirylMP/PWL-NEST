@@ -1,0 +1,32 @@
+[
+  {
+    "family": "control",
+    "path": "models/anchored_shape_candidates/FM_control.json",
+    "sha256": "520d2dcd271ab762456057834fe7e8f46ebfc7ab9cb5616b1dc697215d0753ad",
+    "source_trial": "results/fm_anchored_shapes/trials/control_projection_from_linear/candidate.json",
+    "source_sha256": "4e0be03a567af78b0e772e1dfca1e848e75b97638bdfc9370f6ea68c4d37c673",
+    "metadata_only_update": true,
+    "training_eligible": true,
+    "recommended": true
+  },
+  {
+    "family": "linear",
+    "path": "models/anchored_shape_candidates/FM_linear.json",
+    "sha256": "a7ab065afac84ce11aa0df2e559453452d421260f67fba440d5410bf99eb9119",
+    "source_trial": "results/fm_anchored_shapes/trials/linear_0/candidate.json",
+    "source_sha256": "5db1535e680d0ded70f6d3d1e7abf4c42dca4cf145ef308eab369f372e5961c2",
+    "metadata_only_update": true,
+    "training_eligible": true,
+    "recommended": false
+  },
+  {
+    "family": "quadratic",
+    "path": "models/anchored_shape_candidates/FM_quadratic.json",
+    "sha256": "93a4e0807f15251d156dc0e14e03e52b8a2852a1d5a1ececb54d40bc86c3cd22",
+    "source_trial": "results/fm_anchored_shapes/trials/quadratic_1/candidate.json",
+    "source_sha256": "095425068cc8a45ee1222f83c3c7a8d324cbaa16b78170fe9066792130aa1560",
+    "metadata_only_update": true,
+    "training_eligible": false,
+    "recommended": false
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "evaluations": 2554,
+  "history": [
+    {
+      "evaluation": 1,
+      "loss": 6684400.117375296,
+      "seconds": 1.7167393549971166,
+      "eligible": false,
+      "shape_passes": 0
+    },
+    {
+      "evaluation": 152,
+      "loss": 4744.950571373454,
+      "seconds": 16.011070047999965,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 384,
+      "loss": 4528.229448950369,
+      "seconds": 37.48899297600292,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 510,
+      "loss": 4499.630822808143,
+      "seconds": 47.94928042600077,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 615,
+      "loss": 4482.066642766392,
+      "seconds": 56.58570814500126,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 978,
+      "loss": 4482.036080845266,
+      "seconds": 86.78805263600225,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 1319,
+      "loss": 4481.675343767464,
+      "seconds": 115.2561475620023,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 1444,
+      "loss": 4480.541784024746,
+      "seconds": 126.9011722849973,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 1821,
+      "loss": 4120.373795616216,
+      "seconds": 165.9565968589959,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 1921,
+      "loss": 1963.2994097336118,
+      "seconds": 178.0455338469983,
+      "eligible": true,
+      "shape_passes": 6
+    }
+  ],
+  "runs": [
+    {
+      "method": "least_squares",
+      "start": "global",
+      "status": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "least_squares",
+      "start": "translated_common",
+      "status": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": "Optimization terminated successfully."
+    }
+  ],
+  "bounds": [
+    [
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -28.0,
+      -10.0,
+      -10.0,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      10.0,
+      10.0,
+      12.0,
+      10.0,
+      12.0,
+      10.0,
+      10.0,
+      8.0,
+      8.0,
+      2.0,
+      10.0,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906
+    ]
+  ],
+  "global_search": {
+    "indices": [
+      16,
+      19,
+      17,
+      18
+    ],
+    "bounds": [
+      [
+        -2.7676002422404276,
+        -1.5676002422404274
+      ],
+      [
+        0.05799189441863556,
+        0.7579918944186355
+      ],
+      [
+        -1.4759099464622243,
+        -0.27590994646222444
+      ],
+      [
+        -3.2562183994975396,
+        -2.0562183994975394
+      ]
+    ],
+    "evaluations": 1312,
+    "loss": 4481.335193251445
+  },
+  "source_field_nfev": 32
+}

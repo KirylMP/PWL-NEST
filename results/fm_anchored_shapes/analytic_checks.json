@@ -1,0 +1,68 @@
+{
+  "control": {
+    "regional_samples": 8,
+    "affine_expm_vs_DOP_max_error": 1.1102230246251565e-16,
+    "input_hinge_continuity_max_error": 0.0,
+    "crossing_times": [],
+    "exponential_crossing_max_error": 0.0,
+    "planar_C_h_jacobian_unchanged_across_I_knot": true,
+    "scope": "Exact-rest and interior regional propagation audit; no full event solver or speed claim",
+    "rest": [
+      0.042523198583379995,
+      0.9112560651867909,
+      0.45
+    ],
+    "LR_rest": [
+      0.042523198583379995,
+      0.9112560651867909,
+      0.45
+    ],
+    "stable_rest_count": 1,
+    "equilibrium_field_error": 0.0,
+    "pre_input_drift_max_error": 4.5477510646207975e-14
+  },
+  "linear": {
+    "regional_samples": 8,
+    "affine_expm_vs_DOP_max_error": 1.1102230246251565e-16,
+    "input_hinge_continuity_max_error": 0.0,
+    "crossing_times": [],
+    "exponential_crossing_max_error": 0.0,
+    "planar_C_h_jacobian_unchanged_across_I_knot": true,
+    "scope": "Exact-rest and interior regional propagation audit; no full event solver or speed claim",
+    "rest": [
+      0.042523198583379995,
+      0.9112560651867909,
+      0.45
+    ],
+    "LR_rest": [
+      0.042523198583379995,
+      0.9112560651867909,
+      0.45
+    ],
+    "stable_rest_count": 1,
+    "equilibrium_field_error": 0.0,
+    "pre_input_drift_max_error": 4.5477510646207975e-14
+  },
+  "quadratic": {
+    "regional_samples": 8,
+    "affine_expm_vs_DOP_max_error": 1.1102230246251565e-16,
+    "input_hinge_continuity_max_error": 0.0,
+    "crossing_times": [],
+    "exponential_crossing_max_error": 0.0,
+    "planar_C_h_jacobian_unchanged_across_I_knot": true,
+    "scope": "Exact-rest and interior regional propagation audit; no full event solver or speed claim",
+    "rest": [
+      0.042523198583379995,
+      0.9112560651867909,
+      0.45
+    ],
+    "LR_rest": [
+      0.042523198583379995,
+      0.9112560651867909,
+      0.45
+    ],
+    "stable_rest_count": 1,
+    "equilibrium_field_error": 0.0,
+    "pre_input_drift_max_error": 0.0
+  }
+}

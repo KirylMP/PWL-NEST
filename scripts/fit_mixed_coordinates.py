@@ -119,6 +119,8 @@ def prepare(out,args):
 
 
 def parameterization(seed,spec,family):
+    if 'exact_rest_constraint' in seed.metadata:
+        raise ValueError('Use fit_anchored_shapes to preserve the exact rest constraint')
     n=seed.latent.region_count;nc=2*n+6;m=n-1;dim=FAMILIES[family]
     mapping=OrderedThresholds(seed.latent.thresholds,float(seed.coordinate.forward(spec['C_lower'])),
                               float(seed.coordinate.forward(spec['C_upper'])))

@@ -1,0 +1,14 @@
+{"job": "quadratic_0", "evaluation": 1, "loss": 14614107.877673322, "seconds": 1.8594142479996663, "eligible": false, "shape_passes": 0}
+{"job": "quadratic_0", "evaluation": 241, "loss": 273404.9970654433, "seconds": 14.51433123100287, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 358, "loss": 272266.51354027493, "seconds": 21.6405942900019, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 507, "loss": 271384.80461919797, "seconds": 31.523389370006043, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 611, "loss": 271308.6391923454, "seconds": 38.576978176999546, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 765, "loss": 271277.442962204, "seconds": 48.60136952500034, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 904, "loss": 271246.2963549064, "seconds": 58.143809867004165, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 1057, "loss": 271242.12492258614, "seconds": 68.59669928600488, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 1163, "loss": 271237.4878319695, "seconds": 76.46894447399973, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 1317, "loss": 271227.3566793742, "seconds": 88.69506764400285, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 1429, "loss": 271223.54931494256, "seconds": 97.44871613000578, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 1557, "loss": 271223.3321465176, "seconds": 107.59674297799938, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 2771, "loss": 270281.00176410546, "seconds": 198.3004794370063, "eligible": false, "shape_passes": 1}
+{"job": "quadratic_0", "evaluation": 2871, "loss": 270122.6801414055, "seconds": 205.7352342459999, "eligible": false, "shape_passes": 1}

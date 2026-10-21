@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "name": "control_0",
+      "family": "control",
+      "restart": 0,
+      "seed": 20261029,
+      "starting_model": "/workspace/PWL-NEST/models/server_candidates/FM_identity__identity.json",
+      "starting_sha256": "a388167733f0f80002a024d08415b80755a302cb8bd62461c7cb88996f5462cd"
+    },
+    {
+      "name": "linear_0",
+      "family": "linear",
+      "restart": 0,
+      "seed": 20261029,
+      "starting_model": "/workspace/PWL-NEST/models/server_candidates/FM_identity__identity.json",
+      "starting_sha256": "a388167733f0f80002a024d08415b80755a302cb8bd62461c7cb88996f5462cd"
+    },
+    {
+      "name": "quadratic_0",
+      "family": "quadratic",
+      "restart": 0,
+      "seed": 20261029,
+      "starting_model": "/workspace/PWL-NEST/models/server_candidates/FM_identity__identity.json",
+      "starting_sha256": "a388167733f0f80002a024d08415b80755a302cb8bd62461c7cb88996f5462cd"
+    },
+    {
+      "name": "control_1",
+      "family": "control",
+      "restart": 1,
+      "seed": 20261030,
+      "starting_model": "/workspace/PWL-NEST/models/mixed_coordinate_candidates/FM_control.json",
+      "starting_sha256": "a5f1b6076ac8d372b8ac684ab20178ef590ccf5b31f7b6f19f0c46f11395e7b0"
+    },
+    {
+      "name": "linear_1",
+      "family": "linear",
+      "restart": 1,
+      "seed": 20261030,
+      "starting_model": "/workspace/PWL-NEST/models/mixed_coordinate_candidates/FM_linear.json",
+      "starting_sha256": "d6b243192aeb487a8fc061e61d3d25515db0536aef31c0872280a9dc7310b31c"
+    },
+    {
+      "name": "quadratic_1",
+      "family": "quadratic",
+      "restart": 1,
+      "seed": 20261030,
+      "starting_model": "/workspace/PWL-NEST/models/mixed_coordinate_candidates/FM_quadratic.json",
+      "starting_sha256": "c96732253cc713fdeeb0d231007e44fbafb698b51804472ab6455d4939f03857"
+    }
+  ],
+  "budget": 1500,
+  "global_iterations": 40,
+  "workers": 3,
+  "seed": 20261029,
+  "source_model": "/workspace/PWL-NEST/models/server_candidates/FM_identity__identity.json",
+  "source_sha256": "a388167733f0f80002a024d08415b80755a302cb8bd62461c7cb88996f5462cd",
+  "parameters": {
+    "control": 27,
+    "linear": 28,
+    "quadratic": 29
+  },
+  "regions": 8,
+  "rest": [
+    0.042523198583379995,
+    0.9112560651867909,
+    0.45
+  ],
+  "shape_tolerance": 0.1,
+  "fit_shape_barrier_at": 0.08,
+  "geometry_bounds": {
+    "a": [
+      -0.08,
+      0.08
+    ],
+    "b": [
+      -0.02,
+      0.02
+    ]
+  },
+  "threshold_gap_bounds": [
+    -1.3862943611198906,
+    1.3862943611198906
+  ],
+  "selection": "independent DOP853: exact stable LR rest, all static regimes, six dynamic peak counts, every peak height and width within 10%; then training loss",
+  "heldout_protocols": [
+    {
+      "name": "anchored_heldout_tau_6.0",
+      "duration": 300.0,
+      "tau": 6.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "anchored_heldout_tau_24.0",
+      "duration": 300.0,
+      "tau": 24.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "anchored_heldout_tau_48.0",
+      "duration": 300.0,
+      "tau": 48.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "anchored_heldout_tau_90.0",
+      "duration": 300.0,
+      "tau": 90.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "anchored_heldout_tau_160.0",
+      "duration": 480.0,
+      "tau": 160.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "anchored_heldout_irregular",
+      "duration": 320.0,
+      "tau": 27.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.27732392759978014
+        ],
+        [
+          42.25525502348866,
+          0.2342951344628623
+        ],
+        [
+          69.86162572817283,
+          0.24333428696905007
+        ],
+        [
+          97.64111128443326,
+          0.2543918795978879
+        ],
+        [
+          124.25971638692555,
+          0.20100270957897587
+        ],
+        [
+          150.2960216802967,
+          0.2803550123198416
+        ],
+        [
+          173.2369073889588,
+          0.25275733189580685
+        ],
+        [
+          193.12703696132775,
+          0.2982503897811746
+        ]
+      ]
+    }
+  ],
+  "heldout_used_for_field_initialization": false,
+  "code_sha256": "f70cd2da71dbfdf6048a7faa58d344f1260d82da924b2a8d46e25ee3f2f62a98",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0"
+}

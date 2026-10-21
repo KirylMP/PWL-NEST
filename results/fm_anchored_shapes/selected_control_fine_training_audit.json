@@ -1,0 +1,66 @@
+{
+  "dt": 0.05,
+  "protocols": [
+    {
+      "name": "pulse_tau_20.0",
+      "reference_peaks": 2,
+      "candidate_peaks": 2,
+      "counts_match": true,
+      "max_height_relative_error": 0.03198597505038714,
+      "max_width_relative_error": 0.07374289343777529,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "pulse_tau_100.0",
+      "reference_peaks": 8,
+      "candidate_peaks": 8,
+      "counts_match": true,
+      "max_height_relative_error": 0.039470918917576814,
+      "max_width_relative_error": 0.07595029764968775,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "periodic",
+      "reference_peaks": 5,
+      "candidate_peaks": 5,
+      "counts_match": true,
+      "max_height_relative_error": 0.07331101410726748,
+      "max_width_relative_error": 0.06987204808884306,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "promoted_tau_35.0",
+      "reference_peaks": 3,
+      "candidate_peaks": 3,
+      "counts_match": true,
+      "max_height_relative_error": 0.03491873967458181,
+      "max_width_relative_error": 0.07219383200182228,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "promoted_tau_65.0",
+      "reference_peaks": 6,
+      "candidate_peaks": 6,
+      "counts_match": true,
+      "max_height_relative_error": 0.04034333594616957,
+      "max_width_relative_error": 0.08289315626396587,
+      "tolerance": 0.1,
+      "passes": true
+    },
+    {
+      "name": "promoted_tau_80.0",
+      "reference_peaks": 7,
+      "candidate_peaks": 7,
+      "counts_match": true,
+      "max_height_relative_error": 0.04047856834565777,
+      "max_width_relative_error": 0.08038619474134401,
+      "tolerance": 0.1,
+      "passes": true
+    }
+  ],
+  "all_pass": true
+}

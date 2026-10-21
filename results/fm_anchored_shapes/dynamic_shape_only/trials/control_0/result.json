@@ -1,0 +1,913 @@
+{
+  "name": "control_0",
+  "family": "control",
+  "restart": 0,
+  "seed": 20261029,
+  "starting_model": "/workspace/PWL-NEST/models/server_candidates/FM_identity__identity.json",
+  "starting_sha256": "a388167733f0f80002a024d08415b80755a302cb8bd62461c7cb88996f5462cd",
+  "label": "eligible_best",
+  "status": "verified",
+  "verified_train_loss": 1961.4568313490827,
+  "checks": {
+    "physical": true,
+    "fixed_regimes_match": true,
+    "all_dynamic_peak_counts_match": true,
+    "eligible": true,
+    "protocols": [
+      {
+        "protocol": "fixed_lower_rest",
+        "kind": "fixed",
+        "expected": "rest",
+        "observed": "rest",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_0.55",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_0.7",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_1.0",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_1.2",
+        "kind": "fixed",
+        "expected": "rest",
+        "observed": "rest",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_0.53",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_1.12",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_1.13",
+        "kind": "fixed",
+        "expected": "rest",
+        "observed": "rest",
+        "matches": true
+      },
+      {
+        "protocol": "pulse_tau_20.0",
+        "kind": "dynamic",
+        "expected": 2,
+        "observed": 2,
+        "matches": true
+      },
+      {
+        "protocol": "pulse_tau_100.0",
+        "kind": "dynamic",
+        "expected": 8,
+        "observed": 8,
+        "matches": true
+      },
+      {
+        "protocol": "periodic",
+        "kind": "dynamic",
+        "expected": 5,
+        "observed": 5,
+        "matches": true
+      },
+      {
+        "protocol": "promoted_tau_35.0",
+        "kind": "dynamic",
+        "expected": 3,
+        "observed": 3,
+        "matches": true
+      },
+      {
+        "protocol": "promoted_tau_65.0",
+        "kind": "dynamic",
+        "expected": 6,
+        "observed": 6,
+        "matches": true
+      },
+      {
+        "protocol": "promoted_tau_80.0",
+        "kind": "dynamic",
+        "expected": 7,
+        "observed": 7,
+        "matches": true
+      }
+    ],
+    "shape": [
+      {
+        "name": "pulse_tau_20.0",
+        "reference_peaks": 2,
+        "candidate_peaks": 2,
+        "counts_match": true,
+        "max_height_relative_error": 0.029989366835224907,
+        "max_width_relative_error": 0.0835533880838113,
+        "tolerance": 0.1,
+        "passes": true
+      },
+      {
+        "name": "pulse_tau_100.0",
+        "reference_peaks": 8,
+        "candidate_peaks": 8,
+        "counts_match": true,
+        "max_height_relative_error": 0.03638124001619114,
+        "max_width_relative_error": 0.08504973486512202,
+        "tolerance": 0.1,
+        "passes": true
+      },
+      {
+        "name": "periodic",
+        "reference_peaks": 5,
+        "candidate_peaks": 5,
+        "counts_match": true,
+        "max_height_relative_error": 0.06981851284160334,
+        "max_width_relative_error": 0.07896794011830122,
+        "tolerance": 0.1,
+        "passes": true
+      },
+      {
+        "name": "promoted_tau_35.0",
+        "reference_peaks": 3,
+        "candidate_peaks": 3,
+        "counts_match": true,
+        "max_height_relative_error": 0.03167680333747436,
+        "max_width_relative_error": 0.08145524337440424,
+        "tolerance": 0.1,
+        "passes": true
+      },
+      {
+        "name": "promoted_tau_65.0",
+        "reference_peaks": 6,
+        "candidate_peaks": 6,
+        "counts_match": true,
+        "max_height_relative_error": 0.03767490750434199,
+        "max_width_relative_error": 0.09311934744310091,
+        "tolerance": 0.1,
+        "passes": true
+      },
+      {
+        "name": "promoted_tau_80.0",
+        "reference_peaks": 7,
+        "candidate_peaks": 7,
+        "counts_match": true,
+        "max_height_relative_error": 0.0370339364356852,
+        "max_width_relative_error": 0.09022951249342004,
+        "tolerance": 0.1,
+        "passes": true
+      }
+    ],
+    "shape_passes": 6,
+    "max_height_relative_error": 0.06981851284160334,
+    "max_width_relative_error": 0.09311934744310091,
+    "exact_rest": true,
+    "rest": [
+      0.042523198583379995,
+      0.9112560651867909,
+      0.45
+    ],
+    "stable_rest_count": 1,
+    "rest_max_abs_error": 0.0,
+    "rest_field_max_abs_error": 0.0,
+    "rest_eigenvalues": [
+      [
+        -72.09928859688333,
+        0.0
+      ],
+      [
+        -0.10666018412097474,
+        0.0
+      ]
+    ]
+  },
+  "parts": {
+    "fixed_and_spectral_anchors": 533.3773907550712,
+    "pulse_tau_20.0_events": 1.1800116528453464,
+    "pulse_tau_20.0_timing": 0.9395830212828895,
+    "pulse_tau_20.0_burst_end": 0.08923418004481404,
+    "pulse_tau_100.0_events": 4.666907046488186,
+    "pulse_tau_100.0_timing": 3.704123553973987,
+    "pulse_tau_100.0_burst_end": 1.8703574384090758,
+    "periodic_events": 8.003361244939091,
+    "periodic_timing": 52.93758345108868,
+    "periodic_burst_end": 39.76767950786014,
+    "promoted_tau_35.0_events": 1.6779380761963512,
+    "promoted_tau_35.0_timing": 1.285832985632272,
+    "promoted_tau_35.0_burst_end": 0.2510592246914157,
+    "promoted_tau_65.0_events": 3.7687001373679534,
+    "promoted_tau_65.0_timing": 1.6827681497185771,
+    "promoted_tau_65.0_burst_end": 0.050587917619810345,
+    "promoted_tau_80.0_events": 4.209090123619151,
+    "promoted_tau_80.0_timing": 2.5929348524878515,
+    "promoted_tau_80.0_burst_end": 0.7039147866151073,
+    "own_rest": 0.0,
+    "pulse_tau_20.0_shape": 113.55889961997131,
+    "pulse_tau_100.0_shape": 238.30447679868058,
+    "periodic_shape": 148.98195867843268,
+    "promoted_tau_35.0_shape": 105.59509132966751,
+    "promoted_tau_65.0_shape": 361.1734782402519,
+    "promoted_tau_80.0_shape": 331.08386857612646,
+    "static_regime_barrier": 0.0
+  },
+  "model": "trials/control_0/candidate.json",
+  "all_verifications": [
+    {
+      "label": "eligible_best",
+      "status": "verified",
+      "verified_train_loss": 1961.4568313490827,
+      "checks": {
+        "physical": true,
+        "fixed_regimes_match": true,
+        "all_dynamic_peak_counts_match": true,
+        "eligible": true,
+        "protocols": [
+          {
+            "protocol": "fixed_lower_rest",
+            "kind": "fixed",
+            "expected": "rest",
+            "observed": "rest",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_0.55",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_0.7",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.0",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.2",
+            "kind": "fixed",
+            "expected": "rest",
+            "observed": "rest",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_0.53",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.12",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.13",
+            "kind": "fixed",
+            "expected": "rest",
+            "observed": "rest",
+            "matches": true
+          },
+          {
+            "protocol": "pulse_tau_20.0",
+            "kind": "dynamic",
+            "expected": 2,
+            "observed": 2,
+            "matches": true
+          },
+          {
+            "protocol": "pulse_tau_100.0",
+            "kind": "dynamic",
+            "expected": 8,
+            "observed": 8,
+            "matches": true
+          },
+          {
+            "protocol": "periodic",
+            "kind": "dynamic",
+            "expected": 5,
+            "observed": 5,
+            "matches": true
+          },
+          {
+            "protocol": "promoted_tau_35.0",
+            "kind": "dynamic",
+            "expected": 3,
+            "observed": 3,
+            "matches": true
+          },
+          {
+            "protocol": "promoted_tau_65.0",
+            "kind": "dynamic",
+            "expected": 6,
+            "observed": 6,
+            "matches": true
+          },
+          {
+            "protocol": "promoted_tau_80.0",
+            "kind": "dynamic",
+            "expected": 7,
+            "observed": 7,
+            "matches": true
+          }
+        ],
+        "shape": [
+          {
+            "name": "pulse_tau_20.0",
+            "reference_peaks": 2,
+            "candidate_peaks": 2,
+            "counts_match": true,
+            "max_height_relative_error": 0.029989366835224907,
+            "max_width_relative_error": 0.0835533880838113,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "pulse_tau_100.0",
+            "reference_peaks": 8,
+            "candidate_peaks": 8,
+            "counts_match": true,
+            "max_height_relative_error": 0.03638124001619114,
+            "max_width_relative_error": 0.08504973486512202,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "periodic",
+            "reference_peaks": 5,
+            "candidate_peaks": 5,
+            "counts_match": true,
+            "max_height_relative_error": 0.06981851284160334,
+            "max_width_relative_error": 0.07896794011830122,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "promoted_tau_35.0",
+            "reference_peaks": 3,
+            "candidate_peaks": 3,
+            "counts_match": true,
+            "max_height_relative_error": 0.03167680333747436,
+            "max_width_relative_error": 0.08145524337440424,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "promoted_tau_65.0",
+            "reference_peaks": 6,
+            "candidate_peaks": 6,
+            "counts_match": true,
+            "max_height_relative_error": 0.03767490750434199,
+            "max_width_relative_error": 0.09311934744310091,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "promoted_tau_80.0",
+            "reference_peaks": 7,
+            "candidate_peaks": 7,
+            "counts_match": true,
+            "max_height_relative_error": 0.0370339364356852,
+            "max_width_relative_error": 0.09022951249342004,
+            "tolerance": 0.1,
+            "passes": true
+          }
+        ],
+        "shape_passes": 6,
+        "max_height_relative_error": 0.06981851284160334,
+        "max_width_relative_error": 0.09311934744310091,
+        "exact_rest": true,
+        "rest": [
+          0.042523198583379995,
+          0.9112560651867909,
+          0.45
+        ],
+        "stable_rest_count": 1,
+        "rest_max_abs_error": 0.0,
+        "rest_field_max_abs_error": 0.0,
+        "rest_eigenvalues": [
+          [
+            -72.09928859688333,
+            0.0
+          ],
+          [
+            -0.10666018412097474,
+            0.0
+          ]
+        ]
+      },
+      "parts": {
+        "fixed_and_spectral_anchors": 533.3773907550712,
+        "pulse_tau_20.0_events": 1.1800116528453464,
+        "pulse_tau_20.0_timing": 0.9395830212828895,
+        "pulse_tau_20.0_burst_end": 0.08923418004481404,
+        "pulse_tau_100.0_events": 4.666907046488186,
+        "pulse_tau_100.0_timing": 3.704123553973987,
+        "pulse_tau_100.0_burst_end": 1.8703574384090758,
+        "periodic_events": 8.003361244939091,
+        "periodic_timing": 52.93758345108868,
+        "periodic_burst_end": 39.76767950786014,
+        "promoted_tau_35.0_events": 1.6779380761963512,
+        "promoted_tau_35.0_timing": 1.285832985632272,
+        "promoted_tau_35.0_burst_end": 0.2510592246914157,
+        "promoted_tau_65.0_events": 3.7687001373679534,
+        "promoted_tau_65.0_timing": 1.6827681497185771,
+        "promoted_tau_65.0_burst_end": 0.050587917619810345,
+        "promoted_tau_80.0_events": 4.209090123619151,
+        "promoted_tau_80.0_timing": 2.5929348524878515,
+        "promoted_tau_80.0_burst_end": 0.7039147866151073,
+        "own_rest": 0.0,
+        "pulse_tau_20.0_shape": 113.55889961997131,
+        "pulse_tau_100.0_shape": 238.30447679868058,
+        "periodic_shape": 148.98195867843268,
+        "promoted_tau_35.0_shape": 105.59509132966751,
+        "promoted_tau_65.0_shape": 361.1734782402519,
+        "promoted_tau_80.0_shape": 331.08386857612646,
+        "static_regime_barrier": 0.0
+      },
+      "model": "trials/control_0/eligible_best.json"
+    },
+    {
+      "label": "unconstrained_best",
+      "status": "verified",
+      "verified_train_loss": 1961.4568313490827,
+      "checks": {
+        "physical": true,
+        "fixed_regimes_match": true,
+        "all_dynamic_peak_counts_match": true,
+        "eligible": true,
+        "protocols": [
+          {
+            "protocol": "fixed_lower_rest",
+            "kind": "fixed",
+            "expected": "rest",
+            "observed": "rest",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_0.55",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_0.7",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.0",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.2",
+            "kind": "fixed",
+            "expected": "rest",
+            "observed": "rest",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_0.53",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.12",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.13",
+            "kind": "fixed",
+            "expected": "rest",
+            "observed": "rest",
+            "matches": true
+          },
+          {
+            "protocol": "pulse_tau_20.0",
+            "kind": "dynamic",
+            "expected": 2,
+            "observed": 2,
+            "matches": true
+          },
+          {
+            "protocol": "pulse_tau_100.0",
+            "kind": "dynamic",
+            "expected": 8,
+            "observed": 8,
+            "matches": true
+          },
+          {
+            "protocol": "periodic",
+            "kind": "dynamic",
+            "expected": 5,
+            "observed": 5,
+            "matches": true
+          },
+          {
+            "protocol": "promoted_tau_35.0",
+            "kind": "dynamic",
+            "expected": 3,
+            "observed": 3,
+            "matches": true
+          },
+          {
+            "protocol": "promoted_tau_65.0",
+            "kind": "dynamic",
+            "expected": 6,
+            "observed": 6,
+            "matches": true
+          },
+          {
+            "protocol": "promoted_tau_80.0",
+            "kind": "dynamic",
+            "expected": 7,
+            "observed": 7,
+            "matches": true
+          }
+        ],
+        "shape": [
+          {
+            "name": "pulse_tau_20.0",
+            "reference_peaks": 2,
+            "candidate_peaks": 2,
+            "counts_match": true,
+            "max_height_relative_error": 0.029989366835224907,
+            "max_width_relative_error": 0.0835533880838113,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "pulse_tau_100.0",
+            "reference_peaks": 8,
+            "candidate_peaks": 8,
+            "counts_match": true,
+            "max_height_relative_error": 0.03638124001619114,
+            "max_width_relative_error": 0.08504973486512202,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "periodic",
+            "reference_peaks": 5,
+            "candidate_peaks": 5,
+            "counts_match": true,
+            "max_height_relative_error": 0.06981851284160334,
+            "max_width_relative_error": 0.07896794011830122,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "promoted_tau_35.0",
+            "reference_peaks": 3,
+            "candidate_peaks": 3,
+            "counts_match": true,
+            "max_height_relative_error": 0.03167680333747436,
+            "max_width_relative_error": 0.08145524337440424,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "promoted_tau_65.0",
+            "reference_peaks": 6,
+            "candidate_peaks": 6,
+            "counts_match": true,
+            "max_height_relative_error": 0.03767490750434199,
+            "max_width_relative_error": 0.09311934744310091,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "promoted_tau_80.0",
+            "reference_peaks": 7,
+            "candidate_peaks": 7,
+            "counts_match": true,
+            "max_height_relative_error": 0.0370339364356852,
+            "max_width_relative_error": 0.09022951249342004,
+            "tolerance": 0.1,
+            "passes": true
+          }
+        ],
+        "shape_passes": 6,
+        "max_height_relative_error": 0.06981851284160334,
+        "max_width_relative_error": 0.09311934744310091,
+        "exact_rest": true,
+        "rest": [
+          0.042523198583379995,
+          0.9112560651867909,
+          0.45
+        ],
+        "stable_rest_count": 1,
+        "rest_max_abs_error": 0.0,
+        "rest_field_max_abs_error": 0.0,
+        "rest_eigenvalues": [
+          [
+            -72.09928859688333,
+            0.0
+          ],
+          [
+            -0.10666018412097474,
+            0.0
+          ]
+        ]
+      },
+      "parts": {
+        "fixed_and_spectral_anchors": 533.3773907550712,
+        "pulse_tau_20.0_events": 1.1800116528453464,
+        "pulse_tau_20.0_timing": 0.9395830212828895,
+        "pulse_tau_20.0_burst_end": 0.08923418004481404,
+        "pulse_tau_100.0_events": 4.666907046488186,
+        "pulse_tau_100.0_timing": 3.704123553973987,
+        "pulse_tau_100.0_burst_end": 1.8703574384090758,
+        "periodic_events": 8.003361244939091,
+        "periodic_timing": 52.93758345108868,
+        "periodic_burst_end": 39.76767950786014,
+        "promoted_tau_35.0_events": 1.6779380761963512,
+        "promoted_tau_35.0_timing": 1.285832985632272,
+        "promoted_tau_35.0_burst_end": 0.2510592246914157,
+        "promoted_tau_65.0_events": 3.7687001373679534,
+        "promoted_tau_65.0_timing": 1.6827681497185771,
+        "promoted_tau_65.0_burst_end": 0.050587917619810345,
+        "promoted_tau_80.0_events": 4.209090123619151,
+        "promoted_tau_80.0_timing": 2.5929348524878515,
+        "promoted_tau_80.0_burst_end": 0.7039147866151073,
+        "own_rest": 0.0,
+        "pulse_tau_20.0_shape": 113.55889961997131,
+        "pulse_tau_100.0_shape": 238.30447679868058,
+        "periodic_shape": 148.98195867843268,
+        "promoted_tau_35.0_shape": 105.59509132966751,
+        "promoted_tau_65.0_shape": 361.1734782402519,
+        "promoted_tau_80.0_shape": 331.08386857612646,
+        "static_regime_barrier": 0.0
+      },
+      "model": "trials/control_0/unconstrained_best.json"
+    },
+    {
+      "label": "earlier_eligible",
+      "status": "verified",
+      "verified_train_loss": 1975.8859289108066,
+      "checks": {
+        "physical": true,
+        "fixed_regimes_match": true,
+        "all_dynamic_peak_counts_match": true,
+        "eligible": true,
+        "protocols": [
+          {
+            "protocol": "fixed_lower_rest",
+            "kind": "fixed",
+            "expected": "rest",
+            "observed": "rest",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_0.55",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_0.7",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.0",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.2",
+            "kind": "fixed",
+            "expected": "rest",
+            "observed": "rest",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_0.53",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.12",
+            "kind": "fixed",
+            "expected": "cycling",
+            "observed": "cycling",
+            "matches": true
+          },
+          {
+            "protocol": "fixed_1.13",
+            "kind": "fixed",
+            "expected": "rest",
+            "observed": "rest",
+            "matches": true
+          },
+          {
+            "protocol": "pulse_tau_20.0",
+            "kind": "dynamic",
+            "expected": 2,
+            "observed": 2,
+            "matches": true
+          },
+          {
+            "protocol": "pulse_tau_100.0",
+            "kind": "dynamic",
+            "expected": 8,
+            "observed": 8,
+            "matches": true
+          },
+          {
+            "protocol": "periodic",
+            "kind": "dynamic",
+            "expected": 5,
+            "observed": 5,
+            "matches": true
+          },
+          {
+            "protocol": "promoted_tau_35.0",
+            "kind": "dynamic",
+            "expected": 3,
+            "observed": 3,
+            "matches": true
+          },
+          {
+            "protocol": "promoted_tau_65.0",
+            "kind": "dynamic",
+            "expected": 6,
+            "observed": 6,
+            "matches": true
+          },
+          {
+            "protocol": "promoted_tau_80.0",
+            "kind": "dynamic",
+            "expected": 7,
+            "observed": 7,
+            "matches": true
+          }
+        ],
+        "shape": [
+          {
+            "name": "pulse_tau_20.0",
+            "reference_peaks": 2,
+            "candidate_peaks": 2,
+            "counts_match": true,
+            "max_height_relative_error": 0.03011887859818496,
+            "max_width_relative_error": 0.0834903937102951,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "pulse_tau_100.0",
+            "reference_peaks": 8,
+            "candidate_peaks": 8,
+            "counts_match": true,
+            "max_height_relative_error": 0.036749995166752925,
+            "max_width_relative_error": 0.0855346991843029,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "periodic",
+            "reference_peaks": 5,
+            "candidate_peaks": 5,
+            "counts_match": true,
+            "max_height_relative_error": 0.07007166009046528,
+            "max_width_relative_error": 0.07905628773851481,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "promoted_tau_35.0",
+            "reference_peaks": 3,
+            "candidate_peaks": 3,
+            "counts_match": true,
+            "max_height_relative_error": 0.031997228334464056,
+            "max_width_relative_error": 0.08168579425371014,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "promoted_tau_65.0",
+            "reference_peaks": 6,
+            "candidate_peaks": 6,
+            "counts_match": true,
+            "max_height_relative_error": 0.03743657861250249,
+            "max_width_relative_error": 0.09262527388905206,
+            "tolerance": 0.1,
+            "passes": true
+          },
+          {
+            "name": "promoted_tau_80.0",
+            "reference_peaks": 7,
+            "candidate_peaks": 7,
+            "counts_match": true,
+            "max_height_relative_error": 0.037554240079443524,
+            "max_width_relative_error": 0.09091816933011287,
+            "tolerance": 0.1,
+            "passes": true
+          }
+        ],
+        "shape_passes": 6,
+        "max_height_relative_error": 0.07007166009046528,
+        "max_width_relative_error": 0.09262527388905206,
+        "exact_rest": true,
+        "rest": [
+          0.042523198583379995,
+          0.9112560651867909,
+          0.45
+        ],
+        "stable_rest_count": 1,
+        "rest_max_abs_error": 0.0,
+        "rest_field_max_abs_error": 0.0,
+        "rest_eigenvalues": [
+          [
+            -72.09928859688333,
+            0.0
+          ],
+          [
+            -0.10666018412097474,
+            0.0
+          ]
+        ]
+      },
+      "parts": {
+        "fixed_and_spectral_anchors": 533.5433381536325,
+        "pulse_tau_20.0_events": 1.1830563346201735,
+        "pulse_tau_20.0_timing": 0.9422033543466615,
+        "pulse_tau_20.0_burst_end": 0.09115737249953096,
+        "pulse_tau_100.0_events": 4.7071064623035195,
+        "pulse_tau_100.0_timing": 3.7517738949952357,
+        "pulse_tau_100.0_burst_end": 1.9251478571550662,
+        "periodic_events": 8.046012182064832,
+        "periodic_timing": 53.0316344687503,
+        "periodic_burst_end": 39.84640891390345,
+        "promoted_tau_35.0_events": 1.6913339512772676,
+        "promoted_tau_35.0_timing": 1.290868749236637,
+        "promoted_tau_35.0_burst_end": 0.25490465562495157,
+        "promoted_tau_65.0_events": 3.7733387607633153,
+        "promoted_tau_65.0_timing": 1.7051364215515445,
+        "promoted_tau_65.0_burst_end": 0.06166563643815838,
+        "promoted_tau_80.0_events": 4.300081863596012,
+        "promoted_tau_80.0_timing": 2.6407774676237055,
+        "promoted_tau_80.0_burst_end": 0.7352698029929987,
+        "own_rest": 0.0,
+        "pulse_tau_20.0_shape": 112.80420417992295,
+        "pulse_tau_100.0_shape": 242.2592165635176,
+        "periodic_shape": 148.10175936311634,
+        "promoted_tau_35.0_shape": 106.06757931823363,
+        "promoted_tau_65.0_shape": 346.87690010133207,
+        "promoted_tau_80.0_shape": 356.255053081308,
+        "static_regime_barrier": 0.0
+      },
+      "model": "trials/control_0/earlier_eligible.json"
+    }
+  ],
+  "evaluations": 2464,
+  "seconds": 331.14375263299735,
+  "parameters": 27,
+  "regions": 8,
+  "selection_scope": "eligible training candidate"
+}

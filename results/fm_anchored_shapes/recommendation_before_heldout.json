@@ -1,0 +1,10 @@
+{
+  "name": "control_projection_from_linear",
+  "family": "control",
+  "model": "trials/control_projection_from_linear/candidate.json",
+  "verified_train_loss": 1548.1368732585984,
+  "parameters": 27,
+  "regions": 8,
+  "reason": "minimum independently verified eligible training loss; zeroing the tiny shear also reduces complexity",
+  "all_models_frozen_before_heldout": true
+}

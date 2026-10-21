@@ -1,0 +1,11 @@
+{"job": "control_0", "evaluation": 1, "loss": 14614107.877673322, "seconds": 1.2652541249990463, "eligible": false, "shape_passes": 0}
+{"job": "control_0", "evaluation": 131, "loss": 514569.7942981126, "seconds": 13.320688806001272, "eligible": false, "shape_passes": 2}
+{"job": "control_0", "evaluation": 288, "loss": 264114.0766274664, "seconds": 29.416019456002687, "eligible": false, "shape_passes": 2}
+{"job": "control_0", "evaluation": 437, "loss": 264106.60160741874, "seconds": 44.82357484700333, "eligible": false, "shape_passes": 2}
+{"job": "control_0", "evaluation": 615, "loss": 264099.4483666183, "seconds": 59.77852364800492, "eligible": false, "shape_passes": 2}
+{"job": "control_0", "evaluation": 813, "loss": 264095.6643359408, "seconds": 78.5860175830021, "eligible": false, "shape_passes": 2}
+{"job": "control_0", "evaluation": 985, "loss": 264082.816234953, "seconds": 95.43430837600317, "eligible": false, "shape_passes": 2}
+{"job": "control_0", "evaluation": 1086, "loss": 264073.9960152107, "seconds": 105.871959393, "eligible": false, "shape_passes": 2}
+{"job": "control_0", "evaluation": 1195, "loss": 264071.3071142984, "seconds": 117.03195674499875, "eligible": false, "shape_passes": 2}
+{"job": "control_0", "evaluation": 1319, "loss": 264071.30710821925, "seconds": 128.2991408950038, "eligible": false, "shape_passes": 2}
+{"job": "control_0", "evaluation": 1429, "loss": 264066.939736572, "seconds": 138.94665236699802, "eligible": false, "shape_passes": 2}

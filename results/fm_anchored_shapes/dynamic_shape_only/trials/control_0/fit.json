@@ -1,0 +1,201 @@
+{
+  "evaluations": 2464,
+  "history": [
+    {
+      "evaluation": 1,
+      "loss": 14614107.877673322,
+      "seconds": 0.9114001709967852,
+      "eligible": false,
+      "shape_passes": 0
+    },
+    {
+      "evaluation": 156,
+      "loss": 4724.864415425127,
+      "seconds": 14.866436371994496,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 265,
+      "loss": 4613.828718363309,
+      "seconds": 26.94391502399958,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 464,
+      "loss": 4493.7422498616515,
+      "seconds": 47.366449556997395,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 575,
+      "loss": 4490.798903085749,
+      "seconds": 57.4233941220009,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 676,
+      "loss": 4489.476049086755,
+      "seconds": 67.61300604999997,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 798,
+      "loss": 4482.057686986559,
+      "seconds": 78.94876270999521,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 899,
+      "loss": 4481.411855807373,
+      "seconds": 88.34247404900088,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 1021,
+      "loss": 4481.290288497442,
+      "seconds": 99.19113579899567,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 1161,
+      "loss": 4480.9067014545235,
+      "seconds": 111.84744393899746,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 1266,
+      "loss": 4480.561810413909,
+      "seconds": 123.31063451699447,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 1385,
+      "loss": 4479.980508862654,
+      "seconds": 135.9927688569951,
+      "eligible": false,
+      "shape_passes": 5
+    },
+    {
+      "evaluation": 1733,
+      "loss": 3353.8911944930496,
+      "seconds": 166.4271854499966,
+      "eligible": false,
+      "shape_passes": 5
+    }
+  ],
+  "runs": [
+    {
+      "method": "least_squares",
+      "start": "global",
+      "status": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "least_squares",
+      "start": "translated_common",
+      "status": "`xtol` termination condition is satisfied."
+    },
+    {
+      "method": "Powell",
+      "status": "Optimization terminated successfully."
+    }
+  ],
+  "bounds": [
+    [
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -12.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -40.0,
+      -28.0,
+      -10.0,
+      -10.0,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906,
+      -1.3862943611198906
+    ],
+    [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      12.0,
+      10.0,
+      10.0,
+      12.0,
+      10.0,
+      12.0,
+      10.0,
+      10.0,
+      8.0,
+      8.0,
+      2.0,
+      10.0,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906,
+      1.3862943611198906
+    ]
+  ],
+  "global_search": {
+    "indices": [
+      16,
+      19,
+      17,
+      18
+    ],
+    "bounds": [
+      [
+        -2.7676002422404276,
+        -1.5676002422404274
+      ],
+      [
+        0.05799189441863556,
+        0.7579918944186355
+      ],
+      [
+        -1.4759099464622243,
+        -0.27590994646222444
+      ],
+      [
+        -3.2562183994975396,
+        -2.0562183994975394
+      ]
+    ],
+    "evaluations": 1312,
+    "loss": 4480.563477312269
+  },
+  "source_field_nfev": 27
+}

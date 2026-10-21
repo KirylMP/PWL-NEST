@@ -119,6 +119,8 @@ class CalibrationResidual:
 
 
 def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind=None,rng_seed=20261021,checkpoint_path=None,input_threshold_bounds=None):
+    if 'exact_rest_constraint' in seed.metadata:
+        raise ValueError('Use fit_anchored_shapes to preserve the exact rest constraint')
     if seed.has_state_mix:
         raise ValueError('Use fit_mixed_coordinates for coupled coordinate transforms')
     n=seed.latent.region_count;nc=2*n+6;m=n-1;knots=seed.input_thresholds
