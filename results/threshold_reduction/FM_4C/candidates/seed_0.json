@@ -1,0 +1,115 @@
+{
+  "case": "FM",
+  "calcium_coordinate": {
+    "kind": "identity",
+    "reference": 0.02812613673817445,
+    "scale": 0.9833352639826316,
+    "normalization": "phi(C_ref)=0, phi_prime(C_ref)=1/scale"
+  },
+  "h_reference": 0.8371177795140701,
+  "h_coordinate": {
+    "kind": "identity",
+    "normalization": "psi(h_ref)=0, psi_prime(h_ref)=1/[h_ref*(1-h_ref)]"
+  },
+  "thresholds_u": [
+    0.015194806335849397,
+    0.030124912981736217,
+    0.14327747088683707,
+    0.2570317641071878
+  ],
+  "thresholds_C": [
+    0.04306772563760188,
+    0.05774902599752384,
+    0.1690159263954462,
+    0.28087453434843745
+  ],
+  "basis": [
+    "1",
+    "u",
+    "v",
+    "I",
+    "max(0,u-0.015194806335849397)",
+    "max(0,u-0.030124912981736217)",
+    "max(0,u-0.14327747088683707)",
+    "max(0,u-0.25703176410718781)"
+  ],
+  "coefficients": [
+    [
+      0.5158852652638817,
+      -65.935828961036,
+      0.416748679837515,
+      0.49530297663559963,
+      66.01655780206056,
+      4.9269613262086915,
+      -2.817694751512365,
+      -2.6857593031948905
+    ],
+    [
+      -0.008910699779567016,
+      -1.2472474901719626,
+      -0.09246784355452005,
+      0.17210919651727424,
+      -0.5124570371796972,
+      0.825701408170829,
+      0.5206116454025085,
+      -0.5473296078497959
+    ]
+  ],
+  "metadata": {
+    "class_name": "reduced_continuous_transformed_C_strips",
+    "physical_thresholds_C": [
+      0.04306772563760188,
+      0.05774902599752384,
+      0.1690159263954462,
+      0.28087453434843745
+    ],
+    "enforce_types": false,
+    "accepted": false,
+    "exact_rest_constraint": [
+      0.042523198583379995,
+      0.9112560651867909,
+      0.45
+    ],
+    "original_spectral_sequence_preserved": false,
+    "threshold_count": 4,
+    "input_threshold_count": 0,
+    "regions": 5,
+    "active_fit_parameters": 18,
+    "parameter_count": 18,
+    "field_initializer": "incumbent",
+    "reference_thresholds_C": [
+      0.04306772563760188,
+      0.05774902599752384,
+      0.1690159263954462,
+      0.28087453434843745
+    ],
+    "direct_fit_vector": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "IP3": "exact -(I-baseline)/tau",
+    "calcium_clipping": false,
+    "scope": "compact approximation; validate trajectories, SIC and speed separately"
+  }
+}

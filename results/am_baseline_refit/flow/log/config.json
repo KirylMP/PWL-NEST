@@ -1,0 +1,23 @@
+{
+  "models": [
+    "models/server_candidates/AM_sqrt_tails__log.json"
+  ],
+  "source_sha256": [
+    "dd996cf412d6d80933d385ca0645250615a9a94b0ee3116d30cb9b764049ffc8"
+  ],
+  "budget": 1500,
+  "restarts": 1,
+  "sigma_s": 1.0,
+  "seed": 20261026,
+  "objective": "original RestObjective: fixed regimes, spectral anchors, own rest, event features and weak waveform",
+  "base_objective": true,
+  "native_maxdt": 0.02,
+  "powell_radius": 0.01,
+  "flow_helper": true,
+  "selection": "all training independently recomputed with DOP853; tests excluded",
+  "field_initialization": "fixed and dynamic training paths only",
+  "code_sha256": "4d3312449be37425cd7a3672a7efcb97e48366c31417b68b8e212dfd1d61090d",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0"
+}

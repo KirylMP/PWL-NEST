@@ -1,0 +1,30 @@
+{"model": "AM_sqrt_tails__cube", "baseline_train_loss": 28.151380919207647, "parts": {"fixed_and_spectral_anchors": 4.653902836542629, "pulse_tau_20.0": 6.818429203468904, "pulse_tau_100.0": 6.191604649549881, "periodic": 10.233007631203257, "own_rest": 0.254436598442961}}
+AM baseline 1: 27.76868
+AM baseline 294: 26.61871
+AM baseline 403: 25.33798
+AM baseline 525: 25.29944
+AM baseline 655: 25.29805
+AM baseline 755: 25.13867
+AM baseline 860: 25.12731
+AM baseline 977: 25.11758
+AM baseline 1077: 25.10679
+AM baseline 1180: 25.10128
+AM baseline 1281: 25.08618
+AM baseline 1382: 25.08495
+AM baseline 1501: 25.07968
+AM baseline 1636: 25.07171
+AM baseline 1746: 25.0549
+AM baseline 1942: 25.05311
+{"candidate_name": "AM_sqrt_tails__cube", "restart": 0, "status": "verified", "verified_train_loss": 30.80138231473005, "train_parts": {"fixed_and_spectral_anchors": 9.982123598745897, "pulse_tau_20.0": 4.32931769618618, "pulse_tau_100.0": 6.482496693403811, "periodic": 9.778812420655543, "own_rest": 0.22863190573860798}, "seconds": 115.60994028300047, "model": "trials/AM_sqrt_tails__cube/r0000/candidate.json"}
+AM baseline 1: 27.76868
+AM baseline 518: 27.76594
+AM baseline 664: 27.75986
+AM baseline 807: 27.75463
+AM baseline 924: 27.7468
+AM baseline 1049: 27.74608
+AM baseline 1157: 27.74554
+AM baseline 1269: 27.74296
+AM baseline 1428: 27.74259
+AM baseline 1543: 27.739
+{"candidate_name": "AM_sqrt_tails__cube", "restart": 1, "status": "verified", "verified_train_loss": 28.126735354514043, "train_parts": {"fixed_and_spectral_anchors": 4.645672929805332, "pulse_tau_20.0": 6.826448287070361, "pulse_tau_100.0": 6.199771562419722, "periodic": 10.197569332446847, "own_rest": 0.2572732427717831}, "seconds": 121.18541517898848, "model": "trials/AM_sqrt_tails__cube/r0001/candidate.json"}
+{"model": "AM_sqrt_tails__cube", "selected_train_loss": 28.126735354514043, "previous_tests": {"C_RMSE": 0.01875613105297321, "physical": true, "peak_count_matches": 4, "protocol_count": 4}, "new_tests": {"C_RMSE": 0.02799501246382457, "physical": true, "peak_count_matches": 4, "protocol_count": 5}}

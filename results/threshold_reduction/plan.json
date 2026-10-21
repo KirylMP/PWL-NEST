@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+      "name": "FM_4C",
+      "source": "FM",
+      "C_thresholds": 4,
+      "keep_IP3_thresholds": false
+    },
+    {
+      "name": "AM_cube_2C",
+      "source": "AM_cube",
+      "C_thresholds": 2,
+      "keep_IP3_thresholds": false
+    },
+    {
+      "name": "AM_log_2C",
+      "source": "AM_log",
+      "C_thresholds": 2,
+      "keep_IP3_thresholds": false
+    },
+    {
+      "name": "AM_cube_2C_2I",
+      "source": "AM_cube",
+      "C_thresholds": 2,
+      "keep_IP3_thresholds": true
+    },
+    {
+      "name": "AM_log_2C_2I",
+      "source": "AM_log",
+      "C_thresholds": 2,
+      "keep_IP3_thresholds": true
+    }
+  ],
+  "budget_per_stage": 1000,
+  "starts_per_task": 2,
+  "workers": 4,
+  "selection": "Only independent DOP853 training loss; held-out and NEST outputs excluded",
+  "scientific_changes": "Fewer C thresholds, both AM input geometries, unconstrained regional spectral types; exact stable LR background rest. Physical common loss omits spectral boundary anchors for all compared models."
+}

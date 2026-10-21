@@ -1,0 +1,73 @@
+{
+  "selected": {
+    "label": "fit_0",
+    "status": "verified",
+    "train_loss": 42.37841173539787,
+    "parts": {
+      "fixed_and_spectral_anchors": 8.380300068029662,
+      "pulse_tau_20.0": 9.339595668584128,
+      "pulse_tau_100.0": 7.561533488224338,
+      "periodic": 17.09698251055973,
+      "own_rest": 0.0
+    },
+    "model": "candidates/fit_0.json"
+  },
+  "full_model_loss": 27.436698469720906,
+  "C_threshold_count": 2,
+  "input_threshold_count": 2,
+  "parameter_count": 16,
+  "candidates": [
+    {
+      "label": "seed_0",
+      "status": "verified",
+      "train_loss": 1375.7224994270887,
+      "parts": {
+        "fixed_and_spectral_anchors": 87.10434491914879,
+        "pulse_tau_20.0": 636.4463080956863,
+        "pulse_tau_100.0": 11.427355247474761,
+        "periodic": 640.7444911647793,
+        "own_rest": 0.0
+      },
+      "model": "candidates/seed_0.json"
+    },
+    {
+      "label": "fit_0",
+      "status": "verified",
+      "train_loss": 42.37841173539787,
+      "parts": {
+        "fixed_and_spectral_anchors": 8.380300068029662,
+        "pulse_tau_20.0": 9.339595668584128,
+        "pulse_tau_100.0": 7.561533488224338,
+        "periodic": 17.09698251055973,
+        "own_rest": 0.0
+      },
+      "model": "candidates/fit_0.json"
+    },
+    {
+      "label": "seed_1",
+      "status": "verified",
+      "train_loss": 5215.559181299414,
+      "parts": {
+        "fixed_and_spectral_anchors": 2635.485888908772,
+        "pulse_tau_20.0": 13.998829773996874,
+        "pulse_tau_100.0": 2535.302326516768,
+        "periodic": 30.77213609987945,
+        "own_rest": 3.0814879110195774e-29
+      },
+      "model": "candidates/seed_1.json"
+    },
+    {
+      "label": "fit_1",
+      "status": "verified",
+      "train_loss": 80.95010088042146,
+      "parts": {
+        "fixed_and_spectral_anchors": 46.89576901788678,
+        "pulse_tau_20.0": 12.416232546283647,
+        "pulse_tau_100.0": 10.031995142330933,
+        "periodic": 11.606104173920125,
+        "own_rest": 3.0814879110195774e-29
+      },
+      "model": "candidates/fit_1.json"
+    }
+  ]
+}

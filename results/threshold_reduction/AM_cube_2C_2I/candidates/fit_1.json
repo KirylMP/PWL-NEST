@@ -1,0 +1,125 @@
+{
+  "case": "AM",
+  "calcium_coordinate": {
+    "kind": "sqrt_tails",
+    "reference": 0.05563833512124773,
+    "scale": 0.29719782567894054,
+    "normalization": "phi(C_ref)=0, phi_prime(C_ref)=1/scale",
+    "tail_joins_C": [
+      0.005,
+      1.3
+    ]
+  },
+  "h_reference": 0.722072295839805,
+  "h_coordinate": {
+    "kind": "cube",
+    "normalization": "psi(h_ref)=0, psi_prime(h_ref)=1/[h_ref*(1-h_ref)]"
+  },
+  "thresholds_u": [
+    0.18516197142219176,
+    0.5421742586975186
+  ],
+  "thresholds_C": [
+    0.12427501859055243,
+    0.333434825903011
+  ],
+  "basis": [
+    "1",
+    "u",
+    "v",
+    "I",
+    "max(0,u-(0.18516197142219176)-(0)*(I-0.65000000000000002))",
+    "max(0,u-(0.54217425869751856)-(0)*(I-0.65000000000000002))"
+  ],
+  "coefficients": [
+    [
+      -1.0026584789236814,
+      -1.9144334526331668,
+      1.087795673121131,
+      4.048637585501195,
+      2.3357359070416686,
+      -0.8430303772003838
+    ],
+    [
+      0.17213934493169253,
+      -0.12037246218495505,
+      -0.17932551330586544,
+      -0.42495533205655717,
+      -0.200703664611773,
+      -0.17720584675885162
+    ]
+  ],
+  "metadata": {
+    "class_name": "reduced_continuous_transformed_C_strips",
+    "physical_thresholds_C": [
+      0.12427501859055243,
+      0.333434825903011
+    ],
+    "enforce_types": false,
+    "accepted": false,
+    "exact_rest_constraint": [
+      0.1231214386699921,
+      0.746607851635111,
+      0.3
+    ],
+    "original_spectral_sequence_preserved": false,
+    "threshold_count": 2,
+    "input_threshold_count": 2,
+    "regions": 9,
+    "active_fit_parameters": 16,
+    "parameter_count": 16,
+    "field_initializer": "Li_Rinzel",
+    "reference_thresholds_C": [
+      0.12457916483535184,
+      0.32731699624841737
+    ],
+    "direct_fit_vector": [
+      0.03376646713919847,
+      0.12749419545629245,
+      -0.011459227058068773,
+      0.019224591683373073,
+      -0.41020960113260335,
+      0.11872269258591245,
+      -0.8114926580915214,
+      -0.008491460559891764,
+      -0.031043792050658527,
+      0.030611571488222744,
+      -8.277215789336394e-05,
+      -0.0928057366511426,
+      -0.04801339288671924,
+      0.20571981336588674,
+      0.02794429804400777,
+      0.06355067268222755
+    ],
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "IP3": "exact -(I-baseline)/tau",
+    "calcium_clipping": false,
+    "scope": "compact approximation; validate trajectories, SIC and speed separately"
+  },
+  "geometry": {
+    "input_thresholds": [
+      0.35,
+      0.64
+    ],
+    "input_weights": [
+      [
+        -2.7362940870299273,
+        -1.5057890304366044
+      ],
+      [
+        0.46899821979905665,
+        0.2628206685579587
+      ]
+    ],
+    "threshold_slopes": [
+      0.0,
+      0.0
+    ],
+    "reference_input": 0.65,
+    "definition": "base affine + sum wj*(u-theta_j-sj*(I-Iref))_+ + sum zk*(I-eta_k)_+"
+  }
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "label": "seed_0",
+    "status": "verified",
+    "train_loss": 1878.93266361322,
+    "parts": {
+      "fixed_and_spectral_anchors": 1860.8558884837958,
+      "pulse_tau_20.0": 3.83691968374427,
+      "pulse_tau_100.0": 9.061032923624214,
+      "periodic": 5.178822522054872,
+      "own_rest": 0.0
+    },
+    "model": "candidates/seed_0.json"
+  },
+  {
+    "label": "fit_0",
+    "status": "verified",
+    "train_loss": 37.96231400568907,
+    "parts": {
+      "fixed_and_spectral_anchors": 18.714181592974803,
+      "pulse_tau_20.0": 3.432737811213965,
+      "pulse_tau_100.0": 8.774533235668606,
+      "periodic": 7.040861365831725,
+      "own_rest": 0.0
+    },
+    "model": "candidates/fit_0.json"
+  },
+  {
+    "label": "seed_1",
+    "status": "verified",
+    "train_loss": 1944.16679485908,
+    "parts": {
+      "fixed_and_spectral_anchors": 1909.1398755649932,
+      "pulse_tau_20.0": 2.6260676618182237,
+      "pulse_tau_100.0": 17.229459788971567,
+      "periodic": 15.171391843297569,
+      "own_rest": 4.81482486096809e-31
+    },
+    "model": "candidates/seed_1.json"
+  },
+  {
+    "label": "fit_1",
+    "status": "verified",
+    "train_loss": 37.36838653876905,
+    "parts": {
+      "fixed_and_spectral_anchors": 9.280087299079044,
+      "pulse_tau_20.0": 2.0909134506418274,
+      "pulse_tau_100.0": 13.379074281737887,
+      "periodic": 12.618311507310294,
+      "own_rest": 0.0
+    },
+    "model": "candidates/fit_1.json"
+  }
+]

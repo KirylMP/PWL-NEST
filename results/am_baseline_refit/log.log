@@ -1,0 +1,10 @@
+{"model": "AM_sqrt_tails__log", "baseline_train_loss": 17.742868010015783, "parts": {"fixed_and_spectral_anchors": 5.390133403719323, "pulse_tau_20.0": 1.7512320644987254, "pulse_tau_100.0": 4.023447373564342, "periodic": 6.517107667183241, "own_rest": 0.060947501050156984}}
+AM timing 1: 17.54886
+AM timing 374: 17.54885
+AM timing 490: 17.54866
+{"candidate_name": "AM_sqrt_tails__log", "restart": 0, "status": "verified", "verified_train_loss": 17.742381753196987, "train_parts": {"fixed_and_spectral_anchors": 5.389794803296459, "pulse_tau_20.0": 1.751004970007073, "pulse_tau_100.0": 4.023192059388673, "periodic": 6.517415728802415, "own_rest": 0.06097419170237029}, "seconds": 40.15489961500862, "model": "trials/AM_sqrt_tails__log/r0000/candidate.json"}
+AM timing 1: 17.54866
+AM timing 463: 17.54865
+AM timing 579: 17.54847
+{"candidate_name": "AM_sqrt_tails__log", "restart": 1, "status": "verified", "verified_train_loss": 17.741926659559276, "train_parts": {"fixed_and_spectral_anchors": 5.389518674998958, "pulse_tau_20.0": 1.7507785369574334, "pulse_tau_100.0": 4.022911466582223, "periodic": 6.5177180665167445, "own_rest": 0.060999914503918916}, "seconds": 39.08409784799733, "model": "trials/AM_sqrt_tails__log/r0001/candidate.json"}
+{"model": "AM_sqrt_tails__log", "selected_train_loss": 17.741926659559276, "previous_tests": {"C_RMSE": 0.019296545705564258, "physical": true, "peak_count_matches": 3, "protocol_count": 4}, "new_tests": {"C_RMSE": 0.0330199360430206, "physical": true, "peak_count_matches": 3, "protocol_count": 5}}

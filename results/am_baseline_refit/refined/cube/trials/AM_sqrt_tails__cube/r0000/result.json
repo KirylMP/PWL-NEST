@@ -1,0 +1,14 @@
+{
+  "restart": 0,
+  "status": "verified",
+  "verified_train_loss": 30.80138231473005,
+  "train_parts": {
+    "fixed_and_spectral_anchors": 9.982123598745897,
+    "pulse_tau_20.0": 4.32931769618618,
+    "pulse_tau_100.0": 6.482496693403811,
+    "periodic": 9.778812420655543,
+    "own_rest": 0.22863190573860798
+  },
+  "seconds": 115.60994028300047,
+  "model": "trials/AM_sqrt_tails__cube/r0000/candidate.json"
+}

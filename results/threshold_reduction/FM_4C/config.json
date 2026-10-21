@@ -1,0 +1,13 @@
+{
+  "source": "models/phase_shape_candidates/FM_width_soft_candidate.json",
+  "source_sha256": "ef3e07f99dcfd2f578d6efd275658aff11b5fbc22b5c317b025d8f25b0f62ddf",
+  "C_thresholds": 4,
+  "keep_input_thresholds": false,
+  "seed": 20261027,
+  "budget_per_stage": 1000,
+  "optimized_starts": 2,
+  "regions": 5,
+  "selection": "independently verified training residual; no diagnostics",
+  "loss": "RestObjective physical regimes, own rest and event features; spectral boundary anchors omitted for BOTH full and reduced models",
+  "constraints": "exact stable LR background equilibrium, continuous field, ordered C thresholds, positive u-v and negative v-v coupling; original spectral sequence not imposed"
+}

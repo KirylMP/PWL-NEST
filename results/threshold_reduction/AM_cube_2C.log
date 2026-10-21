@@ -1,0 +1,10 @@
+{"label": "seed_0", "status": "verified", "train_loss": 2692.4166356971177, "parts": {"fixed_and_spectral_anchors": 2239.895686183641, "pulse_tau_20.0": 59.76091452897212, "pulse_tau_100.0": 74.07028997052407, "periodic": 218.68974501398137, "own_rest": 100.0}, "model": "candidates/seed_0.json"}
+{"source": "AM_cube", "start": 0, "evaluation": 3, "helper_loss": 2692.416522603518}
+{"source": "AM_cube", "start": 0, "evaluation": 103, "helper_loss": 510.26010077055173}
+{"source": "AM_cube", "start": 0, "evaluation": 247, "helper_loss": 440.27246603091044}
+{"label": "fit_0", "status": "verified", "train_loss": 436.3709913591542, "parts": {"fixed_and_spectral_anchors": 75.7089267688574, "pulse_tau_20.0": 49.2543041681142, "pulse_tau_100.0": 80.92912865836631, "periodic": 230.47863176381622, "own_rest": 7.703719777548943e-30}, "model": "candidates/fit_0.json"}
+{"label": "seed_1", "status": "verified", "train_loss": 19660.11878936122, "parts": {"fixed_and_spectral_anchors": 1927.0769322358665, "pulse_tau_20.0": 20.48549771811195, "pulse_tau_100.0": 6268.245666079811, "periodic": 11444.310693327428, "own_rest": 3.0814879110195774e-29}, "model": "candidates/seed_1.json"}
+{"source": "AM_cube", "start": 1, "evaluation": 3, "helper_loss": 19660.118743526058}
+{"source": "AM_cube", "start": 1, "evaluation": 105, "helper_loss": 326.0956199622824}
+{"label": "fit_1", "status": "verified", "train_loss": 326.08988574888065, "parts": {"fixed_and_spectral_anchors": 48.84262227484072, "pulse_tau_20.0": 19.049153412332256, "pulse_tau_100.0": 26.831493924021057, "periodic": 231.36661613768666, "own_rest": 0.0}, "model": "candidates/fit_1.json"}
+{"source": "AM_cube", "selected_loss": 326.08988574888065, "full_loss": 27.436698469720906}

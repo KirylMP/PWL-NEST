@@ -60,11 +60,13 @@ def prepare(out,case):
 
 class RestObjective:
     peak_weight=25.;explicit_status=True
-    def __init__(self,out,case,seed):
+    def __init__(self,out,case,seed,native_maxdt=.005,spectral_anchors=True):
+        if not np.isfinite(native_maxdt) or native_maxdt<=0:raise ValueError('Invalid native step')
+        self.native_maxdt=float(native_maxdt)
         directory=out/'cache'/case;self.spec=json.loads((directory/'data.json').read_text());self.refs={}
         for p in self.spec['fixed']+self.spec['train']+self.spec['test']:
             with np.load(directory/f'{p["name"]}.npz') as data:self.refs[p['name']]=(data['t'],data['x'],{})
-        self.static=CalibrationResidual(case,self.spec['fixed'],self.refs,seed)
+        self.static=CalibrationResidual(case,self.spec['fixed'],self.refs,seed,spectral_anchors=spectral_anchors)
         self.dynamic=NativeCoordinateDynamic();self.case=case
         self.lengths={p['name']:len(event_residual(*self.refs[p['name']][:2],*self.refs[p['name']][:2])) for p in self.spec['train']}
     def paths(self,model,protocols,precise=False):
@@ -75,7 +77,7 @@ class RestObjective:
             kwargs={k:v for k,v in p.items() if k!='name'}
             if precise:paths[p['name']]=simulate_coordinates(model,rest,**kwargs,dt=.25 if p in self.spec['train'] else .05,
                 rtol=2e-11,atol=atol,max_step=.05)
-            else:paths[p['name']]=native_events(model,rest,**kwargs,native=self.dynamic)
+            else:paths[p['name']]=native_events(model,rest,**kwargs,native=self.dynamic,maxdt=self.native_maxdt)
         return rest,count,paths
     def __call__(self,model,precise=False,parts=False):
         groups={}

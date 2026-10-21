@@ -1,0 +1,244 @@
+{
+  "case": "AM",
+  "fixed": [
+    {
+      "name": "fixed_lower_rest",
+      "initial": [
+        0.6,
+        0.8,
+        0.3
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.3
+    },
+    {
+      "name": "fixed_0.4",
+      "initial": [
+        0.6,
+        0.8,
+        0.4
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.4
+    },
+    {
+      "name": "fixed_0.5",
+      "initial": [
+        0.6,
+        0.8,
+        0.5
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.5
+    },
+    {
+      "name": "fixed_0.6",
+      "initial": [
+        0.6,
+        0.8,
+        0.6
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.6
+    },
+    {
+      "name": "fixed_0.7",
+      "initial": [
+        0.6,
+        0.8,
+        0.7
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.7
+    },
+    {
+      "name": "fixed_0.637",
+      "initial": [
+        0.6,
+        0.8,
+        0.637
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.637
+    },
+    {
+      "name": "fixed_0.638",
+      "initial": [
+        0.6,
+        0.8,
+        0.638
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.638
+    },
+    {
+      "name": "fixed_0.64",
+      "initial": [
+        0.6,
+        0.8,
+        0.64
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.64
+    }
+  ],
+  "train": [
+    {
+      "name": "pulse_tau_20.0",
+      "duration": 200.0,
+      "tau": 20.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.35
+        ]
+      ]
+    },
+    {
+      "name": "pulse_tau_100.0",
+      "duration": 200.0,
+      "tau": 100.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.35
+        ]
+      ]
+    },
+    {
+      "name": "periodic",
+      "duration": 220.0,
+      "tau": 20.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.16
+        ],
+        [
+          40.0,
+          0.16
+        ],
+        [
+          60.0,
+          0.16
+        ],
+        [
+          80.0,
+          0.16
+        ],
+        [
+          100.0,
+          0.16
+        ]
+      ]
+    }
+  ],
+  "test": [
+    {
+      "name": "pulse_tau_7.0",
+      "duration": 200.0,
+      "tau": 7.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.35
+        ]
+      ]
+    },
+    {
+      "name": "pulse_tau_50.0",
+      "duration": 200.0,
+      "tau": 50.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.35
+        ]
+      ]
+    },
+    {
+      "name": "pulse_tau_65.0",
+      "duration": 200.0,
+      "tau": 65.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.35
+        ]
+      ]
+    },
+    {
+      "name": "irregular",
+      "duration": 240.0,
+      "tau": 12.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.16
+        ],
+        [
+          31.28436040417965,
+          0.16
+        ],
+        [
+          41.304011869258574,
+          0.16
+        ],
+        [
+          52.782683601206344,
+          0.16
+        ],
+        [
+          65.12224491093625,
+          0.16
+        ],
+        [
+          76.40491073672175,
+          0.16
+        ],
+        [
+          88.89222176787746,
+          0.16
+        ]
+      ]
+    }
+  ],
+  "rest": [
+    0.1231214386699921,
+    0.746607851635111,
+    0.3
+  ],
+  "C_lower": 0.05563833512124773,
+  "C_upper": 0.51941408164821,
+  "pre_input_delay_s": 20.0,
+  "source_initial_conditions_optimized": false,
+  "field_initialization_protocols": [
+    "fixed_lower_rest",
+    "fixed_0.4",
+    "fixed_0.5",
+    "fixed_0.6",
+    "fixed_0.7",
+    "fixed_0.637",
+    "fixed_0.638",
+    "fixed_0.64",
+    "pulse_tau_20.0",
+    "pulse_tau_100.0",
+    "periodic"
+  ],
+  "heldout_used_for_field_initialization": false
+}

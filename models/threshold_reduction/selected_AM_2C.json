@@ -1,0 +1,104 @@
+{
+  "case": "AM",
+  "calcium_coordinate": {
+    "kind": "sqrt_tails",
+    "reference": 0.05563833512124773,
+    "scale": 0.29719782567894054,
+    "normalization": "phi(C_ref)=0, phi_prime(C_ref)=1/scale",
+    "tail_joins_C": [
+      0.005,
+      1.3
+    ]
+  },
+  "h_reference": 0.722072295839805,
+  "h_coordinate": {
+    "kind": "log",
+    "normalization": "psi(h_ref)=0, psi_prime(h_ref)=1/[h_ref*(1-h_ref)]"
+  },
+  "thresholds_u": [
+    0.18427599930431354,
+    0.5500900214328047
+  ],
+  "thresholds_C": [
+    0.12388180674051016,
+    0.33921882308193124
+  ],
+  "basis": [
+    "1",
+    "u",
+    "v",
+    "I",
+    "max(0,u-0.18427599930431354)",
+    "max(0,u-0.55009002143280472)"
+  ],
+  "coefficients": [
+    [
+      0.07357752095914703,
+      -2.8461822824494916,
+      0.9830910446039487,
+      1.0927416413854325,
+      3.4976711743890974,
+      -0.4618970265117904
+    ],
+    [
+      -0.004938469509009932,
+      0.8134647182254774,
+      -0.5052740365132409,
+      -0.2760611072589837,
+      -1.420853546475812,
+      0.049915038928586015
+    ]
+  ],
+  "metadata": {
+    "class_name": "reduced_continuous_transformed_C_strips",
+    "physical_thresholds_C": [
+      0.12388180674051016,
+      0.33921882308193124
+    ],
+    "enforce_types": false,
+    "accepted": false,
+    "exact_rest_constraint": [
+      0.1231214386699921,
+      0.746607851635111,
+      0.3
+    ],
+    "original_spectral_sequence_preserved": false,
+    "threshold_count": 2,
+    "input_threshold_count": 0,
+    "regions": 3,
+    "active_fit_parameters": 12,
+    "parameter_count": 12,
+    "field_initializer": "incumbent",
+    "reference_thresholds_C": [
+      0.12379127019338777,
+      0.34049445076623047
+    ],
+    "direct_fit_vector": [
+      -0.014902256748989763,
+      -0.037191601012253106,
+      0.0024059201111987765,
+      -0.009687122779073935,
+      -0.005290843631073024,
+      0.001598851539786963,
+      0.011648619833426998,
+      -0.005035230857722945,
+      0.0005833017478729821,
+      0.08321802358741998,
+      -0.005776766715065163,
+      -0.013428584259164395
+    ],
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "IP3": "exact -(I-baseline)/tau",
+    "calcium_clipping": false,
+    "scope": "compact approximation; validate trajectories, SIC and speed separately",
+    "verified_current_train_loss": 289.5731903438707,
+    "selected_by": "independently verified training residual; no diagnostics",
+    "source_model": "models/am_baseline_refit/AM_sqrt_tails__log.json",
+    "experiment": "threshold_reduction",
+    "current_validation": "results/threshold_reduction/REPORT.md"
+  }
+}

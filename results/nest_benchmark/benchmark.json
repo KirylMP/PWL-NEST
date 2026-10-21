@@ -1,0 +1,3265 @@
+{
+  "git_commit": "bdedc3e646212dd72069ae7fbe9577a434dc9d87",
+  "nest_version": "3.10.0",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "cpu": "",
+  "threads": 1,
+  "resolution_ms": 10.0,
+  "repeats": 3,
+  "populations": [
+    1,
+    64,
+    256
+  ],
+  "solver": "Cached regional 4x4 matrix exponential, bisection at vertical exits; GSL RKF45 baseline (NEST default abs tol 1e-3)",
+  "timing_scope": "Run excludes build, Prepare and readout. Isolated solve excludes allocation and matrix-cache preparation; includes the deterministic IP3 jump check.",
+  "cases": {
+    "AM": {
+      "model": {
+        "path": "models/server_candidates/AM_sqrt_tails__cube.json",
+        "sha256": "365e1d0327b5308e89aaccec601fb9f6d6edf073156b30825eb82d4518b03294"
+      },
+      "initial": [
+        0.08233150784556179,
+        0.7861999350892381,
+        0.2
+      ],
+      "validation": [
+        {
+          "protocol": {
+            "name": "pulse_tau20",
+            "duration": 220.0,
+            "tau": 20.0,
+            "baseline": 0.2,
+            "jumps": [
+              [
+                20.0,
+                0.7
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.04586200573476218,
+              "max_abs": 0.543165881167806
+            },
+            "h": {
+              "rmse": 0.04157935941706654,
+              "max_abs": 0.08791497134748338
+            },
+            "IP3": {
+              "rmse": 4.596862935545882e-15,
+              "max_abs": 1.0769163338864018e-14
+            },
+            "I_SIC": {
+              "rmse": 0.42412118623756906,
+              "max_abs": 5.95494702943399
+            },
+            "lr": {
+              "calcium_peaks": 3,
+              "calcium_peak_times": [
+                21.76,
+                33.97,
+                47.31
+              ],
+              "sic_peak_count": 3,
+              "sic_peak_times": [
+                21.77,
+                33.98,
+                47.32
+              ],
+              "sic_area": 67.33678999246713,
+              "sic_max": 6.643659560459655,
+              "sic_active_seconds": 13.74,
+              "C_range": [
+                0.08233150784555297,
+                0.9645900338821732
+              ],
+              "h_range": [
+                0.5428834109308607,
+                0.787398813551177
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 4,
+              "calcium_peak_times": [
+                2.17,
+                23.21,
+                34.28,
+                48.11
+              ],
+              "sic_peak_count": 2,
+              "sic_peak_times": [
+                23.22,
+                34.29
+              ],
+              "sic_area": 64.94258898319556,
+              "sic_max": 6.4473121692115685,
+              "sic_active_seconds": 12.97,
+              "C_range": [
+                0.08381885724834097,
+                0.8276939795215432
+              ],
+              "h_range": [
+                0.6164300443629407,
+                0.7860199171703828
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.0024403720017289743,
+              "prepare_seconds": 4.6268003643490374e-05,
+              "run_seconds": 0.037837523996131495,
+              "readout_seconds": 0.011034415001631714,
+              "terminal": {
+                "Ca_astro": 0.08233948532521286,
+                "h_IP3R": 0.7861863293941657,
+                "IP3": 0.20003177995083382
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.005502996005816385,
+              "prepare_seconds": 6.331400072667748e-05,
+              "run_seconds": 0.029071927012410015,
+              "readout_seconds": 0.00938562500232365,
+              "terminal": {
+                "Ca_astro": 0.08545991308737824,
+                "h_IP3R": 0.7388349780138331,
+                "IP3": 0.20003177995083385
+              },
+              "counters": {
+                "affine_flows": 22704,
+                "region_crossings": 18,
+                "input_spikes": 1
+              }
+            }
+          }
+        },
+        {
+          "protocol": {
+            "name": "pulse_tau100",
+            "duration": 300.0,
+            "tau": 100.0,
+            "baseline": 0.2,
+            "jumps": [
+              [
+                20.0,
+                0.7
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.08987554214445607,
+              "max_abs": 0.559958411007143
+            },
+            "h": {
+              "rmse": 0.03773456691337663,
+              "max_abs": 0.10034489677993363
+            },
+            "IP3": {
+              "rmse": 1.4940889927084702e-13,
+              "max_abs": 2.0355939156502245e-13
+            },
+            "I_SIC": {
+              "rmse": 1.9376028885115197,
+              "max_abs": 5.988455540967238
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                21.77,
+                32.78,
+                43.1,
+                53.41,
+                63.91,
+                74.73,
+                85.88,
+                97.24,
+                108.65,
+                120.66,
+                133.18,
+                146.24,
+                159.65,
+                172.58
+              ],
+              "sic_peak_count": 13,
+              "sic_peak_times": [
+                21.78,
+                32.79,
+                43.11,
+                53.42,
+                63.92,
+                74.74,
+                85.89,
+                97.25,
+                108.66,
+                120.67,
+                133.19,
+                146.25,
+                159.66
+              ],
+              "sic_area": 490.0356323708488,
+              "sic_max": 6.656640346764584,
+              "sic_active_seconds": 105.68,
+              "C_range": [
+                0.08233150784555297,
+                0.9746229568609007
+              ],
+              "h_range": [
+                0.5412068834067154,
+                0.7874021154286579
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 13,
+              "calcium_peak_times": [
+                2.17,
+                23.24,
+                32.58,
+                41.34,
+                78.2,
+                89.44,
+                100.73,
+                112.53,
+                124.98,
+                138.44,
+                152.16,
+                165.31,
+                177.11
+              ],
+              "sic_peak_count": 11,
+              "sic_peak_times": [
+                23.25,
+                32.59,
+                41.35,
+                78.21,
+                89.45,
+                100.74,
+                112.54,
+                124.99,
+                138.45,
+                152.17,
+                165.32
+              ],
+              "sic_area": 460.65557303815456,
+              "sic_max": 6.404508561036592,
+              "sic_active_seconds": 98.43,
+              "C_range": [
+                0.08381885724834097,
+                0.8012546190520003
+              ],
+              "h_range": [
+                0.6365400340341416,
+                0.7860199171703827
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.0045326200051931664,
+              "prepare_seconds": 4.026899114251137e-05,
+              "run_seconds": 0.06626838199736085,
+              "readout_seconds": 0.015966525999829173,
+              "terminal": {
+                "Ca_astro": 0.09615450579541265,
+                "h_IP3R": 0.7721231115782765,
+                "IP3": 0.2425670438376511
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.005650353996315971,
+              "prepare_seconds": 7.084499520715326e-05,
+              "run_seconds": 0.048780248005641624,
+              "readout_seconds": 0.01660592301050201,
+              "terminal": {
+                "Ca_astro": 0.1031982589012011,
+                "h_IP3R": 0.7408787423135723,
+                "IP3": 0.24256704383781624
+              },
+              "counters": {
+                "affine_flows": 32108,
+                "region_crossings": 54,
+                "input_spikes": 1
+              }
+            }
+          }
+        },
+        {
+          "protocol": {
+            "name": "pulse_tau180",
+            "duration": 420.0,
+            "tau": 180.0,
+            "baseline": 0.2,
+            "jumps": [
+              [
+                20.0,
+                0.7
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.05806136810435387,
+              "max_abs": 0.5618570899988725
+            },
+            "h": {
+              "rmse": 0.03748466365611138,
+              "max_abs": 0.10191036142779286
+            },
+            "IP3": {
+              "rmse": 1.1407784411957217e-13,
+              "max_abs": 1.417754802446325e-13
+            },
+            "I_SIC": {
+              "rmse": 1.3691378381367079,
+              "max_abs": 5.989675845841125
+            },
+            "lr": {
+              "calcium_peaks": 17,
+              "calcium_peak_times": [
+                21.77,
+                32.67,
+                42.79,
+                52.76,
+                159.68,
+                171.25,
+                182.63,
+                194.41,
+                206.51,
+                218.87,
+                231.5,
+                244.4,
+                257.54,
+                270.79,
+                283.9,
+                296.6,
+                308.92
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                21.78,
+                32.68,
+                42.8,
+                52.77,
+                62.63,
+                136.34,
+                148.05,
+                159.69,
+                171.26,
+                182.64,
+                194.42,
+                206.52,
+                218.88,
+                231.51,
+                244.41,
+                257.55,
+                270.8,
+                283.91
+              ],
+              "sic_area": 930.6733456046661,
+              "sic_max": 6.6580536302569735,
+              "sic_active_seconds": 201.34,
+              "C_range": [
+                0.08233150784555297,
+                0.9757231739432104
+              ],
+              "h_range": [
+                0.5410489128958074,
+                0.7874024826211596
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 21,
+              "calcium_peak_times": [
+                2.17,
+                23.24,
+                32.49,
+                41.33,
+                115.37,
+                126.76,
+                137.76,
+                148.75,
+                159.93,
+                171.35,
+                183.02,
+                195.02,
+                207.4,
+                220.23,
+                233.64,
+                247.2,
+                260.5,
+                273.49,
+                286.09,
+                298.1,
+                309.05
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                23.25,
+                32.5,
+                41.34,
+                115.38,
+                126.77,
+                137.77,
+                148.76,
+                159.94,
+                171.36,
+                183.03,
+                195.03,
+                207.41,
+                220.24,
+                233.65,
+                247.21,
+                260.51,
+                273.5,
+                286.1
+              ],
+              "sic_area": 836.6417767447845,
+              "sic_max": 6.399290658946067,
+              "sic_active_seconds": 179.1,
+              "C_range": [
+                0.08381885724834097,
+                0.7981082758564172
+              ],
+              "h_range": [
+                0.6388753648169464,
+                0.7860199171703827
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.006054611993022263,
+              "prepare_seconds": 3.9367994759231806e-05,
+              "run_seconds": 0.07979255200189073,
+              "readout_seconds": 0.02289341100549791,
+              "terminal": {
+                "Ca_astro": 0.11010935807984944,
+                "h_IP3R": 0.758051835272857,
+                "IP3": 0.27585761625532834
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.01401638898823876,
+              "prepare_seconds": 0.00012962199980393052,
+              "run_seconds": 0.0941938899923116,
+              "readout_seconds": 0.01900911000848282,
+              "terminal": {
+                "Ca_astro": 0.11791103902099824,
+                "h_IP3R": 0.7422825205573197,
+                "IP3": 0.27585761625542005
+              },
+              "counters": {
+                "affine_flows": 45590,
+                "region_crossings": 92,
+                "input_spikes": 1
+              }
+            }
+          }
+        },
+        {
+          "protocol": {
+            "name": "periodic",
+            "duration": 240.0,
+            "tau": 20.0,
+            "baseline": 0.2,
+            "jumps": [
+              [
+                20.0,
+                0.3
+              ],
+              [
+                40.0,
+                0.3
+              ],
+              [
+                60.0,
+                0.3
+              ],
+              [
+                80.0,
+                0.3
+              ],
+              [
+                100.0,
+                0.3
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.03209448059304552,
+              "max_abs": 0.30140666312941994
+            },
+            "h": {
+              "rmse": 0.03804662385178828,
+              "max_abs": 0.07584764535990529
+            },
+            "IP3": {
+              "rmse": 6.48485076067824e-15,
+              "max_abs": 1.1879386363489175e-14
+            },
+            "I_SIC": {
+              "rmse": 0.507134713353815,
+              "max_abs": 4.966344028897689
+            },
+            "lr": {
+              "calcium_peaks": 9,
+              "calcium_peak_times": [
+                22.19,
+                42.26,
+                56.72,
+                62.55,
+                76.36,
+                82.98,
+                96.5,
+                103.07,
+                116.47
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.2,
+                42.27,
+                56.73,
+                62.56,
+                76.37,
+                82.99,
+                96.51,
+                103.08,
+                116.48
+              ],
+              "sic_area": 200.66392948074756,
+              "sic_max": 6.285979558274298,
+              "sic_active_seconds": 42.59,
+              "C_range": [
+                0.08062037298283861,
+                0.7336800461342916
+              ],
+              "h_range": [
+                0.573297432174912,
+                0.7868646325030846
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 10,
+              "calcium_peak_times": [
+                2.17,
+                22.88,
+                42.47,
+                57.57,
+                62.55,
+                76.8,
+                82.92,
+                96.99,
+                102.99,
+                116.97
+              ],
+              "sic_peak_count": 8,
+              "sic_peak_times": [
+                22.89,
+                42.48,
+                62.56,
+                76.81,
+                82.93,
+                97.0,
+                103.0,
+                116.98
+              ],
+              "sic_area": 177.99600460585046,
+              "sic_max": 6.196416941850612,
+              "sic_active_seconds": 38.6,
+              "C_range": [
+                0.08381885724834097,
+                0.6876766518829823
+              ],
+              "h_range": [
+                0.6225368756074187,
+                0.7860199171703828
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.006114781994256191,
+              "prepare_seconds": 4.496600013226271e-05,
+              "run_seconds": 0.04781699099112302,
+              "readout_seconds": 0.011117638001451269,
+              "terminal": {
+                "Ca_astro": 0.08243941880437401,
+                "h_IP3R": 0.7860154362833505,
+                "IP3": 0.20042985680842892
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.004794036998646334,
+              "prepare_seconds": 6.224200478754938e-05,
+              "run_seconds": 0.03591149199928623,
+              "readout_seconds": 0.009775682003237307,
+              "terminal": {
+                "Ca_astro": 0.08563711754808531,
+                "h_IP3R": 0.7388673055987228,
+                "IP3": 0.2004298568084291
+              },
+              "counters": {
+                "affine_flows": 25955,
+                "region_crossings": 50,
+                "input_spikes": 5
+              }
+            }
+          }
+        },
+        {
+          "protocol": {
+            "name": "irregular",
+            "duration": 340.0,
+            "tau": 22.0,
+            "baseline": 0.2,
+            "jumps": [
+              [
+                20.0,
+                0.2908342044969666
+              ],
+              [
+                39.0,
+                0.22199479308599138
+              ],
+              [
+                55.35,
+                0.27024720422050164
+              ],
+              [
+                73.65,
+                0.2280021985217412
+              ],
+              [
+                91.45,
+                0.26937452762220815
+              ],
+              [
+                108.2,
+                0.22010750819969754
+              ],
+              [
+                128.20000000000002,
+                0.2751632746753606
+              ],
+              [
+                155.60000000000002,
+                0.2572182957789211
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.03095767556241033,
+              "max_abs": 0.30208655256917216
+            },
+            "h": {
+              "rmse": 0.03905658273545055,
+              "max_abs": 0.07492255988637697
+            },
+            "IP3": {
+              "rmse": 5.99555480198294e-15,
+              "max_abs": 1.0325074129013956e-14
+            },
+            "I_SIC": {
+              "rmse": 0.5364170867014249,
+              "max_abs": 4.999522312989556
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.22,
+                41.43,
+                57.6,
+                71.31,
+                76.74,
+                89.86,
+                93.88,
+                106.66,
+                110.6,
+                123.18,
+                131.29,
+                144.69,
+                157.99,
+                172.47
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                22.23,
+                41.44,
+                57.61,
+                71.32,
+                76.75,
+                89.87,
+                93.89,
+                106.67,
+                110.61,
+                123.19,
+                131.3,
+                144.7,
+                158.0,
+                172.48
+              ],
+              "sic_area": 335.11918538830264,
+              "sic_max": 6.270822245906302,
+              "sic_active_seconds": 71.55,
+              "C_range": [
+                0.08090316959622815,
+                0.7256020949358891
+              ],
+              "h_range": [
+                0.5741438464087502,
+                0.7868494332752278
+              ],
+              "sic_delivery_max_error": 2.7755575615628914e-17
+            },
+            "pwa": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                2.17,
+                22.92,
+                41.59,
+                57.72,
+                71.99,
+                76.0,
+                89.61,
+                93.88,
+                109.98,
+                123.33,
+                131.16,
+                145.05,
+                158.18,
+                173.07
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                22.93,
+                41.6,
+                57.73,
+                72.0,
+                76.01,
+                89.62,
+                93.89,
+                107.35,
+                109.99,
+                123.34,
+                131.17,
+                145.06,
+                158.19,
+                173.08
+              ],
+              "sic_area": 303.5221226615545,
+              "sic_max": 6.136636952916515,
+              "sic_active_seconds": 66.45,
+              "C_range": [
+                0.08381885724834097,
+                0.6591855581546959
+              ],
+              "h_range": [
+                0.6200420503708198,
+                0.7860199171703827
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": 7.562142857142855
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.006359273989801295,
+              "prepare_seconds": 4.364499181974679e-05,
+              "run_seconds": 0.06927248899592087,
+              "readout_seconds": 0.016463142004795372,
+              "terminal": {
+                "Ca_astro": 0.08235428905400917,
+                "h_IP3R": 0.7861646919663225,
+                "IP3": 0.20008852376620706
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.004064737004227936,
+              "prepare_seconds": 5.8115998399443924e-05,
+              "run_seconds": 0.04504023600020446,
+              "readout_seconds": 0.01393293499131687,
+              "terminal": {
+                "Ca_astro": 0.08548452090737466,
+                "h_IP3R": 0.7388391280928729,
+                "IP3": 0.20008852376620706
+              },
+              "counters": {
+                "affine_flows": 36501,
+                "region_crossings": 64,
+                "input_spikes": 8
+              }
+            }
+          }
+        }
+      ],
+      "timing": [
+        {
+          "population": 1,
+          "mode": "astrocytes_only",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.003579568990971893,
+                "prepare_seconds": 2.331400173716247e-05,
+                "run_seconds": 0.011761492001824081,
+                "readout_seconds": 6.509944796562195e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.002127199011738412,
+                "prepare_seconds": 2.2772990632802248e-05,
+                "run_seconds": 0.00894333999895025,
+                "readout_seconds": 8.810020517557859e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.002468173988745548,
+                "prepare_seconds": 1.8627004465088248e-05,
+                "run_seconds": 0.008468897009151988,
+                "readout_seconds": 4.1000021155923605e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.005104197000036947,
+                "prepare_seconds": 3.0184004572220147e-05,
+                "run_seconds": 0.0038360480102710426,
+                "readout_seconds": 3.710010787472129e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 12704,
+                  "region_crossings": 18,
+                  "input_spikes": 1
+                }
+              },
+              {
+                "build_seconds": 0.0032617190008750185,
+                "prepare_seconds": 3.531199763529003e-05,
+                "run_seconds": 0.0039790209993952885,
+                "readout_seconds": 2.8000795282423496e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 12704,
+                  "region_crossings": 18,
+                  "input_spikes": 1
+                }
+              },
+              {
+                "build_seconds": 0.0056271899957209826,
+                "prepare_seconds": 3.30079928971827e-05,
+                "run_seconds": 0.0033989619987551123,
+                "readout_seconds": 2.5999906938523054e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 12704,
+                  "region_crossings": 18,
+                  "input_spikes": 1
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 0.00894333999895025,
+            "pwa": 0.0038360480102710426
+          },
+          "lr_over_pwa": 2.3313941783325967
+        },
+        {
+          "population": 1,
+          "mode": "network_with_SIC",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.0036800480011152104,
+                "prepare_seconds": 3.291900793556124e-05,
+                "run_seconds": 0.01863073000276927,
+                "readout_seconds": 3.809982445091009e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.001999010011786595,
+                "prepare_seconds": 2.973400114569813e-05,
+                "run_seconds": 0.015035126998554915,
+                "readout_seconds": 6.110058166086674e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.002417037991108373,
+                "prepare_seconds": 2.6398993213661015e-05,
+                "run_seconds": 0.015401008000480942,
+                "readout_seconds": 5.110050551593304e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.005041041993536055,
+                "prepare_seconds": 4.4455009629018605e-05,
+                "run_seconds": 0.012623547008843161,
+                "readout_seconds": 3.710010787472129e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 12704,
+                  "region_crossings": 18,
+                  "input_spikes": 1
+                }
+              },
+              {
+                "build_seconds": 0.002913201999035664,
+                "prepare_seconds": 4.081000224687159e-05,
+                "run_seconds": 0.010104328001034446,
+                "readout_seconds": 2.809974830597639e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 12704,
+                  "region_crossings": 18,
+                  "input_spikes": 1
+                }
+              },
+              {
+                "build_seconds": 0.004127519991016015,
+                "prepare_seconds": 4.099099896848202e-05,
+                "run_seconds": 0.009834147989749908,
+                "readout_seconds": 2.710003172978759e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 12704,
+                  "region_crossings": 18,
+                  "input_spikes": 1
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 0.015401008000480942,
+            "pwa": 0.010104328001034446
+          },
+          "lr_over_pwa": 1.5241991351531978
+        },
+        {
+          "population": 1,
+          "mode": "isolated_solver",
+          "raw": [
+            {
+              "lr": {
+                "setup_seconds": 3.204e-06,
+                "solve_seconds": 0.00226983,
+                "terminal": [
+                  0.083520501869222,
+                  0.7841403066270013,
+                  0.20471656289936035
+                ],
+                "rhs_or_flows": 84000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 6.339e-06,
+                "solve_seconds": 0.000509704,
+                "terminal": [
+                  0.08755438226939555,
+                  0.7392132481688755,
+                  0.20471656289936133
+                ],
+                "rhs_or_flows": 12704,
+                "crossings": 18
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 9.82e-07,
+                "solve_seconds": 0.002322658,
+                "terminal": [
+                  0.083520501869222,
+                  0.7841403066270013,
+                  0.20471656289936035
+                ],
+                "rhs_or_flows": 84000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 5.188e-06,
+                "solve_seconds": 0.000403036,
+                "terminal": [
+                  0.08755438226939555,
+                  0.7392132481688755,
+                  0.20471656289936133
+                ],
+                "rhs_or_flows": 12704,
+                "crossings": 18
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 9.61e-07,
+                "solve_seconds": 0.002407144,
+                "terminal": [
+                  0.083520501869222,
+                  0.7841403066270013,
+                  0.20471656289936035
+                ],
+                "rhs_or_flows": 84000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 4.917e-06,
+                "solve_seconds": 0.000485919,
+                "terminal": [
+                  0.08755438226939555,
+                  0.7392132481688755,
+                  0.20471656289936133
+                ],
+                "rhs_or_flows": 12704,
+                "crossings": 18
+              }
+            }
+          ],
+          "median_run_seconds": {
+            "lr": 0.002322658,
+            "pwa": 0.000485919
+          },
+          "lr_over_pwa": 4.7799283419664595
+        },
+        {
+          "population": 64,
+          "mode": "astrocytes_only",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.0040568859985796735,
+                "prepare_seconds": 5.291799607221037e-05,
+                "run_seconds": 0.38053406799735967,
+                "readout_seconds": 6.20988430455327e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.0023504989949287847,
+                "prepare_seconds": 5.019499803893268e-05,
+                "run_seconds": 0.36152438500721473,
+                "readout_seconds": 6.710033630952239e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.004134450005949475,
+                "prepare_seconds": 5.13560080435127e-05,
+                "run_seconds": 0.36593351200281177,
+                "readout_seconds": 6.409973138943315e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.006602523993933573,
+                "prepare_seconds": 0.00023247400531545281,
+                "run_seconds": 0.04911711098975502,
+                "readout_seconds": 8.610077202320099e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 813056,
+                  "region_crossings": 1152,
+                  "input_spikes": 64
+                }
+              },
+              {
+                "build_seconds": 0.003945071002817713,
+                "prepare_seconds": 0.0002599549916340038,
+                "run_seconds": 0.050408402996254154,
+                "readout_seconds": 7.210037438198924e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 813056,
+                  "region_crossings": 1152,
+                  "input_spikes": 64
+                }
+              },
+              {
+                "build_seconds": 0.006105959007982165,
+                "prepare_seconds": 0.00024075599503703415,
+                "run_seconds": 0.05114204899291508,
+                "readout_seconds": 9.00996383279562e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 813056,
+                  "region_crossings": 1152,
+                  "input_spikes": 64
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 0.36593351200281177,
+            "pwa": 0.050408402996254154
+          },
+          "lr_over_pwa": 7.259375228173848
+        },
+        {
+          "population": 64,
+          "mode": "network_with_SIC",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.006623534995014779,
+                "prepare_seconds": 0.00017331600247416645,
+                "run_seconds": 0.6795318399963435,
+                "readout_seconds": 8.409988367930055e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.002434965004795231,
+                "prepare_seconds": 0.00012955199053976685,
+                "run_seconds": 0.6820333640062017,
+                "readout_seconds": 7.510097930207849e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.005194950004806742,
+                "prepare_seconds": 0.000141689000884071,
+                "run_seconds": 0.61299091699766,
+                "readout_seconds": 7.210037438198924e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.006136915006209165,
+                "prepare_seconds": 0.0003337039961479604,
+                "run_seconds": 0.3432945839886088,
+                "readout_seconds": 7.110065780580044e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 813056,
+                  "region_crossings": 1152,
+                  "input_spikes": 64
+                }
+              },
+              {
+                "build_seconds": 0.004244903000653721,
+                "prepare_seconds": 0.00033203100610990077,
+                "run_seconds": 0.3227688560000388,
+                "readout_seconds": 1.0020012268796563e-06,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 813056,
+                  "region_crossings": 1152,
+                  "input_spikes": 64
+                }
+              },
+              {
+                "build_seconds": 0.006650374998571351,
+                "prepare_seconds": 0.0003869829961331561,
+                "run_seconds": 0.3099846709956182,
+                "readout_seconds": 1.0020012268796563e-06,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 813056,
+                  "region_crossings": 1152,
+                  "input_spikes": 64
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 0.6795318399963435,
+            "pwa": 0.3227688560000388
+          },
+          "lr_over_pwa": 2.1053203472526536
+        },
+        {
+          "population": 64,
+          "mode": "isolated_solver",
+          "raw": [
+            {
+              "lr": {
+                "setup_seconds": 3.153400000000001e-05,
+                "solve_seconds": 0.14934581700000002,
+                "terminal": [
+                  0.08352050186922186,
+                  0.7841403066270017,
+                  0.20471656289936035
+                ],
+                "rhs_or_flows": 5376000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.00021519700000000003,
+                "solve_seconds": 0.026551540000000005,
+                "terminal": [
+                  0.08755438226939558,
+                  0.7392132481688755,
+                  0.2047165628993616
+                ],
+                "rhs_or_flows": 813056,
+                "crossings": 1152
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 4.2615000000000004e-05,
+                "solve_seconds": 0.14850240299999995,
+                "terminal": [
+                  0.08352050186922186,
+                  0.7841403066270017,
+                  0.20471656289936035
+                ],
+                "rhs_or_flows": 5376000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.00021758,
+                "solve_seconds": 0.027187992999999997,
+                "terminal": [
+                  0.08755438226939558,
+                  0.7392132481688755,
+                  0.2047165628993616
+                ],
+                "rhs_or_flows": 813056,
+                "crossings": 1152
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 3.287000000000001e-05,
+                "solve_seconds": 0.155421237,
+                "terminal": [
+                  0.08352050186922186,
+                  0.7841403066270017,
+                  0.20471656289936035
+                ],
+                "rhs_or_flows": 5376000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.00021420599999999996,
+                "solve_seconds": 0.026895711,
+                "terminal": [
+                  0.08755438226939558,
+                  0.7392132481688755,
+                  0.2047165628993616
+                ],
+                "rhs_or_flows": 813056,
+                "crossings": 1152
+              }
+            }
+          ],
+          "median_run_seconds": {
+            "lr": 0.14934581700000002,
+            "pwa": 0.026895711
+          },
+          "lr_over_pwa": 5.55277445537692
+        },
+        {
+          "population": 256,
+          "mode": "astrocytes_only",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.005766936999862082,
+                "prepare_seconds": 0.00013621199468616396,
+                "run_seconds": 1.4362924540037056,
+                "readout_seconds": 9.709910955280066e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.00405496200255584,
+                "prepare_seconds": 0.0001278489944525063,
+                "run_seconds": 1.4634900870005367,
+                "readout_seconds": 6.210029823705554e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.006632528005866334,
+                "prepare_seconds": 0.0001556109928060323,
+                "run_seconds": 1.490281866004807,
+                "readout_seconds": 7.309863576665521e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.008018460008315742,
+                "prepare_seconds": 0.0009548030066071078,
+                "run_seconds": 0.18594985800154973,
+                "readout_seconds": 5.409965524449944e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 3252224,
+                  "region_crossings": 4608,
+                  "input_spikes": 256
+                }
+              },
+              {
+                "build_seconds": 0.006357150996336713,
+                "prepare_seconds": 0.00091774899919983,
+                "run_seconds": 0.19836414599558339,
+                "readout_seconds": 7.709895726293325e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 3252224,
+                  "region_crossings": 4608,
+                  "input_spikes": 256
+                }
+              },
+              {
+                "build_seconds": 0.009418533009011298,
+                "prepare_seconds": 0.000900933999218978,
+                "run_seconds": 0.2028454389947001,
+                "readout_seconds": 5.409965524449944e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 3252224,
+                  "region_crossings": 4608,
+                  "input_spikes": 256
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 1.4634900870005367,
+            "pwa": 0.19836414599558339
+          },
+          "lr_over_pwa": 7.377795415876827
+        },
+        {
+          "population": 256,
+          "mode": "network_with_SIC",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.006612418990698643,
+                "prepare_seconds": 0.000367093991371803,
+                "run_seconds": 2.525593233993277,
+                "readout_seconds": 6.410118658095598e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.004078666999703273,
+                "prepare_seconds": 0.00036878499668091536,
+                "run_seconds": 2.583682308002608,
+                "readout_seconds": 5.309993866831064e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.0063242409960366786,
+                "prepare_seconds": 0.00042190399835817516,
+                "run_seconds": 2.6971071849984583,
+                "readout_seconds": 6.409973138943315e-07,
+                "terminal": {
+                  "Ca_astro": 0.08352050186922205,
+                  "h_IP3R": 0.7841403066270014,
+                  "IP3": 0.20471656289936035
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.00888052600203082,
+                "prepare_seconds": 0.0011454960040282458,
+                "run_seconds": 1.2813428410008783,
+                "readout_seconds": 7.810012903064489e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 3252224,
+                  "region_crossings": 4608,
+                  "input_spikes": 256
+                }
+              },
+              {
+                "build_seconds": 0.006923267006641254,
+                "prepare_seconds": 0.0011626909981714562,
+                "run_seconds": 1.2563568860059604,
+                "readout_seconds": 6.509944796562195e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 3252224,
+                  "region_crossings": 4608,
+                  "input_spikes": 256
+                }
+              },
+              {
+                "build_seconds": 0.008499460993334651,
+                "prepare_seconds": 0.0012200159981148317,
+                "run_seconds": 1.2453420309902867,
+                "readout_seconds": 7.509952411055565e-07,
+                "terminal": {
+                  "Ca_astro": 0.08755438226939556,
+                  "h_IP3R": 0.7392132481688752,
+                  "IP3": 0.20471656289936133
+                },
+                "counters": {
+                  "affine_flows": 3252224,
+                  "region_crossings": 4608,
+                  "input_spikes": 256
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 2.583682308002608,
+            "pwa": 1.2563568860059604
+          },
+          "lr_over_pwa": 2.0564875608047175
+        },
+        {
+          "population": 256,
+          "mode": "isolated_solver",
+          "raw": [
+            {
+              "lr": {
+                "setup_seconds": 0.000195872,
+                "solve_seconds": 0.7112558529999997,
+                "terminal": [
+                  0.08352050186922225,
+                  0.784140306626997,
+                  0.20471656289936174
+                ],
+                "rhs_or_flows": 21504000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.0008926739999999999,
+                "solve_seconds": 0.12169836,
+                "terminal": [
+                  0.0875543822693956,
+                  0.7392132481688756,
+                  0.20471656289936216
+                ],
+                "rhs_or_flows": 3252224,
+                "crossings": 4608
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 0.00016662199999999998,
+                "solve_seconds": 0.6494379089999998,
+                "terminal": [
+                  0.08352050186922225,
+                  0.784140306626997,
+                  0.20471656289936174
+                ],
+                "rhs_or_flows": 21504000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.000878266,
+                "solve_seconds": 0.11784535399999993,
+                "terminal": [
+                  0.0875543822693956,
+                  0.7392132481688756,
+                  0.20471656289936216
+                ],
+                "rhs_or_flows": 3252224,
+                "crossings": 4608
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 0.00014148199999999998,
+                "solve_seconds": 0.6276734929999994,
+                "terminal": [
+                  0.08352050186922225,
+                  0.784140306626997,
+                  0.20471656289936174
+                ],
+                "rhs_or_flows": 21504000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.0009008810000000003,
+                "solve_seconds": 0.11550649599999997,
+                "terminal": [
+                  0.0875543822693956,
+                  0.7392132481688756,
+                  0.20471656289936216
+                ],
+                "rhs_or_flows": 3252224,
+                "crossings": 4608
+              }
+            }
+          ],
+          "median_run_seconds": {
+            "lr": 0.6494379089999998,
+            "pwa": 0.11784535399999993
+          },
+          "lr_over_pwa": 5.510933498489895
+        }
+      ],
+      "half_tick_max_difference": {
+        "lr": {
+          "C": 1.6286583193192428e-11,
+          "h": 1.5558665467096944e-12,
+          "I_SIC": 1.8912842403295826e-09
+        },
+        "pwa": {
+          "C": 4.694022948115162e-13,
+          "h": 8.282263763703668e-14,
+          "I_SIC": 1.9848833687774459e-10
+        }
+      }
+    },
+    "FM": {
+      "model": {
+        "path": "models/phase_shape_candidates/FM_width_soft_candidate.json",
+        "sha256": "ef3e07f99dcfd2f578d6efd275658aff11b5fbc22b5c317b025d8f25b0f62ddf"
+      },
+      "initial": [
+        0.04252319858337997,
+        0.9112560651867909,
+        0.45
+      ],
+      "validation": [
+        {
+          "protocol": {
+            "name": "pulse_tau20",
+            "duration": 220.0,
+            "tau": 20.0,
+            "baseline": 0.45,
+            "jumps": [
+              [
+                20.0,
+                0.7
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.0657014522603885,
+              "max_abs": 0.7474547141635175
+            },
+            "h": {
+              "rmse": 0.019982385500958016,
+              "max_abs": 0.1681058189425093
+            },
+            "IP3": {
+              "rmse": 4.277214394862845e-14,
+              "max_abs": 1.0513812043200232e-13
+            },
+            "I_SIC": {
+              "rmse": 0.5654885153877723,
+              "max_abs": 6.605348077233311
+            },
+            "lr": {
+              "calcium_peaks": 2,
+              "calcium_peak_times": [
+                21.54,
+                45.07
+              ],
+              "sic_peak_count": 2,
+              "sic_peak_times": [
+                21.55,
+                45.08
+              ],
+              "sic_area": 73.40535912865721,
+              "sic_max": 6.934308860474677,
+              "sic_active_seconds": 12.290000000000001,
+              "C_range": [
+                0.030461564980797988,
+                1.2235992691189348
+              ],
+              "h_range": [
+                0.5339896844518413,
+                0.9115907187704511
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 2,
+              "calcium_peak_times": [
+                22.33,
+                46.51
+              ],
+              "sic_peak_count": 2,
+              "sic_peak_times": [
+                22.34,
+                46.52
+              ],
+              "sic_area": 73.76708309669829,
+              "sic_max": 7.002401678433921,
+              "sic_active_seconds": 12.23,
+              "C_range": [
+                0.02907954069137527,
+                1.2959600838909924
+              ],
+              "h_range": [
+                0.5138477253797122,
+                0.9141142692658668
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": 1.1149999999999984
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.07822924399806652,
+              "prepare_seconds": 8.824100950732827e-05,
+              "run_seconds": 0.03681232300004922,
+              "readout_seconds": 0.009307378000812605,
+              "terminal": {
+                "Ca_astro": 0.042525318054042124,
+                "h_IP3R": 0.911253044041106,
+                "IP3": 0.4500317799508343
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.0036820709938183427,
+              "prepare_seconds": 6.0268997913226485e-05,
+              "run_seconds": 0.027942562999669462,
+              "readout_seconds": 0.008517317997757345,
+              "terminal": {
+                "Ca_astro": 0.0425240585146354,
+                "h_IP3R": 0.9112699206280414,
+                "IP3": 0.45003177995083443
+              },
+              "counters": {
+                "affine_flows": 23090,
+                "region_crossings": 28,
+                "input_spikes": 1
+              }
+            }
+          }
+        },
+        {
+          "protocol": {
+            "name": "pulse_tau100",
+            "duration": 300.0,
+            "tau": 100.0,
+            "baseline": 0.45,
+            "jumps": [
+              [
+                20.0,
+                0.7
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.1871444965615057,
+              "max_abs": 0.9830101283294294
+            },
+            "h": {
+              "rmse": 0.05278263350373155,
+              "max_abs": 0.30402339481771634
+            },
+            "IP3": {
+              "rmse": 1.6234002492080844e-13,
+              "max_abs": 3.290701044988964e-13
+            },
+            "I_SIC": {
+              "rmse": 1.5762278042252362,
+              "max_abs": 6.7433942732336725
+            },
+            "lr": {
+              "calcium_peaks": 9,
+              "calcium_peak_times": [
+                21.54,
+                39.39,
+                57.46,
+                76.44,
+                96.71,
+                118.68,
+                142.9,
+                170.24,
+                202.51
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                21.55,
+                39.4,
+                57.47,
+                76.45,
+                96.72,
+                118.69,
+                142.91,
+                170.25,
+                202.52
+              ],
+              "sic_area": 329.685059365318,
+              "sic_max": 6.938366979856725,
+              "sic_active_seconds": 55.83,
+              "C_range": [
+                0.030363412902998526,
+                1.2277750567191619
+              ],
+              "h_range": [
+                0.5338616626002682,
+                0.9115916196382083
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 9,
+              "calcium_peak_times": [
+                22.37,
+                39.17,
+                57.13,
+                76.34,
+                97.14,
+                119.9,
+                145.08,
+                173.37,
+                205.87
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.38,
+                39.18,
+                57.14,
+                76.35,
+                97.15,
+                119.91,
+                145.09,
+                173.38,
+                205.88
+              ],
+              "sic_area": 340.1085025523786,
+              "sic_max": 7.02335269613644,
+              "sic_active_seconds": 57.45,
+              "C_range": [
+                0.029021588030491978,
+                1.3192338642507597
+              ],
+              "h_range": [
+                0.503886368947347,
+                0.9166586427870383
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 1.3111111111111127
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.004988444008631632,
+              "prepare_seconds": 4.066999827045947e-05,
+              "run_seconds": 0.04893364600138739,
+              "readout_seconds": 0.01147305300401058,
+              "terminal": {
+                "Ca_astro": 0.0461700408415736,
+                "h_IP3R": 0.9072609189167089,
+                "IP3": 0.4925670438376543
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.004009336000308394,
+              "prepare_seconds": 5.470099858939648e-05,
+              "run_seconds": 0.03736885800026357,
+              "readout_seconds": 0.011566461995244026,
+              "terminal": {
+                "Ca_astro": 0.04477867535717195,
+                "h_IP3R": 0.9162875587286097,
+                "IP3": 0.4925670438377428
+              },
+              "counters": {
+                "affine_flows": 36352,
+                "region_crossings": 163,
+                "input_spikes": 1
+              }
+            }
+          }
+        },
+        {
+          "protocol": {
+            "name": "pulse_tau180",
+            "duration": 420.0,
+            "tau": 180.0,
+            "baseline": 0.45,
+            "jumps": [
+              [
+                20.0,
+                0.7
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.2984211104523648,
+              "max_abs": 0.997367054961283
+            },
+            "h": {
+              "rmse": 0.08909315417746429,
+              "max_abs": 0.3514912727848868
+            },
+            "IP3": {
+              "rmse": 8.900925150135044e-13,
+              "max_abs": 1.2606582444618653e-12
+            },
+            "I_SIC": {
+              "rmse": 2.5241516117351015,
+              "max_abs": 6.7775835083244305
+            },
+            "lr": {
+              "calcium_peaks": 17,
+              "calcium_peak_times": [
+                21.54,
+                39.24,
+                56.75,
+                74.52,
+                92.7,
+                111.4,
+                130.74,
+                150.81,
+                171.73,
+                193.64,
+                216.69,
+                241.07,
+                267.05,
+                294.96,
+                325.33,
+                359.16,
+                399.6
+              ],
+              "sic_peak_count": 17,
+              "sic_peak_times": [
+                21.55,
+                39.25,
+                56.76,
+                74.53,
+                92.71,
+                111.41,
+                130.75,
+                150.82,
+                171.74,
+                193.65,
+                216.7,
+                241.08,
+                267.06,
+                294.97,
+                325.34,
+                359.17,
+                399.61
+              ],
+              "sic_area": 617.418166410812,
+              "sic_max": 6.938813288385573,
+              "sic_active_seconds": 104.68,
+              "C_range": [
+                0.0303071230979001,
+                1.228235341480811
+              ],
+              "h_range": [
+                0.5338624033866762,
+                0.9115917198260599
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 17,
+              "calcium_peak_times": [
+                22.37,
+                38.73,
+                55.84,
+                73.4,
+                91.57,
+                110.43,
+                130.1,
+                150.66,
+                172.22,
+                194.91,
+                218.86,
+                244.24,
+                271.25,
+                300.14,
+                331.25,
+                365.1,
+                403.0
+              ],
+              "sic_peak_count": 17,
+              "sic_peak_times": [
+                22.38,
+                38.74,
+                55.85,
+                73.41,
+                91.58,
+                110.44,
+                130.11,
+                150.67,
+                172.23,
+                194.92,
+                218.87,
+                244.25,
+                271.26,
+                300.15,
+                331.26,
+                365.11,
+                403.01
+              ],
+              "sic_area": 641.9683310673154,
+              "sic_max": 7.0257774066643215,
+              "sic_active_seconds": 108.77,
+              "C_range": [
+                0.028964169297170876,
+                1.3219590106869
+              ],
+              "h_range": [
+                0.5026755677324237,
+                0.9134641090342976
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 2.235294117647062
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.005562553997151554,
+              "prepare_seconds": 4.284399619791657e-05,
+              "run_seconds": 0.07589395699324086,
+              "readout_seconds": 0.017733290005708113,
+              "terminal": {
+                "Ca_astro": 0.039307615398852955,
+                "h_IP3R": 0.8597916659437622,
+                "IP3": 0.5258576162553336
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.003922735995729454,
+              "prepare_seconds": 5.3890005801804364e-05,
+              "run_seconds": 0.052261624005041085,
+              "readout_seconds": 0.016788612003438175,
+              "terminal": {
+                "Ca_astro": 0.039742173316161034,
+                "h_IP3R": 0.8380562912919588,
+                "IP3": 0.5258576162565772
+              },
+              "counters": {
+                "affine_flows": 51272,
+                "region_crossings": 238,
+                "input_spikes": 1
+              }
+            }
+          }
+        },
+        {
+          "protocol": {
+            "name": "periodic",
+            "duration": 240.0,
+            "tau": 20.0,
+            "baseline": 0.45,
+            "jumps": [
+              [
+                20.0,
+                0.3
+              ],
+              [
+                40.0,
+                0.3
+              ],
+              [
+                60.0,
+                0.3
+              ],
+              [
+                80.0,
+                0.3
+              ],
+              [
+                100.0,
+                0.3
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.19030412273202474,
+              "max_abs": 1.0337214721268937
+            },
+            "h": {
+              "rmse": 0.053703141810339125,
+              "max_abs": 0.27620928919152066
+            },
+            "IP3": {
+              "rmse": 7.97069700097855e-14,
+              "max_abs": 1.2168044349891716e-13
+            },
+            "I_SIC": {
+              "rmse": 1.4565688871017595,
+              "max_abs": 6.785422405504065
+            },
+            "lr": {
+              "calcium_peaks": 5,
+              "calcium_peak_times": [
+                21.89,
+                43.11,
+                63.16,
+                83.03,
+                102.92
+              ],
+              "sic_peak_count": 5,
+              "sic_peak_times": [
+                21.9,
+                43.12,
+                63.17,
+                83.04,
+                102.93
+              ],
+              "sic_area": 176.24988052644068,
+              "sic_max": 6.846791325797224,
+              "sic_active_seconds": 29.560000000000002,
+              "C_range": [
+                0.03055957133179175,
+                1.1375471540686108
+              ],
+              "h_range": [
+                0.5407612487815826,
+                0.91144021536165
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 5,
+              "calcium_peak_times": [
+                22.54,
+                44.69,
+                65.42,
+                85.77,
+                105.98
+              ],
+              "sic_peak_count": 5,
+              "sic_peak_times": [
+                22.55,
+                44.7,
+                65.43,
+                85.78,
+                105.99
+              ],
+              "sic_area": 180.93105978569034,
+              "sic_max": 6.790845561323216,
+              "sic_active_seconds": 30.47,
+              "C_range": [
+                0.029014830388843848,
+                1.0863555106228096
+              ],
+              "h_range": [
+                0.5594344780317791,
+                0.9175983298265349
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": 2.058
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.006360695988405496,
+              "prepare_seconds": 7.226699381135404e-05,
+              "run_seconds": 0.04149213100026827,
+              "readout_seconds": 0.009339265001472086,
+              "terminal": {
+                "Ca_astro": 0.042551866335593394,
+                "h_IP3R": 0.9112149391714951,
+                "IP3": 0.45042985680842873
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.004893374003586359,
+              "prepare_seconds": 5.53720019524917e-05,
+              "run_seconds": 0.03062779900210444,
+              "readout_seconds": 0.009982326999306679,
+              "terminal": {
+                "Ca_astro": 0.04253477916923911,
+                "h_IP3R": 0.9114423557518432,
+                "IP3": 0.45042985680842995
+              },
+              "counters": {
+                "affine_flows": 26960,
+                "region_crossings": 76,
+                "input_spikes": 5
+              }
+            }
+          }
+        },
+        {
+          "protocol": {
+            "name": "irregular",
+            "duration": 340.0,
+            "tau": 22.0,
+            "baseline": 0.45,
+            "jumps": [
+              [
+                20.0,
+                0.2908342044969666
+              ],
+              [
+                39.0,
+                0.22199479308599138
+              ],
+              [
+                55.35,
+                0.27024720422050164
+              ],
+              [
+                73.65,
+                0.2280021985217412
+              ],
+              [
+                91.45,
+                0.26937452762220815
+              ],
+              [
+                108.2,
+                0.22010750819969754
+              ],
+              [
+                128.20000000000002,
+                0.2751632746753606
+              ],
+              [
+                155.60000000000002,
+                0.2572182957789211
+              ]
+            ]
+          },
+          "metrics": {
+            "C": {
+              "rmse": 0.2115099500329268,
+              "max_abs": 1.0032557642204343
+            },
+            "h": {
+              "rmse": 0.06384822935597115,
+              "max_abs": 0.3384104751551662
+            },
+            "IP3": {
+              "rmse": 4.7408657577252456e-14,
+              "max_abs": 6.078471059822732e-14
+            },
+            "I_SIC": {
+              "rmse": 1.6780596711319467,
+              "max_abs": 6.799221861269208
+            },
+            "lr": {
+              "calcium_peaks": 7,
+              "calcium_peak_times": [
+                21.91,
+                43.73,
+                64.27,
+                85.86,
+                107.67,
+                130.32,
+                157.48
+              ],
+              "sic_peak_count": 7,
+              "sic_peak_times": [
+                21.92,
+                43.74,
+                64.28,
+                85.87,
+                107.68,
+                130.33,
+                157.49
+              ],
+              "sic_area": 244.90129552355788,
+              "sic_max": 6.844103360996962,
+              "sic_active_seconds": 41.050000000000004,
+              "C_range": [
+                0.030549580342103564,
+                1.1350215590323294
+              ],
+              "h_range": [
+                0.5398599444582373,
+                0.9114359465287863
+              ],
+              "sic_delivery_max_error": 1.1102230246251565e-16
+            },
+            "pwa": {
+              "calcium_peaks": 7,
+              "calcium_peak_times": [
+                22.55,
+                45.9,
+                67.3,
+                90.37,
+                111.49,
+                132.12,
+                158.17
+              ],
+              "sic_peak_count": 7,
+              "sic_peak_times": [
+                22.56,
+                45.91,
+                67.31,
+                90.38,
+                111.5,
+                132.13,
+                158.18
+              ],
+              "sic_area": 258.6571108088376,
+              "sic_max": 6.799882061593626,
+              "sic_active_seconds": 43.65,
+              "C_range": [
+                0.02904211478367205,
+                1.0944314072157173
+              ],
+              "h_range": [
+                0.5550528048338843,
+                0.9176578786525809
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 2.3800000000000017
+          },
+          "timing": {
+            "lr": {
+              "build_seconds": 0.005958540990832262,
+              "prepare_seconds": 4.279300628695637e-05,
+              "run_seconds": 0.062128409001161344,
+              "readout_seconds": 0.014155475000734441,
+              "terminal": {
+                "Ca_astro": 0.04252918161268603,
+                "h_IP3R": 0.9112481182266308,
+                "IP3": 0.4500885237662072
+              },
+              "counters": {}
+            },
+            "pwa": {
+              "build_seconds": 0.004400773992529139,
+              "prepare_seconds": 6.421499710995704e-05,
+              "run_seconds": 0.04486243000428658,
+              "readout_seconds": 0.014037954999366775,
+              "terminal": {
+                "Ca_astro": 0.042525450074097346,
+                "h_IP3R": 0.9112914975062636,
+                "IP3": 0.450088523766268
+              },
+              "counters": {
+                "affine_flows": 38287,
+                "region_crossings": 110,
+                "input_spikes": 8
+              }
+            }
+          }
+        }
+      ],
+      "timing": [
+        {
+          "population": 1,
+          "mode": "astrocytes_only",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.0023944049899000674,
+                "prepare_seconds": 1.96089968085289e-05,
+                "run_seconds": 0.008089515002211556,
+                "readout_seconds": 3.1100353226065636e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.001383196999086067,
+                "prepare_seconds": 1.805600186344236e-05,
+                "run_seconds": 0.008137025986798108,
+                "readout_seconds": 2.5999906938523054e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.00188599199464079,
+                "prepare_seconds": 1.877800968941301e-05,
+                "run_seconds": 0.008070466996286996,
+                "readout_seconds": 2.710003172978759e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.0040010130032896996,
+                "prepare_seconds": 2.5178000214509666e-05,
+                "run_seconds": 0.003415596002014354,
+                "readout_seconds": 2.90005118586123e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 13090,
+                  "region_crossings": 28,
+                  "input_spikes": 1
+                }
+              },
+              {
+                "build_seconds": 0.0024443089932901785,
+                "prepare_seconds": 2.4726992705836892e-05,
+                "run_seconds": 0.0032724540069466457,
+                "readout_seconds": 2.899905666708946e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 13090,
+                  "region_crossings": 28,
+                  "input_spikes": 1
+                }
+              },
+              {
+                "build_seconds": 0.003626628007623367,
+                "prepare_seconds": 2.4837005184963346e-05,
+                "run_seconds": 0.0033269249979639426,
+                "readout_seconds": 1.6999547369778156e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 13090,
+                  "region_crossings": 28,
+                  "input_spikes": 1
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 0.008089515002211556,
+            "pwa": 0.0033269249979639426
+          },
+          "lr_over_pwa": 2.4315291168758804
+        },
+        {
+          "population": 1,
+          "mode": "network_with_SIC",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.0047846530069364235,
+                "prepare_seconds": 3.439099236857146e-05,
+                "run_seconds": 0.016225367988226935,
+                "readout_seconds": 3.910099621862173e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.0018640599882928655,
+                "prepare_seconds": 2.913300704676658e-05,
+                "run_seconds": 0.014789784007007256,
+                "readout_seconds": 9.00996383279562e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.004219005000777543,
+                "prepare_seconds": 3.373000072315335e-05,
+                "run_seconds": 0.01445314499142114,
+                "readout_seconds": 5.210022209212184e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.0042388549918541685,
+                "prepare_seconds": 3.6303987144492567e-05,
+                "run_seconds": 0.010082273991429247,
+                "readout_seconds": 6.710033630952239e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 13090,
+                  "region_crossings": 28,
+                  "input_spikes": 1
+                }
+              },
+              {
+                "build_seconds": 0.0030187189986463636,
+                "prepare_seconds": 4.0579994674772024e-05,
+                "run_seconds": 0.01004921700223349,
+                "readout_seconds": 2.5999906938523054e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 13090,
+                  "region_crossings": 28,
+                  "input_spikes": 1
+                }
+              },
+              {
+                "build_seconds": 0.004831411992199719,
+                "prepare_seconds": 4.0238999645225704e-05,
+                "run_seconds": 0.009929577994626015,
+                "readout_seconds": 2.6100315153598785e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 13090,
+                  "region_crossings": 28,
+                  "input_spikes": 1
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 0.014789784007007256,
+            "pwa": 0.01004921700223349
+          },
+          "lr_over_pwa": 1.4717349624075338
+        },
+        {
+          "population": 1,
+          "mode": "isolated_solver",
+          "raw": [
+            {
+              "lr": {
+                "setup_seconds": 3.415e-06,
+                "solve_seconds": 0.002272434,
+                "terminal": [
+                  0.042834860591392514,
+                  0.9107606250701635,
+                  0.45471656289935913
+                ],
+                "rhs_or_flows": 84000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 5.458e-06,
+                "solve_seconds": 0.000536704,
+                "terminal": [
+                  0.04263423199887284,
+                  0.9129475835533095,
+                  0.45471656289937057
+                ],
+                "rhs_or_flows": 13090,
+                "crossings": 28
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 1.963e-06,
+                "solve_seconds": 0.002388877,
+                "terminal": [
+                  0.042834860591392514,
+                  0.9107606250701635,
+                  0.45471656289935913
+                ],
+                "rhs_or_flows": 84000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 3.965e-06,
+                "solve_seconds": 0.000619157,
+                "terminal": [
+                  0.04263423199887284,
+                  0.9129475835533095,
+                  0.45471656289937057
+                ],
+                "rhs_or_flows": 13090,
+                "crossings": 28
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 1.082e-06,
+                "solve_seconds": 0.002700458,
+                "terminal": [
+                  0.042834860591392514,
+                  0.9107606250701635,
+                  0.45471656289935913
+                ],
+                "rhs_or_flows": 84000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 5.888e-06,
+                "solve_seconds": 0.000731844,
+                "terminal": [
+                  0.04263423199887284,
+                  0.9129475835533095,
+                  0.45471656289937057
+                ],
+                "rhs_or_flows": 13090,
+                "crossings": 28
+              }
+            }
+          ],
+          "median_run_seconds": {
+            "lr": 0.002388877,
+            "pwa": 0.000619157
+          },
+          "lr_over_pwa": 3.858273426610699
+        },
+        {
+          "population": 64,
+          "mode": "astrocytes_only",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.004314838006393984,
+                "prepare_seconds": 5.1946990424767137e-05,
+                "run_seconds": 0.3730612360086525,
+                "readout_seconds": 9.310024324804544e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.0024624650104669854,
+                "prepare_seconds": 5.116499960422516e-05,
+                "run_seconds": 0.36741786199854687,
+                "readout_seconds": 7.609924068674445e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.004497258007177152,
+                "prepare_seconds": 5.754499579779804e-05,
+                "run_seconds": 0.3724495219939854,
+                "readout_seconds": 6.110058166086674e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.005589954991592094,
+                "prepare_seconds": 0.0004107979912078008,
+                "run_seconds": 0.05286832099955063,
+                "readout_seconds": 8.709903340786695e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 837760,
+                  "region_crossings": 1792,
+                  "input_spikes": 64
+                }
+              },
+              {
+                "build_seconds": 0.004187810001894832,
+                "prepare_seconds": 0.00022067700047045946,
+                "run_seconds": 0.053519745997618884,
+                "readout_seconds": 1.100997906178236e-06,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 837760,
+                  "region_crossings": 1792,
+                  "input_spikes": 64
+                }
+              },
+              {
+                "build_seconds": 0.0064733629988040775,
+                "prepare_seconds": 0.00019402700127102435,
+                "run_seconds": 0.05385107699839864,
+                "readout_seconds": 8.409988367930055e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 837760,
+                  "region_crossings": 1792,
+                  "input_spikes": 64
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 0.3724495219939854,
+            "pwa": 0.053519745997618884
+          },
+          "lr_over_pwa": 6.959104813587042
+        },
+        {
+          "population": 64,
+          "mode": "network_with_SIC",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.0054984399903332815,
+                "prepare_seconds": 0.000150022009620443,
+                "run_seconds": 0.6367189180018613,
+                "readout_seconds": 6.310001481324434e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.0029030779987806454,
+                "prepare_seconds": 0.00013919599587097764,
+                "run_seconds": 0.6789783059939509,
+                "readout_seconds": 6.210029823705554e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.005818943987833336,
+                "prepare_seconds": 0.0001680290006333962,
+                "run_seconds": 0.6151263650099281,
+                "readout_seconds": 7.310009095817804e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.005646630001137964,
+                "prepare_seconds": 0.0003035889967577532,
+                "run_seconds": 0.31811585900140926,
+                "readout_seconds": 7.810012903064489e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 837760,
+                  "region_crossings": 1792,
+                  "input_spikes": 64
+                }
+              },
+              {
+                "build_seconds": 0.00495518499519676,
+                "prepare_seconds": 0.00037975200393702835,
+                "run_seconds": 0.3190792550012702,
+                "readout_seconds": 8.119968697428703e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 837760,
+                  "region_crossings": 1792,
+                  "input_spikes": 64
+                }
+              },
+              {
+                "build_seconds": 0.005875788003322668,
+                "prepare_seconds": 0.0004128019936615601,
+                "run_seconds": 0.30855161100043915,
+                "readout_seconds": 9.020004654303193e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 837760,
+                  "region_crossings": 1792,
+                  "input_spikes": 64
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 0.6367189180018613,
+            "pwa": 0.31811585900140926
+          },
+          "lr_over_pwa": 2.0015315174809962
+        },
+        {
+          "population": 64,
+          "mode": "isolated_solver",
+          "raw": [
+            {
+              "lr": {
+                "setup_seconds": 3.3394e-05,
+                "solve_seconds": 0.150704956,
+                "terminal": [
+                  0.04283486059139245,
+                  0.9107606250701626,
+                  0.4547165628993596
+                ],
+                "rhs_or_flows": 5376000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.00016960599999999996,
+                "solve_seconds": 0.033247525,
+                "terminal": [
+                  0.042634231998872854,
+                  0.9129475835533096,
+                  0.45471656289937096
+                ],
+                "rhs_or_flows": 837760,
+                "crossings": 1792
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 3.412100000000001e-05,
+                "solve_seconds": 0.15098004699999998,
+                "terminal": [
+                  0.04283486059139245,
+                  0.9107606250701626,
+                  0.4547165628993596
+                ],
+                "rhs_or_flows": 5376000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.00016802900000000001,
+                "solve_seconds": 0.032480828999999996,
+                "terminal": [
+                  0.042634231998872854,
+                  0.9129475835533096,
+                  0.45471656289937096
+                ],
+                "rhs_or_flows": 837760,
+                "crossings": 1792
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 3.6214e-05,
+                "solve_seconds": 0.15083889599999997,
+                "terminal": [
+                  0.04283486059139245,
+                  0.9107606250701626,
+                  0.4547165628993596
+                ],
+                "rhs_or_flows": 5376000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.00016659900000000002,
+                "solve_seconds": 0.031535874,
+                "terminal": [
+                  0.042634231998872854,
+                  0.9129475835533096,
+                  0.45471656289937096
+                ],
+                "rhs_or_flows": 837760,
+                "crossings": 1792
+              }
+            }
+          ],
+          "median_run_seconds": {
+            "lr": 0.15083889599999997,
+            "pwa": 0.032480828999999996
+          },
+          "lr_over_pwa": 4.64393615076758
+        },
+        {
+          "population": 256,
+          "mode": "astrocytes_only",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.00588829698972404,
+                "prepare_seconds": 0.00013684300938621163,
+                "run_seconds": 1.5271859570057131,
+                "readout_seconds": 9.409995982423425e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.003702509988215752,
+                "prepare_seconds": 0.00012019800487905741,
+                "run_seconds": 1.4905724670097698,
+                "readout_seconds": 7.509952411055565e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.005917491012951359,
+                "prepare_seconds": 0.0001632719940971583,
+                "run_seconds": 1.4852702000061981,
+                "readout_seconds": 9.210052667185664e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.00820204199408181,
+                "prepare_seconds": 0.0006854849925730377,
+                "run_seconds": 0.20792368100956082,
+                "readout_seconds": 7.310009095817804e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 3351040,
+                  "region_crossings": 7168,
+                  "input_spikes": 256
+                }
+              },
+              {
+                "build_seconds": 0.006334238001727499,
+                "prepare_seconds": 0.0006903720059199259,
+                "run_seconds": 0.20447007700568065,
+                "readout_seconds": 7.610069587826729e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 3351040,
+                  "region_crossings": 7168,
+                  "input_spikes": 256
+                }
+              },
+              {
+                "build_seconds": 0.008135552998282947,
+                "prepare_seconds": 0.0008177310082828626,
+                "run_seconds": 0.21011840899882372,
+                "readout_seconds": 7.509952411055565e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 3351040,
+                  "region_crossings": 7168,
+                  "input_spikes": 256
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 1.4905724670097698,
+            "pwa": 0.20792368100956082
+          },
+          "lr_over_pwa": 7.168844163264066
+        },
+        {
+          "population": 256,
+          "mode": "network_with_SIC",
+          "raw": {
+            "lr": [
+              {
+                "build_seconds": 0.008279096990008838,
+                "prepare_seconds": 0.00046513900451827794,
+                "run_seconds": 2.835159289999865,
+                "readout_seconds": 9.00996383279562e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.006681111000943929,
+                "prepare_seconds": 0.0004089760041097179,
+                "run_seconds": 2.853814036992844,
+                "readout_seconds": 5.100009730085731e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              },
+              {
+                "build_seconds": 0.005991425001411699,
+                "prepare_seconds": 0.0004085850086994469,
+                "run_seconds": 2.5133170960034477,
+                "readout_seconds": 9.310024324804544e-07,
+                "terminal": {
+                  "Ca_astro": 0.042834860591392535,
+                  "h_IP3R": 0.9107606250701635,
+                  "IP3": 0.45471656289935913
+                },
+                "counters": {}
+              }
+            ],
+            "pwa": [
+              {
+                "build_seconds": 0.010640161010087468,
+                "prepare_seconds": 0.001436396996723488,
+                "run_seconds": 1.3918803520064102,
+                "readout_seconds": 1.3120006769895554e-06,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 3351040,
+                  "region_crossings": 7168,
+                  "input_spikes": 256
+                }
+              },
+              {
+                "build_seconds": 0.006592068006284535,
+                "prepare_seconds": 0.0010016430023824796,
+                "run_seconds": 1.4105922150047263,
+                "readout_seconds": 8.709903340786695e-07,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 3351040,
+                  "region_crossings": 7168,
+                  "input_spikes": 256
+                }
+              },
+              {
+                "build_seconds": 0.009466093993978575,
+                "prepare_seconds": 0.0011477490043034777,
+                "run_seconds": 1.3502711360051762,
+                "readout_seconds": 1.3620010577142239e-06,
+                "terminal": {
+                  "Ca_astro": 0.04263423199887284,
+                  "h_IP3R": 0.9129475835533095,
+                  "IP3": 0.45471656289937057
+                },
+                "counters": {
+                  "affine_flows": 3351040,
+                  "region_crossings": 7168,
+                  "input_spikes": 256
+                }
+              }
+            ]
+          },
+          "median_run_seconds": {
+            "lr": 2.835159289999865,
+            "pwa": 1.3918803520064102
+          },
+          "lr_over_pwa": 2.0369274456047552
+        },
+        {
+          "population": 256,
+          "mode": "isolated_solver",
+          "raw": [
+            {
+              "lr": {
+                "setup_seconds": 0.0001266589999999999,
+                "solve_seconds": 0.6062640739999997,
+                "terminal": [
+                  0.0428348605913927,
+                  0.9107606250701663,
+                  0.4547165628993608
+                ],
+                "rhs_or_flows": 21504000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.0007125489999999999,
+                "solve_seconds": 0.12896519699999992,
+                "terminal": [
+                  0.04263423199887286,
+                  0.9129475835533097,
+                  0.4547165628993678
+                ],
+                "rhs_or_flows": 3351040,
+                "crossings": 7168
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 0.00012840900000000006,
+                "solve_seconds": 0.610292335,
+                "terminal": [
+                  0.0428348605913927,
+                  0.9107606250701663,
+                  0.4547165628993608
+                ],
+                "rhs_or_flows": 21504000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.0007511969999999997,
+                "solve_seconds": 0.13045630200000008,
+                "terminal": [
+                  0.04263423199887286,
+                  0.9129475835533097,
+                  0.4547165628993678
+                ],
+                "rhs_or_flows": 3351040,
+                "crossings": 7168
+              }
+            },
+            {
+              "lr": {
+                "setup_seconds": 0.00012926100000000004,
+                "solve_seconds": 0.6117036879999997,
+                "terminal": [
+                  0.0428348605913927,
+                  0.9107606250701663,
+                  0.4547165628993608
+                ],
+                "rhs_or_flows": 21504000,
+                "crossings": 0
+              },
+              "pwa": {
+                "setup_seconds": 0.0006823309999999999,
+                "solve_seconds": 0.13321256200000003,
+                "terminal": [
+                  0.04263423199887286,
+                  0.9129475835533097,
+                  0.4547165628993678
+                ],
+                "rhs_or_flows": 3351040,
+                "crossings": 7168
+              }
+            }
+          ],
+          "median_run_seconds": {
+            "lr": 0.610292335,
+            "pwa": 0.13045630200000008
+          },
+          "lr_over_pwa": 4.6781360934177
+        }
+      ],
+      "half_tick_max_difference": {
+        "lr": {
+          "C": 4.988555124540994e-10,
+          "h": 5.4571902552424945e-11,
+          "I_SIC": 5.101381461702914e-08
+        },
+        "pwa": {
+          "C": 5.579973982872133e-12,
+          "h": 6.465938895416912e-13,
+          "I_SIC": 6.862839185828307e-10
+        }
+      }
+    }
+  }
+}

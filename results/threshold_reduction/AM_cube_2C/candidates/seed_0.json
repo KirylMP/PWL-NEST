@@ -1,0 +1,99 @@
+{
+  "case": "AM",
+  "calcium_coordinate": {
+    "kind": "sqrt_tails",
+    "reference": 0.05563833512124773,
+    "scale": 0.29719782567894054,
+    "normalization": "phi(C_ref)=0, phi_prime(C_ref)=1/scale",
+    "tail_joins_C": [
+      0.005,
+      1.3
+    ]
+  },
+  "h_reference": 0.722072295839805,
+  "h_coordinate": {
+    "kind": "cube",
+    "normalization": "psi(h_ref)=0, psi_prime(h_ref)=1/[h_ref*(1-h_ref)]"
+  },
+  "thresholds_u": [
+    0.18584630287293896,
+    0.22934676432753842
+  ],
+  "thresholds_C": [
+    0.12457916483535184,
+    0.14467545853936414
+  ],
+  "basis": [
+    "1",
+    "u",
+    "v",
+    "I",
+    "max(0,u-0.18584630287293896)",
+    "max(0,u-0.22934676432753842)"
+  ],
+  "coefficients": [
+    [
+      0.16426235123902047,
+      -3.8695794948735793,
+      1.5198863514819219,
+      1.1665228034670463,
+      6.702197036775078,
+      -2.501564639596045
+    ],
+    [
+      -0.044659139041019216,
+      0.685578846912816,
+      -0.3898773417704008,
+      -0.10398326951338022,
+      -1.3636999443467528,
+      0.33238690733233917
+    ]
+  ],
+  "metadata": {
+    "class_name": "reduced_continuous_transformed_C_strips",
+    "physical_thresholds_C": [
+      0.12457916483535184,
+      0.14467545853936414
+    ],
+    "enforce_types": false,
+    "accepted": false,
+    "exact_rest_constraint": [
+      0.1231214386699921,
+      0.746607851635111,
+      0.3
+    ],
+    "original_spectral_sequence_preserved": false,
+    "threshold_count": 2,
+    "input_threshold_count": 0,
+    "regions": 3,
+    "active_fit_parameters": 12,
+    "parameter_count": 12,
+    "field_initializer": "incumbent",
+    "reference_thresholds_C": [
+      0.12457916483535184,
+      0.14467545853936414
+    ],
+    "direct_fit_vector": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "coordinates": [
+      "u",
+      "v",
+      "I"
+    ],
+    "IP3": "exact -(I-baseline)/tau",
+    "calcium_clipping": false,
+    "scope": "compact approximation; validate trajectories, SIC and speed separately"
+  }
+}
