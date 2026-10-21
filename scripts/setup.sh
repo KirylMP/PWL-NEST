@@ -9,3 +9,4 @@ for case in am fm; do
   g++ -O3 -shared -fPIC "native/${case}_engine.cpp" -o ".build/${case}_engine.so"
 done
 g++ -O3 -shared -fPIC native/strips_rk4.cpp -o .build/strips_rk4.so
+g++ -std=c++17 -O3 -shared -fPIC native/pwa_event.cpp -o .build/pwa_event.so
