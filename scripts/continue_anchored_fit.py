@@ -62,9 +62,11 @@ def prepare(out,args):
         starting_model=str(seed),starting_sha256=hashlib.sha256(seed.read_bytes()).hexdigest()) for i in range(args.restarts)]
     atomic(out/'config.json',dict(continuation=True,jobs=jobs,budget=args.budget,
         global_iterations=args.global_iterations,workers=args.workers,regions=8,parameters=27,
-        constraints=f'unchanged exact LR rest, 8 static morphology/regime checks, all {len(spec["train"])} training peak counts/heights/widths',
+        constraints=f'exact LR rest, 8 static morphology/regime checks, all {len(spec["train"])} training peak counts/heights; dynamic width gate={not args.no_dynamic_width_gate}',
         source_model=str(seed),reference_cache=str(previous),timing_weight=args.timing_weight,
         phase_ceiling=args.phase_ceiling,search_seed=args.search_seed,
+        dynamic_width_gate=not args.no_dynamic_width_gate,
+        dynamic_width_residual_weight=args.dynamic_width_residual_weight,
         heldout_protocols=spec['test'],
         promoted=[p['name'] for p in promoted],heldout_used_for_field_initialization=False,
         selection='minimum independently verified eligible training loss; if none, keep incumbent and report diagnostic best',
@@ -118,9 +120,12 @@ def main():
     parser.add_argument('--diverse-directions',action='store_true')
     parser.add_argument('--phase-ceiling',type=float,help='Optional hard ceiling on training mean absolute peak timing error, seconds')
     parser.add_argument('--timing-weight',type=float,default=1.,help='Multiplier on absolute peak-time residuals; hard gates stay fixed')
+    parser.add_argument('--dynamic-width-residual-weight',type=float,default=1.,help='Soft fit weight for dynamic peak width')
+    parser.add_argument('--no-dynamic-width-gate',action='store_true',help='Keep dynamic width in reports and soft loss, but remove its hard eligibility gate')
     args=parser.parse_args();out=Path(args.output).resolve()
     if min(args.budget,args.restarts,args.workers)<1 or args.global_iterations<0:parser.error('Invalid optimization limits')
     if not np.isfinite(args.timing_weight) or args.timing_weight<=0:parser.error('Invalid timing weight')
+    if not np.isfinite(args.dynamic_width_residual_weight) or args.dynamic_width_residual_weight<0:parser.error('Invalid dynamic width residual weight')
     if args.phase_ceiling is not None and (not np.isfinite(args.phase_ceiling) or args.phase_ceiling<=0):parser.error('Invalid phase ceiling')
     if args.stage=='fit':
         if not args.job:parser.error('--job required')

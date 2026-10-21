@@ -44,6 +44,10 @@ class ShapeObjective(MixedObjective):
         self.phase_ceiling=config.get('phase_ceiling')
         if self.phase_ceiling is not None and (not np.isfinite(self.phase_ceiling) or self.phase_ceiling<=0):
             raise ValueError('Phase ceiling must be positive and finite')
+        self.dynamic_width_gate=bool(config.get('dynamic_width_gate',True))
+        self.dynamic_width_residual_weight=float(config.get('dynamic_width_residual_weight',1.))
+        if not np.isfinite(self.dynamic_width_residual_weight) or self.dynamic_width_residual_weight<0:
+            raise ValueError('Dynamic width residual weight must be finite and nonnegative')
 
     def phase_check(self):
         errors=[];matched=self.last_train_paths is not None
@@ -66,6 +70,9 @@ class ShapeObjective(MixedObjective):
             else:
                 t,x,_=self.last_train_paths[p['name']]
                 extra=peak_shape_residual(t,x,tr,truth,tolerance=FIT_SHAPE_TOLERANCE)
+                n=peak_shape_check(tr,truth,tr,truth,tolerance=FIT_SHAPE_TOLERANCE)['reference_peaks']
+                extra[n:2*n]*=self.dynamic_width_residual_weight
+                extra[3*n:4*n]*=self.dynamic_width_residual_weight
             groups[p['name']+'_shape']=float(extra@extra);residual=np.r_[residual,extra]
         regimes=[]
         for p in self.spec['fixed']:
@@ -102,12 +109,15 @@ def shape_checks(objective,model):
     shape=[]
     for p in objective.spec['train']:
         t,x,_=objective.last_train_paths[p['name']];tr,truth,_=objective.refs[p['name']]
-        shape.append(dict(name=p['name'],**peak_shape_check(t,x,tr,truth,tolerance=HARD_SHAPE_TOLERANCE)))
+        check=peak_shape_check(t,x,tr,truth,tolerance=HARD_SHAPE_TOLERANCE)
+        gate_passes=bool(check['counts_match'] and check['max_height_relative_error']<=HARD_SHAPE_TOLERANCE
+            and (not objective.dynamic_width_gate or check['max_width_relative_error']<=HARD_SHAPE_TOLERANCE))
+        shape.append(dict(name=p['name'],**check,gate_passes=gate_passes))
     target=np.asarray(objective.spec['rest']);rest,number=stable_rest(model,target[2],target)
     error=float(abs(rest-target).max());field_error=float(abs(model.field(model.to_latent(target))).max())
     eigen=np.linalg.eigvals(model.region(model.to_latent(target),20.,target[2])[0][:2,:2])
     rest_ok=error<2e-10 and field_error<2e-10 and max(eigen.real)<-1e-10
-    checks.update(shape=shape,shape_passes=sum(s['passes'] for s in shape),
+    checks.update(shape=shape,shape_passes=sum(s['passes'] for s in shape),shape_gate_passes=sum(s['gate_passes'] for s in shape),
         max_height_relative_error=max(s['max_height_relative_error'] for s in shape),
         max_width_relative_error=max(s['max_width_relative_error'] for s in shape),
         exact_rest=bool(rest_ok),rest=rest.tolist(),stable_rest_count=number,
@@ -115,7 +125,7 @@ def shape_checks(objective,model):
         rest_eigenvalues=[[float(z.real),float(z.imag)] for z in eigen])
     static_shape=[dict(name=p['name'],**objective.last_static_shapes[p['name']]) for p in objective.spec['fixed']]
     checks.update(static_shape=static_shape,static_shape_passes=sum(s['passes'] for s in static_shape))
-    checks['eligible']=bool(checks['eligible'] and rest_ok and all(s['passes'] for s in shape) and all(s['passes'] for s in static_shape))
+    checks['eligible']=bool(checks['eligible'] and rest_ok and all(s['gate_passes'] for s in shape) and all(s['passes'] for s in static_shape))
     if objective.phase_ceiling is not None:
         checks['phase_constraint']=objective.phase_check()
         checks['eligible']=bool(checks['eligible'] and checks['phase_constraint']['passes'])

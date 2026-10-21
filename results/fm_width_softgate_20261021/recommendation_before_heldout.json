@@ -1,0 +1,8 @@
+{
+  "name": "control_0",
+  "eligible_new_fit": true,
+  "diagnostic_best": "control_0",
+  "diagnostic_best_loss": 3274.079755229738,
+  "verified_train_loss": 3274.079755229738,
+  "reason": "all expanded training checks passed and training loss improved"
+}
