@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "families": {
+    "control": 0,
+    "linear": 1,
+    "quadratic": 2
+  },
+  "budget_per_stage": 800,
+  "seed": 20261028,
+  "source_model": "models/server_candidates/FM_identity__identity.json",
+  "source_sha256": "a388167733f0f80002a024d08415b80755a302cb8bd62461c7cb88996f5462cd",
+  "code_sha256": "5aaafb73e67c14298c6888c784e1657d1db67c672c51a2175c8f98c40bcc988d",
+  "coordinate": "U=phi(C)-a*(V-center)-b*(V-center)^2; V=psi(h); I unchanged",
+  "center": "source baseline equilibrium V, fixed before fitting",
+  "geometry_bounds": {
+    "a": [
+      -0.06,
+      0.06
+    ],
+    "b": [
+      -0.012,
+      0.012
+    ]
+  },
+  "criterion": "previous FM burst criterion, all physical static traces; no new acceptance relaxation",
+  "region_count": 8,
+  "parameters": {
+    "control": 29,
+    "linear": 30,
+    "quadratic": 31
+  },
+  "selection": "physical, all six training peak counts and eight static regimes; then DOP853 training loss",
+  "heldout_protocols": [
+    {
+      "name": "mixed_heldout_tau_11.0",
+      "duration": 260.0,
+      "tau": 11.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "mixed_heldout_tau_42.0",
+      "duration": 260.0,
+      "tau": 42.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "mixed_heldout_tau_72.0",
+      "duration": 260.0,
+      "tau": 72.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "mixed_heldout_tau_125.0",
+      "duration": 260.0,
+      "tau": 125.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "mixed_heldout_tau_190.0",
+      "duration": 380.0,
+      "tau": 190.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "mixed_heldout_irregular",
+      "duration": 300.0,
+      "tau": 19.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.27564165958428216
+        ],
+        [
+          33.192382327742735,
+          0.2219174013646636
+        ],
+        [
+          48.22187457337947,
+          0.22379188752133564
+        ],
+        [
+          69.07617020276084,
+          0.26719462302339214
+        ],
+        [
+          82.33599046118218,
+          0.29776914276267064
+        ],
+        [
+          102.06046824234878,
+          0.26814403801114045
+        ],
+        [
+          115.80615122724268,
+          0.23685459828193106
+        ],
+        [
+          136.95239875247523,
+          0.28194807892171897
+        ]
+      ]
+    }
+  ],
+  "heldout_used_for_initialization": false,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0"
+}

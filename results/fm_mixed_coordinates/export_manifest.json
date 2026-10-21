@@ -1,0 +1,26 @@
+[
+  {
+    "family": "control",
+    "path": "models/mixed_coordinate_candidates/FM_control.json",
+    "sha256": "a5f1b6076ac8d372b8ac684ab20178ef590ccf5b31f7b6f19f0c46f11395e7b0",
+    "source_trial": "results/fm_mixed_coordinates/trials/control/candidate.json",
+    "source_sha256": "8c518537a9431976657661fe136a80c972f0435deda4049289f0f1c7de7f30b8",
+    "metadata_only_update": true
+  },
+  {
+    "family": "linear",
+    "path": "models/mixed_coordinate_candidates/FM_linear.json",
+    "sha256": "d6b243192aeb487a8fc061e61d3d25515db0536aef31c0872280a9dc7310b31c",
+    "source_trial": "results/fm_mixed_coordinates/trials/linear/candidate.json",
+    "source_sha256": "42706055bd1edb565ea7f46dac9af8f43774d81e6c4457396dccba4e5da7bd2c",
+    "metadata_only_update": true
+  },
+  {
+    "family": "quadratic",
+    "path": "models/mixed_coordinate_candidates/FM_quadratic.json",
+    "sha256": "c96732253cc713fdeeb0d231007e44fbafb698b51804472ab6455d4939f03857",
+    "source_trial": "results/fm_mixed_coordinates/trials/quadratic/candidate.json",
+    "source_sha256": "66e0fa3775b2c46be37eaf4ea146905406838599428ad172ebf2344d3302e44a",
+    "metadata_only_update": true
+  }
+]

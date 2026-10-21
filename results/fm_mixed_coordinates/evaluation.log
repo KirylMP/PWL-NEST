@@ -1,0 +1,4 @@
+{"family": "original", "train": 3759.7554496276157, "heldout": {"C_RMSE": 0.22789582603949302, "physical": true, "peak_count_matches": 6, "protocol_count": 6}}
+{"family": "control", "train": 1285.7803072417187, "heldout": {"C_RMSE": 0.2443997534195296, "physical": true, "peak_count_matches": 6, "protocol_count": 6}}
+{"family": "linear", "train": 1190.2102722589088, "heldout": {"C_RMSE": 0.2633658515265583, "physical": true, "peak_count_matches": 6, "protocol_count": 6}}
+{"family": "quadratic", "train": 1170.7327570878929, "heldout": {"C_RMSE": 0.25972060234310984, "physical": true, "peak_count_matches": 6, "protocol_count": 6}}

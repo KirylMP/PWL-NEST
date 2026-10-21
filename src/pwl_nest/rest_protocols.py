@@ -27,7 +27,7 @@ def native_events(model,initial,duration,tau,baseline,jumps,dt=.25,maxdt=.005,na
         y=native.run(model,state,right-left,tau,baseline,outputs=count,maxdt=maxdt)
         if y is None:raise ValueError('Native event trajectory failed')
         grid=np.linspace(left,right,count);ip3=baseline+(state[2]-baseline)*np.exp(-(grid-left)/tau)
-        x=np.column_stack([model.coordinate.inverse(y[:,0]),model.gate.inverse(y[:,1]),ip3])
+        x=model.to_physical(np.column_stack([y,ip3]))
         times.append(grid if not paths else grid[1:]);paths.append(x if not paths else x[1:])
         state=x[-1].copy();state[2]+=delta;left=right
         if not 0<=state[2]<=1.3:raise ValueError('IP3 outside fitted domain')

@@ -64,6 +64,8 @@ class CalibrationResidual:
                 self.samples[p['name']]=np.column_stack([np.interp(grid,t,x[:,d]) for d in [0,1]])
 
     def __call__(self,model,replay=None,parts=False):
+        if model.has_state_mix and replay is None:
+            raise ValueError('Mixed coordinates require statistics from physical trajectories')
         co,gate=model.coordinate,model.gate;groups={};rr=[]
         for p in self.training:
             name=p['name'];r=[]
@@ -117,6 +119,8 @@ class CalibrationResidual:
 
 
 def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind=None,rng_seed=20261021,checkpoint_path=None,input_threshold_bounds=None):
+    if seed.has_state_mix:
+        raise ValueError('Use fit_mixed_coordinates for coupled coordinate transforms')
     n=seed.latent.region_count;nc=2*n+6;m=n-1;knots=seed.input_thresholds
     move_input=input_threshold_bounds is not None
     if move_input:

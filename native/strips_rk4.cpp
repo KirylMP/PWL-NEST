@@ -5,7 +5,8 @@
 struct S {double c,h;};
 static int run_rk4(const double*theta,int n,const double*p,const double*initial,
  double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper,double hlower,double hupper,
- const double*slopes=nullptr,double iref=0.,const double*knots=nullptr,int knot_count=0){
+ const double*slopes=nullptr,double iref=0.,const double*knots=nullptr,int knot_count=0,
+ double mix_a=0.,double mix_b=0.,double mix_center=0.){
  auto rhs=[&](S s,double I){
   int j=0;
   if(slopes){while(j<n-1 && s.c>=theta[j]+slopes[j]*(I-iref))++j;}
@@ -26,7 +27,8 @@ static int run_rk4(const double*theta,int n,const double*p,const double*initial,
    S d=rhs({s.c+dt*c.c,s.h+dt*c.h},I(time+dt));
    s={s.c+dt*(a.c+2*b.c+2*c.c+d.c)/6,s.h+dt*(a.h+2*b.h+2*c.h+d.h)/6};time+=dt;
    if(!std::isfinite(s.c)||!std::isfinite(s.h)||fabs(s.c)>20||fabs(s.h)>20)return 1;
-   if(s.c<=lower||s.c>=upper)return 2;
+   const double z=s.h-mix_center, calcium=s.c+mix_a*z+mix_b*z*z;
+   if(calcium<=lower||calcium>=upper)return 2;
    if(s.h<=hlower||s.h>=hupper)return 3;
   }
   dest[2*i]=s.c;dest[2*i+1]=s.h;
@@ -50,4 +52,12 @@ extern "C" int strips_rk4_geometry(const double*theta,const double*slopes,int n,
  const double*knots,int knot_count,const double*p,const double*initial,
  double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper,double hlower,double hupper){
  return run_rk4(theta,n,p,initial,base,tau,duration,outputs,maxdt,dest,lower,upper,hlower,hupper,slopes,iref,knots,knot_count);
+}
+
+extern "C" int strips_rk4_mixed(const double*theta,const double*slopes,int n,double iref,
+ const double*knots,int knot_count,const double*p,const double*initial,
+ double base,double tau,double duration,int outputs,double maxdt,double*dest,double lower,double upper,double hlower,double hupper,
+ double mix_a,double mix_b,double mix_center){
+ return run_rk4(theta,n,p,initial,base,tau,duration,outputs,maxdt,dest,lower,upper,hlower,hupper,
+                slopes,iref,knots,knot_count,mix_a,mix_b,mix_center);
 }

@@ -1,0 +1,139 @@
+{
+  "family": "linear",
+  "status": "verified",
+  "verified_train_loss": 1190.2102722589088,
+  "parts": {
+    "fixed_and_spectral_anchors": 187.58076308031116,
+    "pulse_tau_20.0_events": 25.55467965500873,
+    "pulse_tau_20.0_timing": 5.653005035469231,
+    "pulse_tau_20.0_burst_end": 4.687090303928893,
+    "pulse_tau_100.0_events": 101.34448236148036,
+    "pulse_tau_100.0_timing": 65.34027778960048,
+    "pulse_tau_100.0_burst_end": 2.899656203915851,
+    "periodic_events": 99.54854329737172,
+    "periodic_timing": 177.83970982328344,
+    "periodic_burst_end": 88.16091025864198,
+    "promoted_tau_35.0_events": 36.81165626188198,
+    "promoted_tau_35.0_timing": 3.67668459247771,
+    "promoted_tau_35.0_burst_end": 1.945536514347709,
+    "promoted_tau_65.0_events": 87.33647301065264,
+    "promoted_tau_65.0_timing": 38.666314832378745,
+    "promoted_tau_65.0_burst_end": 70.95872107501047,
+    "promoted_tau_80.0_events": 96.60677160559644,
+    "promoted_tau_80.0_timing": 39.60623176023794,
+    "promoted_tau_80.0_burst_end": 37.22618910988768,
+    "own_rest": 18.76657568742591
+  },
+  "checks": {
+    "physical": true,
+    "fixed_regimes_match": true,
+    "all_dynamic_peak_counts_match": true,
+    "eligible": true,
+    "protocols": [
+      {
+        "protocol": "fixed_lower_rest",
+        "kind": "fixed",
+        "expected": "rest",
+        "observed": "rest",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_0.55",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_0.7",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_1.0",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_1.2",
+        "kind": "fixed",
+        "expected": "rest",
+        "observed": "rest",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_0.53",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_1.12",
+        "kind": "fixed",
+        "expected": "cycling",
+        "observed": "cycling",
+        "matches": true
+      },
+      {
+        "protocol": "fixed_1.13",
+        "kind": "fixed",
+        "expected": "rest",
+        "observed": "rest",
+        "matches": true
+      },
+      {
+        "protocol": "pulse_tau_20.0",
+        "kind": "dynamic",
+        "expected": 2,
+        "observed": 2,
+        "matches": true
+      },
+      {
+        "protocol": "pulse_tau_100.0",
+        "kind": "dynamic",
+        "expected": 8,
+        "observed": 8,
+        "matches": true
+      },
+      {
+        "protocol": "periodic",
+        "kind": "dynamic",
+        "expected": 5,
+        "observed": 5,
+        "matches": true
+      },
+      {
+        "protocol": "promoted_tau_35.0",
+        "kind": "dynamic",
+        "expected": 3,
+        "observed": 3,
+        "matches": true
+      },
+      {
+        "protocol": "promoted_tau_65.0",
+        "kind": "dynamic",
+        "expected": 6,
+        "observed": 6,
+        "matches": true
+      },
+      {
+        "protocol": "promoted_tau_80.0",
+        "kind": "dynamic",
+        "expected": 7,
+        "observed": 7,
+        "matches": true
+      }
+    ]
+  },
+  "parameters": 30,
+  "regions": 8,
+  "a": -0.05698843812790987,
+  "b": 0.0,
+  "center": 0.5437287438163493,
+  "seconds": 124.80289442500361
+}

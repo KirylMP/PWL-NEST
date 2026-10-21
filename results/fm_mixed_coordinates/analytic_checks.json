@@ -1,0 +1,62 @@
+{
+  "control": {
+    "regional_samples": 8,
+    "affine_expm_vs_DOP_max_error": 5.551115123125783e-17,
+    "input_hinge_continuity_max_error": 0.0,
+    "crossing_times": [],
+    "exponential_crossing_max_error": 0.0,
+    "planar_C_h_jacobian_unchanged_across_I_knot": true,
+    "scope": "Regional exact flow and inverse-coordinate/threshold checks; no complete event solver or speed benchmark",
+    "state_mixing": {
+      "a": 0.0,
+      "b": 0.0,
+      "center": 0.0
+    },
+    "physical_threshold_samples": 133,
+    "straightening_max_error": 5.551115123125783e-17,
+    "latent_threshold_continuity_max_error": 5.551115123125783e-17,
+    "coordinate_Jacobian_determinant": "phi_prime(C)*psi_prime(h), independent of a,b",
+    "regional_matrices_constant": true,
+    "physical_field_PWA": true
+  },
+  "linear": {
+    "regional_samples": 8,
+    "affine_expm_vs_DOP_max_error": 1.1102230246251565e-16,
+    "input_hinge_continuity_max_error": 0.0,
+    "crossing_times": [],
+    "exponential_crossing_max_error": 0.0,
+    "planar_C_h_jacobian_unchanged_across_I_knot": true,
+    "scope": "Regional exact flow and inverse-coordinate/threshold checks; no complete event solver or speed benchmark",
+    "state_mixing": {
+      "a": -0.05698843812790987,
+      "b": 0.0,
+      "center": 0.5437287438163493
+    },
+    "physical_threshold_samples": 133,
+    "straightening_max_error": 1.6653345369377348e-16,
+    "latent_threshold_continuity_max_error": 2.6939035854475768e-17,
+    "coordinate_Jacobian_determinant": "phi_prime(C)*psi_prime(h), independent of a,b",
+    "regional_matrices_constant": true,
+    "physical_field_PWA": true
+  },
+  "quadratic": {
+    "regional_samples": 8,
+    "affine_expm_vs_DOP_max_error": 1.1102230246251565e-16,
+    "input_hinge_continuity_max_error": 0.0,
+    "crossing_times": [],
+    "exponential_crossing_max_error": 0.0,
+    "planar_C_h_jacobian_unchanged_across_I_knot": true,
+    "scope": "Regional exact flow and inverse-coordinate/threshold checks; no complete event solver or speed benchmark",
+    "state_mixing": {
+      "a": -0.05980557969892147,
+      "b": -0.011259084469809095,
+      "center": 0.5437287438163493
+    },
+    "physical_threshold_samples": 133,
+    "straightening_max_error": 1.1102230246251565e-16,
+    "latent_threshold_continuity_max_error": 5.551115123125783e-17,
+    "coordinate_Jacobian_determinant": "phi_prime(C)*psi_prime(h), independent of a,b",
+    "regional_matrices_constant": true,
+    "physical_field_PWA": false
+  }
+}

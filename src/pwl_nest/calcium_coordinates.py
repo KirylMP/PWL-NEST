@@ -213,8 +213,13 @@ class CalciumTransformPWA:
     input_weights: np.ndarray | None = None
     threshold_slopes: np.ndarray | None = None
     reference_input: float = .65
+    mix_linear: float = 0.
+    mix_quadratic: float = 0.
+    mix_center: float = 0.
 
     def __post_init__(self):
+        if not np.isfinite([self.mix_linear,self.mix_quadratic,self.mix_center]).all():
+            raise ValueError('Invalid state-coordinate mixing')
         self.input_thresholds=np.array([] if self.input_thresholds is None else self.input_thresholds,dtype=float)
         self.input_weights=np.zeros((2,len(self.input_thresholds))) if self.input_weights is None else np.array(self.input_weights,dtype=float)
         self.threshold_slopes=np.zeros(len(self.latent.thresholds)) if self.threshold_slopes is None else np.array(self.threshold_slopes,dtype=float)
@@ -224,7 +229,22 @@ class CalciumTransformPWA:
             raise ValueError('Invalid input thresholds or oblique geometry')
         for ip3 in [0.,1.3]:
             theta=self.thresholds_at_input(ip3)
-            if np.any(np.diff(theta)<=0) or np.any(theta<=self.coordinate.lower):raise ValueError('Crossed thresholds or invalid calcium domain')
+            if np.any(np.diff(theta)<=0) or (not self.has_state_mix and np.any(theta<=self.coordinate.lower)):
+                raise ValueError('Crossed thresholds or invalid calcium domain')
+
+    @property
+    def has_state_mix(self):return bool(self.mix_linear or self.mix_quadratic)
+
+    def mix(self,v):
+        z=np.asarray(v)-self.mix_center
+        return self.mix_linear*z+self.mix_quadratic*z*z
+
+    def mix_derivative(self,v):return self.mix_linear+2*self.mix_quadratic*(np.asarray(v)-self.mix_center)
+
+    def unmixed_calcium(self,y):
+        """phi(C)=U+g(V); domain boundaries need this value, not U."""
+        y=np.asarray(y)
+        return y[...,0]+self.mix(y[...,1])
 
     @property
     def has_geometry(self):return bool(len(self.input_thresholds) or np.any(self.threshold_slopes!=0))
@@ -278,7 +298,8 @@ class CalciumTransformPWA:
         matrix[:,0]-=self.input_weights[:,active]@self.input_thresholds[active]
         matrix[:,3]+=self.input_weights[:,active].sum(axis=1)
         latent=CalciumStrips(self.case,self.thresholds_at_input(ip3),matrix,self.metadata)
-        return CalciumTransformPWA(latent,self.coordinate,self.h_reference,self.h_kind)
+        return CalciumTransformPWA(latent,self.coordinate,self.h_reference,self.h_kind,
+            mix_linear=self.mix_linear,mix_quadratic=self.mix_quadratic,mix_center=self.mix_center)
 
     def equilibrium_inputs_at_thresholds(self,anchors=None):
         mu,k,q,qb=self.latent.spectral_coefficients();theta=self.latent.thresholds
@@ -328,17 +349,19 @@ class CalciumTransformPWA:
         x=np.asarray(x,dtype=float)
         if x.ndim<1 or x.shape[-1]!=3 or not np.isfinite(x).all() or np.any(x[...,1]<=0) or np.any(x[...,1]>=1):
             raise ValueError('Require finite (C,h,I), C>0 and 0<h<1')
-        return np.stack([self.coordinate.forward(x[...,0]),self.gate.forward(x[...,1]),x[...,2]],axis=-1)
+        v=self.gate.forward(x[...,1])
+        return np.stack([self.coordinate.forward(x[...,0])-self.mix(v),v,x[...,2]],axis=-1)
 
     def to_physical(self,y):
         y=np.asarray(y)
         if y.ndim<1 or y.shape[-1]!=3 or not np.isfinite(y).all():raise ValueError('Invalid latent state')
         h=self.gate.inverse(y[...,1])
-        return np.stack([self.coordinate.inverse(y[...,0]),h,y[...,2]],axis=-1)
+        return np.stack([self.coordinate.inverse(self.unmixed_calcium(y)),h,y[...,2]],axis=-1)
 
     def source_field(self,y):
         x=self.to_physical(y);f=lr_field(x,self.case);h=x[...,1]
-        return np.stack([self.coordinate.derivative(x[...,0])*f[...,0],self.gate.derivative(h)*f[...,1]],axis=-1)
+        vd=self.gate.derivative(h)*f[...,1]
+        return np.stack([self.coordinate.derivative(x[...,0])*f[...,0]-self.mix_derivative(y[...,1])*vd,vd],axis=-1)
 
     def save(self,path):
         record=dict(case=self.case,
@@ -350,6 +373,17 @@ class CalciumTransformPWA:
             coefficients=self.latent.matrix.tolist(),metadata=self.metadata)
         if self.coordinate.kind=='hill':record['calcium_coordinate']['half_saturation']=self.coordinate.half_saturation
         if self.coordinate.kind=='sqrt_tails':record['calcium_coordinate']['tail_joins_C']=list(CALCIUM_TAIL_JOINS)
+        if self.has_state_mix:
+            record['state_mixing']=dict(linear=self.mix_linear,quadratic=self.mix_quadratic,center=self.mix_center,
+                definition='U=phi(C)-a*(V-center)-b*(V-center)^2; V=psi(h); I unchanged',
+                inverse='C=phi_inverse(U+a*(V-center)+b*(V-center)^2); h=psi_inverse(V)',
+                thresholds='U=theta_j; thresholds_C is only a cross-section at V=center')
+            # A curved switching surface has no single physical calcium threshold.
+            section=[]
+            for theta in self.latent.thresholds:
+                try:section.append(float(self.coordinate.inverse(theta)))
+                except ValueError:section.append(None)  # No physical intersection at V=center.
+            record['thresholds_C']=section
         if self.has_geometry:
             record['basis']=['1','u','v','I']+[f'max(0,u-({t:.17g})-({s:.17g})*(I-{self.reference_input:.17g}))' for t,s in zip(self.latent.thresholds,self.threshold_slopes)]
             record['geometry']=dict(input_thresholds=self.input_thresholds.tolist(),input_weights=self.input_weights.tolist(),
@@ -362,10 +396,11 @@ class CalciumTransformPWA:
         z=json.loads(Path(path).read_text());co=z['calcium_coordinate']
         if co['kind']=='sqrt_tails' and co.get('tail_joins_C',list(CALCIUM_TAIL_JOINS))!=list(CALCIUM_TAIL_JOINS):
             raise ValueError('Unsupported calcium tail joins')
-        geometry=z.get('geometry',{})
+        geometry=z.get('geometry',{});mix=z.get('state_mixing',{})
         return cls(CalciumStrips(z['case'],np.array(z['thresholds_u']),np.array(z['coefficients']),z['metadata']),
                    CalciumCoordinate(co['kind'],co['reference'],co.get('scale',1.),co.get('half_saturation')),float(z['h_reference']),z.get('h_coordinate',{}).get('kind','logit'),
-                   geometry.get('input_thresholds'),geometry.get('input_weights'),geometry.get('threshold_slopes'),geometry.get('reference_input',.65))
+                   geometry.get('input_thresholds'),geometry.get('input_weights'),geometry.get('threshold_slopes'),geometry.get('reference_input',.65),
+                   mix.get('linear',0.),mix.get('quadratic',0.),mix.get('center',0.))
 
 
 def decode_coordinates(case,thresholds,parameters,mu_sign,k_sign,metadata,coordinate,h_reference,h_kind='logit'):
@@ -401,6 +436,16 @@ class NativeCoordinateDynamic:
         mu,k,_,_=model.latent.spectral_coefficients()
         maxdt=min(maxdt,.7/max(1.,float(abs(mu).max()),float(np.sqrt(abs(k).max()))))
         out=np.empty((outputs,2));y0=model.to_latent(initial)
+        if model.has_state_mix:
+            lib=self.lib;ptr=np.ctypeslib.ndpointer(dtype=np.float64,flags='C_CONTIGUOUS')
+            lib.strips_rk4_mixed.argtypes=lib.strips_rk4_geometry.argtypes+[ct.c_double]*3
+            lib.strips_rk4_mixed.restype=ct.c_int
+            code=lib.strips_rk4_mixed(np.ascontiguousarray(model.latent.thresholds),np.ascontiguousarray(model.threshold_slopes),
+                model.latent.region_count,model.reference_input,np.ascontiguousarray(model.input_thresholds),len(model.input_thresholds),
+                np.ascontiguousarray(model.geometry_coefficients()),np.ascontiguousarray(y0),baseline,tau,duration,outputs,maxdt,out,
+                model.coordinate.lower,model.coordinate.guard_upper,model.gate.lower,model.gate.upper,
+                model.mix_linear,model.mix_quadratic,model.mix_center)
+            return None if code else out
         if model.has_geometry:
             code=self.lib.strips_rk4_geometry(np.ascontiguousarray(model.latent.thresholds),np.ascontiguousarray(model.threshold_slopes),
                 model.latent.region_count,model.reference_input,np.ascontiguousarray(model.input_thresholds),len(model.input_thresholds),
@@ -425,14 +470,17 @@ def simulate_coordinates(model,initial,duration,tau=20.,baseline=.2,jumps=(),dt=
     left=0.;parts=[];times=[];log=[];error=0.;evaluations=0
     rhs=model.rhs(tau,baseline)
     upper=model.coordinate.guard_upper
-    def runaway(t,y):return min(upper-y[0],100.-abs(y[1]))
+    def runaway(t,y):return min(upper-model.unmixed_calcium(y),100.-abs(y[1]))
     runaway.terminal=True;runaway.direction=-1
     safety=[runaway];reasons=['runaway']
     def add_boundary(axis,bound,direction,reason):
         def event(t,y):return direction*(y[axis]-bound)
         event.terminal=True;event.direction=-1
         safety.append(event);reasons.append(reason)
-    if np.isfinite(model.coordinate.lower):add_boundary(0,model.coordinate.lower,1,'positive-root branch exit')
+    if np.isfinite(model.coordinate.lower):
+        def calcium_lower(t,y):return model.unmixed_calcium(y)-model.coordinate.lower
+        calcium_lower.terminal=True;calcium_lower.direction=-1
+        safety.append(calcium_lower);reasons.append('positive-root branch exit')
     if np.isfinite(model.gate.lower):add_boundary(1,model.gate.lower,1,'gate domain exit h=0')
     if np.isfinite(model.gate.upper):add_boundary(1,model.gate.upper,-1,'gate domain exit h=1')
     for right,delta in events+[(float(duration),0.)]:
@@ -446,7 +494,7 @@ def simulate_coordinates(model,initial,duration,tau=20.,baseline=.2,jumps=(),dt=
                 when=float(sol.t_events[event_index][0]);reason=reasons[event_index]
                 if event_index==0:
                     exit_state=sol.y_events[0][0]
-                    reason='physical C reached 20 uM' if abs(exit_state[0]-upper)<1e-6 else 'latent state runaway'
+                    reason='physical C reached 20 uM' if abs(model.unmixed_calcium(exit_state)-upper)<1e-6 else 'latent state runaway'
             raise RuntimeError(f'Latent solver incomplete near t={when:.9g}: {reason}')
         exact=baseline+(state[2]-baseline)*np.exp(-(sol.t-left)/tau)
         error=max(error,float(abs(sol.y[2]-exact).max()));evaluations+=sol.nfev
