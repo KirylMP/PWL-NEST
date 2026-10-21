@@ -1,0 +1,216 @@
+{
+  "continuation": true,
+  "jobs": [
+    {
+      "name": "control_0",
+      "family": "control",
+      "restart": 0,
+      "seed": 20261120,
+      "search_space": "default",
+      "starting_model": "models/anchored_shape_candidates/FM_control.json",
+      "starting_sha256": "520d2dcd271ab762456057834fe7e8f46ebfc7ab9cb5616b1dc697215d0753ad"
+    },
+    {
+      "name": "control_1",
+      "family": "control",
+      "restart": 1,
+      "seed": 20261121,
+      "search_space": "thresholds",
+      "starting_model": "models/anchored_shape_candidates/FM_control.json",
+      "starting_sha256": "520d2dcd271ab762456057834fe7e8f46ebfc7ab9cb5616b1dc697215d0753ad"
+    },
+    {
+      "name": "control_2",
+      "family": "control",
+      "restart": 2,
+      "seed": 20261122,
+      "search_space": "kinetics",
+      "starting_model": "models/anchored_shape_candidates/FM_control.json",
+      "starting_sha256": "520d2dcd271ab762456057834fe7e8f46ebfc7ab9cb5616b1dc697215d0753ad"
+    }
+  ],
+  "budget": 1400,
+  "global_iterations": 25,
+  "workers": 3,
+  "regions": 8,
+  "parameters": 27,
+  "constraints": "unchanged exact LR rest, 8 static morphology/regime checks, all 8 training peak counts/heights/widths",
+  "source_model": "models/anchored_shape_candidates/FM_control.json",
+  "reference_cache": "results/fm_anchored_shapes/cache/FM",
+  "timing_weight": 3.0,
+  "phase_ceiling": 1.75,
+  "search_seed": 20261120,
+  "heldout_protocols": [
+    {
+      "name": "width_heldout_tau_12.0",
+      "duration": 360.0,
+      "tau": 12.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "width_heldout_tau_52.0",
+      "duration": 360.0,
+      "tau": 52.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "width_heldout_tau_150.0",
+      "duration": 480.0,
+      "tau": 150.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "width_heldout_irregular_19.0",
+      "duration": 340.0,
+      "tau": 19.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.2755770268331334
+        ],
+        [
+          45.50592360654428,
+          0.23868494180748134
+        ],
+        [
+          67.51497061397036,
+          0.2429487396062756
+        ],
+        [
+          94.98181323555796,
+          0.25315686565179585
+        ],
+        [
+          122.60821027494015,
+          0.24008724107132826
+        ],
+        [
+          144.18136578146476,
+          0.21764665204537695
+        ],
+        [
+          162.76332552082772,
+          0.21939995721134806
+        ],
+        [
+          186.13352083735197,
+          0.2340793758971343
+        ]
+      ]
+    },
+    {
+      "name": "width_heldout_irregular_28.0",
+      "duration": 340.0,
+      "tau": 28.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.25381753389155737
+        ],
+        [
+          48.089211009132896,
+          0.2720968826330694
+        ],
+        [
+          76.21798282879706,
+          0.2640723684694698
+        ],
+        [
+          97.37563895247322,
+          0.21939627606551862
+        ],
+        [
+          126.93331450393349,
+          0.23532819665519644
+        ],
+        [
+          156.03379840434835,
+          0.23232796454521368
+        ],
+        [
+          178.46982352775774,
+          0.23142186491067793
+        ],
+        [
+          207.94608706484303,
+          0.20100662692896956
+        ]
+      ]
+    },
+    {
+      "name": "width_heldout_irregular_40.0",
+      "duration": 340.0,
+      "tau": 40.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.2635618382672287
+        ],
+        [
+          45.925027525225715,
+          0.25728416419258215
+        ],
+        [
+          75.42364810054076,
+          0.2606819941458508
+        ],
+        [
+          99.4018419960615,
+          0.23490116232245714
+        ],
+        [
+          127.33175781728684,
+          0.27030611280352934
+        ],
+        [
+          153.34797958597937,
+          0.20967342492267702
+        ],
+        [
+          170.40178211422207,
+          0.20001070634173712
+        ],
+        [
+          190.65927896222428,
+          0.23047887497850345
+        ]
+      ]
+    }
+  ],
+  "promoted": [
+    "anchored_heldout_tau_48.0",
+    "anchored_heldout_tau_160.0"
+  ],
+  "heldout_used_for_field_initialization": false,
+  "selection": "minimum independently verified eligible training loss; if none, keep incumbent and report diagnostic best",
+  "source_sha256": {
+    "/workspace/PWL-NEST/scripts/continue_anchored_fit.py": "6033819449372d957c5aba9c4cd9fae0f1986de09d68f047be94581d668c8641",
+    "scripts/fit_anchored_shapes.py": "514f907218b52d66e4569482b4cee27a72b2d70ebf37725d1a6326e2838b7598",
+    "scripts/fit_mixed_coordinates.py": "bafdab2f1a1cf829da13e200f1cf3f68dcd0011fd5983e9707bbbfb81f1d5644",
+    "src/pwl_nest/peak_shape.py": "3579b3993df9d5572d5969ec27bc04c664690464145973e3e6154863ea00273e"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0"
+}
