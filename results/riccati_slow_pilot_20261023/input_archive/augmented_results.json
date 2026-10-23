@@ -1,0 +1,294 @@
+{
+  "optimizer": 0.012346916749641687,
+  "evals": 1486,
+  "candidates": [
+    {
+      "name": "best",
+      "parameters": [
+        -0.27534184808371753,
+        -0.06788525566941761,
+        2.31745979055761,
+        0.16130211084202645,
+        0.09749471242739638
+      ],
+      "rows": [
+        {
+          "I": 0.53,
+          "period": 40.0,
+          "amplitude": 1.0000725535231343,
+          "valid": true,
+          "n_late": 7
+        },
+        {
+          "I": 0.54,
+          "period": 37.37499999999994,
+          "amplitude": 1.0025141404374478,
+          "valid": true,
+          "n_late": 8
+        },
+        {
+          "I": 0.55,
+          "period": 35.25,
+          "amplitude": 1.0049243845048748,
+          "valid": true,
+          "n_late": 8
+        },
+        {
+          "I": 0.6,
+          "period": 29.125,
+          "amplitude": 1.0164928290469648,
+          "valid": true,
+          "n_late": 10
+        },
+        {
+          "I": 0.7,
+          "period": 23.250000000000057,
+          "amplitude": 1.0383921056941159,
+          "valid": true,
+          "n_late": 13
+        },
+        {
+          "I": 0.8,
+          "period": 20.25,
+          "amplitude": 1.0594326119569257,
+          "valid": true,
+          "n_late": 15
+        },
+        {
+          "I": 0.9,
+          "period": 18.375,
+          "amplitude": 1.0799444006770809,
+          "valid": true,
+          "n_late": 16
+        },
+        {
+          "I": 1.0,
+          "period": 17.125,
+          "amplitude": 1.100013068397056,
+          "valid": true,
+          "n_late": 18
+        },
+        {
+          "I": 1.1,
+          "period": 16.749999999999943,
+          "amplitude": 1.1191145744678248,
+          "valid": true,
+          "n_late": 18
+        },
+        {
+          "I": 1.12,
+          "period": 17.000000000000057,
+          "amplitude": 1.1219394802923703,
+          "valid": true,
+          "n_late": 18
+        },
+        {
+          "I": 1.13,
+          "period": null,
+          "amplitude": 0.0,
+          "valid": true,
+          "n_late": 0
+        },
+        {
+          "I": 1.14,
+          "period": null,
+          "amplitude": 0.0,
+          "valid": true,
+          "n_late": 0
+        }
+      ]
+    },
+    {
+      "name": "optimizer",
+      "parameters": [
+        -0.27534184808371753,
+        -0.06788525566941761,
+        2.31745979055761,
+        0.16130211084202645,
+        0.09749471242739638
+      ],
+      "rows": [
+        {
+          "I": 0.53,
+          "period": 40.0,
+          "amplitude": 1.0000725535231343,
+          "valid": true,
+          "n_late": 7
+        },
+        {
+          "I": 0.54,
+          "period": 37.37499999999994,
+          "amplitude": 1.0025141404374478,
+          "valid": true,
+          "n_late": 8
+        },
+        {
+          "I": 0.55,
+          "period": 35.25,
+          "amplitude": 1.0049243845048748,
+          "valid": true,
+          "n_late": 8
+        },
+        {
+          "I": 0.6,
+          "period": 29.125,
+          "amplitude": 1.0164928290469648,
+          "valid": true,
+          "n_late": 10
+        },
+        {
+          "I": 0.7,
+          "period": 23.250000000000057,
+          "amplitude": 1.0383921056941159,
+          "valid": true,
+          "n_late": 13
+        },
+        {
+          "I": 0.8,
+          "period": 20.25,
+          "amplitude": 1.0594326119569257,
+          "valid": true,
+          "n_late": 15
+        },
+        {
+          "I": 0.9,
+          "period": 18.375,
+          "amplitude": 1.0799444006770809,
+          "valid": true,
+          "n_late": 16
+        },
+        {
+          "I": 1.0,
+          "period": 17.125,
+          "amplitude": 1.100013068397056,
+          "valid": true,
+          "n_late": 18
+        },
+        {
+          "I": 1.1,
+          "period": 16.749999999999943,
+          "amplitude": 1.1191145744678248,
+          "valid": true,
+          "n_late": 18
+        },
+        {
+          "I": 1.12,
+          "period": 17.000000000000057,
+          "amplitude": 1.1219394802923703,
+          "valid": true,
+          "n_late": 18
+        },
+        {
+          "I": 1.13,
+          "period": null,
+          "amplitude": 0.0,
+          "valid": true,
+          "n_late": 0
+        },
+        {
+          "I": 1.14,
+          "period": null,
+          "amplitude": 0.0,
+          "valid": true,
+          "n_late": 0
+        }
+      ]
+    },
+    {
+      "name": "baseline",
+      "parameters": [
+        0.0,
+        0.0,
+        0.7,
+        0.0,
+        0.0
+      ],
+      "rows": [
+        {
+          "I": 0.53,
+          "period": 38.99999999999997,
+          "amplitude": 0.9414649552493277,
+          "valid": true,
+          "n_late": 7
+        },
+        {
+          "I": 0.54,
+          "period": 36.75,
+          "amplitude": 0.9439619644336447,
+          "valid": true,
+          "n_late": 8
+        },
+        {
+          "I": 0.55,
+          "period": 34.875,
+          "amplitude": 0.9463255133270726,
+          "valid": true,
+          "n_late": 8
+        },
+        {
+          "I": 0.6,
+          "period": 29.125,
+          "amplitude": 0.9578833806525688,
+          "valid": true,
+          "n_late": 10
+        },
+        {
+          "I": 0.7,
+          "period": 23.5,
+          "amplitude": 0.9797933411305009,
+          "valid": true,
+          "n_late": 13
+        },
+        {
+          "I": 0.8,
+          "period": 20.43749999999997,
+          "amplitude": 1.0008917340746377,
+          "valid": true,
+          "n_late": 15
+        },
+        {
+          "I": 0.9,
+          "period": 18.5,
+          "amplitude": 1.0215875478779664,
+          "valid": true,
+          "n_late": 16
+        },
+        {
+          "I": 1.0,
+          "period": 17.25,
+          "amplitude": 1.0418838222176952,
+          "valid": true,
+          "n_late": 17
+        },
+        {
+          "I": 1.1,
+          "period": 16.5,
+          "amplitude": 1.0617442016261358,
+          "valid": true,
+          "n_late": 18
+        },
+        {
+          "I": 1.12,
+          "period": 16.375,
+          "amplitude": 1.0656207439371848,
+          "valid": true,
+          "n_late": 18
+        },
+        {
+          "I": 1.13,
+          "period": 16.375,
+          "amplitude": 1.0675250594634293,
+          "valid": true,
+          "n_late": 18
+        },
+        {
+          "I": 1.14,
+          "period": 16.375,
+          "amplitude": 1.0694032632999029,
+          "valid": true,
+          "n_late": 18
+        }
+      ]
+    }
+  ]
+}

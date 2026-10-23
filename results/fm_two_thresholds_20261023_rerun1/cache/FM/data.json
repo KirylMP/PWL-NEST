@@ -1,0 +1,611 @@
+{
+  "case": "FM",
+  "fixed": [
+    {
+      "name": "fixed_lower_rest",
+      "initial": [
+        1.3,
+        0.8,
+        0.48
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.48
+    },
+    {
+      "name": "fixed_0.55",
+      "initial": [
+        1.3,
+        0.8,
+        0.55
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.55
+    },
+    {
+      "name": "fixed_0.7",
+      "initial": [
+        1.3,
+        0.8,
+        0.7
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.7
+    },
+    {
+      "name": "fixed_1.0",
+      "initial": [
+        1.3,
+        0.8,
+        1.0
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.0
+    },
+    {
+      "name": "fixed_1.2",
+      "initial": [
+        1.3,
+        0.8,
+        1.2
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.2
+    },
+    {
+      "name": "fixed_0.53",
+      "initial": [
+        1.3,
+        0.8,
+        0.53
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 0.53
+    },
+    {
+      "name": "fixed_1.12",
+      "initial": [
+        1.3,
+        0.8,
+        1.12
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.12
+    },
+    {
+      "name": "fixed_1.13",
+      "initial": [
+        1.3,
+        0.8,
+        1.13
+      ],
+      "duration": 1600.0,
+      "tau": 20.0,
+      "baseline": 1.13
+    }
+  ],
+  "train": [
+    {
+      "name": "pulse_tau_20.0",
+      "duration": 200.0,
+      "tau": 20.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "pulse_tau_100.0",
+      "duration": 200.0,
+      "tau": 100.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "periodic",
+      "duration": 220.0,
+      "tau": 20.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.3
+        ],
+        [
+          40.0,
+          0.3
+        ],
+        [
+          60.0,
+          0.3
+        ],
+        [
+          80.0,
+          0.3
+        ],
+        [
+          100.0,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "promoted_tau_35.0",
+      "duration": 220.0,
+      "tau": 35.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "promoted_tau_65.0",
+      "duration": 200.0,
+      "tau": 65.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "promoted_tau_80.0",
+      "duration": 220.0,
+      "tau": 80.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "anchored_heldout_tau_48.0",
+      "duration": 300.0,
+      "tau": 48.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "anchored_heldout_tau_160.0",
+      "duration": 480.0,
+      "tau": 160.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "continuation_heldout_tau_180.0",
+      "duration": 540.0,
+      "tau": 180.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "continuation_heldout_irregular",
+      "duration": 340.0,
+      "tau": 22.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.2654282445866979
+        ],
+        [
+          42.524522883042806,
+          0.21773256852270198
+        ],
+        [
+          67.10708824812302,
+          0.2325762189107974
+        ],
+        [
+          85.8596634656139,
+          0.20838744381819854
+        ],
+        [
+          108.50581658724212,
+          0.20955528365116677
+        ],
+        [
+          138.2173470461339,
+          0.20225388336228514
+        ],
+        [
+          157.7517500804738,
+          0.27674521294605653
+        ],
+        [
+          186.41765184083576,
+          0.2209514261847623
+        ]
+      ]
+    }
+  ],
+  "test": [
+    {
+      "name": "two_knot_heldout_tau_13.0",
+      "duration": 340.0,
+      "tau": 13.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_tau_37.0",
+      "duration": 340.0,
+      "tau": 37.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_tau_76.0",
+      "duration": 340.0,
+      "tau": 76.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_tau_128.0",
+      "duration": 340.0,
+      "tau": 128.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_tau_205.0",
+      "duration": 540.0,
+      "tau": 205.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_irregular",
+      "duration": 360.0,
+      "tau": 26.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.2939729896687585
+        ],
+        [
+          37.46937332931657,
+          0.21807815394702781
+        ],
+        [
+          58.03157634700979,
+          0.2754101714260952
+        ],
+        [
+          82.48262148474025,
+          0.226194114227939
+        ],
+        [
+          99.96284436768124,
+          0.2927882563848479
+        ],
+        [
+          124.3346107365881,
+          0.2948920600115904
+        ],
+        [
+          141.21480630131475,
+          0.25265832677892464
+        ],
+        [
+          157.08864248998196,
+          0.2834186911637405
+        ],
+        [
+          180.47710775943955,
+          0.2924539243120385
+        ]
+      ]
+    }
+  ],
+  "rest": [
+    0.042523198583379995,
+    0.9112560651867909,
+    0.45
+  ],
+  "C_lower": 0.02812613673817445,
+  "C_upper": 0.5076892832858616,
+  "pre_input_delay_s": 20.0,
+  "source_initial_conditions_optimized": false,
+  "previous_tests_not_blind": [
+    {
+      "name": "phase_heldout_tau_9.0",
+      "duration": 360.0,
+      "tau": 9.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_tau_29.0",
+      "duration": 360.0,
+      "tau": 29.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_tau_58.0",
+      "duration": 360.0,
+      "tau": 58.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_tau_105.0",
+      "duration": 360.0,
+      "tau": 105.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_tau_170.0",
+      "duration": 510.0,
+      "tau": 170.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "phase_heldout_irregular",
+      "duration": 340.0,
+      "tau": 31.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.22655353944659054
+        ],
+        [
+          44.28199003397335,
+          0.24326033483773124
+        ],
+        [
+          65.2942200979505,
+          0.24338660652715507
+        ],
+        [
+          88.06921545157691,
+          0.2249885000608466
+        ],
+        [
+          117.88116059929665,
+          0.23009002619547864
+        ],
+        [
+          135.78433658108997,
+          0.23162171257601255
+        ],
+        [
+          151.79894881989784,
+          0.2631410742747492
+        ],
+        [
+          175.0551948162992,
+          0.2898018741166536
+        ]
+      ]
+    }
+  ],
+  "promoted_prior_failures": [
+    {
+      "name": "promoted_tau_35.0",
+      "duration": 220.0,
+      "tau": 35.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "promoted_tau_65.0",
+      "duration": 200.0,
+      "tau": 65.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "promoted_tau_80.0",
+      "duration": 220.0,
+      "tau": 80.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "anchored_heldout_tau_48.0",
+      "duration": 300.0,
+      "tau": 48.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "anchored_heldout_tau_160.0",
+      "duration": 480.0,
+      "tau": 160.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "continuation_heldout_tau_180.0",
+      "duration": 540.0,
+      "tau": 180.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "continuation_heldout_irregular",
+      "duration": 340.0,
+      "tau": 22.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.2654282445866979
+        ],
+        [
+          42.524522883042806,
+          0.21773256852270198
+        ],
+        [
+          67.10708824812302,
+          0.2325762189107974
+        ],
+        [
+          85.8596634656139,
+          0.20838744381819854
+        ],
+        [
+          108.50581658724212,
+          0.20955528365116677
+        ],
+        [
+          138.2173470461339,
+          0.20225388336228514
+        ],
+        [
+          157.7517500804738,
+          0.27674521294605653
+        ],
+        [
+          186.41765184083576,
+          0.2209514261847623
+        ]
+      ]
+    }
+  ],
+  "field_initialization_protocols": [
+    "fixed_lower_rest",
+    "fixed_0.55",
+    "fixed_0.7",
+    "fixed_1.0",
+    "fixed_1.2",
+    "fixed_0.53",
+    "fixed_1.12",
+    "fixed_1.13",
+    "pulse_tau_20.0",
+    "pulse_tau_100.0",
+    "periodic",
+    "promoted_tau_35.0",
+    "promoted_tau_65.0",
+    "promoted_tau_80.0",
+    "anchored_heldout_tau_48.0",
+    "anchored_heldout_tau_160.0",
+    "continuation_heldout_tau_180.0",
+    "continuation_heldout_irregular"
+  ],
+  "heldout_used_for_field_initialization": false
+}

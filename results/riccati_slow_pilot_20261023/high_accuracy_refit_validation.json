@@ -1,0 +1,1080 @@
+{
+  "solver": {
+    "method": "DOP853",
+    "rtol": 2e-09,
+    "atol": 2e-11,
+    "max_step_s": 0.12,
+    "output_dt_s": 0.2
+  },
+  "candidates": {
+    "incumbent": {
+      "parameters": {
+        "k": -0.5956250890184878,
+        "theta": 0.4631857945184875
+      },
+      "train": {
+        "mean_C_RMSE_uM": 0.13571070617829611,
+        "peak_count_matches": 10,
+        "protocol_count": 10,
+        "mean_peak_time_MAE_s": 1.1151852659805759,
+        "protocols": [
+          {
+            "protocol": "pulse_tau_20.0",
+            "metrics": {
+              "C_RMSE_uM": 0.04049267211783221,
+              "C_max_abs_error_uM": 0.323366921260928,
+              "h_RMSE": 0.014570780344256937,
+              "peak_count_LR_model": [
+                2,
+                2
+              ],
+              "peak_time_MAE_s": 0.7999999999999972,
+              "C_range_uM": [
+                0.028514679040627107,
+                1.2991093240646883
+              ],
+              "h_range": [
+                0.5042290719121714,
+                0.9112560651867909
+              ],
+              "IP3_range": [
+                0.45,
+                1.143034883624418
+              ],
+              "quadratic_active_fraction": 0.7242757242757243,
+              "active_outside_first_C_region_fraction": 0.002997002997002997,
+              "first_C_region_fraction": 0.9280719280719281,
+              "latent_r_range": [
+                -0.13132683827351915,
+                1.1923529647804398
+              ]
+            }
+          },
+          {
+            "protocol": "pulse_tau_100.0",
+            "metrics": {
+              "C_RMSE_uM": 0.1431836986022475,
+              "C_max_abs_error_uM": 0.844096642696829,
+              "h_RMSE": 0.030284519290893326,
+              "peak_count_LR_model": [
+                8,
+                8
+              ],
+              "peak_time_MAE_s": 0.625,
+              "C_range_uM": [
+                0.028506473158321423,
+                1.3207519763689046
+              ],
+              "h_range": [
+                0.49606480445877893,
+                0.9112560651867909
+              ],
+              "IP3_range": [
+                0.45,
+                1.1486013990671329
+              ],
+              "quadratic_active_fraction": 0.12787212787212787,
+              "active_outside_first_C_region_fraction": 0.00999000999000999,
+              "first_C_region_fraction": 0.6903096903096904,
+              "latent_r_range": [
+                -0.13030787777793792,
+                1.213613848406066
+              ]
+            }
+          },
+          {
+            "protocol": "periodic",
+            "metrics": {
+              "C_RMSE_uM": 0.19780646121160061,
+              "C_max_abs_error_uM": 1.0359246196077483,
+              "h_RMSE": 0.05546720103280491,
+              "peak_count_LR_model": [
+                5,
+                5
+              ],
+              "peak_time_MAE_s": 1.9599999999999986,
+              "C_range_uM": [
+                0.02884155692429669,
+                1.109481335609269
+              ],
+              "h_range": [
+                0.5408202091606686,
+                0.9135505259582947
+              ],
+              "IP3_range": [
+                0.45,
+                0.9167047685960276
+              ],
+              "quadratic_active_fraction": 0.4977293369663942,
+              "active_outside_first_C_region_fraction": 0.0027247956403269754,
+              "first_C_region_fraction": 0.8346957311534968,
+              "latent_r_range": [
+                -0.1316259659807928,
+                0.9988572163809547
+              ]
+            }
+          },
+          {
+            "protocol": "promoted_tau_35.0",
+            "metrics": {
+              "C_RMSE_uM": 0.042906854787222636,
+              "C_max_abs_error_uM": 0.34830554743187503,
+              "h_RMSE": 0.015470248827813412,
+              "peak_count_LR_model": [
+                3,
+                3
+              ],
+              "peak_time_MAE_s": 0.6666666666666666,
+              "C_range_uM": [
+                0.02850669858374682,
+                1.3105095197111805
+              ],
+              "h_range": [
+                0.5001004119359285,
+                0.9139688093935996
+              ],
+              "IP3_range": [
+                0.45,
+                1.1460114068337837
+              ],
+              "quadratic_active_fraction": 0.6730245231607629,
+              "active_outside_first_C_region_fraction": 0.0036330608537693005,
+              "first_C_region_fraction": 0.8982742960944596,
+              "latent_r_range": [
+                -0.13027210722748417,
+                1.2035542704723896
+              ]
+            }
+          },
+          {
+            "protocol": "promoted_tau_65.0",
+            "metrics": {
+              "C_RMSE_uM": 0.08913355623835242,
+              "C_max_abs_error_uM": 0.6018274504602786,
+              "h_RMSE": 0.023832223954533,
+              "peak_count_LR_model": [
+                6,
+                6
+              ],
+              "peak_time_MAE_s": 0.5666666666666688,
+              "C_range_uM": [
+                0.028554982774254813,
+                1.317746860853296
+              ],
+              "h_range": [
+                0.4972691861333855,
+                0.9138504568244333
+              ],
+              "IP3_range": [
+                0.45,
+                1.1478494640596602
+              ],
+              "quadratic_active_fraction": 0.3016983016983017,
+              "active_outside_first_C_region_fraction": 0.014985014985014986,
+              "first_C_region_fraction": 0.7712287712287712,
+              "latent_r_range": [
+                -0.13142575179313976,
+                1.2106627786986721
+              ]
+            }
+          },
+          {
+            "protocol": "promoted_tau_80.0",
+            "metrics": {
+              "C_RMSE_uM": 0.11118008741288798,
+              "C_max_abs_error_uM": 0.7432175661586957,
+              "h_RMSE": 0.026992055504290954,
+              "peak_count_LR_model": [
+                7,
+                7
+              ],
+              "peak_time_MAE_s": 0.6571428571428584,
+              "C_range_uM": [
+                0.028518801002945664,
+                1.319353106446213
+              ],
+              "h_range": [
+                0.49662652681603053,
+                0.9155434360825565
+              ],
+              "IP3_range": [
+                0.45,
+                1.1482521856782222
+              ],
+              "quadratic_active_fraction": 0.27974568574023617,
+              "active_outside_first_C_region_fraction": 0.012715712988192553,
+              "first_C_region_fraction": 0.7556766575840145,
+              "latent_r_range": [
+                -0.1310531084219031,
+                1.2122401752118717
+              ]
+            }
+          },
+          {
+            "protocol": "anchored_heldout_tau_48.0",
+            "metrics": {
+              "C_RMSE_uM": 0.046137496151631145,
+              "C_max_abs_error_uM": 0.4707365696095911,
+              "h_RMSE": 0.0148574544701723,
+              "peak_count_LR_model": [
+                4,
+                4
+              ],
+              "peak_time_MAE_s": 0.4999999999999982,
+              "C_range_uM": [
+                0.0285028765061114,
+                1.3147355642248972
+              ],
+              "h_range": [
+                0.4984672658333089,
+                0.9155444432161057
+              ],
+              "IP3_range": [
+                0.45,
+                1.1470894012915769
+              ],
+              "quadratic_active_fraction": 0.6942038640906063,
+              "active_outside_first_C_region_fraction": 0.005329780146568954,
+              "first_C_region_fraction": 0.899400399733511,
+              "latent_r_range": [
+                -0.13032793891254124,
+                1.207705321585939
+              ]
+            }
+          },
+          {
+            "protocol": "anchored_heldout_tau_160.0",
+            "metrics": {
+              "C_RMSE_uM": 0.21437789796801812,
+              "C_max_abs_error_uM": 1.0089649061169694,
+              "h_RMSE": 0.052174199989870856,
+              "peak_count_LR_model": [
+                15,
+                15
+              ],
+              "peak_time_MAE_s": 1.3599999999999932,
+              "C_range_uM": [
+                0.028318381736592513,
+                1.3228621322198097
+              ],
+              "h_range": [
+                0.49521386785177157,
+                0.9145807238902866
+              ],
+              "IP3_range": [
+                0.45,
+                1.1491255466472068
+              ],
+              "quadratic_active_fraction": 0.2907122032486464,
+              "active_outside_first_C_region_fraction": 0.01624323198667222,
+              "first_C_region_fraction": 0.7563515201999167,
+              "latent_r_range": [
+                -0.13166711844583,
+                1.2156858658389413
+              ]
+            }
+          },
+          {
+            "protocol": "continuation_heldout_tau_180.0",
+            "metrics": {
+              "C_RMSE_uM": 0.23687771210215222,
+              "C_max_abs_error_uM": 1.034266503664931,
+              "h_RMSE": 0.05927301498580232,
+              "peak_count_LR_model": [
+                17,
+                17
+              ],
+              "peak_time_MAE_s": 1.6000000000000023,
+              "C_range_uM": [
+                0.02836684014850115,
+                1.3232544704641918
+              ],
+              "h_range": [
+                0.4950551784311049,
+                0.9149274196184691
+              ],
+              "IP3_range": [
+                0.45,
+                1.1492226541609956
+              ],
+              "quadratic_active_fraction": 0.28433913365420216,
+              "active_outside_first_C_region_fraction": 0.01629026286560533,
+              "first_C_region_fraction": 0.7552758237689745,
+              "latent_r_range": [
+                -0.13183229605722654,
+                1.2160710963961152
+              ]
+            }
+          },
+          {
+            "protocol": "continuation_heldout_irregular",
+            "metrics": {
+              "C_RMSE_uM": 0.2350106251910165,
+              "C_max_abs_error_uM": 1.048087101751949,
+              "h_RMSE": 0.06993740589804288,
+              "peak_count_LR_model": [
+                8,
+                8
+              ],
+              "peak_time_MAE_s": 2.416376469329575,
+              "C_range_uM": [
+                0.028514568797520356,
+                1.0952313923200938
+              ],
+              "h_range": [
+                0.5469111174787264,
+                0.9128789184713288
+              ],
+              "IP3_range": [
+                0.45,
+                0.842131428319272
+              ],
+              "quadratic_active_fraction": 0.426056338028169,
+              "active_outside_first_C_region_fraction": 0.002347417840375587,
+              "first_C_region_fraction": 0.8280516431924883,
+              "latent_r_range": [
+                -0.1315940121440431,
+                0.9820132319212437
+              ]
+            }
+          }
+        ]
+      },
+      "heldout": {
+        "mean_C_RMSE_uM": 0.0860119778669063,
+        "peak_count_matches": 6,
+        "protocol_count": 6,
+        "mean_peak_time_MAE_s": 0.7483979550757304,
+        "protocols": [
+          {
+            "protocol": "phase_heldout_tau_9.0",
+            "metrics": {
+              "C_RMSE_uM": 0.017662970573354364,
+              "C_max_abs_error_uM": 0.25161495446496507,
+              "h_RMSE": 0.006840678531309765,
+              "peak_count_LR_model": [
+                1,
+                1
+              ],
+              "peak_time_MAE_s": 0.5999999999999979,
+              "C_range_uM": [
+                0.02855326030004936,
+                1.2712881220361922
+              ],
+              "h_range": [
+                0.5146654598572046,
+                0.9112560651867909
+              ],
+              "IP3_range": [
+                0.45,
+                1.1346160107392202
+              ],
+              "quadratic_active_fraction": 0.9056079955580233,
+              "active_outside_first_C_region_fraction": 0.001665741254858412,
+              "first_C_region_fraction": 0.9822320932815103,
+              "latent_r_range": [
+                -0.13763979115569755,
+                1.162647976118284
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_tau_29.0",
+            "metrics": {
+              "C_RMSE_uM": 0.024978318650242585,
+              "C_max_abs_error_uM": 0.2505864982267989,
+              "h_RMSE": 0.009936535078841105,
+              "peak_count_LR_model": [
+                3,
+                3
+              ],
+              "peak_time_MAE_s": 0.46666666666666856,
+              "C_range_uM": [
+                0.028623914708055875,
+                1.3073206191385782
+              ],
+              "h_range": [
+                0.5012656769743009,
+                0.9112560651867909
+              ],
+              "IP3_range": [
+                0.45,
+                1.1451890224393637
+              ],
+              "quadratic_active_fraction": 0.7828983897834536,
+              "active_outside_first_C_region_fraction": 0.006107717934480844,
+              "first_C_region_fraction": 0.9389228206551916,
+              "latent_r_range": [
+                -0.13189273804209417,
+                1.2004215179038191
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_tau_58.0",
+            "metrics": {
+              "C_RMSE_uM": 0.054680298406034625,
+              "C_max_abs_error_uM": 0.5676320930872161,
+              "h_RMSE": 0.015641828961852657,
+              "peak_count_LR_model": [
+                5,
+                5
+              ],
+              "peak_time_MAE_s": 0.4799999999999997,
+              "C_range_uM": [
+                0.028762516796880567,
+                1.3167173723370538
+              ],
+              "h_range": [
+                0.4976797699524014,
+                0.9152469124584794
+              ],
+              "IP3_range": [
+                0.45,
+                1.1475903638293425
+              ],
+              "quadratic_active_fraction": 0.6823986674069961,
+              "active_outside_first_C_region_fraction": 0.00555247084952804,
+              "first_C_region_fraction": 0.89505830094392,
+              "latent_r_range": [
+                -0.13074663751605206,
+                1.2096517324389162
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_tau_105.0",
+            "metrics": {
+              "C_RMSE_uM": 0.1375430823050738,
+              "C_max_abs_error_uM": 0.8858116331266606,
+              "h_RMSE": 0.03243337328870244,
+              "peak_count_LR_model": [
+                10,
+                10
+              ],
+              "peak_time_MAE_s": 0.840000000000002,
+              "C_range_uM": [
+                0.0282197718091537,
+                1.321019134383168
+              ],
+              "h_range": [
+                0.49595730704968916,
+                0.9141163822080844
+              ],
+              "IP3_range": [
+                0.45,
+                1.1486679357020717
+              ],
+              "quadratic_active_fraction": 0.3586896168795114,
+              "active_outside_first_C_region_fraction": 0.014991671293725709,
+              "first_C_region_fraction": 0.7862298722931704,
+              "latent_r_range": [
+                -0.13165128917564511,
+                1.213876185868312
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_tau_170.0",
+            "metrics": {
+              "C_RMSE_uM": 0.2258718831234125,
+              "C_max_abs_error_uM": 1.0266712987694748,
+              "h_RMSE": 0.05571548034974801,
+              "peak_count_LR_model": [
+                16,
+                16
+              ],
+              "peak_time_MAE_s": 1.4625000000000008,
+              "C_range_uM": [
+                0.028479883804800817,
+                1.3230697795227762
+              ],
+              "h_range": [
+                0.4951298991548543,
+                0.9146837451018932
+              ],
+              "IP3_range": [
+                0.45,
+                1.1491769548273845
+              ],
+              "quadratic_active_fraction": 0.28733829870638966,
+              "active_outside_first_C_region_fraction": 0.016072128577028617,
+              "first_C_region_fraction": 0.7549980399843199,
+              "latent_r_range": [
+                -0.13177649013498377,
+                1.215889751862607
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_irregular",
+            "metrics": {
+              "C_RMSE_uM": 0.055335314143319936,
+              "C_max_abs_error_uM": 0.42630124219344123,
+              "h_RMSE": 0.021632818816879062,
+              "peak_count_LR_model": [
+                9,
+                9
+              ],
+              "peak_time_MAE_s": 0.6412210637877133,
+              "C_range_uM": [
+                0.028511678827566327,
+                1.1630745584073756
+              ],
+              "h_range": [
+                0.522887626463391,
+                0.9152227247949456
+              ],
+              "IP3_range": [
+                0.45,
+                0.9879957908971146
+              ],
+              "quadratic_active_fraction": 0.4003516998827667,
+              "active_outside_first_C_region_fraction": 0.005275498241500586,
+              "first_C_region_fraction": 0.8030480656506448,
+              "latent_r_range": [
+                -0.13096989557085292,
+                1.050268489818308
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "local_refit": {
+      "parameters": {
+        "k": -0.5538060669968876,
+        "theta": 0.4631857945184875,
+        "training_loss": 3.0349824275198456
+      },
+      "train": {
+        "mean_C_RMSE_uM": 0.1352172253509368,
+        "peak_count_matches": 10,
+        "protocol_count": 10,
+        "mean_peak_time_MAE_s": 1.1056558542158696,
+        "protocols": [
+          {
+            "protocol": "pulse_tau_20.0",
+            "metrics": {
+              "C_RMSE_uM": 0.0404842249060038,
+              "C_max_abs_error_uM": 0.32315829751069886,
+              "h_RMSE": 0.014555946891922994,
+              "peak_count_LR_model": [
+                2,
+                2
+              ],
+              "peak_time_MAE_s": 0.7999999999999972,
+              "C_range_uM": [
+                0.028515441685632078,
+                1.299330499214309
+              ],
+              "h_range": [
+                0.504212053843792,
+                0.9112560651867909
+              ],
+              "IP3_range": [
+                0.45,
+                1.1430348836244177
+              ],
+              "quadratic_active_fraction": 0.7242757242757243,
+              "active_outside_first_C_region_fraction": 0.002997002997002997,
+              "first_C_region_fraction": 0.9280719280719281,
+              "latent_r_range": [
+                -0.1313271566839407,
+                1.1926028349604794
+              ]
+            }
+          },
+          {
+            "protocol": "pulse_tau_100.0",
+            "metrics": {
+              "C_RMSE_uM": 0.1431958022759062,
+              "C_max_abs_error_uM": 0.844296898880958,
+              "h_RMSE": 0.030276604305141227,
+              "peak_count_LR_model": [
+                8,
+                8
+              ],
+              "peak_time_MAE_s": 0.625,
+              "C_range_uM": [
+                0.02851029343108345,
+                1.3209731924929398
+              ],
+              "h_range": [
+                0.49604924134973627,
+                0.9112560651867909
+              ],
+              "IP3_range": [
+                0.45,
+                1.1486013990671333
+              ],
+              "quadratic_active_fraction": 0.12787212787212787,
+              "active_outside_first_C_region_fraction": 0.00999000999000999,
+              "first_C_region_fraction": 0.6903096903096904,
+              "latent_r_range": [
+                -0.1303116607410921,
+                1.2138637076430387
+              ]
+            }
+          },
+          {
+            "protocol": "periodic",
+            "metrics": {
+              "C_RMSE_uM": 0.19777602616720524,
+              "C_max_abs_error_uM": 1.0359198439208472,
+              "h_RMSE": 0.05545973132418763,
+              "peak_count_LR_model": [
+                5,
+                5
+              ],
+              "peak_time_MAE_s": 1.9599999999999986,
+              "C_range_uM": [
+                0.028843472914243138,
+                1.1096793277709502
+              ],
+              "h_range": [
+                0.5408199473684538,
+                0.9137519792206769
+              ],
+              "IP3_range": [
+                0.45,
+                0.9167047685960277
+              ],
+              "quadratic_active_fraction": 0.4977293369663942,
+              "active_outside_first_C_region_fraction": 0.0027247956403269754,
+              "first_C_region_fraction": 0.8346957311534968,
+              "latent_r_range": [
+                -0.13163010599049146,
+                0.9991049706804871
+              ]
+            }
+          },
+          {
+            "protocol": "promoted_tau_35.0",
+            "metrics": {
+              "C_RMSE_uM": 0.04289574265356785,
+              "C_max_abs_error_uM": 0.347932272529474,
+              "h_RMSE": 0.015475517591535055,
+              "peak_count_LR_model": [
+                3,
+                3
+              ],
+              "peak_time_MAE_s": 0.6666666666666666,
+              "C_range_uM": [
+                0.028505351570904405,
+                1.3107307252854203
+              ],
+              "h_range": [
+                0.5000833960019643,
+                0.9141965306245902
+              ],
+              "IP3_range": [
+                0.45,
+                1.1460114068337837
+              ],
+              "quadratic_active_fraction": 0.6730245231607629,
+              "active_outside_first_C_region_fraction": 0.0036330608537693005,
+              "first_C_region_fraction": 0.8982742960944596,
+              "latent_r_range": [
+                -0.13027390931836166,
+                1.2038041437649014
+              ]
+            }
+          },
+          {
+            "protocol": "promoted_tau_65.0",
+            "metrics": {
+              "C_RMSE_uM": 0.08869905827357147,
+              "C_max_abs_error_uM": 0.6021134802872203,
+              "h_RMSE": 0.023723684595430526,
+              "peak_count_LR_model": [
+                6,
+                6
+              ],
+              "peak_time_MAE_s": 0.5333333333333327,
+              "C_range_uM": [
+                0.028594801993732287,
+                1.3179680811836931
+              ],
+              "h_range": [
+                0.4972536226454234,
+                0.9140911367342526
+              ],
+              "IP3_range": [
+                0.45,
+                1.1478494640596602
+              ],
+              "quadratic_active_fraction": 0.3016983016983017,
+              "active_outside_first_C_region_fraction": 0.014985014985014986,
+              "first_C_region_fraction": 0.7722277722277723,
+              "latent_r_range": [
+                -0.13142067071153693,
+                1.2109126494356843
+              ]
+            }
+          },
+          {
+            "protocol": "promoted_tau_80.0",
+            "metrics": {
+              "C_RMSE_uM": 0.11103369471629718,
+              "C_max_abs_error_uM": 0.7407428872850699,
+              "h_RMSE": 0.026959550466926874,
+              "peak_count_LR_model": [
+                7,
+                7
+              ],
+              "peak_time_MAE_s": 0.6571428571428584,
+              "C_range_uM": [
+                0.02853675031412649,
+                1.3195743289193322
+              ],
+              "h_range": [
+                0.49661096322352277,
+                0.9158316140430209
+              ],
+              "IP3_range": [
+                0.45,
+                1.1482521856782224
+              ],
+              "quadratic_active_fraction": 0.27974568574023617,
+              "active_outside_first_C_region_fraction": 0.012715712988192553,
+              "first_C_region_fraction": 0.7556766575840145,
+              "latent_r_range": [
+                -0.1310590969623944,
+                1.2124900446518696
+              ]
+            }
+          },
+          {
+            "protocol": "anchored_heldout_tau_48.0",
+            "metrics": {
+              "C_RMSE_uM": 0.0461305945070247,
+              "C_max_abs_error_uM": 0.4709958066614285,
+              "h_RMSE": 0.014872584587911958,
+              "peak_count_LR_model": [
+                4,
+                4
+              ],
+              "peak_time_MAE_s": 0.4999999999999982,
+              "C_range_uM": [
+                0.028504256606732958,
+                1.3149567809603535
+              ],
+              "h_range": [
+                0.49845170253606075,
+                0.9158199729848789
+              ],
+              "IP3_range": [
+                0.45,
+                1.1470894012915773
+              ],
+              "quadratic_active_fraction": 0.6942038640906063,
+              "active_outside_first_C_region_fraction": 0.005329780146568954,
+              "first_C_region_fraction": 0.899400399733511,
+              "latent_r_range": [
+                -0.1303295699555291,
+                1.2079551935472226
+              ]
+            }
+          },
+          {
+            "protocol": "anchored_heldout_tau_160.0",
+            "metrics": {
+              "C_RMSE_uM": 0.21258497524207137,
+              "C_max_abs_error_uM": 1.0090660931891384,
+              "h_RMSE": 0.05139054013761627,
+              "peak_count_LR_model": [
+                15,
+                15
+              ],
+              "peak_time_MAE_s": 1.3333333333333282,
+              "C_range_uM": [
+                0.028244628184019578,
+                1.3230833603869723
+              ],
+              "h_range": [
+                0.4951983039688435,
+                0.9148646727125975
+              ],
+              "IP3_range": [
+                0.45,
+                1.1491255466472063
+              ],
+              "quadratic_active_fraction": 0.29029571012078303,
+              "active_outside_first_C_region_fraction": 0.01582673885880883,
+              "first_C_region_fraction": 0.7563515201999167,
+              "latent_r_range": [
+                -0.13158129196834836,
+                1.2159357326819389
+              ]
+            }
+          },
+          {
+            "protocol": "continuation_heldout_tau_180.0",
+            "metrics": {
+              "C_RMSE_uM": 0.2343930634726345,
+              "C_max_abs_error_uM": 1.0342922861334252,
+              "h_RMSE": 0.05801806268588036,
+              "peak_count_LR_model": [
+                17,
+                17
+              ],
+              "peak_time_MAE_s": 1.564705882352942,
+              "C_range_uM": [
+                0.028218649557832175,
+                1.3234757042581426
+              ],
+              "h_range": [
+                0.495039614168549,
+                0.9149371518033143
+              ],
+              "IP3_range": [
+                0.45,
+                1.1492226541609958
+              ],
+              "quadratic_active_fraction": 0.28470936690114773,
+              "active_outside_first_C_region_fraction": 0.01629026286560533,
+              "first_C_region_fraction": 0.7552758237689745,
+              "latent_r_range": [
+                -0.13170884482432316,
+                1.2163209682036633
+              ]
+            }
+          },
+          {
+            "protocol": "continuation_heldout_irregular",
+            "metrics": {
+              "C_RMSE_uM": 0.23497907129508563,
+              "C_max_abs_error_uM": 1.0480830436547133,
+              "h_RMSE": 0.06992686900430085,
+              "peak_count_LR_model": [
+                8,
+                8
+              ],
+              "peak_time_MAE_s": 2.416376469329575,
+              "C_range_uM": [
+                0.02851557795868361,
+                1.095441007377475
+              ],
+              "h_range": [
+                0.5469101741796487,
+                0.9130686888928616
+              ],
+              "IP3_range": [
+                0.45,
+                0.8421314283192722
+              ],
+              "quadratic_active_fraction": 0.426056338028169,
+              "active_outside_first_C_region_fraction": 0.002347417840375587,
+              "first_C_region_fraction": 0.8280516431924883,
+              "latent_r_range": [
+                -0.13159969437235436,
+                0.9822819558617657
+              ]
+            }
+          }
+        ]
+      },
+      "heldout": {
+        "mean_C_RMSE_uM": 0.08524707074565187,
+        "peak_count_matches": 6,
+        "protocol_count": 6,
+        "mean_peak_time_MAE_s": 0.7367312884090644,
+        "protocols": [
+          {
+            "protocol": "phase_heldout_tau_9.0",
+            "metrics": {
+              "C_RMSE_uM": 0.01766447483156736,
+              "C_max_abs_error_uM": 0.2513182865068422,
+              "h_RMSE": 0.006794330320996919,
+              "peak_count_LR_model": [
+                1,
+                1
+              ],
+              "peak_time_MAE_s": 0.5999999999999979,
+              "C_range_uM": [
+                0.028553630516787176,
+                1.2715301829204624
+              ],
+              "h_range": [
+                0.5146484363728032,
+                0.9112560651867909
+              ],
+              "IP3_range": [
+                0.45,
+                1.1346160107392202
+              ],
+              "quadratic_active_fraction": 0.9056079955580233,
+              "active_outside_first_C_region_fraction": 0.001665741254858412,
+              "first_C_region_fraction": 0.9822320932815103,
+              "latent_r_range": [
+                -0.13764603534898853,
+                1.1628978236942837
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_tau_29.0",
+            "metrics": {
+              "C_RMSE_uM": 0.025036319881588595,
+              "C_max_abs_error_uM": 0.2502915145616521,
+              "h_RMSE": 0.009893659309206304,
+              "peak_count_LR_model": [
+                3,
+                3
+              ],
+              "peak_time_MAE_s": 0.46666666666666856,
+              "C_range_uM": [
+                0.028642167468863694,
+                1.307541797844141
+              ],
+              "h_range": [
+                0.5012486616359121,
+                0.9112560651867909
+              ],
+              "IP3_range": [
+                0.45,
+                1.1451890224393637
+              ],
+              "quadratic_active_fraction": 0.7828983897834536,
+              "active_outside_first_C_region_fraction": 0.006107717934480844,
+              "first_C_region_fraction": 0.9389228206551916,
+              "latent_r_range": [
+                -0.1318821199267009,
+                1.2006713711634538
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_tau_58.0",
+            "metrics": {
+              "C_RMSE_uM": 0.05465414490550909,
+              "C_max_abs_error_uM": 0.5679066972276996,
+              "h_RMSE": 0.015646354712483976,
+              "peak_count_LR_model": [
+                5,
+                5
+              ],
+              "peak_time_MAE_s": 0.4799999999999997,
+              "C_range_uM": [
+                0.028766570900841955,
+                1.3169385791032715
+              ],
+              "h_range": [
+                0.49766420735770756,
+                0.9155195733687194
+              ],
+              "IP3_range": [
+                0.45,
+                1.1475903638293425
+              ],
+              "quadratic_active_fraction": 0.6823986674069961,
+              "active_outside_first_C_region_fraction": 0.00555247084952804,
+              "first_C_region_fraction": 0.89505830094392,
+              "latent_r_range": [
+                -0.1307440768705439,
+                1.2099015926895391
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_tau_105.0",
+            "metrics": {
+              "C_RMSE_uM": 0.13504488768514683,
+              "C_max_abs_error_uM": 0.883343087271643,
+              "h_RMSE": 0.03167395878679709,
+              "peak_count_LR_model": [
+                10,
+                10
+              ],
+              "peak_time_MAE_s": 0.8200000000000032,
+              "C_range_uM": [
+                0.028454726974351405,
+                1.3212403594972835
+              ],
+              "h_range": [
+                0.49594174331788626,
+                0.9141356685801548
+              ],
+              "IP3_range": [
+                0.45,
+                1.1486679357020722
+              ],
+              "quadratic_active_fraction": 0.3581343697945586,
+              "active_outside_first_C_region_fraction": 0.014436424208772903,
+              "first_C_region_fraction": 0.7862298722931704,
+              "latent_r_range": [
+                -0.13174208975720203,
+                1.2141260543693344
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_tau_170.0",
+            "metrics": {
+              "C_RMSE_uM": 0.2237558708821208,
+              "C_max_abs_error_uM": 1.026726360227924,
+              "h_RMSE": 0.05472768169295402,
+              "peak_count_LR_model": [
+                16,
+                16
+              ],
+              "peak_time_MAE_s": 1.4125000000000036,
+              "C_range_uM": [
+                0.028402920098251083,
+                1.3232910108152167
+              ],
+              "h_range": [
+                0.4951143350561902,
+                0.9147949307514482
+              ],
+              "IP3_range": [
+                0.45,
+                1.1491769548273851
+              ],
+              "quadratic_active_fraction": 0.28733829870638966,
+              "active_outside_first_C_region_fraction": 0.016072128577028617,
+              "first_C_region_fraction": 0.7549980399843199,
+              "latent_r_range": [
+                -0.1317796651837966,
+                1.2161396218536538
+              ]
+            }
+          },
+          {
+            "protocol": "phase_heldout_irregular",
+            "metrics": {
+              "C_RMSE_uM": 0.05532672628797858,
+              "C_max_abs_error_uM": 0.42630123216422444,
+              "h_RMSE": 0.02163817167477757,
+              "peak_count_LR_model": [
+                9,
+                9
+              ],
+              "peak_time_MAE_s": 0.6412210637877133,
+              "C_range_uM": [
+                0.02851503270108311,
+                1.1630745961535185
+              ],
+              "h_range": [
+                0.5228876230738719,
+                0.9154771126149958
+              ],
+              "IP3_range": [
+                0.45,
+                0.9879957908971144
+              ],
+              "quadratic_active_fraction": 0.4003516998827667,
+              "active_outside_first_C_region_fraction": 0.005275498241500586,
+              "first_C_region_fraction": 0.8030480656506448,
+              "latent_r_range": [
+                -0.1309800132834745,
+                1.0502685362235835
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

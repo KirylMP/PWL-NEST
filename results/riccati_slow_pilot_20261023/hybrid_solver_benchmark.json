@@ -1,0 +1,183 @@
+{
+  "note": "Prototype hybrid; exact affine and Bessel modal segments, DOP853 fallback when quadratic correction is active outside first C-region; .2 s and .025 s scans bracket roots and refine them with Brent.",
+  "protocol_count": 6,
+  "mean_speedup_vs_DOP853": 1.351401263191194,
+  "median_speedup_vs_DOP853": 1.3722410967821754,
+  "max_C_RMSE_vs_DOP853_uM": 4.4594679991405276e-07,
+  "protocols": [
+    {
+      "protocol": "phase_heldout_tau_9.0",
+      "hybrid_seconds_median": 0.41479636450094404,
+      "DOP853_seconds_median": 0.6854395609989297,
+      "hybrid_seconds_repeats": [
+        0.40105103100358974,
+        0.42854169799829833
+      ],
+      "DOP853_seconds_repeats": [
+        0.6822275329977856,
+        0.6886515890000737
+      ],
+      "speedup_vs_DOP853": 1.6524724410822786,
+      "C_RMSE_vs_DOP853_uM": 2.0688902100044554e-09,
+      "C_max_abs_vs_DOP853_uM": 2.2071511285304268e-08,
+      "C_RMSE_coarse_vs_fine_scan_uM": 2.3715446821282333e-14,
+      "coarse_vs_fine_switch_count": [
+        8,
+        8
+      ],
+      "fine_scan_seconds": 3.276512874996115,
+      "coarse_scan_seconds": 0.41587338499812176,
+      "counters": {
+        "exact_affine": 174,
+        "exact_riccati": 1628,
+        "numeric_fallback": 6,
+        "switches": 8
+      }
+    },
+    {
+      "protocol": "phase_heldout_tau_29.0",
+      "hybrid_seconds_median": 0.5302806204999797,
+      "DOP853_seconds_median": 0.8381829794998339,
+      "hybrid_seconds_repeats": [
+        0.5294358739993186,
+        0.5311253670006408
+      ],
+      "DOP853_seconds_repeats": [
+        0.8407483890041476,
+        0.8356175699955202
+      ],
+      "speedup_vs_DOP853": 1.5806404139558141,
+      "C_RMSE_vs_DOP853_uM": 1.0963684971115987e-08,
+      "C_max_abs_vs_DOP853_uM": 1.621262690765235e-07,
+      "C_RMSE_coarse_vs_fine_scan_uM": 5.989978311047563e-14,
+      "coarse_vs_fine_switch_count": [
+        22,
+        22
+      ],
+      "fine_scan_seconds": 4.4927508539985865,
+      "coarse_scan_seconds": 0.5185546510037966,
+      "counters": {
+        "exact_affine": 406,
+        "exact_riccati": 1400,
+        "numeric_fallback": 16,
+        "switches": 22
+      }
+    },
+    {
+      "protocol": "phase_heldout_tau_58.0",
+      "hybrid_seconds_median": 1.2791604730009567,
+      "DOP853_seconds_median": 0.8703754435009614,
+      "hybrid_seconds_repeats": [
+        2.040426371000649,
+        0.5178945750012645
+      ],
+      "DOP853_seconds_repeats": [
+        0.8702652560023125,
+        0.8704856309996103
+      ],
+      "speedup_vs_DOP853": 0.6804270940760303,
+      "C_RMSE_vs_DOP853_uM": 5.41557581968193e-09,
+      "C_max_abs_vs_DOP853_uM": 6.060791946094213e-08,
+      "C_RMSE_coarse_vs_fine_scan_uM": 2.7990017719225405e-13,
+      "coarse_vs_fine_switch_count": [
+        34,
+        34
+      ],
+      "fine_scan_seconds": 3.2567701680018217,
+      "coarse_scan_seconds": 0.5282102639976074,
+      "counters": {
+        "exact_affine": 599,
+        "exact_riccati": 1220,
+        "numeric_fallback": 15,
+        "switches": 34
+      }
+    },
+    {
+      "protocol": "phase_heldout_tau_105.0",
+      "hybrid_seconds_median": 0.7682509035003022,
+      "DOP853_seconds_median": 0.8862395635005669,
+      "hybrid_seconds_repeats": [
+        0.8965498780016787,
+        0.6399519289989257
+      ],
+      "DOP853_seconds_repeats": [
+        0.889442339001107,
+        0.8830367880000267
+      ],
+      "speedup_vs_DOP853": 1.1535808932507403,
+      "C_RMSE_vs_DOP853_uM": 4.4594679991405276e-07,
+      "C_max_abs_vs_DOP853_uM": 7.277394992399877e-06,
+      "C_RMSE_coarse_vs_fine_scan_uM": 5.546352920875953e-13,
+      "coarse_vs_fine_switch_count": [
+        68,
+        68
+      ],
+      "fine_scan_seconds": 2.271582504006801,
+      "coarse_scan_seconds": 0.6425148060006904,
+      "counters": {
+        "exact_affine": 1209,
+        "exact_riccati": 622,
+        "numeric_fallback": 37,
+        "switches": 68
+      }
+    },
+    {
+      "protocol": "phase_heldout_tau_170.0",
+      "hybrid_seconds_median": 1.0617383179996978,
+      "DOP853_seconds_median": 1.235695413499343,
+      "hybrid_seconds_repeats": [
+        0.9908263120014453,
+        1.1326503239979502
+      ],
+      "DOP853_seconds_repeats": [
+        1.2491807780024828,
+        1.2222100489962031
+      ],
+      "speedup_vs_DOP853": 1.163841779608537,
+      "C_RMSE_vs_DOP853_uM": 1.4550372997160277e-07,
+      "C_max_abs_vs_DOP853_uM": 1.5983710681122254e-06,
+      "C_RMSE_coarse_vs_fine_scan_uM": 1.9049166072951126e-12,
+      "coarse_vs_fine_switch_count": [
+        108,
+        108
+      ],
+      "fine_scan_seconds": 3.8674913689974346,
+      "coarse_scan_seconds": 1.7849032869999064,
+      "counters": {
+        "exact_affine": 1906,
+        "exact_riccati": 696,
+        "numeric_fallback": 56,
+        "switches": 108
+      }
+    },
+    {
+      "protocol": "phase_heldout_irregular",
+      "hybrid_seconds_median": 0.4265441780007677,
+      "DOP853_seconds_median": 0.8008132159993693,
+      "hybrid_seconds_repeats": [
+        0.42523795700253686,
+        0.42785039899899857
+      ],
+      "DOP853_seconds_repeats": [
+        0.795368306004093,
+        0.8062581259946455
+      ],
+      "speedup_vs_DOP853": 1.877444957173763,
+      "C_RMSE_vs_DOP853_uM": 3.625770822266801e-08,
+      "C_max_abs_vs_DOP853_uM": 5.49550408179833e-07,
+      "C_RMSE_coarse_vs_fine_scan_uM": 7.301553330738924e-14,
+      "coarse_vs_fine_switch_count": [
+        58,
+        58
+      ],
+      "fine_scan_seconds": 3.7815561140014324,
+      "coarse_scan_seconds": 0.4165764940044028,
+      "counters": {
+        "exact_affine": 1076,
+        "exact_riccati": 674,
+        "numeric_fallback": 13,
+        "switches": 58
+      }
+    }
+  ]
+}

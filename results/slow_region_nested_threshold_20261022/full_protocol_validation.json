@@ -1,0 +1,2786 @@
+{
+  "description": "Full saved FM fixed/train/held-out protocol suite; DOP853 on uploaded 4-region PWA + latent r + each one-hinge candidate, compared with Li-Rinzel.",
+  "solver": {
+    "output_dt_s": 0.2,
+    "rtol": 2e-08,
+    "atol": 2e-10,
+    "max_step_s": 0.2
+  },
+  "suite_counts": {
+    "fixed": 8,
+    "train": 10,
+    "test": 6,
+    "rest": 1
+  },
+  "summary": {
+    "baseline": {
+      "fixed": {
+        "protocol_count": 8,
+        "mean_C_RMSE_uM": 0.28609958844084804,
+        "max_C_RMSE_uM": 0.5421585030891619,
+        "peak_count_matches": 2,
+        "peak_time_MAE_mean_s": 13.4,
+        "physical_bound_passes": 8
+      },
+      "train": {
+        "protocol_count": 10,
+        "mean_C_RMSE_uM": 0.15781294035005605,
+        "max_C_RMSE_uM": 0.23437740635506454,
+        "peak_count_matches": 4,
+        "peak_time_MAE_mean_s": 1.4403441173323925,
+        "physical_bound_passes": 10
+      },
+      "test": {
+        "protocol_count": 6,
+        "mean_C_RMSE_uM": 0.10381777371052425,
+        "max_C_RMSE_uM": 0.21878617080276966,
+        "peak_count_matches": 2,
+        "peak_time_MAE_mean_s": 0.5333333333333332,
+        "physical_bound_passes": 6
+      },
+      "rest": {
+        "protocol_count": 1,
+        "mean_C_RMSE_uM": 0.0002515571363534919,
+        "max_C_RMSE_uM": 0.0002515571363534919,
+        "peak_count_matches": 1,
+        "peak_time_MAE_mean_s": null,
+        "physical_bound_passes": 1
+      }
+    },
+    "C": {
+      "fixed": {
+        "protocol_count": 8,
+        "mean_C_RMSE_uM": 0.23567187117995717,
+        "max_C_RMSE_uM": 0.5075193938527426,
+        "peak_count_matches": 2,
+        "peak_time_MAE_mean_s": 13.266666666666667,
+        "physical_bound_passes": 8
+      },
+      "train": {
+        "protocol_count": 10,
+        "mean_C_RMSE_uM": 0.24597822807990774,
+        "max_C_RMSE_uM": 0.3322287411384914,
+        "peak_count_matches": 6,
+        "peak_time_MAE_mean_s": 3.2196157476494833,
+        "physical_bound_passes": 10
+      },
+      "test": {
+        "protocol_count": 6,
+        "mean_C_RMSE_uM": 0.18244107468836582,
+        "max_C_RMSE_uM": 0.3187813874179761,
+        "peak_count_matches": 3,
+        "peak_time_MAE_mean_s": 2.0733333333333333,
+        "physical_bound_passes": 6
+      },
+      "rest": {
+        "protocol_count": 1,
+        "mean_C_RMSE_uM": 0.0002515571363534919,
+        "max_C_RMSE_uM": 0.0002515571363534919,
+        "peak_count_matches": 1,
+        "peak_time_MAE_mean_s": null,
+        "physical_bound_passes": 1
+      }
+    },
+    "r": {
+      "fixed": {
+        "protocol_count": 8,
+        "mean_C_RMSE_uM": 0.28064977303851646,
+        "max_C_RMSE_uM": 0.5322712463089189,
+        "peak_count_matches": 3,
+        "peak_time_MAE_mean_s": 12.537362637362634,
+        "physical_bound_passes": 8
+      },
+      "train": {
+        "protocol_count": 10,
+        "mean_C_RMSE_uM": 0.2597965607970435,
+        "max_C_RMSE_uM": 0.3344451670295202,
+        "peak_count_matches": 6,
+        "peak_time_MAE_mean_s": 3.7929706709478928,
+        "physical_bound_passes": 10
+      },
+      "test": {
+        "protocol_count": 6,
+        "mean_C_RMSE_uM": 0.19676222234964905,
+        "max_C_RMSE_uM": 0.3317585193233757,
+        "peak_count_matches": 3,
+        "peak_time_MAE_mean_s": 2.471111111111112,
+        "physical_bound_passes": 6
+      },
+      "rest": {
+        "protocol_count": 1,
+        "mean_C_RMSE_uM": 0.0002515571363534919,
+        "max_C_RMSE_uM": 0.0002515571363534919,
+        "peak_count_matches": 1,
+        "peak_time_MAE_mean_s": null,
+        "physical_bound_passes": 1
+      }
+    },
+    "tilt": {
+      "fixed": {
+        "protocol_count": 8,
+        "mean_C_RMSE_uM": 0.28224738333748395,
+        "max_C_RMSE_uM": 0.5421585184989979,
+        "peak_count_matches": 2,
+        "peak_time_MAE_mean_s": 13.4,
+        "physical_bound_passes": 8
+      },
+      "train": {
+        "protocol_count": 10,
+        "mean_C_RMSE_uM": 0.1568610891364789,
+        "max_C_RMSE_uM": 0.2562376426180028,
+        "peak_count_matches": 8,
+        "peak_time_MAE_mean_s": 1.4128947657629205,
+        "physical_bound_passes": 10
+      },
+      "test": {
+        "protocol_count": 6,
+        "mean_C_RMSE_uM": 0.09920384130596131,
+        "max_C_RMSE_uM": 0.24777809367110376,
+        "peak_count_matches": 6,
+        "peak_time_MAE_mean_s": 0.9120521808815334,
+        "physical_bound_passes": 6
+      },
+      "rest": {
+        "protocol_count": 1,
+        "mean_C_RMSE_uM": 0.0004988668578965656,
+        "max_C_RMSE_uM": 0.0004988668578965656,
+        "peak_count_matches": 1,
+        "peak_time_MAE_mean_s": null,
+        "physical_bound_passes": 1
+      }
+    }
+  },
+  "protocols": [
+    {
+      "section": "fixed",
+      "protocol": "fixed_lower_rest",
+      "initial": [
+        1.3,
+        0.8,
+        0.48
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.0037492184896858343,
+          "rmse_h": 0.006318016889781583,
+          "max_abs_C_error_uM": 0.1257916799534573,
+          "peak_count_LR": 0,
+          "peak_count_model": 0,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.027336256182331608,
+            1.3
+          ],
+          "h_range": [
+            0.551604996077548,
+            0.9154189339892044
+          ],
+          "ip3_range": [
+            0.48,
+            0.48
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        },
+        "C": {
+          "rmse_C_uM": 0.0037453398428531144,
+          "rmse_h": 0.006520324502376151,
+          "max_abs_C_error_uM": 0.1257916799534573,
+          "peak_count_LR": 0,
+          "peak_count_model": 0,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02726235247635841,
+            1.3
+          ],
+          "h_range": [
+            0.551604996077548,
+            0.9154189339892045
+          ],
+          "ip3_range": [
+            0.48,
+            0.48
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        },
+        "r": {
+          "rmse_C_uM": 0.0037431840390498823,
+          "rmse_h": 0.006759342249319673,
+          "max_abs_C_error_uM": 0.1257916799534573,
+          "peak_count_LR": 0,
+          "peak_count_model": 0,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.027336256182331608,
+            1.3
+          ],
+          "h_range": [
+            0.551604996077548,
+            0.9154189339892045
+          ],
+          "ip3_range": [
+            0.48,
+            0.48
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        },
+        "tilt": {
+          "rmse_C_uM": 0.0039028914598548473,
+          "rmse_h": 0.0010704452641575389,
+          "max_abs_C_error_uM": 0.1257916799534573,
+          "peak_count_LR": 0,
+          "peak_count_model": 0,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.027336256182331608,
+            1.3
+          ],
+          "h_range": [
+            0.551604996077548,
+            0.9080708760638789
+          ],
+          "ip3_range": [
+            0.48,
+            0.48
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        }
+      }
+    },
+    {
+      "section": "fixed",
+      "protocol": "fixed_0.55",
+      "initial": [
+        1.3,
+        0.8,
+        0.55
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.37322208671303647,
+          "rmse_h": 0.16381389117674272,
+          "max_abs_C_error_uM": 0.9987918872726955,
+          "peak_count_LR": 44,
+          "peak_count_model": 45,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02774644781419748,
+            1.3
+          ],
+          "h_range": [
+            0.5461523870945368,
+            0.9136818856755594
+          ],
+          "ip3_range": [
+            0.55,
+            0.55
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            35.799999999999955,
+            35.200000000000045
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "C": {
+          "rmse_C_uM": 0.3576205679167651,
+          "rmse_h": 0.15240780627544576,
+          "max_abs_C_error_uM": 1.0028103093756047,
+          "peak_count_LR": 44,
+          "peak_count_model": 43,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.027669604334595675,
+            1.3
+          ],
+          "h_range": [
+            0.5461523870945368,
+            0.9136818904223939
+          ],
+          "ip3_range": [
+            0.55,
+            0.55
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            35.799999999999955,
+            37.0
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "r": {
+          "rmse_C_uM": 0.3525784832516391,
+          "rmse_h": 0.1485959387808611,
+          "max_abs_C_error_uM": 1.0027404016514492,
+          "peak_count_LR": 44,
+          "peak_count_model": 43,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02774644781419748,
+            1.3
+          ],
+          "h_range": [
+            0.5461523870945368,
+            0.9136818774888764
+          ],
+          "ip3_range": [
+            0.55,
+            0.55
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            35.799999999999955,
+            36.799999999999955
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "tilt": {
+          "rmse_C_uM": 0.35763080390918844,
+          "rmse_h": 0.15276476894113616,
+          "max_abs_C_error_uM": 0.9999888592939924,
+          "peak_count_LR": 44,
+          "peak_count_model": 43,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02774644781419748,
+            1.3
+          ],
+          "h_range": [
+            0.5461523870945368,
+            0.9125844651973516
+          ],
+          "ip3_range": [
+            0.55,
+            0.55
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            35.799999999999955,
+            37.0
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        }
+      }
+    },
+    {
+      "section": "fixed",
+      "protocol": "fixed_0.7",
+      "initial": [
+        1.3,
+        0.8,
+        0.7
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.4549020640018201,
+          "rmse_h": 0.15885588223919447,
+          "max_abs_C_error_uM": 1.036032635769666,
+          "peak_count_LR": 70,
+          "peak_count_model": 68,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02845952149106263,
+            1.3
+          ],
+          "h_range": [
+            0.533802698841326,
+            0.8950660608214003
+          ],
+          "ip3_range": [
+            0.7,
+            0.7
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            22.600000000000136,
+            23.200000000000045
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "C": {
+          "rmse_C_uM": 0.4468723022852307,
+          "rmse_h": 0.15591354436803914,
+          "max_abs_C_error_uM": 1.0365788245225978,
+          "peak_count_LR": 70,
+          "peak_count_model": 66,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028388344594737866,
+            1.3
+          ],
+          "h_range": [
+            0.533802698841326,
+            0.8950660866401812
+          ],
+          "ip3_range": [
+            0.7,
+            0.7
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            22.600000000000136,
+            24.200000000000045
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "r": {
+          "rmse_C_uM": 0.45095592977701177,
+          "rmse_h": 0.15908223966224627,
+          "max_abs_C_error_uM": 1.0365249468930557,
+          "peak_count_LR": 70,
+          "peak_count_model": 65,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02845952149106263,
+            1.3
+          ],
+          "h_range": [
+            0.533802698841326,
+            0.8950435306599644
+          ],
+          "ip3_range": [
+            0.7,
+            0.7
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            22.600000000000136,
+            24.399999999999864
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "tilt": {
+          "rmse_C_uM": 0.4530126668885396,
+          "rmse_h": 0.1581265456260337,
+          "max_abs_C_error_uM": 1.0358517068181292,
+          "peak_count_LR": 70,
+          "peak_count_model": 68,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02845952149106263,
+            1.3
+          ],
+          "h_range": [
+            0.533802698841326,
+            0.8948697414375771
+          ],
+          "ip3_range": [
+            0.7,
+            0.7
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            22.600000000000136,
+            23.399999999999864
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        }
+      }
+    },
+    {
+      "section": "fixed",
+      "protocol": "fixed_1.0",
+      "initial": [
+        1.3,
+        0.8,
+        1.0
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.5421585030891619,
+          "rmse_h": 0.16167260144688514,
+          "max_abs_C_error_uM": 1.0990317067258106,
+          "peak_count_LR": 91,
+          "peak_count_model": 94,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03004719302636899,
+            1.3260160673444974
+          ],
+          "h_range": [
+            0.5071091582989136,
+            0.8578394748054036
+          ],
+          "ip3_range": [
+            1.0,
+            1.0
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            17.59999999999991,
+            17.200000000000045
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "C": {
+          "rmse_C_uM": 0.16747156998532872,
+          "rmse_h": 0.0202072909112281,
+          "max_abs_C_error_uM": 0.7989142796498845,
+          "peak_count_LR": 91,
+          "peak_count_model": 92,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03000020590376517,
+            1.3260160673444974
+          ],
+          "h_range": [
+            0.5071091582989136,
+            0.8578392665120377
+          ],
+          "ip3_range": [
+            1.0,
+            1.0
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            17.59999999999991,
+            17.40000000000009
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "r": {
+          "rmse_C_uM": 0.5322712463089189,
+          "rmse_h": 0.16655587979083497,
+          "max_abs_C_error_uM": 1.099128259665248,
+          "peak_count_LR": 91,
+          "peak_count_model": 91,
+          "peak_time_mae_s": 11.874725274725266,
+          "C_range_uM": [
+            0.03004719302636899,
+            1.3260160673444974
+          ],
+          "h_range": [
+            0.5071091582989136,
+            0.8578395136001692
+          ],
+          "ip3_range": [
+            1.0,
+            1.0
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            17.59999999999991,
+            17.600000000000136
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "tilt": {
+          "rmse_C_uM": 0.5421585184989979,
+          "rmse_h": 0.16167260785483814,
+          "max_abs_C_error_uM": 1.0990317000700278,
+          "peak_count_LR": 91,
+          "peak_count_model": 94,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03004719302636899,
+            1.3260160673444974
+          ],
+          "h_range": [
+            0.5071091582989136,
+            0.8578394548756176
+          ],
+          "ip3_range": [
+            1.0,
+            1.0
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            17.59999999999991,
+            17.200000000000045
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        }
+      }
+    },
+    {
+      "section": "fixed",
+      "protocol": "fixed_1.2",
+      "initial": [
+        1.3,
+        0.8,
+        1.2
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.04262395752421934,
+          "rmse_h": 0.0276564919852769,
+          "max_abs_C_error_uM": 0.7302116615148835,
+          "peak_count_LR": 2,
+          "peak_count_model": 3,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03278579130649771,
+            1.3605640757626845
+          ],
+          "h_range": [
+            0.4880530568926147,
+            0.8331973874472159
+          ],
+          "ip3_range": [
+            1.2,
+            1.2
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        },
+        "C": {
+          "rmse_C_uM": 0.04283670574715061,
+          "rmse_h": 0.02768111869623196,
+          "max_abs_C_error_uM": 0.7294836744911919,
+          "peak_count_LR": 2,
+          "peak_count_model": 3,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03275318847076053,
+            1.3605640757626845
+          ],
+          "h_range": [
+            0.4880530568926147,
+            0.8330770927456111
+          ],
+          "ip3_range": [
+            1.2,
+            1.2
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        },
+        "r": {
+          "rmse_C_uM": 0.04292921463193304,
+          "rmse_h": 0.027682861362076813,
+          "max_abs_C_error_uM": 0.72940355028341,
+          "peak_count_LR": 2,
+          "peak_count_model": 3,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03278579130649771,
+            1.3605640757626845
+          ],
+          "h_range": [
+            0.4880530568926147,
+            0.8332419661781638
+          ],
+          "ip3_range": [
+            1.2,
+            1.2
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        },
+        "tilt": {
+          "rmse_C_uM": 0.04262395752421934,
+          "rmse_h": 0.0276564919852769,
+          "max_abs_C_error_uM": 0.7302116615148835,
+          "peak_count_LR": 2,
+          "peak_count_model": 3,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03278579130649771,
+            1.3605640757626845
+          ],
+          "h_range": [
+            0.4880530568926147,
+            0.8331973874472159
+          ],
+          "ip3_range": [
+            1.2,
+            1.2
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        }
+      }
+    },
+    {
+      "section": "fixed",
+      "protocol": "fixed_0.53",
+      "initial": [
+        1.3,
+        0.8,
+        0.53
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.3308760996042761,
+          "rmse_h": 0.14879386420357907,
+          "max_abs_C_error_uM": 0.9970650655744098,
+          "peak_count_LR": 34,
+          "peak_count_model": 39,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.027801902955413918,
+            1.3
+          ],
+          "h_range": [
+            0.5477226512373817,
+            0.9161639933622394
+          ],
+          "ip3_range": [
+            0.53,
+            0.53
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            46.0,
+            40.0
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "C": {
+          "rmse_C_uM": 0.32906661526239966,
+          "rmse_h": 0.1493760748650402,
+          "max_abs_C_error_uM": 0.9966771230453371,
+          "peak_count_LR": 34,
+          "peak_count_model": 38,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02771555755555104,
+            1.3
+          ],
+          "h_range": [
+            0.5477226512373817,
+            0.9161640056577172
+          ],
+          "ip3_range": [
+            0.53,
+            0.53
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            46.0,
+            42.0
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "r": {
+          "rmse_C_uM": 0.3304867184793811,
+          "rmse_h": 0.15357912349243896,
+          "max_abs_C_error_uM": 0.9968036497187044,
+          "peak_count_LR": 34,
+          "peak_count_model": 38,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.027801902955413918,
+            1.3
+          ],
+          "h_range": [
+            0.5477226512373817,
+            0.9161639933879142
+          ],
+          "ip3_range": [
+            0.53,
+            0.53
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            46.0,
+            41.600000000000136
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "tilt": {
+          "rmse_C_uM": 0.31738545031448717,
+          "rmse_h": 0.14629323136055994,
+          "max_abs_C_error_uM": 0.9941121864323084,
+          "peak_count_LR": 34,
+          "peak_count_model": 35,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.027801902955413918,
+            1.3
+          ],
+          "h_range": [
+            0.5477226512373817,
+            0.9148406736236956
+          ],
+          "ip3_range": [
+            0.53,
+            0.53
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            46.0,
+            44.600000000000136
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        }
+      }
+    },
+    {
+      "section": "fixed",
+      "protocol": "fixed_1.12",
+      "initial": [
+        1.3,
+        0.8,
+        1.12
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.5073540201725442,
+          "rmse_h": 0.14936474662883392,
+          "max_abs_C_error_uM": 1.1221114265329437,
+          "peak_count_LR": 90,
+          "peak_count_model": 94,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03134123376235633,
+            1.3447354193217098
+          ],
+          "h_range": [
+            0.49580381066980644,
+            0.8430405877592693
+          ],
+          "ip3_range": [
+            1.12,
+            1.12
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            17.600000000000136,
+            17.0
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "C": {
+          "rmse_C_uM": 0.5075193938527426,
+          "rmse_h": 0.14821577169430056,
+          "max_abs_C_error_uM": 1.1222181342156923,
+          "peak_count_LR": 90,
+          "peak_count_model": 93,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03128940917692764,
+            1.3447354193217098
+          ],
+          "h_range": [
+            0.49580381066980644,
+            0.8430402248238252
+          ],
+          "ip3_range": [
+            1.12,
+            1.12
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            17.600000000000136,
+            17.200000000000045
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "r": {
+          "rmse_C_uM": 0.504104526590864,
+          "rmse_h": 0.14727163966087317,
+          "max_abs_C_error_uM": 1.121502862287639,
+          "peak_count_LR": 90,
+          "peak_count_model": 93,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03134123376226428,
+            1.3447354193217098
+          ],
+          "h_range": [
+            0.49580381066980644,
+            0.8430407398903772
+          ],
+          "ip3_range": [
+            1.12,
+            1.12
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            17.600000000000136,
+            17.200000000000045
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        },
+        "tilt": {
+          "rmse_C_uM": 0.5073540201725442,
+          "rmse_h": 0.14936474662883392,
+          "max_abs_C_error_uM": 1.1221114265329437,
+          "peak_count_LR": 90,
+          "peak_count_model": 94,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.03134123376235633,
+            1.3447354193217098
+          ],
+          "h_range": [
+            0.49580381066980644,
+            0.8430405877592693
+          ],
+          "ip3_range": [
+            1.12,
+            1.12
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            17.600000000000136,
+            17.0
+          ],
+          "late_status_LR_model": [
+            "cycling",
+            "cycling"
+          ]
+        }
+      }
+    },
+    {
+      "section": "fixed",
+      "protocol": "fixed_1.13",
+      "initial": [
+        1.3,
+        0.8,
+        1.13
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.03391075793204011,
+          "rmse_h": 0.02073339852074371,
+          "max_abs_C_error_uM": 1.0259149313910607,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 13.4,
+          "C_range_uM": [
+            0.03143034831762653,
+            1.346295365319825
+          ],
+          "h_range": [
+            0.49483496644766106,
+            0.8417357401897863
+          ],
+          "ip3_range": [
+            1.13,
+            1.13
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        },
+        "C": {
+          "rmse_C_uM": 0.03024247454718674,
+          "rmse_h": 0.020498771373878878,
+          "max_abs_C_error_uM": 0.9679057767900572,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 13.266666666666667,
+          "C_range_uM": [
+            0.03139391580488146,
+            1.346295365319825
+          ],
+          "h_range": [
+            0.49483496644766106,
+            0.8415981257168594
+          ],
+          "ip3_range": [
+            1.13,
+            1.13
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        },
+        "r": {
+          "rmse_C_uM": 0.028128881229333814,
+          "rmse_h": 0.020384642187712475,
+          "max_abs_C_error_uM": 0.924696316517821,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 13.200000000000001,
+          "C_range_uM": [
+            0.03143034831762653,
+            1.346295365319825
+          ],
+          "h_range": [
+            0.49483496644766106,
+            0.8418100650946486
+          ],
+          "ip3_range": [
+            1.13,
+            1.13
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        },
+        "tilt": {
+          "rmse_C_uM": 0.03391075793204011,
+          "rmse_h": 0.02073339852074371,
+          "max_abs_C_error_uM": 1.0259149313910607,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 13.4,
+          "C_range_uM": [
+            0.03143034831762653,
+            1.346295365319825
+          ],
+          "h_range": [
+            0.49483496644766106,
+            0.8417357401897863
+          ],
+          "ip3_range": [
+            1.13,
+            1.13
+          ],
+          "within_physical_C_h_bounds": true,
+          "late_period_LR_model_s": [
+            null,
+            null
+          ],
+          "late_status_LR_model": [
+            "rest/unresolved",
+            "rest/unresolved"
+          ]
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "pulse_tau_20.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.04032635335592613,
+          "rmse_h": 0.01435057346798146,
+          "max_abs_C_error_uM": 0.3190170533542995,
+          "peak_count_LR": 2,
+          "peak_count_model": 2,
+          "peak_time_mae_s": 0.7999999999999972,
+          "C_range_uM": [
+            0.02853064740711394,
+            1.303838402787421
+          ],
+          "h_range": [
+            0.5038654144281527,
+            0.9120709246737186
+          ],
+          "ip3_range": [
+            0.45,
+            1.1430348836244177
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.09319672339606239,
+          "rmse_h": 0.028017718054743523,
+          "max_abs_C_error_uM": 0.9212708959839775,
+          "peak_count_LR": 2,
+          "peak_count_model": 2,
+          "peak_time_mae_s": 1.3999999999999986,
+          "C_range_uM": [
+            0.028688934064077756,
+            1.303838402787421
+          ],
+          "h_range": [
+            0.5038654144281527,
+            0.9113577835796445
+          ],
+          "ip3_range": [
+            0.45,
+            1.1430348836244177
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.10571100596845415,
+          "rmse_h": 0.03247458590309518,
+          "max_abs_C_error_uM": 0.9655980260349898,
+          "peak_count_LR": 2,
+          "peak_count_model": 2,
+          "peak_time_mae_s": 1.6000000000000014,
+          "C_range_uM": [
+            0.02842065398763668,
+            1.303838402787421
+          ],
+          "h_range": [
+            0.5038654144281527,
+            0.9113577835796445
+          ],
+          "ip3_range": [
+            0.45,
+            1.1430348836244177
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.04177998055237441,
+          "rmse_h": 0.01593742341495003,
+          "max_abs_C_error_uM": 0.348071136538163,
+          "peak_count_LR": 2,
+          "peak_count_model": 2,
+          "peak_time_mae_s": 0.8999999999999986,
+          "C_range_uM": [
+            0.02843275461001852,
+            1.2896921644745678
+          ],
+          "h_range": [
+            0.5049576035890788,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            1.1430348836244175
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "pulse_tau_100.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.14354610334784343,
+          "rmse_h": 0.030156156063786004,
+          "max_abs_C_error_uM": 0.848283440730351,
+          "peak_count_LR": 8,
+          "peak_count_model": 8,
+          "peak_time_mae_s": 0.625,
+          "C_range_uM": [
+            0.028582029939377387,
+            1.3254819202405634
+          ],
+          "h_range": [
+            0.49573205999903586,
+            0.9113690653832083
+          ],
+          "ip3_range": [
+            0.45,
+            1.1486013990671329
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.28719067157654404,
+          "rmse_h": 0.09977542806493003,
+          "max_abs_C_error_uM": 1.0226248508048328,
+          "peak_count_LR": 8,
+          "peak_count_model": 8,
+          "peak_time_mae_s": 2.424999999999999,
+          "C_range_uM": [
+            0.028477444975899404,
+            1.3254819202405634
+          ],
+          "h_range": [
+            0.49573205999903586,
+            0.9113690653832083
+          ],
+          "ip3_range": [
+            0.45,
+            1.1486013990671329
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.31111033333714283,
+          "rmse_h": 0.11417850457884784,
+          "max_abs_C_error_uM": 1.0222573359025642,
+          "peak_count_LR": 8,
+          "peak_count_model": 8,
+          "peak_time_mae_s": 3.0999999999999996,
+          "C_range_uM": [
+            0.028411571762871683,
+            1.3254819202405634
+          ],
+          "h_range": [
+            0.49573205999903586,
+            0.9113690653832083
+          ],
+          "ip3_range": [
+            0.45,
+            1.1486013990671329
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.15046075571443138,
+          "rmse_h": 0.03322303361715681,
+          "max_abs_C_error_uM": 0.892617108133096,
+          "peak_count_LR": 8,
+          "peak_count_model": 8,
+          "peak_time_mae_s": 0.6999999999999993,
+          "C_range_uM": [
+            0.02865813494225338,
+            1.311339448169569
+          ],
+          "h_range": [
+            0.49672724538171,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            1.1486013990671324
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "periodic",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.19719052662449338,
+          "rmse_h": 0.05536745348319383,
+          "max_abs_C_error_uM": 1.035825114365866,
+          "peak_count_LR": 5,
+          "peak_count_model": 5,
+          "peak_time_mae_s": 1.9199999999999982,
+          "C_range_uM": [
+            0.02884893834799809,
+            1.114654320804536
+          ],
+          "h_range": [
+            0.5408155963030302,
+            0.9183661193427068
+          ],
+          "ip3_range": [
+            0.45,
+            0.9167047685960275
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.2948828761834864,
+          "rmse_h": 0.09484524659513459,
+          "max_abs_C_error_uM": 1.03889912482631,
+          "peak_count_LR": 5,
+          "peak_count_model": 5,
+          "peak_time_mae_s": 3.7999999999999994,
+          "C_range_uM": [
+            0.028711020088247045,
+            1.114654320804536
+          ],
+          "h_range": [
+            0.5443072208216757,
+            0.9150095347680289
+          ],
+          "ip3_range": [
+            0.45,
+            0.9167047685960277
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.3033099821050595,
+          "rmse_h": 0.10336823979566842,
+          "max_abs_C_error_uM": 1.0397231155690612,
+          "peak_count_LR": 5,
+          "peak_count_model": 5,
+          "peak_time_mae_s": 4.359999999999998,
+          "C_range_uM": [
+            0.028663503521298088,
+            1.114654320804536
+          ],
+          "h_range": [
+            0.5449269667525819,
+            0.9143100504706781
+          ],
+          "ip3_range": [
+            0.45,
+            0.916704768596028
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.1993764190256078,
+          "rmse_h": 0.05600667792410661,
+          "max_abs_C_error_uM": 1.0361535454136288,
+          "peak_count_LR": 5,
+          "peak_count_model": 5,
+          "peak_time_mae_s": 1.9599999999999986,
+          "C_range_uM": [
+            0.02874428272273017,
+            1.1008956499538753
+          ],
+          "h_range": [
+            0.5408384976968577,
+            0.9123191751373892
+          ],
+          "ip3_range": [
+            0.45,
+            0.9167047685960277
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "promoted_tau_35.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.11892554417072533,
+          "rmse_h": 0.06382146045509073,
+          "max_abs_C_error_uM": 0.9728361614873129,
+          "peak_count_LR": 3,
+          "peak_count_model": 4,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02815455817959714,
+            1.3152390512357137
+          ],
+          "h_range": [
+            0.49973681307510365,
+            0.9186168202455768
+          ],
+          "ip3_range": [
+            0.45,
+            1.146011406833784
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.11863214740671554,
+          "rmse_h": 0.036403247933727026,
+          "max_abs_C_error_uM": 0.9931656941467717,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 1.4666666666666686,
+          "C_range_uM": [
+            0.028728744923041342,
+            1.3152390512357137
+          ],
+          "h_range": [
+            0.49973681307510365,
+            0.9183912591177661
+          ],
+          "ip3_range": [
+            0.45,
+            1.146011406833784
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.13527417895684618,
+          "rmse_h": 0.042609775810441855,
+          "max_abs_C_error_uM": 0.9957397463373385,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 1.6666666666666667,
+          "C_range_uM": [
+            0.028612285704048272,
+            1.3152390512357137
+          ],
+          "h_range": [
+            0.49973681307510365,
+            0.9182663088548048
+          ],
+          "ip3_range": [
+            0.45,
+            1.146011406833784
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.0456801617444973,
+          "rmse_h": 0.016505530639154976,
+          "max_abs_C_error_uM": 0.4066359142648839,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 0.7333333333333343,
+          "C_range_uM": [
+            0.028796431815531005,
+            1.301094827992009
+          ],
+          "h_range": [
+            0.5007963979672108,
+            0.9132078330075288
+          ],
+          "ip3_range": [
+            0.45,
+            1.1460114068337837
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "promoted_tau_65.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.14344130153762952,
+          "rmse_h": 0.06754394364052153,
+          "max_abs_C_error_uM": 0.9726562789275612,
+          "peak_count_LR": 6,
+          "peak_count_model": 7,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02810448326248986,
+            1.322476697734458
+          ],
+          "h_range": [
+            0.4969364471991541,
+            0.9186901877073816
+          ],
+          "ip3_range": [
+            0.45,
+            1.14784946405966
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.24960315451438916,
+          "rmse_h": 0.08722959545115232,
+          "max_abs_C_error_uM": 1.0010787829440937,
+          "peak_count_LR": 6,
+          "peak_count_model": 6,
+          "peak_time_mae_s": 2.5,
+          "C_range_uM": [
+            0.028470859698015553,
+            1.322476697734458
+          ],
+          "h_range": [
+            0.4969364471991541,
+            0.9186648433280828
+          ],
+          "ip3_range": [
+            0.45,
+            1.14784946405966
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.26832628987676155,
+          "rmse_h": 0.09834565561733792,
+          "max_abs_C_error_uM": 1.0168539290759153,
+          "peak_count_LR": 6,
+          "peak_count_model": 6,
+          "peak_time_mae_s": 3.0333333333333328,
+          "C_range_uM": [
+            0.028275544595921024,
+            1.322476697734458
+          ],
+          "h_range": [
+            0.4969364471991541,
+            0.91851934760459
+          ],
+          "ip3_range": [
+            0.45,
+            1.14784946405966
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.11771799028613139,
+          "rmse_h": 0.03171234588533953,
+          "max_abs_C_error_uM": 0.9138493604312721,
+          "peak_count_LR": 6,
+          "peak_count_model": 6,
+          "peak_time_mae_s": 0.6999999999999993,
+          "C_range_uM": [
+            0.028518304647349602,
+            1.3083336980977383
+          ],
+          "h_range": [
+            0.49793167597722454,
+            0.9131229062053706
+          ],
+          "ip3_range": [
+            0.45,
+            1.1478494640596595
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "promoted_tau_80.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.1559903760880834,
+          "rmse_h": 0.06585718463509482,
+          "max_abs_C_error_uM": 0.9756457016726456,
+          "peak_count_LR": 7,
+          "peak_count_model": 8,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028238123566326368,
+            1.3240830188010113
+          ],
+          "h_range": [
+            0.4962937835750478,
+            0.9157701975241035
+          ],
+          "ip3_range": [
+            0.45,
+            1.1482521856782222
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.28292714362177396,
+          "rmse_h": 0.11078579501441463,
+          "max_abs_C_error_uM": 1.0187121847413187,
+          "peak_count_LR": 7,
+          "peak_count_model": 8,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02818673137086759,
+            1.3240830188010113
+          ],
+          "h_range": [
+            0.4962937835750478,
+            0.9171447005192859
+          ],
+          "ip3_range": [
+            0.45,
+            1.1482521856782222
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.3011190323659482,
+          "rmse_h": 0.12104968345232872,
+          "max_abs_C_error_uM": 1.018665246298885,
+          "peak_count_LR": 7,
+          "peak_count_model": 8,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028140474159170835,
+            1.3240830188010113
+          ],
+          "h_range": [
+            0.4962937835750478,
+            0.9173246728636062
+          ],
+          "ip3_range": [
+            0.45,
+            1.1482521856782222
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.17082370546730305,
+          "rmse_h": 0.06886902425551268,
+          "max_abs_C_error_uM": 0.9729570874213178,
+          "peak_count_LR": 7,
+          "peak_count_model": 8,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02839672120484138,
+            1.3099402789237418
+          ],
+          "h_range": [
+            0.4972889908370307,
+            0.9152007004700063
+          ],
+          "ip3_range": [
+            0.45,
+            1.148252185678222
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "anchored_heldout_tau_48.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.10596973552566405,
+          "rmse_h": 0.05391578965617827,
+          "max_abs_C_error_uM": 0.975123282234624,
+          "peak_count_LR": 4,
+          "peak_count_model": 5,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028212703359123553,
+            1.3194652592437777
+          ],
+          "h_range": [
+            0.49813453493765614,
+            0.9152271689447868
+          ],
+          "ip3_range": [
+            0.45,
+            1.1470894012915769
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.1637369026539619,
+          "rmse_h": 0.06831613219228155,
+          "max_abs_C_error_uM": 0.9944331589934262,
+          "peak_count_LR": 4,
+          "peak_count_model": 5,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02841203010297718,
+            1.3194652592437777
+          ],
+          "h_range": [
+            0.49813453493765614,
+            0.9167290596125222
+          ],
+          "ip3_range": [
+            0.45,
+            1.1470894012915769
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.17771317762872113,
+          "rmse_h": 0.07363078270008337,
+          "max_abs_C_error_uM": 0.9945733080122735,
+          "peak_count_LR": 4,
+          "peak_count_model": 5,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028360864227636985,
+            1.3194652592437777
+          ],
+          "h_range": [
+            0.49813453493765614,
+            0.9169376640433455
+          ],
+          "ip3_range": [
+            0.45,
+            1.1470894012915769
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.10767184802873182,
+          "rmse_h": 0.054790966066733726,
+          "max_abs_C_error_uM": 0.9725614495367568,
+          "peak_count_LR": 4,
+          "peak_count_model": 5,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028537442685307956,
+            1.3053217700424355
+          ],
+          "h_range": [
+            0.4991298042788772,
+            0.9149093958847281
+          ],
+          "ip3_range": [
+            0.45,
+            1.1470894012915767
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "anchored_heldout_tau_160.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.21022047600612237,
+          "rmse_h": 0.061522731817898885,
+          "max_abs_C_error_uM": 1.0110565538608023,
+          "peak_count_LR": 15,
+          "peak_count_model": 16,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028250288273000686,
+            1.3275921644744102
+          ],
+          "h_range": [
+            0.49488111862193157,
+            0.9190290743425692
+          ],
+          "ip3_range": [
+            0.45,
+            1.1491255466472068
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.3155333544686323,
+          "rmse_h": 0.1350848540081636,
+          "max_abs_C_error_uM": 1.0278614192301592,
+          "peak_count_LR": 15,
+          "peak_count_model": 16,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028208830777448988,
+            1.3275921644744102
+          ],
+          "h_range": [
+            0.49488111862193157,
+            0.918855863726626
+          ],
+          "ip3_range": [
+            0.45,
+            1.1491255466472068
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.3289097220769738,
+          "rmse_h": 0.14341547594036544,
+          "max_abs_C_error_uM": 1.0357978491778894,
+          "peak_count_LR": 15,
+          "peak_count_model": 16,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02816910018872016,
+            1.3275921644744102
+          ],
+          "h_range": [
+            0.49488111862193157,
+            0.9190171971558795
+          ],
+          "ip3_range": [
+            0.45,
+            1.1491255466472068
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.23864578615156737,
+          "rmse_h": 0.0666341608570878,
+          "max_abs_C_error_uM": 1.005489426588923,
+          "peak_count_LR": 15,
+          "peak_count_model": 15,
+          "peak_time_mae_s": 1.746666666666664,
+          "C_range_uM": [
+            0.02832013084496284,
+            1.3134500507041542
+          ],
+          "h_range": [
+            0.49587627443968446,
+            0.9148522858468465
+          ],
+          "ip3_range": [
+            0.45,
+            1.1491255466472063
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "continuation_heldout_tau_180.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.2281415804890085,
+          "rmse_h": 0.06435818243575703,
+          "max_abs_C_error_uM": 1.0347741302711102,
+          "peak_count_LR": 17,
+          "peak_count_model": 18,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028297195173351167,
+            1.3279845202433558
+          ],
+          "h_range": [
+            0.4947224282425133,
+            0.9192462453196989
+          ],
+          "ip3_range": [
+            0.45,
+            1.1492226541609953
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.3218505658390206,
+          "rmse_h": 0.13810440216009195,
+          "max_abs_C_error_uM": 1.0300041352733904,
+          "peak_count_LR": 17,
+          "peak_count_model": 18,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028172093672641587,
+            1.3279845202433558
+          ],
+          "h_range": [
+            0.4947224282425133,
+            0.9190348085337348
+          ],
+          "ip3_range": [
+            0.45,
+            1.1492226541609953
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.3344451670295202,
+          "rmse_h": 0.14482023232146884,
+          "max_abs_C_error_uM": 1.0369732134458474,
+          "peak_count_LR": 17,
+          "peak_count_model": 18,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02826607845680598,
+            1.3279845202433558
+          ],
+          "h_range": [
+            0.4947224282425133,
+            0.919196856989839
+          ],
+          "ip3_range": [
+            0.45,
+            1.1492226541609953
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.2562376426180028,
+          "rmse_h": 0.0738230685341532,
+          "max_abs_C_error_uM": 1.0329415584390875,
+          "peak_count_LR": 17,
+          "peak_count_model": 17,
+          "peak_time_mae_s": 2.0470588235294085,
+          "C_range_uM": [
+            0.028393928100571404,
+            1.3138424512229445
+          ],
+          "h_range": [
+            0.49571758016727696,
+            0.91462587860629
+          ],
+          "ip3_range": [
+            0.45,
+            1.1492226541609956
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "continuation_heldout_irregular",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.23437740635506454,
+          "rmse_h": 0.06975051629309406,
+          "max_abs_C_error_uM": 1.0480023583395477,
+          "peak_count_LR": 8,
+          "peak_count_model": 8,
+          "peak_time_mae_s": 2.416376469329575,
+          "C_range_uM": [
+            0.028540821183631573,
+            1.099676327500712
+          ],
+          "h_range": [
+            0.546892800659069,
+            0.9173801283446164
+          ],
+          "ip3_range": [
+            0.45,
+            0.8421314283192716
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.3322287411384914,
+          "rmse_h": 0.13050861445157738,
+          "max_abs_C_error_uM": 1.0650392775507793,
+          "peak_count_LR": 8,
+          "peak_count_model": 8,
+          "peak_time_mae_s": 7.726027819230238,
+          "C_range_uM": [
+            0.02840138688535692,
+            1.099676327500712
+          ],
+          "h_range": [
+            0.5485070422032522,
+            0.9117579120883295
+          ],
+          "ip3_range": [
+            0.45,
+            0.8421314283192722
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.3320467186250073,
+          "rmse_h": 0.1328420258875423,
+          "max_abs_C_error_uM": 1.0675299330544883,
+          "peak_count_LR": 8,
+          "peak_count_model": 8,
+          "peak_time_mae_s": 8.99782402568736,
+          "C_range_uM": [
+            0.028375942027511522,
+            1.099676327500712
+          ],
+          "h_range": [
+            0.5485070422032522,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            0.8421314283192719
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.24021660177614132,
+          "rmse_h": 0.07168707742065218,
+          "max_abs_C_error_uM": 1.0485858420835805,
+          "peak_count_LR": 8,
+          "peak_count_model": 8,
+          "peak_time_mae_s": 2.51609930257396,
+          "C_range_uM": [
+            0.028564811083639004,
+            1.0859828206844468
+          ],
+          "h_range": [
+            0.5470585762048344,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            0.8421314283192719
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_9.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.01770177113806721,
+          "rmse_h": 0.006000748152399988,
+          "max_abs_C_error_uM": 0.245296182707326,
+          "peak_count_LR": 1,
+          "peak_count_model": 1,
+          "peak_time_mae_s": 0.5999999999999979,
+          "C_range_uM": [
+            0.028560938335072318,
+            1.2764618949326738
+          ],
+          "h_range": [
+            0.5143016282630974,
+            0.9113406714019768
+          ],
+          "ip3_range": [
+            0.45,
+            1.1346160107392207
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.01769954910500398,
+          "rmse_h": 0.007030221100613491,
+          "max_abs_C_error_uM": 0.245296182707326,
+          "peak_count_LR": 1,
+          "peak_count_model": 1,
+          "peak_time_mae_s": 0.5999999999999979,
+          "C_range_uM": [
+            0.028479681387954994,
+            1.2764618949326738
+          ],
+          "h_range": [
+            0.5143016282630974,
+            0.9113406714019768
+          ],
+          "ip3_range": [
+            0.45,
+            1.1346160107392207
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.017698722350209934,
+          "rmse_h": 0.007970605123237693,
+          "max_abs_C_error_uM": 0.245296182707326,
+          "peak_count_LR": 1,
+          "peak_count_model": 1,
+          "peak_time_mae_s": 0.5999999999999979,
+          "C_range_uM": [
+            0.028537648911426763,
+            1.2764618949326738
+          ],
+          "h_range": [
+            0.5143016282630974,
+            0.9113406714019768
+          ],
+          "ip3_range": [
+            0.45,
+            1.1346160107392207
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.017636491102543665,
+          "rmse_h": 0.010572337378242543,
+          "max_abs_C_error_uM": 0.26473511670836924,
+          "peak_count_LR": 1,
+          "peak_count_model": 1,
+          "peak_time_mae_s": 0.5999999999999979,
+          "C_range_uM": [
+            0.02853510857118901,
+            1.2609174123518994
+          ],
+          "h_range": [
+            0.515395090465592,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            1.1346160107392202
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_29.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.026134847877803822,
+          "rmse_h": 0.009333598030030492,
+          "max_abs_C_error_uM": 0.31306823348780355,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 0.46666666666666856,
+          "C_range_uM": [
+            0.02832510593518987,
+            1.3120499963740002
+          ],
+          "h_range": [
+            0.5009020623381955,
+            0.9128563160600451
+          ],
+          "ip3_range": [
+            0.45,
+            1.145189022439364
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.10386976488045925,
+          "rmse_h": 0.03199799376111921,
+          "max_abs_C_error_uM": 0.9776226604043544,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 1.599999999999999,
+          "C_range_uM": [
+            0.028179989192929352,
+            1.3120499963740002
+          ],
+          "h_range": [
+            0.5009020623381955,
+            0.911872586544066
+          ],
+          "ip3_range": [
+            0.45,
+            1.145189022439364
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.11684195911212061,
+          "rmse_h": 0.03716808271564001,
+          "max_abs_C_error_uM": 0.9779942795635639,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 1.9333333333333371,
+          "C_range_uM": [
+            0.02828706606011757,
+            1.3120499963740002
+          ],
+          "h_range": [
+            0.5009020623381955,
+            0.911881289192126
+          ],
+          "ip3_range": [
+            0.45,
+            1.145189022439364
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.03295432862784476,
+          "rmse_h": 0.014300148710915686,
+          "max_abs_C_error_uM": 0.32481556220644864,
+          "peak_count_LR": 3,
+          "peak_count_model": 3,
+          "peak_time_mae_s": 0.6666666666666666,
+          "C_range_uM": [
+            0.02824320424901271,
+            1.297905229471757
+          ],
+          "h_range": [
+            0.5019939333723358,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            1.1451890224393637
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_58.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.10266097136885607,
+          "rmse_h": 0.04995968970502077,
+          "max_abs_C_error_uM": 0.9758187956503157,
+          "peak_count_LR": 5,
+          "peak_count_model": 6,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028496473652085092,
+            1.3214471564760517
+          ],
+          "h_range": [
+            0.49734703411119446,
+            0.9159944368625104
+          ],
+          "ip3_range": [
+            0.45,
+            1.1475903638293428
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.17714366666188958,
+          "rmse_h": 0.07065789688311577,
+          "max_abs_C_error_uM": 1.0103991768299476,
+          "peak_count_LR": 5,
+          "peak_count_model": 6,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028067811944943025,
+            1.3214471564760517
+          ],
+          "h_range": [
+            0.49734703411119446,
+            0.9174831115311575
+          ],
+          "ip3_range": [
+            0.45,
+            1.1475903638293428
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.18998090086910194,
+          "rmse_h": 0.07688348943196541,
+          "max_abs_C_error_uM": 1.008688078341833,
+          "peak_count_LR": 5,
+          "peak_count_model": 6,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028300953931251552,
+            1.3214471564760517
+          ],
+          "h_range": [
+            0.49734703411119446,
+            0.9176675317816918
+          ],
+          "ip3_range": [
+            0.45,
+            1.1475903638293428
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.06316943747308612,
+          "rmse_h": 0.018360931655624007,
+          "max_abs_C_error_uM": 0.7239683375904588,
+          "peak_count_LR": 5,
+          "peak_count_model": 5,
+          "peak_time_mae_s": 0.5600000000000008,
+          "C_range_uM": [
+            0.02844482741879918,
+            1.3073039919770737
+          ],
+          "h_range": [
+            0.49834227652958835,
+            0.9158133450169744
+          ],
+          "ip3_range": [
+            0.45,
+            1.1475903638293428
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_105.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.15239928904438954,
+          "rmse_h": 0.05562237058232258,
+          "max_abs_C_error_uM": 0.9735539485625451,
+          "peak_count_LR": 10,
+          "peak_count_model": 11,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028172470351229294,
+            1.3257490833074042
+          ],
+          "h_range": [
+            0.49562456252383386,
+            0.9187668763840066
+          ],
+          "ip3_range": [
+            0.45,
+            1.148667935702072
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.2713434515199074,
+          "rmse_h": 0.10823921566837794,
+          "max_abs_C_error_uM": 1.0138340559275587,
+          "peak_count_LR": 10,
+          "peak_count_model": 10,
+          "peak_time_mae_s": 4.020000000000003,
+          "C_range_uM": [
+            0.028124137919249906,
+            1.3257490833074042
+          ],
+          "h_range": [
+            0.49562456252383386,
+            0.9188239963232436
+          ],
+          "ip3_range": [
+            0.45,
+            1.148667935702072
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.28632909200339113,
+          "rmse_h": 0.11862987226052225,
+          "max_abs_C_error_uM": 1.0258622536690214,
+          "peak_count_LR": 10,
+          "peak_count_model": 10,
+          "peak_time_mae_s": 4.880000000000001,
+          "C_range_uM": [
+            0.028551620698226483,
+            1.3257490833074042
+          ],
+          "h_range": [
+            0.49562456252383386,
+            0.9186692752925125
+          ],
+          "ip3_range": [
+            0.45,
+            1.148667935702072
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.17542484562091548,
+          "rmse_h": 0.04652505699798471,
+          "max_abs_C_error_uM": 0.9776011698089573,
+          "peak_count_LR": 10,
+          "peak_count_model": 10,
+          "peak_time_mae_s": 1.1200000000000045,
+          "C_range_uM": [
+            0.028451438261790023,
+            1.311606645696612
+          ],
+          "h_range": [
+            0.4966197449549571,
+            0.9136933838964425
+          ],
+          "ip3_range": [
+            0.45,
+            1.1486679357020717
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_170.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.21878617080276966,
+          "rmse_h": 0.06279278180866402,
+          "max_abs_C_error_uM": 1.0277942781911713,
+          "peak_count_LR": 16,
+          "peak_count_model": 17,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028229645107548343,
+            1.3277998208152826
+          ],
+          "h_range": [
+            0.4947971494323544,
+            0.9191428954622991
+          ],
+          "ip3_range": [
+            0.45,
+            1.1491769548273847
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.3187813874179761,
+          "rmse_h": 0.13676995700625136,
+          "max_abs_C_error_uM": 1.0331815282594652,
+          "peak_count_LR": 16,
+          "peak_count_model": 17,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028370334770773106,
+            1.3277998208152826
+          ],
+          "h_range": [
+            0.4947971494323544,
+            0.9189450440782375
+          ],
+          "ip3_range": [
+            0.45,
+            1.1491769548273847
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.3317585193233757,
+          "rmse_h": 0.14435385979346038,
+          "max_abs_C_error_uM": 1.0379857825722467,
+          "peak_count_LR": 16,
+          "peak_count_model": 17,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02810364286779544,
+            1.3277998208152826
+          ],
+          "h_range": [
+            0.4947971494323544,
+            0.9191137651570966
+          ],
+          "ip3_range": [
+            0.45,
+            1.1491769548273847
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.24777809367110376,
+          "rmse_h": 0.07032560716760942,
+          "max_abs_C_error_uM": 1.0240256909290972,
+          "peak_count_LR": 16,
+          "peak_count_model": 16,
+          "peak_time_mae_s": 1.862500000000002,
+          "C_range_uM": [
+            0.028440183158403385,
+            1.3136577134279344
+          ],
+          "h_range": [
+            0.4957923044825399,
+            0.9147346170292592
+          ],
+          "ip3_range": [
+            0.45,
+            1.149176954827385
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_irregular",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.10522359203125915,
+          "rmse_h": 0.05352727398593536,
+          "max_abs_C_error_uM": 0.9759117444865428,
+          "peak_count_LR": 9,
+          "peak_count_model": 10,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028129670335257307,
+            1.1630752426191795
+          ],
+          "h_range": [
+            0.5228875658350121,
+            0.9151799092888228
+          ],
+          "ip3_range": [
+            0.45,
+            0.9879957908971144
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.2058086285449587,
+          "rmse_h": 0.07517402375472486,
+          "max_abs_C_error_uM": 1.015208422911452,
+          "peak_count_LR": 9,
+          "peak_count_model": 10,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.02817261149942906,
+            1.1148093090716091
+          ],
+          "h_range": [
+            0.5266732014181101,
+            0.9171161694515596
+          ],
+          "ip3_range": [
+            0.45,
+            0.9879957908971142
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.2379641404396951,
+          "rmse_h": 0.08487444188894877,
+          "max_abs_C_error_uM": 1.0381240128135096,
+          "peak_count_LR": 9,
+          "peak_count_model": 10,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.028097021955052454,
+            1.1091391116955533
+          ],
+          "h_range": [
+            0.5278257081581867,
+            0.9179941093397066
+          ],
+          "ip3_range": [
+            0.45,
+            0.9879957908971152
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.05825985134027406,
+          "rmse_h": 0.022540675360648767,
+          "max_abs_C_error_uM": 0.42700810679448387,
+          "peak_count_LR": 9,
+          "peak_count_model": 9,
+          "peak_time_mae_s": 0.6631464186225292,
+          "C_range_uM": [
+            0.028891724021509746,
+            1.1629016258562281
+          ],
+          "h_range": [
+            0.5229028760212178,
+            0.9154871109263443
+          ],
+          "ip3_range": [
+            0.45,
+            0.9879957908971149
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    },
+    {
+      "section": "rest",
+      "protocol": "saved_rest_equilibrium",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "metrics": {
+        "baseline": {
+          "rmse_C_uM": 0.0002515571363534919,
+          "rmse_h": 0.002806496094238942,
+          "max_abs_C_error_uM": 0.0002522231873175601,
+          "peak_count_LR": 0,
+          "peak_count_model": 0,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.04227097539606245,
+            0.042523198583379995
+          ],
+          "h_range": [
+            0.9084367244540564,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            0.45
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "C": {
+          "rmse_C_uM": 0.0002515571363534919,
+          "rmse_h": 0.002806496094238942,
+          "max_abs_C_error_uM": 0.0002522231873175601,
+          "peak_count_LR": 0,
+          "peak_count_model": 0,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.04227097539606245,
+            0.042523198583379995
+          ],
+          "h_range": [
+            0.9084367244540564,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            0.45
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "r": {
+          "rmse_C_uM": 0.0002515571363534919,
+          "rmse_h": 0.002806496094238942,
+          "max_abs_C_error_uM": 0.0002522231873175601,
+          "peak_count_LR": 0,
+          "peak_count_model": 0,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.04227097539606245,
+            0.042523198583379995
+          ],
+          "h_range": [
+            0.9084367244540564,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            0.45
+          ],
+          "within_physical_C_h_bounds": true
+        },
+        "tilt": {
+          "rmse_C_uM": 0.0004988668578965656,
+          "rmse_h": 0.009952393199237623,
+          "max_abs_C_error_uM": 0.000500739488453604,
+          "peak_count_LR": 0,
+          "peak_count_model": 0,
+          "peak_time_mae_s": null,
+          "C_range_uM": [
+            0.042022459094926405,
+            0.042523198583379995
+          ],
+          "h_range": [
+            0.9012624145053568,
+            0.9112560651867909
+          ],
+          "ip3_range": [
+            0.45,
+            0.45
+          ],
+          "within_physical_C_h_bounds": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,454 @@
+{
+  "model": "results/reapplied_hidden_fm_experiments_20261022/input_archive/four_region_base.json",
+  "thresholds_u": [
+    0.015194801159961467,
+    0.14328039311772045,
+    0.3606679278346462
+  ],
+  "thresholds_C": [
+    0.04306772054796876,
+    0.16901879992812333,
+    0.38278362876552496
+  ],
+  "regions": 4,
+  "parameters": [
+    -0.27534184808371753,
+    -0.06788525566941761,
+    2.31745979055761,
+    0.16130211084202645,
+    0.09749471242739638
+  ],
+  "dynamic": {
+    "pulse_tau_20.0": {
+      "base": {
+        "C_RMSE": 0.051781867397838736,
+        "h_RMSE": 0.017724870416292792,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.0398586445216505,
+        "h_RMSE": 0.014335459350515332,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "pulse_tau_100.0": {
+      "base": {
+        "C_RMSE": 0.17034963345452964,
+        "h_RMSE": 0.046431745130471984,
+        "fit_events": 3,
+        "LR_events": 3,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.14292830282001026,
+        "h_RMSE": 0.0301288879594339,
+        "fit_events": 3,
+        "LR_events": 3,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "periodic": {
+      "base": {
+        "C_RMSE": 0.23128239043131252,
+        "h_RMSE": 0.06797180837377087,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.19660960684364764,
+        "h_RMSE": 0.055326880321119716,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "promoted_tau_35.0": {
+      "base": {
+        "C_RMSE": 0.1231703907404437,
+        "h_RMSE": 0.06464126826968648,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.11871184101335168,
+        "h_RMSE": 0.06381831963456952,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "promoted_tau_65.0": {
+      "base": {
+        "C_RMSE": 0.16706311929247838,
+        "h_RMSE": 0.07339540010223489,
+        "fit_events": 2,
+        "LR_events": 1,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.14295408160857906,
+        "h_RMSE": 0.06753776028379363,
+        "fit_events": 2,
+        "LR_events": 1,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "promoted_tau_80.0": {
+      "base": {
+        "C_RMSE": 0.18153212115699216,
+        "h_RMSE": 0.07311235038938943,
+        "fit_events": 3,
+        "LR_events": 2,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.1554631958856472,
+        "h_RMSE": 0.06584889867670946,
+        "fit_events": 3,
+        "LR_events": 2,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "anchored_heldout_tau_48.0": {
+      "base": {
+        "C_RMSE": 0.1134060568211115,
+        "h_RMSE": 0.05570711152093744,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.10596971317780648,
+        "h_RMSE": 0.053915778591184245,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "anchored_heldout_tau_160.0": {
+      "base": {
+        "C_RMSE": 0.25372155370283883,
+        "h_RMSE": 0.08812460161253576,
+        "fit_events": 5,
+        "LR_events": 3,
+        "fit_period_s": 38.80000000000001,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.21022057106460412,
+        "h_RMSE": 0.06152275784466432,
+        "fit_events": 4,
+        "LR_events": 3,
+        "fit_period_s": 36.60000000000002,
+        "LR_period_s": null
+      }
+    },
+    "continuation_heldout_tau_180.0": {
+      "base": {
+        "C_RMSE": 0.26396636729759543,
+        "h_RMSE": 0.08995283918605634,
+        "fit_events": 6,
+        "LR_events": 3,
+        "fit_period_s": 37.19999999999999,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.22814240794871465,
+        "h_RMSE": 0.06435848860936845,
+        "fit_events": 4,
+        "LR_events": 3,
+        "fit_period_s": 37.60000000000002,
+        "LR_period_s": null
+      }
+    },
+    "continuation_heldout_irregular": {
+      "base": {
+        "C_RMSE": 0.2736911650162994,
+        "h_RMSE": 0.08571895841909577,
+        "fit_events": 1,
+        "LR_events": 1,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.23411834200411694,
+        "h_RMSE": 0.06967681933243139,
+        "fit_events": 1,
+        "LR_events": 1,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "phase_heldout_tau_9.0": {
+      "base": {
+        "C_RMSE": 0.01728291900485003,
+        "h_RMSE": 0.006374755619080504,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.01770176826990182,
+        "h_RMSE": 0.006000747536912023,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "phase_heldout_tau_29.0": {
+      "base": {
+        "C_RMSE": 0.03057088442298303,
+        "h_RMSE": 0.012421714341976656,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.02613493454356497,
+        "h_RMSE": 0.009333578197718767,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "phase_heldout_tau_58.0": {
+      "base": {
+        "C_RMSE": 0.11455223625100654,
+        "h_RMSE": 0.0527756075244145,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.10266096047208892,
+        "h_RMSE": 0.049959690150791075,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "phase_heldout_tau_105.0": {
+      "base": {
+        "C_RMSE": 0.17862817536164843,
+        "h_RMSE": 0.06506177010473159,
+        "fit_events": 3,
+        "LR_events": 1,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.1523992549230192,
+        "h_RMSE": 0.0556223798388565,
+        "fit_events": 3,
+        "LR_events": 1,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    },
+    "phase_heldout_tau_170.0": {
+      "base": {
+        "C_RMSE": 0.25916694271075064,
+        "h_RMSE": 0.0889881171918324,
+        "fit_events": 5,
+        "LR_events": 3,
+        "fit_period_s": 39.20000000000002,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.21878647589762304,
+        "h_RMSE": 0.06279291741667282,
+        "fit_events": 4,
+        "LR_events": 3,
+        "fit_period_s": 37.19999999999999,
+        "LR_period_s": null
+      }
+    },
+    "phase_heldout_irregular": {
+      "base": {
+        "C_RMSE": 0.11594394998087122,
+        "h_RMSE": 0.05587064204526827,
+        "fit_events": 2,
+        "LR_events": 1,
+        "fit_period_s": null,
+        "LR_period_s": null
+      },
+      "hidden": {
+        "C_RMSE": 0.10529820657274007,
+        "h_RMSE": 0.05357780571470318,
+        "fit_events": 2,
+        "LR_events": 1,
+        "fit_period_s": null,
+        "LR_period_s": null
+      }
+    }
+  },
+  "constant": {
+    "0.53": {
+      "base": {
+        "C_RMSE": 0.3268306132307555,
+        "h_RMSE": 0.15216195782761854,
+        "fit_events": 8,
+        "LR_events": 7,
+        "fit_period_s": 39.0,
+        "LR_period_s": 46.0,
+        "tail_C_mean": 0.11392611328021122
+      },
+      "hidden": {
+        "C_RMSE": 0.33331757712170046,
+        "h_RMSE": 0.14827810918822174,
+        "fit_events": 8,
+        "LR_events": 7,
+        "fit_period_s": 40.0,
+        "LR_period_s": 46.0,
+        "tail_C_mean": 0.11483759961145308
+      }
+    },
+    "0.55": {
+      "base": {
+        "C_RMSE": 0.35968905624345426,
+        "h_RMSE": 0.15007931483792544,
+        "fit_events": 9,
+        "LR_events": 9,
+        "fit_period_s": 34.900000000000034,
+        "LR_period_s": 35.80000000000001,
+        "tail_C_mean": 0.16725491931512393
+      },
+      "hidden": {
+        "C_RMSE": 0.3449131558618182,
+        "h_RMSE": 0.12222797925771088,
+        "fit_events": 9,
+        "LR_events": 9,
+        "fit_period_s": 35.30000000000001,
+        "LR_period_s": 35.80000000000001,
+        "tail_C_mean": 0.11618123029886736
+      }
+    },
+    "0.7": {
+      "base": {
+        "C_RMSE": 0.42941710706701997,
+        "h_RMSE": 0.1511355915873892,
+        "fit_events": 13,
+        "LR_events": 13,
+        "fit_period_s": 23.399999999999977,
+        "LR_period_s": 22.600000000000023,
+        "tail_C_mean": 0.19907848239950232
+      },
+      "hidden": {
+        "C_RMSE": 0.46992596893612515,
+        "h_RMSE": 0.16700480158640843,
+        "fit_events": 14,
+        "LR_events": 13,
+        "fit_period_s": 23.399999999999977,
+        "LR_period_s": 22.600000000000023,
+        "tail_C_mean": 0.24806063081608495
+      }
+    },
+    "1.0": {
+      "base": {
+        "C_RMSE": 0.5453640094505648,
+        "h_RMSE": 0.16110909708184382,
+        "fit_events": 18,
+        "LR_events": 17,
+        "fit_period_s": 17.200000000000045,
+        "LR_period_s": 17.5,
+        "tail_C_mean": 0.32074986183375515
+      },
+      "hidden": {
+        "C_RMSE": 0.5674567566351583,
+        "h_RMSE": 0.1697654507147273,
+        "fit_events": 18,
+        "LR_events": 17,
+        "fit_period_s": 17.19999999999999,
+        "LR_period_s": 17.5,
+        "tail_C_mean": 0.32818954462784905
+      }
+    },
+    "1.12": {
+      "base": {
+        "C_RMSE": 0.5137286614345035,
+        "h_RMSE": 0.15136550590816406,
+        "fit_events": 19,
+        "LR_events": 18,
+        "fit_period_s": 16.399999999999977,
+        "LR_period_s": 17.600000000000023,
+        "tail_C_mean": 0.34612097817464177
+      },
+      "hidden": {
+        "C_RMSE": 0.5166186799623862,
+        "h_RMSE": 0.14946929295231995,
+        "fit_events": 19,
+        "LR_events": 18,
+        "fit_period_s": 17.0,
+        "LR_period_s": 17.600000000000023,
+        "tail_C_mean": 0.3552268037540421
+      }
+    },
+    "1.125": {
+      "base": {
+        "C_RMSE": 0.3876691423518247,
+        "h_RMSE": 0.1434306557150329,
+        "fit_events": 19,
+        "LR_events": 0,
+        "fit_period_s": 16.399999999999977,
+        "LR_period_s": null,
+        "tail_C_mean": 0.3476735524448678
+      },
+      "hidden": {
+        "C_RMSE": 0.05041541761050546,
+        "h_RMSE": 0.021216691140116536,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null,
+        "tail_C_mean": 0.4738191627727878
+      }
+    },
+    "1.13": {
+      "base": {
+        "C_RMSE": 0.3876778564684132,
+        "h_RMSE": 0.1430715032304644,
+        "fit_events": 19,
+        "LR_events": 0,
+        "fit_period_s": 16.399999999999977,
+        "LR_period_s": null,
+        "tail_C_mean": 0.3490919556030304
+      },
+      "hidden": {
+        "C_RMSE": 0.05108570190011161,
+        "h_RMSE": 0.02156451240417138,
+        "fit_events": 0,
+        "LR_events": 0,
+        "fit_period_s": null,
+        "LR_period_s": null,
+        "tail_C_mean": 0.47506601274076926
+      }
+    }
+  },
+  "note": "Uses uploaded four-region base and archived hidden-state parameters. The archive compared against an eight-region PWA, not Li-Rinzel; this replay compares both against Li-Rinzel. SIC and NEST metrics are unavailable in this current draft and are not inferred."
+}

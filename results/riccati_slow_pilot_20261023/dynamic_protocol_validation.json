@@ -1,0 +1,1128 @@
+{
+  "parameters": {
+    "k": -0.5956250890184878,
+    "theta": 0.4631857945184875,
+    "lambda": -0.10475603557205752,
+    "left": [
+      -0.01060302763790039,
+      1.0055272972286065,
+      -0.029529945110192534
+    ],
+    "right": [
+      0.005808512437801262,
+      0.9968771542741759,
+      0.07875405049570813
+    ]
+  },
+  "solver": {
+    "method": "DOP853",
+    "rtol": 2e-09,
+    "atol": 2e-11,
+    "max_step_s": 0.12,
+    "output_dt_s": 0.2
+  },
+  "summary": {
+    "train": {
+      "base": {
+        "mean_C_RMSE_uM": 0.15781299357759734,
+        "peak_count_matches": 4,
+        "protocols": 10,
+        "mean_peak_time_MAE_s": 1.4403441173323925
+      },
+      "riccati": {
+        "mean_C_RMSE_uM": 0.13571070617829611,
+        "peak_count_matches": 10,
+        "protocols": 10,
+        "mean_peak_time_MAE_s": 1.1151852659805759
+      }
+    },
+    "test": {
+      "base": {
+        "mean_C_RMSE_uM": 0.10381779360729558,
+        "peak_count_matches": 2,
+        "protocols": 6,
+        "mean_peak_time_MAE_s": 0.5333333333333332
+      },
+      "riccati": {
+        "mean_C_RMSE_uM": 0.0860119778669063,
+        "peak_count_matches": 6,
+        "protocols": 6,
+        "mean_peak_time_MAE_s": 0.7483979550757304
+      }
+    }
+  },
+  "protocols": [
+    {
+      "section": "train",
+      "protocol": "pulse_tau_20.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.04032643084861175,
+        "C_max_abs_error_uM": 0.3190184565953388,
+        "h_RMSE": 0.014350592302527202,
+        "peak_count_LR_model": [
+          2,
+          2
+        ],
+        "peak_time_MAE_s": 0.7999999999999972,
+        "C_range_uM": [
+          0.028530641682856867,
+          1.3038384018168745
+        ],
+        "h_range": [
+          0.5038654145169361,
+          0.9120709240588554
+        ],
+        "IP3_range": [
+          0.45,
+          1.1430348836244175
+        ],
+        "quadratic_active_fraction": 0.7242757242757243,
+        "active_outside_first_C_region_fraction": 0.002997002997002997,
+        "first_C_region_fraction": 0.9280719280719281,
+        "latent_r_range": [
+          -0.1313328206166189,
+          1.1976941189560435
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.04049267211783221,
+        "C_max_abs_error_uM": 0.323366921260928,
+        "h_RMSE": 0.014570780344256937,
+        "peak_count_LR_model": [
+          2,
+          2
+        ],
+        "peak_time_MAE_s": 0.7999999999999972,
+        "C_range_uM": [
+          0.028514679040627107,
+          1.2991093240646883
+        ],
+        "h_range": [
+          0.5042290719121714,
+          0.9112560651867909
+        ],
+        "IP3_range": [
+          0.45,
+          1.143034883624418
+        ],
+        "quadratic_active_fraction": 0.7242757242757243,
+        "active_outside_first_C_region_fraction": 0.002997002997002997,
+        "first_C_region_fraction": 0.9280719280719281,
+        "latent_r_range": [
+          -0.13132683827351915,
+          1.1923529647804398
+        ]
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "pulse_tau_100.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.143546216425602,
+        "C_max_abs_error_uM": 0.8482837006069294,
+        "h_RMSE": 0.030156190621513247,
+        "peak_count_LR_model": [
+          8,
+          8
+        ],
+        "peak_time_MAE_s": 0.625,
+        "C_range_uM": [
+          0.028582022242356172,
+          1.3254819126977258
+        ],
+        "h_range": [
+          0.4957320605878931,
+          0.9113690653494204
+        ],
+        "IP3_range": [
+          0.45,
+          1.148601399067133
+        ],
+        "quadratic_active_fraction": 0.12787212787212787,
+        "active_outside_first_C_region_fraction": 0.00999000999000999,
+        "first_C_region_fraction": 0.6903096903096904,
+        "latent_r_range": [
+          -0.13035870563914626,
+          1.2189547545801205
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.1431836986022475,
+        "C_max_abs_error_uM": 0.844096642696829,
+        "h_RMSE": 0.030284519290893326,
+        "peak_count_LR_model": [
+          8,
+          8
+        ],
+        "peak_time_MAE_s": 0.625,
+        "C_range_uM": [
+          0.028506473158321423,
+          1.3207519763689046
+        ],
+        "h_range": [
+          0.49606480445877893,
+          0.9112560651867909
+        ],
+        "IP3_range": [
+          0.45,
+          1.1486013990671329
+        ],
+        "quadratic_active_fraction": 0.12787212787212787,
+        "active_outside_first_C_region_fraction": 0.00999000999000999,
+        "first_C_region_fraction": 0.6903096903096904,
+        "latent_r_range": [
+          -0.13030787777793792,
+          1.213613848406066
+        ]
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "periodic",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.19719088273447613,
+        "C_max_abs_error_uM": 1.0358252160219064,
+        "h_RMSE": 0.05536756512017056,
+        "peak_count_LR_model": [
+          5,
+          5
+        ],
+        "peak_time_MAE_s": 1.9199999999999982,
+        "C_range_uM": [
+          0.028848923066640924,
+          1.1146543210322424
+        ],
+        "h_range": [
+          0.5408155991639009,
+          0.9183661132628707
+        ],
+        "IP3_range": [
+          0.45,
+          0.9167047685960279
+        ],
+        "quadratic_active_fraction": 0.4986376021798365,
+        "active_outside_first_C_region_fraction": 0.0036330608537693005,
+        "first_C_region_fraction": 0.8346957311534968,
+        "latent_r_range": [
+          -0.1317110107492114,
+          1.0041242863477495
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.19780646121160061,
+        "C_max_abs_error_uM": 1.0359246196077483,
+        "h_RMSE": 0.05546720103280491,
+        "peak_count_LR_model": [
+          5,
+          5
+        ],
+        "peak_time_MAE_s": 1.9599999999999986,
+        "C_range_uM": [
+          0.02884155692429669,
+          1.109481335609269
+        ],
+        "h_range": [
+          0.5408202091606686,
+          0.9135505259582947
+        ],
+        "IP3_range": [
+          0.45,
+          0.9167047685960276
+        ],
+        "quadratic_active_fraction": 0.4977293369663942,
+        "active_outside_first_C_region_fraction": 0.0027247956403269754,
+        "first_C_region_fraction": 0.8346957311534968,
+        "latent_r_range": [
+          -0.1316259659807928,
+          0.9988572163809547
+        ]
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "promoted_tau_35.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.11892554935851271,
+        "C_max_abs_error_uM": 0.9728360263953709,
+        "h_RMSE": 0.06382146124741163,
+        "peak_count_LR_model": [
+          3,
+          4
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.02815454459825073,
+          1.3152390517613182
+        ],
+        "h_range": [
+          0.4997368130984242,
+          0.9186168211074122
+        ],
+        "IP3_range": [
+          0.45,
+          1.1460114068337837
+        ],
+        "quadratic_active_fraction": 0.5113533151680291,
+        "active_outside_first_C_region_fraction": 0.013623978201634877,
+        "first_C_region_fraction": 0.8637602179836512,
+        "latent_r_range": [
+          -0.13274891089312402,
+          1.208895283688989
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.042906854787222636,
+        "C_max_abs_error_uM": 0.34830554743187503,
+        "h_RMSE": 0.015470248827813412,
+        "peak_count_LR_model": [
+          3,
+          3
+        ],
+        "peak_time_MAE_s": 0.6666666666666666,
+        "C_range_uM": [
+          0.02850669858374682,
+          1.3105095197111805
+        ],
+        "h_range": [
+          0.5001004119359285,
+          0.9139688093935996
+        ],
+        "IP3_range": [
+          0.45,
+          1.1460114068337837
+        ],
+        "quadratic_active_fraction": 0.6730245231607629,
+        "active_outside_first_C_region_fraction": 0.0036330608537693005,
+        "first_C_region_fraction": 0.8982742960944596,
+        "latent_r_range": [
+          -0.13027210722748417,
+          1.2035542704723896
+        ]
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "promoted_tau_65.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.14344123758081834,
+        "C_max_abs_error_uM": 0.9726562866370255,
+        "h_RMSE": 0.06754392841992865,
+        "peak_count_LR_model": [
+          6,
+          7
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.028104485568131984,
+          1.3224766876077918
+        ],
+        "h_range": [
+          0.4969364479833151,
+          0.9186901891356021
+        ],
+        "IP3_range": [
+          0.45,
+          1.1478494640596602
+        ],
+        "quadratic_active_fraction": 0.2127872127872128,
+        "active_outside_first_C_region_fraction": 0.025974025974025976,
+        "first_C_region_fraction": 0.7322677322677322,
+        "latent_r_range": [
+          -0.13253431849560618,
+          1.2160037236841181
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.08913355623835242,
+        "C_max_abs_error_uM": 0.6018274504602786,
+        "h_RMSE": 0.023832223954533,
+        "peak_count_LR_model": [
+          6,
+          6
+        ],
+        "peak_time_MAE_s": 0.5666666666666688,
+        "C_range_uM": [
+          0.028554982774254813,
+          1.317746860853296
+        ],
+        "h_range": [
+          0.4972691861333855,
+          0.9138504568244333
+        ],
+        "IP3_range": [
+          0.45,
+          1.1478494640596602
+        ],
+        "quadratic_active_fraction": 0.3016983016983017,
+        "active_outside_first_C_region_fraction": 0.014985014985014986,
+        "first_C_region_fraction": 0.7712287712287712,
+        "latent_r_range": [
+          -0.13142575179313976,
+          1.2106627786986721
+        ]
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "promoted_tau_80.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.15599031726813634,
+        "C_max_abs_error_uM": 0.975645742785235,
+        "h_RMSE": 0.06585717441048977,
+        "peak_count_LR_model": [
+          7,
+          8
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.028238130532082885,
+          1.3240829971198111
+        ],
+        "h_range": [
+          0.4962937852352034,
+          0.915770199962337
+        ],
+        "IP3_range": [
+          0.45,
+          1.1482521856782222
+        ],
+        "quadratic_active_fraction": 0.15440508628519528,
+        "active_outside_first_C_region_fraction": 0.022706630336058128,
+        "first_C_region_fraction": 0.7229791099000908,
+        "latent_r_range": [
+          -0.13202714657282372,
+          1.217581105191989
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.11118008741288798,
+        "C_max_abs_error_uM": 0.7432175661586957,
+        "h_RMSE": 0.026992055504290954,
+        "peak_count_LR_model": [
+          7,
+          7
+        ],
+        "peak_time_MAE_s": 0.6571428571428584,
+        "C_range_uM": [
+          0.028518801002945664,
+          1.319353106446213
+        ],
+        "h_range": [
+          0.49662652681603053,
+          0.9155434360825565
+        ],
+        "IP3_range": [
+          0.45,
+          1.1482521856782222
+        ],
+        "quadratic_active_fraction": 0.27974568574023617,
+        "active_outside_first_C_region_fraction": 0.012715712988192553,
+        "first_C_region_fraction": 0.7556766575840145,
+        "latent_r_range": [
+          -0.1310531084219031,
+          1.2122401752118717
+        ]
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "anchored_heldout_tau_48.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.10596975042272852,
+        "C_max_abs_error_uM": 0.9751232993894027,
+        "h_RMSE": 0.05391578951268309,
+        "peak_count_LR_model": [
+          4,
+          5
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.028212691414783508,
+          1.3194652638434086
+        ],
+        "h_range": [
+          0.4981345346141982,
+          0.915227165957898
+        ],
+        "IP3_range": [
+          0.45,
+          1.1470894012915773
+        ],
+        "quadratic_active_fraction": 0.5849433710859427,
+        "active_outside_first_C_region_fraction": 0.011325782811459028,
+        "first_C_region_fraction": 0.8747501665556295,
+        "latent_r_range": [
+          -0.13220665631630973,
+          1.2130462877981845
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.046137496151631145,
+        "C_max_abs_error_uM": 0.4707365696095911,
+        "h_RMSE": 0.0148574544701723,
+        "peak_count_LR_model": [
+          4,
+          4
+        ],
+        "peak_time_MAE_s": 0.4999999999999982,
+        "C_range_uM": [
+          0.0285028765061114,
+          1.3147355642248972
+        ],
+        "h_range": [
+          0.4984672658333089,
+          0.9155444432161057
+        ],
+        "IP3_range": [
+          0.45,
+          1.1470894012915769
+        ],
+        "quadratic_active_fraction": 0.6942038640906063,
+        "active_outside_first_C_region_fraction": 0.005329780146568954,
+        "first_C_region_fraction": 0.899400399733511,
+        "latent_r_range": [
+          -0.13032793891254124,
+          1.207705321585939
+        ]
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "anchored_heldout_tau_160.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.21022034075823667,
+        "C_max_abs_error_uM": 1.011056680468101,
+        "h_RMSE": 0.061522690043548975,
+        "peak_count_LR_model": [
+          15,
+          16
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.028250306953114854,
+          1.3275921613397645
+        ],
+        "h_range": [
+          0.4948811188489937,
+          0.9190290751811193
+        ],
+        "IP3_range": [
+          0.45,
+          1.1491255466472068
+        ],
+        "quadratic_active_fraction": 0.22407330279050397,
+        "active_outside_first_C_region_fraction": 0.019158683881715953,
+        "first_C_region_fraction": 0.7413577675968347,
+        "latent_r_range": [
+          -0.13229447046154766,
+          1.2210267626053766
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.21437789796801812,
+        "C_max_abs_error_uM": 1.0089649061169694,
+        "h_RMSE": 0.052174199989870856,
+        "peak_count_LR_model": [
+          15,
+          15
+        ],
+        "peak_time_MAE_s": 1.3599999999999932,
+        "C_range_uM": [
+          0.028318381736592513,
+          1.3228621322198097
+        ],
+        "h_range": [
+          0.49521386785177157,
+          0.9145807238902866
+        ],
+        "IP3_range": [
+          0.45,
+          1.1491255466472068
+        ],
+        "quadratic_active_fraction": 0.2907122032486464,
+        "active_outside_first_C_region_fraction": 0.01624323198667222,
+        "first_C_region_fraction": 0.7563515201999167,
+        "latent_r_range": [
+          -0.13166711844583,
+          1.2156858658389413
+        ]
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "continuation_heldout_tau_180.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.228141828645607,
+        "C_max_abs_error_uM": 1.034774136557843,
+        "h_RMSE": 0.0643582713222572,
+        "peak_count_LR_model": [
+          17,
+          18
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.028297242699913537,
+          1.3279845193156858
+        ],
+        "h_range": [
+          0.494722428300699,
+          0.919246244429843
+        ],
+        "IP3_range": [
+          0.45,
+          1.1492226541609956
+        ],
+        "quadratic_active_fraction": 0.22584228063680117,
+        "active_outside_first_C_region_fraction": 0.019252128841169936,
+        "first_C_region_fraction": 0.7412069603850425,
+        "latent_r_range": [
+          -0.13230985311802793,
+          1.221411994048804
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.23687771210215222,
+        "C_max_abs_error_uM": 1.034266503664931,
+        "h_RMSE": 0.05927301498580232,
+        "peak_count_LR_model": [
+          17,
+          17
+        ],
+        "peak_time_MAE_s": 1.6000000000000023,
+        "C_range_uM": [
+          0.02836684014850115,
+          1.3232544704641918
+        ],
+        "h_range": [
+          0.4950551784311049,
+          0.9149274196184691
+        ],
+        "IP3_range": [
+          0.45,
+          1.1492226541609956
+        ],
+        "quadratic_active_fraction": 0.28433913365420216,
+        "active_outside_first_C_region_fraction": 0.01629026286560533,
+        "first_C_region_fraction": 0.7552758237689745,
+        "latent_r_range": [
+          -0.13183229605722654,
+          1.2160710963961152
+        ]
+      }
+    },
+    {
+      "section": "train",
+      "protocol": "continuation_heldout_irregular",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.23437738173324393,
+        "C_max_abs_error_uM": 1.0480023495099515,
+        "h_RMSE": 0.06975051154210618,
+        "peak_count_LR_model": [
+          8,
+          8
+        ],
+        "peak_time_MAE_s": 2.416376469329575,
+        "C_range_uM": [
+          0.02854081888884722,
+          1.0996762724571505
+        ],
+        "h_range": [
+          0.5468927990164686,
+          0.9173801303775464
+        ],
+        "IP3_range": [
+          0.45,
+          0.842131428319272
+        ],
+        "quadratic_active_fraction": 0.426056338028169,
+        "active_outside_first_C_region_fraction": 0.002347417840375587,
+        "first_C_region_fraction": 0.8286384976525821,
+        "latent_r_range": [
+          -0.13170762818327406,
+          0.9876841988977995
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.2350106251910165,
+        "C_max_abs_error_uM": 1.048087101751949,
+        "h_RMSE": 0.06993740589804288,
+        "peak_count_LR_model": [
+          8,
+          8
+        ],
+        "peak_time_MAE_s": 2.416376469329575,
+        "C_range_uM": [
+          0.028514568797520356,
+          1.0952313923200938
+        ],
+        "h_range": [
+          0.5469111174787264,
+          0.9128789184713288
+        ],
+        "IP3_range": [
+          0.45,
+          0.842131428319272
+        ],
+        "quadratic_active_fraction": 0.426056338028169,
+        "active_outside_first_C_region_fraction": 0.002347417840375587,
+        "first_C_region_fraction": 0.8280516431924883,
+        "latent_r_range": [
+          -0.1315940121440431,
+          0.9820132319212437
+        ]
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_9.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.017701769107393708,
+        "C_max_abs_error_uM": 0.24529612674062706,
+        "h_RMSE": 0.006000747524651595,
+        "peak_count_LR_model": [
+          1,
+          1
+        ],
+        "peak_time_MAE_s": 0.5999999999999979,
+        "C_range_uM": [
+          0.028560938369117123,
+          1.276461901539811
+        ],
+        "h_range": [
+          0.5143016277776615,
+          0.911340671491691
+        ],
+        "IP3_range": [
+          0.45,
+          1.1346160107392202
+        ],
+        "quadratic_active_fraction": 0.9056079955580233,
+        "active_outside_first_C_region_fraction": 0.001665741254858412,
+        "first_C_region_fraction": 0.9822320932815103,
+        "latent_r_range": [
+          -0.13777265424620708,
+          1.1679896260119458
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.017662970573354364,
+        "C_max_abs_error_uM": 0.25161495446496507,
+        "h_RMSE": 0.006840678531309765,
+        "peak_count_LR_model": [
+          1,
+          1
+        ],
+        "peak_time_MAE_s": 0.5999999999999979,
+        "C_range_uM": [
+          0.02855326030004936,
+          1.2712881220361922
+        ],
+        "h_range": [
+          0.5146654598572046,
+          0.9112560651867909
+        ],
+        "IP3_range": [
+          0.45,
+          1.1346160107392202
+        ],
+        "quadratic_active_fraction": 0.9056079955580233,
+        "active_outside_first_C_region_fraction": 0.001665741254858412,
+        "first_C_region_fraction": 0.9822320932815103,
+        "latent_r_range": [
+          -0.13763979115569755,
+          1.162647976118284
+        ]
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_29.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.02613486708740168,
+        "C_max_abs_error_uM": 0.3130689353099042,
+        "h_RMSE": 0.00933359685240813,
+        "peak_count_LR_model": [
+          3,
+          3
+        ],
+        "peak_time_MAE_s": 0.46666666666666856,
+        "C_range_uM": [
+          0.028325106644285954,
+          1.3120500081920168
+        ],
+        "h_range": [
+          0.5009020630864796,
+          0.9128563161369339
+        ],
+        "IP3_range": [
+          0.45,
+          1.1451890224393642
+        ],
+        "quadratic_active_fraction": 0.7834536368684064,
+        "active_outside_first_C_region_fraction": 0.006107717934480844,
+        "first_C_region_fraction": 0.9389228206551916,
+        "latent_r_range": [
+          -0.13186393141672723,
+          1.205762551858072
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.024978318650242585,
+        "C_max_abs_error_uM": 0.2505864982267989,
+        "h_RMSE": 0.009936535078841105,
+        "peak_count_LR_model": [
+          3,
+          3
+        ],
+        "peak_time_MAE_s": 0.46666666666666856,
+        "C_range_uM": [
+          0.028623914708055875,
+          1.3073206191385782
+        ],
+        "h_range": [
+          0.5012656769743009,
+          0.9112560651867909
+        ],
+        "IP3_range": [
+          0.45,
+          1.1451890224393637
+        ],
+        "quadratic_active_fraction": 0.7828983897834536,
+        "active_outside_first_C_region_fraction": 0.006107717934480844,
+        "first_C_region_fraction": 0.9389228206551916,
+        "latent_r_range": [
+          -0.13189273804209417,
+          1.2004215179038191
+        ]
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_58.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.10266096706098353,
+        "C_max_abs_error_uM": 0.9758188408270426,
+        "h_RMSE": 0.04995968833312673,
+        "peak_count_LR_model": [
+          5,
+          6
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.02849646781992228,
+          1.3214471555150467
+        ],
+        "h_range": [
+          0.4973470341771096,
+          0.9159944402445758
+        ],
+        "IP3_range": [
+          0.45,
+          1.1475903638293428
+        ],
+        "quadratic_active_fraction": 0.5913381454747363,
+        "active_outside_first_C_region_fraction": 0.010549694614103275,
+        "first_C_region_fraction": 0.8739589117157135,
+        "latent_r_range": [
+          -0.13230842369672813,
+          1.2149926847604748
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.054680298406034625,
+        "C_max_abs_error_uM": 0.5676320930872161,
+        "h_RMSE": 0.015641828961852657,
+        "peak_count_LR_model": [
+          5,
+          5
+        ],
+        "peak_time_MAE_s": 0.4799999999999997,
+        "C_range_uM": [
+          0.028762516796880567,
+          1.3167173723370538
+        ],
+        "h_range": [
+          0.4976797699524014,
+          0.9152469124584794
+        ],
+        "IP3_range": [
+          0.45,
+          1.1475903638293425
+        ],
+        "quadratic_active_fraction": 0.6823986674069961,
+        "active_outside_first_C_region_fraction": 0.00555247084952804,
+        "first_C_region_fraction": 0.89505830094392,
+        "latent_r_range": [
+          -0.13074663751605206,
+          1.2096517324389162
+        ]
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_105.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.1523992889770486,
+        "C_max_abs_error_uM": 0.9735545010444001,
+        "h_RMSE": 0.0556223954219841,
+        "peak_count_LR_model": [
+          10,
+          11
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.02817253976829015,
+          1.325749089425624
+        ],
+        "h_range": [
+          0.4956245620459372,
+          0.9187668645356007
+        ],
+        "IP3_range": [
+          0.45,
+          1.1486679357020715
+        ],
+        "quadratic_active_fraction": 0.2665186007773459,
+        "active_outside_first_C_region_fraction": 0.020544142143253747,
+        "first_C_region_fraction": 0.7645752359800111,
+        "latent_r_range": [
+          -0.13242864117708608,
+          1.2192170981188684
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.1375430823050738,
+        "C_max_abs_error_uM": 0.8858116331266606,
+        "h_RMSE": 0.03243337328870244,
+        "peak_count_LR_model": [
+          10,
+          10
+        ],
+        "peak_time_MAE_s": 0.840000000000002,
+        "C_range_uM": [
+          0.0282197718091537,
+          1.321019134383168
+        ],
+        "h_range": [
+          0.49595730704968916,
+          0.9141163822080844
+        ],
+        "IP3_range": [
+          0.45,
+          1.1486679357020717
+        ],
+        "quadratic_active_fraction": 0.3586896168795114,
+        "active_outside_first_C_region_fraction": 0.014991671293725709,
+        "first_C_region_fraction": 0.7862298722931704,
+        "latent_r_range": [
+          -0.13165128917564511,
+          1.213876185868312
+        ]
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_tau_170.0",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.21878633356067026,
+        "C_max_abs_error_uM": 1.0277940839010247,
+        "h_RMSE": 0.06279285303550174,
+        "peak_count_LR_model": [
+          16,
+          17
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.028229629242893423,
+          1.3277998187531326
+        ],
+        "h_range": [
+          0.4947971495780048,
+          0.9191428972713924
+        ],
+        "IP3_range": [
+          0.45,
+          1.1491769548273845
+        ],
+        "quadratic_active_fraction": 0.22500980007840063,
+        "active_outside_first_C_region_fraction": 0.01920815366522932,
+        "first_C_region_fraction": 0.7412779302234418,
+        "latent_r_range": [
+          -0.13230539027287086,
+          1.2212306488047024
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.2258718831234125,
+        "C_max_abs_error_uM": 1.0266712987694748,
+        "h_RMSE": 0.05571548034974801,
+        "peak_count_LR_model": [
+          16,
+          16
+        ],
+        "peak_time_MAE_s": 1.4625000000000008,
+        "C_range_uM": [
+          0.028479883804800817,
+          1.3230697795227762
+        ],
+        "h_range": [
+          0.4951298991548543,
+          0.9146837451018932
+        ],
+        "IP3_range": [
+          0.45,
+          1.1491769548273845
+        ],
+        "quadratic_active_fraction": 0.28733829870638966,
+        "active_outside_first_C_region_fraction": 0.016072128577028617,
+        "first_C_region_fraction": 0.7549980399843199,
+        "latent_r_range": [
+          -0.13177649013498377,
+          1.215889751862607
+        ]
+      }
+    },
+    {
+      "section": "test",
+      "protocol": "phase_heldout_irregular",
+      "initial": [
+        0.042523198583379995,
+        0.9112560651867909,
+        0.45
+      ],
+      "base": {
+        "C_RMSE_uM": 0.10522353585027566,
+        "C_max_abs_error_uM": 0.9759119757475679,
+        "h_RMSE": 0.053527263994124476,
+        "peak_count_LR_model": [
+          9,
+          10
+        ],
+        "peak_time_MAE_s": null,
+        "C_range_uM": [
+          0.028129670037794614,
+          1.1630752330659735
+        ],
+        "h_range": [
+          0.5228875657018957,
+          0.9151799043533317
+        ],
+        "IP3_range": [
+          0.45,
+          0.9879957908971156
+        ],
+        "quadratic_active_fraction": 0.2995310668229777,
+        "active_outside_first_C_region_fraction": 0.010550996483001172,
+        "first_C_region_fraction": 0.7813599062133646,
+        "latent_r_range": [
+          -0.1324393297642974,
+          1.0502693205108538
+        ]
+      },
+      "riccati": {
+        "C_RMSE_uM": 0.055335314143319936,
+        "C_max_abs_error_uM": 0.42630124219344123,
+        "h_RMSE": 0.021632818816879062,
+        "peak_count_LR_model": [
+          9,
+          9
+        ],
+        "peak_time_MAE_s": 0.6412210637877133,
+        "C_range_uM": [
+          0.028511678827566327,
+          1.1630745584073756
+        ],
+        "h_range": [
+          0.522887626463391,
+          0.9152227247949456
+        ],
+        "IP3_range": [
+          0.45,
+          0.9879957908971146
+        ],
+        "quadratic_active_fraction": 0.4003516998827667,
+        "active_outside_first_C_region_fraction": 0.005275498241500586,
+        "first_C_region_fraction": 0.8030480656506448,
+        "latent_r_range": [
+          -0.13096989557085292,
+          1.050268489818308
+        ]
+      }
+    }
+  ]
+}

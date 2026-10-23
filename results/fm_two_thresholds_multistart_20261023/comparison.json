@@ -1,0 +1,81 @@
+{
+  "incumbent_two_knot_run": {
+    "training_loss": 6295.07063900254,
+    "heldout_C_RMSE": 0.15485796531854432,
+    "thresholds_added_C_uM": [
+      0.09483918791420796,
+      0.13192898635932837
+    ]
+  },
+  "multistart_runs": [
+    {
+      "start": "start2",
+      "thresholds_added_C_uM": [
+        0.08890135002207,
+        0.14231809308239626
+      ],
+      "training_loss": 6730.052509097759,
+      "training_eligible": true,
+      "training_peak_counts_match": true,
+      "training_shape_passes": 10,
+      "training_shape_total": 10,
+      "heldout_C_RMSE": 0.15736531904944015,
+      "heldout_peak_count_matches": 6,
+      "heldout_protocol_count": 6,
+      "heldout_shape_passes": 6,
+      "model": "/workspace/PWL-NEST/results/fm_two_thresholds_multistart_20261023/start2/FM_two_threshold_candidate.json"
+    },
+    {
+      "start": "start3",
+      "thresholds_added_C_uM": [
+        0.10002306740629992,
+        0.14898808773135447
+      ],
+      "training_loss": 6374.160578214847,
+      "training_eligible": true,
+      "training_peak_counts_match": true,
+      "training_shape_passes": 10,
+      "training_shape_total": 10,
+      "heldout_C_RMSE": 0.15456474210129992,
+      "heldout_peak_count_matches": 6,
+      "heldout_protocol_count": 6,
+      "heldout_shape_passes": 6,
+      "model": "/workspace/PWL-NEST/results/fm_two_thresholds_multistart_20261023/start3/FM_two_threshold_candidate.json"
+    },
+    {
+      "start": "start4b",
+      "thresholds_added_C_uM": [
+        0.07314166270002452,
+        0.1491202877666159
+      ],
+      "training_loss": 7965.710106682812,
+      "training_eligible": false,
+      "training_peak_counts_match": false,
+      "training_shape_passes": 8,
+      "training_shape_total": 10,
+      "heldout_C_RMSE": 0.12781992768989528,
+      "heldout_peak_count_matches": 4,
+      "heldout_protocol_count": 6,
+      "heldout_shape_passes": 4,
+      "model": "/workspace/PWL-NEST/results/fm_two_thresholds_multistart_20261023/start4b/FM_two_threshold_candidate.json"
+    },
+    {
+      "start": "start5",
+      "thresholds_added_C_uM": [
+        0.08446516585696678,
+        0.11783676337472053
+      ],
+      "training_loss": 8493.674851681346,
+      "training_eligible": false,
+      "training_peak_counts_match": false,
+      "training_shape_passes": 9,
+      "training_shape_total": 10,
+      "heldout_C_RMSE": 0.15205776071106794,
+      "heldout_peak_count_matches": 6,
+      "heldout_protocol_count": 6,
+      "heldout_shape_passes": 6,
+      "model": "/workspace/PWL-NEST/results/fm_two_thresholds_multistart_20261023/start5/FM_two_threshold_candidate.json"
+    }
+  ],
+  "conclusion": "Best fully eligible multistart is start3; its heldout C RMSE improves only slightly over incumbent and prior two-knot run. Starts with larger heldout RMSE gains failed training peak-count/shape eligibility gates."
+}

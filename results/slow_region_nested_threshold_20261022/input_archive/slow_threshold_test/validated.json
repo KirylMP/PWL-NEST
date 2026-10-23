@@ -1,0 +1,292 @@
+{
+  "compression_from": "models/continued_shape_candidates/FM_control.json",
+  "thresholds": [
+    0.015194801159961467,
+    0.14328039311772045,
+    0.3606679278346462
+  ],
+  "fitted_coefficients": [
+    [
+      0.5210857888936062,
+      -63.241252569915495,
+      0.3880258294602949,
+      0.4175959426529084,
+      67.84499680920476,
+      -3.7178331863229963,
+      -1.4255686397674239
+    ],
+    [
+      -0.02321537346104089,
+      -0.6626817387951511,
+      -0.09592734330504718,
+      0.18551267093257792,
+      -0.38156590070409185,
+      0.3260099570126075,
+      -0.291646131974513
+    ]
+  ],
+  "refined_coefficients": [
+    [
+      0.5210857888936062,
+      -63.241252569915495,
+      0.3880258294602949,
+      0.4175959426529084,
+      67.84499680920476,
+      -3.7178331863229963,
+      -1.4255686397674239
+    ],
+    [
+      -0.02321537346104089,
+      -0.6626817387951511,
+      -0.09592734330504718,
+      0.18551267093257792,
+      -0.38156590070409185,
+      0.3260099570126075,
+      -0.291646131974513
+    ]
+  ],
+  "refinement_nfev": 1,
+  "refinement_parameters_normalized": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "validation": [
+    {
+      "I": 0.53,
+      "original": {
+        "period": 41.25,
+        "amp": 0.9369,
+        "valid": true,
+        "n_peaks_late": 7
+      },
+      "compressed": {
+        "period": 39.0,
+        "amp": 0.9409,
+        "valid": true,
+        "n_peaks_late": 7
+      },
+      "refined": {
+        "period": 39.0,
+        "amp": 0.9409,
+        "valid": true,
+        "n_peaks_late": 7
+      }
+    },
+    {
+      "I": 0.54,
+      "original": {
+        "period": 37.25,
+        "amp": 0.9446,
+        "valid": true,
+        "n_peaks_late": 7
+      },
+      "compressed": {
+        "period": 36.75,
+        "amp": 0.9439,
+        "valid": true,
+        "n_peaks_late": 7
+      },
+      "refined": {
+        "period": 36.75,
+        "amp": 0.9439,
+        "valid": true,
+        "n_peaks_late": 7
+      }
+    },
+    {
+      "I": 0.55,
+      "original": {
+        "period": 35.25,
+        "amp": 0.949,
+        "valid": true,
+        "n_peaks_late": 8
+      },
+      "compressed": {
+        "period": 35.0,
+        "amp": 0.9463,
+        "valid": true,
+        "n_peaks_late": 8
+      },
+      "refined": {
+        "period": 35.0,
+        "amp": 0.9463,
+        "valid": true,
+        "n_peaks_late": 8
+      }
+    },
+    {
+      "I": 0.6,
+      "original": {
+        "period": 29.5,
+        "amp": 0.9653,
+        "valid": true,
+        "n_peaks_late": 10
+      },
+      "compressed": {
+        "period": 29.0,
+        "amp": 0.9578,
+        "valid": true,
+        "n_peaks_late": 10
+      },
+      "refined": {
+        "period": 29.0,
+        "amp": 0.9578,
+        "valid": true,
+        "n_peaks_late": 10
+      }
+    },
+    {
+      "I": 0.7,
+      "original": {
+        "period": 23.75,
+        "amp": 0.9917,
+        "valid": true,
+        "n_peaks_late": 12
+      },
+      "compressed": {
+        "period": 23.5,
+        "amp": 0.9798,
+        "valid": true,
+        "n_peaks_late": 12
+      },
+      "refined": {
+        "period": 23.5,
+        "amp": 0.9798,
+        "valid": true,
+        "n_peaks_late": 12
+      }
+    },
+    {
+      "I": 0.8,
+      "original": {
+        "period": 20.75,
+        "amp": 1.0151,
+        "valid": true,
+        "n_peaks_late": 14
+      },
+      "compressed": {
+        "period": 20.5,
+        "amp": 1.0009,
+        "valid": true,
+        "n_peaks_late": 14
+      },
+      "refined": {
+        "period": 20.5,
+        "amp": 1.0009,
+        "valid": true,
+        "n_peaks_late": 14
+      }
+    },
+    {
+      "I": 0.9,
+      "original": {
+        "period": 18.75,
+        "amp": 1.0382,
+        "valid": true,
+        "n_peaks_late": 15
+      },
+      "compressed": {
+        "period": 18.5,
+        "amp": 1.0216,
+        "valid": true,
+        "n_peaks_late": 15
+      },
+      "refined": {
+        "period": 18.5,
+        "amp": 1.0216,
+        "valid": true,
+        "n_peaks_late": 15
+      }
+    },
+    {
+      "I": 1.0,
+      "original": {
+        "period": 17.5,
+        "amp": 1.0601,
+        "valid": true,
+        "n_peaks_late": 16
+      },
+      "compressed": {
+        "period": 17.25,
+        "amp": 1.0419,
+        "valid": true,
+        "n_peaks_late": 16
+      },
+      "refined": {
+        "period": 17.25,
+        "amp": 1.0419,
+        "valid": true,
+        "n_peaks_late": 16
+      }
+    },
+    {
+      "I": 1.1,
+      "original": {
+        "period": 16.75,
+        "amp": 1.0807,
+        "valid": true,
+        "n_peaks_late": 16
+      },
+      "compressed": {
+        "period": 16.5,
+        "amp": 1.0617,
+        "valid": true,
+        "n_peaks_late": 17
+      },
+      "refined": {
+        "period": 16.5,
+        "amp": 1.0617,
+        "valid": true,
+        "n_peaks_late": 17
+      }
+    },
+    {
+      "I": 1.12,
+      "original": {
+        "period": 17.0,
+        "amp": 1.0847,
+        "valid": true,
+        "n_peaks_late": 16
+      },
+      "compressed": {
+        "period": 16.5,
+        "amp": 1.0656,
+        "valid": true,
+        "n_peaks_late": 17
+      },
+      "refined": {
+        "period": 16.5,
+        "amp": 1.0656,
+        "valid": true,
+        "n_peaks_late": 17
+      }
+    },
+    {
+      "I": 1.13,
+      "original": {
+        "period": null,
+        "amp": 0.0,
+        "valid": true,
+        "n_peaks_late": 0
+      },
+      "compressed": {
+        "period": 16.5,
+        "amp": 1.0675,
+        "valid": true,
+        "n_peaks_late": 17
+      },
+      "refined": {
+        "period": 16.5,
+        "amp": 1.0675,
+        "valid": true,
+        "n_peaks_late": 17
+      }
+    }
+  ]
+}

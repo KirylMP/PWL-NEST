@@ -1,0 +1,121 @@
+{
+  "timing_weight": 3.0,
+  "dynamic_width_gate": true,
+  "dynamic_width_residual_weight": 1.0,
+  "phase_ceiling": null,
+  "regions_before": 8,
+  "regions_after": 10,
+  "original_interval_C_uM": [
+    0.05774933375817452,
+    0.1690186499338946
+  ],
+  "tests": [
+    {
+      "name": "two_knot_heldout_tau_13.0",
+      "duration": 340.0,
+      "tau": 13.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_tau_37.0",
+      "duration": 340.0,
+      "tau": 37.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_tau_76.0",
+      "duration": 340.0,
+      "tau": 76.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_tau_128.0",
+      "duration": 340.0,
+      "tau": 128.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_tau_205.0",
+      "duration": 540.0,
+      "tau": 205.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "two_knot_heldout_irregular",
+      "duration": 360.0,
+      "tau": 26.0,
+      "baseline": 0.45,
+      "jumps": [
+        [
+          20.0,
+          0.2939729896687585
+        ],
+        [
+          37.46937332931657,
+          0.21807815394702781
+        ],
+        [
+          58.03157634700979,
+          0.2754101714260952
+        ],
+        [
+          82.48262148474025,
+          0.226194114227939
+        ],
+        [
+          99.96284436768124,
+          0.2927882563848479
+        ],
+        [
+          124.3346107365881,
+          0.2948920600115904
+        ],
+        [
+          141.21480630131475,
+          0.25265832677892464
+        ],
+        [
+          157.08864248998196,
+          0.2834186911637405
+        ],
+        [
+          180.47710775943955,
+          0.2924539243120385
+        ]
+      ]
+    }
+  ],
+  "seed_model": "models/phase_shape_candidates/FM_control.json",
+  "seed_sha256": "0ca19de746443885a503467acc0292df89d1604caa3bbf1cc34c02432f7eef96",
+  "selection": "same training eligibility gates as preceding FM phase fit; fresh protocols kept out of fitting"
+}

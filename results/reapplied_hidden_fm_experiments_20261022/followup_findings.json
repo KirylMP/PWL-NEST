@@ -1,0 +1,55 @@
+{
+  "provenance": "Reapplied from the prior workspace after publication refresh; original uploaded archive is preserved in input_archive/fm_four_region_hidden_state.zip.",
+  "published_tree_preserved": {
+    "head_commit": "bdedc3e",
+    "analytic_event_solver": "unchanged",
+    "preexisting_untracked_benchmark": "results/nest_event_solver/benchmark_rerun_20261021.json (left untouched)"
+  },
+  "uploaded_model": {
+    "calcium_thresholds_u": [0.015194801159961467, 0.14328039311772045, 0.3606679278346462],
+    "calcium_thresholds_C_uM": [0.04306772054796876, 0.16901879992812333, 0.38278362876552496],
+    "regions": 4,
+    "hidden_state_initialization": "r(0)=u(0)",
+    "hidden_parameters": {
+      "a": -0.27534184808371753,
+      "b": -0.06788525566941761,
+      "alpha": 2.31745979055761,
+      "d": 0.16130211084202645,
+      "e": 0.09749471242739638
+    }
+  },
+  "focused_refit": {
+    "parameters": [-0.2569580657533585, -0.0727607481052785, 2.31416593231771, 0.16330558554235758, 0.09895364464324688],
+    "selected_objective_before": 146.26311416708856,
+    "selected_objective_after": 135.01240123556153,
+    "relative_reduction_percent": 1.147,
+    "heldout_tau_170_C_RMSE_before_uM": 0.21876488988061896,
+    "heldout_tau_170_C_RMSE_after_uM": 0.21216497995173828,
+    "constant_input_periods_s": {
+      "0.53": {"fit": 40.0, "Li_Rinzel": 46.0},
+      "0.70": {"fit": 23.2, "Li_Rinzel": 22.6},
+      "1.12": {"fit": 17.0, "Li_Rinzel": 17.6},
+      "1.13": {"fit": null, "Li_Rinzel": null}
+    },
+    "second_local_pass": "A stronger period weighting did not move this candidate."
+  },
+  "extra_hinge_screens": {
+    "method_limit": "One hinge added separately in C, I, or r; knot was fixed at a central test value and only the hinge coefficients were screened. No global knot search was performed.",
+    "C": {
+      "knot_C_uM": 0.25,
+      "weights_du_dv_dr": [0.05003441927917439, 0.049998539724918446, 0.0500025498602488],
+      "result": "Worsened most state trajectory errors and produced false oscillations at constant I=1.13 uM."
+    },
+    "I": {
+      "knot_I_uM": 0.8,
+      "weights_du_dv_dr": [0.1314887129021659, 0.013932609307970387, -0.0030061585156850143],
+      "result": "Improved one transition protocol but removed oscillations at constant I=1.12 uM."
+    },
+    "r": {
+      "knot_r_latent": 0.4,
+      "weights_du_dv_dr": [0.05019633719558448, 0.04922595503819222, 0.06594018701932977],
+      "result": "Created false oscillations at constant I=1.13 uM."
+    }
+  },
+  "scope": "The replay reports C and h only. The refreshed published tree has no nest_adapter SIC readout; no SIC or solver-speed result is asserted."
+}

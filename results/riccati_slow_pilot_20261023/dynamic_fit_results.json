@@ -1,0 +1,497 @@
+{
+  "search": {
+    "algorithm": "differential_evolution",
+    "seed": 20261023,
+    "maxiter": 4,
+    "population_size": 8,
+    "evaluations": 32,
+    "bounds": [
+      [
+        -1.5,
+        -0.02
+      ],
+      [
+        0.32,
+        0.65
+      ]
+    ],
+    "fit_protocols": [
+      "continuation_heldout_irregular",
+      "promoted_tau_35.0",
+      "pulse_tau_100.0"
+    ],
+    "objective": "three representative training dynamic protocols only: mean normalized C RMSE + explicit peak-count and peak-time penalties",
+    "elapsed_s": 63.692412295000395
+  },
+  "prior": {
+    "k": -0.5956250890184878,
+    "theta": 0.4631857945184875
+  },
+  "fitted": {
+    "k": -1.0426745824279184,
+    "theta": 0.5742880643639637,
+    "loss": 3.3746019467339377
+  },
+  "metrics": {
+    "prior_train": {
+      "mean_C_RMSE_uM": 0.13559415577771589,
+      "peak_count_matches": 10,
+      "protocol_count": 10,
+      "mean_peak_time_MAE_s": 1.183520734520636,
+      "protocols": [
+        {
+          "name": "pulse_tau_20.0",
+          "rmse_C_uM": 0.040197383997499316,
+          "peak_counts": [
+            2,
+            2
+          ],
+          "peak_time_mae_s": 1.0,
+          "max_C_uM": 1.293380785347906,
+          "min_C_uM": 0.029294064377972932
+        },
+        {
+          "name": "pulse_tau_100.0",
+          "rmse_C_uM": 0.1432412831678535,
+          "peak_counts": [
+            8,
+            8
+          ],
+          "peak_time_mae_s": 0.5625,
+          "max_C_uM": 1.3162718599628218,
+          "min_C_uM": 0.028506361809628372
+        },
+        {
+          "name": "periodic",
+          "rmse_C_uM": 0.19769115816751803,
+          "peak_counts": [
+            5,
+            5
+          ],
+          "peak_time_mae_s": 2.0,
+          "max_C_uM": 1.1111898802110793,
+          "min_C_uM": 0.028841550431046307
+        },
+        {
+          "name": "promoted_tau_35.0",
+          "rmse_C_uM": 0.04301257105669007,
+          "peak_counts": [
+            3,
+            3
+          ],
+          "peak_time_mae_s": 0.8333333333333334,
+          "max_C_uM": 1.3054281474836502,
+          "min_C_uM": 0.029241582750277113
+        },
+        {
+          "name": "promoted_tau_65.0",
+          "rmse_C_uM": 0.08903657478920218,
+          "peak_counts": [
+            6,
+            6
+          ],
+          "peak_time_mae_s": 0.75,
+          "max_C_uM": 1.3130883195200667,
+          "min_C_uM": 0.02829406055015329
+        },
+        {
+          "name": "promoted_tau_80.0",
+          "rmse_C_uM": 0.11087188404542367,
+          "peak_counts": [
+            7,
+            7
+          ],
+          "peak_time_mae_s": 0.6428571428571429,
+          "max_C_uM": 1.314789821046272,
+          "min_C_uM": 0.028798647368409258
+        },
+        {
+          "name": "anchored_heldout_tau_48.0",
+          "rmse_C_uM": 0.04576737838162144,
+          "peak_counts": [
+            4,
+            4
+          ],
+          "peak_time_mae_s": 0.5,
+          "max_C_uM": 1.3099000594812686,
+          "min_C_uM": 0.028787685199039202
+        },
+        {
+          "name": "anchored_heldout_tau_160.0",
+          "rmse_C_uM": 0.2142070866121829,
+          "peak_counts": [
+            15,
+            15
+          ],
+          "peak_time_mae_s": 1.4333333333333333,
+          "max_C_uM": 1.3185081442610418,
+          "min_C_uM": 0.028649875146229006
+        },
+        {
+          "name": "continuation_heldout_tau_180.0",
+          "rmse_C_uM": 0.2367221631231109,
+          "peak_counts": [
+            17,
+            17
+          ],
+          "peak_time_mae_s": 1.6470588235294117,
+          "max_C_uM": 1.3189240151608828,
+          "min_C_uM": 0.02822655858755066
+        },
+        {
+          "name": "continuation_heldout_irregular",
+          "rmse_C_uM": 0.23519407443605672,
+          "peak_counts": [
+            8,
+            8
+          ],
+          "peak_time_mae_s": 2.4661247121531384,
+          "max_C_uM": 1.0937447931170985,
+          "min_C_uM": 0.028507936259880913
+        }
+      ]
+    },
+    "fitted_train": {
+      "mean_C_RMSE_uM": 0.15007977678438061,
+      "peak_count_matches": 5,
+      "protocol_count": 10,
+      "mean_peak_time_MAE_s": 1.3600543885594711,
+      "protocols": [
+        {
+          "name": "pulse_tau_20.0",
+          "rmse_C_uM": 0.040067932233294225,
+          "peak_counts": [
+            2,
+            2
+          ],
+          "peak_time_mae_s": 1.0,
+          "max_C_uM": 1.2978761298367139,
+          "min_C_uM": 0.02930634493972754
+        },
+        {
+          "name": "pulse_tau_100.0",
+          "rmse_C_uM": 0.14360620145205955,
+          "peak_counts": [
+            8,
+            8
+          ],
+          "peak_time_mae_s": 0.5625,
+          "max_C_uM": 1.320769008154142,
+          "min_C_uM": 0.02858178697751922
+        },
+        {
+          "name": "periodic",
+          "rmse_C_uM": 0.19708047251769287,
+          "peak_counts": [
+            5,
+            5
+          ],
+          "peak_time_mae_s": 2.0,
+          "max_C_uM": 1.1160236848450025,
+          "min_C_uM": 0.028880505675898678
+        },
+        {
+          "name": "promoted_tau_35.0",
+          "rmse_C_uM": 0.04274072272121547,
+          "peak_counts": [
+            3,
+            3
+          ],
+          "peak_time_mae_s": 0.8333333333333334,
+          "max_C_uM": 1.3099244988968948,
+          "min_C_uM": 0.02925763525435862
+        },
+        {
+          "name": "promoted_tau_65.0",
+          "rmse_C_uM": 0.14327981276078397,
+          "peak_counts": [
+            6,
+            7
+          ],
+          "peak_time_mae_s": null,
+          "max_C_uM": 1.3175853631713896,
+          "min_C_uM": 0.028800491258251355
+        },
+        {
+          "name": "promoted_tau_80.0",
+          "rmse_C_uM": 0.15569021712341338,
+          "peak_counts": [
+            7,
+            8
+          ],
+          "peak_time_mae_s": null,
+          "max_C_uM": 1.3192868446765382,
+          "min_C_uM": 0.028237918037915286
+        },
+        {
+          "name": "anchored_heldout_tau_48.0",
+          "rmse_C_uM": 0.10578750056685016,
+          "peak_counts": [
+            4,
+            5
+          ],
+          "peak_time_mae_s": null,
+          "max_C_uM": 1.3143967230731977,
+          "min_C_uM": 0.028823648738050954
+        },
+        {
+          "name": "anchored_heldout_tau_160.0",
+          "rmse_C_uM": 0.21001635643079838,
+          "peak_counts": [
+            15,
+            16
+          ],
+          "peak_time_mae_s": null,
+          "max_C_uM": 1.3230054724953109,
+          "min_C_uM": 0.02836169406657649
+        },
+        {
+          "name": "continuation_heldout_tau_180.0",
+          "rmse_C_uM": 0.22797379744112897,
+          "peak_counts": [
+            17,
+            18
+          ],
+          "peak_time_mae_s": null,
+          "max_C_uM": 1.323421381471615,
+          "min_C_uM": 0.02842857762040155
+        },
+        {
+          "name": "continuation_heldout_irregular",
+          "rmse_C_uM": 0.2345547545965691,
+          "peak_counts": [
+            8,
+            8
+          ],
+          "peak_time_mae_s": 2.4044386094640227,
+          "max_C_uM": 1.099279944529608,
+          "min_C_uM": 0.028422839788501325
+        }
+      ]
+    },
+    "prior_heldout": {
+      "mean_C_RMSE_uM": 0.08582023704899701,
+      "peak_count_matches": 6,
+      "protocol_count": 6,
+      "mean_peak_time_MAE_s": 0.8536018043944429,
+      "protocols": [
+        {
+          "name": "phase_heldout_tau_9.0",
+          "rmse_C_uM": 0.01727404600528496,
+          "peak_counts": [
+            1,
+            1
+          ],
+          "peak_time_mae_s": 1.0,
+          "max_C_uM": 1.2615797302613478,
+          "min_C_uM": 0.029087737045462837
+        },
+        {
+          "name": "phase_heldout_tau_29.0",
+          "rmse_C_uM": 0.024696025553226645,
+          "peak_counts": [
+            3,
+            3
+          ],
+          "peak_time_mae_s": 0.6666666666666666,
+          "max_C_uM": 1.302055873658311,
+          "min_C_uM": 0.02911471575915239
+        },
+        {
+          "name": "phase_heldout_tau_58.0",
+          "rmse_C_uM": 0.05469308220207413,
+          "peak_counts": [
+            5,
+            5
+          ],
+          "peak_time_mae_s": 0.5,
+          "max_C_uM": 1.3119982363015081,
+          "min_C_uM": 0.029050432199977837
+        },
+        {
+          "name": "phase_heldout_tau_105.0",
+          "rmse_C_uM": 0.13748735029648199,
+          "peak_counts": [
+            10,
+            10
+          ],
+          "peak_time_mae_s": 0.85,
+          "max_C_uM": 1.3165549201400863,
+          "min_C_uM": 0.02872120358141924
+        },
+        {
+          "name": "phase_heldout_tau_170.0",
+          "rmse_C_uM": 0.2258557170298168,
+          "peak_counts": [
+            16,
+            16
+          ],
+          "peak_time_mae_s": 1.5,
+          "max_C_uM": 1.318728190376147,
+          "min_C_uM": 0.028393337612199754
+        },
+        {
+          "name": "phase_heldout_irregular",
+          "rmse_C_uM": 0.05491520120709762,
+          "peak_counts": [
+            9,
+            9
+          ],
+          "peak_time_mae_s": 0.604944159699991,
+          "max_C_uM": 1.16459739587356,
+          "min_C_uM": 0.028461352779013235
+        }
+      ]
+    },
+    "fitted_heldout": {
+      "mean_C_RMSE_uM": 0.10366331952294278,
+      "peak_count_matches": 2,
+      "protocol_count": 6,
+      "mean_peak_time_MAE_s": 0.8333333333333333,
+      "protocols": [
+        {
+          "name": "phase_heldout_tau_9.0",
+          "rmse_C_uM": 0.01735956309128983,
+          "peak_counts": [
+            1,
+            1
+          ],
+          "peak_time_mae_s": 1.0,
+          "max_C_uM": 1.2660723503954288,
+          "min_C_uM": 0.029092256073548588
+        },
+        {
+          "name": "phase_heldout_tau_29.0",
+          "rmse_C_uM": 0.02593405730771142,
+          "peak_counts": [
+            3,
+            3
+          ],
+          "peak_time_mae_s": 0.6666666666666666,
+          "max_C_uM": 1.3065519111904045,
+          "min_C_uM": 0.029318230762586807
+        },
+        {
+          "name": "phase_heldout_tau_58.0",
+          "rmse_C_uM": 0.10263850509059183,
+          "peak_counts": [
+            5,
+            6
+          ],
+          "peak_time_mae_s": null,
+          "max_C_uM": 1.316495067870945,
+          "min_C_uM": 0.028754052380701833
+        },
+        {
+          "name": "phase_heldout_tau_105.0",
+          "rmse_C_uM": 0.1523823996692029,
+          "peak_counts": [
+            10,
+            11
+          ],
+          "peak_time_mae_s": null,
+          "max_C_uM": 1.3210521225949754,
+          "min_C_uM": 0.028217106101081427
+        },
+        {
+          "name": "phase_heldout_tau_170.0",
+          "rmse_C_uM": 0.21880701480559675,
+          "peak_counts": [
+            16,
+            17
+          ],
+          "peak_time_mae_s": null,
+          "max_C_uM": 1.3232255913317046,
+          "min_C_uM": 0.028732787946764957
+        },
+        {
+          "name": "phase_heldout_irregular",
+          "rmse_C_uM": 0.10485837717326395,
+          "peak_counts": [
+            9,
+            10
+          ],
+          "peak_time_mae_s": null,
+          "max_C_uM": 1.1645980860624034,
+          "min_C_uM": 0.028503033066323073
+        }
+      ]
+    },
+    "fixed_I_prior": [
+      {
+        "I": 0.53,
+        "period_s": 45.80000000000004,
+        "late_amplitude_uM": 0.9967641298603477,
+        "Cmax_uM": 1.3
+      },
+      {
+        "I": 0.55,
+        "period_s": 36.0,
+        "late_amplitude_uM": 1.0029049762436575,
+        "Cmax_uM": 1.3
+      },
+      {
+        "I": 0.7,
+        "period_s": 23.30000000000001,
+        "late_amplitude_uM": 1.0381043365066762,
+        "Cmax_uM": 1.3
+      },
+      {
+        "I": 1.0,
+        "period_s": 17.19999999999999,
+        "late_amplitude_uM": 1.1000527804357034,
+        "Cmax_uM": 1.3260160673508181
+      },
+      {
+        "I": 1.12,
+        "period_s": 17.0,
+        "late_amplitude_uM": 1.1219832175140338,
+        "Cmax_uM": 1.3447354193286714
+      },
+      {
+        "I": 1.13,
+        "period_s": null,
+        "late_amplitude_uM": 0.0,
+        "Cmax_uM": 1.3462953653267893
+      }
+    ],
+    "fixed_I_fitted": [
+      {
+        "I": 0.53,
+        "period_s": 40.0,
+        "late_amplitude_uM": 0.9995924165354981,
+        "Cmax_uM": 1.3
+      },
+      {
+        "I": 0.55,
+        "period_s": 35.200000000000045,
+        "late_amplitude_uM": 1.0049684942293926,
+        "Cmax_uM": 1.3
+      },
+      {
+        "I": 0.7,
+        "period_s": 23.30000000000001,
+        "late_amplitude_uM": 1.0381043365066762,
+        "Cmax_uM": 1.3
+      },
+      {
+        "I": 1.0,
+        "period_s": 17.19999999999999,
+        "late_amplitude_uM": 1.1000527804357034,
+        "Cmax_uM": 1.3260160673508181
+      },
+      {
+        "I": 1.12,
+        "period_s": 17.0,
+        "late_amplitude_uM": 1.1219832175140338,
+        "Cmax_uM": 1.3447354193286714
+      },
+      {
+        "I": 1.13,
+        "period_s": null,
+        "late_amplitude_uM": 0.0,
+        "Cmax_uM": 1.3462953653267893
+      }
+    ]
+  }
+}
