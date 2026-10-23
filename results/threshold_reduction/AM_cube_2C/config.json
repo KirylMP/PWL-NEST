@@ -1,0 +1,13 @@
+{
+  "source": "models/am_baseline_refit/AM_sqrt_tails__cube.json",
+  "source_sha256": "78163990b6fb59104d70e2b9ab3d9a66b35dd08582118ed0a9da84bb9d09c3a3",
+  "C_thresholds": 2,
+  "keep_input_thresholds": false,
+  "seed": 20261027,
+  "budget_per_stage": 1000,
+  "optimized_starts": 2,
+  "regions": 3,
+  "selection": "independently verified training residual; no diagnostics",
+  "loss": "RestObjective physical regimes, own rest and event features; spectral boundary anchors omitted for BOTH full and reduced models",
+  "constraints": "exact stable LR background equilibrium, continuous field, ordered C thresholds, positive u-v and negative v-v coupling; original spectral sequence not imposed"
+}

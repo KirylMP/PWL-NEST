@@ -1,0 +1,19 @@
+{"label": "seed_0", "status": "verified", "train_loss": 4873.425763381565, "parts": {"fixed_and_spectral_anchors": 2102.3166330667727, "pulse_tau_20.0": 9.358225202272077, "pulse_tau_100.0": 2510.6299913775647, "periodic": 251.12091373495596, "own_rest": 3.0814879110195774e-29}, "model": "candidates/seed_0.json"}
+{"source": "AM_log", "start": 0, "evaluation": 3, "helper_loss": 4873.425718993917}
+{"source": "AM_log", "start": 0, "evaluation": 104, "helper_loss": 1208.922221893007}
+{"source": "AM_log", "start": 0, "evaluation": 209, "helper_loss": 1208.8139185590912}
+{"source": "AM_log", "start": 0, "evaluation": 313, "helper_loss": 1199.6515977416525}
+{"source": "AM_log", "start": 0, "evaluation": 417, "helper_loss": 1131.5270852454778}
+{"source": "AM_log", "start": 0, "evaluation": 565, "helper_loss": 358.4846751343296}
+{"source": "AM_log", "start": 0, "evaluation": 683, "helper_loss": 338.49510671032857}
+{"source": "AM_log", "start": 0, "evaluation": 784, "helper_loss": 302.3222364019361}
+{"source": "AM_log", "start": 0, "evaluation": 884, "helper_loss": 297.28711724490955}
+{"source": "AM_log", "start": 0, "evaluation": 1013, "helper_loss": 291.16475261574357}
+{"source": "AM_log", "start": 0, "evaluation": 1113, "helper_loss": 290.40901825332105}
+{"source": "AM_log", "start": 0, "evaluation": 1256, "helper_loss": 289.93167267707304}
+{"label": "fit_0", "status": "verified", "train_loss": 289.5731903438707, "parts": {"fixed_and_spectral_anchors": 49.54294661567286, "pulse_tau_20.0": 6.646324457500641, "pulse_tau_100.0": 11.626978307792287, "periodic": 221.75694096290493, "own_rest": 3.0814879110195774e-29}, "model": "candidates/fit_0.json"}
+{"label": "seed_1", "status": "verified", "train_loss": 5915.949631101579, "parts": {"fixed_and_spectral_anchors": 2489.2246396640076, "pulse_tau_20.0": 668.8872789000965, "pulse_tau_100.0": 57.79569553875666, "periodic": 2600.042016998719, "own_rest": 100.0}, "model": "candidates/seed_1.json"}
+{"source": "AM_log", "start": 1, "evaluation": 3, "helper_loss": 5915.949460374238}
+{"source": "AM_log", "start": 1, "evaluation": 107, "helper_loss": 1541.9330504532625}
+{"label": "fit_1", "status": "verified", "train_loss": 1541.9330483786216, "parts": {"fixed_and_spectral_anchors": 58.25639284343825, "pulse_tau_20.0": 653.8335641164792, "pulse_tau_100.0": 47.84532674162762, "periodic": 681.9977646770762, "own_rest": 100.0}, "model": "candidates/fit_1.json"}
+{"source": "AM_log", "selected_loss": 289.5731903438707, "full_loss": 17.075092543830383}

@@ -1,4 +1,4 @@
-"""Targeted continuation of frozen server candidates with absolute peak timing.
+"""Targeted continuation of frozen server candidates with optional peak timing.
 
 Old grid results remain frozen. Selection uses independently computed training
 loss only. Both previous tests and genuinely new protocols are diagnostics.
@@ -113,10 +113,15 @@ def run(args):
     out.mkdir(parents=True, exist_ok=True)
     sources = [ROOT / 'models/server_candidates' / f'{name}.json' for name in args.models]
     seeds = [CalciumTransformPWA.load(p) for p in sources]
+    base_objective = getattr(args, 'base_objective', False)
+    objective_label = ('original RestObjective: fixed regimes, spectral anchors, own rest, event features and weak waveform'
+                       if base_objective else 'original rest/event criterion + every absolute peak time / sigma_s; quadratic peak interpolation')
     config = dict(models=[str(p.relative_to(ROOT)) for p in sources],
         source_sha256=[hashlib.sha256(p.read_bytes()).hexdigest() for p in sources],
         budget=args.budget, restarts=args.restarts, sigma_s=args.timing_sigma, seed=args.seed,
-        objective='original rest/event criterion + every absolute peak time / sigma_s; quadratic peak interpolation',
+        objective=objective_label, base_objective=base_objective,
+        native_maxdt=args.native_maxdt,powell_radius=args.powell_radius,
+        flow_helper=args.flow_helper,
         selection='all training independently recomputed with DOP853; tests excluded',
         field_initialization='frozen cache; no optimization' if args.replay_trials else 'fixed and dynamic training paths only',
         code_sha256=hashlib.sha256(Path(__file__).read_bytes() + code_hash().encode()).hexdigest(),
@@ -126,6 +131,9 @@ def run(args):
         for key in ['models', 'source_sha256', 'budget', 'restarts', 'sigma_s', 'seed', 'objective']:
             if previous_config[key] != config[key]:
                 raise ValueError(f'Saved trial configuration differs: {key}')
+        for key,default in dict(base_objective=False,native_maxdt=.005,powell_radius=None,flow_helper=False).items():
+            if previous_config.get(key,default)!=config[key]:
+                raise ValueError(f'Saved trial numerical configuration differs: {key}')
         atomic(out / 'replay_config.json', config)
     else:
         atomic(out / 'config.json', config)
@@ -140,7 +148,12 @@ def run(args):
     results = []
     for name, source, original in zip(args.models, sources, seeds):
         case = original.case
-        objective = TimingObjective(out, case, original, args.timing_sigma)
+        if args.flow_helper:
+            from am_flow_objective import FlowRestObjective
+            objective=FlowRestObjective(out,case,original,native_maxdt=args.native_maxdt)
+        else:
+            objective = RestObjective(out, case, original, native_maxdt=args.native_maxdt) if base_objective else TimingObjective(out, case, original, args.timing_sigma)
+        objective.native_maxdt=args.native_maxdt
         r, groups = objective(original, precise=True, parts=True)
         baseline_loss = float(r @ r)
         best_loss = baseline_loss
@@ -163,14 +176,17 @@ def run(args):
                 if args.replay_trials:
                     model = CalciumTransformPWA.load(directory / 'candidate.json')
                 else:
-                    model = fitting.fit(case, 'timing', copy.deepcopy(incumbent), data, objective, args.budget,
+                    model = fitting.fit(case, 'baseline' if base_objective else 'timing', copy.deepcopy(incumbent), data, objective, args.budget,
                         rng_seed=args.seed + restart * 100000,
-                        checkpoint_path=directory / 'unverified_checkpoint.json')
-                    model.metadata.update(objective='original event criterion + absolute peak times',
-                        absolute_peak_timing_sigma_s=args.timing_sigma,
+                        checkpoint_path=directory / 'unverified_checkpoint.json',powell_radius=args.powell_radius)
+                    model.metadata.update(objective=objective_label,
                         source_server_candidate=str(source.relative_to(ROOT)),
                         accepted=False, selected_by='independent DOP853 training loss only',
                         current_validation='see the result.json alongside this model; inherited legacy losses are historical')
+                    if not base_objective:
+                        model.metadata['absolute_peak_timing_sigma_s']=args.timing_sigma
+                    else:
+                        model.metadata.pop('absolute_peak_timing_sigma_s',None)
                     model.save(directory / 'candidate.json')
                 residual, parts = objective(model, precise=True, parts=True)
                 loss = float(residual @ residual)
@@ -215,11 +231,22 @@ if __name__ == '__main__':
     parser.add_argument('--budget', type=int, default=1500)
     parser.add_argument('--restarts', type=int, default=1)
     parser.add_argument('--timing-sigma', type=float, default=1.)
+    parser.add_argument('--base-objective', action='store_true',
+                        help='Use the original RestObjective unchanged, without extra absolute peak-time residuals')
+    parser.add_argument('--native-maxdt',type=float,default=.005,
+                        help='Native dynamic integration step in seconds; does not change the loss definition')
+    parser.add_argument('--powell-radius',type=float,
+                        help='Optional local Powell box relative to max(1, abs(parameter)); global feasibility bounds stay unchanged')
+    parser.add_argument('--flow-helper',action='store_true',
+                        help='Use cached affine flows and full fixed-duration trajectories; requires --base-objective')
     parser.add_argument('--seed', type=int, default=20261023)
     parser.add_argument('--reference-cache', help='Optional cache/ from the frozen first grid run')
     parser.add_argument('--replay-trials', action='store_true',
                         help='Recompute saved trial training losses and finish diagnostics; no new fitting')
     args = parser.parse_args()
-    if args.budget < 1 or args.restarts < 0 or not np.isfinite(args.timing_sigma) or args.timing_sigma <= 0:
+    if (args.budget < 1 or args.restarts < 0 or not np.isfinite(args.timing_sigma) or args.timing_sigma <= 0
+        or not np.isfinite(args.native_maxdt) or args.native_maxdt<=0
+        or (args.powell_radius is not None and (not np.isfinite(args.powell_radius) or args.powell_radius<=0))):
         parser.error('Invalid optimization limits or timing sigma')
+    if args.flow_helper and not args.base_objective:parser.error('--flow-helper requires --base-objective')
     run(args)

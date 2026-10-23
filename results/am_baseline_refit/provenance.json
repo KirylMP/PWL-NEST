@@ -1,0 +1,28 @@
+{
+  "base_git_commit": "bdedc3e646212dd72069ae7fbe9577a434dc9d87",
+  "code_sha256": {
+    "scripts/refine_server_candidates.py": "ecae02dfb9133ee01f29b693d4e8f7b06be21c9fa450494139d6584089b7c56a",
+    "scripts/overnight_coordinate_grid.py": "00acbed01a867750173455762b4cf17df4d4cb6d65ad8410c2ede8583e485d0c",
+    "scripts/fit_positive_coordinates.py": "abacd22f4001be1b213aa5476bbdf0d6dbe6572be928fa634c00fb70616b6084",
+    "scripts/am_flow_objective.py": "b567ef67504fa39ad1ed149090339004e765c191f34c932a657ed270a81db3ee",
+    "scripts/evaluate_am_baseline_refit.py": "a83ff7bee517fc7e0e9ab343e2e41273cb06aa9a32a947a4580932554eb7e1a0",
+    "scripts/fit_calcium_coordinates.py": "b0a3af786a85f4676f760437258d37a56e1c6ee26f68c159a31630272f2a7081",
+    "scripts/fit_strict.py": "f6221e1bc36b55c7a1d0c5c34edc8c686c52db0f69933fe1ff5211a3f1650e67",
+    "src/pwl_nest/calcium_coordinates.py": "376520857a495106c1e71d7010d0351376ecbfa7a19606903d427b282741caaf",
+    "src/pwl_nest/rest_protocols.py": "6dc47d18c56ec1b0c38e11661607aa3880980ad0e146a7194abb2a7c54194320",
+    "src/pwl_nest/fit_flow.py": "d4a8461f49ad556b74a776d7c6b882df14fbf1ff6a070ab3f4f5665d47a540c7",
+    "native/fit_flow.cpp": "525e3a12b77b8d24be30ad60bdd385035319c567f7ca36489da5bf012d36a5d9",
+    "native/pwa_step.h": "987d834bcb22fc14bbc547a204ed223875b30da0f5578fda3dcded9979bd0b49",
+    "native/pwa_event.cpp": "e949459ba298fe4bc74b0337edaf3da0d36ef10b0d02d8b4e19ef71c06c96fdf",
+    "native/strips_rk4.cpp": "a0dd0f764d2dc1c711e11b7e965e60046c0023ac3892fe74b92057f15c62e964"
+  },
+  "fit_flow_binary_sha256": "f89f121e7f7fdb1e93460d19678713e34d36461e29bf8778968927d436b6c235",
+  "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+  "selection": "Original independently verified train-loss only; NEST/SIC diagnostics excluded",
+  "tests": {
+    "command": ".venv/bin/python -m unittest discover -s tests -q",
+    "tests_run": 86,
+    "success": true
+  },
+  "note": "Frozen current source snapshot includes full-trajectory numerical follow-up; earlier numerical stages retain their original configs and logs."
+}

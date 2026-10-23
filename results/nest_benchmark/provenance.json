@@ -1,0 +1,94 @@
+{
+  "base_git_commit": "bdedc3e646212dd72069ae7fbe9577a434dc9d87",
+  "code_sha256": {
+    "native/nest_pwa_module.cpp": "98ee3c7df272ace2fe1193c022439cf20bd0f1cecba7cf8189d2d8734e8f7e72",
+    "native/pwa_step.h": "987d834bcb22fc14bbc547a204ed223875b30da0f5578fda3dcded9979bd0b49",
+    "native/pwa_event.cpp": "e949459ba298fe4bc74b0337edaf3da0d36ef10b0d02d8b4e19ef71c06c96fdf",
+    "native/solver_timing.cpp": "b3929236a1072f5c87422a92ccd5ce5c2434ddf6243abb33e45cac5febec4cd5",
+    "src/pwl_nest/nest_adapter.py": "9c6a672196f6e90b703971d0d3049949e8f5f33ea3d5e83f112589ff2e984481",
+    "scripts/build_nest_module.py": "ce6ac306e26110654d7731bc555047bf50ec516da06a186121341515289f52b8",
+    "scripts/benchmark_nest.py": "e0cfde8c223519f0c06c72104326898d1c4c90046745ba44ef79d5cd07c4db75",
+    "scripts/benchmark_nest_resolution.py": "f81fe91cb88900e56dcd052554e8dd240ca388c2f5ce0262ec3d0a5205cd3ef9"
+  },
+  "binaries_sha256": {
+    ".build/pwl_astro_module.so": "db7e38d5493947503dda8dcfa6eda548c7db1d295e935d7524c9ce445cfe1286",
+    ".build/solver_timing.so": "f055ece17f81eeac14b198629bbfe30c4ada158c287b32ee1df3ce04061a67ad"
+  },
+  "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "note": "New adapter changes are uncommitted relative to base_git_commit; exact source hashes identify measured implementation.",
+  "isolated_vs_NEST_terminal_checks": [
+    {
+      "case": "AM",
+      "resolution_ms": 0.1,
+      "kind": "lr",
+      "max_abs_error": 3.3306690738754696e-16
+    },
+    {
+      "case": "AM",
+      "resolution_ms": 0.1,
+      "kind": "pwa",
+      "max_abs_error": 1.6653345369377348e-16
+    },
+    {
+      "case": "AM",
+      "resolution_ms": 1.0,
+      "kind": "lr",
+      "max_abs_error": 4.440892098500626e-16
+    },
+    {
+      "case": "AM",
+      "resolution_ms": 1.0,
+      "kind": "pwa",
+      "max_abs_error": 2.7755575615628914e-16
+    },
+    {
+      "case": "AM",
+      "resolution_ms": 10.0,
+      "kind": "lr",
+      "max_abs_error": 2.220446049250313e-16
+    },
+    {
+      "case": "AM",
+      "resolution_ms": 10.0,
+      "kind": "pwa",
+      "max_abs_error": 2.220446049250313e-16
+    },
+    {
+      "case": "FM",
+      "resolution_ms": 0.1,
+      "kind": "lr",
+      "max_abs_error": 1.6653345369377348e-15
+    },
+    {
+      "case": "FM",
+      "resolution_ms": 0.1,
+      "kind": "pwa",
+      "max_abs_error": 7.771561172376096e-16
+    },
+    {
+      "case": "FM",
+      "resolution_ms": 1.0,
+      "kind": "lr",
+      "max_abs_error": 7.771561172376096e-16
+    },
+    {
+      "case": "FM",
+      "resolution_ms": 1.0,
+      "kind": "pwa",
+      "max_abs_error": 1.1102230246251565e-16
+    },
+    {
+      "case": "FM",
+      "resolution_ms": 10.0,
+      "kind": "lr",
+      "max_abs_error": 1.2212453270876722e-15
+    },
+    {
+      "case": "FM",
+      "resolution_ms": 10.0,
+      "kind": "pwa",
+      "max_abs_error": 1.1102230246251565e-16
+    }
+  ]
+}

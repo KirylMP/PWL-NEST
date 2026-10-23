@@ -1,0 +1,68 @@
+[
+  {
+    "indices": [
+      0,
+      1
+    ],
+    "target": "incumbent",
+    "helper_loss": 2692.41663801985,
+    "parameters": 12,
+    "status": "screened",
+    "family_index": 0
+  },
+  {
+    "indices": [
+      0,
+      1
+    ],
+    "target": "Li_Rinzel",
+    "helper_loss": 671927.8243122398,
+    "parameters": 12,
+    "status": "screened",
+    "family_index": 1
+  },
+  {
+    "indices": [
+      0,
+      2
+    ],
+    "target": "incumbent",
+    "helper_loss": 19660.118791028945,
+    "parameters": 12,
+    "status": "screened",
+    "family_index": 2
+  },
+  {
+    "indices": [
+      0,
+      2
+    ],
+    "target": "Li_Rinzel",
+    "helper_loss": 40580.05912455082,
+    "parameters": 12,
+    "status": "screened",
+    "family_index": 3
+  },
+  {
+    "indices": [
+      1,
+      2
+    ],
+    "target": "incumbent",
+    "helper_loss": 43597.8639064319,
+    "parameters": 12,
+    "status": "screened",
+    "family_index": 4
+  },
+  {
+    "indices": [
+      1,
+      2
+    ],
+    "target": "Li_Rinzel",
+    "helper_loss": 200625.27211498245,
+    "parameters": 12,
+    "status": "screened",
+    "family_index": 5
+  }
+]

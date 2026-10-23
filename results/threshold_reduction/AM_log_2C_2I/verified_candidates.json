@@ -1,0 +1,54 @@
+[
+  {
+    "label": "seed_0",
+    "status": "verified",
+    "train_loss": 601.0709811857436,
+    "parts": {
+      "fixed_and_spectral_anchors": 533.9175918404271,
+      "pulse_tau_20.0": 12.15011592021968,
+      "pulse_tau_100.0": 16.088910196726662,
+      "periodic": 38.9143632283701,
+      "own_rest": 7.703719777548943e-30
+    },
+    "model": "candidates/seed_0.json"
+  },
+  {
+    "label": "fit_0",
+    "status": "verified",
+    "train_loss": 63.61440498465393,
+    "parts": {
+      "fixed_and_spectral_anchors": 7.533134469074754,
+      "pulse_tau_20.0": 7.104983137990308,
+      "pulse_tau_100.0": 11.265566046613262,
+      "periodic": 37.710721330975595,
+      "own_rest": 7.703719777548943e-30
+    },
+    "model": "candidates/fit_0.json"
+  },
+  {
+    "label": "seed_1",
+    "status": "verified",
+    "train_loss": 956.1460280136272,
+    "parts": {
+      "fixed_and_spectral_anchors": 477.10611282277836,
+      "pulse_tau_20.0": 462.4147033258412,
+      "pulse_tau_100.0": 4.001437115912893,
+      "periodic": 12.623774749094506,
+      "own_rest": 6.933347799794049e-29
+    },
+    "model": "candidates/seed_1.json"
+  },
+  {
+    "label": "fit_1",
+    "status": "verified",
+    "train_loss": 26.51462554675041,
+    "parts": {
+      "fixed_and_spectral_anchors": 4.405667731626307,
+      "pulse_tau_20.0": 2.6433034678926663,
+      "pulse_tau_100.0": 3.944757596753673,
+      "periodic": 15.520896750477757,
+      "own_rest": 0.0
+    },
+    "model": "candidates/fit_1.json"
+  }
+]

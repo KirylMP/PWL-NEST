@@ -1,0 +1,5712 @@
+{
+  "selection": "Independent DOP853 original RestObjective training loss only. All SIC/NEST and held-out metrics excluded.",
+  "branches": {
+    "cube": {
+      "baseline_train_loss": 28.151380919207647,
+      "selected_train_loss": 27.81540971372194,
+      "selected_trial": "trials/AM_sqrt_tails__cube/r0000/candidate.json",
+      "model": "results/am_baseline_refit/flow/cube/selected/AM_sqrt_tails__cube.json",
+      "trials": [
+        {
+          "run": "cube",
+          "restart": 0,
+          "status": "verified",
+          "verified_train_loss": 2734.9103261681653,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 4.654326566586872,
+            "pulse_tau_20.0": 6.819458460841725,
+            "pulse_tau_100.0": 6.192163246950503,
+            "periodic": 2716.98994175779,
+            "own_rest": 0.2544361359964973
+          },
+          "seconds": 42.1997603399941,
+          "model": "trials/AM_sqrt_tails__cube/r0000/candidate.json"
+        },
+        {
+          "run": "cube",
+          "restart": 1,
+          "status": "verified",
+          "verified_train_loss": 2734.9103261681653,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 4.654326566586872,
+            "pulse_tau_20.0": 6.819458460841725,
+            "pulse_tau_100.0": 6.192163246950503,
+            "periodic": 2716.98994175779,
+            "own_rest": 0.2544361359964973
+          },
+          "seconds": 37.47357546699641,
+          "model": "trials/AM_sqrt_tails__cube/r0001/candidate.json"
+        },
+        {
+          "run": "refined/cube",
+          "restart": 0,
+          "status": "verified",
+          "verified_train_loss": 30.80138231473005,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 9.982123598745897,
+            "pulse_tau_20.0": 4.32931769618618,
+            "pulse_tau_100.0": 6.482496693403811,
+            "periodic": 9.778812420655543,
+            "own_rest": 0.22863190573860798
+          },
+          "seconds": 115.60994028300047,
+          "model": "trials/AM_sqrt_tails__cube/r0000/candidate.json"
+        },
+        {
+          "run": "refined/cube",
+          "restart": 1,
+          "status": "verified",
+          "verified_train_loss": 28.126735354514043,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 4.645672929805332,
+            "pulse_tau_20.0": 6.826448287070361,
+            "pulse_tau_100.0": 6.199771562419722,
+            "periodic": 10.197569332446847,
+            "own_rest": 0.2572732427717831
+          },
+          "seconds": 121.18541517898848,
+          "model": "trials/AM_sqrt_tails__cube/r0001/candidate.json"
+        },
+        {
+          "run": "flow/cube",
+          "restart": 0,
+          "status": "verified",
+          "verified_train_loss": 27.81540971372194,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 4.513136913535758,
+            "pulse_tau_20.0": 6.849026770935795,
+            "pulse_tau_100.0": 6.276911337993005,
+            "periodic": 9.929241857165215,
+            "own_rest": 0.24709283409215976
+          },
+          "seconds": 156.8087912810006,
+          "model": "trials/AM_sqrt_tails__cube/r0000/candidate.json"
+        }
+      ],
+      "runs": [
+        {
+          "directory": "cube",
+          "baseline_train_loss": 28.151380919207647,
+          "selected_train_loss": 28.151380919207647,
+          "config": {
+            "models": [
+              "models/server_candidates/AM_sqrt_tails__cube.json"
+            ],
+            "source_sha256": [
+              "365e1d0327b5308e89aaccec601fb9f6d6edf073156b30825eb82d4518b03294"
+            ],
+            "budget": 1500,
+            "restarts": 2,
+            "sigma_s": 1.0,
+            "seed": 20261024,
+            "objective": "original RestObjective: fixed regimes, spectral anchors, own rest, event features and weak waveform",
+            "base_objective": true,
+            "selection": "all training independently recomputed with DOP853; tests excluded",
+            "field_initialization": "fixed and dynamic training paths only",
+            "code_sha256": "78f33a005ea5a6c677e7c946c6e2ac4bbc4abdf4ad8b6bed7770c917bbb278f4",
+            "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+            "numpy": "2.3.5",
+            "scipy": "1.17.0"
+          }
+        },
+        {
+          "directory": "refined/cube",
+          "baseline_train_loss": 28.151380919207647,
+          "selected_train_loss": 28.126735354514043,
+          "config": {
+            "models": [
+              "models/server_candidates/AM_sqrt_tails__cube.json"
+            ],
+            "source_sha256": [
+              "365e1d0327b5308e89aaccec601fb9f6d6edf073156b30825eb82d4518b03294"
+            ],
+            "budget": 1500,
+            "restarts": 2,
+            "sigma_s": 1.0,
+            "seed": 20261025,
+            "objective": "original RestObjective: fixed regimes, spectral anchors, own rest, event features and weak waveform",
+            "base_objective": true,
+            "native_maxdt": 0.001,
+            "powell_radius": 0.01,
+            "selection": "all training independently recomputed with DOP853; tests excluded",
+            "field_initialization": "fixed and dynamic training paths only",
+            "code_sha256": "d6cc6a852f12a9109e871378025d8f7bef012a7ff759a5561c578c29ebd7028d",
+            "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+            "numpy": "2.3.5",
+            "scipy": "1.17.0"
+          }
+        },
+        {
+          "directory": "flow/cube",
+          "baseline_train_loss": 28.151380919207647,
+          "selected_train_loss": 27.81540971372194,
+          "config": {
+            "models": [
+              "models/server_candidates/AM_sqrt_tails__cube.json"
+            ],
+            "source_sha256": [
+              "365e1d0327b5308e89aaccec601fb9f6d6edf073156b30825eb82d4518b03294"
+            ],
+            "budget": 1500,
+            "restarts": 1,
+            "sigma_s": 1.0,
+            "seed": 20261026,
+            "objective": "original RestObjective: fixed regimes, spectral anchors, own rest, event features and weak waveform",
+            "base_objective": true,
+            "native_maxdt": 0.02,
+            "powell_radius": 0.01,
+            "flow_helper": true,
+            "selection": "all training independently recomputed with DOP853; tests excluded",
+            "field_initialization": "fixed and dynamic training paths only",
+            "code_sha256": "4d3312449be37425cd7a3672a7efcb97e48366c31417b68b8e212dfd1d61090d",
+            "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+            "numpy": "2.3.5",
+            "scipy": "1.17.0"
+          }
+        }
+      ],
+      "previous_tests": {
+        "C_RMSE": 0.018893001111122985,
+        "physical": true,
+        "peak_count_matches": 4,
+        "protocol_count": 4
+      },
+      "historical_diagnostics": {
+        "C_RMSE": 0.028400970890541756,
+        "physical": true,
+        "peak_count_matches": 4,
+        "protocol_count": 5
+      },
+      "review_model": "models/am_baseline_refit/AM_sqrt_tails__cube.json",
+      "review_sha256": "78163990b6fb59104d70e2b9ab3d9a66b35dd08582118ed0a9da84bb9d09c3a3"
+    },
+    "log": {
+      "baseline_train_loss": 17.742868010015783,
+      "selected_train_loss": 17.58516968767143,
+      "selected_trial": "trials/AM_sqrt_tails__log/r0001/candidate.json",
+      "model": "results/am_baseline_refit/refined/log/selected/AM_sqrt_tails__log.json",
+      "trials": [
+        {
+          "run": "log",
+          "restart": 0,
+          "status": "verified",
+          "verified_train_loss": 17.742381753196987,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 5.389794803296459,
+            "pulse_tau_20.0": 1.751004970007073,
+            "pulse_tau_100.0": 4.023192059388673,
+            "periodic": 6.517415728802415,
+            "own_rest": 0.06097419170237029
+          },
+          "seconds": 40.15489961500862,
+          "model": "trials/AM_sqrt_tails__log/r0000/candidate.json"
+        },
+        {
+          "run": "log",
+          "restart": 1,
+          "status": "verified",
+          "verified_train_loss": 17.741926659559276,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 5.389518674998958,
+            "pulse_tau_20.0": 1.7507785369574334,
+            "pulse_tau_100.0": 4.022911466582223,
+            "periodic": 6.5177180665167445,
+            "own_rest": 0.060999914503918916
+          },
+          "seconds": 39.08409784799733,
+          "model": "trials/AM_sqrt_tails__log/r0001/candidate.json"
+        },
+        {
+          "run": "refined/log",
+          "restart": 0,
+          "status": "verified",
+          "verified_train_loss": 17.65740492367395,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 5.371668666431496,
+            "pulse_tau_20.0": 1.4752875424283893,
+            "pulse_tau_100.0": 3.8962995018167117,
+            "periodic": 6.852368631406457,
+            "own_rest": 0.06178058159089577
+          },
+          "seconds": 112.81574295699829,
+          "model": "trials/AM_sqrt_tails__log/r0000/candidate.json"
+        },
+        {
+          "run": "refined/log",
+          "restart": 1,
+          "status": "verified",
+          "verified_train_loss": 17.58516968767143,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 5.382639209427548,
+            "pulse_tau_20.0": 1.473349766566158,
+            "pulse_tau_100.0": 3.810102950265801,
+            "periodic": 6.858318170780833,
+            "own_rest": 0.060759590631091626
+          },
+          "seconds": 86.71795434200612,
+          "model": "trials/AM_sqrt_tails__log/r0001/candidate.json"
+        },
+        {
+          "run": "flow/log",
+          "restart": 0,
+          "status": "verified",
+          "verified_train_loss": 17.614572687291762,
+          "train_parts": {
+            "fixed_and_spectral_anchors": 5.263745259084894,
+            "pulse_tau_20.0": 1.7078941284974212,
+            "pulse_tau_100.0": 3.955775641826492,
+            "periodic": 6.62274586405626,
+            "own_rest": 0.06441179382669383
+          },
+          "seconds": 149.72822940499464,
+          "model": "trials/AM_sqrt_tails__log/r0000/candidate.json"
+        }
+      ],
+      "runs": [
+        {
+          "directory": "log",
+          "baseline_train_loss": 17.742868010015783,
+          "selected_train_loss": 17.741926659559276,
+          "config": {
+            "models": [
+              "models/server_candidates/AM_sqrt_tails__log.json"
+            ],
+            "source_sha256": [
+              "dd996cf412d6d80933d385ca0645250615a9a94b0ee3116d30cb9b764049ffc8"
+            ],
+            "budget": 1500,
+            "restarts": 2,
+            "sigma_s": 1.0,
+            "seed": 20261024,
+            "objective": "original RestObjective: fixed regimes, spectral anchors, own rest, event features and weak waveform",
+            "base_objective": true,
+            "selection": "all training independently recomputed with DOP853; tests excluded",
+            "field_initialization": "fixed and dynamic training paths only",
+            "code_sha256": "78f33a005ea5a6c677e7c946c6e2ac4bbc4abdf4ad8b6bed7770c917bbb278f4",
+            "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+            "numpy": "2.3.5",
+            "scipy": "1.17.0"
+          }
+        },
+        {
+          "directory": "refined/log",
+          "baseline_train_loss": 17.742868010015783,
+          "selected_train_loss": 17.58516968767143,
+          "config": {
+            "models": [
+              "models/server_candidates/AM_sqrt_tails__log.json"
+            ],
+            "source_sha256": [
+              "dd996cf412d6d80933d385ca0645250615a9a94b0ee3116d30cb9b764049ffc8"
+            ],
+            "budget": 1500,
+            "restarts": 2,
+            "sigma_s": 1.0,
+            "seed": 20261025,
+            "objective": "original RestObjective: fixed regimes, spectral anchors, own rest, event features and weak waveform",
+            "base_objective": true,
+            "native_maxdt": 0.001,
+            "powell_radius": 0.01,
+            "selection": "all training independently recomputed with DOP853; tests excluded",
+            "field_initialization": "fixed and dynamic training paths only",
+            "code_sha256": "d6cc6a852f12a9109e871378025d8f7bef012a7ff759a5561c578c29ebd7028d",
+            "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+            "numpy": "2.3.5",
+            "scipy": "1.17.0"
+          }
+        },
+        {
+          "directory": "flow/log",
+          "baseline_train_loss": 17.742868010015783,
+          "selected_train_loss": 17.614572687291762,
+          "config": {
+            "models": [
+              "models/server_candidates/AM_sqrt_tails__log.json"
+            ],
+            "source_sha256": [
+              "dd996cf412d6d80933d385ca0645250615a9a94b0ee3116d30cb9b764049ffc8"
+            ],
+            "budget": 1500,
+            "restarts": 1,
+            "sigma_s": 1.0,
+            "seed": 20261026,
+            "objective": "original RestObjective: fixed regimes, spectral anchors, own rest, event features and weak waveform",
+            "base_objective": true,
+            "native_maxdt": 0.02,
+            "powell_radius": 0.01,
+            "flow_helper": true,
+            "selection": "all training independently recomputed with DOP853; tests excluded",
+            "field_initialization": "fixed and dynamic training paths only",
+            "code_sha256": "4d3312449be37425cd7a3672a7efcb97e48366c31417b68b8e212dfd1d61090d",
+            "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+            "numpy": "2.3.5",
+            "scipy": "1.17.0"
+          }
+        }
+      ],
+      "previous_tests": {
+        "C_RMSE": 0.01945408447622565,
+        "physical": true,
+        "peak_count_matches": 3,
+        "protocol_count": 4
+      },
+      "historical_diagnostics": {
+        "C_RMSE": 0.03316199991130654,
+        "physical": true,
+        "peak_count_matches": 3,
+        "protocol_count": 5
+      },
+      "review_model": "models/am_baseline_refit/AM_sqrt_tails__log.json",
+      "review_sha256": "3fa5ffe4abfcfb2f931cc551d0f7a226412c37750fc06d65952fdce33086f28b"
+    }
+  },
+  "selected_gate": "log",
+  "selected_model": "models/am_baseline_refit/selected_AM.json",
+  "selected_sha256": "0434618ae506b2c9a59aa9ce90aa92c51a2845bc5602ff35d3dda0cec6970c96",
+  "network_diagnostics": {
+    "new_own_rest": [
+      {
+        "protocol": {
+          "name": "fresh_tau_9",
+          "duration": 240.0,
+          "tau": 9.0,
+          "baseline": 0.3,
+          "jumps": [
+            [
+              20.0,
+              0.35
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.1231214386699921,
+          0.746607851635111,
+          0.3
+        ],
+        "LR_timing": {
+          "build_seconds": 0.002456205998896621,
+          "prepare_seconds": 0.00012694799806922674,
+          "run_seconds": 0.038099001001683064,
+          "readout_seconds": 0.01060048099316191,
+          "terminal": {
+            "Ca_astro": 0.12312143867101448,
+            "h_IP3R": 0.7466078516290625,
+            "IP3": 0.30000000000847166
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.010174395521920537,
+              "max_abs": 0.094975061908178
+            },
+            "h": {
+              "rmse": 0.0117044630299826,
+              "max_abs": 0.07472306546381569
+            },
+            "IP3": {
+              "rmse": 2.0679674743660484e-14,
+              "max_abs": 3.68594044175552e-14
+            },
+            "I_SIC": {
+              "rmse": 0.1668485623475313,
+              "max_abs": 4.353454824730821
+            },
+            "lr": {
+              "calcium_peaks": 1,
+              "calcium_peak_times": [
+                22.04
+              ],
+              "sic_peak_count": 1,
+              "sic_peak_times": [
+                22.05
+              ],
+              "sic_area": 29.565522919024765,
+              "sic_max": 6.3079605565802845,
+              "sic_active_seconds": 5.36,
+              "C_range": [
+                0.08317361791401404,
+                0.7456143063924677
+              ],
+              "h_range": [
+                0.5693184987183709,
+                0.7473195118497933
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 1,
+              "calcium_peak_times": [
+                22.31
+              ],
+              "sic_peak_count": 1,
+              "sic_peak_times": [
+                22.32
+              ],
+              "sic_area": 26.70218035949498,
+              "sic_max": 6.307321448387861,
+              "sic_active_seconds": 4.89,
+              "C_range": [
+                0.08134053555002958,
+                0.7452635964539667
+              ],
+              "h_range": [
+                0.6177847167228974,
+                0.7404565663528415
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": 0.2699999999999996,
+            "initial": [
+              0.1280132816171176,
+              0.7404565663528417,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.0037872349930694327,
+              "prepare_seconds": 7.418000313919038e-05,
+              "run_seconds": 0.028362850003759377,
+              "readout_seconds": 0.010638496998581104,
+              "terminal": {
+                "Ca_astro": 0.12801328161853387,
+                "h_IP3R": 0.7404565663505218,
+                "IP3": 0.3000000000084917
+              },
+              "counters": {
+                "affine_flows": 24314,
+                "region_crossings": 8,
+                "input_spikes": 1
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.010226385375461694,
+              "max_abs": 0.0941184563116576
+            },
+            "h": {
+              "rmse": 0.011701030992557246,
+              "max_abs": 0.07768252913122964
+            },
+            "IP3": {
+              "rmse": 2.0687751124413016e-14,
+              "max_abs": 3.7192471324942744e-14
+            },
+            "I_SIC": {
+              "rmse": 0.16898136638379774,
+              "max_abs": 4.377180175325442
+            },
+            "lr": {
+              "calcium_peaks": 1,
+              "calcium_peak_times": [
+                22.04
+              ],
+              "sic_peak_count": 1,
+              "sic_peak_times": [
+                22.05
+              ],
+              "sic_area": 29.565522919024765,
+              "sic_max": 6.3079605565802845,
+              "sic_active_seconds": 5.36,
+              "C_range": [
+                0.08317361791401404,
+                0.7456143063924677
+              ],
+              "h_range": [
+                0.5693184987183709,
+                0.7473195118497933
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 1,
+              "calcium_peak_times": [
+                22.31
+              ],
+              "sic_peak_count": 1,
+              "sic_peak_times": [
+                22.32
+              ],
+              "sic_area": 26.661874358251808,
+              "sic_max": 6.308082623865449,
+              "sic_active_seconds": 4.88,
+              "C_range": [
+                0.08126775406301551,
+                0.7456813161820781
+              ],
+              "h_range": [
+                0.6219782185025624,
+                0.7419059787772927
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": 0.2699999999999996,
+            "initial": [
+              0.12800252247119573,
+              0.7419059787772927,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.0062361700111068785,
+              "prepare_seconds": 5.524199514184147e-05,
+              "run_seconds": 0.029461427009664476,
+              "readout_seconds": 0.010425571002997458,
+              "terminal": {
+                "Ca_astro": 0.12800252247260513,
+                "h_IP3R": 0.7419059787750104,
+                "IP3": 0.3000000000084917
+              },
+              "counters": {
+                "affine_flows": 24314,
+                "region_crossings": 8,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.01031424688659868,
+              "max_abs": 0.1326896555506627
+            },
+            "h": {
+              "rmse": 0.008525073002586373,
+              "max_abs": 0.06088323889884273
+            },
+            "IP3": {
+              "rmse": 2.0678078285055862e-14,
+              "max_abs": 3.674838211509268e-14
+            },
+            "I_SIC": {
+              "rmse": 0.14061321508400146,
+              "max_abs": 3.9820272687518563
+            },
+            "lr": {
+              "calcium_peaks": 1,
+              "calcium_peak_times": [
+                22.04
+              ],
+              "sic_peak_count": 1,
+              "sic_peak_times": [
+                22.05
+              ],
+              "sic_area": 29.565522919024765,
+              "sic_max": 6.3079605565802845,
+              "sic_active_seconds": 5.36,
+              "C_range": [
+                0.08317361791401404,
+                0.7456143063924677
+              ],
+              "h_range": [
+                0.5693184987183709,
+                0.7473195118497933
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 2,
+              "calcium_peak_times": [
+                22.45,
+                37.74
+              ],
+              "sic_peak_count": 1,
+              "sic_peak_times": [
+                22.46
+              ],
+              "sic_area": 27.160922782108067,
+              "sic_max": 6.296044550285309,
+              "sic_active_seconds": 4.98,
+              "C_range": [
+                0.07319686128598263,
+                0.7391121377804672
+              ],
+              "h_range": [
+                0.5946836843965347,
+                0.7464214081395313
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.125589911813037,
+              0.7464214081395313,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005261327009066008,
+              "prepare_seconds": 5.5733005865477026e-05,
+              "run_seconds": 0.02871610299916938,
+              "readout_seconds": 0.009715050007798709,
+              "terminal": {
+                "Ca_astro": 0.12558991181594284,
+                "h_IP3R": 0.746421408136038,
+                "IP3": 0.3000000000084917
+              },
+              "counters": {
+                "affine_flows": 24314,
+                "region_crossings": 8,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.010493914673982871,
+              "max_abs": 0.13663806046423504
+            },
+            "h": {
+              "rmse": 0.008570959015251423,
+              "max_abs": 0.06123840181818829
+            },
+            "IP3": {
+              "rmse": 2.0676134894246937e-14,
+              "max_abs": 3.697042672001771e-14
+            },
+            "I_SIC": {
+              "rmse": 0.13902151677370725,
+              "max_abs": 3.947079756206877
+            },
+            "lr": {
+              "calcium_peaks": 1,
+              "calcium_peak_times": [
+                22.04
+              ],
+              "sic_peak_count": 1,
+              "sic_peak_times": [
+                22.05
+              ],
+              "sic_area": 29.565522919024765,
+              "sic_max": 6.3079605565802845,
+              "sic_active_seconds": 5.36,
+              "C_range": [
+                0.08317361791401404,
+                0.7456143063924677
+              ],
+              "h_range": [
+                0.5693184987183709,
+                0.7473195118497933
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 2,
+              "calcium_peak_times": [
+                22.46,
+                37.76
+              ],
+              "sic_peak_count": 1,
+              "sic_peak_times": [
+                22.47
+              ],
+              "sic_area": 27.16625543593309,
+              "sic_max": 6.288412940839275,
+              "sic_active_seconds": 4.98,
+              "C_range": [
+                0.07355902206918437,
+                0.7349883394936745
+              ],
+              "h_range": [
+                0.5951208559441585,
+                0.7461347559546483
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.12558456803772622,
+              0.7461347559546483,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005677153007127345,
+              "prepare_seconds": 5.096600216347724e-05,
+              "run_seconds": 0.02774389399564825,
+              "readout_seconds": 0.0096772940014489,
+              "terminal": {
+                "Ca_astro": 0.12558456804064974,
+                "h_IP3R": 0.7461347559511774,
+                "IP3": 0.3000000000084917
+              },
+              "counters": {
+                "affine_flows": 24314,
+                "region_crossings": 8,
+                "input_spikes": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "protocol": {
+          "name": "fresh_tau_29",
+          "duration": 240.0,
+          "tau": 29.0,
+          "baseline": 0.3,
+          "jumps": [
+            [
+              20.0,
+              0.35
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.1231214386699921,
+          0.746607851635111,
+          0.3
+        ],
+        "LR_timing": {
+          "build_seconds": 0.00411875601275824,
+          "prepare_seconds": 4.1139996028505266e-05,
+          "run_seconds": 0.037080383001011796,
+          "readout_seconds": 0.010571096994681284,
+          "terminal": {
+            "Ca_astro": 0.12319867042644725,
+            "h_IP3R": 0.7465031844378984,
+            "IP3": 0.3001775907128918
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.014197356389515966,
+              "max_abs": 0.09679030697116087
+            },
+            "h": {
+              "rmse": 0.01596017390650659,
+              "max_abs": 0.06751522616486527
+            },
+            "IP3": {
+              "rmse": 1.2227518195092814e-13,
+              "max_abs": 1.3444800828210646e-13
+            },
+            "I_SIC": {
+              "rmse": 0.4026855987754088,
+              "max_abs": 4.310963249834043
+            },
+            "lr": {
+              "calcium_peaks": 6,
+              "calcium_peak_times": [
+                22.07,
+                34.37,
+                46.81,
+                60.26,
+                73.56,
+                85.8
+              ],
+              "sic_peak_count": 4,
+              "sic_peak_times": [
+                22.08,
+                34.38,
+                46.82,
+                60.27
+              ],
+              "sic_area": 103.51686218374287,
+              "sic_max": 6.350565618418479,
+              "sic_active_seconds": 22.46,
+              "C_range": [
+                0.09562545588564843,
+                0.7695066130287367
+              ],
+              "h_range": [
+                0.5625413347456957,
+                0.7473245506311192
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 5,
+              "calcium_peak_times": [
+                22.43,
+                34.5,
+                47.29,
+                61.28,
+                74.43
+              ],
+              "sic_peak_count": 4,
+              "sic_peak_times": [
+                22.44,
+                34.51,
+                47.3,
+                61.29
+              ],
+              "sic_area": 95.2444728971517,
+              "sic_max": 6.420299065328814,
+              "sic_active_seconds": 21.12,
+              "C_range": [
+                0.09274168391943913,
+                0.810876768629749
+              ],
+              "h_range": [
+                0.6005613710599733,
+                0.740456566352855
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.1280132816171176,
+              0.7404565663528417,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.003461774002062157,
+              "prepare_seconds": 5.435000639408827e-05,
+              "run_seconds": 0.02846263699757401,
+              "readout_seconds": 0.011370020001777448,
+              "terminal": {
+                "Ca_astro": 0.12807123678400134,
+                "h_IP3R": 0.7404101629928719,
+                "IP3": 0.3001775907127628
+              },
+              "counters": {
+                "affine_flows": 25094,
+                "region_crossings": 28,
+                "input_spikes": 1
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.014182312508104967,
+              "max_abs": 0.09590688403867598
+            },
+            "h": {
+              "rmse": 0.016826382414006056,
+              "max_abs": 0.07067831422354875
+            },
+            "IP3": {
+              "rmse": 1.2228045923364031e-13,
+              "max_abs": 1.3472556403826275e-13
+            },
+            "I_SIC": {
+              "rmse": 0.40103297165696744,
+              "max_abs": 4.331269878322303
+            },
+            "lr": {
+              "calcium_peaks": 6,
+              "calcium_peak_times": [
+                22.07,
+                34.37,
+                46.81,
+                60.26,
+                73.56,
+                85.8
+              ],
+              "sic_peak_count": 4,
+              "sic_peak_times": [
+                22.08,
+                34.38,
+                46.82,
+                60.27
+              ],
+              "sic_area": 103.51686218374287,
+              "sic_max": 6.350565618418479,
+              "sic_active_seconds": 22.46,
+              "C_range": [
+                0.09562545588564843,
+                0.7695066130287367
+              ],
+              "h_range": [
+                0.5625413347456957,
+                0.7473245506311192
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 5,
+              "calcium_peak_times": [
+                22.43,
+                34.5,
+                47.28,
+                61.27,
+                74.4
+              ],
+              "sic_peak_count": 4,
+              "sic_peak_times": [
+                22.44,
+                34.51,
+                47.29,
+                61.28
+              ],
+              "sic_area": 95.10042455681254,
+              "sic_max": 6.4209567054244925,
+              "sic_active_seconds": 21.1,
+              "C_range": [
+                0.09265663060691849,
+                0.8112808153191247
+              ],
+              "h_range": [
+                0.6052189173678543,
+                0.7419059787773054
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.12800252247119573,
+              0.7419059787772927,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.007052818997181021,
+              "prepare_seconds": 7.578301301691681e-05,
+              "run_seconds": 0.041885744998580776,
+              "readout_seconds": 0.013898681994760409,
+              "terminal": {
+                "Ca_astro": 0.128060360734974,
+                "h_IP3R": 0.741860371943352,
+                "IP3": 0.3001775907127628
+              },
+              "counters": {
+                "affine_flows": 25016,
+                "region_crossings": 26,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.012425433662876127,
+              "max_abs": 0.13510920745576893
+            },
+            "h": {
+              "rmse": 0.011568029282799744,
+              "max_abs": 0.05295293886266139
+            },
+            "IP3": {
+              "rmse": 1.223926994625591e-13,
+              "max_abs": 1.3483658634072526e-13
+            },
+            "I_SIC": {
+              "rmse": 0.21197412835065793,
+              "max_abs": 4.004511824865762
+            },
+            "lr": {
+              "calcium_peaks": 6,
+              "calcium_peak_times": [
+                22.07,
+                34.37,
+                46.81,
+                60.26,
+                73.56,
+                85.8
+              ],
+              "sic_peak_count": 4,
+              "sic_peak_times": [
+                22.08,
+                34.38,
+                46.82,
+                60.27
+              ],
+              "sic_area": 103.51686218374287,
+              "sic_max": 6.350565618418479,
+              "sic_active_seconds": 22.46,
+              "C_range": [
+                0.09562545588564843,
+                0.7695066130287367
+              ],
+              "h_range": [
+                0.5625413347456957,
+                0.7473245506311192
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 5,
+              "calcium_peak_times": [
+                22.57,
+                34.43,
+                47.03,
+                60.61,
+                73.44
+              ],
+              "sic_peak_count": 4,
+              "sic_peak_times": [
+                22.58,
+                34.44,
+                47.04,
+                60.62
+              ],
+              "sic_area": 99.56447348663822,
+              "sic_max": 6.417762512075119,
+              "sic_active_seconds": 21.93,
+              "C_range": [
+                0.08784075808277853,
+                0.809320825384114
+              ],
+              "h_range": [
+                0.5791813077150227,
+                0.7464214081395506
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.125589911813037,
+              0.7464214081395313,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005113649007398635,
+              "prepare_seconds": 5.633299588225782e-05,
+              "run_seconds": 0.02646509199985303,
+              "readout_seconds": 0.010345030997996219,
+              "terminal": {
+                "Ca_astro": 0.12567982679634376,
+                "h_IP3R": 0.7463522904899522,
+                "IP3": 0.3001775907127628
+              },
+              "counters": {
+                "affine_flows": 24938,
+                "region_crossings": 24,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.012408854001790752,
+              "max_abs": 0.13915611875727057
+            },
+            "h": {
+              "rmse": 0.01161357926238044,
+              "max_abs": 0.053428430907927815
+            },
+            "IP3": {
+              "rmse": 1.22378947037576e-13,
+              "max_abs": 1.3483658634072526e-13
+            },
+            "I_SIC": {
+              "rmse": 0.20481470185074188,
+              "max_abs": 3.976857882997048
+            },
+            "lr": {
+              "calcium_peaks": 6,
+              "calcium_peak_times": [
+                22.07,
+                34.37,
+                46.81,
+                60.26,
+                73.56,
+                85.8
+              ],
+              "sic_peak_count": 4,
+              "sic_peak_times": [
+                22.08,
+                34.38,
+                46.82,
+                60.27
+              ],
+              "sic_area": 103.51686218374287,
+              "sic_max": 6.350565618418479,
+              "sic_active_seconds": 22.46,
+              "C_range": [
+                0.09562545588564843,
+                0.7695066130287367
+              ],
+              "h_range": [
+                0.5625413347456957,
+                0.7473245506311192
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 5,
+              "calcium_peak_times": [
+                22.58,
+                34.42,
+                47.01,
+                60.59,
+                73.42
+              ],
+              "sic_peak_count": 4,
+              "sic_peak_times": [
+                22.59,
+                34.43,
+                47.02,
+                60.6
+              ],
+              "sic_area": 99.68481013022397,
+              "sic_max": 6.410080111028154,
+              "sic_active_seconds": 21.94,
+              "C_range": [
+                0.08820950736993395,
+                0.8046323819999867
+              ],
+              "h_range": [
+                0.5797432011658841,
+                0.7461347559546675
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.12558456803772622,
+              0.7461347559546483,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005530696013011038,
+              "prepare_seconds": 6.036000559106469e-05,
+              "run_seconds": 0.028210214994032867,
+              "readout_seconds": 0.011615381998126395,
+              "terminal": {
+                "Ca_astro": 0.12567455749500303,
+                "h_IP3R": 0.7460660516542407,
+                "IP3": 0.3001775907127628
+              },
+              "counters": {
+                "affine_flows": 24938,
+                "region_crossings": 24,
+                "input_spikes": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "protocol": {
+          "name": "fresh_tau_58",
+          "duration": 240.0,
+          "tau": 58.0,
+          "baseline": 0.3,
+          "jumps": [
+            [
+              20.0,
+              0.35
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.1231214386699921,
+          0.746607851635111,
+          0.3
+        ],
+        "LR_timing": {
+          "build_seconds": 0.005039117997512221,
+          "prepare_seconds": 5.5181997595354915e-05,
+          "run_seconds": 0.05483898799866438,
+          "readout_seconds": 0.015205885996692814,
+          "terminal": {
+            "Ca_astro": 0.12702573840114925,
+            "h_IP3R": 0.7421426261143416,
+            "IP3": 0.3078839551947012
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.018726465558532884,
+              "max_abs": 0.10083690479306417
+            },
+            "h": {
+              "rmse": 0.021921404160397742,
+              "max_abs": 0.06449607957597936
+            },
+            "IP3": {
+              "rmse": 8.41586331822891e-14,
+              "max_abs": 1.765254609153999e-13
+            },
+            "I_SIC": {
+              "rmse": 0.5643457653313805,
+              "max_abs": 4.256588167839505
+            },
+            "lr": {
+              "calcium_peaks": 11,
+              "calcium_peak_times": [
+                22.08,
+                33.78,
+                45.2,
+                56.92,
+                69.06,
+                81.68,
+                94.75,
+                108.1,
+                121.27,
+                133.94,
+                146.29
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.09,
+                33.79,
+                45.21,
+                56.93,
+                69.07,
+                81.69,
+                94.76,
+                108.11,
+                121.28
+              ],
+              "sic_area": 213.76989756195889,
+              "sic_max": 6.359970382408396,
+              "sic_active_seconds": 48.4,
+              "C_range": [
+                0.10098605814976712,
+                0.774919230382913
+              ],
+              "h_range": [
+                0.5610885080548731,
+                0.7473256886329959
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 11,
+              "calcium_peak_times": [
+                22.47,
+                33.64,
+                44.8,
+                56.46,
+                68.79,
+                82.01,
+                95.72,
+                109.03,
+                121.8,
+                133.85,
+                144.85
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.48,
+                33.65,
+                44.81,
+                56.47,
+                68.8,
+                82.02,
+                95.73,
+                109.04,
+                121.81
+              ],
+              "sic_area": 199.34262203477556,
+              "sic_max": 6.445610019203607,
+              "sic_active_seconds": 46.07,
+              "C_range": [
+                0.09735603750938747,
+                0.8266208296828844
+              ],
+              "h_range": [
+                0.5958652810323657,
+                0.7404565663528415
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 0.5409090909090918,
+            "initial": [
+              0.1280132816171176,
+              0.7404565663528417,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.004648529997211881,
+              "prepare_seconds": 7.055400055833161e-05,
+              "run_seconds": 0.041048197002965026,
+              "readout_seconds": 0.010181760007981211,
+              "terminal": {
+                "Ca_astro": 0.13084670851511412,
+                "h_IP3R": 0.738417595872979,
+                "IP3": 0.30788395519471645
+              },
+              "counters": {
+                "affine_flows": 26108,
+                "region_crossings": 54,
+                "input_spikes": 1
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.01887835587113008,
+              "max_abs": 0.09993560512276972
+            },
+            "h": {
+              "rmse": 0.023462366126991905,
+              "max_abs": 0.06771755010965208
+            },
+            "IP3": {
+              "rmse": 8.421711483937779e-14,
+              "max_abs": 1.766364832178624e-13
+            },
+            "I_SIC": {
+              "rmse": 0.5622357002531678,
+              "max_abs": 4.276428868322739
+            },
+            "lr": {
+              "calcium_peaks": 11,
+              "calcium_peak_times": [
+                22.08,
+                33.78,
+                45.2,
+                56.92,
+                69.06,
+                81.68,
+                94.75,
+                108.1,
+                121.27,
+                133.94,
+                146.29
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.09,
+                33.79,
+                45.21,
+                56.93,
+                69.07,
+                81.69,
+                94.76,
+                108.11,
+                121.28
+              ],
+              "sic_area": 213.76989756195889,
+              "sic_max": 6.359970382408396,
+              "sic_active_seconds": 48.4,
+              "C_range": [
+                0.10098605814976712,
+                0.774919230382913
+              ],
+              "h_range": [
+                0.5610885080548731,
+                0.7473256886329959
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 11,
+              "calcium_peak_times": [
+                22.47,
+                33.63,
+                44.79,
+                56.44,
+                68.77,
+                81.99,
+                95.69,
+                109.0,
+                121.75,
+                133.79,
+                144.77
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.48,
+                33.64,
+                44.8,
+                56.45,
+                68.78,
+                82.0,
+                95.7,
+                109.01,
+                121.76
+              ],
+              "sic_area": 198.9926356040781,
+              "sic_max": 6.446248174536772,
+              "sic_active_seconds": 45.99,
+              "C_range": [
+                0.09726139601057592,
+                0.8270229516958785
+              ],
+              "h_range": [
+                0.6006551411855217,
+                0.7419059787772927
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 0.5472727272727269,
+            "initial": [
+              0.12800252247119573,
+              0.7419059787772927,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005458558996906504,
+              "prepare_seconds": 0.00011676299618557096,
+              "run_seconds": 0.029421907995129004,
+              "readout_seconds": 0.016653209007927217,
+              "terminal": {
+                "Ca_astro": 0.13083086338252983,
+                "h_IP3R": 0.7399024942774592,
+                "IP3": 0.30788395519471645
+              },
+              "counters": {
+                "affine_flows": 26108,
+                "region_crossings": 54,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.020910174938520026,
+              "max_abs": 0.1395408548775512
+            },
+            "h": {
+              "rmse": 0.017334821057660307,
+              "max_abs": 0.05425781929474638
+            },
+            "IP3": {
+              "rmse": 8.431199100341818e-14,
+              "max_abs": 1.765254609153999e-13
+            },
+            "I_SIC": {
+              "rmse": 0.556096157260713,
+              "max_abs": 4.243823167735447
+            },
+            "lr": {
+              "calcium_peaks": 11,
+              "calcium_peak_times": [
+                22.08,
+                33.78,
+                45.2,
+                56.92,
+                69.06,
+                81.68,
+                94.75,
+                108.1,
+                121.27,
+                133.94,
+                146.29
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.09,
+                33.79,
+                45.21,
+                56.93,
+                69.07,
+                81.69,
+                94.76,
+                108.11,
+                121.28
+              ],
+              "sic_area": 213.76989756195889,
+              "sic_max": 6.359970382408396,
+              "sic_active_seconds": 48.4,
+              "C_range": [
+                0.10098605814976712,
+                0.774919230382913
+              ],
+              "h_range": [
+                0.5610885080548731,
+                0.7473256886329959
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 10,
+              "calcium_peak_times": [
+                22.62,
+                33.66,
+                44.74,
+                56.3,
+                68.5,
+                81.56,
+                94.82,
+                107.72,
+                120.2,
+                132.34
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.63,
+                33.67,
+                44.75,
+                56.31,
+                68.51,
+                81.57,
+                94.83,
+                107.73,
+                120.21
+              ],
+              "sic_area": 208.9827751204217,
+              "sic_max": 6.445218322206452,
+              "sic_active_seconds": 48.09,
+              "C_range": [
+                0.0938119798011566,
+                0.8263741359862266
+              ],
+              "h_range": [
+                0.5751964978055469,
+                0.7464214081395313
+              ],
+              "sic_delivery_max_error": 2.220446049250313e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.125589911813037,
+              0.7464214081395313,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.007038708004984073,
+              "prepare_seconds": 7.613300113007426e-05,
+              "run_seconds": 0.04438779898919165,
+              "readout_seconds": 0.015275309997377917,
+              "terminal": {
+                "Ca_astro": 0.12984911649443212,
+                "h_IP3R": 0.7434066937363445,
+                "IP3": 0.3078839551947166
+              },
+              "counters": {
+                "affine_flows": 25874,
+                "region_crossings": 48,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.02104356971997947,
+              "max_abs": 0.14364264893472817
+            },
+            "h": {
+              "rmse": 0.017407213232358672,
+              "max_abs": 0.05457737981733002
+            },
+            "IP3": {
+              "rmse": 8.44811777148979e-14,
+              "max_abs": 1.7696955012524995e-13
+            },
+            "I_SIC": {
+              "rmse": 0.5604077766620006,
+              "max_abs": 4.243823167735447
+            },
+            "lr": {
+              "calcium_peaks": 11,
+              "calcium_peak_times": [
+                22.08,
+                33.78,
+                45.2,
+                56.92,
+                69.06,
+                81.68,
+                94.75,
+                108.1,
+                121.27,
+                133.94,
+                146.29
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.09,
+                33.79,
+                45.21,
+                56.93,
+                69.07,
+                81.69,
+                94.76,
+                108.11,
+                121.28
+              ],
+              "sic_area": 213.76989756195889,
+              "sic_max": 6.359970382408396,
+              "sic_active_seconds": 48.4,
+              "C_range": [
+                0.10098605814976712,
+                0.774919230382913
+              ],
+              "h_range": [
+                0.5610885080548731,
+                0.7473256886329959
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 10,
+              "calcium_peak_times": [
+                22.63,
+                33.66,
+                44.74,
+                56.3,
+                68.49,
+                81.55,
+                94.81,
+                107.71,
+                120.19,
+                132.33
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.64,
+                33.67,
+                44.75,
+                56.31,
+                68.5,
+                81.56,
+                94.82,
+                107.72,
+                120.2
+              ],
+              "sic_area": 209.133642836167,
+              "sic_max": 6.437532789095006,
+              "sic_active_seconds": 48.13,
+              "C_range": [
+                0.09418828265042598,
+                0.82155322706678
+              ],
+              "h_range": [
+                0.5757909840256636,
+                0.7461347559546483
+              ],
+              "sic_delivery_max_error": 2.220446049250313e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.12558456803772622,
+              0.7461347559546483,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.0052903200121363625,
+              "prepare_seconds": 5.56230079382658e-05,
+              "run_seconds": 0.028122123010689393,
+              "readout_seconds": 0.012147500005085021,
+              "terminal": {
+                "Ca_astro": 0.12984451677624095,
+                "h_IP3R": 0.7431377869573002,
+                "IP3": 0.3078839551947166
+              },
+              "counters": {
+                "affine_flows": 25874,
+                "region_crossings": 48,
+                "input_spikes": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "protocol": {
+          "name": "fresh_tau_115",
+          "duration": 300.0,
+          "tau": 115.0,
+          "baseline": 0.3,
+          "jumps": [
+            [
+              20.0,
+              0.35
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.1231214386699921,
+          0.746607851635111,
+          0.3
+        ],
+        "LR_timing": {
+          "build_seconds": 0.0038681950099999085,
+          "prepare_seconds": 3.936899884138256e-05,
+          "run_seconds": 0.04587666300358251,
+          "readout_seconds": 0.01712028999463655,
+          "terminal": {
+            "Ca_astro": 0.1395556350930619,
+            "h_IP3R": 0.7292449344929198,
+            "IP3": 0.330665877237305
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.04382166234766584,
+              "max_abs": 0.14739801109708803
+            },
+            "h": {
+              "rmse": 0.02907616509091698,
+              "max_abs": 0.07428585086026318
+            },
+            "IP3": {
+              "rmse": 4.5453242639514e-13,
+              "max_abs": 5.480615961062085e-13
+            },
+            "I_SIC": {
+              "rmse": 1.1465229372960564,
+              "max_abs": 4.966305034350473
+            },
+            "lr": {
+              "calcium_peaks": 20,
+              "calcium_peak_times": [
+                22.09,
+                33.56,
+                44.66,
+                55.84,
+                67.14,
+                78.6,
+                90.23,
+                102.05,
+                114.07,
+                126.32,
+                138.8,
+                151.49,
+                164.39,
+                177.46,
+                190.63,
+                203.81,
+                216.86,
+                229.72,
+                242.35,
+                254.84
+              ],
+              "sic_peak_count": 17,
+              "sic_peak_times": [
+                22.1,
+                33.57,
+                44.67,
+                55.85,
+                67.15,
+                78.61,
+                90.24,
+                102.06,
+                114.08,
+                126.33,
+                138.81,
+                151.5,
+                164.4,
+                177.47,
+                190.64,
+                203.82,
+                216.87
+              ],
+              "sic_area": 430.7823738569451,
+              "sic_max": 6.3646007520930965,
+              "sic_active_seconds": 97.44,
+              "C_range": [
+                0.1019626427300617,
+                0.7776028537714663
+              ],
+              "h_range": [
+                0.5603817860076594,
+                0.7473262532685071
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 20,
+              "calcium_peak_times": [
+                22.5,
+                33.32,
+                44.07,
+                54.96,
+                66.02,
+                77.31,
+                88.85,
+                100.69,
+                112.86,
+                125.42,
+                138.41,
+                151.91,
+                165.39,
+                178.67,
+                191.72,
+                204.53,
+                217.07,
+                229.32,
+                241.26,
+                252.86
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                22.51,
+                33.33,
+                44.08,
+                54.97,
+                66.03,
+                77.32,
+                88.86,
+                100.7,
+                112.87,
+                125.43,
+                138.42,
+                151.92,
+                165.4,
+                178.68,
+                191.73,
+                204.54,
+                217.08,
+                229.33
+              ],
+              "sic_area": 402.7668005758462,
+              "sic_max": 6.447005629984346,
+              "sic_active_seconds": 93.24,
+              "C_range": [
+                0.10067613938670632,
+                0.8275005816928114
+              ],
+              "h_range": [
+                0.5941871647565673,
+                0.7404565663528687
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 0.8944999999999977,
+            "initial": [
+              0.1280132816171176,
+              0.7404565663528417,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.0034908570087281987,
+              "prepare_seconds": 5.359000351745635e-05,
+              "run_seconds": 0.035914977997890674,
+              "readout_seconds": 0.014131645992165431,
+              "terminal": {
+                "Ca_astro": 0.13968008825576786,
+                "h_IP3R": 0.7325159886836992,
+                "IP3": 0.3306658772367578
+              },
+              "counters": {
+                "affine_flows": 34058,
+                "region_crossings": 104,
+                "input_spikes": 1
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.044825131659271475,
+              "max_abs": 0.15139929766458365
+            },
+            "h": {
+              "rmse": 0.03096269136706257,
+              "max_abs": 0.07704666453913711
+            },
+            "IP3": {
+              "rmse": 4.547056050575159e-13,
+              "max_abs": 5.483946630135961e-13
+            },
+            "I_SIC": {
+              "rmse": 1.155593111801875,
+              "max_abs": 4.989896854106421
+            },
+            "lr": {
+              "calcium_peaks": 20,
+              "calcium_peak_times": [
+                22.09,
+                33.56,
+                44.66,
+                55.84,
+                67.14,
+                78.6,
+                90.23,
+                102.05,
+                114.07,
+                126.32,
+                138.8,
+                151.49,
+                164.39,
+                177.46,
+                190.63,
+                203.81,
+                216.86,
+                229.72,
+                242.35,
+                254.84
+              ],
+              "sic_peak_count": 17,
+              "sic_peak_times": [
+                22.1,
+                33.57,
+                44.67,
+                55.85,
+                67.15,
+                78.61,
+                90.24,
+                102.06,
+                114.08,
+                126.33,
+                138.81,
+                151.5,
+                164.4,
+                177.47,
+                190.64,
+                203.82,
+                216.87
+              ],
+              "sic_area": 430.7823738569451,
+              "sic_max": 6.3646007520930965,
+              "sic_active_seconds": 97.44,
+              "C_range": [
+                0.1019626427300617,
+                0.7776028537714663
+              ],
+              "h_range": [
+                0.5603817860076594,
+                0.7473262532685071
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 20,
+              "calcium_peak_times": [
+                22.49,
+                33.31,
+                44.05,
+                54.93,
+                65.99,
+                77.27,
+                88.81,
+                100.65,
+                112.82,
+                125.37,
+                138.35,
+                151.85,
+                165.33,
+                178.59,
+                191.64,
+                204.44,
+                216.97,
+                229.21,
+                241.14,
+                252.72
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                22.5,
+                33.32,
+                44.06,
+                54.94,
+                66.0,
+                77.28,
+                88.82,
+                100.66,
+                112.83,
+                125.38,
+                138.36,
+                151.86,
+                165.34,
+                178.6,
+                191.65,
+                204.45,
+                216.98,
+                229.22
+              ],
+              "sic_area": 402.1537246399314,
+              "sic_max": 6.4476412136102255,
+              "sic_active_seconds": 93.0,
+              "C_range": [
+                0.10057549655595542,
+                0.8279016420097506
+              ],
+              "h_range": [
+                0.5990251848145056,
+                0.741905978777319
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 0.9069999999999994,
+            "initial": [
+              0.12800252247119573,
+              0.7419059787772927,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005234847994870506,
+              "prepare_seconds": 5.727499956265092e-05,
+              "run_seconds": 0.03682712798763532,
+              "readout_seconds": 0.015132448999793269,
+              "terminal": {
+                "Ca_astro": 0.13964926200991995,
+                "h_IP3R": 0.7341055562826917,
+                "IP3": 0.3306658772367575
+              },
+              "counters": {
+                "affine_flows": 34058,
+                "region_crossings": 104,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.05806656489650623,
+              "max_abs": 0.1758596432224074
+            },
+            "h": {
+              "rmse": 0.02652602497902116,
+              "max_abs": 0.06939479036666607
+            },
+            "IP3": {
+              "rmse": 4.548966331032484e-13,
+              "max_abs": 5.487832410722149e-13
+            },
+            "I_SIC": {
+              "rmse": 1.482187562641142,
+              "max_abs": 5.106229997038151
+            },
+            "lr": {
+              "calcium_peaks": 20,
+              "calcium_peak_times": [
+                22.09,
+                33.56,
+                44.66,
+                55.84,
+                67.14,
+                78.6,
+                90.23,
+                102.05,
+                114.07,
+                126.32,
+                138.8,
+                151.49,
+                164.39,
+                177.46,
+                190.63,
+                203.81,
+                216.86,
+                229.72,
+                242.35,
+                254.84
+              ],
+              "sic_peak_count": 17,
+              "sic_peak_times": [
+                22.1,
+                33.57,
+                44.67,
+                55.85,
+                67.15,
+                78.61,
+                90.24,
+                102.06,
+                114.08,
+                126.33,
+                138.81,
+                151.5,
+                164.4,
+                177.47,
+                190.64,
+                203.82,
+                216.87
+              ],
+              "sic_area": 430.7823738569451,
+              "sic_max": 6.3646007520930965,
+              "sic_active_seconds": 97.44,
+              "C_range": [
+                0.1019626427300617,
+                0.7776028537714663
+              ],
+              "h_range": [
+                0.5603817860076594,
+                0.7473262532685071
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 20,
+              "calcium_peak_times": [
+                22.65,
+                33.37,
+                44.06,
+                54.88,
+                65.88,
+                77.09,
+                88.55,
+                100.28,
+                112.34,
+                124.76,
+                137.59,
+                150.72,
+                163.72,
+                176.57,
+                189.24,
+                201.74,
+                214.04,
+                226.21,
+                238.39,
+                250.42
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                22.66,
+                33.38,
+                44.07,
+                54.89,
+                65.89,
+                77.1,
+                88.56,
+                100.29,
+                112.35,
+                124.77,
+                137.6,
+                150.73,
+                163.73,
+                176.58,
+                189.25,
+                201.75,
+                214.05,
+                226.22
+              ],
+              "sic_area": 420.10476511812277,
+              "sic_max": 6.446961275368336,
+              "sic_active_seconds": 96.97,
+              "C_range": [
+                0.09813096455084258,
+                0.8274726029521827
+              ],
+              "h_range": [
+                0.573839073068816,
+                0.746421408139571
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": 1.6765000000000008,
+            "initial": [
+              0.125589911813037,
+              0.7464214081395313,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005077776004327461,
+              "prepare_seconds": 5.2027011406607926e-05,
+              "run_seconds": 0.03545289499743376,
+              "readout_seconds": 0.014547212005709298,
+              "terminal": {
+                "Ca_astro": 0.14300244305459064,
+                "h_IP3R": 0.7348570483507207,
+                "IP3": 0.3306658772367572
+              },
+              "counters": {
+                "affine_flows": 33668,
+                "region_crossings": 94,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.058089522512069086,
+              "max_abs": 0.17589891777471886
+            },
+            "h": {
+              "rmse": 0.02661729104036486,
+              "max_abs": 0.06965915348241147
+            },
+            "IP3": {
+              "rmse": 4.547782416395189e-13,
+              "max_abs": 5.486722187697524e-13
+            },
+            "I_SIC": {
+              "rmse": 1.482470046891613,
+              "max_abs": 5.106229997038151
+            },
+            "lr": {
+              "calcium_peaks": 20,
+              "calcium_peak_times": [
+                22.09,
+                33.56,
+                44.66,
+                55.84,
+                67.14,
+                78.6,
+                90.23,
+                102.05,
+                114.07,
+                126.32,
+                138.8,
+                151.49,
+                164.39,
+                177.46,
+                190.63,
+                203.81,
+                216.86,
+                229.72,
+                242.35,
+                254.84
+              ],
+              "sic_peak_count": 17,
+              "sic_peak_times": [
+                22.1,
+                33.57,
+                44.67,
+                55.85,
+                67.15,
+                78.61,
+                90.24,
+                102.06,
+                114.08,
+                126.33,
+                138.81,
+                151.5,
+                164.4,
+                177.47,
+                190.64,
+                203.82,
+                216.87
+              ],
+              "sic_area": 430.7823738569451,
+              "sic_max": 6.3646007520930965,
+              "sic_active_seconds": 97.44,
+              "C_range": [
+                0.1019626427300617,
+                0.7776028537714663
+              ],
+              "h_range": [
+                0.5603817860076594,
+                0.7473262532685071
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 20,
+              "calcium_peak_times": [
+                22.65,
+                33.37,
+                44.06,
+                54.88,
+                65.88,
+                77.09,
+                88.55,
+                100.28,
+                112.34,
+                124.75,
+                137.59,
+                150.72,
+                163.72,
+                176.57,
+                189.24,
+                201.74,
+                214.04,
+                226.21,
+                238.39,
+                250.42
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                22.66,
+                33.38,
+                44.07,
+                54.89,
+                65.89,
+                77.1,
+                88.56,
+                100.29,
+                112.35,
+                124.76,
+                137.6,
+                150.73,
+                163.73,
+                176.58,
+                189.25,
+                201.75,
+                214.05,
+                226.22
+              ],
+              "sic_area": 420.2275509106456,
+              "sic_max": 6.439217477590326,
+              "sic_active_seconds": 96.98,
+              "C_range": [
+                0.09851552899013082,
+                0.8226068141904318
+              ],
+              "h_range": [
+                0.5744499963650214,
+                0.7461347559546877
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 1.677000000000001,
+            "initial": [
+              0.12558456803772622,
+              0.7461347559546483,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005245043998002075,
+              "prepare_seconds": 5.504100408870727e-05,
+              "run_seconds": 0.035716675003641285,
+              "readout_seconds": 0.013582252999185584,
+              "terminal": {
+                "Ca_astro": 0.14299509458156506,
+                "h_IP3R": 0.7346376353798255,
+                "IP3": 0.33066587723675733
+              },
+              "counters": {
+                "affine_flows": 33668,
+                "region_crossings": 94,
+                "input_spikes": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "protocol": {
+          "name": "fresh_irregular",
+          "duration": 260.0,
+          "tau": 19.0,
+          "baseline": 0.3,
+          "jumps": [
+            [
+              20.0,
+              0.1660698386847508
+            ],
+            [
+              41.85,
+              0.14375339796627545
+            ],
+            [
+              61.25,
+              0.13878475849138514
+            ],
+            [
+              79.30000000000001,
+              0.14943752600189364
+            ],
+            [
+              100.4,
+              0.17919139342690685
+            ],
+            [
+              121.25,
+              0.1494992414825962
+            ],
+            [
+              136.6,
+              0.12489166652197202
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.1231214386699921,
+          0.746607851635111,
+          0.3
+        ],
+        "LR_timing": {
+          "build_seconds": 0.0044961039966437966,
+          "prepare_seconds": 4.1602004785090685e-05,
+          "run_seconds": 0.04026918399904389,
+          "readout_seconds": 0.010249430008116178,
+          "terminal": {
+            "Ca_astro": 0.12325043476936541,
+            "h_IP3R": 0.7463935934069104,
+            "IP3": 0.3003468492305592
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.018590214714224354,
+              "max_abs": 0.10600402145976734
+            },
+            "h": {
+              "rmse": 0.02521884335678496,
+              "max_abs": 0.06739802246775128
+            },
+            "IP3": {
+              "rmse": 2.3785378027753537e-15,
+              "max_abs": 3.941291737419306e-15
+            },
+            "I_SIC": {
+              "rmse": 0.41672245319673273,
+              "max_abs": 4.027099968533125
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.5,
+                38.23,
+                44.91,
+                59.48,
+                64.05,
+                77.78,
+                81.91,
+                95.15,
+                103.73,
+                117.51,
+                125.51,
+                138.98,
+                153.01,
+                166.34
+              ],
+              "sic_peak_count": 12,
+              "sic_peak_times": [
+                22.51,
+                44.92,
+                59.49,
+                64.06,
+                77.79,
+                81.92,
+                95.16,
+                103.74,
+                117.52,
+                125.52,
+                138.99,
+                153.02
+              ],
+              "sic_area": 273.07009544064834,
+              "sic_max": 5.9651397619076665,
+              "sic_active_seconds": 61.6,
+              "C_range": [
+                0.0849930810186832,
+                0.5862974765500039
+              ],
+              "h_range": [
+                0.5957969827671676,
+                0.746986290257093
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 13,
+              "calcium_peak_times": [
+                22.7,
+                38.49,
+                45.31,
+                63.8,
+                77.85,
+                81.83,
+                95.52,
+                103.71,
+                117.84,
+                125.63,
+                139.08,
+                153.51,
+                166.74
+              ],
+              "sic_peak_count": 13,
+              "sic_peak_times": [
+                22.71,
+                38.5,
+                45.32,
+                60.04,
+                63.81,
+                77.86,
+                81.84,
+                95.53,
+                103.72,
+                117.85,
+                125.64,
+                139.09,
+                153.52
+              ],
+              "sic_area": 252.6912613721189,
+              "sic_max": 5.7537866367518795,
+              "sic_active_seconds": 59.65,
+              "C_range": [
+                0.09194748893764143,
+                0.5120726415628052
+              ],
+              "h_range": [
+                0.6483030685531986,
+                0.7404565663528415
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.1280132816171176,
+              0.7404565663528417,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.003913071996066719,
+              "prepare_seconds": 5.2288000006228685e-05,
+              "run_seconds": 0.03215585400175769,
+              "readout_seconds": 0.012418611004250124,
+              "terminal": {
+                "Ca_astro": 0.12811443151585353,
+                "h_IP3R": 0.7403647832139805,
+                "IP3": 0.3003468492305592
+              },
+              "counters": {
+                "affine_flows": 28341,
+                "region_crossings": 60,
+                "input_spikes": 7
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.018500964910414742,
+              "max_abs": 0.10442850275687926
+            },
+            "h": {
+              "rmse": 0.02675182763024865,
+              "max_abs": 0.07001033106972165
+            },
+            "IP3": {
+              "rmse": 2.458098637564023e-15,
+              "max_abs": 4.218847493575595e-15
+            },
+            "I_SIC": {
+              "rmse": 0.4135675150022318,
+              "max_abs": 3.997658808201407
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.5,
+                38.23,
+                44.91,
+                59.48,
+                64.05,
+                77.78,
+                81.91,
+                95.15,
+                103.73,
+                117.51,
+                125.51,
+                138.98,
+                153.01,
+                166.34
+              ],
+              "sic_peak_count": 12,
+              "sic_peak_times": [
+                22.51,
+                44.92,
+                59.49,
+                64.06,
+                77.79,
+                81.92,
+                95.16,
+                103.74,
+                117.52,
+                125.52,
+                138.99,
+                153.02
+              ],
+              "sic_area": 273.07009544064834,
+              "sic_max": 5.9651397619076665,
+              "sic_active_seconds": 61.6,
+              "C_range": [
+                0.0849930810186832,
+                0.5862974765500039
+              ],
+              "h_range": [
+                0.5957969827671676,
+                0.746986290257093
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 13,
+              "calcium_peak_times": [
+                22.7,
+                38.49,
+                45.3,
+                63.8,
+                77.86,
+                81.82,
+                95.52,
+                103.7,
+                117.83,
+                125.61,
+                139.07,
+                153.5,
+                166.72
+              ],
+              "sic_peak_count": 13,
+              "sic_peak_times": [
+                22.71,
+                38.5,
+                45.31,
+                60.03,
+                63.81,
+                77.87,
+                81.83,
+                95.53,
+                103.71,
+                117.84,
+                125.62,
+                139.08,
+                153.51
+              ],
+              "sic_area": 252.04695488879645,
+              "sic_max": 5.754232133492603,
+              "sic_active_seconds": 59.5,
+              "C_range": [
+                0.09192648592974215,
+                0.512213174802928
+              ],
+              "h_range": [
+                0.6517074564571456,
+                0.7419059787772927
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.12800252247119573,
+              0.7419059787772927,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005694938998203725,
+              "prepare_seconds": 5.567299376707524e-05,
+              "run_seconds": 0.03226255300978664,
+              "readout_seconds": 0.01360164099605754,
+              "terminal": {
+                "Ca_astro": 0.1281034374670866,
+                "h_IP3R": 0.7418157525922845,
+                "IP3": 0.3003468492305592
+              },
+              "counters": {
+                "affine_flows": 28341,
+                "region_crossings": 60,
+                "input_spikes": 7
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.016748596054919785,
+              "max_abs": 0.1363158551105867
+            },
+            "h": {
+              "rmse": 0.018676563715100587,
+              "max_abs": 0.053441857958723804
+            },
+            "IP3": {
+              "rmse": 2.547465871993757e-15,
+              "max_abs": 4.3298697960381105e-15
+            },
+            "I_SIC": {
+              "rmse": 0.3074700126763688,
+              "max_abs": 3.838456057925662
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.5,
+                38.23,
+                44.91,
+                59.48,
+                64.05,
+                77.78,
+                81.91,
+                95.15,
+                103.73,
+                117.51,
+                125.51,
+                138.98,
+                153.01,
+                166.34
+              ],
+              "sic_peak_count": 12,
+              "sic_peak_times": [
+                22.51,
+                44.92,
+                59.49,
+                64.06,
+                77.79,
+                81.92,
+                95.16,
+                103.74,
+                117.52,
+                125.52,
+                138.99,
+                153.02
+              ],
+              "sic_area": 273.07009544064834,
+              "sic_max": 5.9651397619076665,
+              "sic_active_seconds": 61.6,
+              "C_range": [
+                0.0849930810186832,
+                0.5862974765500039
+              ],
+              "h_range": [
+                0.5957969827671676,
+                0.746986290257093
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.93,
+                38.09,
+                45.38,
+                59.65,
+                64.19,
+                77.75,
+                82.05,
+                95.33,
+                103.8,
+                117.55,
+                125.59,
+                139.08,
+                153.01,
+                166.06
+              ],
+              "sic_peak_count": 13,
+              "sic_peak_times": [
+                22.94,
+                38.1,
+                45.39,
+                59.66,
+                64.2,
+                77.76,
+                82.06,
+                95.34,
+                103.81,
+                117.56,
+                125.6,
+                139.09,
+                153.02
+              ],
+              "sic_area": 269.049962243394,
+              "sic_max": 5.726572534770498,
+              "sic_active_seconds": 63.49,
+              "C_range": [
+                0.08717331962954464,
+                0.5036055212906185
+              ],
+              "h_range": [
+                0.6241628843770057,
+                0.7464214081395313
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 0.16214285714285737,
+            "initial": [
+              0.125589911813037,
+              0.7464214081395313,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.005817291006678715,
+              "prepare_seconds": 5.391000013332814e-05,
+              "run_seconds": 0.03099626800394617,
+              "readout_seconds": 0.012195511008030735,
+              "terminal": {
+                "Ca_astro": 0.1257537547400357,
+                "h_IP3R": 0.7462843304230865,
+                "IP3": 0.3003468492305592
+              },
+              "counters": {
+                "affine_flows": 28263,
+                "region_crossings": 58,
+                "input_spikes": 7
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.017233534401302316,
+              "max_abs": 0.13905814706388964
+            },
+            "h": {
+              "rmse": 0.018666542054040967,
+              "max_abs": 0.05345749697204005
+            },
+            "IP3": {
+              "rmse": 2.488586302040639e-15,
+              "max_abs": 4.107825191113079e-15
+            },
+            "I_SIC": {
+              "rmse": 0.3178637027700305,
+              "max_abs": 3.904710897524409
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.5,
+                38.23,
+                44.91,
+                59.48,
+                64.05,
+                77.78,
+                81.91,
+                95.15,
+                103.73,
+                117.51,
+                125.51,
+                138.98,
+                153.01,
+                166.34
+              ],
+              "sic_peak_count": 12,
+              "sic_peak_times": [
+                22.51,
+                44.92,
+                59.49,
+                64.06,
+                77.79,
+                81.92,
+                95.16,
+                103.74,
+                117.52,
+                125.52,
+                138.99,
+                153.02
+              ],
+              "sic_area": 273.07009544064834,
+              "sic_max": 5.9651397619076665,
+              "sic_active_seconds": 61.6,
+              "C_range": [
+                0.0849930810186832,
+                0.5862974765500039
+              ],
+              "h_range": [
+                0.5957969827671676,
+                0.746986290257093
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.94,
+                38.08,
+                45.4,
+                59.66,
+                64.2,
+                77.74,
+                82.08,
+                95.34,
+                103.82,
+                117.55,
+                125.63,
+                139.09,
+                153.01,
+                166.06
+              ],
+              "sic_peak_count": 13,
+              "sic_peak_times": [
+                22.95,
+                38.09,
+                45.41,
+                59.67,
+                64.21,
+                77.75,
+                82.09,
+                95.35,
+                103.83,
+                117.56,
+                125.64,
+                139.1,
+                153.02
+              ],
+              "sic_area": 269.76714264002857,
+              "sic_max": 5.720736959114055,
+              "sic_active_seconds": 63.68,
+              "C_range": [
+                0.08734343947097814,
+                0.5018197082374091
+              ],
+              "h_range": [
+                0.6244064763577598,
+                0.7461347559546483
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 0.17499999999999996,
+            "initial": [
+              0.12558456803772622,
+              0.7461347559546483,
+              0.3
+            ],
+            "timing": {
+              "build_seconds": 0.0057605759939178824,
+              "prepare_seconds": 5.6132994359359145e-05,
+              "run_seconds": 0.030804944995907135,
+              "readout_seconds": 0.012077095001586713,
+              "terminal": {
+                "Ca_astro": 0.12574868311287107,
+                "h_IP3R": 0.7459985102624669,
+                "IP3": 0.3003468492305592
+              },
+              "counters": {
+                "affine_flows": 28263,
+                "region_crossings": 58,
+                "input_spikes": 7
+              }
+            }
+          }
+        }
+      }
+    ],
+    "known_NEST_stress": [
+      {
+        "protocol": {
+          "name": "pulse_tau20",
+          "duration": 220.0,
+          "tau": 20.0,
+          "baseline": 0.2,
+          "jumps": [
+            [
+              20.0,
+              0.7
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.08233150784556179,
+          0.7861999350892381,
+          0.2
+        ],
+        "LR_timing": {
+          "build_seconds": 0.004299323001760058,
+          "prepare_seconds": 4.2351995944045484e-05,
+          "run_seconds": 0.03368477598996833,
+          "readout_seconds": 0.014130205003311858,
+          "terminal": {
+            "Ca_astro": 0.08233948532521286,
+            "h_IP3R": 0.7861863293941657,
+            "IP3": 0.20003177995083382
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.04586200573476218,
+              "max_abs": 0.543165881167806
+            },
+            "h": {
+              "rmse": 0.04157935941706654,
+              "max_abs": 0.08791497134748338
+            },
+            "IP3": {
+              "rmse": 4.596862935545882e-15,
+              "max_abs": 1.0769163338864018e-14
+            },
+            "I_SIC": {
+              "rmse": 0.42412118623756906,
+              "max_abs": 5.95494702943399
+            },
+            "lr": {
+              "calcium_peaks": 3,
+              "calcium_peak_times": [
+                21.76,
+                33.97,
+                47.31
+              ],
+              "sic_peak_count": 3,
+              "sic_peak_times": [
+                21.77,
+                33.98,
+                47.32
+              ],
+              "sic_area": 67.33678999246713,
+              "sic_max": 6.643659560459655,
+              "sic_active_seconds": 13.74,
+              "C_range": [
+                0.08233150784555297,
+                0.9645900338821732
+              ],
+              "h_range": [
+                0.5428834109308607,
+                0.787398813551177
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 4,
+              "calcium_peak_times": [
+                2.17,
+                23.21,
+                34.28,
+                48.11
+              ],
+              "sic_peak_count": 2,
+              "sic_peak_times": [
+                23.22,
+                34.29
+              ],
+              "sic_area": 64.94258898319556,
+              "sic_max": 6.4473121692115685,
+              "sic_active_seconds": 12.97,
+              "C_range": [
+                0.08381885724834097,
+                0.8276939795215432
+              ],
+              "h_range": [
+                0.6164300443629407,
+                0.7860199171703828
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.004066587993293069,
+              "prepare_seconds": 9.713300096336752e-05,
+              "run_seconds": 0.026505950998398475,
+              "readout_seconds": 0.010977058002026752,
+              "terminal": {
+                "Ca_astro": 0.08545991308737824,
+                "h_IP3R": 0.7388349780138331,
+                "IP3": 0.20003177995083385
+              },
+              "counters": {
+                "affine_flows": 22704,
+                "region_crossings": 18,
+                "input_spikes": 1
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.0453184372215166,
+              "max_abs": 0.5402032514590731
+            },
+            "h": {
+              "rmse": 0.040823015458609155,
+              "max_abs": 0.09100711059417554
+            },
+            "IP3": {
+              "rmse": 4.681508564139445e-15,
+              "max_abs": 1.1046719095020308e-14
+            },
+            "I_SIC": {
+              "rmse": 0.4150724156530641,
+              "max_abs": 5.93174613951484
+            },
+            "lr": {
+              "calcium_peaks": 3,
+              "calcium_peak_times": [
+                21.76,
+                33.97,
+                47.31
+              ],
+              "sic_peak_count": 3,
+              "sic_peak_times": [
+                21.77,
+                33.98,
+                47.32
+              ],
+              "sic_area": 67.33678999246713,
+              "sic_max": 6.643659560459655,
+              "sic_active_seconds": 13.74,
+              "C_range": [
+                0.08233150784555297,
+                0.9645900338821732
+              ],
+              "h_range": [
+                0.5428834109308607,
+                0.787398813551177
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 4,
+              "calcium_peak_times": [
+                2.07,
+                23.2,
+                34.23,
+                48.05
+              ],
+              "sic_peak_count": 3,
+              "sic_peak_times": [
+                23.21,
+                34.24,
+                48.06
+              ],
+              "sic_area": 64.83804993636677,
+              "sic_max": 6.450824412590193,
+              "sic_active_seconds": 13.17,
+              "C_range": [
+                0.08379641654573218,
+                0.8299141156173819
+              ],
+              "h_range": [
+                0.620551207325208,
+                0.7860273914802972
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.005184273002669215,
+              "prepare_seconds": 5.64439978916198e-05,
+              "run_seconds": 0.02541962399845943,
+              "readout_seconds": 0.012654760997975245,
+              "terminal": {
+                "Ca_astro": 0.08545548353721388,
+                "h_IP3R": 0.7402862620747914,
+                "IP3": 0.20003177995083385
+              },
+              "counters": {
+                "affine_flows": 22704,
+                "region_crossings": 18,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.05909745388098686,
+              "max_abs": 0.6584369379636477
+            },
+            "h": {
+              "rmse": 0.0368287924250803,
+              "max_abs": 0.07700737586188089
+            },
+            "IP3": {
+              "rmse": 4.6968083682607725e-15,
+              "max_abs": 1.1157741397482823e-14
+            },
+            "I_SIC": {
+              "rmse": 0.5904961435644275,
+              "max_abs": 6.411804359378916
+            },
+            "lr": {
+              "calcium_peaks": 3,
+              "calcium_peak_times": [
+                21.76,
+                33.97,
+                47.31
+              ],
+              "sic_peak_count": 3,
+              "sic_peak_times": [
+                21.77,
+                33.98,
+                47.32
+              ],
+              "sic_area": 67.33678999246713,
+              "sic_max": 6.643659560459655,
+              "sic_active_seconds": 13.74,
+              "C_range": [
+                0.08233150784555297,
+                0.9645900338821732
+              ],
+              "h_range": [
+                0.5428834109308607,
+                0.787398813551177
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 4,
+              "calcium_peak_times": [
+                1.19,
+                23.68,
+                34.7,
+                48.17
+              ],
+              "sic_peak_count": 3,
+              "sic_peak_times": [
+                23.69,
+                34.71,
+                48.18
+              ],
+              "sic_area": 68.44443439290228,
+              "sic_max": 6.3607320316569105,
+              "sic_active_seconds": 14.91,
+              "C_range": [
+                0.06746636574864476,
+                0.7753598060024495
+              ],
+              "h_range": [
+                0.5947276717156725,
+                0.7860210596790791
+              ],
+              "sic_delivery_max_error": 5.551115123125783e-17
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.005303159996401519,
+              "prepare_seconds": 5.4750998970121145e-05,
+              "run_seconds": 0.025590378005290404,
+              "readout_seconds": 0.011801297005149536,
+              "terminal": {
+                "Ca_astro": 0.06746635673353327,
+                "h_IP3R": 0.7426609231217852,
+                "IP3": 0.20003177995083385
+              },
+              "counters": {
+                "affine_flows": 22548,
+                "region_crossings": 14,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.0603114484991032,
+              "max_abs": 0.665626932662173
+            },
+            "h": {
+              "rmse": 0.03723159193899375,
+              "max_abs": 0.07895012532829293
+            },
+            "IP3": {
+              "rmse": 4.6605767863427165e-15,
+              "max_abs": 1.1102230246251565e-14
+            },
+            "I_SIC": {
+              "rmse": 0.6141769799680799,
+              "max_abs": 6.4359782698568795
+            },
+            "lr": {
+              "calcium_peaks": 3,
+              "calcium_peak_times": [
+                21.76,
+                33.97,
+                47.31
+              ],
+              "sic_peak_count": 3,
+              "sic_peak_times": [
+                21.77,
+                33.98,
+                47.32
+              ],
+              "sic_area": 67.33678999246713,
+              "sic_max": 6.643659560459655,
+              "sic_active_seconds": 13.74,
+              "C_range": [
+                0.08233150784555297,
+                0.9645900338821732
+              ],
+              "h_range": [
+                0.5428834109308607,
+                0.787398813551177
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 4,
+              "calcium_peak_times": [
+                1.19,
+                23.71,
+                34.79,
+                48.26
+              ],
+              "sic_peak_count": 3,
+              "sic_peak_times": [
+                23.72,
+                34.8,
+                48.27
+              ],
+              "sic_area": 68.40919155238612,
+              "sic_max": 6.3503247900823245,
+              "sic_active_seconds": 14.9,
+              "C_range": [
+                0.06747476736147277,
+                0.7693686791667576
+              ],
+              "h_range": [
+                0.5955267129901047,
+                0.7860174265790597
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.005308486986905336,
+              "prepare_seconds": 5.320900527294725e-05,
+              "run_seconds": 0.02527410999755375,
+              "readout_seconds": 0.010213497007498518,
+              "terminal": {
+                "Ca_astro": 0.06747475833147332,
+                "h_IP3R": 0.7422126817649772,
+                "IP3": 0.20003177995083385
+              },
+              "counters": {
+                "affine_flows": 22548,
+                "region_crossings": 14,
+                "input_spikes": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "protocol": {
+          "name": "pulse_tau100",
+          "duration": 300.0,
+          "tau": 100.0,
+          "baseline": 0.2,
+          "jumps": [
+            [
+              20.0,
+              0.7
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.08233150784556179,
+          0.7861999350892381,
+          0.2
+        ],
+        "LR_timing": {
+          "build_seconds": 0.004211153005599044,
+          "prepare_seconds": 3.825699968729168e-05,
+          "run_seconds": 0.04861236299620941,
+          "readout_seconds": 0.01782918999379035,
+          "terminal": {
+            "Ca_astro": 0.09615450579541265,
+            "h_IP3R": 0.7721231115782765,
+            "IP3": 0.2425670438376511
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.08987554214445607,
+              "max_abs": 0.559958411007143
+            },
+            "h": {
+              "rmse": 0.03773456691337663,
+              "max_abs": 0.10034489677993363
+            },
+            "IP3": {
+              "rmse": 1.4940889927084702e-13,
+              "max_abs": 2.0355939156502245e-13
+            },
+            "I_SIC": {
+              "rmse": 1.9376028885115197,
+              "max_abs": 5.988455540967238
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                21.77,
+                32.78,
+                43.1,
+                53.41,
+                63.91,
+                74.73,
+                85.88,
+                97.24,
+                108.65,
+                120.66,
+                133.18,
+                146.24,
+                159.65,
+                172.58
+              ],
+              "sic_peak_count": 13,
+              "sic_peak_times": [
+                21.78,
+                32.79,
+                43.11,
+                53.42,
+                63.92,
+                74.74,
+                85.89,
+                97.25,
+                108.66,
+                120.67,
+                133.19,
+                146.25,
+                159.66
+              ],
+              "sic_area": 490.0356323708488,
+              "sic_max": 6.656640346764584,
+              "sic_active_seconds": 105.68,
+              "C_range": [
+                0.08233150784555297,
+                0.9746229568609007
+              ],
+              "h_range": [
+                0.5412068834067154,
+                0.7874021154286579
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 13,
+              "calcium_peak_times": [
+                2.17,
+                23.24,
+                32.58,
+                41.34,
+                78.2,
+                89.44,
+                100.73,
+                112.53,
+                124.98,
+                138.44,
+                152.16,
+                165.31,
+                177.11
+              ],
+              "sic_peak_count": 11,
+              "sic_peak_times": [
+                23.25,
+                32.59,
+                41.35,
+                78.21,
+                89.45,
+                100.74,
+                112.54,
+                124.99,
+                138.45,
+                152.17,
+                165.32
+              ],
+              "sic_area": 460.65557303815456,
+              "sic_max": 6.404508561036592,
+              "sic_active_seconds": 98.43,
+              "C_range": [
+                0.08381885724834097,
+                0.8012546190520003
+              ],
+              "h_range": [
+                0.6365400340341416,
+                0.7860199171703827
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.0036354609910631552,
+              "prepare_seconds": 5.158600106369704e-05,
+              "run_seconds": 0.03591937599412631,
+              "readout_seconds": 0.014776241005165502,
+              "terminal": {
+                "Ca_astro": 0.1031982589012011,
+                "h_IP3R": 0.7408787423135723,
+                "IP3": 0.24256704383781624
+              },
+              "counters": {
+                "affine_flows": 32108,
+                "region_crossings": 54,
+                "input_spikes": 1
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.08956973782579601,
+              "max_abs": 0.5568708355638665
+            },
+            "h": {
+              "rmse": 0.03889660222576064,
+              "max_abs": 0.10337407526408904
+            },
+            "IP3": {
+              "rmse": 1.495127707147327e-13,
+              "max_abs": 2.0355939156502245e-13
+            },
+            "I_SIC": {
+              "rmse": 1.934257380022105,
+              "max_abs": 5.966038187731738
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                21.77,
+                32.78,
+                43.1,
+                53.41,
+                63.91,
+                74.73,
+                85.88,
+                97.24,
+                108.65,
+                120.66,
+                133.18,
+                146.24,
+                159.65,
+                172.58
+              ],
+              "sic_peak_count": 13,
+              "sic_peak_times": [
+                21.78,
+                32.79,
+                43.11,
+                53.42,
+                63.92,
+                74.74,
+                85.89,
+                97.25,
+                108.66,
+                120.67,
+                133.19,
+                146.25,
+                159.66
+              ],
+              "sic_area": 490.0356323708488,
+              "sic_max": 6.656640346764584,
+              "sic_active_seconds": 105.68,
+              "C_range": [
+                0.08233150784555297,
+                0.9746229568609007
+              ],
+              "h_range": [
+                0.5412068834067154,
+                0.7874021154286579
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 13,
+              "calcium_peak_times": [
+                2.07,
+                23.22,
+                32.55,
+                41.3,
+                78.2,
+                89.43,
+                100.72,
+                112.51,
+                124.97,
+                138.42,
+                152.13,
+                165.28,
+                177.06
+              ],
+              "sic_peak_count": 11,
+              "sic_peak_times": [
+                23.23,
+                32.56,
+                41.31,
+                78.21,
+                89.44,
+                100.73,
+                112.52,
+                124.98,
+                138.43,
+                152.14,
+                165.29
+              ],
+              "sic_area": 460.4799263506996,
+              "sic_max": 6.408888588607614,
+              "sic_active_seconds": 98.38,
+              "C_range": [
+                0.08379641654573218,
+                0.8039084364057916
+              ],
+              "h_range": [
+                0.640084318585144,
+                0.7860273914802972
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.005473060999065638,
+              "prepare_seconds": 5.239799793343991e-05,
+              "run_seconds": 0.036278558007325046,
+              "readout_seconds": 0.014162423001835123,
+              "terminal": {
+                "Ca_astro": 0.1031911730780601,
+                "h_IP3R": 0.7423047428976586,
+                "IP3": 0.24256704383781624
+              },
+              "counters": {
+                "affine_flows": 32108,
+                "region_crossings": 54,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.09411980340592033,
+              "max_abs": 0.6778843801666987
+            },
+            "h": {
+              "rmse": 0.030546913225765016,
+              "max_abs": 0.09014821328144385
+            },
+            "IP3": {
+              "rmse": 1.49410119700811e-13,
+              "max_abs": 2.0355939156502245e-13
+            },
+            "I_SIC": {
+              "rmse": 1.9482388121387906,
+              "max_abs": 6.447017057391311
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                21.77,
+                32.78,
+                43.1,
+                53.41,
+                63.91,
+                74.73,
+                85.88,
+                97.24,
+                108.65,
+                120.66,
+                133.18,
+                146.24,
+                159.65,
+                172.58
+              ],
+              "sic_peak_count": 13,
+              "sic_peak_times": [
+                21.78,
+                32.79,
+                43.11,
+                53.42,
+                63.92,
+                74.74,
+                85.89,
+                97.25,
+                108.66,
+                120.67,
+                133.19,
+                146.25,
+                159.66
+              ],
+              "sic_area": 490.0356323708488,
+              "sic_max": 6.656640346764584,
+              "sic_active_seconds": 105.68,
+              "C_range": [
+                0.08233150784555297,
+                0.9746229568609007
+              ],
+              "h_range": [
+                0.5412068834067154,
+                0.7874021154286579
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                1.19,
+                23.72,
+                33.58,
+                43.01,
+                51.79,
+                78.35,
+                89.64,
+                100.84,
+                112.54,
+                124.87,
+                138.06,
+                151.25,
+                164.04,
+                175.85
+              ],
+              "sic_peak_count": 12,
+              "sic_peak_times": [
+                23.73,
+                33.59,
+                43.02,
+                51.8,
+                78.36,
+                89.65,
+                100.85,
+                112.55,
+                124.88,
+                138.07,
+                151.26,
+                164.05
+              ],
+              "sic_area": 465.2665246746386,
+              "sic_max": 6.288066328607503,
+              "sic_active_seconds": 100.4,
+              "C_range": [
+                0.06905216918537155,
+                0.734801791036719
+              ],
+              "h_range": [
+                0.615361204191845,
+                0.7860210596790791
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 7.022142857142854,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.0054990789940347895,
+              "prepare_seconds": 5.093599611427635e-05,
+              "run_seconds": 0.03581750500597991,
+              "readout_seconds": 0.014788400003453717,
+              "terminal": {
+                "Ca_astro": 0.09068904078286523,
+                "h_IP3R": 0.7451617766401943,
+                "IP3": 0.24256704383781624
+              },
+              "counters": {
+                "affine_flows": 31952,
+                "region_crossings": 50,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.09469414652746785,
+              "max_abs": 0.6853863806418874
+            },
+            "h": {
+              "rmse": 0.030836020320454845,
+              "max_abs": 0.09239363756523089
+            },
+            "IP3": {
+              "rmse": 1.494377168430814e-13,
+              "max_abs": 2.0355939156502245e-13
+            },
+            "I_SIC": {
+              "rmse": 1.9503603947573267,
+              "max_abs": 6.469143194757156
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                21.77,
+                32.78,
+                43.1,
+                53.41,
+                63.91,
+                74.73,
+                85.88,
+                97.24,
+                108.65,
+                120.66,
+                133.18,
+                146.24,
+                159.65,
+                172.58
+              ],
+              "sic_peak_count": 13,
+              "sic_peak_times": [
+                21.78,
+                32.79,
+                43.11,
+                53.42,
+                63.92,
+                74.74,
+                85.89,
+                97.25,
+                108.66,
+                120.67,
+                133.19,
+                146.25,
+                159.66
+              ],
+              "sic_area": 490.0356323708488,
+              "sic_max": 6.656640346764584,
+              "sic_active_seconds": 105.68,
+              "C_range": [
+                0.08233150784555297,
+                0.9746229568609007
+              ],
+              "h_range": [
+                0.5412068834067154,
+                0.7874021154286579
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "pwa": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                1.19,
+                23.76,
+                33.62,
+                43.06,
+                51.85,
+                78.36,
+                89.66,
+                100.85,
+                112.55,
+                124.88,
+                138.07,
+                151.26,
+                164.05,
+                175.86
+              ],
+              "sic_peak_count": 12,
+              "sic_peak_times": [
+                23.77,
+                33.63,
+                43.07,
+                51.86,
+                78.37,
+                89.67,
+                100.86,
+                112.56,
+                124.89,
+                138.08,
+                151.27,
+                164.06
+              ],
+              "sic_area": 465.6549492258038,
+              "sic_max": 6.27466817767799,
+              "sic_active_seconds": 100.41,
+              "C_range": [
+                0.06907712313962341,
+                0.7276401714056261
+              ],
+              "h_range": [
+                0.6166267814944869,
+                0.7860174265790597
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 7.0157142857142825,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.005385641998145729,
+              "prepare_seconds": 5.4921998525969684e-05,
+              "run_seconds": 0.03498090599896386,
+              "readout_seconds": 0.014739407008164562,
+              "terminal": {
+                "Ca_astro": 0.09070011442534644,
+                "h_IP3R": 0.744786182144961,
+                "IP3": 0.24256704383781624
+              },
+              "counters": {
+                "affine_flows": 31952,
+                "region_crossings": 50,
+                "input_spikes": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "protocol": {
+          "name": "pulse_tau180",
+          "duration": 420.0,
+          "tau": 180.0,
+          "baseline": 0.2,
+          "jumps": [
+            [
+              20.0,
+              0.7
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.08233150784556179,
+          0.7861999350892381,
+          0.2
+        ],
+        "LR_timing": {
+          "build_seconds": 0.004357860001618974,
+          "prepare_seconds": 3.900800948031247e-05,
+          "run_seconds": 0.07309849699959159,
+          "readout_seconds": 0.021428697000374086,
+          "terminal": {
+            "Ca_astro": 0.11010935807984944,
+            "h_IP3R": 0.758051835272857,
+            "IP3": 0.27585761625532834
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.05806136810435387,
+              "max_abs": 0.5618570899988725
+            },
+            "h": {
+              "rmse": 0.03748466365611138,
+              "max_abs": 0.10191036142779286
+            },
+            "IP3": {
+              "rmse": 1.1407784411957217e-13,
+              "max_abs": 1.417754802446325e-13
+            },
+            "I_SIC": {
+              "rmse": 1.3691378381367079,
+              "max_abs": 5.989675845841125
+            },
+            "lr": {
+              "calcium_peaks": 17,
+              "calcium_peak_times": [
+                21.77,
+                32.67,
+                42.79,
+                52.76,
+                159.68,
+                171.25,
+                182.63,
+                194.41,
+                206.51,
+                218.87,
+                231.5,
+                244.4,
+                257.54,
+                270.79,
+                283.9,
+                296.6,
+                308.92
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                21.78,
+                32.68,
+                42.8,
+                52.77,
+                62.63,
+                136.34,
+                148.05,
+                159.69,
+                171.26,
+                182.64,
+                194.42,
+                206.52,
+                218.88,
+                231.51,
+                244.41,
+                257.55,
+                270.8,
+                283.91
+              ],
+              "sic_area": 930.6733456046661,
+              "sic_max": 6.6580536302569735,
+              "sic_active_seconds": 201.34,
+              "C_range": [
+                0.08233150784555297,
+                0.9757231739432104
+              ],
+              "h_range": [
+                0.5410489128958074,
+                0.7874024826211596
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 21,
+              "calcium_peak_times": [
+                2.17,
+                23.24,
+                32.49,
+                41.33,
+                115.37,
+                126.76,
+                137.76,
+                148.75,
+                159.93,
+                171.35,
+                183.02,
+                195.02,
+                207.4,
+                220.23,
+                233.64,
+                247.2,
+                260.5,
+                273.49,
+                286.09,
+                298.1,
+                309.05
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                23.25,
+                32.5,
+                41.34,
+                115.38,
+                126.77,
+                137.77,
+                148.76,
+                159.94,
+                171.36,
+                183.03,
+                195.03,
+                207.41,
+                220.24,
+                233.65,
+                247.21,
+                260.51,
+                273.5,
+                286.1
+              ],
+              "sic_area": 836.6417767447845,
+              "sic_max": 6.399290658946067,
+              "sic_active_seconds": 179.1,
+              "C_range": [
+                0.08381885724834097,
+                0.7981082758564172
+              ],
+              "h_range": [
+                0.6388753648169464,
+                0.7860199171703827
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.0056010289990808815,
+              "prepare_seconds": 8.305300434585661e-05,
+              "run_seconds": 0.05293561299913563,
+              "readout_seconds": 0.024050207997788675,
+              "terminal": {
+                "Ca_astro": 0.11791103902099824,
+                "h_IP3R": 0.7422825205573197,
+                "IP3": 0.27585761625542005
+              },
+              "counters": {
+                "affine_flows": 45590,
+                "region_crossings": 92,
+                "input_spikes": 1
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.05749271157615076,
+              "max_abs": 0.5587605719995143
+            },
+            "h": {
+              "rmse": 0.039326692779495825,
+              "max_abs": 0.10493318690103282
+            },
+            "IP3": {
+              "rmse": 1.1363159780846627e-13,
+              "max_abs": 1.4138690218601369e-13
+            },
+            "I_SIC": {
+              "rmse": 1.3572807327549439,
+              "max_abs": 5.967259383524208
+            },
+            "lr": {
+              "calcium_peaks": 17,
+              "calcium_peak_times": [
+                21.77,
+                32.67,
+                42.79,
+                52.76,
+                159.68,
+                171.25,
+                182.63,
+                194.41,
+                206.51,
+                218.87,
+                231.5,
+                244.4,
+                257.54,
+                270.79,
+                283.9,
+                296.6,
+                308.92
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                21.78,
+                32.68,
+                42.8,
+                52.77,
+                62.63,
+                136.34,
+                148.05,
+                159.69,
+                171.26,
+                182.64,
+                194.42,
+                206.52,
+                218.88,
+                231.51,
+                244.41,
+                257.55,
+                270.8,
+                283.91
+              ],
+              "sic_area": 930.6733456046661,
+              "sic_max": 6.6580536302569735,
+              "sic_active_seconds": 201.34,
+              "C_range": [
+                0.08233150784555297,
+                0.9757231739432104
+              ],
+              "h_range": [
+                0.5410489128958074,
+                0.7874024826211596
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 21,
+              "calcium_peak_times": [
+                2.07,
+                23.23,
+                32.46,
+                41.28,
+                115.37,
+                126.75,
+                137.75,
+                148.74,
+                159.91,
+                171.32,
+                183.0,
+                194.99,
+                207.36,
+                220.19,
+                233.6,
+                247.16,
+                260.45,
+                273.43,
+                286.01,
+                298.02,
+                308.94
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                23.24,
+                32.47,
+                41.29,
+                115.38,
+                126.76,
+                137.76,
+                148.75,
+                159.92,
+                171.33,
+                183.01,
+                195.0,
+                207.37,
+                220.2,
+                233.61,
+                247.17,
+                260.46,
+                273.44,
+                286.02
+              ],
+              "sic_area": 836.3986369623836,
+              "sic_max": 6.403774789767091,
+              "sic_active_seconds": 179.03,
+              "C_range": [
+                0.08379641654573218,
+                0.8008111696191065
+              ],
+              "h_range": [
+                0.6423554711379597,
+                0.7860273914802972
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.005407943986938335,
+              "prepare_seconds": 5.6133008911274374e-05,
+              "run_seconds": 0.04995226800383534,
+              "readout_seconds": 0.022223568987101316,
+              "terminal": {
+                "Ca_astro": 0.11790330744104464,
+                "h_IP3R": 0.7436927662019641,
+                "IP3": 0.27585761625541955
+              },
+              "counters": {
+                "affine_flows": 45590,
+                "region_crossings": 92,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.05790464984832635,
+              "max_abs": 0.6800997103889597
+            },
+            "h": {
+              "rmse": 0.02767807758531369,
+              "max_abs": 0.09176228827481425
+            },
+            "IP3": {
+              "rmse": 1.138525023182102e-13,
+              "max_abs": 1.4138690218601369e-13
+            },
+            "I_SIC": {
+              "rmse": 1.0681357985758533,
+              "max_abs": 6.4558229461884205
+            },
+            "lr": {
+              "calcium_peaks": 17,
+              "calcium_peak_times": [
+                21.77,
+                32.67,
+                42.79,
+                52.76,
+                159.68,
+                171.25,
+                182.63,
+                194.41,
+                206.51,
+                218.87,
+                231.5,
+                244.4,
+                257.54,
+                270.79,
+                283.9,
+                296.6,
+                308.92
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                21.78,
+                32.68,
+                42.8,
+                52.77,
+                62.63,
+                136.34,
+                148.05,
+                159.69,
+                171.26,
+                182.64,
+                194.42,
+                206.52,
+                218.88,
+                231.51,
+                244.41,
+                257.55,
+                270.8,
+                283.91
+              ],
+              "sic_area": 930.6733456046661,
+              "sic_max": 6.6580536302569735,
+              "sic_active_seconds": 201.34,
+              "C_range": [
+                0.08233150784555297,
+                0.9757231739432104
+              ],
+              "h_range": [
+                0.5410489128958074,
+                0.7874024826211596
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 21,
+              "calcium_peak_times": [
+                1.19,
+                23.72,
+                33.54,
+                42.67,
+                51.47,
+                115.48,
+                126.79,
+                137.85,
+                148.78,
+                159.9,
+                171.23,
+                182.82,
+                194.71,
+                206.96,
+                219.65,
+                232.79,
+                245.84,
+                258.71,
+                271.36,
+                283.71,
+                295.84
+              ],
+              "sic_peak_count": 19,
+              "sic_peak_times": [
+                23.73,
+                33.55,
+                42.68,
+                51.48,
+                115.49,
+                126.8,
+                137.86,
+                148.79,
+                159.91,
+                171.24,
+                182.83,
+                194.72,
+                206.97,
+                219.66,
+                232.8,
+                245.85,
+                258.72,
+                271.37,
+                283.72
+              ],
+              "sic_area": 853.3187276935665,
+              "sic_max": 6.279015032548514,
+              "sic_active_seconds": 182.25,
+              "C_range": [
+                0.06905216918537188,
+                0.7299531582111695
+              ],
+              "h_range": [
+                0.6179236665759849,
+                0.7860210596790791
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.007011538997176103,
+              "prepare_seconds": 7.367899524979293e-05,
+              "run_seconds": 0.05710031700436957,
+              "readout_seconds": 0.019976106996182352,
+              "terminal": {
+                "Ca_astro": 0.11075682064232724,
+                "h_IP3R": 0.7468599027564884,
+                "IP3": 0.2758576162554199
+              },
+              "counters": {
+                "affine_flows": 45200,
+                "region_crossings": 82,
+                "input_spikes": 1
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.05855230450779086,
+              "max_abs": 0.6876311938814584
+            },
+            "h": {
+              "rmse": 0.02798454866427097,
+              "max_abs": 0.09404571804064621
+            },
+            "IP3": {
+              "rmse": 1.1362358672460918e-13,
+              "max_abs": 1.4155343563970746e-13
+            },
+            "I_SIC": {
+              "rmse": 1.0731118018944772,
+              "max_abs": 6.477302812509071
+            },
+            "lr": {
+              "calcium_peaks": 17,
+              "calcium_peak_times": [
+                21.77,
+                32.67,
+                42.79,
+                52.76,
+                159.68,
+                171.25,
+                182.63,
+                194.41,
+                206.51,
+                218.87,
+                231.5,
+                244.4,
+                257.54,
+                270.79,
+                283.9,
+                296.6,
+                308.92
+              ],
+              "sic_peak_count": 18,
+              "sic_peak_times": [
+                21.78,
+                32.68,
+                42.8,
+                52.77,
+                62.63,
+                136.34,
+                148.05,
+                159.69,
+                171.26,
+                182.64,
+                194.42,
+                206.52,
+                218.88,
+                231.51,
+                244.41,
+                257.55,
+                270.8,
+                283.91
+              ],
+              "sic_area": 930.6733456046661,
+              "sic_max": 6.6580536302569735,
+              "sic_active_seconds": 201.34,
+              "C_range": [
+                0.08233150784555297,
+                0.9757231739432104
+              ],
+              "h_range": [
+                0.5410489128958074,
+                0.7874024826211596
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 21,
+              "calcium_peak_times": [
+                1.19,
+                23.76,
+                33.58,
+                42.73,
+                51.53,
+                115.49,
+                126.8,
+                137.87,
+                148.8,
+                159.91,
+                171.25,
+                182.84,
+                194.73,
+                206.97,
+                219.66,
+                232.81,
+                245.86,
+                258.73,
+                271.37,
+                283.73,
+                295.86
+              ],
+              "sic_peak_count": 19,
+              "sic_peak_times": [
+                23.77,
+                33.59,
+                42.74,
+                51.54,
+                115.5,
+                126.81,
+                137.88,
+                148.81,
+                159.92,
+                171.26,
+                182.85,
+                194.74,
+                206.98,
+                219.67,
+                232.82,
+                245.87,
+                258.74,
+                271.38,
+                283.74
+              ],
+              "sic_area": 853.2294538641178,
+              "sic_max": 6.265222972717303,
+              "sic_active_seconds": 182.24,
+              "C_range": [
+                0.0690771231396224,
+                0.7226488473591784
+              ],
+              "h_range": [
+                0.6182707565781295,
+                0.7860174265790597
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.007208989991340786,
+              "prepare_seconds": 7.349900261033326e-05,
+              "run_seconds": 0.07741911199991591,
+              "readout_seconds": 0.019071427988819778,
+              "terminal": {
+                "Ca_astro": 0.11076357241986011,
+                "h_IP3R": 0.7465376145584545,
+                "IP3": 0.27585761625541955
+              },
+              "counters": {
+                "affine_flows": 45200,
+                "region_crossings": 82,
+                "input_spikes": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "protocol": {
+          "name": "periodic",
+          "duration": 240.0,
+          "tau": 20.0,
+          "baseline": 0.2,
+          "jumps": [
+            [
+              20.0,
+              0.3
+            ],
+            [
+              40.0,
+              0.3
+            ],
+            [
+              60.0,
+              0.3
+            ],
+            [
+              80.0,
+              0.3
+            ],
+            [
+              100.0,
+              0.3
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.08233150784556179,
+          0.7861999350892381,
+          0.2
+        ],
+        "LR_timing": {
+          "build_seconds": 0.004560129003948532,
+          "prepare_seconds": 4.532700404524803e-05,
+          "run_seconds": 0.046645492999232374,
+          "readout_seconds": 0.011180429006344639,
+          "terminal": {
+            "Ca_astro": 0.08243941880437401,
+            "h_IP3R": 0.7860154362833505,
+            "IP3": 0.20042985680842892
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.03209448059304552,
+              "max_abs": 0.30140666312941994
+            },
+            "h": {
+              "rmse": 0.03804662385178828,
+              "max_abs": 0.07584764535990529
+            },
+            "IP3": {
+              "rmse": 6.48485076067824e-15,
+              "max_abs": 1.1879386363489175e-14
+            },
+            "I_SIC": {
+              "rmse": 0.507134713353815,
+              "max_abs": 4.966344028897689
+            },
+            "lr": {
+              "calcium_peaks": 9,
+              "calcium_peak_times": [
+                22.19,
+                42.26,
+                56.72,
+                62.55,
+                76.36,
+                82.98,
+                96.5,
+                103.07,
+                116.47
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.2,
+                42.27,
+                56.73,
+                62.56,
+                76.37,
+                82.99,
+                96.51,
+                103.08,
+                116.48
+              ],
+              "sic_area": 200.66392948074756,
+              "sic_max": 6.285979558274298,
+              "sic_active_seconds": 42.59,
+              "C_range": [
+                0.08062037298283861,
+                0.7336800461342916
+              ],
+              "h_range": [
+                0.573297432174912,
+                0.7868646325030846
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 10,
+              "calcium_peak_times": [
+                2.17,
+                22.88,
+                42.47,
+                57.57,
+                62.55,
+                76.8,
+                82.92,
+                96.99,
+                102.99,
+                116.97
+              ],
+              "sic_peak_count": 8,
+              "sic_peak_times": [
+                22.89,
+                42.48,
+                62.56,
+                76.81,
+                82.93,
+                97.0,
+                103.0,
+                116.98
+              ],
+              "sic_area": 177.99600460585046,
+              "sic_max": 6.196416941850612,
+              "sic_active_seconds": 38.6,
+              "C_range": [
+                0.08381885724834097,
+                0.6876766518829823
+              ],
+              "h_range": [
+                0.6225368756074187,
+                0.7860199171703828
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.004511977997026406,
+              "prepare_seconds": 5.740500637330115e-05,
+              "run_seconds": 0.033760058999178,
+              "readout_seconds": 0.014555675006704405,
+              "terminal": {
+                "Ca_astro": 0.08563711754808531,
+                "h_IP3R": 0.7388673055987228,
+                "IP3": 0.2004298568084291
+              },
+              "counters": {
+                "affine_flows": 25955,
+                "region_crossings": 50,
+                "input_spikes": 5
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.0319704091551213,
+              "max_abs": 0.29955226335394675
+            },
+            "h": {
+              "rmse": 0.038253752554772646,
+              "max_abs": 0.07861688257987409
+            },
+            "IP3": {
+              "rmse": 6.581571493018911e-15,
+              "max_abs": 1.199040866595169e-14
+            },
+            "I_SIC": {
+              "rmse": 0.509674406673045,
+              "max_abs": 4.930109554490288
+            },
+            "lr": {
+              "calcium_peaks": 9,
+              "calcium_peak_times": [
+                22.19,
+                42.26,
+                56.72,
+                62.55,
+                76.36,
+                82.98,
+                96.5,
+                103.07,
+                116.47
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.2,
+                42.27,
+                56.73,
+                62.56,
+                76.37,
+                82.99,
+                96.51,
+                103.08,
+                116.48
+              ],
+              "sic_area": 200.66392948074756,
+              "sic_max": 6.285979558274298,
+              "sic_active_seconds": 42.59,
+              "C_range": [
+                0.08062037298283861,
+                0.7336800461342916
+              ],
+              "h_range": [
+                0.573297432174912,
+                0.7868646325030846
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 10,
+              "calcium_peak_times": [
+                2.07,
+                22.87,
+                42.46,
+                57.56,
+                62.55,
+                76.8,
+                82.91,
+                96.98,
+                102.98,
+                116.96
+              ],
+              "sic_peak_count": 8,
+              "sic_peak_times": [
+                22.88,
+                42.47,
+                62.56,
+                76.81,
+                82.92,
+                96.99,
+                102.99,
+                116.97
+              ],
+              "sic_area": 177.5467310594516,
+              "sic_max": 6.197039522929202,
+              "sic_active_seconds": 38.54,
+              "C_range": [
+                0.08379641654573218,
+                0.6879824260570159
+              ],
+              "h_range": [
+                0.6265232251994918,
+                0.7860273914802972
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.011465119998320006,
+              "prepare_seconds": 8.091000199783593e-05,
+              "run_seconds": 0.05123049899702892,
+              "readout_seconds": 0.01315861199691426,
+              "terminal": {
+                "Ca_astro": 0.08563256171703808,
+                "h_IP3R": 0.7403180799447343,
+                "IP3": 0.2004298568084291
+              },
+              "counters": {
+                "affine_flows": 25955,
+                "region_crossings": 50,
+                "input_spikes": 5
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.03755725442355978,
+              "max_abs": 0.40819062430689934
+            },
+            "h": {
+              "rmse": 0.032369686799346924,
+              "max_abs": 0.058618966703007036
+            },
+            "IP3": {
+              "rmse": 6.5868454902126644e-15,
+              "max_abs": 1.1823875212257917e-14
+            },
+            "I_SIC": {
+              "rmse": 0.5068680275463537,
+              "max_abs": 5.745231552244447
+            },
+            "lr": {
+              "calcium_peaks": 9,
+              "calcium_peak_times": [
+                22.19,
+                42.26,
+                56.72,
+                62.55,
+                76.36,
+                82.98,
+                96.5,
+                103.07,
+                116.47
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.2,
+                42.27,
+                56.73,
+                62.56,
+                76.37,
+                82.99,
+                96.51,
+                103.08,
+                116.48
+              ],
+              "sic_area": 200.66392948074756,
+              "sic_max": 6.285979558274298,
+              "sic_active_seconds": 42.59,
+              "C_range": [
+                0.08062037298283861,
+                0.7336800461342916
+              ],
+              "h_range": [
+                0.573297432174912,
+                0.7868646325030846
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 10,
+              "calcium_peak_times": [
+                1.19,
+                23.41,
+                42.61,
+                57.09,
+                62.76,
+                76.52,
+                83.08,
+                96.7,
+                103.16,
+                116.71
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                23.42,
+                42.62,
+                57.1,
+                62.77,
+                76.53,
+                83.09,
+                96.71,
+                103.17,
+                116.72
+              ],
+              "sic_area": 193.49662755080772,
+              "sic_max": 6.185660141863628,
+              "sic_active_seconds": 43.04,
+              "C_range": [
+                0.06769245839611164,
+                0.6824235108190282
+              ],
+              "h_range": [
+                0.5995522636917623,
+                0.7860210596790791
+              ],
+              "sic_delivery_max_error": 5.551115123125783e-17
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.0067880370042985305,
+              "prepare_seconds": 5.855699419043958e-05,
+              "run_seconds": 0.0340042020106921,
+              "readout_seconds": 0.009675820998381823,
+              "terminal": {
+                "Ca_astro": 0.067692336253575,
+                "h_IP3R": 0.7427018329413131,
+                "IP3": 0.2004298568084291
+              },
+              "counters": {
+                "affine_flows": 25721,
+                "region_crossings": 44,
+                "input_spikes": 5
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.03796644618293938,
+              "max_abs": 0.41221159776480354
+            },
+            "h": {
+              "rmse": 0.03262198089741052,
+              "max_abs": 0.058935548122912906
+            },
+            "IP3": {
+              "rmse": 6.490235955573947e-15,
+              "max_abs": 1.199040866595169e-14
+            },
+            "I_SIC": {
+              "rmse": 0.5127614862957282,
+              "max_abs": 5.7734607578568085
+            },
+            "lr": {
+              "calcium_peaks": 9,
+              "calcium_peak_times": [
+                22.19,
+                42.26,
+                56.72,
+                62.55,
+                76.36,
+                82.98,
+                96.5,
+                103.07,
+                116.47
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                22.2,
+                42.27,
+                56.73,
+                62.56,
+                76.37,
+                82.99,
+                96.51,
+                103.08,
+                116.48
+              ],
+              "sic_area": 200.66392948074756,
+              "sic_max": 6.285979558274298,
+              "sic_active_seconds": 42.59,
+              "C_range": [
+                0.08062037298283861,
+                0.7336800461342916
+              ],
+              "h_range": [
+                0.573297432174912,
+                0.7868646325030846
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "pwa": {
+              "calcium_peaks": 10,
+              "calcium_peak_times": [
+                1.19,
+                23.43,
+                42.62,
+                57.07,
+                62.78,
+                76.51,
+                83.1,
+                96.7,
+                103.19,
+                116.71
+              ],
+              "sic_peak_count": 9,
+              "sic_peak_times": [
+                23.44,
+                42.63,
+                57.08,
+                62.79,
+                76.52,
+                83.11,
+                96.71,
+                103.2,
+                116.72
+              ],
+              "sic_area": 194.54091909810325,
+              "sic_max": 6.178556014658419,
+              "sic_active_seconds": 43.27,
+              "C_range": [
+                0.0677012336776357,
+                0.6789850263471637
+              ],
+              "h_range": [
+                0.5999507901564204,
+                0.7860174265790597
+              ],
+              "sic_delivery_max_error": 2.220446049250313e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.006607720002648421,
+              "prepare_seconds": 6.080001185182482e-05,
+              "run_seconds": 0.0322906450019218,
+              "readout_seconds": 0.010621172012179159,
+              "terminal": {
+                "Ca_astro": 0.06770111133307556,
+                "h_IP3R": 0.7422545207249238,
+                "IP3": 0.2004298568084291
+              },
+              "counters": {
+                "affine_flows": 25721,
+                "region_crossings": 44,
+                "input_spikes": 5
+              }
+            }
+          }
+        }
+      },
+      {
+        "protocol": {
+          "name": "irregular",
+          "duration": 340.0,
+          "tau": 22.0,
+          "baseline": 0.2,
+          "jumps": [
+            [
+              20.0,
+              0.2908342044969666
+            ],
+            [
+              39.0,
+              0.22199479308599138
+            ],
+            [
+              55.35,
+              0.27024720422050164
+            ],
+            [
+              73.65,
+              0.2280021985217412
+            ],
+            [
+              91.45,
+              0.26937452762220815
+            ],
+            [
+              108.2,
+              0.22010750819969754
+            ],
+            [
+              128.20000000000002,
+              0.2751632746753606
+            ],
+            [
+              155.60000000000002,
+              0.2572182957789211
+            ]
+          ]
+        },
+        "LR_initial": [
+          0.08233150784556179,
+          0.7861999350892381,
+          0.2
+        ],
+        "LR_timing": {
+          "build_seconds": 0.006316931001492776,
+          "prepare_seconds": 8.075899677351117e-05,
+          "run_seconds": 0.08306009099760558,
+          "readout_seconds": 0.021102524013258517,
+          "terminal": {
+            "Ca_astro": 0.08235428905400917,
+            "h_IP3R": 0.7861646919663225,
+            "IP3": 0.20008852376620706
+          },
+          "counters": {}
+        },
+        "candidates": {
+          "cube_baseline": {
+            "C": {
+              "rmse": 0.03095767556241033,
+              "max_abs": 0.30208655256917216
+            },
+            "h": {
+              "rmse": 0.03905658273545055,
+              "max_abs": 0.07492255988637697
+            },
+            "IP3": {
+              "rmse": 5.99555480198294e-15,
+              "max_abs": 1.0325074129013956e-14
+            },
+            "I_SIC": {
+              "rmse": 0.5364170867014249,
+              "max_abs": 4.999522312989556
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.22,
+                41.43,
+                57.6,
+                71.31,
+                76.74,
+                89.86,
+                93.88,
+                106.66,
+                110.6,
+                123.18,
+                131.29,
+                144.69,
+                157.99,
+                172.47
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                22.23,
+                41.44,
+                57.61,
+                71.32,
+                76.75,
+                89.87,
+                93.89,
+                106.67,
+                110.61,
+                123.19,
+                131.3,
+                144.7,
+                158.0,
+                172.48
+              ],
+              "sic_area": 335.11918538830264,
+              "sic_max": 6.270822245906302,
+              "sic_active_seconds": 71.55,
+              "C_range": [
+                0.08090316959622815,
+                0.7256020949358891
+              ],
+              "h_range": [
+                0.5741438464087502,
+                0.7868494332752278
+              ],
+              "sic_delivery_max_error": 2.7755575615628914e-17
+            },
+            "pwa": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                2.17,
+                22.92,
+                41.59,
+                57.72,
+                71.99,
+                76.0,
+                89.61,
+                93.88,
+                109.98,
+                123.33,
+                131.16,
+                145.05,
+                158.18,
+                173.07
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                22.93,
+                41.6,
+                57.73,
+                72.0,
+                76.01,
+                89.62,
+                93.89,
+                107.35,
+                109.99,
+                123.34,
+                131.17,
+                145.06,
+                158.19,
+                173.08
+              ],
+              "sic_area": 303.5221226615545,
+              "sic_max": 6.136636952916515,
+              "sic_active_seconds": 66.45,
+              "C_range": [
+                0.08381885724834097,
+                0.6591855581546959
+              ],
+              "h_range": [
+                0.6200420503708198,
+                0.7860199171703827
+              ],
+              "sic_delivery_max_error": 0.0
+            },
+            "matched_count_peak_time_MAE_seconds": 7.562142857142855,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.004292284007533453,
+              "prepare_seconds": 5.547198816202581e-05,
+              "run_seconds": 0.04110619401035365,
+              "readout_seconds": 0.017695422007818706,
+              "terminal": {
+                "Ca_astro": 0.08548452090737466,
+                "h_IP3R": 0.7388391280928729,
+                "IP3": 0.20008852376620706
+              },
+              "counters": {
+                "affine_flows": 36501,
+                "region_crossings": 64,
+                "input_spikes": 8
+              }
+            }
+          },
+          "cube_refit": {
+            "C": {
+              "rmse": 0.03086530449286006,
+              "max_abs": 0.30022541398296976
+            },
+            "h": {
+              "rmse": 0.03933138864730321,
+              "max_abs": 0.0776862373866205
+            },
+            "IP3": {
+              "rmse": 6.035717749243661e-15,
+              "max_abs": 1.0436096431476471e-14
+            },
+            "I_SIC": {
+              "rmse": 0.5382835902797172,
+              "max_abs": 4.965351991462004
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.22,
+                41.43,
+                57.6,
+                71.31,
+                76.74,
+                89.86,
+                93.88,
+                106.66,
+                110.6,
+                123.18,
+                131.29,
+                144.69,
+                157.99,
+                172.47
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                22.23,
+                41.44,
+                57.61,
+                71.32,
+                76.75,
+                89.87,
+                93.89,
+                106.67,
+                110.61,
+                123.19,
+                131.3,
+                144.7,
+                158.0,
+                172.48
+              ],
+              "sic_area": 335.11918538830264,
+              "sic_max": 6.270822245906302,
+              "sic_active_seconds": 71.55,
+              "C_range": [
+                0.08090316959622815,
+                0.7256020949358891
+              ],
+              "h_range": [
+                0.5741438464087502,
+                0.7868494332752278
+              ],
+              "sic_delivery_max_error": 2.7755575615628914e-17
+            },
+            "pwa": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                2.07,
+                22.91,
+                41.59,
+                57.71,
+                71.98,
+                76.0,
+                89.61,
+                93.87,
+                109.99,
+                123.33,
+                131.15,
+                145.04,
+                158.17,
+                173.07
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                22.92,
+                41.6,
+                57.72,
+                71.99,
+                76.01,
+                89.62,
+                93.88,
+                107.35,
+                110.0,
+                123.34,
+                131.16,
+                145.05,
+                158.18,
+                173.08
+              ],
+              "sic_area": 302.7892706330168,
+              "sic_max": 6.137161784100064,
+              "sic_active_seconds": 66.32000000000001,
+              "C_range": [
+                0.08379641654573218,
+                0.6594283539536987
+              ],
+              "h_range": [
+                0.6241768802436471,
+                0.7860273914802972
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": 7.57071428571428,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.006356599013088271,
+              "prepare_seconds": 5.499098915606737e-05,
+              "run_seconds": 0.04324663100123871,
+              "readout_seconds": 0.016833075002068654,
+              "terminal": {
+                "Ca_astro": 0.08548007700365272,
+                "h_IP3R": 0.7402903489968135,
+                "IP3": 0.20008852376620706
+              },
+              "counters": {
+                "affine_flows": 36501,
+                "region_crossings": 64,
+                "input_spikes": 8
+              }
+            }
+          },
+          "log_baseline": {
+            "C": {
+              "rmse": 0.03398295836824841,
+              "max_abs": 0.4085109955006239
+            },
+            "h": {
+              "rmse": 0.033191055509731504,
+              "max_abs": 0.058478767509020146
+            },
+            "IP3": {
+              "rmse": 5.986949332064177e-15,
+              "max_abs": 1.0325074129013956e-14
+            },
+            "I_SIC": {
+              "rmse": 0.4925512057888902,
+              "max_abs": 5.771575483844355
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.22,
+                41.43,
+                57.6,
+                71.31,
+                76.74,
+                89.86,
+                93.88,
+                106.66,
+                110.6,
+                123.18,
+                131.29,
+                144.69,
+                157.99,
+                172.47
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                22.23,
+                41.44,
+                57.61,
+                71.32,
+                76.75,
+                89.87,
+                93.89,
+                106.67,
+                110.61,
+                123.19,
+                131.3,
+                144.7,
+                158.0,
+                172.48
+              ],
+              "sic_area": 335.11918538830264,
+              "sic_max": 6.270822245906302,
+              "sic_active_seconds": 71.55,
+              "C_range": [
+                0.08090316959622815,
+                0.7256020949358891
+              ],
+              "h_range": [
+                0.5741438464087502,
+                0.7868494332752278
+              ],
+              "sic_delivery_max_error": 2.7755575615628914e-17
+            },
+            "pwa": {
+              "calcium_peaks": 15,
+              "calcium_peak_times": [
+                1.19,
+                23.48,
+                41.74,
+                57.77,
+                71.52,
+                76.47,
+                89.66,
+                93.95,
+                107.0,
+                110.16,
+                123.04,
+                131.28,
+                144.78,
+                158.26,
+                172.6
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                23.49,
+                41.75,
+                57.78,
+                71.53,
+                76.48,
+                89.67,
+                93.96,
+                107.01,
+                110.17,
+                123.05,
+                131.29,
+                144.79,
+                158.27,
+                172.61
+              ],
+              "sic_area": 324.44440241890004,
+              "sic_max": 6.147856965768634,
+              "sic_active_seconds": 70.9,
+              "C_range": [
+                0.0674977871620154,
+                0.664403984923989
+              ],
+              "h_range": [
+                0.5966408394699769,
+                0.7860210596790791
+              ],
+              "sic_delivery_max_error": 4.440892098500626e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.005863098005647771,
+              "prepare_seconds": 5.6033008149825037e-05,
+              "run_seconds": 0.0458048080035951,
+              "readout_seconds": 0.026390161001472734,
+              "terminal": {
+                "Ca_astro": 0.06749776468348934,
+                "h_IP3R": 0.7426661752765712,
+                "IP3": 0.20008852376620706
+              },
+              "counters": {
+                "affine_flows": 36345,
+                "region_crossings": 60,
+                "input_spikes": 8
+              }
+            }
+          },
+          "log_refit": {
+            "C": {
+              "rmse": 0.0342399998908764,
+              "max_abs": 0.4124307762262751
+            },
+            "h": {
+              "rmse": 0.03346403198460848,
+              "max_abs": 0.05873102288547827
+            },
+            "IP3": {
+              "rmse": 6.039025530660518e-15,
+              "max_abs": 1.0325074129013956e-14
+            },
+            "I_SIC": {
+              "rmse": 0.49256400615537876,
+              "max_abs": 5.797658688403831
+            },
+            "lr": {
+              "calcium_peaks": 14,
+              "calcium_peak_times": [
+                22.22,
+                41.43,
+                57.6,
+                71.31,
+                76.74,
+                89.86,
+                93.88,
+                106.66,
+                110.6,
+                123.18,
+                131.29,
+                144.69,
+                157.99,
+                172.47
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                22.23,
+                41.44,
+                57.61,
+                71.32,
+                76.75,
+                89.87,
+                93.89,
+                106.67,
+                110.61,
+                123.19,
+                131.3,
+                144.7,
+                158.0,
+                172.48
+              ],
+              "sic_area": 335.11918538830264,
+              "sic_max": 6.270822245906302,
+              "sic_active_seconds": 71.55,
+              "C_range": [
+                0.08090316959622815,
+                0.7256020949358891
+              ],
+              "h_range": [
+                0.5741438464087502,
+                0.7868494332752278
+              ],
+              "sic_delivery_max_error": 2.7755575615628914e-17
+            },
+            "pwa": {
+              "calcium_peaks": 15,
+              "calcium_peak_times": [
+                1.19,
+                23.5,
+                41.74,
+                57.77,
+                71.49,
+                76.52,
+                89.69,
+                93.94,
+                106.98,
+                110.17,
+                123.02,
+                131.29,
+                144.77,
+                158.27,
+                172.59
+              ],
+              "sic_peak_count": 14,
+              "sic_peak_times": [
+                23.51,
+                41.75,
+                57.78,
+                71.5,
+                76.53,
+                89.7,
+                93.95,
+                106.99,
+                110.18,
+                123.03,
+                131.3,
+                144.78,
+                158.28,
+                172.6
+              ],
+              "sic_area": 325.5861400650958,
+              "sic_max": 6.140096814363738,
+              "sic_active_seconds": 71.09,
+              "C_range": [
+                0.06750623037283689,
+                0.6607885000853415
+              ],
+              "h_range": [
+                0.5971083821040779,
+                0.7860174265790597
+              ],
+              "sic_delivery_max_error": 8.881784197001252e-16
+            },
+            "matched_count_peak_time_MAE_seconds": null,
+            "initial": [
+              0.08233150784556179,
+              0.7861999350892381,
+              0.2
+            ],
+            "timing": {
+              "build_seconds": 0.009109192993491888,
+              "prepare_seconds": 8.291199628729373e-05,
+              "run_seconds": 0.07184750400483608,
+              "readout_seconds": 0.023528295001597144,
+              "terminal": {
+                "Ca_astro": 0.06750620786186247,
+                "h_IP3R": 0.7422180581395444,
+                "IP3": 0.20008852376620706
+              },
+              "counters": {
+                "affine_flows": 36345,
+                "region_crossings": 60,
+                "input_spikes": 8
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "diagnostic_aggregates": {
+    "new_own_rest": {
+      "cube_baseline": {
+        "mean_SIC_RMSE": 0.539425063389422,
+        "mean_C_RMSE": 0.021102018906371915,
+        "SIC_peak_count_matches": 3
+      },
+      "cube_refit": {
+        "mean_SIC_RMSE": 0.5402821330196079,
+        "mean_C_RMSE": 0.021322630064876592,
+        "SIC_peak_count_matches": 3
+      },
+      "log_baseline": {
+        "mean_SIC_RMSE": 0.5396682152025767,
+        "mean_C_RMSE": 0.023693003287884172,
+        "SIC_peak_count_matches": 3
+      },
+      "log_refit": {
+        "mean_SIC_RMSE": 0.5409155489896187,
+        "mean_C_RMSE": 0.0238538790618249,
+        "SIC_peak_count_matches": 3
+      }
+    },
+    "known_NEST_stress": {
+      "cube_baseline": {
+        "mean_SIC_RMSE": 0.9548827425882074,
+        "mean_C_RMSE": 0.051370214427805594,
+        "SIC_peak_count_matches": 2
+      },
+      "cube_refit": {
+        "mean_SIC_RMSE": 0.9509137050765751,
+        "mean_C_RMSE": 0.051043320054288945,
+        "SIC_peak_count_matches": 3
+      },
+      "log_baseline": {
+        "mean_SIC_RMSE": 0.9212579975228632,
+        "mean_C_RMSE": 0.056532423985408344,
+        "SIC_peak_count_matches": 3
+      },
+      "log_refit": {
+        "mean_SIC_RMSE": 0.9285949338141982,
+        "mean_C_RMSE": 0.057152869121635544,
+        "SIC_peak_count_matches": 3
+      }
+    }
+  },
+  "implementation_check": {
+    "max_abs_C": 1.8880220997719022e-10,
+    "max_abs_h": 3.94732024844302e-11,
+    "reference": "independent high-accuracy DOP853 on first fresh input"
+  }
+}

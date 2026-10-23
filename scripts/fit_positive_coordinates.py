@@ -51,11 +51,13 @@ def is_fixed(p):return 'fixed' in p['name']
 
 
 class CalibrationResidual:
-    def __init__(self,case,training,refs,seed,peak_weight=25.,explicit_status=True):
+    def __init__(self,case,training,refs,seed,peak_weight=25.,explicit_status=True,spectral_anchors=True):
+        self.use_spectral_anchors=bool(spectral_anchors)
         self.case=case;self.training=training;self.refs=refs
         self.peak_weight=peak_weight;self.explicit_status=explicit_status
         self.static=NativeStatistics();self.dynamic=NativeCoordinateDynamic()
-        self.anchors=np.array([e['I'] for e in seed.metadata['events']])
+        self.anchors=(np.array([e['I'] for e in seed.metadata['events']])
+                      if self.use_spectral_anchors else np.empty(0))
         self.targets={p['name']:stats(*refs[p['name']][:2]) for p in training if is_fixed(p)}
         self.samples={}
         for p in training:
@@ -112,13 +114,16 @@ class CalibrationResidual:
             except (ValueError,RuntimeError,FloatingPointError,OverflowError):
                 r=[100.]* (8 if is_fixed(p) else 1444)
             rr.extend(r);groups[name]=float(np.dot(r,r))
-        anchors=(model.equilibrium_inputs_at_thresholds(self.anchors)-self.anchors)/.03
-        rr.extend(anchors);groups['spectral_I_anchors']=float(anchors@anchors)
+        if self.use_spectral_anchors:
+            anchors=(model.equilibrium_inputs_at_thresholds(self.anchors)-self.anchors)/.03
+            rr.extend(anchors);groups['spectral_I_anchors']=float(anchors@anchors)
         result=np.array(rr)
         return (result,groups) if parts else result
 
 
-def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind=None,rng_seed=20261021,checkpoint_path=None,input_threshold_bounds=None):
+def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind=None,rng_seed=20261021,checkpoint_path=None,input_threshold_bounds=None,powell_radius=None):
+    if powell_radius is not None and (not np.isfinite(powell_radius) or powell_radius<=0):
+        raise ValueError('Invalid local Powell radius')
     if 'exact_rest_constraint' in seed.metadata:
         raise ValueError('Use fit_anchored_shapes to preserve the exact rest constraint')
     if seed.has_state_mix:
@@ -216,8 +221,12 @@ def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind
         except Limit:status='residual evaluation limit'
         runs.append(dict(method='least_squares',start=name,status=status))
     limit=count+budget
+    powell_lower,powell_upper=lower,upper
+    if powell_radius is not None:
+        radius=powell_radius*np.maximum(1.,np.abs(bestz))
+        powell_lower=np.maximum(lower,bestz-radius);powell_upper=np.minimum(upper,bestz+radius)
     try:
-        result=minimize(lambda p:float(np.dot(r:=residual(p),r)),bestz,method='Powell',bounds=list(zip(lower,upper)),options=dict(maxfev=budget,xtol=1e-5,ftol=1e-7))
+        result=minimize(lambda p:float(np.dot(r:=residual(p),r)),bestz,method='Powell',bounds=list(zip(powell_lower,powell_upper)),options=dict(maxfev=budget,xtol=1e-5,ftol=1e-7))
         status=str(result.message)
     except Limit:status='residual evaluation limit'
     runs.append(dict(method='Powell',status=status))
@@ -229,7 +238,8 @@ def fit(case,variant,seed,data,objective,budget,*,coordinate_kind=None,gate_kind
     dump(destination/f'{case}_fit.json',dict(evaluations=count,history=history,runs=runs,
         optimizer_loss=float(r@r),parts=parts,bounds=[lower.tolist(),upper.tolist()],
         parameters=bestz.tolist(),initial_scores=[dict(score=s,start=name) for s,name,_ in ranks],
-        LS_per_start=budget,Powell_budget=budget,active_parameters=len(z)))
+        LS_per_start=budget,Powell_budget=budget,active_parameters=len(z),powell_radius=powell_radius,
+        powell_bounds=[powell_lower.tolist(),powell_upper.tolist()]))
     return model
 
 

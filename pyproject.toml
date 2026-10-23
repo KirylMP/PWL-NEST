@@ -9,5 +9,8 @@ description = "Li-Rinzel AM/FM starting models and legacy PWA baselines"
 requires-python = ">=3.11"
 dependencies = ["numpy==2.3.5", "scipy==1.17.0", "matplotlib==3.10.8"]
 
+[project.optional-dependencies]
+nest = ["nest-simulator==3.10.0"]
+
 [tool.setuptools.packages.find]
 where = ["src"]

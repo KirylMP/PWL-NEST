@@ -1,0 +1,17 @@
+{"model": "AM_sqrt_tails__log", "baseline_train_loss": 17.742868010015783, "parts": {"fixed_and_spectral_anchors": 5.390133403719323, "pulse_tau_20.0": 1.7512320644987254, "pulse_tau_100.0": 4.023447373564342, "periodic": 6.517107667183241, "own_rest": 0.060947501050156984}}
+AM baseline 1: 17.74287
+AM baseline 484: 17.72011
+AM baseline 588: 17.71141
+AM baseline 700: 17.64269
+AM baseline 838: 17.63789
+AM baseline 953: 17.63322
+AM baseline 1061: 17.63206
+AM baseline 1163: 17.6319
+AM baseline 1273: 17.63089
+AM baseline 1377: 17.62976
+AM baseline 1516: 17.62694
+AM baseline 1617: 17.6258
+AM baseline 1755: 17.62407
+AM baseline 1868: 17.61574
+{"candidate_name": "AM_sqrt_tails__log", "restart": 0, "status": "verified", "verified_train_loss": 17.614572687291762, "train_parts": {"fixed_and_spectral_anchors": 5.263745259084894, "pulse_tau_20.0": 1.7078941284974212, "pulse_tau_100.0": 3.955775641826492, "periodic": 6.62274586405626, "own_rest": 0.06441179382669383}, "seconds": 149.72822940499464, "model": "trials/AM_sqrt_tails__log/r0000/candidate.json"}
+{"model": "AM_sqrt_tails__log", "selected_train_loss": 17.614572687291762, "previous_tests": {"C_RMSE": 0.019374920105316835, "physical": true, "peak_count_matches": 3, "protocol_count": 4}, "new_tests": {"C_RMSE": 0.033106621250859225, "physical": true, "peak_count_matches": 3, "protocol_count": 5}}

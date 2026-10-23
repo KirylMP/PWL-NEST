@@ -1,0 +1,251 @@
+{
+  "source": "doc/examples/pynest/astrocytes/astrocyte_small_network.py",
+  "source_sha256": "3a7b3da732f4404cb4b230276fc4e736c3e457b13aca5948172cb00b3ccbe3d7",
+  "nest_version": "3.10.0",
+  "variants": {
+    "LR": null,
+    "full_AM": "models/server_candidates/AM_sqrt_tails__cube.json",
+    "AM_2C": "models/threshold_reduction/selected_AM_2C.json",
+    "AM_2C_2I": "models/threshold_reduction/selected_AM_2C_2I.json",
+    "no_SIC": null
+  },
+  "conditions": {
+    "original_example": {
+      "parameters": {
+        "duration_ms": 1000.0,
+        "delta_IP3": 0.2,
+        "record_ms": 1.0
+      },
+      "results": {
+        "LR": {
+          "completed": true,
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+          "recorded_simulate_seconds": 0.11881896600243635,
+          "pre_spikes": 320,
+          "post_spikes": 360,
+          "post_rate_hz": 36.0,
+          "mean_SIC_pA": 50.41337806069104,
+          "max_SIC_pA": 68.54854473812387,
+          "C_range": [
+            0.07315300598962844,
+            1.1455129342569097
+          ],
+          "IP3_range": [
+            0.399597090189839,
+            7.9609461982651455
+          ],
+          "h_range": [
+            0.7322272227883363,
+            0.7957188644047487
+          ],
+          "identical_presynaptic_spikes": true,
+          "post_I_SIC_RMSE_vs_LR": 0.0,
+          "population_rate_RMSE_vs_LR": 0.0,
+          "rate_change_vs_LR_hz": 0.0
+        },
+        "full_AM": {
+          "completed": false,
+          "error": "Input drove IP3 outside fitted [0,1.3]",
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd"
+        },
+        "AM_2C": {
+          "completed": false,
+          "error": "Input drove IP3 outside fitted [0,1.3]",
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd"
+        },
+        "AM_2C_2I": {
+          "completed": false,
+          "error": "Input drove IP3 outside fitted [0,1.3]",
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd"
+        },
+        "no_SIC": {
+          "completed": true,
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+          "recorded_simulate_seconds": 0.11134629898879211,
+          "pre_spikes": 320,
+          "post_spikes": 320,
+          "post_rate_hz": 32.0,
+          "mean_SIC_pA": 0.0,
+          "max_SIC_pA": 0.0,
+          "C_range": [
+            0.07315300598962844,
+            1.1455129342569097
+          ],
+          "IP3_range": [
+            0.399597090189839,
+            7.9609461982651455
+          ],
+          "h_range": [
+            0.7322272227883363,
+            0.7957188644047487
+          ],
+          "identical_presynaptic_spikes": true,
+          "post_I_SIC_RMSE_vs_LR": 56.10562912652252,
+          "population_rate_RMSE_vs_LR": 6.324555320336759,
+          "rate_change_vs_LR_hz": -4.0
+        }
+      },
+      "identical_topology": true
+    },
+    "extended_default_jump": {
+      "parameters": {
+        "duration_ms": 30000.0,
+        "delta_IP3": 0.0002,
+        "record_ms": 10.0
+      },
+      "results": {
+        "LR": {
+          "completed": true,
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+          "recorded_simulate_seconds": 3.2520936119981343,
+          "pre_spikes": 8520,
+          "post_spikes": 8720,
+          "post_rate_hz": 29.066666666666666,
+          "mean_SIC_pA": 7.369061823202506,
+          "max_SIC_pA": 58.8287997532182,
+          "C_range": [
+            0.07413868713752561,
+            0.5555308445352716
+          ],
+          "IP3_range": [
+            0.1964668778699065,
+            0.40218118256106633
+          ],
+          "h_range": [
+            0.6350385440856113,
+            0.7936248135925649
+          ],
+          "identical_presynaptic_spikes": true,
+          "post_I_SIC_RMSE_vs_LR": 0.0,
+          "population_rate_RMSE_vs_LR": 0.0,
+          "rate_change_vs_LR_hz": 0.0
+        },
+        "full_AM": {
+          "completed": true,
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+          "recorded_simulate_seconds": 2.5973235209967243,
+          "pre_spikes": 8520,
+          "post_spikes": 8720,
+          "post_rate_hz": 29.066666666666666,
+          "mean_SIC_pA": 7.793471572608444,
+          "max_SIC_pA": 62.910342049644385,
+          "C_range": [
+            0.062338070902435226,
+            0.7363996860785593
+          ],
+          "IP3_range": [
+            0.1964668778698651,
+            0.4021811825610547
+          ],
+          "h_range": [
+            0.6584004716343864,
+            0.7926902215284226
+          ],
+          "identical_presynaptic_spikes": true,
+          "post_I_SIC_RMSE_vs_LR": 5.080472773479241,
+          "population_rate_RMSE_vs_LR": 4.47213595499958,
+          "rate_change_vs_LR_hz": 0.0
+        },
+        "AM_2C": {
+          "completed": true,
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+          "recorded_simulate_seconds": 2.632428130993503,
+          "pre_spikes": 8520,
+          "post_spikes": 8710,
+          "post_rate_hz": 29.033333333333335,
+          "mean_SIC_pA": 7.150798395205718,
+          "max_SIC_pA": 55.59651254687309,
+          "C_range": [
+            0.0753196644507432,
+            0.45642246990068625
+          ],
+          "IP3_range": [
+            0.1964668778698651,
+            0.4021811825610547
+          ],
+          "h_range": [
+            0.6631894629372498,
+            0.7924756474363696
+          ],
+          "identical_presynaptic_spikes": true,
+          "post_I_SIC_RMSE_vs_LR": 4.57506753936001,
+          "population_rate_RMSE_vs_LR": 5.259911279353167,
+          "rate_change_vs_LR_hz": -0.03333333333333144
+        },
+        "AM_2C_2I": {
+          "completed": true,
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+          "recorded_simulate_seconds": 2.6449019169958774,
+          "pre_spikes": 8520,
+          "post_spikes": 8710,
+          "post_rate_hz": 29.033333333333335,
+          "mean_SIC_pA": 6.897146713096557,
+          "max_SIC_pA": 56.830309156260206,
+          "C_range": [
+            0.025809100076662896,
+            0.49052808758919425
+          ],
+          "IP3_range": [
+            0.1964668778698651,
+            0.4021811825610547
+          ],
+          "h_range": [
+            0.6608010200528303,
+            0.792677202945034
+          ],
+          "identical_presynaptic_spikes": true,
+          "post_I_SIC_RMSE_vs_LR": 2.9832996867085226,
+          "population_rate_RMSE_vs_LR": 4.864839839775475,
+          "rate_change_vs_LR_hz": -0.03333333333333144
+        },
+        "no_SIC": {
+          "completed": true,
+          "topology_sha256": "9f55fb5df853102c98bed62822a1ca36b254e19d2c4160f31d7f7fdd5b1655cd",
+          "recorded_simulate_seconds": 3.3356692899978952,
+          "pre_spikes": 8520,
+          "post_spikes": 8570,
+          "post_rate_hz": 28.566666666666666,
+          "mean_SIC_pA": 0.0,
+          "max_SIC_pA": 0.0,
+          "C_range": [
+            0.07413868713752561,
+            0.5555308445352716
+          ],
+          "IP3_range": [
+            0.1964668778699065,
+            0.40218118256106633
+          ],
+          "h_range": [
+            0.6350385440856113,
+            0.7936248135925649
+          ],
+          "identical_presynaptic_spikes": true,
+          "post_I_SIC_RMSE_vs_LR": 19.795165057940714,
+          "population_rate_RMSE_vs_LR": 5.627314338711377,
+          "rate_change_vs_LR_hz": -0.5
+        }
+      },
+      "identical_topology": true
+    }
+  },
+  "note": "Feedforward pilot; one seed. Recorded runtimes are not benchmarks.",
+  "settings": {
+    "seed": 20261029,
+    "resolution_ms": 0.1,
+    "threads": 1,
+    "source_neurons": 10,
+    "target_neurons": 10,
+    "astrocytes": 5,
+    "initial_C": 0.073,
+    "initial_h": 0.793,
+    "initial_IP3": 0.4,
+    "IP3_baseline": 0.16,
+    "tau_IP3_ms": 7142.0,
+    "I_e_pA": 1000.0
+  },
+  "model_sha256": {
+    "full_AM": "365e1d0327b5308e89aaccec601fb9f6d6edf073156b30825eb82d4518b03294",
+    "AM_2C": "dc10725912dc31c3e8e55071aaadb94ca376ddbd39c87b2e7452eb775d778a4c",
+    "AM_2C_2I": "2a0c800c9f57199e5a3a01005aa74fefe8c3b602a33341baaa51a2d3b9dc6101"
+  }
+}

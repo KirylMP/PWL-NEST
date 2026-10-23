@@ -1,0 +1,27 @@
+
+             -- N E S T --
+
+ Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.10.0
+ Built  : Jun 10 2026 07:01:20
+
+ This program is provided AS IS and comes with NO WARRANTY.
+ See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+{"group": "new_own_rest", "protocol": "fresh_tau_9", "SIC_RMSE": {"cube_baseline": 0.1668485623475313, "cube_refit": 0.16898136638379774, "log_baseline": 0.14061321508400146, "log_refit": 0.13902151677370725}}
+{"group": "new_own_rest", "protocol": "fresh_tau_29", "SIC_RMSE": {"cube_baseline": 0.4026855987754088, "cube_refit": 0.40103297165696744, "log_baseline": 0.21197412835065793, "log_refit": 0.20481470185074188}}
+{"group": "new_own_rest", "protocol": "fresh_tau_58", "SIC_RMSE": {"cube_baseline": 0.5643457653313805, "cube_refit": 0.5622357002531678, "log_baseline": 0.556096157260713, "log_refit": 0.5604077766620006}}
+{"group": "new_own_rest", "protocol": "fresh_tau_115", "SIC_RMSE": {"cube_baseline": 1.1465229372960564, "cube_refit": 1.155593111801875, "log_baseline": 1.482187562641142, "log_refit": 1.482470046891613}}
+{"group": "new_own_rest", "protocol": "fresh_irregular", "SIC_RMSE": {"cube_baseline": 0.41672245319673273, "cube_refit": 0.4135675150022318, "log_baseline": 0.3074700126763688, "log_refit": 0.3178637027700305}}
+{"group": "known_NEST_stress", "protocol": "pulse_tau20", "SIC_RMSE": {"cube_baseline": 0.42412118623756906, "cube_refit": 0.4150724156530641, "log_baseline": 0.5904961435644275, "log_refit": 0.6141769799680799}}
+{"group": "known_NEST_stress", "protocol": "pulse_tau100", "SIC_RMSE": {"cube_baseline": 1.9376028885115197, "cube_refit": 1.934257380022105, "log_baseline": 1.9482388121387906, "log_refit": 1.9503603947573267}}
+{"group": "known_NEST_stress", "protocol": "pulse_tau180", "SIC_RMSE": {"cube_baseline": 1.3691378381367079, "cube_refit": 1.3572807327549439, "log_baseline": 1.0681357985758533, "log_refit": 1.0731118018944772}}
+{"group": "known_NEST_stress", "protocol": "periodic", "SIC_RMSE": {"cube_baseline": 0.507134713353815, "cube_refit": 0.509674406673045, "log_baseline": 0.5068680275463537, "log_refit": 0.5127614862957282}}
+{"group": "known_NEST_stress", "protocol": "irregular", "SIC_RMSE": {"cube_baseline": 0.5364170867014249, "cube_refit": 0.5382835902797172, "log_baseline": 0.4925512057888902, "log_refit": 0.49256400615537876}}
+/workspace/PWL-NEST/results/am_baseline_refit/REPORT.md

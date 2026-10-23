@@ -1,0 +1,122 @@
+{
+  "selection": "Independent DOP853 original RestObjective training loss only. All SIC/NEST and held-out metrics excluded.",
+  "original_method": {
+    "background_IP3": 0.3,
+    "initialization": "each model own stable equilibrium; no fitted initial state",
+    "delay_seconds": 20,
+    "coordinate": "sqrt_tails",
+    "gate_coordinates": [
+      "cube",
+      "log"
+    ],
+    "active_parameters": 21,
+    "regions": 12,
+    "budget_per_optimizer_stage": 1500,
+    "restarts_per_branch": 2
+  },
+  "new_diagnostics": [
+    {
+      "name": "fresh_tau_9",
+      "duration": 240.0,
+      "tau": 9.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.35
+        ]
+      ]
+    },
+    {
+      "name": "fresh_tau_29",
+      "duration": 240.0,
+      "tau": 29.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.35
+        ]
+      ]
+    },
+    {
+      "name": "fresh_tau_58",
+      "duration": 240.0,
+      "tau": 58.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.35
+        ]
+      ]
+    },
+    {
+      "name": "fresh_tau_115",
+      "duration": 300.0,
+      "tau": 115.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.35
+        ]
+      ]
+    },
+    {
+      "name": "fresh_irregular",
+      "duration": 260.0,
+      "tau": 19.0,
+      "baseline": 0.3,
+      "jumps": [
+        [
+          20.0,
+          0.1660698386847508
+        ],
+        [
+          41.85,
+          0.14375339796627545
+        ],
+        [
+          61.25,
+          0.13878475849138514
+        ],
+        [
+          79.30000000000001,
+          0.14943752600189364
+        ],
+        [
+          100.4,
+          0.17919139342690685
+        ],
+        [
+          121.25,
+          0.1494992414825962
+        ],
+        [
+          136.6,
+          0.12489166652197202
+        ]
+      ]
+    }
+  ],
+  "existing_NEST_stress": "same five known protocols from scripts/benchmark_nest.py at baseline .2, pulse .7 and common LR initial state; diagnostic only",
+  "frozen_before_selection": true,
+  "numerical_followup": {
+    "reason": "DOP rejected threshold-sensitive coarse-RK proposal; see initial_numerical_audit.json",
+    "loss_unchanged": true,
+    "native_maxdt": 0.001,
+    "powell_radius": 0.01,
+    "additional_restarts_per_branch": 2,
+    "seed": 20261025
+  },
+  "full_trajectory_followup": {
+    "reason": "Autonomous attractor helper differs from fixed-duration DOP statistics; replace helper with full trajectories, original residual unchanged",
+    "backend": "cached analytic affine flow from NEST stepper",
+    "maxdt": 0.02,
+    "powell_radius": 0.01,
+    "additional_restarts_per_branch": 1,
+    "seed": 20261026,
+    "baseline_helper_audit": "flow_helper_audit.json"
+  }
+}

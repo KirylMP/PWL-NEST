@@ -1,0 +1,196 @@
+{
+  "protocols": {
+    "AM": [
+      {
+        "name": "heldout_tau_11",
+        "duration": 260.0,
+        "tau": 11.0,
+        "baseline": 0.3,
+        "jumps": [
+          [
+            20.0,
+            0.35
+          ]
+        ]
+      },
+      {
+        "name": "heldout_tau_32",
+        "duration": 260.0,
+        "tau": 32.0,
+        "baseline": 0.3,
+        "jumps": [
+          [
+            20.0,
+            0.35
+          ]
+        ]
+      },
+      {
+        "name": "heldout_tau_72",
+        "duration": 260.0,
+        "tau": 72.0,
+        "baseline": 0.3,
+        "jumps": [
+          [
+            20.0,
+            0.35
+          ]
+        ]
+      },
+      {
+        "name": "heldout_tau_150",
+        "duration": 420.0,
+        "tau": 150.0,
+        "baseline": 0.3,
+        "jumps": [
+          [
+            20.0,
+            0.35
+          ]
+        ]
+      },
+      {
+        "name": "heldout_irregular",
+        "duration": 300.0,
+        "tau": 21.0,
+        "baseline": 0.3,
+        "jumps": [
+          [
+            20.0,
+            0.14127422636935513
+          ],
+          [
+            46.85,
+            0.1368100234953905
+          ],
+          [
+            73.45,
+            0.13220448020906608
+          ],
+          [
+            89.80000000000001,
+            0.149597095419086
+          ],
+          [
+            110.7,
+            0.13489904657856938
+          ],
+          [
+            130.9,
+            0.12937975379820485
+          ],
+          [
+            148.45000000000002,
+            0.17019737601405888
+          ],
+          [
+            166.95000000000002,
+            0.17222254351303315
+          ]
+        ]
+      }
+    ],
+    "FM": [
+      {
+        "name": "heldout_tau_11",
+        "duration": 260.0,
+        "tau": 11.0,
+        "baseline": 0.45,
+        "jumps": [
+          [
+            20.0,
+            0.7
+          ]
+        ]
+      },
+      {
+        "name": "heldout_tau_32",
+        "duration": 260.0,
+        "tau": 32.0,
+        "baseline": 0.45,
+        "jumps": [
+          [
+            20.0,
+            0.7
+          ]
+        ]
+      },
+      {
+        "name": "heldout_tau_72",
+        "duration": 260.0,
+        "tau": 72.0,
+        "baseline": 0.45,
+        "jumps": [
+          [
+            20.0,
+            0.7
+          ]
+        ]
+      },
+      {
+        "name": "heldout_tau_150",
+        "duration": 420.0,
+        "tau": 150.0,
+        "baseline": 0.45,
+        "jumps": [
+          [
+            20.0,
+            0.7
+          ]
+        ]
+      },
+      {
+        "name": "heldout_irregular",
+        "duration": 300.0,
+        "tau": 21.0,
+        "baseline": 0.45,
+        "jumps": [
+          [
+            20.0,
+            0.28166640012937105
+          ],
+          [
+            46.85,
+            0.21305245532370917
+          ],
+          [
+            73.45,
+            0.20239768204247088
+          ],
+          [
+            89.80000000000001,
+            0.27322046094877245
+          ],
+          [
+            110.7,
+            0.2577171409994063
+          ],
+          [
+            130.9,
+            0.23249954876354048
+          ],
+          [
+            148.45000000000002,
+            0.23650938736406513
+          ],
+          [
+            166.95000000000002,
+            0.2139702404331591
+          ]
+        ]
+      }
+    ]
+  },
+  "selection": "Never use these diagnostics for fitting or model selection",
+  "initialization": "each candidate own stable rest; reduced model has exact stable LR rest",
+  "recorded_SIC": "delivered I_SIC on AEIF target",
+  "resolution_ms": 10.0,
+  "timing": {
+    "resolution_ms": 1.0,
+    "population": 64,
+    "duration": 60.0,
+    "repeats": 3,
+    "excluded_warmups": 1,
+    "threads": 1
+  }
+}

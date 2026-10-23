@@ -1,0 +1,22 @@
+[
+  {
+    "task": "AM_cube_2C",
+    "exit_code": 0
+  },
+  {
+    "task": "AM_cube_2C_2I",
+    "exit_code": 0
+  },
+  {
+    "task": "FM_4C",
+    "exit_code": 0
+  },
+  {
+    "task": "AM_log_2C",
+    "exit_code": 0
+  },
+  {
+    "task": "AM_log_2C_2I",
+    "exit_code": 0
+  }
+]

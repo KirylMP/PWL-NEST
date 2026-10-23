@@ -1,0 +1,36 @@
+{
+  "base_git_commit": "bdedc3e646212dd72069ae7fbe9577a434dc9d87",
+  "source_sha256": {
+    "src/pwl_nest/reduced_thresholds.py": "8b94a701358597b8c990e8afd269d1e66c83c81cfcfb51465eee2806cb8028e1",
+    "src/pwl_nest/calcium_coordinates.py": "376520857a495106c1e71d7010d0351376ecbfa7a19606903d427b282741caaf",
+    "src/pwl_nest/calcium_strips.py": "863d9dd3bb00f6f4554354d4b7e66ada4e5ac4aa1eb67b5f442759a5da861ddb",
+    "src/pwl_nest/thresholds.py": "c2b05676484daf6fb3121c7a59ed1908ebc8b05c2845c4d5855e1f6e47e1288a",
+    "src/pwl_nest/fit_flow.py": "d4a8461f49ad556b74a776d7c6b882df14fbf1ff6a070ab3f4f5665d47a540c7",
+    "src/pwl_nest/rest_protocols.py": "6dc47d18c56ec1b0c38e11661607aa3880980ad0e146a7194abb2a7c54194320",
+    "src/pwl_nest/nest_adapter.py": "9c6a672196f6e90b703971d0d3049949e8f5f33ea3d5e83f112589ff2e984481",
+    "scripts/fit_reduced_thresholds.py": "8588917b77a89dcaf5a98ec380fabe5ece57bcfe7be15ba41b51d207afd9513c",
+    "scripts/run_reduced_search.py": "902412e84b7bb5edd2357c1513f3e60df64f247b47f56debbb7bc890cce82352",
+    "scripts/evaluate_reduced_thresholds.py": "50787f0d990e690412ee4c22a62790569a0ab24d5bf6376569f92bda7c5d80ad",
+    "scripts/fit_positive_coordinates.py": "b4e719ff01adffd704bb6082c348c59ee010d882f0a3d71d2dd3ba0f791e8f17",
+    "scripts/overnight_coordinate_grid.py": "2fee4014888814f8f9a4e7bdb74b177a95f793e462613e31f178c35c82b0e8eb",
+    "scripts/am_flow_objective.py": "9b1d23a223c17fca5498a2ca29688da1ba509deaec0fe7fe869410da2ca9b64f",
+    "native/fit_flow.cpp": "525e3a12b77b8d24be30ad60bdd385035319c567f7ca36489da5bf012d36a5d9",
+    "native/pwa_step.h": "987d834bcb22fc14bbc547a204ed223875b30da0f5578fda3dcded9979bd0b49",
+    "native/pwa_event.cpp": "e949459ba298fe4bc74b0337edaf3da0d36ef10b0d02d8b4e19ef71c06c96fdf",
+    "native/nest_pwa_module.cpp": "98ee3c7df272ace2fe1193c022439cf20bd0f1cecba7cf8189d2d8734e8f7e72",
+    "native/solver_timing.cpp": "b3929236a1072f5c87422a92ccd5ce5c2434ddf6243abb33e45cac5febec4cd5"
+  },
+  "binary_sha256": {
+    ".build/fit_flow.so": "f89f121e7f7fdb1e93460d19678713e34d36461e29bf8778968927d436b6c235",
+    ".build/pwl_astro_module.so": "db7e38d5493947503dda8dcfa6eda548c7db1d295e935d7524c9ce445cfe1286",
+    ".build/solver_timing.so": "f055ece17f81eeac14b198629bbfe30c4ada158c287b32ee1df3ce04061a67ad"
+  },
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+  "tests": {
+    "tests_run": 87,
+    "success": true,
+    "command": ".venv/bin/python -m unittest discover -s tests -q"
+  },
+  "note": "Search and simulator source snapshot; new commands also allow a fresh output directory. Measured scientific settings are in plan.json and each task config.json."
+}
