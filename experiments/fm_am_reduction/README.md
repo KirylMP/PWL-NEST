@@ -32,7 +32,7 @@ python -m pip install -e .
 python experiments/fm_am_reduction/scripts/plan.py --all
 python experiments/fm_am_reduction/scripts/prepare_reference_data.py --all
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
-  python experiments/fm_am_reduction/scripts/fit_stage.py --all
+  python experiments/fm_am_reduction/scripts/fit_stage.py --all --workers 16
 ```
 
 Generated plans and reference data go under `runs/fm_am_reduction/` and are
@@ -43,7 +43,7 @@ with, for example:
 ```bash
 python experiments/fm_am_reduction/scripts/plan.py --stage baseline --case FM
 python experiments/fm_am_reduction/scripts/prepare_reference_data.py --stage baseline --case FM
-OPENBLAS_NUM_THREADS=1 python experiments/fm_am_reduction/scripts/fit_stage.py --stage baseline --case FM
+OPENBLAS_NUM_THREADS=1 python experiments/fm_am_reduction/scripts/fit_stage.py --stage baseline --case FM --workers 16
 ```
 
 ## Implementation status
@@ -61,6 +61,11 @@ validation, and complexity acceptance gates are not implemented yet. Do not
 interpret a pre-cycle fit as the final candidate or as a result of the complete
 protocol. Existing repository `fit_*` scripts fit different model families
 and are intentionally not used as substitutes.
+
+`fit_stage.py --workers 16` runs independent optimizer restarts in separate
+CPU processes. Keep BLAS/OpenMP thread counts at 1 when using process workers
+to avoid oversubscribing the cores. The current fitter uses NumPy/SciPy on CPU;
+it does not use CUDA, so a GPU will not speed up these runs.
 
 The supplied document is FM-specific. AM/K extensions are captured in
 `config/cases.json`, while protocol-defined scales and objective weights are

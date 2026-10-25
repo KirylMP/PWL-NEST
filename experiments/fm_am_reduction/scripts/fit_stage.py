@@ -9,6 +9,7 @@ future stages; outputs are always marked preliminary.
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ProcessPoolExecutor, as_completed
 import json
 import math
 from pathlib import Path
@@ -307,8 +308,16 @@ def initial_vector(objective: MixedObjective, seed: int,
     return np.r_[alpha, beta, loga, logb, eta]
 
 
+def optimize_trial(objective: MixedObjective, x0: np.ndarray, lower: np.ndarray,
+                   upper: np.ndarray, max_nfev: int):
+    """Worker entry point. Kept at module scope for multiprocessing pickling."""
+    return least_squares(objective.residual, x0, bounds=(lower, upper), method="trf",
+                         x_scale="jac", max_nfev=max_nfev,
+                         ftol=1e-8, xtol=1e-8, gtol=1e-8)
+
+
 def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int,
-            warm_model: dict | None = None) -> None:
+            workers: int, warm_model: dict | None = None) -> None:
     run = read_json(run_dir/"run.json")
     out = run_dir/"optimizer"
     threshold_path = out/"thresholds.npz"
@@ -333,38 +342,46 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
     trials_dir = out/"trials"
     trials_dir.mkdir(parents=True, exist_ok=True)
     winner = None
+    starts = []
     for trial in range(restarts):
         trial_seed = seed+trial
         start_model = warm_model if trial == 0 else None
         x0 = np.clip(initial_vector(objective, trial_seed if trial else 0, start_model), lo+1e-7, hi-1e-7)
-        result = least_squares(objective.residual, x0, bounds=(lo,hi), method="trf",
-                               x_scale="jac", max_nfev=max_nfev, ftol=1e-8, xtol=1e-8, gtol=1e-8)
-        parts = objective.parts(result.x)
-        record = {"run_id": run["run_id"], "trial": trial, "seed": trial_seed,
-                  "success": bool(result.success), "status": int(result.status),
-                  "message": result.message, "nfev": int(result.nfev),
-                  "cost_half_sum_squares": float(result.cost), "parts": parts,
-                  "optimality": float(result.optimality)}
-        trial_dir = trials_dir/f"trial_{trial:03d}"
-        trial_dir.mkdir(exist_ok=True)
-        model = {
-            "schema_version": 1, "run_id": run["run_id"], "case": run["case"],
-            "K_ER": run["K_ER"], "threshold_count_m": m, "regions": m+1,
-            "physical_thresholds_C": thresholds.tolist(),
-            "alpha": result.x[:ncoef].tolist(), "beta": result.x[ncoef:2*ncoef].tolist(),
-            "a": float(np.exp(result.x[2*ncoef])), "b": float(np.exp(result.x[2*ncoef+1])),
-            "transform": {"p": float(result.x[-4]), "e": float(result.x[-3]),
-                          "n": float(np.exp(result.x[-2])), "k": float(result.x[-1]),
-                          "C_ref": objective.c_ref},
-            "fit_scope": "pre-cycle objective L_null + lambda L_spec + mu L_eq",
-            "cycle_loss_included": False, "independent_validation_completed": False,
-            "protocol_status": "preliminary_only_not_an_accepted_candidate",
-        }
-        (trial_dir/"candidate.json").write_text(json.dumps(model, indent=2, allow_nan=False)+"\n")
-        (trial_dir/"result.json").write_text(json.dumps(record, indent=2, allow_nan=False)+"\n")
-        if winner is None or parts["precycle_total"] < winner[0]:
-            winner = (parts["precycle_total"], trial_dir, model, record)
-        print(f"{run['run_id']} trial {trial+1}/{restarts}: precycle loss={parts['precycle_total']:.7g}", flush=True)
+        starts.append((trial, trial_seed, x0))
+
+    with ProcessPoolExecutor(max_workers=workers) as pool:
+        futures = {pool.submit(optimize_trial, objective, x0, lo, hi, max_nfev): (trial, trial_seed)
+                   for trial, trial_seed, x0 in starts}
+        for future in as_completed(futures):
+            trial, trial_seed = futures[future]
+            result = future.result()
+            parts = objective.parts(result.x)
+            record = {"run_id": run["run_id"], "trial": trial, "seed": trial_seed,
+                      "workers": workers, "success": bool(result.success), "status": int(result.status),
+                      "message": result.message, "nfev": int(result.nfev),
+                      "cost_half_sum_squares": float(result.cost), "parts": parts,
+                      "optimality": float(result.optimality)}
+            trial_dir = trials_dir/f"trial_{trial:03d}"
+            trial_dir.mkdir(exist_ok=True)
+            model = {
+                "schema_version": 1, "run_id": run["run_id"], "case": run["case"],
+                "K_ER": run["K_ER"], "threshold_count_m": m, "regions": m+1,
+                "physical_thresholds_C": thresholds.tolist(),
+                "alpha": result.x[:ncoef].tolist(), "beta": result.x[ncoef:2*ncoef].tolist(),
+                "a": float(np.exp(result.x[2*ncoef])), "b": float(np.exp(result.x[2*ncoef+1])),
+                "transform": {"p": float(result.x[-4]), "e": float(result.x[-3]),
+                              "n": float(np.exp(result.x[-2])), "k": float(result.x[-1]),
+                              "C_ref": objective.c_ref},
+                "fit_scope": "pre-cycle objective L_null + lambda L_spec + mu L_eq",
+                "cycle_loss_included": False, "independent_validation_completed": False,
+                "protocol_status": "preliminary_only_not_an_accepted_candidate",
+            }
+            (trial_dir/"candidate.json").write_text(json.dumps(model, indent=2, allow_nan=False)+"\n")
+            (trial_dir/"result.json").write_text(json.dumps(record, indent=2, allow_nan=False)+"\n")
+            if winner is None or parts["precycle_total"] < winner[0]:
+                winner = (parts["precycle_total"], trial_dir, model, record)
+            print(f"{run['run_id']} trial {trial+1}/{restarts}: "
+                  f"precycle loss={parts['precycle_total']:.7g}", flush=True)
     if winner is None:
         raise RuntimeError("No optimizer trials ran")
     selected = {"selected_trial": str(winner[1].relative_to(run_dir)),
@@ -381,11 +398,15 @@ def main() -> None:
     parser.add_argument("--case", choices=["FM", "AM"])
     parser.add_argument("--all", action="store_true")
     parser.add_argument("--restarts", type=int)
+    parser.add_argument("--workers", type=int, default=1,
+                        help="independent optimizer processes; set to available CPU cores")
     parser.add_argument("--max-nfev", type=int, default=500)
     parser.add_argument("--seed", type=int)
     args = parser.parse_args()
     if not args.all and args.stage is None:
         parser.error("choose --all or specify --stage")
+    if args.workers < 1:
+        parser.error("--workers must be at least 1")
     protocol = read_json(PACKAGE/"config"/"protocol.json")
     stages = protocol["optimization"]["stage_order"] if args.all else [args.stage]
     cases = [args.case] if args.case else ["FM", "AM"]
@@ -414,7 +435,8 @@ def main() -> None:
                         raise FileNotFoundError(f"Warm-start candidate missing: {previous_selected}")
                     warm_model = read_json(previous_selected)["candidate"]
                 fit_run(run_dir, protocol, args.restarts or run["restarts"],
-                        args.max_nfev, args.seed if args.seed is not None else run["seed"], warm_model)
+                        args.max_nfev, args.seed if args.seed is not None else run["seed"],
+                        args.workers, warm_model)
 
 
 if __name__ == "__main__":
