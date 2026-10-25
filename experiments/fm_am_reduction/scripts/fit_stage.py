@@ -1,0 +1,421 @@
+#!/usr/bin/env python3
+"""Fit the protocol's pre-cycle objective for a planned FM/AM run.
+
+This implements spectral threshold partitioning and the mixed nullcline,
+realized-spectrum, and equilibrium fit (protocol sections 4, 5.1–5.3). Cycle
+return losses and independent structural validation are deliberately separate
+future stages; outputs are always marked preliminary.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import math
+from pathlib import Path
+
+import numpy as np
+from scipy.optimize import least_squares, linear_sum_assignment
+
+from plan import PACKAGE, ROOT, read_json
+
+
+def phi(c: np.ndarray, eta: np.ndarray, c_ref: float) -> np.ndarray:
+    p, e, logn, k = eta
+    n = float(np.exp(logn))
+    t = np.asarray(c, dtype=float)/c_ref
+    wp, we = np.exp(p), np.exp(e)
+    denom = wp+we+1.
+    wp, we, wl = wp/denom, we/denom, 1./denom
+    if abs(k) < 1e-7:
+        exp_part = t-1.
+    else:
+        exp_part = np.expm1(np.clip(k*(t-1), -700, 700))/k
+    return wp*np.expm1(np.clip(n*np.log(t), -700, 700))/n + we*exp_part + wl*np.log(t)
+
+
+def hinge_design(z: np.ndarray, ip3: np.ndarray, thresholds_z: np.ndarray) -> np.ndarray:
+    z, ip3 = np.broadcast_arrays(np.asarray(z), np.asarray(ip3))
+    return np.column_stack([np.ones(z.size), z.ravel(), ip3.ravel(),
+                            *[np.maximum(z.ravel()-t, 0.) for t in thresholds_z]])
+
+
+def partition_thresholds(equilibria: list[dict], m: int, grid_size: int,
+                         i_range: tuple[float, float], c_bounds: tuple[float, float]) -> tuple[np.ndarray, dict]:
+    samples = [q for q in equilibria if i_range[0] <= q["I"] <= i_range[1]
+               and c_bounds[0] < q["C"] < c_bounds[1]]
+    if len(samples) < m+1:
+        raise ValueError("Too few spectral samples for requested region count")
+    i_levels = sorted({float(q["I"]) for q in samples})
+    by_i = {ip3: sorted([q for q in samples if q["I"] == ip3], key=lambda q: q["C"])
+            for ip3 in i_levels}
+    sample_weight = {id(q): 0. for q in samples}
+    for left_i, right_i in zip(i_levels[:-1], i_levels[1:]):
+        delta_i = right_i-left_i
+        left_roots, right_roots = by_i[left_i], by_i[right_i]
+        # Root rank tracks each ordered equilibrium branch between neighboring
+        # I levels; trapezoid weights approximate the protocol's |dI| measure.
+        for rank in range(min(len(left_roots), len(right_roots))):
+            sample_weight[id(left_roots[rank])] += .5*delta_i
+            sample_weight[id(right_roots[rank])] += .5*delta_i
+    samples = [q for q in samples if sample_weight[id(q)] > 0]
+    samples.sort(key=lambda q: q["C"])
+    c = np.array([q["C"] for q in samples])
+    t = np.array([q["trace"] for q in samples])
+    d = np.array([q["determinant"] for q in samples])
+    w = np.array([sample_weight[id(q)] for q in samples])
+    # Group equal/near-equal C values so a threshold cannot split samples at
+    # the same equilibrium coordinate. The grid cap keeps the DP bounded.
+    cuts = np.r_[0, np.flatnonzero(np.diff(c) > 1e-10)+1, len(c)]
+    groups = []
+    for lo, hi in zip(cuts[:-1], cuts[1:]):
+        wg = w[lo:hi]
+        groups.append((float(np.average(t[lo:hi], weights=wg)),
+                       float(np.average(d[lo:hi], weights=wg)), float(wg.sum()),
+                       float(np.average(c[lo:hi], weights=wg))))
+    # Optional deterministic compression to a finite C grid.
+    if len(groups) > grid_size:
+        edges = np.linspace(0, len(groups), grid_size+1).round().astype(int)
+        reduced = []
+        for a, b in zip(edges[:-1], edges[1:]):
+            block = groups[a:b]
+            weights = np.array([x[2] for x in block])
+            reduced.append((float(np.average([x[0] for x in block], weights=weights)),
+                            float(np.average([x[1] for x in block], weights=weights)),
+                            float(weights.sum()), float(np.average([x[3] for x in block], weights=weights))))
+        groups = reduced
+    g = len(groups)
+    if g < m+1:
+        raise ValueError("Threshold partition grid is smaller than region count")
+    y_t = np.array([q[0] for q in groups]); y_d = np.array([q[1] for q in groups])
+    weights = np.array([q[2] for q in groups]); locations = np.array([q[3] for q in groups])
+    scale_t, scale_d = 1., .15
+    wt = weights/weights.sum()
+    # Segment loss equals the weighted residual around its optimal mean.
+    prefix_w = np.r_[0., np.cumsum(wt)]
+    prefix_t = np.r_[0., np.cumsum(wt*y_t)]
+    prefix_d = np.r_[0., np.cumsum(wt*y_d)]
+    prefix_t2 = np.r_[0., np.cumsum(wt*(y_t/scale_t)**2)]
+    prefix_d2 = np.r_[0., np.cumsum(wt*(y_d/scale_d)**2)]
+    cost = np.full((g, g+1), np.inf)
+    for lo in range(g):
+        for hi in range(lo+1, g+1):
+            sw = prefix_w[hi]-prefix_w[lo]
+            mt = (prefix_t[hi]-prefix_t[lo])/sw
+            md = (prefix_d[hi]-prefix_d[lo])/sw
+            cost[lo, hi] = ((prefix_t2[hi]-prefix_t2[lo])-sw*(mt/scale_t)**2
+                            +(prefix_d2[hi]-prefix_d2[lo])-sw*(md/scale_d)**2)
+    dp = np.full((m+2, g+1), np.inf)
+    back = np.full((m+2, g+1), -1, dtype=int)
+    dp[0, 0] = 0.
+    for regions in range(1, m+2):
+        for hi in range(regions, g+1):
+            options = dp[regions-1, :hi] + cost[:hi, hi]
+            lo = int(np.argmin(options))
+            dp[regions, hi] = options[lo]
+            back[regions, hi] = lo
+    boundaries = []
+    hi = g
+    for regions in range(m+1, 1, -1):
+        lo = int(back[regions, hi])
+        boundaries.append(.5*(locations[lo-1]+locations[lo]))
+        hi = lo
+    thresholds = np.array(boundaries[::-1])
+    if len(thresholds) != m or np.any(np.diff(thresholds) <= 0):
+        raise RuntimeError("Dynamic-programming threshold placement failed")
+    return thresholds, {"weighted_partition_loss": float(dp[m+1, g]),
+                        "spectral_samples": len(samples), "partition_groups": g,
+                        "i_range": list(i_range), "weighting": "uniform dI per sampled equilibrium branch"}
+
+
+def model_roots(theta: np.ndarray, thresholds_c: np.ndarray, ip3: float,
+                c_ref: float, c_min: float, c_max: float) -> list[tuple[float, float]]:
+    m = len(thresholds_c)
+    ncoef = m+3
+    alpha, beta = theta[:ncoef], theta[ncoef:2*ncoef]
+    eta = theta[-4:]
+    zt = phi(thresholds_c, eta, c_ref)
+    z_bounds = phi(np.array([c_min, c_max]), eta, c_ref)
+    zlo, zhi = float(z_bounds[0]), float(z_bounds[1])
+    knots = np.r_[zlo, zt, zhi]
+    roots = []
+    def diff(z: float) -> float:
+        row = hinge_design(np.array([z]), np.array([ip3]), zt)
+        return float(row@(alpha-beta))
+    for lo, hi in zip(knots[:-1], knots[1:]):
+        flo, fhi = diff(float(lo)), diff(float(hi))
+        if abs(flo) < 1e-12:
+            zr = float(lo)
+        elif flo*fhi > 0 or abs(fhi-flo) < 1e-14:
+            continue
+        else:
+            zr = float(lo-flo*(hi-lo)/(fhi-flo))
+        # Invert the monotone transform by bisection in physical C.
+        left, right = c_min, c_max
+        for _ in range(55):
+            mid = (left+right)/2
+            if float(phi(np.array([mid]), eta, c_ref)[0]) < zr:
+                left = mid
+            else:
+                right = mid
+        c = (left+right)/2
+        if roots and abs(c-roots[-1][0]) < 1e-8:
+            continue
+        h = float(hinge_design(np.array([zr]), np.array([ip3]), zt)@beta)
+        roots.append((c, h))
+    return roots
+
+
+class MixedObjective:
+    def __init__(self, run_dir: Path, config: dict):
+        self.run = read_json(run_dir/"run.json")
+        self.m = int(self.run["m"])
+        self.c_ref = float(config["coordinate_transform"]["C_ref"])
+        self.thresholds = np.load(run_dir/"optimizer"/"thresholds.npz")["C"]
+        self.spec = config
+        refdir = run_dir/"reference"
+        with np.load(refdir/"nullclines.npz") as d:
+            C, I = d["C"], d["I"]
+            keep_c = np.unique(np.rint(np.linspace(0, len(C)-1, 56)).astype(int))
+            keep_i = np.unique(np.rint(np.linspace(0, len(I)-1, 40)).astype(int))
+            cc, ii = np.meshgrid(C[keep_c], I[keep_i], indexing="ij")
+            ix_c, ix_i = np.ix_(keep_c, keep_i)
+            mask = d["valid_N"][ix_c, ix_i].ravel()
+            self.c_null = cc.ravel()[mask]
+            self.i_null = ii.ravel()[mask]
+            self.n_null = d["N"][ix_c, ix_i].ravel()[mask]
+            self.h_null = d["H"][ix_c, ix_i].ravel()[mask]
+        self.null_weights = np.full(len(self.c_null), 1/max(1, len(self.c_null)))
+        raw = json.loads((refdir/"equilibria.json").read_text())["equilibria"]
+        lo, hi = config["data"]["nullcline_I_domain"]
+        self.equilibria = [q for q in raw if lo <= q["I"] <= hi]
+        levels = sorted({float(q["I"]) for q in self.equilibria})
+        stride = max(1, len(levels)//24)
+        self.eq_levels = levels[::stride]
+        self.eq_by_i = {x: [q for q in self.equilibria if abs(q["I"]-x) < 1e-10]
+                        for x in self.eq_levels}
+        self.eq_normalizer = max(1, sum(map(len, self.eq_by_i.values())))
+        spectral_lo, spectral_hi = .3, 1.2
+        self.spectral = [q for q in raw if spectral_lo <= q["I"] <= spectral_hi]
+        i_levels = sorted({float(q["I"]) for q in self.spectral})
+        step = float(np.median(np.diff(i_levels))) if len(i_levels)>1 else 1.
+        self.spec_weights = np.full(len(self.spectral), step)
+        if len(self.spec_weights)>1:
+            self.spec_weights[[0,-1]] *= .5
+        self.spec_weights /= self.spec_weights.sum()
+        self.c_bounds = (1e-5, 2/(1+float(self.run["parameters"]["c_1"]))-1e-5)
+        self.eq_slots = max(self.m+1, max(map(len, self.eq_by_i.values()), default=1))
+
+    def residual(self, x: np.ndarray) -> np.ndarray:
+        ncoef = self.m+3
+        alpha, beta = x[:ncoef], x[ncoef:2*ncoef]
+        loga, logb = x[2*ncoef:2*ncoef+2]
+        eta = x[-4:]
+        a, b = np.exp(loga), np.exp(logb)
+        z = phi(self.c_null, eta, self.c_ref)
+        zt = phi(self.thresholds, eta, self.c_ref)
+        X = hinge_design(z, self.i_null, zt)
+        n_hat, h_hat = X@alpha, X@beta
+        sc = np.sqrt(self.null_weights)
+        r_null = np.r_[(n_hat-self.n_null)/self.spec["data"]["nullcline_scale_N"],
+                       (h_hat-self.h_null)/self.spec["data"]["nullcline_scale_H"]]*np.mean(sc)
+
+        c_samples = np.array([q["C"] for q in self.spectral])
+        region = np.searchsorted(self.thresholds, c_samples, side="right")
+        n_slopes = alpha[1]+np.r_[0., np.cumsum(alpha[3:])]
+        h_slopes = beta[1]+np.r_[0., np.cumsum(beta[3:])]
+        tr = -a*n_slopes[region]-b
+        det = a*b*(n_slopes[region]-h_slopes[region])
+        r_spec = np.r_[(tr-np.array([q["trace"] for q in self.spectral]))/
+                       self.spec["data"]["spectral_scale_trace"],
+                       (det-np.array([q["determinant"] for q in self.spectral]))/
+                       self.spec["data"]["spectral_scale_determinant"]]
+        sw = np.r_[np.sqrt(self.spec_weights), np.sqrt(self.spec_weights)]
+        r_spec *= sw*np.sqrt(self.spec["loss_weights"]["spectral"])
+
+        r_eq = []
+        for ip3, refs in self.eq_by_i.items():
+            candidates = model_roots(x, self.thresholds, ip3, self.c_ref, *self.c_bounds)
+            nref, nmod = len(refs), len(candidates)
+            slots = nref+self.eq_slots
+            miss = float(self.spec["data"]["equilibrium_missing_penalty"])
+            extra = float(self.spec["data"]["equilibrium_extra_penalty"])
+            cost = np.full((nref+nmod, nmod+nref), 1e6)
+            for i, ref in enumerate(refs):
+                for j, (c, h) in enumerate(candidates):
+                    cost[i,j] = ((c-ref["C"])/self.spec["data"]["equilibrium_scale_C"])**2 + ((h-ref["h"])/self.spec["data"]["equilibrium_scale_h"])**2
+                cost[i, nmod+i] = miss
+            for j in range(nmod):
+                cost[nref+j, j] = extra
+            if nmod and nref:
+                cost[nref:, nmod:] = 0.
+            rows, cols = linear_sum_assignment(cost)
+            terms = np.zeros(2*slots)
+            slot = 0
+            for i, j in zip(rows, cols):
+                if i < nref and j < nmod:
+                    c, h = candidates[j]; ref = refs[i]
+                    terms[2*slot:2*slot+2] = [(c-ref["C"])/self.spec["data"]["equilibrium_scale_C"],
+                                              (h-ref["h"])/self.spec["data"]["equilibrium_scale_h"]]
+                    slot += 1
+                elif i < nref and j >= nmod:
+                    terms[2*slot] = math.sqrt(miss); slot += 1
+                elif i >= nref and j < nmod:
+                    terms[2*slot] = math.sqrt(extra); slot += 1
+            r_eq.extend(terms)
+        r_eq = np.asarray(r_eq)*np.sqrt(self.spec["loss_weights"]["equilibria"]/self.eq_normalizer)
+        return np.r_[r_null, r_spec, r_eq]
+
+    def parts(self, x: np.ndarray) -> dict:
+        r = self.residual(x)
+        # Recompute the residual group boundaries for transparent scoring.
+        nnull = 2*len(self.c_null)
+        nspec = 2*len(self.spectral)
+        return {"nullclines": float(r[:nnull]@r[:nnull]),
+                "realized_spectra_weighted": float(r[nnull:nnull+nspec]@r[nnull:nnull+nspec]),
+                "equilibria_weighted": float(r[nnull+nspec:]@r[nnull+nspec:]),
+                "precycle_total": float(r@r)}
+
+
+def initial_vector(objective: MixedObjective, seed: int,
+                   warm_model: dict | None = None) -> np.ndarray:
+    m, c_ref = objective.m, objective.c_ref
+    eta = np.array([0., 0., 0., 0.])
+    if warm_model is not None:
+        transform = warm_model["transform"]
+        eta = np.array([transform["p"], transform["e"], np.log(transform["n"]), transform["k"]])
+    zt = phi(objective.thresholds, eta, c_ref)
+    X = hinge_design(phi(objective.c_null, eta, c_ref), objective.i_null, zt)
+    if warm_model is None:
+        target_n, target_h = objective.n_null, objective.h_null
+        loga, logb = np.log(1.), np.log(.2)
+    else:
+        old_eta_info = warm_model["transform"]
+        old_eta = np.array([old_eta_info["p"], old_eta_info["e"],
+                            np.log(old_eta_info["n"]), old_eta_info["k"]])
+        old_x = hinge_design(phi(objective.c_null, old_eta, c_ref), objective.i_null,
+                             phi(np.asarray(warm_model["physical_thresholds_C"]), old_eta, c_ref))
+        target_n = old_x@np.asarray(warm_model["alpha"])
+        target_h = old_x@np.asarray(warm_model["beta"])
+        loga, logb = np.log(warm_model["a"]), np.log(warm_model["b"])
+    alpha = np.linalg.lstsq(X, target_n, rcond=None)[0]
+    beta = np.linalg.lstsq(X, target_h, rcond=None)[0]
+    rng = np.random.default_rng(seed)
+    if seed != 0:
+        alpha += rng.normal(0, .03, len(alpha))
+        beta += rng.normal(0, .03, len(beta))
+        eta += rng.normal(0, .2, 4)
+    return np.r_[alpha, beta, loga, logb, eta]
+
+
+def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int,
+            warm_model: dict | None = None) -> None:
+    run = read_json(run_dir/"run.json")
+    out = run_dir/"optimizer"
+    threshold_path = out/"thresholds.npz"
+    if not threshold_path.exists():
+        eq = json.loads((run_dir/"reference"/"equilibria.json").read_text())["equilibria"]
+        i_range = (0.3, 1.2)
+        c_max = 2/(1+run["parameters"]["c_1"])
+        thresholds, info = partition_thresholds(eq, run["m"],
+            config["optimization"]["threshold_placement_grid_size"], i_range,
+            (0.03, c_max-1e-4))
+        out.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(threshold_path, C=thresholds)
+        (out/"partition.json").write_text(json.dumps({"physical_thresholds_C": thresholds.tolist(),
+            **info, "selection_scope": "training spectral branch only"}, indent=2, allow_nan=False)+"\n")
+    else:
+        info = read_json(out/"partition.json")
+        thresholds = np.load(threshold_path)["C"]
+    objective = MixedObjective(run_dir, config)
+    m = int(run["m"]); ncoef = m+3
+    lo = np.r_[np.full(2*ncoef, -25.), -8., -8., -12., -12., -5., -10.]
+    hi = np.r_[np.full(2*ncoef, 25.), 5., 3., 12., 12., 4., 10.]
+    trials_dir = out/"trials"
+    trials_dir.mkdir(parents=True, exist_ok=True)
+    winner = None
+    for trial in range(restarts):
+        trial_seed = seed+trial
+        start_model = warm_model if trial == 0 else None
+        x0 = np.clip(initial_vector(objective, trial_seed if trial else 0, start_model), lo+1e-7, hi-1e-7)
+        result = least_squares(objective.residual, x0, bounds=(lo,hi), method="trf",
+                               x_scale="jac", max_nfev=max_nfev, ftol=1e-8, xtol=1e-8, gtol=1e-8)
+        parts = objective.parts(result.x)
+        record = {"run_id": run["run_id"], "trial": trial, "seed": trial_seed,
+                  "success": bool(result.success), "status": int(result.status),
+                  "message": result.message, "nfev": int(result.nfev),
+                  "cost_half_sum_squares": float(result.cost), "parts": parts,
+                  "optimality": float(result.optimality)}
+        trial_dir = trials_dir/f"trial_{trial:03d}"
+        trial_dir.mkdir(exist_ok=True)
+        model = {
+            "schema_version": 1, "run_id": run["run_id"], "case": run["case"],
+            "K_ER": run["K_ER"], "threshold_count_m": m, "regions": m+1,
+            "physical_thresholds_C": thresholds.tolist(),
+            "alpha": result.x[:ncoef].tolist(), "beta": result.x[ncoef:2*ncoef].tolist(),
+            "a": float(np.exp(result.x[2*ncoef])), "b": float(np.exp(result.x[2*ncoef+1])),
+            "transform": {"p": float(result.x[-4]), "e": float(result.x[-3]),
+                          "n": float(np.exp(result.x[-2])), "k": float(result.x[-1]),
+                          "C_ref": objective.c_ref},
+            "fit_scope": "pre-cycle objective L_null + lambda L_spec + mu L_eq",
+            "cycle_loss_included": False, "independent_validation_completed": False,
+            "protocol_status": "preliminary_only_not_an_accepted_candidate",
+        }
+        (trial_dir/"candidate.json").write_text(json.dumps(model, indent=2, allow_nan=False)+"\n")
+        (trial_dir/"result.json").write_text(json.dumps(record, indent=2, allow_nan=False)+"\n")
+        if winner is None or parts["precycle_total"] < winner[0]:
+            winner = (parts["precycle_total"], trial_dir, model, record)
+        print(f"{run['run_id']} trial {trial+1}/{restarts}: precycle loss={parts['precycle_total']:.7g}", flush=True)
+    if winner is None:
+        raise RuntimeError("No optimizer trials ran")
+    selected = {"selected_trial": str(winner[1].relative_to(run_dir)),
+                "threshold_partition": info, "training_loss_parts": winner[3]["parts"],
+                "candidate": winner[2],
+                "optimizer_result": winner[3],
+                "status": "preliminary_only; cycle and independent validation pending"}
+    (out/"selected.json").write_text(json.dumps(selected, indent=2, allow_nan=False)+"\n")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--stage", choices=["baseline", "threshold_reduction", "parameter_sweep"])
+    parser.add_argument("--case", choices=["FM", "AM"])
+    parser.add_argument("--all", action="store_true")
+    parser.add_argument("--restarts", type=int)
+    parser.add_argument("--max-nfev", type=int, default=500)
+    parser.add_argument("--seed", type=int)
+    args = parser.parse_args()
+    if not args.all and args.stage is None:
+        parser.error("choose --all or specify --stage")
+    protocol = read_json(PACKAGE/"config"/"protocol.json")
+    stages = protocol["optimization"]["stage_order"] if args.all else [args.stage]
+    cases = [args.case] if args.case else ["FM", "AM"]
+    plan_path = ROOT/"runs"/"fm_am_reduction"/"plan"/"index.json"
+    if not plan_path.exists():
+        parser.error("no plan found; run scripts/plan.py first")
+    run_ids = sorted(read_json(plan_path)["runs"])
+    for stage in stages:
+        for case in cases:
+            matching = [x for x in run_ids if x.startswith(f"{stage}/{case}_")]
+            matching.sort(key=lambda x: int(read_json(ROOT/"runs"/"fm_am_reduction"/x/"run.json")["m"]),
+                          reverse=True)
+            for run_id in matching:
+                run_dir = ROOT/"runs"/"fm_am_reduction"/run_id
+                if not (run_dir/"reference"/"equilibria.json").exists():
+                    raise FileNotFoundError(f"Reference data missing for {run_id}; prepare it first")
+                run = read_json(run_dir/"run.json")
+                warm_model = None
+                if run.get("warm_start_from_previous_m"):
+                    previous_m = int(run["m"])+1
+                    previous_prefix = f"{case}_m{previous_m:02d}_K{str(run['K_ER']).replace('.', 'p')}"
+                    previous_stage = "baseline" if previous_m == 7 else "threshold_reduction"
+                    previous_dir = ROOT/"runs"/"fm_am_reduction"/previous_stage/previous_prefix
+                    previous_selected = previous_dir/"optimizer"/"selected.json"
+                    if not previous_selected.exists():
+                        raise FileNotFoundError(f"Warm-start candidate missing: {previous_selected}")
+                    warm_model = read_json(previous_selected)["candidate"]
+                fit_run(run_dir, protocol, args.restarts or run["restarts"],
+                        args.max_nfev, args.seed if args.seed is not None else run["seed"], warm_model)
+
+
+if __name__ == "__main__":
+    main()

@@ -11,8 +11,9 @@ thresholded Li–Rinzel family. The FM document supplied for this work is kept a
 2. At each canonical `K_ER`, compare `m = 7, 6, 5, 4, 3` thresholds, using the
    immediately higher-complexity result as a warm start when available.
 3. Sweep `K_ER` with `m = 7` first. The config also records an optional
-   reduced-threshold follow-up matrix, to run after stage 2 identifies useful
-   values of `m`.
+   reduced-threshold follow-up matrix can be made after stage 2 identifies
+   useful values of `m`, by setting `parameter_sweep.m_values` in a new
+   protocol config version.
 
 The FM protocol defines `K_ER = 0.05`; AM uses the repository's Li–Rinzel
 reference `K_ER = 0.1`. All other reference parameters are shared and are
@@ -30,6 +31,8 @@ python -m pip install --upgrade pip
 python -m pip install -e .
 python experiments/fm_am_reduction/scripts/plan.py --all
 python experiments/fm_am_reduction/scripts/prepare_reference_data.py --all
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  python experiments/fm_am_reduction/scripts/fit_stage.py --all
 ```
 
 Generated plans and reference data go under `runs/fm_am_reduction/` and are
@@ -40,17 +43,24 @@ with, for example:
 ```bash
 python experiments/fm_am_reduction/scripts/plan.py --stage baseline --case FM
 python experiments/fm_am_reduction/scripts/prepare_reference_data.py --stage baseline --case FM
+OPENBLAS_NUM_THREADS=1 python experiments/fm_am_reduction/scripts/fit_stage.py --stage baseline --case FM
 ```
 
 ## Implementation status
 
-The plan expansion and Li–Rinzel reference dataset generation are implemented.
-The full optimizer from the supplied protocol is **not yet implemented**: in
-particular, the spectral partition optimizer, joint 26-parameter fitting,
-Poincaré-return cycle loss/continuation, threshold-count comparison, and
-independent structural validation are still pending. Existing repository
-`fit_*` scripts fit different model families and are intentionally not called
-as substitutes. Do not interpret prepared reference data as a fitted result.
+Plan expansion, Li–Rinzel reference datasets, dynamic-programming spectral
+threshold placement, and multi-start fitting of the protocol's initial
+`L_null + lambda L_spec + mu L_eq` objective are implemented. Stage dependencies
+warm-start `m=6…3` from the preceding region count; each still includes
+independent starts. The candidate output explicitly records that it is
+preliminary.
+
+The full protocol remains incomplete: the smoothed Poincaré-return cycle loss,
+continuation of cycles, independent structural validation, period/amplitude
+validation, and complexity acceptance gates are not implemented yet. Do not
+interpret a pre-cycle fit as the final candidate or as a result of the complete
+protocol. Existing repository `fit_*` scripts fit different model families
+and are intentionally not used as substitutes.
 
 The supplied document is FM-specific. AM/K extensions are captured in
 `config/cases.json`, while protocol-defined scales and objective weights are

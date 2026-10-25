@@ -110,9 +110,9 @@ def prepare_run(run_dir: Path, protocol: dict) -> None:
                    allow_nan=False) + "\n", encoding="utf-8")
     (target / "spectra.json").write_text(
         json.dumps({"run_id": manifest["run_id"], "spectral_equilibrium_count": len(equilibria),
-                    "events": [root for root in equilibria if abs(root["trace"]) < 1e-5
-                               or abs(root["determinant"]) < 1e-5
-                               or abs(root["discriminant"]) < 1e-5]},
+                    "near_zero_samples": [root for root in equilibria if abs(root["trace"]) < 1e-5
+                                          or abs(root["determinant"]) < 1e-5
+                                          or abs(root["discriminant"]) < 1e-5]},
                    indent=2, allow_nan=False) + "\n", encoding="utf-8")
     (target / "manifest.json").write_text(
         json.dumps({"run_id": manifest["run_id"], "parameters": p,

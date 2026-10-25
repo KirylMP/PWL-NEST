@@ -67,6 +67,9 @@ def persist(jobs: list[dict], cases_path: Path, protocol_path: Path) -> None:
             "cases.json": sha256(cases_path),
             "protocol.json": sha256(protocol_path),
             "FM_REDUCTION_PROTOCOL.md": sha256(PACKAGE / "protocol" / "FM_REDUCTION_PROTOCOL.md"),
+            "plan.py": sha256(PACKAGE / "scripts" / "plan.py"),
+            "prepare_reference_data.py": sha256(PACKAGE / "scripts" / "prepare_reference_data.py"),
+            "fit_stage.py": sha256(PACKAGE / "scripts" / "fit_stage.py"),
         },
         "runs": [],
     }
