@@ -28,8 +28,9 @@ def phi(c: np.ndarray, eta: np.ndarray, c_ref: float) -> np.ndarray:
     wp, we = np.exp(p), np.exp(e)
     denom = wp+we+1.
     wp, we, wl = wp/denom, we/denom, 1./denom
-    if abs(k) < 1e-7:
-        exp_part = t-1.
+    if abs(k) < 1e-5:
+        v=t-1.
+        exp_part=v + .5*k*v**2 + (k*k/6)*v**3 + (k**3/24)*v**4
     else:
         exp_part = np.expm1(np.clip(k*(t-1), -700, 700))/k
     return wp*np.expm1(np.clip(n*np.log(t), -700, 700))/n + we*exp_part + wl*np.log(t)
@@ -128,34 +129,36 @@ def partition_thresholds(equilibria: list[dict], m: int, grid_size: int,
                         "i_range": list(i_range), "weighting": "uniform dI per sampled equilibrium branch"}
 
 
+class NonisolatedEquilibria(ValueError):
+    pass
+
+
 def model_roots(theta: np.ndarray, thresholds_c: np.ndarray, ip3: float,
                 c_ref: float, c_min: float, c_max: float) -> list[tuple[float, float]]:
-    m = len(thresholds_c)
-    ncoef = m+3
-    alpha, beta = theta[:ncoef], theta[ncoef:2*ncoef]
-    eta = theta[-4:]
-    zt = phi(thresholds_c, eta, c_ref)
-    z_bounds = phi(np.array([c_min, c_max]), eta, c_ref)
-    zlo, zhi = float(z_bounds[0]), float(z_bounds[1])
-    knots = np.r_[zlo, zt, zhi]
-    roots = []
-    def diff(z: float) -> float:
-        row = hinge_design(np.array([z]), np.array([ip3]), zt)
-        return float((row@(alpha-beta))[0])
-    for lo, hi in zip(knots[:-1], knots[1:]):
-        flo, fhi = diff(float(lo)), diff(float(hi))
-        if abs(flo) < 1e-12:
-            zr = float(lo)
-        elif flo*fhi > 0 or abs(fhi-flo) < 1e-14:
+    """All isolated roots on positive C, including roots outside the physical box."""
+    m=len(thresholds_c);ncoef=m+3;eta=theta[-4:]
+    alpha,beta=theta[:ncoef],theta[ncoef:2*ncoef];diff=alpha-beta
+    zt=phi(thresholds_c,eta,c_ref);knots=np.r_[-np.inf,zt,np.inf]
+    slopes=diff[1]+np.r_[0.,np.cumsum(diff[3:])]
+    intercepts=diff[0]+diff[2]*ip3-np.r_[0.,np.cumsum(diff[3:]*zt)]
+    roots=[]
+    for lo,hi,slope,intercept in zip(knots[:-1],knots[1:],slopes,intercepts):
+        if abs(slope)<1e-14:
+            if abs(intercept)<1e-12:raise NonisolatedEquilibria('coincident nullclines on a region')
             continue
-        else:
-            zr = float(lo-flo*(hi-lo)/(fhi-flo))
-        c = float(brentq(lambda c: float(phi(np.array([c]), eta, c_ref)[0])-zr,
-                          c_min, c_max, xtol=1e-12))
-        if roots and abs(c-roots[-1][0]) < 1e-8:
-            continue
-        h = float((hinge_design(np.array([zr]), np.array([ip3]), zt)@beta)[0])
-        roots.append((c, h))
+        zr=-intercept/slope
+        if not lo-1e-10<=zr<=hi+1e-10:continue
+        left,right=c_min,c_max
+        for _ in range(60):
+            if float(phi(np.array([left]),eta,c_ref)[0])<=zr:break
+            left*=.01
+        for _ in range(60):
+            if float(phi(np.array([right]),eta,c_ref)[0])>=zr:break
+            right*=2
+        c=float(brentq(lambda c:float(phi(np.array([c]),eta,c_ref)[0])-zr,left,right,xtol=1e-12))
+        if roots and abs(c-roots[-1][0])<1e-8:continue
+        h=float((hinge_design(np.array([zr]),np.array([ip3]),zt)@beta)[0])
+        roots.append((c,h))
     return roots
 
 
@@ -272,6 +275,7 @@ class MixedObjective:
 
 def initial_vector(objective: MixedObjective, seed: int,
                    warm_model: dict | None = None) -> np.ndarray:
+    objective = getattr(objective,'geometry',objective)
     m, c_ref = objective.m, objective.c_ref
     eta = np.array([0., 0., 0., 0.])
     rng = np.random.default_rng(seed)
@@ -309,12 +313,40 @@ def initial_vector(objective: MixedObjective, seed: int,
 
 
 def optimize_trial(objective: MixedObjective, x0: np.ndarray, lower: np.ndarray,
-                   upper: np.ndarray, max_nfev: int):
+                   upper: np.ndarray, max_nfev: int, checkpoint_dir=None):
     """Worker entry point. Kept at module scope for multiprocessing pickling."""
     started = time.perf_counter()
-    result = least_squares(objective.residual, x0, bounds=(lower, upper), method="trf",
+    label=checkpoint_dir.name if checkpoint_dir is not None else "trial"
+    print(f"{label}: precycle stage started",flush=True)
+    def checkpoint(label,result,epsilon=None):
+        if checkpoint_dir is None:return
+        checkpoint_dir.mkdir(parents=True,exist_ok=True)
+        target=checkpoint_dir/(label+'.json');temporary=target.with_suffix('.tmp')
+        temporary.write_text(json.dumps(dict(x=result.x.tolist(),epsilon=epsilon,
+            nfev=int(result.nfev),status=int(result.status),success=bool(result.success),
+            history=history),indent=2,allow_nan=False)+'\n')
+        temporary.replace(target)
+    geometry = getattr(objective, 'geometry', objective)
+    result = least_squares(geometry.residual, x0, bounds=(lower, upper), method="trf",
                          x_scale="jac", max_nfev=max_nfev,
                          ftol=1e-8, xtol=1e-8, gtol=1e-8)
+    history=[dict(stage='precycle',nfev=int(result.nfev),loss=float(2*result.cost),success=bool(result.success))]
+    checkpoint('precycle_checkpoint',result)
+    if hasattr(objective,'epsilon_schedule'):
+        for epsilon in objective.epsilon_schedule:
+            objective.epsilon=epsilon
+            print(f'{label}: cycle continuation epsilon={epsilon}',flush=True)
+            result=least_squares(objective.residual,result.x,jac=objective.jac,
+                bounds=(lower,upper),method='trf',x_scale='jac',
+                max_nfev=objective.cfg['max_nfev_per_epsilon'],ftol=1e-7,xtol=1e-7,gtol=1e-7)
+            details=objective.parts(result.x)
+            history.append(dict(stage='cycles',epsilon=epsilon,nfev=int(result.nfev),
+                loss=details['full_total'],success=bool(result.success),
+                return_domain_admissible=details['return_domain_admissible']))
+            checkpoint('epsilon_'+str(epsilon),result,epsilon)
+        result.return_report=objective.report
+    result.parts_value=objective.parts(result.x)
+    result.history=history
     result.elapsed_seconds = time.perf_counter()-started
     result.bound_hits = int(np.sum(np.minimum(result.x-lower, upper-result.x)<1e-6))
     return result
@@ -340,7 +372,12 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
     else:
         info = read_json(out/"partition.json")
         thresholds = np.load(threshold_path)["C"]
-    objective = MixedObjective(run_dir, config)
+    full_cycles = bool(config.get('cycle_fit',{}).get('enabled',False))
+    if full_cycles:
+        from full_cycle_fit import FullCycleObjective, prepare_cycle_reference
+        if not (run_dir/'reference'/'poincare.json').exists():prepare_cycle_reference(run_dir,config)
+        objective=FullCycleObjective(run_dir,config)
+    else:objective = MixedObjective(run_dir, config)
     m = int(run["m"]); ncoef = m+3
     lo = np.r_[np.full(2*ncoef, -25.), -8., -8., -12., -12., -5., -10.]
     hi = np.r_[np.full(2*ncoef, 25.), 5., 3., 12., 12., 4., 10.]
@@ -349,8 +386,8 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
     (out/"search_setup.json").write_text(json.dumps(dict(
         bounds_lower=lo.tolist(),bounds_upper=hi.tolist(),max_nfev=max_nfev,
         trials=restarts,workers=workers,seed=seed,ftol=1e-8,xtol=1e-8,gtol=1e-8,
-        jacobian="numerical 2-point",nullcline_nodes=len(objective.c_null),
-        spectral_samples=len(objective.spectral),equilibrium_I_nodes=objective.eq_levels),indent=2)+"\n")
+        jacobian="variational returns; geometry central differences" if full_cycles else "numerical 2-point",nullcline_nodes=len(getattr(objective,'geometry',objective).c_null),
+        spectral_samples=len(getattr(objective,'geometry',objective).spectral),equilibrium_I_nodes=getattr(objective,'geometry',objective).eq_levels),indent=2)+"\n")
     winner = None
     starts = []
     for trial in range(restarts):
@@ -361,7 +398,7 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
 
     print(f"Submitting {restarts} restarts on {workers} processes; max_nfev={max_nfev}", flush=True)
     with ProcessPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(optimize_trial, objective, x0, lo, hi, max_nfev): (trial, trial_seed)
+        futures = {pool.submit(optimize_trial, objective, x0, lo, hi, max_nfev,trials_dir/f"trial_{trial:03d}"): (trial, trial_seed)
                    for trial, trial_seed, x0 in starts}
         for future in as_completed(futures):
             trial, trial_seed = futures[future]
@@ -373,13 +410,13 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
                 (failed/"failure.json").write_text(json.dumps({"seed": trial_seed, "error": repr(exc)}))
                 print(f"{run['run_id']} trial {trial+1}/{restarts} FAILED: {exc}", flush=True)
                 continue
-            parts = objective.parts(result.x)
+            parts = result.parts_value
             record = {"run_id": run["run_id"], "trial": trial, "seed": trial_seed,
                       "workers": workers, "success": bool(result.success), "status": int(result.status),
                       "message": result.message, "nfev": int(result.nfev),
                       "cost_half_sum_squares": float(result.cost), "parts": parts,
                       "optimality": float(result.optimality),
-                      "elapsed_seconds": result.elapsed_seconds, "bound_hits": result.bound_hits}
+                      "elapsed_seconds": result.elapsed_seconds, "bound_hits": result.bound_hits, "continuation": result.history}
             trial_dir = trials_dir/f"trial_{trial:03d}"
             trial_dir.mkdir(exist_ok=True)
             model = {
@@ -391,25 +428,31 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
                 "transform": {"p": float(result.x[-4]), "e": float(result.x[-3]),
                               "n": float(np.exp(result.x[-2])), "k": float(result.x[-1]),
                               "C_ref": objective.c_ref},
-                "fit_scope": "pre-cycle objective L_null + lambda L_spec + mu L_eq",
-                "cycle_loss_included": False, "independent_validation_completed": False,
-                "protocol_status": "preliminary_only_not_an_accepted_candidate",
+                "fit_scope": "full five-term objective with epsilon continuation" if full_cycles else "pre-cycle objective",
+                "cycle_loss_included": full_cycles, "independent_validation_completed": False,
+                "protocol_status": "cycle_fit_pending_independent_validation" if full_cycles else "precycle_only",
             }
             (trial_dir/"candidate.json").write_text(json.dumps(model, indent=2, allow_nan=False)+"\n")
             (trial_dir/"result.json").write_text(json.dumps(record, indent=2, allow_nan=False)+"\n")
-            if winner is None or parts["precycle_total"] < winner[0]:
-                winner = (parts["precycle_total"], trial_dir, model, record)
+            if full_cycles:
+                (trial_dir/'cycle_returns.json').write_text(json.dumps(result.return_report,indent=2,allow_nan=False)+'\n')
+            score=parts.get('full_total',parts.get('precycle_total'))
+            ranking=(not parts.get('return_domain_admissible',True), score)
+            if winner is None or ranking < winner[0]:
+                winner = (ranking, trial_dir, model, record)
                 (out/"best_so_far.json").write_text(json.dumps({"candidate": model,
                     "optimizer_result": record}, indent=2, allow_nan=False)+"\n")
             print(f"{run['run_id']} trial {trial+1}/{restarts}: "
-                  f"precycle loss={parts['precycle_total']:.7g}", flush=True)
+                  f"loss={score:.7g} admissible={not ranking[0]}", flush=True)
     if winner is None:
         raise RuntimeError("No optimizer trials ran")
     selected = {"selected_trial": str(winner[1].relative_to(run_dir)),
                 "threshold_partition": info, "training_loss_parts": winner[3]["parts"],
                 "candidate": winner[2],
                 "optimizer_result": winner[3],
-                "status": "preliminary_only; cycle and independent validation pending"}
+                "return_domain_admissible": not winner[0][0],
+                "status": ("no_admissible_return_domain_candidate" if winner[0][0] else "cycle fit completed; inspect independent validation") if full_cycles else "precycle only"}
+    if full_cycles and winner[0][0]:print("No admissible return-domain candidate; saved selection is diagnostic only.",flush=True)
     (out/"selected.json").write_text(json.dumps(selected, indent=2, allow_nan=False)+"\n")
 
 

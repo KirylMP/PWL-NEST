@@ -85,7 +85,7 @@ def scan_point(task):
             trace = -model['a']*ns[r]-model['b']
             det = model['a']*model['b']*(ns[r]-hs[r])
             sides.append(dict(trace=float(trace),determinant=float(det),discriminant=float(trace**2-4*det)))
-        eq.append(dict(C=c,h=h,I=ip3,physical=bool(0<h<1),on_threshold=len(regions)>1, sides=sides))
+        eq.append(dict(C=c,h=h,I=ip3,physical=bool(0<c<cmax and 0<h<1),on_threshold=len(regions)>1, sides=sides))
     lr_eq = roots_for_ip3(ip3,p,cmax,3200)
     # Independently sampled, shifted I grid. No validation data enters selection.
     cg = np.unique(np.r_[np.geomspace(1e-7,.03,1500),np.linspace(.03,cmax-1e-7,15000)])
@@ -108,10 +108,10 @@ def scan_point(task):
 
 
 def stability(q):
-    if q.get('on_threshold'):
-        return 'threshold'
     if not q.get('physical',True):
         return 'outside'
+    if q.get('on_threshold'):
+        return 'threshold'
     side = q.get('sides',[q])[0]
     if abs(side['determinant'])<1e-9 or (side['determinant']>0 and abs(side['trace'])<1e-8):
         return 'degenerate'
@@ -221,7 +221,7 @@ def analyze(run_dir, workers=1, points=81, duration=1200.):
     trial_records=[]
     for path in sorted((run_dir/'optimizer'/'trials').glob('trial_*/result.json')):
         q=read_json(path)
-        trial_records.append(dict(trial=q['trial'],loss=q['parts']['precycle_total'],
+        trial_records.append(dict(trial=q['trial'],loss=q['parts'].get('full_total',q['parts'].get('precycle_total')),
                                   success=q['success'],nfev=q['nfev'],optimality=q['optimality']))
     if trial_records:
         fig,ax=plt.subplots(figsize=(9,4))
@@ -229,7 +229,7 @@ def analyze(run_dir, workers=1, points=81, duration=1200.):
             group=[q for q in trial_records if q['success']==success]
             if group:ax.scatter([q['trial']+1 for q in group],[q['loss'] for q in group],
                                 label='optimizer converged' if success else 'budget/termination',color=color)
-        ax.set_xlabel('Restart');ax.set_ylabel('Pre-cycle training loss');ax.set_yscale('log');ax.legend()
+        ax.set_xlabel('Restart');ax.set_ylabel('Training objective');ax.set_yscale('log');ax.legend()
         fig.tight_layout();fig.savefig(out/'trial_losses.png',dpi=180);plt.close(fig)
         (out/'trial_scores.json').write_text(json.dumps(trial_records,indent=2)+'\n')
     print('Analysis saved:',out,flush=True)

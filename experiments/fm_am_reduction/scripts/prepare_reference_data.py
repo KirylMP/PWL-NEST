@@ -46,17 +46,22 @@ def jacobian(c: float, h: float, ip3: float, p: dict[str, float]) -> np.ndarray:
 
 def roots_for_ip3(ip3: float, p: dict[str, float], c_max: float, resolution: int) -> list[dict]:
     grid = np.linspace(1e-9, c_max-1e-9, resolution)
-    h_grid = np.array([equilibrium_h(float(c), ip3, p) for c in grid])
-    f_grid, _ = lr_field(grid, h_grid, ip3, p)
+    def force(c):return float(lr_field(c,equilibrium_h(c,ip3,p),ip3,p)[0])
+    def derivative(c):
+        h=equilibrium_h(c,ip3,p);q=p['d_2']*(ip3+p['d_1'])/(ip3+p['d_3'])
+        j=jacobian(c,h,ip3,p)
+        return j[0,0]-j[0,1]*h/(q+c)
+    derivatives=np.array([derivative(float(c)) for c in grid])
+    critical=[]
+    for lo,hi,dl,dh in zip(grid[:-1],grid[1:],derivatives[:-1],derivatives[1:]):
+        if dl*dh<0:critical.append(brentq(derivative,float(lo),float(hi),xtol=1e-13))
+    brackets=np.sort(np.r_[grid[0],critical,grid[-1]])
+    found=[float(c) for c in critical if abs(force(c))<1e-10]
+    for lo,hi in zip(brackets[:-1],brackets[1:]):
+        if force(lo)*force(hi)<0:found.append(brentq(force,float(lo),float(hi),xtol=1e-13))
     roots: list[dict] = []
-    for lo, hi, flo, fhi in zip(grid[:-1], grid[1:], f_grid[:-1], f_grid[1:]):
-        if flo == 0:
-            c = float(lo)
-        elif flo*fhi < 0:
-            c = float(brentq(lambda x: float(lr_field(x, equilibrium_h(x, ip3, p), ip3, p)[0]),
-                             float(lo), float(hi), xtol=1e-13))
-        else:
-            continue
+    for c in sorted(found):
+        if roots and abs(c-roots[-1]['C'])<1e-8:continue
         h = equilibrium_h(c, ip3, p)
         j = jacobian(c, h, ip3, p)
         trace, determinant = float(np.trace(j)), float(np.linalg.det(j))
@@ -118,7 +123,7 @@ def prepare_run(run_dir: Path, protocol: dict) -> None:
         json.dumps({"run_id": manifest["run_id"], "parameters": p,
                     "nullcline_grid": [n_c, n_i], "spectral_I_grid": len(i_spectral),
                     "equilibrium_C_bracket_resolution": 1600,
-                    "notes": "Dense-grid sign-change enumeration; tangent roots may require refinement."},
+                    "notes": "Critical-point bracketing with explicit near-tangent roots; finite resolution still requires refinement."},
                    indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print(f"prepared: {manifest['run_id']} ({len(equilibria)} equilibrium samples)")
 
