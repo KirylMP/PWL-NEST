@@ -1,0 +1,67 @@
+{
+  "protocol_id": "fm_am_transformed_threshold_reduction_v1",
+  "source_document": "protocol/FM_REDUCTION_PROTOCOL.md",
+  "initial_regions": 8,
+  "baseline_thresholds": 7,
+  "threshold_counts_to_compare": [7, 6, 5, 4, 3],
+  "coordinate_transform": {
+    "kind": "normalized_positive_mixture",
+    "C_ref": 0.5,
+    "free_parameters": ["p", "e", "n", "k"],
+    "constraints_from_protocol": {"n": "> 0"}
+  },
+  "data": {
+    "I_domain": [0.0, 2.0],
+    "nullcline_C_domain": [0.03, 1.15],
+    "nullcline_I_domain": [0.4, 1.2],
+    "nullcline_scale_N": 0.02,
+    "nullcline_scale_H": 0.02,
+    "spectral_scale_trace": 1.0,
+    "spectral_scale_determinant": 0.15,
+    "equilibrium_scale_C": 0.05,
+    "equilibrium_scale_h": 0.05,
+    "equilibrium_missing_penalty": 25.0,
+    "equilibrium_extra_penalty": 25.0
+  },
+  "loss_weights": {
+    "spectral": 10.0,
+    "equilibria": 10.0,
+    "cycles": 30.0,
+    "extra_cycles": 30.0
+  },
+  "cycle_smoothing": {
+    "epsilon_schedule": [0.15, 0.05, 0.02],
+    "xi": 1e-7,
+    "softplus_tau": 0.02
+  },
+  "optimization": {
+    "restarts": 12,
+    "seed": 20261025,
+    "threshold_placement_grid_size": 1200,
+    "stage_order": ["baseline", "threshold_reduction", "parameter_sweep"]
+  },
+  "stages": {
+    "baseline": {
+      "m_values": [7],
+      "K_policy": "canonical"
+    },
+    "threshold_reduction": {
+      "m_values": [6, 5, 4, 3],
+      "K_policy": "canonical",
+      "warm_start_from_previous_m": true
+    },
+    "parameter_sweep": {
+      "m_values": [7],
+      "K_policy": "case_sweep"
+    }
+  },
+  "artifacts": [
+    "run.json",
+    "reference/nullclines.npz",
+    "reference/equilibria.json",
+    "reference/spectra.json",
+    "optimizer/trials/*/candidate.json",
+    "optimizer/trials/*/result.json",
+    "validation/summary.json"
+  ]
+}

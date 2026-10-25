@@ -4,4 +4,5 @@ __pycache__/
 .build/
 .cache/
 runs/
+results/fm_am_reduction/
 .venv-grid/
