@@ -12,10 +12,11 @@ import argparse
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import json
 import math
+import time
 from pathlib import Path
 
 import numpy as np
-from scipy.optimize import least_squares, linear_sum_assignment
+from scipy.optimize import least_squares, linear_sum_assignment, brentq
 
 from plan import PACKAGE, ROOT, read_json
 
@@ -40,25 +41,24 @@ def hinge_design(z: np.ndarray, ip3: np.ndarray, thresholds_z: np.ndarray) -> np
                             *[np.maximum(z.ravel()-t, 0.) for t in thresholds_z]])
 
 
+def quadrature_weights(nodes: np.ndarray) -> np.ndarray:
+    """Trapezoid weights in the physical sampling coordinate."""
+    if len(nodes) == 1:
+        return np.ones(1)
+    gaps = np.diff(nodes)
+    return np.r_[gaps[0]/2, (gaps[:-1]+gaps[1:])/2, gaps[-1]/2]
+
+
 def partition_thresholds(equilibria: list[dict], m: int, grid_size: int,
-                         i_range: tuple[float, float], c_bounds: tuple[float, float]) -> tuple[np.ndarray, dict]:
+                         i_range: tuple[float, float], c_bounds: tuple[float, float],
+                         scales=(1., .15)) -> tuple[np.ndarray, dict]:
     samples = [q for q in equilibria if i_range[0] <= q["I"] <= i_range[1]
                and c_bounds[0] < q["C"] < c_bounds[1]]
     if len(samples) < m+1:
         raise ValueError("Too few spectral samples for requested region count")
     i_levels = sorted({float(q["I"]) for q in samples})
-    by_i = {ip3: sorted([q for q in samples if q["I"] == ip3], key=lambda q: q["C"])
-            for ip3 in i_levels}
-    sample_weight = {id(q): 0. for q in samples}
-    for left_i, right_i in zip(i_levels[:-1], i_levels[1:]):
-        delta_i = right_i-left_i
-        left_roots, right_roots = by_i[left_i], by_i[right_i]
-        # Root rank tracks each ordered equilibrium branch between neighboring
-        # I levels; trapezoid weights approximate the protocol's |dI| measure.
-        for rank in range(min(len(left_roots), len(right_roots))):
-            sample_weight[id(left_roots[rank])] += .5*delta_i
-            sample_weight[id(right_roots[rank])] += .5*delta_i
-    samples = [q for q in samples if sample_weight[id(q)] > 0]
+    level_weights = quadrature_weights(np.array(i_levels))
+    sample_weight = {id(q): level_weights[i_levels.index(q["I"])] for q in samples}
     samples.sort(key=lambda q: q["C"])
     c = np.array([q["C"] for q in samples])
     t = np.array([q["trace"] for q in samples])
@@ -89,7 +89,7 @@ def partition_thresholds(equilibria: list[dict], m: int, grid_size: int,
         raise ValueError("Threshold partition grid is smaller than region count")
     y_t = np.array([q[0] for q in groups]); y_d = np.array([q[1] for q in groups])
     weights = np.array([q[2] for q in groups]); locations = np.array([q[3] for q in groups])
-    scale_t, scale_d = 1., .15
+    scale_t, scale_d = scales
     wt = weights/weights.sum()
     # Segment loss equals the weighted residual around its optimal mean.
     prefix_w = np.r_[0., np.cumsum(wt)]
@@ -141,7 +141,7 @@ def model_roots(theta: np.ndarray, thresholds_c: np.ndarray, ip3: float,
     roots = []
     def diff(z: float) -> float:
         row = hinge_design(np.array([z]), np.array([ip3]), zt)
-        return float(row@(alpha-beta))
+        return float((row@(alpha-beta))[0])
     for lo, hi in zip(knots[:-1], knots[1:]):
         flo, fhi = diff(float(lo)), diff(float(hi))
         if abs(flo) < 1e-12:
@@ -150,18 +150,11 @@ def model_roots(theta: np.ndarray, thresholds_c: np.ndarray, ip3: float,
             continue
         else:
             zr = float(lo-flo*(hi-lo)/(fhi-flo))
-        # Invert the monotone transform by bisection in physical C.
-        left, right = c_min, c_max
-        for _ in range(55):
-            mid = (left+right)/2
-            if float(phi(np.array([mid]), eta, c_ref)[0]) < zr:
-                left = mid
-            else:
-                right = mid
-        c = (left+right)/2
+        c = float(brentq(lambda c: float(phi(np.array([c]), eta, c_ref)[0])-zr,
+                          c_min, c_max, xtol=1e-12))
         if roots and abs(c-roots[-1][0]) < 1e-8:
             continue
-        h = float(hinge_design(np.array([zr]), np.array([ip3]), zt)@beta)
+        h = float((hinge_design(np.array([zr]), np.array([ip3]), zt)@beta)[0])
         roots.append((c, h))
     return roots
 
@@ -185,7 +178,9 @@ class MixedObjective:
             self.i_null = ii.ravel()[mask]
             self.n_null = d["N"][ix_c, ix_i].ravel()[mask]
             self.h_null = d["H"][ix_c, ix_i].ravel()[mask]
-        self.null_weights = np.full(len(self.c_null), 1/max(1, len(self.c_null)))
+        wc = quadrature_weights(C[keep_c]); wi = quadrature_weights(I[keep_i])
+        weights = (wc[:, None]*wi[None, :]).ravel()[mask]
+        self.null_weights = weights/weights.sum()
         raw = json.loads((refdir/"equilibria.json").read_text())["equilibria"]
         lo, hi = config["data"]["nullcline_I_domain"]
         self.equilibria = [q for q in raw if lo <= q["I"] <= hi]
@@ -198,12 +193,10 @@ class MixedObjective:
         spectral_lo, spectral_hi = .3, 1.2
         self.spectral = [q for q in raw if spectral_lo <= q["I"] <= spectral_hi]
         i_levels = sorted({float(q["I"]) for q in self.spectral})
-        step = float(np.median(np.diff(i_levels))) if len(i_levels)>1 else 1.
-        self.spec_weights = np.full(len(self.spectral), step)
-        if len(self.spec_weights)>1:
-            self.spec_weights[[0,-1]] *= .5
+        weights_i = dict(zip(i_levels, quadrature_weights(np.array(i_levels))))
+        self.spec_weights = np.array([weights_i[q["I"]] for q in self.spectral])
         self.spec_weights /= self.spec_weights.sum()
-        self.c_bounds = (1e-5, 2/(1+float(self.run["parameters"]["c_1"]))-1e-5)
+        self.c_bounds = (1e-5, self.run["parameters"]["C_0"]/(1+float(self.run["parameters"]["c_1"]))-1e-5)
         self.eq_slots = max(self.m+1, max(map(len, self.eq_by_i.values()), default=1))
 
     def residual(self, x: np.ndarray) -> np.ndarray:
@@ -218,7 +211,7 @@ class MixedObjective:
         n_hat, h_hat = X@alpha, X@beta
         sc = np.sqrt(self.null_weights)
         r_null = np.r_[(n_hat-self.n_null)/self.spec["data"]["nullcline_scale_N"],
-                       (h_hat-self.h_null)/self.spec["data"]["nullcline_scale_H"]]*np.mean(sc)
+                       (h_hat-self.h_null)/self.spec["data"]["nullcline_scale_H"]]*np.r_[sc, sc]
 
         c_samples = np.array([q["C"] for q in self.spectral])
         region = np.searchsorted(self.thresholds, c_samples, side="right")
@@ -281,6 +274,12 @@ def initial_vector(objective: MixedObjective, seed: int,
                    warm_model: dict | None = None) -> np.ndarray:
     m, c_ref = objective.m, objective.c_ref
     eta = np.array([0., 0., 0., 0.])
+    rng = np.random.default_rng(seed)
+    if seed and warm_model is None:
+        kind = seed % 4
+        eta = [np.array([7., -7., 0., 0.]), np.array([-7., -7., 0., 0.]),
+               np.array([4., -4., rng.uniform(-1.5, 1.5), 0.]),
+               np.array([rng.uniform(-3,3), rng.uniform(-3,3), rng.uniform(-1.5,1.5), rng.uniform(-2,2)])][kind]
     if warm_model is not None:
         transform = warm_model["transform"]
         eta = np.array([transform["p"], transform["e"], np.log(transform["n"]), transform["k"]])
@@ -304,16 +303,21 @@ def initial_vector(objective: MixedObjective, seed: int,
     if seed != 0:
         alpha += rng.normal(0, .03, len(alpha))
         beta += rng.normal(0, .03, len(beta))
-        eta += rng.normal(0, .2, 4)
+        loga += rng.normal(0, .7)
+        logb += rng.normal(0, .7)
     return np.r_[alpha, beta, loga, logb, eta]
 
 
 def optimize_trial(objective: MixedObjective, x0: np.ndarray, lower: np.ndarray,
                    upper: np.ndarray, max_nfev: int):
     """Worker entry point. Kept at module scope for multiprocessing pickling."""
-    return least_squares(objective.residual, x0, bounds=(lower, upper), method="trf",
+    started = time.perf_counter()
+    result = least_squares(objective.residual, x0, bounds=(lower, upper), method="trf",
                          x_scale="jac", max_nfev=max_nfev,
                          ftol=1e-8, xtol=1e-8, gtol=1e-8)
+    result.elapsed_seconds = time.perf_counter()-started
+    result.bound_hits = int(np.sum(np.minimum(result.x-lower, upper-result.x)<1e-6))
+    return result
 
 
 def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int,
@@ -324,10 +328,11 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
     if not threshold_path.exists():
         eq = json.loads((run_dir/"reference"/"equilibria.json").read_text())["equilibria"]
         i_range = (0.3, 1.2)
-        c_max = 2/(1+run["parameters"]["c_1"])
+        c_max = run["parameters"]["C_0"]/(1+run["parameters"]["c_1"])
         thresholds, info = partition_thresholds(eq, run["m"],
             config["optimization"]["threshold_placement_grid_size"], i_range,
-            (0.03, c_max-1e-4))
+            (0.03, c_max-1e-4),
+            scales=(config["data"]["spectral_scale_trace"], config["data"]["spectral_scale_determinant"]))
         out.mkdir(parents=True, exist_ok=True)
         np.savez_compressed(threshold_path, C=thresholds)
         (out/"partition.json").write_text(json.dumps({"physical_thresholds_C": thresholds.tolist(),
@@ -341,6 +346,11 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
     hi = np.r_[np.full(2*ncoef, 25.), 5., 3., 12., 12., 4., 10.]
     trials_dir = out/"trials"
     trials_dir.mkdir(parents=True, exist_ok=True)
+    (out/"search_setup.json").write_text(json.dumps(dict(
+        bounds_lower=lo.tolist(),bounds_upper=hi.tolist(),max_nfev=max_nfev,
+        trials=restarts,workers=workers,seed=seed,ftol=1e-8,xtol=1e-8,gtol=1e-8,
+        jacobian="numerical 2-point",nullcline_nodes=len(objective.c_null),
+        spectral_samples=len(objective.spectral),equilibrium_I_nodes=objective.eq_levels),indent=2)+"\n")
     winner = None
     starts = []
     for trial in range(restarts):
@@ -349,18 +359,27 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
         x0 = np.clip(initial_vector(objective, trial_seed if trial else 0, start_model), lo+1e-7, hi-1e-7)
         starts.append((trial, trial_seed, x0))
 
+    print(f"Submitting {restarts} restarts on {workers} processes; max_nfev={max_nfev}", flush=True)
     with ProcessPoolExecutor(max_workers=workers) as pool:
         futures = {pool.submit(optimize_trial, objective, x0, lo, hi, max_nfev): (trial, trial_seed)
                    for trial, trial_seed, x0 in starts}
         for future in as_completed(futures):
             trial, trial_seed = futures[future]
-            result = future.result()
+            try:
+                result = future.result()
+            except Exception as exc:
+                failed = trials_dir/f"trial_{trial:03d}"
+                failed.mkdir(exist_ok=True)
+                (failed/"failure.json").write_text(json.dumps({"seed": trial_seed, "error": repr(exc)}))
+                print(f"{run['run_id']} trial {trial+1}/{restarts} FAILED: {exc}", flush=True)
+                continue
             parts = objective.parts(result.x)
             record = {"run_id": run["run_id"], "trial": trial, "seed": trial_seed,
                       "workers": workers, "success": bool(result.success), "status": int(result.status),
                       "message": result.message, "nfev": int(result.nfev),
                       "cost_half_sum_squares": float(result.cost), "parts": parts,
-                      "optimality": float(result.optimality)}
+                      "optimality": float(result.optimality),
+                      "elapsed_seconds": result.elapsed_seconds, "bound_hits": result.bound_hits}
             trial_dir = trials_dir/f"trial_{trial:03d}"
             trial_dir.mkdir(exist_ok=True)
             model = {
@@ -380,6 +399,8 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
             (trial_dir/"result.json").write_text(json.dumps(record, indent=2, allow_nan=False)+"\n")
             if winner is None or parts["precycle_total"] < winner[0]:
                 winner = (parts["precycle_total"], trial_dir, model, record)
+                (out/"best_so_far.json").write_text(json.dumps({"candidate": model,
+                    "optimizer_result": record}, indent=2, allow_nan=False)+"\n")
             print(f"{run['run_id']} trial {trial+1}/{restarts}: "
                   f"precycle loss={parts['precycle_total']:.7g}", flush=True)
     if winner is None:

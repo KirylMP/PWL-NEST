@@ -71,3 +71,30 @@ The supplied document is FM-specific. AM/K extensions are captured in
 `config/cases.json`, while protocol-defined scales and objective weights are
 recorded in `config/protocol.json`. Any change to the objective should use a
 new protocol/config version and a separate run directory.
+
+## FM debugging run after implementation audit
+
+Use a fresh experiment; existing runs and prepared caches retain the old definition.
+The default 64 starts run on 16 CPU processes. This command prepares only FM,
+fits the corrected pre-cycle objective, and generates diagnostic figures:
+
+```bash
+python -u experiments/fm_am_reduction/scripts/run_fm.py \
+  --name fm_debug_64 --trials 64 --workers 16 --max-nfev 1500
+```
+
+Everything is in `runs/fm_am_reduction/fm_debug_64/`:
+`logs/run_*.log`, source snapshot, `optimizer/trials/`, `optimizer/selected.json`,
+`optimizer/best_so_far.json`, and `analysis/`. Figures include `bifurcation.png`
+and PDF, `spectra.png`, and `nullclines.png`. `analysis/scan.json`, `orbits.csv`,
+and `summary.json` contain raw diagnostics and unresolved cases. Analysis can
+be rerun without fitting:
+
+```bash
+python experiments/fm_am_reduction/scripts/analyze_candidate.py \
+  --run-dir runs/fm_am_reduction/fm_debug_64 --workers 16 --points 161 --duration 2000
+```
+
+See [PROTOCOL_AUDIT.md](PROTOCOL_AUDIT.md) for fixed errors and remaining gaps.
+These figures are a finite-grid diagnostic; repelling cycles and the cycle loss
+from the protocol are still missing. Focus on FM until that part is debugged.

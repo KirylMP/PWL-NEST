@@ -96,7 +96,7 @@ def prepare_run(run_dir: Path, protocol: dict) -> None:
         / ((cc[valid_denom]**2+p["K_ER"]**2)*denom[valid_denom]) - p["r_L"]
     ) / (p["r_C"]*(ii[valid_denom]/(ii[valid_denom]+p["d_1"]))**3
          *(cc[valid_denom]/(cc[valid_denom]+p["d_5"]))**3)
-    valid_n = np.isfinite(radicand) & (radicand >= 0)
+    valid_n = np.isfinite(radicand)
     n_null = np.full_like(cc, np.nan)
     n_null[valid_n] = np.cbrt(radicand[valid_n])
     np.savez_compressed(target / "nullclines.npz", C=c_values, I=i_values,
@@ -104,7 +104,7 @@ def prepare_run(run_dir: Path, protocol: dict) -> None:
 
     i_spectral = np.linspace(0.0, 2.0, 161)
     equilibria = [root for ip3 in i_spectral
-                  for root in roots_for_ip3(float(ip3), p, 2/(1+p["c_1"]), 1600)]
+                  for root in roots_for_ip3(float(ip3), p, p["C_0"]/(1+p["c_1"]), 1600)]
     (target / "equilibria.json").write_text(
         json.dumps({"run_id": manifest["run_id"], "equilibria": equilibria}, indent=2,
                    allow_nan=False) + "\n", encoding="utf-8")
