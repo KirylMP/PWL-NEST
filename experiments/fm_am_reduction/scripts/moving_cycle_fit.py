@@ -81,15 +81,19 @@ class MovingCycleObjective:
         if self.last_x is not None and np.array_equal(x,self.last_x) and self.last_epsilon==self.epsilon:return
         same=self.last_x is not None and np.array_equal(x,self.last_x)
         n=len(x);cfg=self.spec;xi=cfg['cycle_smoothing']['xi'];tau=cfg['cycle_smoothing']['softplus_tau']
+        progress=getattr(self,'progress',None)
         if same:base=self.base;Jbase=self.base_jac
         else:
             # A rejected/failed proposal must not leave a partially populated
             # table cache attached to the previous successful parameter vector.
             self.last_x=None
+            if progress is not None:progress.start_work('geometry_jacobian',n)
             base=self.geometry.residual(x);Jbase=np.empty((len(base),n));self.tables=[]
             for j in range(n):
                 h=2e-6*max(1.,abs(x[j]));d=np.eye(n)[j]*h
                 Jbase[:,j]=(self.geometry.residual(x+d)-self.geometry.residual(x-d))/(2*h)
+                if progress is not None:progress.advance(j+1)
+            if progress is not None:progress.start_work('return_maps',2*len(self.levels)*len(self.nodes))
         residuals=[];jacobians=[];extra=[];Jextra=[];barriers=[];Jbarriers=[];reports=[]
         cmax=self.run['parameters']['C_0']/(1+self.run['parameters']['c_1'])
         for index,ip3 in enumerate(self.levels):
@@ -101,15 +105,21 @@ class MovingCycleObjective:
                     # Two independent section coordinates suffice for LR; chain
                     # them to all 26 model parameters after integration.
                     lrsec=Section(sec.C,sec.h0,1,np.array([1.,0.]),np.array([0.,1.]))
-                    truth_table=return_table(LRSystem(self.run['parameters'],ip3),lrsec,self.nodes,True,**settings(cfg))
+                    def notify(done,total,offset=2*index,kind='LR'):
+                        if progress is not None:progress.advance(offset*len(self.nodes)+done,I=ip3,system=kind,node=f'{done}/{total}')
+                    truth_table=return_table(LRSystem(self.run['parameters'],ip3),lrsec,self.nodes,True,
+                        progress=notify if progress is not None else None,**settings(cfg))
                     for q in truth_table:
                         if q['status']=='valid':
                             a,b=q['dG'];q['dG']=(a*np.asarray(sec.C_gradient)+b*np.asarray(sec.h0_gradient)).tolist()
-                    table=return_table(system,sec,self.nodes,True,**settings(cfg))
+                    def notify_pwa(done,total):notify(done,total,offset=2*index+1,kind='PWA')
+                    table=return_table(system,sec,self.nodes,True,
+                        progress=notify_pwa if progress is not None else None,**settings(cfg))
                     cached=dict(table=table,truth=truth_table,section=info,error=None)
                 except ValueError as exc:
                     cached=dict(table=[],truth=[],section=None,error=str(exc))
                 self.tables.append(cached)
+                if progress is not None:progress.advance(2*(index+1)*len(self.nodes),I=ip3,system='PWA')
             table=cached['table'];truth_table=cached['truth']
             counts,dc,edges=smooth_counts(table,self.epsilon,xi,n)
             truth,dt,redges=smooth_counts(truth_table,self.epsilon,xi,n)

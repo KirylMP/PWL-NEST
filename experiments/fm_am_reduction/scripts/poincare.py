@@ -186,8 +186,13 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
         return dict(status='integration_error',u=float(u),message=str(exc))
 
 
-def return_table(system,section,nodes,sensitivities=False,**settings):
-    return [first_return(system,section,u,sensitivities,**settings) for u in nodes]
+def return_table(system,section,nodes,sensitivities=False,progress=None,**settings):
+    records=[]
+    if progress is not None:progress(0,len(nodes))
+    for index,u in enumerate(nodes):
+        records.append(first_return(system,section,u,sensitivities,**settings))
+        if progress is not None:progress(index+1,len(nodes))
+    return records
 
 
 def smooth_counts(records,epsilon,xi=1e-7,nparams=0):

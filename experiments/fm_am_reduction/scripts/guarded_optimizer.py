@@ -15,7 +15,7 @@ def central_geometry_jacobian(objective,x):
 
 
 def solve_stage(objective,x0,max_nfev,*,label,log_path=None,freeze_transform=False,
-                gtol=1e-6,rescue_evaluations=6):
+                gtol=1e-6,rescue_evaluations=6,progress=None):
     geometry=getattr(objective,'geometry',objective)
     coordinates=RegionalCoordinates(geometry.thresholds,geometry.c_ref)
     lo,hi=coordinates.bounds();y0=coordinates.from_raw(x0)
@@ -24,7 +24,7 @@ def solve_stage(objective,x0,max_nfev,*,label,log_path=None,freeze_transform=Fal
     best=None;history=[];previous=None;evaluations=0;started=time.perf_counter()
     def expand(v):
         y=y0.copy();y[active]=v;return y
-    def record(y,r,admissible_override=None,error=None):
+    def record(y,r,admissible_override=None,error=None,evaluation_seconds=0.):
         nonlocal best,previous,evaluations
         evaluations+=1;loss=float(r@r)
         admissible=getattr(objective,'parts_value',{}).get('return_domain_admissible',True)
@@ -33,7 +33,8 @@ def solve_stage(objective,x0,max_nfev,*,label,log_path=None,freeze_transform=Fal
         if best is None or rank<best[0]:best=(rank,y.copy(),r.copy())
         event=dict(event='objective',stage=label,evaluation=evaluations,loss=loss,admissible=bool(admissible),
                    step_norm=float(np.linalg.norm(y-previous)) if previous is not None else None,
-                   seconds=time.perf_counter()-started,freeze_transform=freeze_transform,regional_x=y.tolist())
+                   seconds=time.perf_counter()-started,evaluation_seconds=evaluation_seconds,
+                   freeze_transform=freeze_transform,regional_x=y.tolist())
         if hasattr(objective,'epsilon'):event['epsilon']=objective.epsilon
         if error is not None:event['error']=error
         if hasattr(objective,'report') and error is None:
@@ -42,19 +43,22 @@ def solve_stage(objective,x0,max_nfev,*,label,log_path=None,freeze_transform=Fal
         history.append(event);previous=y.copy()
         if log_path is not None:
             with log_path.open('a') as stream:stream.write(json.dumps(event,allow_nan=False)+'\n')
+        if progress is not None:progress.evaluation(evaluations,loss,admissible,evaluation_seconds)
     def residual(v):
-        y=expand(v)
+        y=expand(v);evaluation_started=time.perf_counter()
+        if progress is not None:progress.activity('objective')
         try:
             r=objective.residual(coordinates.to_raw(y))
             if not np.all(np.isfinite(r)):raise FloatingPointError('nonfinite residual')
-            record(y,r);return r
+            record(y,r,evaluation_seconds=time.perf_counter()-evaluation_started);return r
         except (ValueError,FloatingPointError,OverflowError) as exc:
             if best is None:raise
             magnitude=max(1e6,10*float(np.max(abs(best[2]))))
             r=np.full_like(best[2],magnitude)
-            record(y,r,False,repr(exc));return r
+            record(y,r,False,repr(exc),time.perf_counter()-evaluation_started);return r
     def jacobian(v):
         y=expand(v);x=coordinates.to_raw(y)
+        if progress is not None:progress.activity('jacobian')
         raw=objective.jac(x) if hasattr(objective,'jac') else central_geometry_jacobian(objective,x)
         matrix=(raw@coordinates.jacobian(y))[:,active]
         if log_path is not None:
@@ -70,6 +74,7 @@ def solve_stage(objective,x0,max_nfev,*,label,log_path=None,freeze_transform=Fal
         method='trf',x_scale=np.ones(len(active)),max_nfev=max_nfev,
         ftol=None,xtol=None,gtol=gtol)
     # Retain the lowest admissible evaluated point, including stage entry.
+    if progress is not None:progress.activity('retained_point_check')
     y=best[1];r=objective.residual(coordinates.to_raw(y));J=jacobian(y[active])
     g=J.T@r
     def optimality(v,gradient):
@@ -91,6 +96,7 @@ def solve_stage(objective,x0,max_nfev,*,label,log_path=None,freeze_transform=Fal
     condition=float(np.exp(min(700.,np.log(max(singular[0],np.finfo(float).tiny))
                               -np.log(max(singular[-1],np.finfo(float).tiny)))))
     # `success` in v5 means checked stationarity, never merely a small step.
+    if progress is not None:progress.stage_done()
     return OptimizeResult(x=raw_x,fun=r,jac=J,grad=g,cost=float(.5*(r@r)),nfev=evaluations,
         optimality=opt,success=stationary,status=1 if stationary else 0,
         message='stationarity checked in regional coordinates' if stationary else 'evaluation budget exhausted or nonstationary termination',

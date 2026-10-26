@@ -118,6 +118,10 @@ effective weight; comparisons must use a common configuration.
 Everything is in `runs/fm_am_reduction/<name>/` (ignored by Git):
 
 - `logs/run_*.log`: stdout, stderr, phase, inventory and audit progress;
+- `logs/trial_*.log`, `logs/incumbent.log`: readable worker progress every 30 s,
+  including while a single objective evaluation is integrating returns;
+- `logs/<trial>.progress.json`: atomic current status, PID, phase, completed
+  evaluations, current I/system/u node, elapsed times and budget estimates;
 - `run.json`, `protocol.json`, `source/`: actual settings and source hashes;
 - `reference/source_cycle_inventory.json`: training LR cycle observations,
   physical coverage intervals, grids, solver settings and unresolved cases;
@@ -145,6 +149,49 @@ zero matching error. A finite grid cannot exclude arbitrarily narrow regimes.
 
 ```bash
 tail -f runs/fm_am_reduction/fm_v5_16/logs/run_*.log
+```
+
+### Live trial progress and time estimates
+
+For either an existing v5 run or a new run:
+
+```bash
+.venv/bin/python -u experiments/fm_am_reduction/scripts/watch_progress.py \
+  --run-dir runs/fm_am_reduction/fm_v5_16_fix1 --interval 30
+```
+
+Use `--once` for one snapshot. Ctrl+C stops the monitor; it does not stop the
+experiment. The monitor only reads files and needs no numerical model imports.
+It reads the new heartbeat files if available. For workers already running old
+code it reads completed `iterations.jsonl` evaluations and audit progress.
+It tolerates partial JSONL writes and limits the amount of history read.
+
+New workers report `phase`, stage number, completed `eval` count/main budget,
+potential additional recovery budget, loss/admissibility, previous evaluation
+wall time, and the current activity. In `return_maps`, `work` counts individual
+LR/PWA launches across I and u; details locate the current return map. An
+independent reporter thread emits a heartbeat even during a long ODE call.
+`training_audit` reports progress across I separately from optimization.
+
+`work_ETA` extrapolates the current sweep. `stage_budget_ETA` extrapolates the
+remaining stage evaluations, including possible recovery probes.
+`optimizer_budget_ETA` additionally estimates later optimizer stages using
+observed phase costs and linear I*u scaling. It stays `warming-up` until the
+required phase types have timing observations. These are per-trial wall-clock
+estimates under the current CPU load, not a prediction of convergence or an
+upper time bound. Model/domain changes and return timeouts can change the pace.
+Final stationarity checks, cycle audits, queued trials, analysis and independent
+validation have additional costs; their time is not included in optimizer ETAs.
+
+Already-running workers keep their loaded code after `git pull`. The monitor
+can inspect those runs immediately, but internal heartbeat/node progress is
+available only in workers started with the new code. An old worker's file age
+shows time since its last log write; it does not locate its current ODE step.
+
+To follow a single new worker directly:
+
+```bash
+tail -f runs/fm_am_reduction/fm_v5_16_fix1/logs/trial_000.log
 ```
 
 ## Recheck a v5 candidate without fitting

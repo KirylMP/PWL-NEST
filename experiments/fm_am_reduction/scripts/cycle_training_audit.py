@@ -217,7 +217,7 @@ def candidate_profiles(system,sec,nodes,solver):
                 solver_used=profile_solver,u_nodes_used=np.asarray(nodes).tolist(),sections_C=sections)
 
 
-def audit_candidate(run_dir,config,model,*,profiles=True,label=None,checkpoint_dir=None):
+def audit_candidate(run_dir,config,model,*,profiles=True,label=None,checkpoint_dir=None,progress=None):
     """Value-only common-grid score; unknown returns/coverage are never zero."""
     from fit_stage import MixedObjective
     geometry=MixedObjective(run_dir,config)
@@ -230,7 +230,9 @@ def audit_candidate(run_dir,config,model,*,profiles=True,label=None,checkpoint_d
     p=geometry.run['parameters'];cmax=p['C_0']/(1+p['c_1']);rows=[];cyc=extra=0.
     inventory=json.loads((run_dir/'reference'/'source_cycle_inventory.json').read_text())
     source_profiles={r['I']:r for r in inventory['rows']}
+    if progress is not None:progress.start_work('audit_I_points',len(cfg['I_nodes']))
     for ip3 in cfg['I_nodes']:
+        if progress is not None:progress.advance(len(rows),I=ip3,activity='returns_and_cycle_profiles')
         system=PWASystem(x,geometry.thresholds,ip3,geometry.c_ref,cmax);source=LRSystem(p,ip3)
         try:
             sec,info=anchor_section(system,source,reference_section(ip3,p).C)
@@ -276,6 +278,7 @@ def audit_candidate(run_dir,config,model,*,profiles=True,label=None,checkpoint_d
         if label is not None:
             row=rows[-1]
             print(f"{label}: training audit {len(rows)}/{len(cfg['I_nodes'])}, I={ip3:.6f}, coverage={row['coverage_admissible']} resolution={row['resolution_admissible']}",flush=True)
+        if progress is not None:progress.advance(len(rows),I=ip3)
         if checkpoint_dir is not None:
             target=checkpoint_dir/'training_audit_progress.json';temporary=target.with_suffix('.tmp')
             temporary.write_text(json.dumps(dict(completed=len(rows),total=len(cfg['I_nodes']),rows=rows),indent=2,allow_nan=False)+'\n')
