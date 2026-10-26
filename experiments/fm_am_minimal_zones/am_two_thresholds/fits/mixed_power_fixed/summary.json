@@ -1,0 +1,77 @@
+{
+  "candidate": "candidate.json",
+  "loss": 11.169062912590807,
+  "physical_thresholds_C": [
+    0.15880902539171288,
+    0.32705145045357475
+  ],
+  "thresholds_optimized": false,
+  "equilibrium_threshold_I": [
+    0.34541460457736667,
+    0.6384690814579974
+  ],
+  "regions": 3,
+  "training_orbits": 9,
+  "matched_training_orbits": 9,
+  "maximum_detected_cycles": 1,
+  "RMSE_Cmin_Cmax": 0.006793461479377974,
+  "RMSE_period": 0.30930403053331595,
+  "RMSE_amplitude": 0.011590279113151433,
+  "independent_DOP853_checks": [
+    {
+      "I": 0.3605101203872668,
+      "returned": true,
+      "period_error": 3.368212730947562e-08,
+      "closure_error": -2.594779946463177e-11
+    },
+    {
+      "I": 0.38135717644475736,
+      "returned": true,
+      "period_error": 8.04996247438794e-09,
+      "closure_error": -4.90046891954421e-11
+    },
+    {
+      "I": 0.4200731376943827,
+      "returned": true,
+      "period_error": 1.2051506459442862e-08,
+      "closure_error": 1.2627010548271755e-11
+    },
+    {
+      "I": 0.45878909894400804,
+      "returned": true,
+      "period_error": -1.0445821985172188e-08,
+      "closure_error": 1.1216250150880569e-11
+    },
+    {
+      "I": 0.5004832110589892,
+      "returned": true,
+      "period_error": 1.0009117090703512e-08,
+      "closure_error": 2.0686341528630692e-11
+    },
+    {
+      "I": 0.5391991723086145,
+      "returned": true,
+      "period_error": -4.996683955482695e-09,
+      "closure_error": -5.7278515264158614e-11
+    },
+    {
+      "I": 0.5808932844235957,
+      "returned": true,
+      "period_error": -4.254090413269296e-10,
+      "closure_error": -5.612377229624599e-11
+    },
+    {
+      "I": 0.619609245673221,
+      "returned": true,
+      "period_error": -2.187119818586325e-09,
+      "closure_error": -2.6421642651541788e-11
+    },
+    {
+      "I": 0.6340770467554636,
+      "returned": true,
+      "period_error": 4.7793395907547165e-09,
+      "closure_error": -9.338774198397459e-11
+    }
+  ],
+  "counts_method": "finite I grid; cycle roots from native Poincare return map"
+}

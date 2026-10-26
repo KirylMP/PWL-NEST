@@ -1,0 +1,6 @@
+{
+  "nfev": 6500,
+  "fun": 10.220988955713745,
+  "success": false,
+  "message": "Maximum number of function evaluations has been exceeded."
+}

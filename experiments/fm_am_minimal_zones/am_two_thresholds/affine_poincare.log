@@ -1,0 +1,22 @@
+Matplotlib is building the font cache; this may take a moment.
+POINCARE affine 200 best 27.21264 seconds 1
+POINCARE affine 400 best 24.64421 seconds 1
+POINCARE affine 600 best 23.045 seconds 2
+POINCARE affine 800 best 21.23122 seconds 2
+POINCARE affine 1000 best 19.99828 seconds 3
+POINCARE affine 1200 best 19.31719 seconds 3
+POINCARE affine 1400 best 18.12456 seconds 3
+POINCARE affine 1600 best 16.46935 seconds 4
+POINCARE affine 1800 best 15.7811 seconds 4
+POINCARE affine 2000 best 15.57635 seconds 5
+POINCARE affine 2200 best 15.26722 seconds 5
+POINCARE affine 2400 best 15.17937 seconds 6
+POINCARE affine 2600 best 15.01398 seconds 6
+POINCARE affine 2800 best 14.93005 seconds 7
+POINCARE affine 3000 best 14.81872 seconds 7
+POINCARE affine 3200 best 14.75094 seconds 8
+POINCARE affine 3400 best 14.71532 seconds 8
+POINCARE affine 3600 best 14.60808 seconds 9
+POINCARE affine 3800 best 14.56517 seconds 10
+POINCARE affine 4000 best 14.48463 seconds 10
+POINCARE affine 4200 best 14.45228 seconds 11

@@ -1,0 +1,12 @@
+Matplotlib is building the font cache; this may take a moment.
+PHASE mixed_power 300 best 26.34404 seconds 4
+PHASE mixed_power 600 best 9.05076 seconds 6
+PHASE mixed_power 900 best 8.26527 seconds 9
+PHASE mixed_power 1200 best 7.34334 seconds 14
+PHASE mixed_power 1500 best 7.20242 seconds 16
+PHASE mixed_power 1800 best 7.18554 seconds 20
+PHASE mixed_power 2100 best 7.12404 seconds 23
+PHASE mixed_power 2400 best 7.11781 seconds 31
+PHASE mixed_power 2700 best 7.11531 seconds 33
+PHASE mixed_power 3000 best 7.11531 seconds 35
+PHASE mixed_power 3300 best 7.11531 seconds 38

@@ -1,0 +1,9 @@
+Matplotlib is building the font cache; this may take a moment.
+PHASE affine 300 best 20.14853 seconds 1
+PHASE affine 600 best 16.62948 seconds 2
+PHASE affine 900 best 16.55008 seconds 3
+PHASE affine 1200 best 16.503 seconds 4
+PHASE affine 1500 best 16.46588 seconds 5
+PHASE affine 1800 best 16.40521 seconds 6
+PHASE affine 2100 best 16.4025 seconds 8
+PHASE affine 2400 best 16.38482 seconds 12

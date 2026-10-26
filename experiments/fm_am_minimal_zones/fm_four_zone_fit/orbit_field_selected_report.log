@@ -1,0 +1,123 @@
+Matplotlib is building the font cache; this may take a moment.
+{
+  "max_detected_cycles": 2,
+  "I_samples": 173,
+  "events": [
+    0.529282553695536,
+    0.4758472810302719,
+    0.8561106058505369
+  ],
+  "independent_checks": [
+    {
+      "I": 0.55,
+      "stable": true,
+      "returned": true,
+      "period_error": -1.5865482794197305e-07,
+      "closure_error": -7.1716299565594e-11
+    },
+    {
+      "I": 0.65,
+      "stable": true,
+      "returned": true,
+      "period_error": 1.099416039096468e-06,
+      "closure_error": 5.043179762687089e-09
+    },
+    {
+      "I": 0.8,
+      "stable": true,
+      "returned": true,
+      "period_error": -1.8100536181009375e-08,
+      "closure_error": -4.173450474098672e-11
+    },
+    {
+      "I": 0.9,
+      "stable": true,
+      "returned": true,
+      "period_error": 2.037609192484524e-09,
+      "closure_error": 3.8331116058998305e-11
+    },
+    {
+      "I": 0.9,
+      "stable": false,
+      "returned": true,
+      "period_error": 8.212401425566895e-09,
+      "closure_error": 5.121236767990922e-12
+    },
+    {
+      "I": 1.0,
+      "stable": true,
+      "returned": true,
+      "period_error": 2.6500874383827977e-08,
+      "closure_error": 5.377187584088006e-10
+    },
+    {
+      "I": 1.0,
+      "stable": false,
+      "returned": true,
+      "period_error": 7.849276784099857e-10,
+      "closure_error": -2.5579871554270994e-11
+    },
+    {
+      "I": 1.1,
+      "stable": true,
+      "returned": true,
+      "period_error": -1.2488960976497765e-09,
+      "closure_error": 1.8904100507199928e-11
+    },
+    {
+      "I": 1.1,
+      "stable": false,
+      "returned": true,
+      "period_error": 1.1108518549463042e-09,
+      "closure_error": -1.8463885975705807e-10
+    }
+  ],
+  "count_transitions": [
+    {
+      "bracket": [
+        0.529182553695536,
+        0.529382553695536
+      ],
+      "before": [
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0
+      ]
+    },
+    {
+      "bracket": [
+        0.8560106058505369,
+        0.8562106058505369
+      ],
+      "before": [
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1
+      ]
+    },
+    {
+      "bracket": [
+        1.2750000000000001,
+        1.3
+      ],
+      "before": [
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0
+      ]
+    }
+  ],
+  "nullcline_RMSE": [
+    0.0249079289239457,
+    0.0576970468200873
+  ]
+}

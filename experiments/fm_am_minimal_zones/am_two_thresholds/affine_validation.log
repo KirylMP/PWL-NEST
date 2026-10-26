@@ -1,0 +1,9 @@
+SCAN affine 0 221 0.0 0
+SCAN affine 25 221 0.25 0
+SCAN affine 50 221 0.36051012039 1
+SCAN affine 75 221 0.42 1
+SCAN affine 100 221 0.4775 1
+SCAN affine 125 221 0.5375 1
+SCAN affine 150 221 0.595 1
+SCAN affine 175 221 0.635 0
+SCAN affine 200 221 0.8 0

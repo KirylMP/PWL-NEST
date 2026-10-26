@@ -1,0 +1,122 @@
+{
+  "max_detected_cycles": 2,
+  "I_samples": 387,
+  "events": [
+    0.519399935731641,
+    0.47021677407593476,
+    0.8710807133139434
+  ],
+  "independent_checks": [
+    {
+      "I": 0.55,
+      "stable": true,
+      "returned": true,
+      "period_error": 2.2441699343289656e-06,
+      "closure_error": 2.9595127459813853e-09
+    },
+    {
+      "I": 0.65,
+      "stable": true,
+      "returned": true,
+      "period_error": -2.0992775233708016e-06,
+      "closure_error": -1.2276268002153756e-08
+    },
+    {
+      "I": 0.8,
+      "stable": true,
+      "returned": true,
+      "period_error": -3.3828802159519e-07,
+      "closure_error": 2.257042330811032e-10
+    },
+    {
+      "I": 0.9,
+      "stable": true,
+      "returned": true,
+      "period_error": 1.027085971827546e-09,
+      "closure_error": 2.502931195635938e-11
+    },
+    {
+      "I": 0.9,
+      "stable": false,
+      "returned": true,
+      "period_error": -4.384173024618576e-10,
+      "closure_error": -8.025202724581959e-11
+    },
+    {
+      "I": 1.0,
+      "stable": true,
+      "returned": true,
+      "period_error": 7.389071221552967e-08,
+      "closure_error": 1.6545539383017172e-09
+    },
+    {
+      "I": 1.0,
+      "stable": false,
+      "returned": true,
+      "period_error": 5.285158977130777e-10,
+      "closure_error": -9.268286138564008e-11
+    },
+    {
+      "I": 1.1,
+      "stable": true,
+      "returned": true,
+      "period_error": -1.4788414048894083e-08,
+      "closure_error": -3.4624803024740913e-10
+    },
+    {
+      "I": 1.1,
+      "stable": false,
+      "returned": true,
+      "period_error": 3.8820680003937014e-10,
+      "closure_error": -1.8152812586436085e-10
+    }
+  ],
+  "count_transitions": [
+    {
+      "bracket": [
+        0.51938993573,
+        0.51940993573
+      ],
+      "before": [
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0
+      ]
+    },
+    {
+      "bracket": [
+        0.87109071331,
+        0.87118071331
+      ],
+      "before": [
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1
+      ]
+    },
+    {
+      "bracket": [
+        1.1725,
+        1.175
+      ],
+      "before": [
+        1,
+        1
+      ],
+      "after": [
+        0,
+        0
+      ]
+    }
+  ],
+  "nullcline_RMSE": [
+    0.02022382040324139,
+    0.04368901808732787
+  ]
+}

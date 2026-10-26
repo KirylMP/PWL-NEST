@@ -1,0 +1,8 @@
+SCAN mixed_power 0 221 0.0 0
+SCAN mixed_power 25 221 0.25 0
+SCAN mixed_power 50 221 0.36051012039 1
+SCAN mixed_power 75 221 0.42 1
+SCAN mixed_power 100 221 0.4775 1
+SCAN mixed_power 125 221 0.5375 1
+SCAN mixed_power 150 221 0.595 1
+SCAN mixed_power 175 221 0.63946528921 0

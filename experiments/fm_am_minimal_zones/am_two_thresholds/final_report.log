@@ -1,0 +1,112 @@
+{
+  "affine": {
+    "loss": 18.581818663646366,
+    "cuts_C": [
+      0.15147417711401656,
+      0.34642884581131106
+    ],
+    "equilibrium_threshold_I": [
+      0.34121119668571476,
+      0.6372562398878298
+    ],
+    "max_detected_cycles": 1,
+    "I_samples": 221,
+    "matched_targets": 9,
+    "missing_targets": 0,
+    "RMSE_extrema": 0.009034638393039045,
+    "RMSE_period": 0.5793928360203795,
+    "RMSE_amplitude": 0.014017863520999539,
+    "count_transitions": [
+      {
+        "bracket": [
+          0.34131119669,
+          0.34221119669
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ]
+      },
+      {
+        "bracket": [
+          0.63724623989,
+          0.63726623989
+        ],
+        "before": [
+          1,
+          0
+        ],
+        "after": [
+          0,
+          0
+        ]
+      }
+    ],
+    "amplitude_peak": {
+      "I": 0.6175,
+      "amplitude": 0.37495501017784555
+    },
+    "common_matched_targets": 9,
+    "RMSE_amplitude_common": 0.014017863520999539,
+    "RMSE_extrema_common": 0.009034638393039045
+  },
+  "mixed_power": {
+    "loss": 11.037082072215533,
+    "cuts_C": [
+      0.15880902539171288,
+      0.32705145045357475
+    ],
+    "equilibrium_threshold_I": [
+      0.34377257667935757,
+      0.6393652892055345
+    ],
+    "max_detected_cycles": 1,
+    "I_samples": 221,
+    "matched_targets": 9,
+    "missing_targets": 0,
+    "RMSE_extrema": 0.006367297579090489,
+    "RMSE_period": 0.35166064144460096,
+    "RMSE_amplitude": 0.011011317690239998,
+    "count_transitions": [
+      {
+        "bracket": [
+          0.34378257668,
+          0.34387257668
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ]
+      },
+      {
+        "bracket": [
+          0.63935528921,
+          0.63937528921
+        ],
+        "before": [
+          1,
+          0
+        ],
+        "after": [
+          0,
+          0
+        ]
+      }
+    ],
+    "amplitude_peak": {
+      "I": 0.6025,
+      "amplitude": 0.36812287813739086
+    },
+    "common_matched_targets": 9,
+    "RMSE_amplitude_common": 0.011011317690239998,
+    "RMSE_extrema_common": 0.006367297579090489
+  }
+}

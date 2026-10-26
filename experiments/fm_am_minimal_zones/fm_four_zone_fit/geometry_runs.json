@@ -1,0 +1,72 @@
+[
+  {
+    "run": 0,
+    "loss": 3.7480410466630216,
+    "nfev": 176,
+    "optimality": 0.004795721796886196,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 1,
+    "loss": 3.7480409681275497,
+    "nfev": 150,
+    "optimality": 0.003305843349416456,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 2,
+    "loss": 3.7480410409261498,
+    "nfev": 178,
+    "optimality": 0.0046504474209371404,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 3,
+    "loss": 3.7480411316818976,
+    "nfev": 171,
+    "optimality": 0.00014322846992866994,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 4,
+    "loss": 3.7480409579085343,
+    "nfev": 167,
+    "optimality": 0.0034627252427408477,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 5,
+    "loss": 3.7480411169916343,
+    "nfev": 153,
+    "optimality": 0.02619153917076941,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 6,
+    "loss": 3.7480410211350477,
+    "nfev": 164,
+    "optimality": 0.001821630858822203,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 7,
+    "loss": 3.7480410433294025,
+    "nfev": 197,
+    "optimality": 0.0035863809596975525,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 8,
+    "loss": 3.748041006808542,
+    "nfev": 158,
+    "optimality": 0.003337442150364972,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 9,
+    "loss": 3.7480410976289797,
+    "nfev": 181,
+    "optimality": 0.000538392505397211,
+    "message": "`ftol` termination condition is satisfied."
+  }
+]

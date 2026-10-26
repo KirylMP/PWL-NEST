@@ -1,0 +1,113 @@
+Matplotlib is building the font cache; this may take a moment.
+{
+  "affine": {
+    "loss": 14.452282676427739,
+    "cuts_C": [
+      0.152559338416549,
+      0.3465677896961039
+    ],
+    "equilibrium_threshold_I": [
+      0.35110154963744783,
+      0.6333869625901398
+    ],
+    "max_detected_cycles": 1,
+    "I_samples": 221,
+    "matched_targets": 8,
+    "missing_targets": 1,
+    "RMSE_extrema": 0.012101505057032577,
+    "RMSE_period": 0.4618987131389886,
+    "RMSE_amplitude": 0.02311046503697887,
+    "count_transitions": [
+      {
+        "bracket": [
+          0.35120154964,
+          0.35210154964
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ]
+      },
+      {
+        "bracket": [
+          0.63337696259,
+          0.63339696259
+        ],
+        "before": [
+          1,
+          0
+        ],
+        "after": [
+          0,
+          0
+        ]
+      }
+    ],
+    "amplitude_peak": {
+      "I": 0.6175,
+      "amplitude": 0.3760930598202168
+    },
+    "common_matched_targets": 8,
+    "RMSE_amplitude_common": 0.02311046503697887,
+    "RMSE_extrema_common": 0.012101505057032577
+  },
+  "mixed": {
+    "loss": 10.220988955713745,
+    "cuts_C": [
+      0.15771926410088855,
+      0.34398073708911253
+    ],
+    "equilibrium_threshold_I": [
+      0.354907708278078,
+      0.6379455301531737
+    ],
+    "max_detected_cycles": 1,
+    "I_samples": 221,
+    "matched_targets": 9,
+    "missing_targets": 0,
+    "RMSE_extrema": 0.025232228416155775,
+    "RMSE_period": 0.2764885411562658,
+    "RMSE_amplitude": 0.04983756160445504,
+    "count_transitions": [
+      {
+        "bracket": [
+          0.35500770828,
+          0.35590770828
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ]
+      },
+      {
+        "bracket": [
+          0.63793553015,
+          0.63795553015
+        ],
+        "before": [
+          1,
+          0
+        ],
+        "after": [
+          0,
+          0
+        ]
+      }
+    ],
+    "amplitude_peak": {
+      "I": 0.595,
+      "amplitude": 0.36203628794783504
+    },
+    "common_matched_targets": 8,
+    "RMSE_amplitude_common": 0.025390679041797565,
+    "RMSE_extrema_common": 0.013172744046078027
+  }
+}

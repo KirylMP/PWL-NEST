@@ -1,0 +1,84 @@
+{
+  "case": "AM",
+  "K_ER": 0.1,
+  "coordinate_family": "mixed_power",
+  "threshold_count_m": 2,
+  "regions": 3,
+  "physical_thresholds_C": [
+    0.15880902539171288,
+    0.32705145045357475
+  ],
+  "threshold_policy": "fixed_before_fit_from_mixed_two_thresholds_seed",
+  "thresholds_optimized": false,
+  "regional_type_constraints": [
+    "stable (negative trace), positive determinant",
+    "unstable (positive trace), positive determinant",
+    "stable (negative trace), positive determinant"
+  ],
+  "I_thresholds": [],
+  "alpha": [
+    0.8992885404989157,
+    0.09313596408598103,
+    -0.30504639959313024,
+    -0.1693374048130023,
+    0.1215449942149496
+  ],
+  "beta": [
+    0.4452941302269366,
+    -0.2896052583133066,
+    0.09405214081743835,
+    -0.028535955852262485,
+    -0.022621869939239425
+  ],
+  "a": 6.885833114328159,
+  "b": 0.15706878403277494,
+  "transform": {
+    "p": -0.07794853846538485,
+    "e": -5.692515467737865,
+    "n": 1.959624488915854,
+    "k": 0.350904172743641,
+    "C_ref": 0.5
+  },
+  "trace": [
+    -0.7983874896709012,
+    0.3676416198848626,
+    -0.4692969261612619
+  ],
+  "determinant": [
+    0.41395355257694827,
+    0.26166982510200415,
+    0.41759341547567574
+  ],
+  "discriminant": [
+    -1.0183916266447897,
+    -0.9115189397364508,
+    -1.4501340569982941
+  ],
+  "equilibrium_threshold_I": [
+    0.35621255852926514,
+    0.6325196992745064
+  ],
+  "parameters": [
+    1.9294661291199113,
+    -1.8510714547196825,
+    -0.22516122335751998,
+    -1.0006466743305107,
+    -0.756519606040714,
+    -0.8820015032939184,
+    -1.478937267552501,
+    -1.0146383558586605,
+    0.6524284455907481,
+    0.4609512462351037,
+    -0.30504639959313024,
+    -0.9185469241364201,
+    -0.07794853846538485,
+    -5.692515467737865,
+    1.959624488915854,
+    0.350904172743641
+  ],
+  "accepted": false,
+  "loss": 13.131789476625038,
+  "fit_scope": "hard stability signs + geometry/equilibria/soft spectrum/events + Poincare closure/period/extrema",
+  "poincare_weight": 4.0,
+  "calls": 4013
+}

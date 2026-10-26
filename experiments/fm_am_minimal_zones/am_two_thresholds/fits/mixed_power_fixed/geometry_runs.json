@@ -1,0 +1,30 @@
+[
+  {
+    "run": 0,
+    "loss": 0.9686560427575717,
+    "nfev": 421,
+    "optimality": 7.323634986521853e-06,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 1,
+    "loss": 0.9686560382046551,
+    "nfev": 433,
+    "optimality": 7.198791132052401e-06,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 2,
+    "loss": 0.9686560463914755,
+    "nfev": 367,
+    "optimality": 1.72651158642397e-05,
+    "message": "`ftol` termination condition is satisfied."
+  },
+  {
+    "run": 3,
+    "loss": 0.9686560372316928,
+    "nfev": 342,
+    "optimality": 2.0712565546876583e-06,
+    "message": "`ftol` termination condition is satisfied."
+  }
+]

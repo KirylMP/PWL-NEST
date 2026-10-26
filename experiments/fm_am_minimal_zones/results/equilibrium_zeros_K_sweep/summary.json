@@ -1,0 +1,18 @@
+{
+  "K_range": [
+    0.025,
+    0.2
+  ],
+  "K_values": 36,
+  "I_range": [
+    0.0,
+    2.0
+  ],
+  "I_values": 241,
+  "max_physical_root_count": 3,
+  "root_count_transition_cells": 203,
+  "roots": 9922,
+  "FM_reference_K": 0.05,
+  "AM_reference_K": 0.1,
+  "note": "Finite-grid LR equilibrium enumeration by scalar C-nullcline roots; verify folds with refinement."
+}
