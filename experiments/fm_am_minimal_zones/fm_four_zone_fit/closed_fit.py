@@ -8,6 +8,7 @@ from scipy.optimize import brentq, minimize
 import fit_four as f
 sys.path.insert(0,str(f.P.parent))
 from equilibrium_loss import model_cost
+from loss_weights import closed_components
 EQ_SOURCE=[(float(I),f.eqs(float(I))) for I in np.linspace(.4,1.2,25)]
 
 
@@ -74,12 +75,13 @@ def run():
         nonlocal best,calls
         x=base+scale*y;g=f.geometric(x);r=residual(x)
         eq_loss=model_cost(f.unpack(x),EQ_SOURCE,f.equilibrium)
-        cost=float(g@g+eq_loss+6*(r@r));calls+=1
+        parts=closed_components(g@g,eq_loss,r@r,6.,f.POINCARE_SCALE)
+        cost=parts['total'];calls+=1
         if cost<best:
             best=cost
-            f.write(x,'candidate.json',dict(loss=cost,actual_equilibrium_set_loss=eq_loss,fit_scope='geometry/equilibria/spectrum/events + actual equilibrium set matching + actual stable and unstable return roots, extrema and periods',closed_orbit_training=residual(x,True),calls=calls))
+            f.write(x,'candidate.json',dict(loss=cost,actual_equilibrium_set_loss=eq_loss,cycle_weight=6.*f.POINCARE_SCALE,loss_components=parts,fit_scope='geometry/equilibria/spectrum/events + actual equilibrium set matching + actual stable and unstable return roots, extrema and periods',closed_orbit_training=residual(x,True),calls=calls))
         if calls==1 or calls%100==0:
-            print(f'CLOSED FM eval={calls} best={best:.7g} elapsed={time.monotonic()-start:.1f}s',flush=True)
+            print(f'CLOSED FM eval={calls} best={best:.7g} elapsed={time.monotonic()-start:.1f}s components={parts}',flush=True)
         return cost
     o=minimize(objective,np.zeros(len(base)),method='Powell',bounds=bounds,
                options=dict(maxfev=int(os.environ.get('FM_CLOSED_MAXFEV','4500')),xtol=2e-3,ftol=3e-5))

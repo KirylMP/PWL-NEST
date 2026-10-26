@@ -10,6 +10,9 @@ from scipy.optimize import least_squares
 from scipy.special import expit
 P=Path(__file__).resolve().parent
 sys.path.insert(0,str(P/'support'))
+sys.path.insert(0,str(P.parent))
+from loss_weights import poincare_scale
+POINCARE_SCALE=poincare_scale()
 from fit import phi,dphi
 from geometry_reference import truth,gauss
 from lr_reference import eqs,jac,gate,input_at_C,CMAX
@@ -81,6 +84,7 @@ def geometric(x):
 
 def write(x,path,extra=None):
     m=unpack(x);out=dict(schema_version=1,regions=4,threshold_count_m=3,physical_thresholds_C=TC.tolist(),alpha=m['N'].tolist(),beta=m['H'].tolist(),a=m['a'],b=m['b'],transform=dict(zip(['p','e','n','k'],m['shape'])),regional_types=['stable_node','saddle','unstable_focus','stable_focus'],trace=m['T'].tolist(),determinant=m['D'].tolist(),discriminant=(m['T']**2-4*m['D']).tolist(),equilibrium_threshold_I=events(m).tolist(),parameters=x.tolist(),accepted=False,notes=['Fixed physical cuts; hard regional types by parameterization','Numerical experiment; no proof of minimality or cycle completeness'])
+    out['poincare_weight_scale']=POINCARE_SCALE
     out['transform']['C_ref']=.5
     if extra:out.update(extra)
     (P/path).write_text(json.dumps(out,indent=2))
@@ -129,7 +133,8 @@ def p_residual(x,detail=False):
 def poincare():
     seed='candidate.json' if os.environ.get('REFINE')=='1' else 'geometry.json'
     x=np.array(json.loads((P/seed).read_text())['parameters']);best=None
-    for weight in [1.,4.,12.]:
+    for base_weight in [1.,4.,12.]:
+        weight=base_weight*POINCARE_SCALE
         calls=0;start=time.time()
         def fun(v):
             nonlocal calls,best
@@ -138,7 +143,7 @@ def poincare():
             if calls%100==0:print('RETURN',weight,calls,'loss',round(cost,5),'geom',round(float(g@g),5),'p',round(float(r@r),5),'sec',round(time.time()-start),flush=True)
             return out
         o=least_squares(fun,x,bounds=(LO,HI),max_nfev=160 if os.environ.get('REFINE')=='1' else 100,diff_step=3e-4,ftol=None if os.environ.get('REFINE')=='1' else 2e-5,xtol=None if os.environ.get('REFINE')=='1' else 2e-5,gtol=1e-5,x_scale='jac')
-        x=o.x;write(x,f'poincare_{weight:g}.json',dict(loss=float(o.fun@o.fun),poincare_weight=weight,optimizer=dict(nfev=o.nfev,optimality=o.optimality,message=o.message),return_targets=p_residual(x,True)))
+        x=o.x;write(x,f'poincare_{base_weight:g}.json',dict(loss=float(o.fun@o.fun),poincare_weight=weight,optimizer=dict(nfev=o.nfev,optimality=o.optimality,message=o.message),return_targets=p_residual(x,True)))
         print('STAGE DONE',weight,o.nfev,o.fun@o.fun,flush=True)
     write(x,'candidate.json',dict(return_targets=p_residual(x,True),fit_scope='hard types + nullclines + source-equilibrium anchors + soft spectrum + threshold events + Poincare orbit closure and periods'))
 
@@ -186,9 +191,9 @@ def powell_fit():
     def objective(y):
         nonlocal calls,best
         x=base+scale*y;g=geometric(x);p=p_residual(x)
-        cost=float(g@g+6*(p@p));calls+=1
+        cost=float(g@g+6*POINCARE_SCALE*(p@p));calls+=1
         if cost<best:
-            best=cost;write(x,'powell_best.json',dict(loss=cost,poincare_weight=6.,fit_scope='hard regional types + geometry/equilibria/spectrum/events + Poincare closure, period, extrema; derivative-free local refinement',calls=calls))
+            best=cost;write(x,'powell_best.json',dict(loss=cost,poincare_weight=6.*POINCARE_SCALE,fit_scope='hard regional types + geometry/equilibria/spectrum/events + Poincare closure, period, extrema; derivative-free local refinement',calls=calls))
         if calls%200==0:print('POWELL',calls,'best',round(best,5),'sec',round(time.time()-start),flush=True)
         return cost
     o=minimize(objective,np.zeros(18),method='Powell',bounds=bounds,options=dict(maxfev=6500,xtol=2e-3,ftol=3e-5))

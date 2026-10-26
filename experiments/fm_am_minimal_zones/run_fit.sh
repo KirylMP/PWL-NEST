@@ -29,7 +29,7 @@ for STAGE in "$@"; do
   esac
   STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
   LOG="$HERE/logs/${MODEL}_${STAGE}_${STAMP}.log"
-  echo "[$(date -u +%FT%TZ)] start model=$MODEL stage=$STAGE log=$LOG"
+  echo "[$(date -u +%FT%TZ)] start model=$MODEL stage=$STAGE POINCARE_WEIGHT_SCALE=${POINCARE_WEIGHT_SCALE:-1} log=$LOG"
   if [[ "$MODEL:$STAGE" == "am:"* ]]; then
     MAP_KIND="${MAP_KIND:-mixed_power}" python3 -u "$SCRIPT" "$STAGE" 2>&1 | tee "$LOG"
   else

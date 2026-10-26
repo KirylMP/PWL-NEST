@@ -9,6 +9,9 @@ import numpy as np
 from scipy.optimize import least_squares,minimize
 from scipy.integrate import solve_ivp
 ROOT=Path(__file__).resolve().parent;sys.path.insert(0,str(ROOT/'support'))
+sys.path.insert(0,str(ROOT.parent))
+from loss_weights import poincare_scale,closed_components
+POINCARE_SCALE=poincare_scale()
 from coordinates import phi,dphi
 from lr_reference import eq,eqs,jac,rhs,CMAX
 from counts import ret,cycles
@@ -87,6 +90,7 @@ def initial():
 
 def write(x,path,extra=None):
     m=unpack(x);out=dict(case='AM',K_ER=.1,coordinate_family=KIND,threshold_count_m=2,regions=3,physical_thresholds_C=m['tc'].tolist(),threshold_policy='fixed_before_fit_from_mixed_two_thresholds_seed',thresholds_optimized=False,regional_type_constraints=['stable (negative trace), positive determinant','unstable (positive trace), positive determinant','stable (negative trace), positive determinant'],I_thresholds=[],alpha=m['N'].tolist(),beta=m['H'].tolist(),a=m['a'],b=m['b'],transform=None if m['shape'] is None else dict(zip(['p','e','n','k'],m['shape'])),trace=m['T'].tolist(),determinant=m['D'].tolist(),discriminant=(m['T']**2-4*m['D']).tolist(),equilibrium_threshold_I=events(m).tolist(),parameters=x.tolist(),accepted=False)
+    out['poincare_weight_scale']=POINCARE_SCALE
     if out['transform'] is not None:out['transform']['C_ref']=.5
     if extra:out.update(extra)
     (P/path).write_text(json.dumps(out,indent=2))
@@ -147,9 +151,9 @@ def poincare():
     low=np.maximum(-1.5,(LO-base)/scale);high=np.minimum(1.5,(HI-base)/scale);calls=0;best=np.inf;start=time.time()
     def objective(y):
         nonlocal calls,best
-        x=base.copy();x[ACTIVE]+=scale[ACTIVE]*y;g=geometric(x);r=p_residual(x);cost=float(g@g+4*(r@r));calls+=1
+        x=base.copy();x[ACTIVE]+=scale[ACTIVE]*y;g=geometric(x);r=p_residual(x);cost=float(g@g+4*POINCARE_SCALE*(r@r));calls+=1
         if cost<best:
-            best=cost;write(x,'candidate.json',dict(loss=cost,fit_scope='hard stability signs + geometry/equilibria/soft spectrum/events + Poincare closure/period/extrema',poincare_weight=4.,calls=calls))
+            best=cost;write(x,'candidate.json',dict(loss=cost,fit_scope='hard stability signs + geometry/equilibria/soft spectrum/events + Poincare closure/period/extrema',poincare_weight=4.*POINCARE_SCALE,calls=calls))
         if calls%200==0:print('POINCARE',KIND,calls,'best',round(best,5),'seconds',round(time.time()-start),flush=True)
         return cost
     o=minimize(objective,np.zeros(len(ACTIVE)),method='Powell',bounds=list(zip(low[ACTIVE],high[ACTIVE])),options=dict(maxfev=6500,xtol=2e-3,ftol=3e-5))
@@ -185,9 +189,9 @@ def phase_fit():
     def objective(y):
         nonlocal calls,best
         x=base.copy();x[ACTIVE]+=scale[ACTIVE]*y[:nn];h=h0+.025*y[nn:];g=geometric(x);r=p_residual(x,h_values=h).reshape(-1,4)*[2,1,1.25,1.6]
-        cost=float(g@g+4*np.sum(r*r));calls+=1
+        cost=float(g@g+4*POINCARE_SCALE*np.sum(r*r));calls+=1
         if cost<best:
-            best=cost;write(x,'candidate.json',dict(loss=cost,fit_scope='hard stability + geometry/equilibria/events + Poincare closure/period/extrema with free section heights',poincare_weight=4.,section_heights=h.tolist(),initial_section_heights=h0.tolist(),calls=calls))
+            best=cost;write(x,'candidate.json',dict(loss=cost,fit_scope='hard stability + geometry/equilibria/events + Poincare closure/period/extrema with free section heights',poincare_weight=4.*POINCARE_SCALE,section_heights=h.tolist(),initial_section_heights=h0.tolist(),calls=calls))
         if calls%300==0:print('PHASE',KIND,calls,'best',round(best,5),'seconds',round(time.time()-start),flush=True)
         return cost
     o=minimize(objective,np.zeros(nn+len(TARGETS)),method='Powell',bounds=list(zip(low,high)),options=dict(maxfev=9500,xtol=1e-3,ftol=2e-5))
@@ -237,10 +241,10 @@ def closed_fit():
         return np.array(res),heights,details
     def objective(y):
         nonlocal calls,best
-        x=base.copy();x[ACTIVE]+=scale[ACTIVE]*y;g=geometric(x);r,heights,details=actual(x);eq_loss=model_cost(unpack(x),eq_source,equilibria);cost=float(g@g+eq_loss+2*(r@r));calls+=1
+        x=base.copy();x[ACTIVE]+=scale[ACTIVE]*y;g=geometric(x);r,heights,details=actual(x);eq_loss=model_cost(unpack(x),eq_source,equilibria);parts=closed_components(g@g,eq_loss,r@r,2.,POINCARE_SCALE);cost=parts['total'];calls+=1
         if cost<best:
-            best=cost;write(x,'candidate.json',dict(loss=cost,actual_equilibrium_set_loss=eq_loss,fit_scope='hard stability + geometry/equilibria/events + actual equilibrium set matching + actual stable Poincare roots, periods, extrema and amplitude',cycle_weight=2.,section_heights=heights,closed_orbit_training=details,calls=calls))
-        if calls%150==0:print('CLOSED',KIND,calls,'best',round(best,5),'seconds',round(time.time()-start),flush=True)
+            best=cost;write(x,'candidate.json',dict(loss=cost,actual_equilibrium_set_loss=eq_loss,fit_scope='hard stability + geometry/equilibria/events + actual equilibrium set matching + actual stable Poincare roots, periods, extrema and amplitude',cycle_weight=2.*POINCARE_SCALE,loss_components=parts,section_heights=heights,closed_orbit_training=details,calls=calls))
+        if calls==1 or calls%150==0:print('CLOSED',KIND,calls,'best',round(best,5),'components',parts,'seconds',round(time.time()-start),flush=True)
         return cost
     o=minimize(objective,np.zeros(len(ACTIVE)),method='Powell',bounds=list(zip(low[ACTIVE],high[ACTIVE])),options=dict(maxfev=4500,xtol=2e-3,ftol=3e-5))
     (P/'closed_optimizer.json').write_text(json.dumps(dict(nfev=o.nfev,fun=float(o.fun),success=bool(o.success),message=o.message),indent=2))
