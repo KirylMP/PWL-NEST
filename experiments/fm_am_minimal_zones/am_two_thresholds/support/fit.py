@@ -42,4 +42,3 @@ class Fit:
         field[0,idx]=-a*coeff[:,0];field[0,2]=a;field[1,idx]=b*coeff[:,1];field[1,2]=-b
         T=np.tril(np.ones((len(self.th)+1,len(self.th)+1)));ns=T@coeff[np.r_[1,np.arange(3,len(self.th)+3)],0];hs=T@coeff[np.r_[1,np.arange(3,len(self.th)+3)],1]
         return dict(a=float(a),b=float(b),shape=None if shape is None else shape.tolist(),C_thresholds=self.th.tolist(),z_thresholds=zt.tolist(),I_thresholds=[],N_coefficients=coeff[:,0].tolist(),H_coefficients=coeff[:,1].tolist(),field_coefficients=field.tolist(),trace=(-a*ns-b).tolist(),determinant=(a*b*(ns-hs)).tolist(),slope_constraint_error=float(abs(self.A@co-slopes).max()),profile_geometry_MSE=float(np.sum(residual**2)))
-
