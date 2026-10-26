@@ -9,6 +9,7 @@ import fit_four as f
 sys.path.insert(0,str(f.P.parent))
 from equilibrium_loss import model_cost
 from loss_weights import closed_components
+from cycle_count_loss import reference_grid, evaluate as cycle_count_loss
 EQ_SOURCE=[(float(I),f.eqs(float(I))) for I in np.linspace(.4,1.2,25)]
 NO_CYCLE_INPUTS=tuple(float(s.strip()) for s in os.environ.get('FM_NO_CYCLE_INPUTS','1.5,2.0').split(',') if s.strip())
 
@@ -100,21 +101,33 @@ def run():
         raise ValueError('FM_EXTRA_CYCLES_WEIGHT must be finite and nonnegative')
     print(f'FM cycle targets={len(f.TARGETS)} inputs={sorted(set(q["I"] for q in f.TARGETS))} residual_scale={f.TARGET_NORMALIZATION:.6g}',flush=True)
     print(f'No-cycle training inputs={NO_CYCLE_INPUTS}, extra-cycle weight={extra_weight}',flush=True)
+    count_weight=float(os.environ.get('FM_CYCLE_COUNT_WEIGHT',str(6*f.POINCARE_SCALE)))
+    if not np.isfinite(count_weight) or count_weight<0:
+        raise ValueError('FM_CYCLE_COUNT_WEIGHT must be finite and nonnegative')
+    count_seeds=int(os.environ.get('FM_CYCLE_COUNT_SEEDS','32'))
+    count_reference=reference_grid() if count_weight else []
+    print(f'Poincare extra-cycle count: weight={count_weight:g}, seeds={count_seeds}, I={[r["I"] for r in count_reference]}',flush=True)
     def objective(y):
         nonlocal best,calls
         x=base+scale*y;g=f.geometric(x);r=residual(x)
         eq_loss=model_cost(f.unpack(x),EQ_SOURCE,f.equilibrium)
         parts=closed_components(g@g,eq_loss,r@r,6.,f.POINCARE_SCALE)
         extra_raw,extra_counts,extra_diag=extra_cycle_penalty(x) if extra_weight else (0.,[],[])
+        def progress(done,total,row):
+            print(f'COUNT eval={calls+1} I={row["I"]:.6g} {done}/{total} reference=({row["reference_stable"]},{row["reference_unstable"]}) candidate=({row["stable"]},{row["unstable"]}) diagnostics={row["diagnostics"]}',flush=True)
+        count_raw,count_report=cycle_count_loss(x,count_reference,count_seeds,progress if calls==0 else None) if count_weight else (0.,[])
         parts.update(extra_cycles_raw=extra_raw,extra_cycles_weight=extra_weight,
-                     extra_cycles_weighted=extra_weight*extra_raw)
-        parts['total']+=parts['extra_cycles_weighted']
+                     extra_cycles_weighted=extra_weight*extra_raw,
+                     poincare_count_raw=count_raw,poincare_count_weight=count_weight,
+                     poincare_count_weighted=count_weight*count_raw)
+        parts['total']+=parts['extra_cycles_weighted']+parts['poincare_count_weighted']
         cost=parts['total'];calls+=1
         if cost<best:
             best=cost
-            f.write(x,'candidate.json',dict(loss=cost,actual_equilibrium_set_loss=eq_loss,cycle_weight=6.*f.POINCARE_SCALE,loss_components=parts,extra_cycle_inputs=list(NO_CYCLE_INPUTS),extra_cycle_counts=extra_counts,extra_cycle_diagnostics=extra_diag,fit_scope='geometry/equilibria/spectrum/events + actual equilibrium set matching + actual stable and unstable return roots, extrema and periods + no-cycle input penalties',closed_orbit_training=residual(x,True),calls=calls))
+            f.write(x,'candidate.json',dict(loss=cost,actual_equilibrium_set_loss=eq_loss,cycle_weight=6.*f.POINCARE_SCALE,loss_components=parts,extra_cycle_inputs=list(NO_CYCLE_INPUTS),extra_cycle_counts=extra_counts,extra_cycle_diagnostics=extra_diag,poincare_count_seeds=count_seeds,poincare_count_training=count_report,fit_scope='geometry/equilibria/spectrum/events + actual equilibrium set matching + actual stable and unstable return roots, extrema and periods + numerical Poincare excess-cycle count',closed_orbit_training=residual(x,True),calls=calls))
         if calls==1 or calls%100==0:
-            print(f'CLOSED FM eval={calls} best={best:.7g} elapsed={time.monotonic()-start:.1f}s extra_counts={extra_counts} extra_diagnostics={extra_diag} components={parts}',flush=True)
+            bad=[dict(I=r['I'],extra_stable=r['extra_stable'],extra_unstable=r['extra_unstable'],diagnostics=r['diagnostics']) for r in count_report if r['loss'] or r['diagnostics'].get('timeouts') or r['diagnostics'].get('unresolved') or not r['equilibrium_sections']]
+            print(f'CLOSED FM eval={calls} best={best:.7g} elapsed={time.monotonic()-start:.1f}s count_flags={bad} extra_counts={extra_counts} components={parts}',flush=True)
         return cost
     o=minimize(objective,np.zeros(len(base)),method='Powell',bounds=bounds,
                options=dict(maxfev=int(os.environ.get('FM_CLOSED_MAXFEV','4500')),xtol=2e-3,ftol=3e-5))
