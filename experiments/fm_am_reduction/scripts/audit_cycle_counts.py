@@ -133,6 +133,7 @@ def main():
     (args.out/'manifest.json').write_text(json.dumps(dict(inputs=provenance,config=config,
         config_source=str(args.config) if args.config else 'assumed v3 defaults; original run config not supplied',
         I_nodes=levels,structural_I=args.structure_I,workers=args.workers,code_sha256=hashes,
+        dense_nodes_requested=args.nodes,structure_nodes_requested=args.structure_nodes,structural_max_time=args.max_time,
         fitting_performed=False,candidate_selection_performed=False),indent=2)+'\n')
     summaries=[];failures=[]
     log.info('Starting %d audit tasks; results: %s',len(tasks),args.out)

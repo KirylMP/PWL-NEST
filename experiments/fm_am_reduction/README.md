@@ -24,7 +24,8 @@ solution at each epsilon starts the next. Candidate selection always uses .02,
 the same section grid and the same scales. Periods and amplitudes are validation
 quantities, not training terms.
 
-Default training I nodes are .55, .65, .8, 1.0, 1.1 and 1.14; the last
+Default v4 training uses 65 section nodes and I values
+.55, .65, .75, .78, .8, 1.0, 1.1 and 1.14; the last
 node supplies a nonoscillatory reference regime with a regular transient return.
 The five weights are 1,10,10,30,30. `L_cyc` averages over training I nodes;
 `L_extra` is summed without averaging. Gaussian-smoothed reference counts are
@@ -92,8 +93,12 @@ Independent validation can be rerun without fitting:
 ```bash
 python experiments/fm_am_reduction/scripts/validate_structure.py \
   --run-dir runs/fm_am_reduction/fm_full_64 \
+  --output-dir runs/fm_am_reduction/fm_full_64/analysis/structure_v4 \
   --workers 16 --points 161 --nodes 65 --max-time 900
 ```
+
+`--output-dir` must be fresh and preserves previous validation reports. Its
+summary records the validation version, code hashes and candidate hash.
 
 Training-grid refinements use `--cycle-I`, `--return-nodes` and
 `--return-max-time` in a new run. Recompare final candidates on a common grid;
@@ -107,11 +112,15 @@ python -m unittest discover -s experiments/fm_am_reduction/tests -v
 
 ## Audit an existing cycle counter
 
-The six default training I values do not sample the interval (.65, .8).
+The six historical v3 training I values do not sample the interval (.65, .8).
 A third cycle confined to that interval can incur no sampled extra-cycle penalty.
 Moreover, a single LR equilibrium section need not intersect every candidate
 orbit; a sufficient number of regular edges does not establish orbit coverage.
 Increasing trials alone does not fix either omission.
+The v4 runner defaults add .75 and .78 and increase the section grid from 17 to
+65 nodes. This costs roughly five times as many return launches per objective
+evaluation. Weights and formulas are unchanged; the unaveraged extra-cycle term
+now sums over eight I nodes. Historical runs are not rescored or overwritten.
 
 The following command compares the original and denser section grids at common
 I values, all configured epsilons, and independent multi-section roots at the

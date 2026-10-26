@@ -77,6 +77,11 @@ validator now shoots repelling cycles backward and requires a small closing
 residual, independently of root-bracket convergence. Common oriented section
 crossings are recorded and used in deduplication; opposite stability types are
 never merged. Expanding-time roots are diagnostics, not accepted orbits.
+An upward sign crossing is sent directly to inverse-time shooting instead of
+refining an ill-conditioned expanding root first. Value-only returns propagate
+physical state and divergence; they no longer integrate an unused sensitivity
+column. Parameter-sensitive fitting still propagates all required derivatives.
+Value-only and sensitivity-enabled returns are compared in regression checks.
 
 The original six-I training grid leaves (.65,.8) unsampled. Extra cycles in that
 interval do not contribute to the sampled penalty. The smooth-count formula
@@ -84,6 +89,12 @@ and unaveraged extra-cycle formula are unchanged; training-section coverage and
 I/u resolution require separate checks. `audit_cycle_counts.py` compares original
 and denser grids, saves raw returns and checks observed orbits against training
 section coverage. It does not silently change the objective or select a new fit.
+
+At I=.8, selected (2), the original 17-u grid gives approximately (.5163,.5163)
+instead of (1,1). Refinement on the same u interval resolves the missing positive
+maximum of G. New `run_fm.py` runs use protocol id v4, 65 u nodes and add I=.75
+and .78. All formulas/weights remain unchanged, including the unaveraged extra
+term. The original v3 grid remains available for historical audit reconstruction.
 
 Completeness of all equilibria/cycles, resolution of arbitrarily close roots,
 and global optimization are not proved. Counts and deduplication depend on the

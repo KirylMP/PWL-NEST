@@ -27,8 +27,9 @@ def plot_audit(directory):
             ax.plot([q['I'] for q in group],[(q['dense']['by_epsilon'][-1]['reference_counts'] or [np.nan]*2)[col] for q in group],
                     ':',color='purple',label='LR dense')
             observed=[q for q in group if 'coverage' in q]
-            ax.scatter([q['I'] for q in observed],[q['coverage']['PWA'][kind] for q in observed],
-                       marker='x',s=65,color='black',label='PWA closed orbits observed')
+            if observed:
+                ax.scatter([q['I'] for q in observed],[q['coverage']['PWA'][kind] for q in observed],
+                           marker='x',s=65,color='black',label='PWA closed orbits observed')
             ax.set_title(label+' / '+kind);ax.set_ylabel('count');ax.set_xlabel('I (uM)')
             ax.grid(alpha=.2);ax.legend(fontsize=8)
     fig.suptitle('Smoothed counts on the LR training section; final configured epsilon')

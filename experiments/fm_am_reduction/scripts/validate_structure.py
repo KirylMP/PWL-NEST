@@ -4,6 +4,7 @@ Finite grids are evidence, not a proof of global cycle completeness. Missing
 regular return intervals remain unresolved rather than being counted as zero.
 """
 import json
+import hashlib
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 import numpy as np
@@ -88,14 +89,15 @@ def _validate_point(task):
     return output
 
 
-def validate(run_dir,workers=1,points=81,nodes=33,max_time=600.):
+def validate(run_dir,workers=1,points=81,nodes=33,max_time=600.,output_dir=None):
     from plan import read_json
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     if points<1 or nodes<5 or workers<1 or max_time<=0:raise ValueError('positive budgets and at least five section nodes required')
     run=read_json(run_dir/'run.json');model=read_json(run_dir/'optimizer'/'selected.json')['candidate']
-    out=run_dir/'analysis'/'structure';out.mkdir(parents=True,exist_ok=True)
+    out=Path(output_dir) if output_dir is not None else run_dir/'analysis'/'structure'
+    out.mkdir(parents=True,exist_ok=output_dir is None)
     levels=(np.arange(points)+.5)*2/points
     unodes=np.unique(np.r_[np.geomspace(.0002,.08,max(4,nodes//3)),np.linspace(.08,.995,nodes-max(4,nodes//3)+1)])
     # Tighter tolerances and denser section grids than the training maps.
@@ -151,6 +153,9 @@ def validate(run_dir,workers=1,points=81,nodes=33,max_time=600.):
             if a['regular'] and b['regular'] and a['signatures'][key]!=b['signatures'][key]:
                 transitions.append(dict(model=key,I_interval=[a['I'],b['I']],left=a['signatures'][key],right=b['signatures'][key]))
     summary=dict(scope='finite-grid multi-section first-return roots with neighbor-I predictor/corrector seeds',
+        validation_version='bidirectional_closed_orbits_v4',
+        validation_code_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(__file__).parent.glob('*.py')},
+        candidate_sha256=hashlib.sha256(json.dumps(model,sort_keys=True).encode()).hexdigest(),
         points=points,section_nodes=len(unodes),solver=solver,repelling_cycles_searched=True,
         regular_comparison_points=len(regular),unresolved_or_degenerate_points=points-len(regular),
         L_str_val_on_regular_subset=float(np.mean(regular)) if regular else None,
@@ -194,4 +199,5 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--run-dir',type=Path,required=True)
     parser.add_argument('--workers',type=int,default=16);parser.add_argument('--points',type=int,default=81)
     parser.add_argument('--nodes',type=int,default=33);parser.add_argument('--max-time',type=float,default=600)
-    a=parser.parse_args();validate(a.run_dir,a.workers,a.points,a.nodes,a.max_time)
+    parser.add_argument('--output-dir',type=Path,help='fresh report directory; preserve previous validation')
+    a=parser.parse_args();validate(a.run_dir,a.workers,a.points,a.nodes,a.max_time,a.output_dir)

@@ -21,6 +21,10 @@ from full_cycle_fit import DEFAULTS
 from validate_structure import validate
 import numpy as np
 
+# Keep full_cycle_fit.DEFAULTS as the historical v3 reconstruction for audits.
+# New fits resolve the observed extra-cycle band and the return-map maximum.
+REFINED_I_NODES=sorted(DEFAULTS['I_nodes']+[.75,.78])
+
 class Tee:
     def __init__(self,*streams):self.streams=streams
     def write(self,text):
@@ -41,8 +45,8 @@ def main():
     parser.add_argument('--analysis-points',type=int,default=81)
     parser.add_argument('--duration',type=float,default=1200.)
     parser.add_argument('--cycle-max-nfev',type=int,default=60)
-    parser.add_argument('--return-nodes',type=int,default=17)
-    parser.add_argument('--cycle-I',type=float,nargs='+',default=DEFAULTS['I_nodes'])
+    parser.add_argument('--return-nodes',type=int,default=65)
+    parser.add_argument('--cycle-I',type=float,nargs='+',default=REFINED_I_NODES)
     parser.add_argument('--return-max-time',type=float,default=400.)
     parser.add_argument('--validation-points',type=int,default=81)
     parser.add_argument('--validation-nodes',type=int,default=33)
@@ -62,7 +66,7 @@ def main():
     with logfile.open('w',buffering=1) as log, contextlib.redirect_stdout(Tee(sys.stdout,log)), contextlib.redirect_stderr(Tee(sys.stderr,log)):
         try:
             cases=read_json(PACKAGE/'config'/'cases.json'); config=read_json(PACKAGE/'config'/'protocol.json')
-            config['protocol_id']='fm_full_cycle_protocol_v3'
+            config['protocol_id']='fm_full_cycle_protocol_v4'
             split=max(3,args.return_nodes//3)
             nodes=np.unique(np.r_[np.geomspace(.001,.1,split),np.linspace(.1,.98,args.return_nodes-split+1)])
             config['cycle_fit']={**DEFAULTS,'I_nodes':args.cycle_I,'u_nodes':nodes.tolist(),

@@ -69,9 +69,15 @@ class ReturnChecks(unittest.TestCase):
         p={**cases['shared_parameters'],'K_ER':.05};ip3=87/81
         system=LRSystem(p,ip3);sec=reference_section(ip3,p)
         settings=dict(max_time=120,rtol=3e-10,atol=3e-12,max_step=.25,
-                      capture_points=([sec.C,sec.h0],))
+                      capture_points=([sec.C,sec.h0],),witness_sections=[sec.C,.5])
         scan=isolate_cycles(system,sec,np.linspace(.02,.95,21),settings)
         self.assertEqual(sorted(q['kind'] for q in scan['cycles']),['stable','unstable'])
+        for cycle in scan['cycles']:
+            direction=cycle['time_direction'];other=Section(.5,system.nullcline(.5),direction)
+            s=cycle['orbit_crossings']['0.5'][0];u=(s-other.h0)/(1-other.h0)
+            second=first_return(system,other,u,time_direction=direction,**settings)
+            self.assertEqual(second['status'],'valid')
+            self.assertTrue(same_orbit(cycle,{**second,'kind':cycle['kind']}))
         unstable=next(q for q in scan['cycles'] if q['kind']=='unstable')
         self.assertGreater(unstable['multiplier'],1e6)
         self.assertLess(abs(unstable['G']),1e-7)
@@ -111,6 +117,10 @@ class ReturnChecks(unittest.TestCase):
         opts=dict(max_time=100,max_step=.1,rtol=2e-9,atol=2e-11)
         result=first_return(system(theta),section,.4,True,**opts)
         self.assertEqual(result['status'],'valid')
+        plain=first_return(system(theta),section,.4,False,**opts)
+        self.assertEqual(plain['status'],'valid')
+        np.testing.assert_allclose([plain['P'],plain['period'],plain['log_multiplier']],
+                                   [result['P'],result['period'],result['log_multiplier']],rtol=2e-6,atol=2e-7)
         for j in range(len(theta)):
             d=np.eye(len(theta))[j]*2e-5
             plus=first_return(system(theta+d),section,.4,False,**opts)

@@ -96,8 +96,12 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
     initial_field=time_direction*system.field(y0);normal=orientation*initial_field[0]
     if normal<=1e-9:
         return dict(status='wrong_orientation_or_tangency',u=float(u),initial_normal=float(normal))
-    # Last column is the derivative with respect to the section coordinate h.
-    S=np.zeros((2,n+1));S[1,-1]=1.
+    # No sensitivity state is needed for value-only maps: the multiplier is
+    # computed from divergence below. In PWA validation, an unused sensitivity
+    # column otherwise forces tiny steps at every Jacobian discontinuity.
+    columns=n+1 if n else 0
+    S=np.zeros((2,columns))
+    if columns:S[1,-1]=1.
     dzsec=system.coordinate_gradient(section.C) if n else np.empty(0)
     if n:S[0,:n]=dzsec
     initial=np.r_[y0,S.ravel(),0.];evaluations=0;paths=[];times=[]
@@ -105,10 +109,12 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
         nonlocal evaluations
         evaluations+=1
         if evaluations>max_evaluations:raise RuntimeError('evaluation_budget')
-        y=v[:2];mat=v[2:-1].reshape(2,n+1)
-        deriv=system.jac(y)@mat
-        if n:deriv[:,:n]+=system.partials(y)
-        return time_direction*np.r_[system.field(y),deriv.ravel(),np.trace(system.jac(y))]
+        y=v[:2];j=system.jac(y);field=system.field(y)
+        trace=j[0,0]+j[1,1]
+        if not n:return time_direction*np.array([field[0],field[1],trace])
+        mat=v[2:-1].reshape(2,columns)
+        deriv=j@mat;deriv[:,:n]+=system.partials(y)
+        return time_direction*np.r_[field,deriv.ravel(),trace]
     def boundary(t,v):return min(*(v[:2]-system.bounds[:,0]),*(system.bounds[:,1]-v[:2]))
     boundary.direction=-1;boundary.terminal=True
     def extremum(t,v):return system.field(v[:2])[0]
@@ -143,7 +149,7 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
             now=float(sol.t_events[0][0]);state=sol.y_events[0][0]
         fy=time_direction*system.field(state[:2]);normal_final=orientation*fy[0]
         if normal_final<1e-9:return dict(status='return_tangency',u=float(u))
-        sens=state[2:-1].reshape(2,n+1)
+        sens=state[2:-1].reshape(2,columns)
         corrected=sens[1].copy()-fy[1]/fy[0]*sens[0]
         if n:corrected[:n]+=fy[1]/fy[0]*dzsec
         log_multiplier=float(np.log(abs(initial_field[0]/fy[0]))+state[-1])
@@ -201,6 +207,12 @@ def isolate_cycles(system,section,nodes,settings,root_tolerance=5e-13,reverse_ca
             if left['G']*right['G']>0:
                 if min(abs(left['G']),abs(right['G']))<1e-4:
                     suspects.append(dict(interval=interval,time_direction=direction,message='near_zero_without_bracket'))
+                continue
+            # An upward simple crossing is expanding in this time direction.
+            # Do not refine its ill-conditioned shooting root; the inverse scan
+            # must close it in contracting time. The unresolved bracket is kept.
+            if left['G']<right['G']:
+                rejected.append(dict(interval=interval,time_direction=direction,message='expanding_sign_crossing_use_opposite_time'))
                 continue
             def displacement(u):
                 result=first_return(system,sec,u,False,**opts)
