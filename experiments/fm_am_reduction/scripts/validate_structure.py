@@ -89,7 +89,7 @@ def _validate_point(task):
     return output
 
 
-def validate(run_dir,workers=1,points=81,nodes=33,max_time=600.,output_dir=None):
+def validate(run_dir,workers=1,points=81,nodes=129,max_time=600.,output_dir=None):
     from plan import read_json
     import matplotlib
     matplotlib.use('Agg')
@@ -198,6 +198,6 @@ if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--run-dir',type=Path,required=True)
     parser.add_argument('--workers',type=int,default=16);parser.add_argument('--points',type=int,default=81)
-    parser.add_argument('--nodes',type=int,default=33);parser.add_argument('--max-time',type=float,default=600)
+    parser.add_argument('--nodes',type=int,default=129);parser.add_argument('--max-time',type=float,default=600)
     parser.add_argument('--output-dir',type=Path,help='fresh report directory; preserve previous validation')
     a=parser.parse_args();validate(a.run_dir,a.workers,a.points,a.nodes,a.max_time,a.output_dir)

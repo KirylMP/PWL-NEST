@@ -27,6 +27,8 @@ quantities, not training terms.
 Default v4 training uses 65 section nodes and I values
 .55, .65, .75, .78, .8, 1.0, 1.1 and 1.14; the last
 node supplies a nonoscillatory reference regime with a regular transient return.
+Independent validation defaults to 129 section nodes, exceeding the training
+resolution. No finite default guarantees resolution of arbitrarily close cycles.
 The five weights are 1,10,10,30,30. `L_cyc` averages over training I nodes;
 `L_extra` is summed without averaging. Gaussian-smoothed reference counts are
 not rounded. A separate numerical feasibility barrier prevents missing return

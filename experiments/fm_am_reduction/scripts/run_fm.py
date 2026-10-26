@@ -49,7 +49,7 @@ def main():
     parser.add_argument('--cycle-I',type=float,nargs='+',default=REFINED_I_NODES)
     parser.add_argument('--return-max-time',type=float,default=400.)
     parser.add_argument('--validation-points',type=int,default=81)
-    parser.add_argument('--validation-nodes',type=int,default=33)
+    parser.add_argument('--validation-nodes',type=int,default=129)
     parser.add_argument('--validation-max-time',type=float,default=600.)
     args=parser.parse_args()
     if Path(args.name).name!=args.name or args.name in ['.','..']:

@@ -39,6 +39,21 @@ the supplied orbits; by itself it does not establish completeness.
 | .8024691358 | stable | 17.6841709131 | 9.58e-11 |
 | .8024691358 | unstable | 18.5369113097 | 1.89e-10 |
 
+The corrected multi-section scan independently finds the following counts on
+65 section nodes, max return time 120 s, rtol=3e-10, atol=3e-12, max step .25 s:
+
+| I | LR (stable, unstable) | selected (2) | candidate (4) |
+| --- | --- | --- | --- |
+| .78 | (1,0) | (2,1) | (0,0) |
+| .8024691358 | (1,0) | (1,1) | (0,0) |
+| 87/81 | (1,1) | (0,0) | (0,0) |
+
+All six model/I comparisons have zero unresolved root intervals. All observed
+cycles also cross the source training section in these examples. The added
+candidate equilibrium sections improve the general coverage policy; they are
+not the cause of the counter discrepancy established here. These finite-grid
+observations do not establish global completeness or replace an 81-I scan.
+
 ## Counter and training grid
 
 The implemented Gaussian variation counter and softplus extra-cycle penalty
@@ -64,6 +79,12 @@ The largest sampled positive G rises from .0008189 on the coarse grid to .12116
 on the refinement. The coarse grid missed the return map's positive maximum;
 this is a resolution issue, not an algebraic error in the variation formula.
 
+Candidate (4) has the same issue at I=.75: coarse counts are
+(1.25677398,.25677398), while refinement gives (1.99952020,.99952020).
+The weighted extra-cycle contribution changes from approximately 9e-24 to
+29.94245160 at this point. Its omission in I and poor u resolution can both hide
+the extra-cycle regime.
+
 The small saved extra-cycle loss .0115318766 is also consistent with the
 reference softplus subtraction: at I=1 and 1.1 LR has two cycles, the candidate
 has none, and 2*30*(.02*ln(2))^2=.0115308723 before the finite-xi background.
@@ -86,6 +107,8 @@ New v4 FM runs default to 65 u nodes and add I=.75,.78. This multiplies the
 number of return launches by approximately five compared with v3. The
 unaveraged extra-cycle term is explicitly summed over eight I nodes, with the
 same coefficient 30. Existing models and historical scores remain unchanged.
+New full runs validate on 129 section nodes, independently of the 65 training
+nodes. Further candidate-dependent grid refinement may still be necessary.
 
 The refined grid has a different finite-xi positive background; the LR counts
 are recomputed on the same grid and are not rounded. The extra-cycle term is

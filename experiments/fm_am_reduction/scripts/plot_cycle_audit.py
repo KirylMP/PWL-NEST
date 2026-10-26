@@ -51,7 +51,7 @@ def plot_audit(directory):
             ax.axhline(0,color='gray',lw=.8);ax.axhspan(-eps,eps,color='gray',alpha=.15)
             ax.set_yscale('symlog',linthresh=eps);ax.set_xlabel('u');ax.set_ylabel('G(u)')
             count=row.get('coverage',{}).get('PWA',{})
-            ax.set_title(f"{label}\nI={ip3:.6f}; observed={count.get('observed_cycles','?')}, section crossings={count.get('cycles_crossing_training_section','?')}")
+            ax.set_title(f"{label}\nI={ip3:.6f}\nobserved={count.get('observed_cycles','?')}; on section={count.get('cycles_crossing_training_section','?')}",fontsize=9)
             ax.legend();ax.grid(alpha=.2)
     fig.suptitle('Forward return maps; gray band: smoothing width; gaps are not connected')
     fig.tight_layout();fig.savefig(directory/'return_maps.png',dpi=180)
