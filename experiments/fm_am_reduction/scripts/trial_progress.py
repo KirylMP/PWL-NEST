@@ -42,7 +42,8 @@ class TrialProgress:
         self.lock=threading.RLock();self.stop=threading.Event()
         self.started=time.perf_counter();self.stage_started=self.started
         self.plans=[];self.index=None;self.rates={};self.work=None
-        self.state=dict(trial=label,pid=os.getpid(),status='running',phase='starting',evaluation=0)
+        self.state=dict(trial=label,pid=os.getpid(),status='running',phase='starting',
+                        evaluation=0,activity='starting',details={})
         self.last_emit=0.;self.last_evaluation=self.started
 
     def __enter__(self):

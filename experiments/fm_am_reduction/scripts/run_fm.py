@@ -54,6 +54,8 @@ def main():
     parser.add_argument('--name',required=True,help='new experiment directory name')
     parser.add_argument('--trials',type=int,default=64)
     parser.add_argument('--workers',type=int,default=16)
+    parser.add_argument('--return-workers',type=int,default=0,
+        help='processes for independent return-map nodes; 0 divides available CPUs across concurrent trials')
     parser.add_argument('--max-nfev',type=int,default=1500)
     parser.add_argument('--seed',type=int,default=20261026)
     parser.add_argument('--start-from',type=Path,help='optional previous candidate.json or selected.json')
@@ -78,7 +80,7 @@ def main():
     args=parser.parse_args()
     if Path(args.name).name!=args.name or args.name in ['.','..']:
         parser.error('--name must be a single directory name')
-    if min(args.trials,args.workers,args.max_nfev,args.analysis_points,args.cycle_max_nfev,args.validation_points)<1 or min(args.return_nodes,args.validation_nodes)<5 or min(args.duration,args.return_max_time,args.validation_max_time)<=0:
+    if min(args.trials,args.workers,args.max_nfev,args.analysis_points,args.cycle_max_nfev,args.validation_points)<1 or args.return_workers<0 or min(args.return_nodes,args.validation_nodes)<5 or min(args.duration,args.return_max_time,args.validation_max_time)<=0:
         parser.error('budgets must be positive')
     if any(not 0<i<=2 for i in args.cycle_I) or any(a>=b for a,b in zip(args.cycle_I,args.cycle_I[1:])):
         parser.error('--cycle-I must be strictly increasing within (0, 2]')
@@ -109,6 +111,10 @@ def main():
             warm=None;initial_payload=None
             if args.start_from:
                 initial_payload,warm=candidate_snapshot(args.start_from)
+            try:available_cpus=len(os.sched_getaffinity(0))
+            except AttributeError:available_cpus=os.cpu_count() or 1
+            active_slots=min(args.workers,args.trials+int(warm is not None))
+            return_workers=args.return_workers or max(1,available_cpus//active_slots)
             config['protocol_id']='fm_full_cycle_protocol_v5'
             nodes=initial_nodes
             coarse,fine=collocation_levels(args.cycle_I,args.max_I_gap,warm)
@@ -119,6 +125,7 @@ def main():
                 'max_stage_nodes':args.max_stage_nodes,'selection_nodes':actual_selection_nodes,
                 'requested_selection_nodes':args.selection_nodes,
                 'profile_nodes':len(nested_nodes(nodes,max(args.profile_nodes,len(nodes)))),'reference_workers':args.workers,
+                'return_workers':return_workers,
                 'requested_profile_nodes':args.profile_nodes,
                 'count_tolerance':args.count_tolerance,'stationarity_gtol':args.stationarity_gtol,
                 'rescue_evaluations':6,'max_I_gap':args.max_I_gap,'I_refinement_rounds':args.training_I_refinements,
@@ -145,6 +152,7 @@ def main():
             (out/'run.json').write_text(json.dumps(run,indent=2)+'\n')
             (out/'protocol.json').write_text(json.dumps(config,indent=2)+'\n')
             print('Experiment:',out);print('Log:',logfile);print(json.dumps(run,indent=2))
+            print(f'Return-map node workers: {return_workers} across at most {active_slots} concurrent trial/incumbent processes (CPU budget {available_cpus})',flush=True)
             prepare_run(out,config)
             if args.training_I_refinements:
                 refine_training_levels(out,config,warm,args.training_I_refinements)

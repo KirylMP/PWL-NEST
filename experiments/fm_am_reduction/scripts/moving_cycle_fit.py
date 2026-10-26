@@ -9,7 +9,7 @@ import numpy as np
 from scipy.special import expit
 from fit_stage import MixedObjective,model_roots,hinge_design,phi_prime
 from prepare_reference_data import jacobian
-from poincare import Section,LRSystem,PWASystem,return_table,smooth_counts
+from poincare import Section,LRSystem,PWASystem,return_table,smooth_counts,configure_return_workers
 from full_cycle_fit import DEFAULTS,reference_section,settings
 
 
@@ -78,6 +78,9 @@ class MovingCycleObjective:
         return anchor_section(system,LRSystem(self.run['parameters'],ip3),self.targets[float(ip3)])
 
     def evaluate(self,x):
+        # Each node in a return table is independent. The runner divides the
+        # available CPU budget between concurrent trial processes.
+        configure_return_workers(self.cfg.get('return_workers',1))
         if self.last_x is not None and np.array_equal(x,self.last_x) and self.last_epsilon==self.epsilon:return
         same=self.last_x is not None and np.array_equal(x,self.last_x)
         n=len(x);cfg=self.spec;xi=cfg['cycle_smoothing']['xi'];tau=cfg['cycle_smoothing']['softplus_tau']
@@ -108,13 +111,13 @@ class MovingCycleObjective:
                     def notify(done,total,offset=2*index,kind='LR'):
                         if progress is not None:progress.advance(offset*len(self.nodes)+done,I=ip3,system=kind,node=f'{done}/{total}')
                     truth_table=return_table(LRSystem(self.run['parameters'],ip3),lrsec,self.nodes,True,
-                        progress=notify if progress is not None else None,**settings(cfg))
+                        progress=notify if progress is not None else None,track_extrema=False,**settings(cfg))
                     for q in truth_table:
                         if q['status']=='valid':
                             a,b=q['dG'];q['dG']=(a*np.asarray(sec.C_gradient)+b*np.asarray(sec.h0_gradient)).tolist()
                     def notify_pwa(done,total):notify(done,total,offset=2*index+1,kind='PWA')
                     table=return_table(system,sec,self.nodes,True,
-                        progress=notify_pwa if progress is not None else None,**settings(cfg))
+                        progress=notify_pwa if progress is not None else None,track_extrema=False,**settings(cfg))
                     cached=dict(table=table,truth=truth_table,section=info,error=None)
                 except ValueError as exc:
                     cached=dict(table=[],truth=[],section=None,error=str(exc))

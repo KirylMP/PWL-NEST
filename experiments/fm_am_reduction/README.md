@@ -85,8 +85,25 @@ python -u experiments/fm_am_reduction/scripts/run_fm.py \
 Use a fresh name. The supplied file may be `candidate.json`, `best_so_far.json`
 or `selected.json`. The run creates data, logs, source snapshots, optimization
 checkpoints and figures automatically. CPU processes parallelize trials; BLAS
-threads are limited to one. CUDA is not used. The extra incumbent evaluation is
-not an additional optimized trial.
+threads are limited to one. CUDA is not used. Return-map nodes are independent
+and run in a process pool inside each trial. `--return-workers 0` (the default)
+divides the available CPUs across simultaneous trial/incumbent processes; set a
+positive value to override it. The extra incumbent evaluation is not an
+additional optimized trial.
+
+For a faster search on a 16-core server, trade some restart coverage for
+parallelism within each candidate:
+
+```bash
+python -u experiments/fm_am_reduction/scripts/run_fm.py \
+  --name fm_v5_parallel_4x4 --trials 4 --workers 4 --return-workers 4 \
+  --max-nfev 1500 --cycle-max-nfev 20 \
+  --start-from runs/fm_am_reduction/fm_full_v4_64/optimizer/best_so_far.json
+```
+
+This uses up to 16 processes for four concurrent starts. It retains all
+continuation, audit and validation stages, while searching fewer initial
+parameter vectors than the 16-trial run.
 
 A full v5 evaluation is substantially more expensive than v4: source returns now
 move with the section and the collocation grid is refined. `--cycle-max-nfev`
@@ -106,7 +123,8 @@ Defaults:
 - final counter tolerance: .025 for grid/epsilon convergence and observed counts;
 - stationarity tolerance: 1e-6 in the saved regional coordinates.
 
-Options `--cycle-epsilon`, `--max-I-gap`, `--return-nodes`, `--max-stage-nodes`,
+Options `--cycle-epsilon`, `--max-I-gap`, `--return-nodes`, `--return-workers`,
+`--max-stage-nodes`,
 `--selection-nodes`, `--profile-nodes`, `--count-tolerance`,
 `--training-I-refinements`, `--common-polish-nfev` and solver budgets are
 saved in `protocol.json`. Independent validation must have more section nodes

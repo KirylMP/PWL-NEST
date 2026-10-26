@@ -1,11 +1,35 @@
 """Oriented first returns, event-corrected sensitivities, and cycle counters."""
 from dataclasses import dataclass
+from concurrent.futures import ProcessPoolExecutor, as_completed
 import numpy as np
 from scipy.integrate import solve_ivp
 from scipy.optimize import brentq
 from scipy.special import ndtr
 from fit_stage import phi,phi_prime,hinge_design
 from prepare_reference_data import lr_field, jacobian
+
+
+# A return map is a batch of independent initial value problems. Keep one
+# process pool per optimizer worker so the pool startup cost is paid once.
+_RETURN_WORKERS = 1
+_RETURN_POOL = None
+_RETURN_POOL_SIZE = 0
+
+
+def configure_return_workers(workers):
+    """Set per-process parallelism for return-map nodes."""
+    global _RETURN_WORKERS, _RETURN_POOL, _RETURN_POOL_SIZE
+    workers=max(1,int(workers))
+    _RETURN_WORKERS=workers
+    if _RETURN_POOL is not None and _RETURN_POOL_SIZE!=workers:
+        _RETURN_POOL.shutdown(wait=True,cancel_futures=True)
+        _RETURN_POOL=None
+        _RETURN_POOL_SIZE=0
+
+
+def _return_worker(task):
+    system,section,u,sensitivities,track_extrema,settings=task
+    return first_return(system,section,u,sensitivities,track_extrema=track_extrema,**settings)
 
 
 @dataclass
@@ -29,6 +53,7 @@ class LRSystem:
     def field(self,y):return np.asarray(lr_field(y[0],y[1],self.ip3,self.p))
     def jac(self,y):return jacobian(y[0],y[1],self.ip3,self.p)
     def partials(self,y):return np.empty((2,0))
+    def linearized(self,y):return self.field(y),self.jac(y),np.empty((2,0))
     def nullcline(self,c):
         p=self.p;i=self.ip3
         rad=(p['v_ER']*c*c/((c*c+p['K_ER']**2)*(p['C_0']-(1+p['c_1'])*c))-p['r_L'])/(p['r_C']*(i/(i+p['d_1']))**3*(c/(c+p['d_5']))**3)
@@ -79,13 +104,27 @@ class PWASystem:
         out[0,-4:]=self.a*(self.alpha[3:]*active)@self.dzt
         out[1,-4:]=-self.b*(self.beta[3:]*active)@self.dzt
         return out
+    def linearized(self,y):
+        z,h=y;r=np.searchsorted(self.zt,z,side='right');n=self.ncoef
+        field=np.array([self.a*(h-self.ni[r]-self.ns[r]*z),
+                        self.b*(self.hi[r]+self.hs[r]*z-h)])
+        matrix=np.array([[-self.a*self.ns[r],self.a],
+                         [self.b*self.hs[r],-self.b]])
+        base=np.r_[1.,z,self.ip3,np.maximum(z-self.zt,0.)]
+        partial=np.zeros((2,self.nparams))
+        partial[0,:n]=-self.a*base;partial[1,n:2*n]=self.b*base
+        partial[0,2*n]=field[0];partial[1,2*n+1]=field[1]
+        active=z>self.zt
+        partial[0,-4:]=self.a*(self.alpha[3:]*active)@self.dzt
+        partial[1,-4:]=-self.b*(self.beta[3:]*active)@self.dzt
+        return field,matrix,partial
     def nullcline(self,c):
         return float(hinge_design(np.array([self.coordinate(c)]),np.array([self.ip3]),self.zt)[0]@self.alpha)
 
 
 def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=2e-8,
                  atol=2e-10,max_step=.5,max_evaluations=100000, capture_points=(),method="DOP853",
-                 time_direction=1,witness_sections=()):
+                 time_direction=1,witness_sections=(),track_extrema=True):
     """First opposite crossing then first crossing in the initial orientation.
 
     The sensitivity matrix is propagated at fixed time across continuous-field
@@ -117,17 +156,19 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
             dzsec+=system.coordinate_derivative(section.C)*np.asarray(section.C_gradient)
         if section.h0_gradient is not None:dh0+=np.asarray(section.h0_gradient)
         S[0,:n]=dzsec;S[1,:n]=(1-float(u))*dh0
-    initial=np.r_[y0,S.ravel(),0.];evaluations=0;paths=[];times=[]
+    initial=np.r_[y0,S.ravel(),0.];evaluations=0;paths=[]
     def rhs(t,v):
         nonlocal evaluations
         evaluations+=1
         if evaluations>max_evaluations:raise RuntimeError('evaluation_budget')
-        y=v[:2];j=system.jac(y);field=system.field(y)
+        y=v[:2]
+        if hasattr(system,'linearized'):field,j,partials=system.linearized(y)
+        else:field,j,partials=system.field(y),system.jac(y),system.partials(y)
         trace=j[0,0]+j[1,1]
         if not n:return time_direction*np.array([field[0],field[1],trace])
         mat=v[2:-1].reshape(2,columns)
         deriv=j@mat
-        if system.nparams:deriv[:,:n]+=system.partials(y)
+        if system.nparams:deriv[:,:n]+=partials
         return time_direction*np.r_[field,deriv.ravel(),trace]
     def boundary(t,v):return min(*(v[:2]-system.bounds[:,0]),*(system.bounds[:,1]-v[:2]))
     boundary.direction=-1;boundary.terminal=True
@@ -148,12 +189,17 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
         for direction in [-orientation,orientation]:
             def crossing(t,v):return v[0]-zsec
             crossing.direction=direction;crossing.terminal=True
-            sol=solve_ivp(rhs,[now,max_time],state,method=method,events=[crossing,boundary,capture,extremum,*witnesses],
+            events=[crossing,boundary,capture]
+            if track_extrema:events.append(extremum)
+            events.extend(witnesses)
+            sol=solve_ivp(rhs,[now,max_time],state,method=method,events=events,
                           rtol=rtol,atol=atol,max_step=max_step)
-            paths.extend(sol.y[:2].T.tolist());times.extend(sol.t.tolist())
-            if len(sol.y_events[3]):paths.extend(sol.y_events[3][:,:2].tolist())
-            for c,events in zip(witness_sections,sol.y_events[4:]):
-                for event in events:
+            if track_extrema:
+                paths.extend(sol.y[:2].T.tolist())
+                if len(sol.y_events[3]):paths.extend(sol.y_events[3][:,:2].tolist())
+            witness_offset=4 if track_extrema else 3
+            for c,witness_events in zip(witness_sections,sol.y_events[witness_offset:]):
+                for event in witness_events:
                     values=crossings[str(float(c))]
                     if not any(abs(event[1]-h)<5e-8 for h in values):values.append(float(event[1]))
             if not sol.success:return dict(status='solver_failure',u=float(u),message=sol.message)
@@ -171,27 +217,42 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
         multiplier=float(np.exp(np.clip(log_multiplier,-700,700)))
         if not np.isfinite(multiplier) or multiplier<=0:return dict(status='nonregular_multiplier',u=float(u))
         returned=float(state[1]);den=h-section.h0
-        zs=np.array(paths)[:,0]
         G=(returned-h)/den
         dG=(corrected[:n]-(1-float(u))*dh0+G*float(u)*dh0)/den
         if not np.isfinite(G) or not np.all(np.isfinite(dG)):
             return dict(status='nonregular_sensitivity',u=float(u))
-        return dict(status='valid',u=float(u),s=float(h),P=returned,G=G,
+        result=dict(status='valid',u=float(u),s=float(h),P=returned,G=G,
                     dG=dG.tolist(),multiplier=multiplier,log_multiplier=log_multiplier,period=now,
-                    Cmin=system.physical(float(zs.min())),Cmax=system.physical(float(zs.max())),
                     initial_normal=float(normal),return_normal=float(normal_final),
                     return_residual=returned-float(h),time_direction=time_direction,
                     orbit_crossings={c:sorted(vals) for c,vals in crossings.items()})
+        if track_extrema:
+            zs=np.asarray(paths)[:,0]
+            result['Cmin']=system.physical(float(zs.min()))
+            result['Cmax']=system.physical(float(zs.max()))
+        return result
     except (RuntimeError,ValueError,FloatingPointError,OverflowError) as exc:
         return dict(status='integration_error',u=float(u),message=str(exc))
 
 
-def return_table(system,section,nodes,sensitivities=False,progress=None,**settings):
-    records=[]
+def return_table(system,section,nodes,sensitivities=False,progress=None,track_extrema=True,**settings):
+    global _RETURN_POOL,_RETURN_POOL_SIZE
+    nodes=list(nodes);records=[None]*len(nodes)
     if progress is not None:progress(0,len(nodes))
-    for index,u in enumerate(nodes):
-        records.append(first_return(system,section,u,sensitivities,**settings))
-        if progress is not None:progress(index+1,len(nodes))
+    if _RETURN_WORKERS>1 and len(nodes)>1:
+        if _RETURN_POOL is None:
+            _RETURN_POOL=ProcessPoolExecutor(max_workers=_RETURN_WORKERS)
+            _RETURN_POOL_SIZE=_RETURN_WORKERS
+        futures={_RETURN_POOL.submit(_return_worker,(system,section,float(u),sensitivities,track_extrema,settings)):i
+                 for i,u in enumerate(nodes)}
+        completed=0
+        for future in as_completed(futures):
+            records[futures[future]]=future.result();completed+=1
+            if progress is not None:progress(completed,len(nodes))
+    else:
+        for index,u in enumerate(nodes):
+            records[index]=first_return(system,section,u,sensitivities,track_extrema=track_extrema,**settings)
+            if progress is not None:progress(index+1,len(nodes))
     return records
 
 
