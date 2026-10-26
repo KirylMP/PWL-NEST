@@ -85,6 +85,9 @@ def geometric(x):
 def write(x,path,extra=None):
     m=unpack(x);out=dict(schema_version=1,regions=4,threshold_count_m=3,physical_thresholds_C=TC.tolist(),alpha=m['N'].tolist(),beta=m['H'].tolist(),a=m['a'],b=m['b'],transform=dict(zip(['p','e','n','k'],m['shape'])),regional_types=['stable_node','saddle','unstable_focus','stable_focus'],trace=m['T'].tolist(),determinant=m['D'].tolist(),discriminant=(m['T']**2-4*m['D']).tolist(),equilibrium_threshold_I=events(m).tolist(),parameters=x.tolist(),accepted=False,notes=['Fixed physical cuts; hard regional types by parameterization','Numerical experiment; no proof of minimality or cycle completeness'])
     out['poincare_weight_scale']=POINCARE_SCALE
+    out['training_cycle_inputs']=sorted({q['I'] for q in TARGETS})
+    out['training_cycle_count']=len(TARGETS)
+    out['training_cycle_residual_scale']=float(TARGET_NORMALIZATION)
     out['transform']['C_ref']=.5
     if extra:out.update(extra)
     (P/path).write_text(json.dumps(out,indent=2))
@@ -102,14 +105,19 @@ def geometry():
 
 def prepare_targets():
     source=json.loads((P/'LR_cycles_reference.json').read_text())['rows'];targets=[]
-    for I in [.55,.65,.8,.9,1.,1.1]:
-        row=min(source,key=lambda r:abs(r['I']-I))
-        assert abs(row['I']-I)<1e-8
+    rows=[r for r in source if r['cycles']]
+    count=int(os.environ.get('FM_TARGET_GRID_SIZE','25'))
+    if count<2:raise ValueError('FM_TARGET_GRID_SIZE must be at least 2')
+    desired=np.r_[np.linspace(.53,1.12,count),[.55,.65,.8,.9,1.,1.1]]
+    selected={min(rows,key=lambda r:abs(r['I']-I))['I'] for I in desired}
+    for I in sorted(selected):
+        row=min(rows,key=lambda r:abs(r['I']-I))
         for q in row['cycles']:
             targets.append(dict(I=I,h=q['s'],C=q['section'],T=q['T'],Cmin=q['min'],Cmax=q['max'],stable=q['stable'],log_multiplier=q['log_multiplier']))
     return targets
 
 TARGETS=prepare_targets()
+TARGET_NORMALIZATION=np.sqrt(9./len(TARGETS))
 
 def p_residual(x,detail=False):
     m=unpack(x);bounds=phi(np.array([1e-12,CMAX]),m['shape']);res=[];rows=[]
@@ -128,7 +136,7 @@ def p_residual(x,detail=False):
             n=float(basis(q['C'],I,m)@m['N']);rr=[5+20*max(n-h,0),5.]
             if os.environ.get('FIT_EXTREMA')=='1':rr.extend([5.,5.])
         res.extend(rr);rows.append(dict(target=q,status=int(status),return_data=v.tolist(),residual=rr))
-    return rows if detail else np.array(res)
+    return rows if detail else TARGET_NORMALIZATION*np.array(res)
 
 def poincare():
     seed='candidate.json' if os.environ.get('REFINE')=='1' else 'geometry.json'
@@ -213,6 +221,7 @@ def validate():
     (P/(name+'_branches.json')).write_text(json.dumps(dict(rows=rows,events=events(m).tolist(),method=('96' if os.environ.get('VALIDATE_DENSE')=='1' else '64')+' seeds per equilibrium section, forward stable and reverse unstable; finite scan'),indent=2))
 
 if __name__=='__main__':
+    print(f'FM training: {len(TARGETS)} cycles at {len(set(q["I"] for q in TARGETS))} I values; residual scale={TARGET_NORMALIZATION:.6g}',flush=True)
     if sys.argv[1]=='closed':
         from closed_fit import run
         run()

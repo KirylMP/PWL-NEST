@@ -85,7 +85,7 @@ def residual(x, detail=False):
         else:
             rr=[8.,8.,8.];record=dict(target=target,found=False,residual=rr)
         result.extend(rr);records.append(record)
-    return records if detail else np.array(result)
+    return records if detail else f.TARGET_NORMALIZATION*np.array(result)
 
 
 def run():
@@ -95,16 +95,17 @@ def run():
     base=np.array(seed['parameters']);scale=np.array([.2,.15,.2,.25,.2,.2,.6,.35,.6,.35,.02,.02,.03,.03,.3,.3,.15,.25])
     bounds=list(zip(np.maximum(-1.,(f.LO-base)/scale),np.minimum(1.,(f.HI-base)/scale)))
     best=np.inf;calls=0;start=time.monotonic()
-    extra_weight=float(os.environ.get('FM_EXTRA_CYCLES_WEIGHT','25'))
+    extra_weight=float(os.environ.get('FM_EXTRA_CYCLES_WEIGHT','0'))
     if not np.isfinite(extra_weight) or extra_weight<0:
         raise ValueError('FM_EXTRA_CYCLES_WEIGHT must be finite and nonnegative')
+    print(f'FM cycle targets={len(f.TARGETS)} inputs={sorted(set(q["I"] for q in f.TARGETS))} residual_scale={f.TARGET_NORMALIZATION:.6g}',flush=True)
     print(f'No-cycle training inputs={NO_CYCLE_INPUTS}, extra-cycle weight={extra_weight}',flush=True)
     def objective(y):
         nonlocal best,calls
         x=base+scale*y;g=f.geometric(x);r=residual(x)
         eq_loss=model_cost(f.unpack(x),EQ_SOURCE,f.equilibrium)
         parts=closed_components(g@g,eq_loss,r@r,6.,f.POINCARE_SCALE)
-        extra_raw,extra_counts,extra_diag=extra_cycle_penalty(x)
+        extra_raw,extra_counts,extra_diag=extra_cycle_penalty(x) if extra_weight else (0.,[],[])
         parts.update(extra_cycles_raw=extra_raw,extra_cycles_weight=extra_weight,
                      extra_cycles_weighted=extra_weight*extra_raw)
         parts['total']+=parts['extra_cycles_weighted']
