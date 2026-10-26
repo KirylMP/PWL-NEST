@@ -12,9 +12,16 @@ import fit_four as f
 
 def reference_grid():
     rows=json.loads((f.P/'LR_cycles_reference.json').read_text())['rows']
-    n=int(os.environ.get('FM_CYCLE_COUNT_POINTS','17'))
-    if n<2:raise ValueError('FM_CYCLE_COUNT_POINTS must be at least 2')
-    desired=np.r_[np.linspace(.45,1.25,n),[.52,.53,1.12,1.14,1.5,2.]]
+    explicit=os.environ.get('FM_CYCLE_COUNT_I')
+    if explicit:
+        desired=[float(v.strip()) for v in explicit.split(',') if v.strip()]
+        if not desired or not all(np.isfinite(v) for v in desired):raise ValueError('FM_CYCLE_COUNT_I must contain finite I values')
+        for I in desired:
+            if min(abs(r['I']-I) for r in rows)>1e-8:raise ValueError(f'FM_CYCLE_COUNT_I={I} is not an LR reference point')
+    else:
+        n=int(os.environ.get('FM_CYCLE_COUNT_POINTS','17'))
+        if n<2:raise ValueError('FM_CYCLE_COUNT_POINTS must be at least 2')
+        desired=np.r_[np.linspace(.45,1.25,n),[.52,.53,1.12,1.14,1.5,2.]]
     selected={min(rows,key=lambda r:abs(r['I']-float(I)))['I'] for I in desired}
     result=[]
     for I in sorted(selected):

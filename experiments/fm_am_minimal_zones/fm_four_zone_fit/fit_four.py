@@ -106,9 +106,16 @@ def geometry():
 def prepare_targets():
     source=json.loads((P/'LR_cycles_reference.json').read_text())['rows'];targets=[]
     rows=[r for r in source if r['cycles']]
-    count=int(os.environ.get('FM_TARGET_GRID_SIZE','25'))
-    if count<2:raise ValueError('FM_TARGET_GRID_SIZE must be at least 2')
-    desired=np.r_[np.linspace(.53,1.12,count),[.55,.65,.8,.9,1.,1.1]]
+    explicit=os.environ.get('FM_TARGET_I')
+    if explicit:
+        desired=[float(v.strip()) for v in explicit.split(',') if v.strip()]
+        if not desired or not all(np.isfinite(v) for v in desired):raise ValueError('FM_TARGET_I must contain finite I values')
+        for I in desired:
+            if min(abs(r['I']-I) for r in rows)>1e-8:raise ValueError(f'FM_TARGET_I={I} is not an LR reference point with cycles')
+    else:
+        count=int(os.environ.get('FM_TARGET_GRID_SIZE','25'))
+        if count<2:raise ValueError('FM_TARGET_GRID_SIZE must be at least 2')
+        desired=np.r_[np.linspace(.53,1.12,count),[.55,.65,.8,.9,1.,1.1]]
     selected={min(rows,key=lambda r:abs(r['I']-I))['I'] for I in desired}
     for I in sorted(selected):
         row=min(rows,key=lambda r:abs(r['I']-I))
@@ -211,8 +218,14 @@ def powell_fit():
 def validate():
     from concurrent.futures import ProcessPoolExecutor
     name=sys.argv[2] if len(sys.argv)>2 else 'candidate';x=np.array(json.loads((P/(name+'.json')).read_text())['parameters']);m=unpack(x)
-    grid=np.unique(np.r_[np.linspace(0,2,81),np.arange(.47,.571,.0025),np.arange(.8,.921,.005),np.arange(1.05,1.151,.005),[e+d for e in events(m) for d in [-.001,-.0001,.0001,.001]]])
-    if os.environ.get('VALIDATE_DENSE')=='1':grid=np.unique(np.round(np.r_[grid,np.arange(.45,1.25001,.0025),[e+d for e in events(m) for d in [-1e-5,1e-5]]],11))
+    custom_size=os.environ.get('FM_VALIDATE_GRID_SIZE')
+    if custom_size:
+        n=int(custom_size)
+        if n<2:raise ValueError('FM_VALIDATE_GRID_SIZE must be at least 2')
+        grid=np.linspace(0,2,n)
+    else:
+        grid=np.unique(np.r_[np.linspace(0,2,81),np.arange(.47,.571,.0025),np.arange(.8,.921,.005),np.arange(1.05,1.151,.005),[e+d for e in events(m) for d in [-.001,-.0001,.0001,.001]]])
+        if os.environ.get('VALIDATE_DENSE')=='1':grid=np.unique(np.round(np.r_[grid,np.arange(.45,1.25001,.0025),[e+d for e in events(m) for d in [-1e-5,1e-5]]],11))
     rows=[]
     with ProcessPoolExecutor(int(os.environ.get('WORKERS','4'))) as pool:
         for j,r in enumerate(pool.map(scan_job,[(float(I),x) for I in grid])):
