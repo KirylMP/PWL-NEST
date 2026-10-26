@@ -1,148 +1,179 @@
-# FM reduction protocol
+# FM reduction experiments — v5
 
-`protocol/FM_REDUCTION_PROTOCOL.md` is the supplied specification. The supported
-entry point for the complete FM experiment is `scripts/run_fm.py`. AM, threshold
-reduction and K sweeps stay on hold while FM is being debugged. Legacy
-`fit_stage.py --stage ...` commands without a cycle configuration reproduce the
-old pre-cycle experiment; they do not run the complete protocol.
+The supplied scientific specification is `protocol/FM_REDUCTION_PROTOCOL.md`.
+The supported FM entry point is `scripts/run_fm.py`. All 26 parameters are free
+on the final joint stages. AM, threshold reduction and K sweeps remain separate
+future experiments while the FM implementation is being debugged.
 
-From the repository root, with Python >= 3.11:
+The objective keeps the five protocol terms and weights 1,10,10,30,30. Cycle
+error is averaged over I; the extra-cycle term is **not** averaged. Periods and
+amplitudes are independent diagnostics, not additional training terms. A matched
+cycle count does not establish a matched orbit, period, or bifurcation branch.
+
+## What v5 fixes
+
+- A physical section follows a candidate equilibrium. Both LR and PWA use the
+  same physical C, h0 and u at every evaluation. Derivatives include movement of
+  C and h0 on **both** maps, including the derivative of the normalization of G.
+  LR needs only two section sensitivities, which are chained to all parameters.
+- The section starts at the lower of the two physical nullclines, clipped at
+  h=0, to cover positive crossings of both fields. The anchor is the physical
+  candidate equilibrium nearest the reference equilibrium. Source cycle ranges
+  supply a coverage guard. Multiple candidate equilibria are independently
+  checked for cycles missed by the selected section.
+- Independent regional slopes and graph values replace correlated hinge
+  coefficients as numerical coordinates. This is an invertible parameter
+  conversion. Numerical bounds are saved in those coordinates. Parameter
+  transformation derivatives are included in the Jacobian.
+- Early geometry and broad-smoothing stages can hold the transform fixed;
+  subsequent stages release all 26 parameters. The default epsilon sequence is
+  .5 -> .1 -> .01 -> .001. The broad stage supplies useful gradients where
+  narrow Gaussian smoothing was saturated. LR training counts are checked before
+  fitting; the shared final epsilon is reduced further if needed, with at most
+  one source-profile grid refinement. The actual schedule is saved.
+- `ftol` and `xtol` are disabled in the v5 solver. `success` means checked
+  stationarity on the **common final grid**, together with a passed numerical
+  cycle audit. Solver termination, gradient stationarity, numerical admissibility
+  and scientific acceptance are recorded separately. A bounded, verified descent
+  search can recover from a stalled step; its evaluations are logged.
+- Requested I values are filled to the configured maximum coarse gap (default
+  .05). Warm-model equilibrium threshold events are bracketed. Later stages add
+  midpoints, giving at most .025 gaps by default; known nonsmooth event centers
+  are avoided. Source and incumbent cycle profiles add points around observed
+  cycle-count transitions before any optimizer starts. This is a recorded
+  training-collocation refinement, not use of the independent validation grid.
+- u is refined between solver stages around sign changes, extrema and domain
+  boundaries. Its layout stays fixed inside each solver call. Every final
+  candidate is rescored at the same epsilon, I grid and common nested u grid.
+  An additional joint polish optimizes on that common grid before its final
+  stationarity and numerical-resolution checks.
+- The old half-reference-edge quota is removed. Actual regular intervals,
+  observed-cycle coverage and convergence under u refinement/epsilon halving
+  are checked separately. Unknown returns are not reported as zero cycles.
+- A supplied incumbent is rescored as a separate contender. A warm start on an
+  identical threshold basis preserves its exact coefficients: least-squares
+  reprojection can lose slopes between close thresholds on a coarse sample grid.
+
+This is a numerical implementation update. It does not prove global optimality
+or completeness of all cycle searches. Residuals remain only locally smooth
+when event domains, anchors or matching assignments change. Candidates failing
+coverage/resolution checks are saved as diagnostic results, not accepted fits.
+
+V5 changes the section/normalization policy and hence the finite-epsilon
+numerical objective. The LR smoothed count now depends on the common moving
+section, so its section derivative is included. The five terms and their weights
+are retained. Historical loss values must be recomputed under v5 before being
+compared; the supplied incumbent is automatically rescored for this purpose.
+
+## Server run
+
+From the repository root, using the existing Python environment:
 
 ```bash
-python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e .
 python -u experiments/fm_am_reduction/scripts/run_fm.py \
-  --name fm_full_64 --trials 64 --workers 16 \
-  --max-nfev 1500 --cycle-max-nfev 60
+  --name fm_v5_16 --trials 16 --workers 16 \
+  --max-nfev 1500 --cycle-max-nfev 20 \
+  --start-from runs/fm_am_reduction/fm_full_v4_64/optimizer/best_so_far.json
 ```
 
-The run prepares LR data, places seven fixed C thresholds by spectral partition,
-fits all 26 parameters to the initial geometry/spectrum/equilibrium objective,
-then fits all 26 to the complete objective at epsilon .15, .05 and .02. The
-solution at each epsilon starts the next. Candidate selection always uses .02,
-the same section grid and the same scales. Periods and amplitudes are validation
-quantities, not training terms.
+Use a fresh name. The supplied file may be `candidate.json`, `best_so_far.json`
+or `selected.json`. The run creates data, logs, source snapshots, optimization
+checkpoints and figures automatically. CPU processes parallelize trials; BLAS
+threads are limited to one. CUDA is not used. The extra incumbent evaluation is
+not an additional optimized trial.
 
-Default v4 training uses 65 section nodes and I values
-.55, .65, .75, .78, .8, 1.0, 1.1 and 1.14; the last
-node supplies a nonoscillatory reference regime with a regular transient return.
-Independent validation defaults to 129 section nodes, exceeding the training
-resolution. No finite default guarantees resolution of arbitrarily close cycles.
-The five weights are 1,10,10,30,30. `L_cyc` averages over training I nodes;
-`L_extra` is summed without averaging. Gaussian-smoothed reference counts are
-not rounded. A separate numerical feasibility barrier prevents missing return
-domains being interpreted as zero cycles. It is exactly zero on admissible
-return domains; inadmissible results are labeled and ranked behind admissible
-ones. The definition of the numerical coverage threshold is saved in config.
+A full v5 evaluation is substantially more expensive than v4: source returns now
+move with the section and the collocation grid is refined. `--cycle-max-nfev`
+applies **per epsilon**, with up to six additional recovery evaluations. Grid
+preparation, shared-grid rescoring, cycle audits and validation have separate
+costs. A final common-grid polish has its own budget (`--common-polish-nfev`,
+defaulting to `--cycle-max-nfev`). An exhausted small budget is explicitly
+nonstationary. The continuation history and total evaluation count include all
+optimizer phases and recovery evaluations.
 
-This is materially more expensive than the old fit: `--max-nfev` is the initial
-stage budget, and `--cycle-max-nfev` is a separate budget for each epsilon.
-Each cycle evaluation integrates a family of first-return problems and their
-sensitivities. CPU processes parallelize restarts. CUDA is not used.
+Defaults:
 
-For a previous FM candidate, add this optional first warm start:
+- initial u grid: 65 points, from 1e-5 to .98;
+- maximum per-stage u nodes: 129;
+- common selection u grid: 129 or the next complete nested refinement;
+- independent validation: 257 section nodes, shifted 81-point I grid;
+- final counter tolerance: .025 for grid/epsilon convergence and observed counts;
+- stationarity tolerance: 1e-6 in the saved regional coordinates.
+
+Options `--cycle-epsilon`, `--max-I-gap`, `--return-nodes`, `--max-stage-nodes`,
+`--selection-nodes`, `--profile-nodes`, `--count-tolerance`,
+`--training-I-refinements`, `--common-polish-nfev` and solver budgets are
+saved in `protocol.json`. Independent validation must have more section nodes
+than common selection. Changing grids changes the unaveraged extra-cycle term's
+effective weight; comparisons must use a common configuration.
+
+## Results and logs
+
+Everything is in `runs/fm_am_reduction/<name>/` (ignored by Git):
+
+- `logs/run_*.log`: stdout, stderr, phase, inventory and audit progress;
+- `run.json`, `protocol.json`, `source/`: actual settings and source hashes;
+- `reference/source_cycle_inventory.json`: training LR cycle observations,
+  physical coverage intervals, grids, solver settings and unresolved cases;
+- `training_grid_history.json`, `epsilon_calibration.json`: observed transitions,
+  the common grid construction and source counter convergence checks;
+- `optimizer/search_setup.json`: actual regional bounds, scales and tolerances;
+- `optimizer/trials/trial_*/iterations.jsonl`: objective evaluations, step sizes,
+  return statuses/anchors, Jacobian spectra and conditioning;
+- epsilon checkpoints and `collocation_history.json`: stage grids and iterates;
+- `training_audit_progress.json`, `training_audit.json`: coverage, common/refined
+  counts, epsilon-halving checks, observed stable/unstable cycles;
+- `optimizer/trials/incumbent/`: supplied model, rescored without optimization;
+- `optimizer/best_so_far.json`, `selected.json`: common-grid ranking. Inspect
+  `numerical_audit_passed`, `converged_stationary` and all loss components;
+- `analysis/`: direct trajectories, spectra, nullclines and loss figures;
+- `analysis/structure/`: independent multi-section stable/unstable root scans,
+  neighbor-I continuation, structural signatures, periods/amplitudes and plots.
+
+`numerical_audit_passed` means the reported cycle score passed the numerical
+checks. It does **not** mean that the model matches LR. `accepted` remains false
+until scientific diagnostics are reviewed. Missing periods/cycles never receive
+zero matching error. A finite grid cannot exclude arbitrarily narrow regimes.
 
 ```bash
-  --start-from runs/fm_am_reduction/fm_debug_64/optimizer/selected.json
+tail -f runs/fm_am_reduction/fm_v5_16/logs/run_*.log
 ```
 
-Other restarts remain independent. Existing run directories are never reused;
-choose a fresh `--name`. Data preparation, logs and reports are automatic.
-
-## Output
-
-Everything is under `runs/fm_am_reduction/<name>/` (ignored by Git):
-
-- `logs/run_*.log`: unbuffered stdout, stderr, errors and continuation progress.
-- `run.json`, `protocol.json`, `source/`: parameters, grids, budgets and source
-  snapshots/hashes, including the supplied protocol.
-- `reference/poincare.json`: LR return maps, sections, raw smooth counts inputs
-  and regular-domain statuses. `reference/` also stores nullclines/equilibria.
-- `optimizer/search_setup.json`: actual bounds and optimization settings.
-- `optimizer/trials/trial_*/`: initial and epsilon checkpoint vectors, candidate,
-  full loss components, convergence history, return tables or explicit failures.
-- `optimizer/best_so_far.json`, `selected.json`: current and final selections.
-  Check `return_domain_admissible`; a diagnostic fallback is not an accepted fit.
-- `analysis/`: direct-trajectory diagrams and unresolved integration records.
-- `analysis/structure/`: independent multi-section first-return root enumeration,
-  stable/unstable cycles, neighboring-I continuation, equilibrium/cycle signatures,
-  matching errors, transition intervals and bifurcation PNG/PDF figures.
-
-Follow progress from another terminal:
+## Recheck a v5 candidate without fitting
 
 ```bash
-tail -f runs/fm_am_reduction/fm_full_64/logs/run_*.log
+python -u experiments/fm_am_reduction/scripts/cycle_training_audit.py \
+  --run-dir runs/fm_am_reduction/fm_v5_16 \
+  --out runs/fm_am_reduction/fm_v5_16/analysis/training_audit_rerun
 ```
 
-Cycle validation uses a shifted I grid, more section nodes and tighter tolerances.
-Sections include both models' equilibria, so a small candidate cycle need not
-intersect the source equilibrium section. Stable cycles are shot in forward
-time, unstable cycles in backward time; reported multipliers always refer to
-forward time. Each root must pass an explicit return-residual check. Convergence
-of a scalar root bracket alone is insufficient for an expanding return map.
-Orbits are merged only if stability, periods, extrema and common oriented
-section intersections agree. The scan then corrects neighboring-I
-predictions. Thus repelling cycles can be found without waiting for a trajectory
-to converge to them. Nonhyperbolic/suspect cases and uncovered domains remain
-explicitly unresolved. A finite grid cannot prove global completeness.
-`L_str_val_full_grid` is null if any grid points are unresolved; the regular-subset
-score is reported separately. Missing cycles never get zero period/amplitude
-error. All validation results are excluded from model selection.
+The candidate defaults to `selected.json`, or to `best_so_far.json` if the search
+is still running. Supply `--candidate path/to/model.json` to override. It must
+use the run's threshold partition. The output directory must be fresh.
 
-Independent validation can be rerun without fitting:
+Independent structural validation can also be rerun in a fresh directory:
 
 ```bash
-python experiments/fm_am_reduction/scripts/validate_structure.py \
-  --run-dir runs/fm_am_reduction/fm_full_64 \
-  --output-dir runs/fm_am_reduction/fm_full_64/analysis/structure_v4 \
-  --workers 16 --points 161 --nodes 65 --max-time 900
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -u \
+  experiments/fm_am_reduction/scripts/validate_structure.py \
+  --run-dir runs/fm_am_reduction/fm_v5_16 \
+  --output-dir runs/fm_am_reduction/fm_v5_16/analysis/structure_rerun \
+  --workers 16 --points 81 --nodes 257 --max-time 600
 ```
 
-`--output-dir` must be fresh and preserves previous validation reports. Its
-summary records the validation version, code hashes and candidate hash.
+## Historical runs
 
-Training-grid refinements use `--cycle-I`, `--return-nodes` and
-`--return-max-time` in a new run. Recompare final candidates on a common grid;
-changing M changes the effective unaveraged extra-cycle term. See
-[PROTOCOL_AUDIT.md](PROTOCOL_AUDIT.md) for the implementation mapping and numerical
-limits. Regression checks:
+`full_cycle_fit.DEFAULTS` and `audit_cycle_counts.py` retain the v3/v4 fixed-source
+section semantics for reproducibility. They do not evaluate the new moving
+objective. Legacy `fit_stage.py --stage ...` jobs without cycle configuration
+still reproduce pre-cycle experiments. The original protocol document is kept
+unchanged. Implementation mapping and older corrections are in
+`PROTOCOL_AUDIT.md`; numerical findings are in `reports/`.
+
+Regression checks:
 
 ```bash
-python -m unittest discover -s experiments/fm_am_reduction/tests -v
+OPENBLAS_NUM_THREADS=1 python -m unittest discover \
+  -s experiments/fm_am_reduction/tests -v
 ```
-
-## Audit an existing cycle counter
-
-The six historical v3 training I values do not sample the interval (.65, .8).
-A third cycle confined to that interval can incur no sampled extra-cycle penalty.
-Moreover, a single LR equilibrium section need not intersect every candidate
-orbit; a sufficient number of regular edges does not establish orbit coverage.
-Increasing trials alone does not fix either omission.
-The v4 runner defaults add .75 and .78 and increase the section grid from 17 to
-65 nodes. This costs roughly five times as many return launches per objective
-evaluation. Weights and formulas are unchanged; the unaveraged extra-cycle term
-now sums over eight I nodes. Historical runs are not rescored or overwritten.
-
-The following command compares the original and denser section grids at common
-I values, all configured epsilons, and independent multi-section roots at the
-specified structural points. It preserves fitted models and their scores:
-
-```bash
-python -u experiments/fm_am_reduction/scripts/audit_cycle_counts.py \
-  --candidate path/to/selected.json path/to/candidate.json \
-  --config runs/fm_am_reduction/fm_full_64/protocol.json \
-  --I .55 .65 .75 .78 .8 .8024691358 1.0 1.0740740740740742 1.1 1.14 \
-  --structure-I .78 .8024691358 1.0740740740740742 \
-  --workers 16 --nodes 65 --structure-nodes 65 \
-  --out runs/fm_am_reduction/cycle_audit_v4
-```
-
-The output contains a provenance manifest, a summary, raw maps for both grids,
-per-epsilon counts/errors, return statuses, closed orbits and the number that
-cross the training section. `aggregate.json` keeps the original training-I score
-separate from the refined audit-I score. Logs are in `logs/audit.log`; PNG/PDF
-figures show the counters and return maps. Omit `--config` only to reconstruct v3 defaults;
-such a report explicitly records that the original run configuration was absent.
-No new fit or model selection is performed. Finite-grid enumeration remains
-incomplete, so an observed count is not a proof that no further cycles exist.

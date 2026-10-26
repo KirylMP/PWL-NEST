@@ -1,4 +1,48 @@
-# FM protocol implementation mapping (v3)
+# FM protocol implementation mapping
+
+## Current supported implementation: v5
+
+The FM runner now selects a versioned moving-section numerical objective.
+The model family, seven physical thresholds, five loss terms and weights are
+retained. The physical section follows a candidate equilibrium; the lower
+launch height is min(N_candidate,N_LR), clipped at zero. Both fields are
+evaluated on identical physical sections/nodes at each parameter vector.
+
+The finite-epsilon LR counter therefore depends on the section selected by the
+candidate. Its derivative is explicitly propagated too: two LR section
+sensitivities are chained to all 26 parameters. For fixed u,
+dG=[dP-(1-u)dh0+u G dh0]/[(1-h0)u]. The physical C-section derivative includes
+both the equilibrium motion and the Phi coordinate motion. This policy changes
+the finite-regularization objective, so old scalar losses are not directly
+comparable. V5 rescoring uses one common rule/grid/epsilon for all contenders.
+
+Numerical coordinates use graph values at C_ref,I_ref and regional slopes.
+The map back to the original hinges is invertible and its Jacobian is included.
+Raw-model coefficients are preserved on exact warm starts; reprojecting a
+rank-deficient sampled nullcline matrix could previously change unsampled
+regional slopes even when thresholds coincided.
+
+Small-step/small-cost termination is disabled. Success requires stationarity on
+the shared final grid and a passed numerical cycle audit. Separate flags retain
+raw solver termination, gradient stationarity, coverage/resolution and scientific
+acceptance. The first broad cycle stage can fix the transform; all parameters
+are released subsequently and in a final common-grid polish. The incumbent is
+retained independently from optimized starts.
+
+I is refined before fitting from source/incumbent cycle transitions. u is
+refined between fixed-layout solver calls. The source counter calibrates a
+shared final epsilon before trials start; calibration and grid histories are
+saved. Audits check epsilon halving, a denser nested u grid, source cycle ranges
+and candidate cycles on multiple equilibrium sections. Missing coverage is not
+converted into zero cycles. Numerical barriers vanish on the covered domain.
+
+Amplitude/period/branch matching remain independent diagnostics. Candidate
+cycles with equal counts can have different physical shapes, and weighted
+count fitting imposes no exact structural equality constraint. Finite-grid audits
+do not establish global cycle completeness or a global optimum. See README
+for budgets, output files, v5 audit commands and historical v3/v4 tools.
+
+## Historical v3 implementation and later v4 corrections
 
 The historical v1/v2 experiment implemented only section 7 step 5. Its minima
 were not minima of the full protocol. `run_fm.py` now enables the remaining cycle

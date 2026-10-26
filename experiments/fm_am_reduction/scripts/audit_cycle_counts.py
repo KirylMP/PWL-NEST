@@ -114,6 +114,8 @@ def main():
     if any(not 0<i<=2 for i in levels):parser.error('I must lie within (0,2]')
     if args.out.exists():parser.error('--out already exists; choose a fresh directory')
     config=read_json(args.config or PACKAGE/'config'/'protocol.json')
+    if config.get('cycle_fit',{}).get('section_policy')=='moving_equilibrium':
+        parser.error('moving-section v5 runs use cycle_training_audit.py --run-dir ... --out ...')
     config['cycle_fit']={**DEFAULTS,**config.get('cycle_fit',{})}
     cases=read_json(PACKAGE/'config'/'cases.json');tasks=[];provenance=[]
     for index,path in enumerate(args.candidate):

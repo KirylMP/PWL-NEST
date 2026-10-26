@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""Fit the protocol's pre-cycle objective for a planned FM/AM run.
+"""Threshold partitioning and shared fitting infrastructure.
 
-This implements spectral threshold partitioning and the mixed nullcline,
-realized-spectrum, and equilibrium fit (protocol sections 4, 5.1–5.3). Cycle
-return losses and independent structural validation are deliberately separate
-future stages; outputs are always marked preliminary.
+Legacy planned runs retain the pre-cycle/v3 objective. The supported FM runner
+selects the v5 moving-section objective and audited regional-coordinate solver.
 """
 from __future__ import annotations
 
@@ -34,6 +32,13 @@ def phi(c: np.ndarray, eta: np.ndarray, c_ref: float) -> np.ndarray:
     else:
         exp_part = np.expm1(np.clip(k*(t-1), -700, 700))/k
     return wp*np.expm1(np.clip(n*np.log(t), -700, 700))/n + we*exp_part + wl*np.log(t)
+
+
+def phi_prime(c,eta,c_ref):
+    p,e,logn,k=eta;t=np.asarray(c,dtype=float)/c_ref;n=np.exp(logn)
+    weights=np.exp(np.array([p,e,0.])-max(p,e,0.));weights/=weights.sum()
+    return (weights[0]*np.exp(np.clip((n-1)*np.log(t),-700,700))
+            +weights[1]*np.exp(np.clip(k*(t-1),-700,700))+weights[2]/t)/c_ref
 
 
 def hinge_design(z: np.ndarray, ip3: np.ndarray, thresholds_z: np.ndarray) -> np.ndarray:
@@ -296,13 +301,22 @@ def initial_vector(objective: MixedObjective, seed: int,
         old_eta_info = warm_model["transform"]
         old_eta = np.array([old_eta_info["p"], old_eta_info["e"],
                             np.log(old_eta_info["n"]), old_eta_info["k"]])
-        old_x = hinge_design(phi(objective.c_null, old_eta, c_ref), objective.i_null,
-                             phi(np.asarray(warm_model["physical_thresholds_C"]), old_eta, c_ref))
+        old_c_ref=old_eta_info.get('C_ref',c_ref)
+        old_x = hinge_design(phi(objective.c_null, old_eta, old_c_ref), objective.i_null,
+                             phi(np.asarray(warm_model["physical_thresholds_C"]), old_eta, old_c_ref))
         target_n = old_x@np.asarray(warm_model["alpha"])
         target_h = old_x@np.asarray(warm_model["beta"])
         loga, logb = np.log(warm_model["a"]), np.log(warm_model["b"])
-    alpha = np.linalg.lstsq(X, target_n, rcond=None)[0]
-    beta = np.linalg.lstsq(X, target_h, rcond=None)[0]
+    compatible=(warm_model is not None and len(warm_model['physical_thresholds_C'])==len(objective.thresholds)
+                and np.allclose(warm_model['physical_thresholds_C'],objective.thresholds,rtol=0,atol=1e-12)
+                and warm_model['transform'].get('C_ref',c_ref)==c_ref)
+    if compatible:
+        # The sampled nullcline matrix may be rank deficient between close
+        # thresholds. Re-projecting the identical basis loses regional slopes.
+        alpha=np.array(warm_model['alpha'],copy=True);beta=np.array(warm_model['beta'],copy=True)
+    else:
+        alpha = np.linalg.lstsq(X, target_n, rcond=None)[0]
+        beta = np.linalg.lstsq(X, target_h, rcond=None)[0]
     rng = np.random.default_rng(seed)
     if seed != 0:
         alpha += rng.normal(0, .03, len(alpha))
@@ -315,6 +329,9 @@ def initial_vector(objective: MixedObjective, seed: int,
 def optimize_trial(objective: MixedObjective, x0: np.ndarray, lower: np.ndarray,
                    upper: np.ndarray, max_nfev: int, checkpoint_dir=None):
     """Worker entry point. Kept at module scope for multiprocessing pickling."""
+    if getattr(objective,'cfg',{}).get('section_policy')=='moving_equilibrium':
+        from fit_v5 import optimize_trial_v5
+        return optimize_trial_v5(objective,x0,max_nfev,checkpoint_dir)
     started = time.perf_counter()
     label=checkpoint_dir.name if checkpoint_dir is not None else "trial"
     print(f"{label}: precycle stage started",flush=True)
@@ -374,9 +391,18 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
         thresholds = np.load(threshold_path)["C"]
     full_cycles = bool(config.get('cycle_fit',{}).get('enabled',False))
     if full_cycles:
-        from full_cycle_fit import FullCycleObjective, prepare_cycle_reference
-        if not (run_dir/'reference'/'poincare.json').exists():prepare_cycle_reference(run_dir,config)
-        objective=FullCycleObjective(run_dir,config)
+        if config['cycle_fit'].get('section_policy')=='moving_equilibrium':
+            from moving_cycle_fit import MovingCycleObjective
+            from cycle_training_audit import prepare_source_inventory
+            source_inventory=prepare_source_inventory(run_dir,config)
+            unresolved=[q['I'] for q in source_inventory['rows'] if not q['regular_edges'] or q['suspect_intervals']]
+            if unresolved:
+                raise ValueError(f'Source cycle inventory unresolved at I={unresolved}; increase profile/return budgets or refine the training grid before fitting')
+            objective=MovingCycleObjective(run_dir,config)
+        else:
+            from full_cycle_fit import FullCycleObjective, prepare_cycle_reference
+            if not (run_dir/'reference'/'poincare.json').exists():prepare_cycle_reference(run_dir,config)
+            objective=FullCycleObjective(run_dir,config)
     else:objective = MixedObjective(run_dir, config)
     m = int(run["m"]); ncoef = m+3
     lo = np.r_[np.full(2*ncoef, -25.), -8., -8., -12., -12., -5., -10.]
@@ -388,6 +414,16 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
         trials=restarts,workers=workers,seed=seed,ftol=1e-8,xtol=1e-8,gtol=1e-8,
         jacobian="variational returns; geometry central differences" if full_cycles else "numerical 2-point",nullcline_nodes=len(getattr(objective,'geometry',objective).c_null),
         spectral_samples=len(getattr(objective,'geometry',objective).spectral),equilibrium_I_nodes=getattr(objective,'geometry',objective).eq_levels),indent=2)+"\n")
+    if config.get('cycle_fit',{}).get('section_policy')=='moving_equilibrium':
+        from regional_coordinates import RegionalCoordinates
+        coordinates=RegionalCoordinates(thresholds,objective.c_ref);regional_lo,regional_hi=coordinates.bounds()
+        setup=read_json(out/'search_setup.json')
+        setup.update(raw_initial_bounds_lower=lo.tolist(),raw_initial_bounds_upper=hi.tolist(),
+            bounds_lower=regional_lo.tolist(),bounds_upper=regional_hi.tolist(),parameterization='regional_graph_values_I_slopes_regional_slopes',
+            ftol=None,xtol=None,gtol=objective.cfg['stationarity_gtol'],x_scale='explicit unit regional scales',
+            common_selection_nodes=objective.cfg['selection_nodes'],coarse_I_nodes=objective.cfg['coarse_I_nodes'],
+            final_I_nodes=objective.cfg['I_nodes'],epsilon_schedule=objective.epsilon_schedule)
+        (out/'search_setup.json').write_text(json.dumps(setup,indent=2)+'\n')
     winner = None
     starts = []
     for trial in range(restarts):
@@ -398,14 +434,19 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
 
     print(f"Submitting {restarts} restarts on {workers} processes; max_nfev={max_nfev}", flush=True)
     with ProcessPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(optimize_trial, objective, x0, lo, hi, max_nfev,trials_dir/f"trial_{trial:03d}"): (trial, trial_seed)
-                   for trial, trial_seed, x0 in starts}
+        futures={}
+        if warm_model is not None and config.get('cycle_fit',{}).get('section_policy')=='moving_equilibrium':
+            from fit_v5 import evaluate_incumbent
+            futures[pool.submit(evaluate_incumbent,objective,warm_model,trials_dir/'incumbent')]=(-1,seed)
+        futures.update({pool.submit(optimize_trial, objective, x0, lo, hi, max_nfev,trials_dir/f"trial_{trial:03d}"): (trial, trial_seed)
+                        for trial, trial_seed, x0 in starts})
         for future in as_completed(futures):
             trial, trial_seed = futures[future]
+            trial_label=f'trial_{trial:03d}' if trial>=0 else 'incumbent'
             try:
                 result = future.result()
             except Exception as exc:
-                failed = trials_dir/f"trial_{trial:03d}"
+                failed = trials_dir/trial_label
                 failed.mkdir(exist_ok=True)
                 (failed/"failure.json").write_text(json.dumps({"seed": trial_seed, "error": repr(exc)}))
                 print(f"{run['run_id']} trial {trial+1}/{restarts} FAILED: {exc}", flush=True)
@@ -417,7 +458,19 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
                       "cost_half_sum_squares": float(result.cost), "parts": parts,
                       "optimality": float(result.optimality),
                       "elapsed_seconds": result.elapsed_seconds, "bound_hits": result.bound_hits, "continuation": result.history}
-            trial_dir = trials_dir/f"trial_{trial:03d}"
+            if hasattr(result,'converged_stationary'):
+                record.update(converged_stationary=bool(result.converged_stationary),
+                    gradient_stationarity=bool(getattr(result,'gradient_stationarity',result.converged_stationary)),
+                    raw_gradient_inf=float(result.raw_gradient_inf),
+                    stationarity_regular=bool(result.stationarity_regular),
+                    bounds_feasible=bool(result.bounds_feasible),
+                    total_optimizer_evaluations=int(result.total_optimizer_evaluations),nfev_scope='last common-grid solver',
+                    numerical_coordinates='regional_slopes_and_graph_values',stationarity_grid='common_final_collocation',
+                    solver_success=bool(getattr(result,'solver_success',False)),solver_status=int(getattr(result,'solver_status',0)),
+                    solver_message=str(getattr(result,'solver_message',result.message)),
+                    jacobian_condition=float(result.jacobian_condition),singular_values=result.singular_values,
+                    incumbent_projected=bool(getattr(result,'incumbent_projected',False)))
+            trial_dir = trials_dir/trial_label
             trial_dir.mkdir(exist_ok=True)
             model = {
                 "schema_version": 1, "run_id": run["run_id"], "case": run["case"],
@@ -431,19 +484,38 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
                 "fit_scope": "full five-term objective with epsilon continuation" if full_cycles else "pre-cycle objective",
                 "cycle_loss_included": full_cycles, "independent_validation_completed": False,
                 "protocol_status": "cycle_fit_pending_independent_validation" if full_cycles else "precycle_only",
+                "accepted": False,
             }
+            if hasattr(result,'converged_stationary'):
+                from cycle_training_audit import nested_nodes
+                model.update(converged_stationary=bool(result.converged_stationary),
+                    numerical_audit_passed=all(parts.get(k,False) for k in
+                        ['return_domain_admissible','cycle_coverage_admissible','cycle_resolution_admissible']))
+                model['training_definition']=dict(version=config['protocol_id'],section_policy='moving_equilibrium',
+                    source_parameters=run['parameters'],loss_weights=config['loss_weights'],
+                    I_nodes=config['cycle_fit']['I_nodes'],
+                    common_u_nodes=nested_nodes(config['cycle_fit']['u_nodes'],config['cycle_fit']['selection_nodes']).tolist(),
+                    epsilon_schedule=config['cycle_smoothing']['epsilon_schedule'],cycle_smoothing=config['cycle_smoothing'],
+                    return_solver={k:config['cycle_fit'][k] for k in ['max_time','rtol','atol','max_step','max_evaluations']},
+                    count_tolerance=config['cycle_fit']['count_tolerance'],stationarity_gtol=config['cycle_fit']['stationarity_gtol'])
             (trial_dir/"candidate.json").write_text(json.dumps(model, indent=2, allow_nan=False)+"\n")
             (trial_dir/"result.json").write_text(json.dumps(record, indent=2, allow_nan=False)+"\n")
             if full_cycles:
                 (trial_dir/'cycle_returns.json').write_text(json.dumps(result.return_report,indent=2,allow_nan=False)+'\n')
             score=parts.get('full_total',parts.get('precycle_total'))
-            ranking=(not parts.get('return_domain_admissible',True), score)
+            ranking=(not parts.get('return_domain_admissible',True),
+                     not parts.get('cycle_coverage_admissible',True),
+                     not parts.get('cycle_resolution_admissible',True),score)
             if winner is None or ranking < winner[0]:
                 winner = (ranking, trial_dir, model, record)
-                (out/"best_so_far.json").write_text(json.dumps({"candidate": model,
-                    "optimizer_result": record}, indent=2, allow_nan=False)+"\n")
-            print(f"{run['run_id']} trial {trial+1}/{restarts}: "
-                  f"loss={score:.7g} admissible={not ranking[0]}", flush=True)
+                interim=out/'best_so_far.tmp'
+                interim.write_text(json.dumps({"candidate": model,
+                    "optimizer_result": record,"numerical_audit_passed":model.get('numerical_audit_passed'),
+                    "converged_stationary":record.get('converged_stationary')}, indent=2, allow_nan=False)+"\n")
+                interim.replace(out/'best_so_far.json')
+            progress_label=f'trial {trial+1}/{restarts}' if trial>=0 else 'incumbent'
+            print(f"{run['run_id']} {progress_label}: "
+                  f"loss={score:.7g} domain_admissible={not ranking[0]} numerical_audit_passed={not any(ranking[:3])}", flush=True)
     if winner is None:
         raise RuntimeError("No optimizer trials ran")
     selected = {"selected_trial": str(winner[1].relative_to(run_dir)),
@@ -451,8 +523,14 @@ def fit_run(run_dir: Path, config: dict, restarts: int, max_nfev: int, seed: int
                 "candidate": winner[2],
                 "optimizer_result": winner[3],
                 "return_domain_admissible": not winner[0][0],
+                "numerical_audit_passed": not any(winner[0][:3]) if 'cycle_coverage_admissible' in winner[3]['parts'] else None,
+                "cycle_coverage_admissible": winner[3]['parts'].get('cycle_coverage_admissible'),
+                "cycle_resolution_admissible": winner[3]['parts'].get('cycle_resolution_admissible'),
                 "status": ("no_admissible_return_domain_candidate" if winner[0][0] else "cycle fit completed; inspect independent validation") if full_cycles else "precycle only"}
     if full_cycles and winner[0][0]:print("No admissible return-domain candidate; saved selection is diagnostic only.",flush=True)
+    if selected['numerical_audit_passed'] is False:
+        selected['status']='numerical_cycle_audit_failed_diagnostic_only'
+        print('Selected model failed cycle coverage/resolution checks; diagnostic result only.',flush=True)
     (out/"selected.json").write_text(json.dumps(selected, indent=2, allow_nan=False)+"\n")
 
 

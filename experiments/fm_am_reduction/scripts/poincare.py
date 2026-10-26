@@ -4,7 +4,7 @@ import numpy as np
 from scipy.integrate import solve_ivp
 from scipy.optimize import brentq
 from scipy.special import ndtr
-from fit_stage import phi, hinge_design
+from fit_stage import phi,phi_prime,hinge_design
 from prepare_reference_data import lr_field, jacobian
 
 
@@ -13,6 +13,8 @@ class Section:
     C: float
     h0: float
     orientation: int = 1
+    C_gradient: object = None
+    h0_gradient: object = None
 
 
 class LRSystem:
@@ -22,6 +24,7 @@ class LRSystem:
         self.bounds=np.array([[1e-8,p['C_0']/(1+p['c_1'])-1e-8],[1e-8,1-1e-8]])
     def coordinate(self,c):return float(c)
     def coordinate_gradient(self,c):return np.empty(0)
+    def coordinate_derivative(self,c):return 1.
     def physical(self,z):return float(z)
     def field(self,y):return np.asarray(lr_field(y[0],y[1],self.ip3,self.p))
     def jac(self,y):return jacobian(y[0],y[1],self.ip3,self.p)
@@ -56,6 +59,7 @@ class PWASystem:
     def coordinate(self,c):return float(phi(np.array([c]),self.eta,self.c_ref)[0])
     def coordinate_gradient(self,c):
         out=np.zeros(self.nparams);out[-4:]=self._coordinate_eta(c)[0];return out
+    def coordinate_derivative(self,c):return float(phi_prime(c,self.eta,self.c_ref))
     def physical(self,z):
         if z<=self.bounds[0,0]:return self.cmin
         if z>=self.bounds[0,1]:return self.cmax
@@ -89,7 +93,11 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
     """
     if time_direction not in (-1,1):raise ValueError('time_direction must be -1 or 1')
     h=section.h0+(1-section.h0)*float(u);zsec=system.coordinate(section.C)
-    y0=np.array([zsec,h]);n=system.nparams if sensitivities else 0
+    y0=np.array([zsec,h])
+    external=max(len(section.C_gradient) if section.C_gradient is not None else 0,
+                 len(section.h0_gradient) if section.h0_gradient is not None else 0)
+    n=max(system.nparams,external) if sensitivities else 0
+    if n and system.nparams not in (0,n):raise ValueError('incompatible section/system gradient dimensions')
     orientation=section.orientation
     if not 0<u or section.h0>=1 or np.any(y0<=system.bounds[:,0]) or np.any(y0>=system.bounds[:,1]):
         return dict(status='initial_outside_domain',u=float(u))
@@ -102,8 +110,13 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
     columns=n+1 if n else 0
     S=np.zeros((2,columns))
     if columns:S[1,-1]=1.
-    dzsec=system.coordinate_gradient(section.C) if n else np.empty(0)
-    if n:S[0,:n]=dzsec
+    dzsec=np.zeros(n);dh0=np.zeros(n)
+    if n:
+        if system.nparams:dzsec+=system.coordinate_gradient(section.C)
+        if section.C_gradient is not None:
+            dzsec+=system.coordinate_derivative(section.C)*np.asarray(section.C_gradient)
+        if section.h0_gradient is not None:dh0+=np.asarray(section.h0_gradient)
+        S[0,:n]=dzsec;S[1,:n]=(1-float(u))*dh0
     initial=np.r_[y0,S.ravel(),0.];evaluations=0;paths=[];times=[]
     def rhs(t,v):
         nonlocal evaluations
@@ -113,7 +126,8 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
         trace=j[0,0]+j[1,1]
         if not n:return time_direction*np.array([field[0],field[1],trace])
         mat=v[2:-1].reshape(2,columns)
-        deriv=j@mat;deriv[:,:n]+=system.partials(y)
+        deriv=j@mat
+        if system.nparams:deriv[:,:n]+=system.partials(y)
         return time_direction*np.r_[field,deriv.ravel(),trace]
     def boundary(t,v):return min(*(v[:2]-system.bounds[:,0]),*(system.bounds[:,1]-v[:2]))
     boundary.direction=-1;boundary.terminal=True
@@ -153,12 +167,17 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
         corrected=sens[1].copy()-fy[1]/fy[0]*sens[0]
         if n:corrected[:n]+=fy[1]/fy[0]*dzsec
         log_multiplier=float(np.log(abs(initial_field[0]/fy[0]))+state[-1])
+        if not np.isfinite(log_multiplier):return dict(status='nonregular_multiplier',u=float(u))
         multiplier=float(np.exp(np.clip(log_multiplier,-700,700)))
         if not np.isfinite(multiplier) or multiplier<=0:return dict(status='nonregular_multiplier',u=float(u))
         returned=float(state[1]);den=h-section.h0
         zs=np.array(paths)[:,0]
-        return dict(status='valid',u=float(u),s=float(h),P=returned,G=(returned-h)/den,
-                    dG=(corrected[:n]/den).tolist(),multiplier=multiplier,log_multiplier=log_multiplier,period=now,
+        G=(returned-h)/den
+        dG=(corrected[:n]-(1-float(u))*dh0+G*float(u)*dh0)/den
+        if not np.isfinite(G) or not np.all(np.isfinite(dG)):
+            return dict(status='nonregular_sensitivity',u=float(u))
+        return dict(status='valid',u=float(u),s=float(h),P=returned,G=G,
+                    dG=dG.tolist(),multiplier=multiplier,log_multiplier=log_multiplier,period=now,
                     Cmin=system.physical(float(zs.min())),Cmax=system.physical(float(zs.max())),
                     initial_normal=float(normal),return_normal=float(normal_final),
                     return_residual=returned-float(h),time_direction=time_direction,
