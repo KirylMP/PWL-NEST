@@ -214,11 +214,12 @@ def isolate_cycles(system,section,nodes,settings,root_tolerance=5e-13,reverse_ca
     forward map can produce a large return residual even at brentq convergence.
     Multipliers in output always refer to forward physical time.
     """
-    cycles=[];suspects=[];tables={};rejected=[]
+    cycles=[];suspects=[];tables={};rejected=[];resolved_near_zero=[];direction_settings={}
     for direction in (1,-1):
         sec=Section(section.C,section.h0,direction*section.orientation)
         opts={**settings,'time_direction':direction}
         if direction==-1:opts['capture_points']=reverse_capture_points
+        direction_settings[direction]=opts
         table=return_table(system,sec,nodes,False,**opts);tables[direction]=table
         for left,right in zip(table[:-1],table[1:]):
             if left['status']!='valid' or right['status']!='valid':continue
@@ -264,6 +265,38 @@ def isolate_cycles(system,section,nodes,settings,root_tolerance=5e-13,reverse_ca
         if not any(failure['interval'][0]-1e-9<=q['u']<=failure['interval'][1]+1e-9 for q in cycles):
             suspects.append(failure)
     suspects=[q for q in suspects if not any(q['interval'][0]-1e-9<=c['u']<=q['interval'][1]+1e-9 for c in cycles)]
+    # A closed root just across a grid node used to leave a spurious warning
+    # on its same-sign neighbor. Refine that neighbor and inspect P'-1, the
+    # derivative of the unnormalized displacement. Resolve it only on a
+    # sampled contracting branch connected to a confirmed neighboring orbit.
+    # This is a finite-grid check, not a rigorous interval enclosure of P'.
+    remaining=[]
+    for warning in suspects:
+        if warning['message']!='near_zero_without_bracket':
+            remaining.append(warning);continue
+        direction=warning['time_direction'];table=tables[direction];a,b=warning['interval']
+        index=next(j for j,q in enumerate(table[:-1]) if q['u']==a and table[j+1]['u']==b)
+        lower=table[max(0,index-1)]['u'];upper=table[min(len(table)-1,index+2)]['u']
+        neighbor=next((q for q in cycles if q['time_direction']==direction
+                       and lower<=q['u']<=upper and q['log_multiplier']*direction<np.log1p(-1e-4)),None)
+        if neighbor is None:
+            remaining.append(warning);continue
+        sec=Section(section.C,section.h0,direction*section.orientation)
+        opts=direction_settings[direction]
+        checks=[table[index],*[first_return(system,sec,float(u),False,**opts)
+                    for u in np.linspace(a,b,5)[1:-1]],table[index+1]]
+        tolerance=max(2e-9,20*settings.get('atol',2e-10)+20*settings.get('rtol',2e-8))
+        sign=np.sign(table[index]['G'])
+        safe=all(q['status']=='valid'
+                 and q['log_multiplier']<np.log1p(-1e-4)
+                 and sign*q['G']>max(1e-8,tolerance/((1-section.h0)*q['u'])) for q in checks)
+        if not safe:
+            remaining.append(warning);continue
+        resolved_near_zero.append(dict(**warning,neighbor_u=neighbor['u'],
+            resolution='same-sign refined displacement on sampled contracting branch',
+            checks=[{k:q[k] for k in ['u','G','log_multiplier']} for q in checks]))
+    suspects=remaining
     return dict(cycles=cycles,records=tables[1],inverse_records=tables[-1],suspect_intervals=suspects,
                 rejected_shooting_roots=rejected,
+                resolved_near_zero_intervals=resolved_near_zero,
                 regular_edges=sum(a['status']==b['status']=='valid' for table in tables.values() for a,b in zip(table[:-1],table[1:])))

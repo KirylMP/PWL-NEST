@@ -31,6 +31,11 @@ cycle count does not establish a matched orbit, period, or bifurcation branch.
   narrow Gaussian smoothing was saturated. LR training counts are checked before
   fitting; the shared final epsilon is reduced further if needed, with at most
   one source-profile grid refinement. The actual schedule is saved.
+  Orbit-scan warnings are handled separately from smoothing: a near-zero
+  same-sign interval next to a confirmed orbit is checked at additional points
+  for a contracting displacement branch. The observations are saved as
+  `resolved_near_zero_intervals`; failed checks remain unresolved. Epsilon is
+  not repeatedly reduced to repair an unresolved orbit scan.
 - `ftol` and `xtol` are disabled in the v5 solver. `success` means checked
   stationarity on the **common final grid**, together with a passed numerical
   cycle audit. Solver termination, gradient stationarity, numerical admissibility
@@ -117,7 +122,9 @@ Everything is in `runs/fm_am_reduction/<name>/` (ignored by Git):
 - `reference/source_cycle_inventory.json`: training LR cycle observations,
   physical coverage intervals, grids, solver settings and unresolved cases;
 - `training_grid_history.json`, `epsilon_calibration.json`: observed transitions,
-  the common grid construction and source counter convergence checks;
+  the common grid construction and source counter convergence checks. Calibration
+  errors include the failing I, observed/smoothed counts, actual record count and
+  orbit-scan warnings; `actual_final_epsilon` is an epsilon actually checked;
 - `optimizer/search_setup.json`: actual regional bounds, scales and tolerances;
 - `optimizer/trials/trial_*/iterations.jsonl`: objective evaluations, step sizes,
   return statuses/anchors, Jacobian spectra and conditioning;

@@ -155,6 +155,22 @@ class V5Checks(unittest.TestCase):
             self.assertTrue(result['resolved']);self.assertLess(result['actual_final_epsilon'],.02)
             self.assertEqual(cfg['cycle_smoothing']['epsilon_schedule'][-1],result['actual_final_epsilon'])
 
+    def test_epsilon_does_not_clear_unresolved_orbit_scan(self):
+        cfg=dict(cycle_fit=dict(profile_nodes=9,count_tolerance=.025),
+                 cycle_smoothing=dict(epsilon_schedule=[.1,.001],xi=1e-7))
+        row=dict(I=.580960283961,records=[dict(status='valid',G=g) for g in [1.,-1.,-2.]],
+                 cycles=[dict(kind='stable')],
+                 suspect_intervals=[dict(interval=[.65,.66],message='near_zero_without_bracket')])
+        with tempfile.TemporaryDirectory() as tmp,patch('cycle_training_audit.prepare_source_inventory',return_value={'rows':[row]}):
+            with self.assertRaisesRegex(ValueError,'I=0.580960283961: near_zero_without_bracket'):
+                calibrate_source_epsilon(Path(tmp),cfg)
+            result=json.loads((Path(tmp)/'epsilon_calibration.json').read_text())
+        self.assertFalse(result['resolved']);self.assertEqual(len(result['history']),2)
+        self.assertEqual(result['actual_final_epsilon'],.001)
+        self.assertEqual(cfg['cycle_smoothing']['epsilon_schedule'],[.1,.001])
+        self.assertTrue(result['history'][-1]['profile_unresolved'])
+        self.assertEqual(result['history'][-1]['errors'][0]['observed_counts'],[1,0])
+
     def test_invalid_proposal_is_rejected_without_losing_incumbent(self):
         x=vector(MODEL)
         class Toy:

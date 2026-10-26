@@ -64,7 +64,8 @@ def _source_profile(ip3,p,nodes,solver):
                 nodes_used=np.asarray(used_nodes).tolist(),solver_used=used_solver,
                 records=scan['records'],inverse_records=scan['inverse_records'],
                 capture_points=[y.tolist() for y in stable],reverse_capture_points=[y.tolist() for y in reverse],
-                regular_edges=scan['regular_edges'],suspect_intervals=scan['suspect_intervals'])
+                regular_edges=scan['regular_edges'],suspect_intervals=scan['suspect_intervals'],
+                resolved_near_zero_intervals=scan['resolved_near_zero_intervals'])
 
 
 def prepare_source_inventory(run_dir,config,allow_settings_change=False):
@@ -72,7 +73,7 @@ def prepare_source_inventory(run_dir,config,allow_settings_change=False):
     from functools import partial
     p=json.loads((run_dir/'run.json').read_text())['parameters'];cfg=config['cycle_fit']
     path=run_dir/'reference'/'source_cycle_inventory.json'
-    settings_signature=hashlib.sha256(json.dumps(dict(algorithm='v5_capture_inventory_1',p=p,solver=settings(config),
+    settings_signature=hashlib.sha256(json.dumps(dict(algorithm='v5_capture_inventory_2',p=p,solver=settings(config),
         nodes=cfg['profile_nodes'],base_u_nodes=cfg['u_nodes']),sort_keys=True).encode()).hexdigest()
     signature=hashlib.sha256(json.dumps(dict(settings=settings_signature,I=cfg['I_nodes']),sort_keys=True).encode()).hexdigest()
     cached={}
@@ -112,17 +113,29 @@ def calibrate_source_epsilon(run_dir,config):
                 half,_,_=smooth_counts(row['records'],epsilon/2,config['cycle_smoothing']['xi'])
                 observed=np.array([sum(q['kind']=='stable' for q in row['cycles']),sum(q['kind']=='unstable' for q in row['cycles'])])
                 error=max(float(np.max(abs(count-observed))),float(np.max(abs(count-half))))
-                errors.append(dict(I=row['I'],error=error,regular_edges=edges,unresolved=bool(row['suspect_intervals'])))
+                errors.append(dict(I=row['I'],error=error,regular_edges=edges,unresolved=bool(row['suspect_intervals']),
+                    counts=count.tolist(),half_epsilon_counts=half.tolist(),observed_counts=observed.tolist(),
+                    suspect_intervals=row['suspect_intervals'],nodes_used=len(row['records'])))
             resolved=all(q['error']<=cfg['count_tolerance'] and q['regular_edges']>=2 and not q['unresolved'] for q in errors)
-            history.append(dict(epsilon=epsilon,profile_nodes=cfg['profile_nodes'],resolved=resolved,errors=errors))
+            profile_unresolved=any(q['unresolved'] or q['regular_edges']<2 for q in errors)
+            history.append(dict(epsilon=epsilon,profile_nodes=cfg['profile_nodes'],resolved=resolved,
+                profile_unresolved=profile_unresolved,errors=errors))
             if resolved:break
-            epsilon/=3
+            # Epsilon cannot repair an unresolved orbit/domain scan. Refine the
+            # profile rather than repeatedly reducing unrelated smoothing.
+            if profile_unresolved:break
+            if attempt<5:epsilon/=3
         if resolved:break
         if grid_round==0:cfg['profile_nodes']=2*cfg['profile_nodes']-1
     if resolved and epsilon<schedule[-1]:schedule.append(epsilon)
     report=dict(requested_final_epsilon=requested,actual_final_epsilon=epsilon,resolved=resolved,history=history)
     (run_dir/'epsilon_calibration.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
-    if not resolved:raise ValueError('LR training counters remain unresolved after epsilon/grid calibration; inspect epsilon_calibration.json')
+    if not resolved:
+        bad=[q for q in errors if q['error']>cfg['count_tolerance'] or q['unresolved'] or q['regular_edges']<2]
+        detail='; '.join(f"I={q['I']:.12g}: " +
+            (','.join(sorted(set(s['message'] for s in q['suspect_intervals']))) if q['unresolved']
+             else f"regular_edges={q['regular_edges']}, counter_error={q['error']:.6g}") for q in bad)
+        raise ValueError(f'LR training calibration unresolved: {detail}; inspect epsilon_calibration.json')
     print(f'Shared final epsilon calibrated: {epsilon:g}; source profile nodes={cfg["profile_nodes"]}',flush=True)
     return report
 

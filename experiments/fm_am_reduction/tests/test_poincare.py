@@ -57,6 +57,47 @@ class ReturnChecks(unittest.TestCase):
         self.assertEqual(scan['cycles'],[])
         self.assertTrue(any(q['message']=='root_does_not_close' for q in scan['suspect_intervals']))
 
+    def test_near_zero_neighbor_requires_refined_contraction_checks(self):
+        nodes=[.65,.66,.67,.68];root=.6600228
+        def returned(system,section,u,*args,**kwargs):
+            return dict(status='valid',u=u,G=(root-u)/u,return_residual=root-u,
+                        log_multiplier=-2.,Cmin=.1,Cmax=.9,time_direction=kwargs.get('time_direction',1))
+        table=[returned(None,None,u) for u in nodes]
+        for direction in [1,-1]:
+            for issue in [None,'turn','expansion','failure']:
+                def probe(system,section,u,*args,**kwargs):
+                    result=returned(system,section,u,*args,**kwargs)
+                    if .65<u<.66:
+                        if issue=='turn':result['G']=-.01
+                        if issue=='expansion':result['log_multiplier']=.1
+                        if issue=='failure':result=dict(status='timeout',u=u)
+                    return result
+                tables=[table,[]] if direction==1 else [[],table]
+                with self.subTest(issue=issue,direction=direction),patch('poincare.return_table',side_effect=tables),\
+                     patch('poincare.brentq',return_value=root),patch('poincare.first_return',side_effect=probe):
+                    scan=isolate_cycles(Radial(),Section(0,0,-1),nodes,{})
+                    self.assertEqual(len(scan['cycles']),1)
+                    self.assertEqual(scan['cycles'][0]['kind'],'stable' if direction==1 else 'unstable')
+                    self.assertEqual(bool(scan['suspect_intervals']),issue is not None)
+                    self.assertEqual(len(scan['resolved_near_zero_intervals']),1 if issue is None else 0)
+
+    def test_near_zero_without_closed_neighbor_remains_unresolved(self):
+        table=[dict(status='valid',u=u,G=3e-5,log_multiplier=-2.) for u in [.65,.66,.67]]
+        with patch('poincare.return_table',side_effect=[table,[]]):
+            scan=isolate_cycles(Radial(),Section(0,0,-1),[.65,.66,.67],{})
+        self.assertTrue(scan['suspect_intervals']);self.assertFalse(scan['resolved_near_zero_intervals'])
+
+    def test_lr_server_calibration_neighbor_is_resolved(self):
+        from cycle_training_audit import _source_profile
+        cases=json.loads((Path(__file__).resolve().parents[1]/'config'/'cases.json').read_text())
+        p={**cases['shared_parameters'],'K_ER':.05}
+        row=_source_profile(.580960283961,p,[.65,.66,.67,.68],
+            dict(max_time=100,rtol=2e-8,atol=2e-10,max_step=.5,max_evaluations=100000))
+        self.assertEqual([q['kind'] for q in row['cycles']],['stable'])
+        self.assertFalse(row['suspect_intervals']);self.assertTrue(row['resolved_near_zero_intervals'])
+        count,_,edges=smooth_counts(row['records'],.001)
+        self.assertGreaterEqual(edges,2);np.testing.assert_allclose(count,[1,0],atol=.025)
+
     def test_orbit_deduplication_uses_stability_and_crossings(self):
         orbit=dict(kind='stable',period=20.,Cmin=.03,Cmax=1.,orbit_crossings={'0.5':[.8]})
         self.assertTrue(same_orbit(orbit,{**orbit,'period':20.000001}))
