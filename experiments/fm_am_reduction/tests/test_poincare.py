@@ -1,9 +1,14 @@
 import sys
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 import numpy as np
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from poincare import Section,first_return,smooth_counts,isolate_cycles,PWASystem
+from validate_structure import same_orbit
+from full_cycle_fit import reference_section
+from poincare import LRSystem
+import json
 
 class Radial:
     nparams=0
@@ -31,8 +36,50 @@ class ReturnChecks(unittest.TestCase):
         records=isolate_cycles(Radial(),Section(0,0,-1),np.linspace(.1,.95,19),dict(max_time=30,max_step=.2))
         self.assertEqual(sorted(q['kind'] for q in records['cycles']),['stable','unstable'])
         np.testing.assert_allclose(sorted(q['s'] for q in records['cycles']),[.3,.7],atol=1e-6)
+        for cycle in records['cycles']:
+            self.assertEqual(cycle['time_direction'],1 if cycle['kind']=='stable' else -1)
+            self.assertLess(abs(cycle['return_residual']),1e-9)
         counts,_,_=smooth_counts(records['records'],.001)
         np.testing.assert_allclose(counts,[1,1],atol=.02)
+
+    def test_backward_return_multiplier_is_inverse(self):
+        result=first_return(Radial(),Section(0,0,1),.3,time_direction=-1,max_time=20,max_step=.15)
+        self.assertEqual(result['status'],'valid')
+        expected=np.exp(-2*.09*(.49-.09)*2*np.pi)
+        self.assertAlmostEqual(result['multiplier'],expected,places=6)
+        self.assertAlmostEqual(result['period'],2*np.pi,places=6)
+
+    def test_brent_convergence_without_closure_is_rejected(self):
+        table=[dict(status='valid',u=.1,G=1),dict(status='valid',u=.9,G=-1)]
+        result=dict(status='valid',u=.5,G=.01,return_residual=.001,log_multiplier=-1.,Cmin=.1,Cmax=.9)
+        with patch('poincare.return_table',return_value=table),patch('poincare.brentq',return_value=.5),patch('poincare.first_return',return_value=result):
+            scan=isolate_cycles(Radial(),Section(0,0,-1),[.1,.9],{})
+        self.assertEqual(scan['cycles'],[])
+        self.assertTrue(any(q['message']=='root_does_not_close' for q in scan['suspect_intervals']))
+
+    def test_orbit_deduplication_uses_stability_and_crossings(self):
+        orbit=dict(kind='stable',period=20.,Cmin=.03,Cmax=1.,orbit_crossings={'0.5':[.8]})
+        self.assertTrue(same_orbit(orbit,{**orbit,'period':20.000001}))
+        self.assertFalse(same_orbit(orbit,{**orbit,'kind':'unstable'}))
+        self.assertFalse(same_orbit(orbit,{**orbit,'orbit_crossings':{'0.5':[.800002]}}))
+        self.assertFalse(same_orbit(orbit,{**orbit,'orbit_crossings':{}}))
+
+    def test_lr_strongly_repelling_cycle_is_closed_backward(self):
+        cases=json.loads((Path(__file__).resolve().parents[1]/'config'/'cases.json').read_text())
+        p={**cases['shared_parameters'],'K_ER':.05};ip3=87/81
+        system=LRSystem(p,ip3);sec=reference_section(ip3,p)
+        settings=dict(max_time=120,rtol=3e-10,atol=3e-12,max_step=.25,
+                      capture_points=([sec.C,sec.h0],))
+        scan=isolate_cycles(system,sec,np.linspace(.02,.95,21),settings)
+        self.assertEqual(sorted(q['kind'] for q in scan['cycles']),['stable','unstable'])
+        unstable=next(q for q in scan['cycles'] if q['kind']=='unstable')
+        self.assertGreater(unstable['multiplier'],1e6)
+        self.assertLess(abs(unstable['G']),1e-7)
+        independent=first_return(system,Section(sec.C,sec.h0,-1),unstable['u'],time_direction=-1,
+            method='RK45',max_time=120,max_step=.1,rtol=1e-10,atol=1e-12)
+        self.assertEqual(independent['status'],'valid')
+        self.assertLess(abs(independent['return_residual']),2e-8)
+        self.assertAlmostEqual(independent['period'],unstable['period'],places=5)
 
     def test_invalid_nodes_do_not_form_edges(self):
         records=[dict(status='valid',G=2),dict(status='timeout'),dict(status='valid',G=-2)]

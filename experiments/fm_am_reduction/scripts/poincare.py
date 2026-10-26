@@ -80,18 +80,20 @@ class PWASystem:
 
 
 def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=2e-8,
-                 atol=2e-10,max_step=.5,max_evaluations=100000, capture_points=(),method="DOP853"):
+                 atol=2e-10,max_step=.5,max_evaluations=100000, capture_points=(),method="DOP853",
+                 time_direction=1,witness_sections=()):
     """First opposite crossing then first crossing in the initial orientation.
 
     The sensitivity matrix is propagated at fixed time across continuous-field
     switches; the moving-section correction is applied at the final return.
     """
+    if time_direction not in (-1,1):raise ValueError('time_direction must be -1 or 1')
     h=section.h0+(1-section.h0)*float(u);zsec=system.coordinate(section.C)
     y0=np.array([zsec,h]);n=system.nparams if sensitivities else 0
     orientation=section.orientation
     if not 0<u or section.h0>=1 or np.any(y0<=system.bounds[:,0]) or np.any(y0>=system.bounds[:,1]):
         return dict(status='initial_outside_domain',u=float(u))
-    initial_field=system.field(y0);normal=orientation*initial_field[0]
+    initial_field=time_direction*system.field(y0);normal=orientation*initial_field[0]
     if normal<=1e-9:
         return dict(status='wrong_orientation_or_tangency',u=float(u),initial_normal=float(normal))
     # Last column is the derivative with respect to the section coordinate h.
@@ -106,7 +108,7 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
         y=v[:2];mat=v[2:-1].reshape(2,n+1)
         deriv=system.jac(y)@mat
         if n:deriv[:,:n]+=system.partials(y)
-        return np.r_[system.field(y),deriv.ravel(),np.trace(system.jac(y))]
+        return time_direction*np.r_[system.field(y),deriv.ravel(),np.trace(system.jac(y))]
     def boundary(t,v):return min(*(v[:2]-system.bounds[:,0]),*(system.bounds[:,1]-v[:2]))
     boundary.direction=-1;boundary.terminal=True
     def extremum(t,v):return system.field(v[:2])[0]
@@ -115,22 +117,31 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
         if not capture_points:return 1.
         return min(np.linalg.norm(v[:2]-p) for p in capture_points)-1e-8
     capture.direction=-1;capture.terminal=True
+    witnesses=[];crossings={str(float(c)):[] for c in witness_sections}
+    for c in witness_sections:
+        def witness(t,v,z=system.coordinate(c)):return v[0]-z
+        witness.direction=orientation;witness.terminal=False
+        witnesses.append(witness)
     now=0.;state=initial
     try:
         # Separating crossings removes the t=0 root without an arbitrary time nudge.
         for direction in [-orientation,orientation]:
             def crossing(t,v):return v[0]-zsec
             crossing.direction=direction;crossing.terminal=True
-            sol=solve_ivp(rhs,[now,max_time],state,method=method,events=[crossing,boundary,capture,extremum],
+            sol=solve_ivp(rhs,[now,max_time],state,method=method,events=[crossing,boundary,capture,extremum,*witnesses],
                           rtol=rtol,atol=atol,max_step=max_step)
             paths.extend(sol.y[:2].T.tolist());times.extend(sol.t.tolist())
             if len(sol.y_events[3]):paths.extend(sol.y_events[3][:,:2].tolist())
+            for c,events in zip(witness_sections,sol.y_events[4:]):
+                for event in events:
+                    values=crossings[str(float(c))]
+                    if not any(abs(event[1]-h)<5e-8 for h in values):values.append(float(event[1]))
             if not sol.success:return dict(status='solver_failure',u=float(u),message=sol.message)
             if len(sol.t_events[1]):return dict(status='domain_exit',u=float(u))
             if len(sol.t_events[2]):return dict(status='equilibrium_capture',u=float(u))
             if not len(sol.t_events[0]):return dict(status='timeout',u=float(u))
             now=float(sol.t_events[0][0]);state=sol.y_events[0][0]
-        fy=system.field(state[:2]);normal_final=orientation*fy[0]
+        fy=time_direction*system.field(state[:2]);normal_final=orientation*fy[0]
         if normal_final<1e-9:return dict(status='return_tangency',u=float(u))
         sens=state[2:-1].reshape(2,n+1)
         corrected=sens[1].copy()-fy[1]/fy[0]*sens[0]
@@ -143,7 +154,9 @@ def first_return(system, section, u, sensitivities=False, *, max_time=400.,rtol=
         return dict(status='valid',u=float(u),s=float(h),P=returned,G=(returned-h)/den,
                     dG=(corrected[:n]/den).tolist(),multiplier=multiplier,log_multiplier=log_multiplier,period=now,
                     Cmin=system.physical(float(zs.min())),Cmax=system.physical(float(zs.max())),
-                    initial_normal=float(normal),return_normal=float(normal_final))
+                    initial_normal=float(normal),return_normal=float(normal_final),
+                    return_residual=returned-float(h),time_direction=time_direction,
+                    orbit_crossings={c:sorted(vals) for c,vals in crossings.items()})
     except (RuntimeError,ValueError,FloatingPointError,OverflowError) as exc:
         return dict(status='integration_error',u=float(u),message=str(exc))
 
@@ -169,24 +182,57 @@ def smooth_counts(records,epsilon,xi=1e-7,nparams=0):
     return values,grad,edges
 
 
-def isolate_cycles(system,section,nodes,settings,root_tolerance=1e-8):
-    table=return_table(system,section,nodes,False,**settings);cycles=[];suspects=[]
-    for left,right in zip(table[:-1],table[1:]):
-        if left['status']!='valid' or right['status']!='valid':continue
-        if left['G']*right['G']>0:
-            if min(abs(left['G']),abs(right['G']))<1e-4:suspects.append([left['u'],right['u']])
-            continue
-        def displacement(u):
-            result=first_return(system,section,u,False,**settings)
-            if result['status']!='valid':raise ValueError('return_domain_gap_inside_bracket')
-            return result['G']
-        try:
-            u=brentq(displacement,left['u'],right['u'],xtol=root_tolerance)
-            result=first_return(system,section,u,False,**settings)
-            if result['status']!='valid':continue
-            lam=result['multiplier'];kind='stable' if lam<1-1e-4 else ('unstable' if lam>1+1e-4 else 'degenerate')
-            if not any(abs(u-q['u'])<1e-6 for q in cycles):
-                cycles.append(dict(**result,kind=kind,section_C=section.C,section_h0=section.h0))
-        except ValueError as exc:suspects.append(dict(interval=[left['u'],right['u']],message=str(exc)))
-    return dict(cycles=cycles,records=table,suspect_intervals=suspects,
-                regular_edges=sum(a['status']==b['status']=='valid' for a,b in zip(table[:-1],table[1:])))
+def isolate_cycles(system,section,nodes,settings,root_tolerance=5e-13,reverse_capture_points=()):
+    """Attracting roots forward, repelling roots backward, with closure checks.
+
+    A small bracketing interval alone is insufficient: a strongly expanding
+    forward map can produce a large return residual even at brentq convergence.
+    Multipliers in output always refer to forward physical time.
+    """
+    cycles=[];suspects=[];tables={};rejected=[]
+    for direction in (1,-1):
+        sec=Section(section.C,section.h0,direction*section.orientation)
+        opts={**settings,'time_direction':direction}
+        if direction==-1:opts['capture_points']=reverse_capture_points
+        table=return_table(system,sec,nodes,False,**opts);tables[direction]=table
+        for left,right in zip(table[:-1],table[1:]):
+            if left['status']!='valid' or right['status']!='valid':continue
+            interval=[left['u'],right['u']]
+            if left['G']*right['G']>0:
+                if min(abs(left['G']),abs(right['G']))<1e-4:
+                    suspects.append(dict(interval=interval,time_direction=direction,message='near_zero_without_bracket'))
+                continue
+            def displacement(u):
+                result=first_return(system,sec,u,False,**opts)
+                if result['status']!='valid':raise ValueError('return_domain_gap_inside_bracket')
+                return result['G']
+            try:
+                u=brentq(displacement,*interval,xtol=root_tolerance)
+                result=first_return(system,sec,u,False,**opts)
+                if result['status']!='valid':raise ValueError('invalid_return_at_root')
+                # Only contracting-time shooting is used for hyperbolic orbits.
+                # The expanding-time bracket is resolved by the opposite scan.
+                if result['log_multiplier']>np.log1p(1e-4):
+                    rejected.append(dict(interval=interval,u=u,time_direction=direction,message='expanding_shooting_use_opposite_time'))
+                    continue
+                tolerance=max(2e-9,20*settings.get('atol',2e-10)+20*settings.get('rtol',2e-8))
+                if abs(result['return_residual'])>tolerance or abs(result['G'])>1e-5:
+                    raise ValueError('root_does_not_close')
+                if result['Cmax']-result['Cmin']<1e-6:raise ValueError('vanishing_orbit_amplitude')
+                log_lam=direction*result['log_multiplier']
+                lam=float(np.exp(np.clip(log_lam,-700,700)))
+                kind='stable' if lam<1-1e-4 else ('unstable' if lam>1+1e-4 else 'degenerate')
+                result.update(multiplier=lam,log_multiplier=log_lam)
+                if not any(abs(u-q['u'])<1e-7 and kind==q['kind'] for q in cycles):
+                    cycles.append(dict(**result,kind=kind,section_C=section.C,section_h0=section.h0))
+            except ValueError as exc:
+                suspects.append(dict(interval=interval,time_direction=direction,message=str(exc)))
+    # Expanding-time failures remain visible; count them unresolved only if the
+    # inverse map did not confirm a closed root in the same section bracket.
+    for failure in rejected:
+        if not any(failure['interval'][0]-1e-9<=q['u']<=failure['interval'][1]+1e-9 for q in cycles):
+            suspects.append(failure)
+    suspects=[q for q in suspects if not any(q['interval'][0]-1e-9<=c['u']<=q['interval'][1]+1e-9 for c in cycles)]
+    return dict(cycles=cycles,records=tables[1],inverse_records=tables[-1],suspect_intervals=suspects,
+                rejected_shooting_roots=rejected,
+                regular_edges=sum(a['status']==b['status']=='valid' for table in tables.values() for a,b in zip(table[:-1],table[1:])))

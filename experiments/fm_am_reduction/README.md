@@ -73,8 +73,13 @@ tail -f runs/fm_am_reduction/fm_full_64/logs/run_*.log
 ```
 
 Cycle validation uses a shifted I grid, more section nodes and tighter tolerances.
-It enumerates fixed-point roots of oriented first returns, checks their
-multipliers, deduplicates orbits across sections, then corrects neighboring-I
+Sections include both models' equilibria, so a small candidate cycle need not
+intersect the source equilibrium section. Stable cycles are shot in forward
+time, unstable cycles in backward time; reported multipliers always refer to
+forward time. Each root must pass an explicit return-residual check. Convergence
+of a scalar root bracket alone is insufficient for an expanding return map.
+Orbits are merged only if stability, periods, extrema and common oriented
+section intersections agree. The scan then corrects neighboring-I
 predictions. Thus repelling cycles can be found without waiting for a trajectory
 to converge to them. Nonhyperbolic/suspect cases and uncovered domains remain
 explicitly unresolved. A finite grid cannot prove global completeness.
@@ -99,3 +104,34 @@ limits. Regression checks:
 ```bash
 python -m unittest discover -s experiments/fm_am_reduction/tests -v
 ```
+
+## Audit an existing cycle counter
+
+The six default training I values do not sample the interval (.65, .8).
+A third cycle confined to that interval can incur no sampled extra-cycle penalty.
+Moreover, a single LR equilibrium section need not intersect every candidate
+orbit; a sufficient number of regular edges does not establish orbit coverage.
+Increasing trials alone does not fix either omission.
+
+The following command compares the original and denser section grids at common
+I values, all configured epsilons, and independent multi-section roots at the
+specified structural points. It preserves fitted models and their scores:
+
+```bash
+python -u experiments/fm_am_reduction/scripts/audit_cycle_counts.py \
+  --candidate path/to/selected.json path/to/candidate.json \
+  --config runs/fm_am_reduction/fm_full_64/protocol.json \
+  --I .55 .65 .75 .78 .8 .8024691358 1.0 1.0740740740740742 1.1 1.14 \
+  --structure-I .78 .8024691358 1.0740740740740742 \
+  --workers 16 --nodes 65 --structure-nodes 65 \
+  --out runs/fm_am_reduction/cycle_audit_v4
+```
+
+The output contains a provenance manifest, a summary, raw maps for both grids,
+per-epsilon counts/errors, return statuses, closed orbits and the number that
+cross the training section. `aggregate.json` keeps the original training-I score
+separate from the refined audit-I score. Logs are in `logs/audit.log`; PNG/PDF
+figures show the counters and return maps. Omit `--config` only to reconstruct v3 defaults;
+such a report explicitly records that the original run configuration was absent.
+No new fit or model selection is performed. Finite-grid enumeration remains
+incomplete, so an observed count is not a proof that no further cycles exist.

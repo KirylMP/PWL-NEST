@@ -14,6 +14,21 @@ from poincare import Section,LRSystem,PWASystem,isolate_cycles
 from analyze_candidate import vector,stability
 
 
+def same_orbit(a,b):
+    """Compare closed orbits, including common oriented section intersections."""
+    if a['kind']!=b['kind']:return False
+    if abs(a['period']/b['period']-1)>=.003:return False
+    if max(abs(a['Cmin']-b['Cmin']),abs(a['Cmax']-b['Cmax']))>=.001:return False
+    common=[]
+    for c,values in a.get('orbit_crossings',{}).items():
+        other=b.get('orbit_crossings',{}).get(c,[])
+        if values and other:
+            if len(values)!=len(other) or max(abs(np.asarray(values)-other))>2e-7:return False
+            common.append(c)
+    # No merge based solely on nearby periods and amplitudes.
+    return bool(common)
+
+
 def _validate_point(task):
     ip3,model,p,nodes,solver,seeds=task;cmax=p['C_0']/(1+p['c_1'])
     source=roots_for_ip3(ip3,p,cmax,5000);output=dict(I=ip3,LR_equilibria=source)
@@ -33,11 +48,16 @@ def _validate_point(task):
             sides.append(dict(trace=float(tr),determinant=float(det),discriminant=float(tr*tr-4*det)))
         eq.append(dict(C=c,h=h,I=ip3,physical=bool(0<c<cmax and 0<h<1),on_threshold=len(regions)>1,sides=sides))
     output['PWA_equilibria']=eq;output['nonisolated_equilibria']=degenerate
-    sections=sorted(set([.06,.2,.5,.9]+[q['C'] for q in source if .02<q['C']<1.15]))
+    # Small candidate cycles may not intersect the LR equilibrium section.
+    sections=sorted(set([.06,.2,.5,.9]+[q['C'] for q in source+eq
+                                      if .02<q['C']<cmax-.02 and 0<q['h']<1]))
     for key,system in systems.items():
         cycles=[];scans=[];regular=0;unresolved=[]
         capture=tuple(np.array([system.coordinate(q['C']),q['h']]) for q in output[key+'_equilibria']
                       if 0<q['C']<cmax and 0<q['h']<1 and stability(q)=='stable')
+        reverse_capture=tuple(np.array([system.coordinate(q['C']),q['h']]) for q in output[key+'_equilibria']
+                      if 0<q['C']<cmax and 0<q['h']<1
+                      and np.min(np.linalg.eigvals(system.jac([system.coordinate(q['C']),q['h']])).real)>1e-8)
         section_values=sorted(set(sections+[q['section_C'] for q in seeds.get(key,[])]))
         for csec in section_values:
             h0=system.nullcline(csec)
@@ -50,13 +70,16 @@ def _validate_point(task):
                     u=(q['s']-h0)/(1-h0)
                     guesses.extend([u-.01,u,u+.01])
             grid=np.unique(np.r_[nodes,[u for u in guesses if 1e-5<u<.999]])
-            scan=isolate_cycles(system,section,grid,{**solver,'capture_points':capture})
+            scan=isolate_cycles(system,section,grid,{**solver,'capture_points':capture,'witness_sections':section_values},
+                                reverse_capture_points=reverse_capture)
             regular+=scan['regular_edges']
             scans.append(dict(C=csec,h0=h0,**scan))
             for orbit in scan['cycles']:
-                duplicate=any(abs(orbit['period']/q['period']-1)<.003
-                    and max(abs(orbit['Cmin']-q['Cmin']),abs(orbit['Cmax']-q['Cmax']))<.001 for q in cycles)
-                if not duplicate:cycles.append(orbit)
+                duplicate=next((q for q in cycles if same_orbit(orbit,q)),None)
+                if duplicate is None:
+                    orbit['observations']=[dict(section_C=csec,s=orbit['s'],time_direction=orbit['time_direction'])]
+                    cycles.append(orbit)
+                else:duplicate['observations'].append(dict(section_C=csec,s=orbit['s'],time_direction=orbit['time_direction']))
         # A uniformly signed PWA divergence excludes cycles in the physical rectangle.
         bendixson=key=='PWA' and (np.all(-system.a*system.ns-system.b<-1e-8) or np.all(-system.a*system.ns-system.b>1e-8))
         status='enumerated_on_grid' if regular else ('excluded_by_divergence' if bendixson else 'unresolved_no_regular_returns')
@@ -136,7 +159,8 @@ def validate(run_dir,workers=1,points=81,nodes=33,max_time=600.):
         extrema_RMSE_uM=float(np.sqrt(np.mean(np.square(ext)))) if ext else None,
         period_RMSE_s=float(np.sqrt(np.mean(np.square(period)))) if period else None,
         transition_intervals=transitions,global_completeness_proven=False,
-        deduplication=dict(period_relative=.003,extrema_absolute_uM=.001),
+        deduplication=dict(period_relative=.003,extrema_absolute_uM=.001,common_section_h_absolute=2e-7,
+                           same_stability_required=True,closure_checked=True,unstable_shooting='backward_time'),
         candidate_selected_using_validation=False,
         nonphysical_equilibrium_points=sum(any(not q.get('physical',True) for q in r['PWA_equilibria']) for r in rows))
     (out/'summary.json').write_text(json.dumps(summary,indent=2,allow_nan=False)+'\n')

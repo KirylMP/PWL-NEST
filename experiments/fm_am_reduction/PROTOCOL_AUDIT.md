@@ -37,9 +37,9 @@ objective and independent structural check. Historical results remain separate.
 - Section 7: independent affine/log/power/mixed starts, geometry stage followed
   by full 26-parameter continuation .15 -> .05 -> .02, per-stage checkpoints,
   worker-failure records, common final score and raw return tables.
-- Section 8: shifted-grid equilibrium/cycle spectra, multiple sections and root
-  searches for stable AND unstable cycles, neighbor-I predictor/corrector seeds,
-  deduplication by period/extrema, structural signature error, matched extrema
+- Section 8: shifted-grid equilibrium/cycle spectra, sections through both models'
+  equilibria and root searches for stable AND unstable cycles, neighbor-I seeds,
+  deduplication by stability/period/extrema/common section intersections, structural signature error, matched extrema
   and periods with missing/extra counts, and interval-valued transitions.
 - Section 10: reproducible snapshots, grids, tolerances, seeds, constraints,
   histories, losses, raw maps, failures, plots and logs within each experiment.
@@ -66,6 +66,24 @@ has a uniformly signed divergence that excludes closed orbits. Tangencies,
 near-degenerate roots and domain gaps are unresolved, not ordinary cycles.
 Only regular hyperbolic comparisons enter the subset structural metric; the
 full-grid metric remains null when any points are unresolved.
+
+### Cycle audit correction (v4)
+
+The v3 scalar root tolerance (1e-8 in u) was insufficient for strongly expanding
+forward returns. For LR at I=87/81, it could accept an alleged unstable orbit
+with |G| about .01. Different sections then produced different approximate
+periods/extrema, and deduplication could count these as distinct cycles. The
+validator now shoots repelling cycles backward and requires a small closing
+residual, independently of root-bracket convergence. Common oriented section
+crossings are recorded and used in deduplication; opposite stability types are
+never merged. Expanding-time roots are diagnostics, not accepted orbits.
+
+The original six-I training grid leaves (.65,.8) unsampled. Extra cycles in that
+interval do not contribute to the sampled penalty. The smooth-count formula
+and unaveraged extra-cycle formula are unchanged; training-section coverage and
+I/u resolution require separate checks. `audit_cycle_counts.py` compares original
+and denser grids, saves raw returns and checks observed orbits against training
+section coverage. It does not silently change the objective or select a new fit.
 
 Completeness of all equilibria/cycles, resolution of arbitrarily close roots,
 and global optimization are not proved. Counts and deduplication depend on the

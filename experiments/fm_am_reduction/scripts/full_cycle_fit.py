@@ -17,16 +17,20 @@ def settings(config):
     return {k:c[k] for k in ['max_time','rtol','atol','max_step','max_evaluations']}
 
 
+def reference_section(ip3,p):
+    roots=roots_for_ip3(ip3,p,p['C_0']/(1+p['c_1']),5000)
+    if not roots:raise ValueError(f'No reference equilibrium for section at I={ip3}')
+    preferred=[q for q in roots if q['determinant']>0 and q['trace']>0]
+    center=(preferred or roots)[len(preferred or roots)//2]
+    return Section(center['C'],center['h'])
+
+
 def prepare_cycle_reference(run_dir,config):
     from plan import read_json
     run=read_json(run_dir/'run.json');p=run['parameters'];cfg={**DEFAULTS,**config.get('cycle_fit',{})}
     rows=[]
     for ip3 in cfg['I_nodes']:
-        roots=roots_for_ip3(ip3,p,p['C_0']/(1+p['c_1']),5000)
-        if not roots:raise ValueError(f'No reference equilibrium for section at I={ip3}')
-        preferred=[q for q in roots if q['determinant']>0 and q['trace']>0]
-        center=(preferred or roots)[len(preferred or roots)//2]
-        sec=Section(center['C'],center['h'])
+        sec=reference_section(ip3,p)
         table=return_table(LRSystem(p,ip3),sec,cfg['u_nodes'],**settings(config))
         _,_,edges=smooth_counts(table,.02)
         if edges<2:
