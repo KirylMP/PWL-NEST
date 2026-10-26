@@ -36,6 +36,7 @@ def jacobian(C, h, I, K, p):
     dcc = (p['r_C']*m**3*h**3*(
         3*n*n*p['d_5']/(C+p['d_5'])**2*(p['C_0']-(1+p['c_1'])*C)
         -(1+p['c_1'])*n**3)
+        -p['r_L']*(1+p['c_1'])
         -2*p['v_ER']*C*K*K/(C*C+K*K)**2)
     dch = 3*p['r_C']*m**3*n**3*h*h*(p['C_0']-(1+p['c_1'])*C)
     return np.array([[dcc, dch], [-p['a_2']*h, -p['a_2']*(q+C)]])
@@ -132,7 +133,6 @@ def main():
                 q=sorted(roots_grid[ix][ii],key=lambda z:z['C'])
                 vals.append(q[branch]['C'] if branch<len(q) else np.nan)
             axes[0].plot(i_values,vals,color=color,lw=1.3,label=f'K={k_values[ix]:.3g}' if branch==0 else None)
-    axes[0].axvline(.05,color='black',ls=':',lw=.8);axes[0].axvline(.1,color='black',ls='--',lw=.8)
     axes[0].set(xlabel='I',ylabel='Equilibrium C* (µM)',title='LR equilibrium zeros vs I at K_ER slices')
     axes[0].legend(fontsize=7,ncol=2);axes[0].grid(alpha=.2)
     im=axes[1].imshow(counts,origin='lower',aspect='auto',interpolation='nearest',

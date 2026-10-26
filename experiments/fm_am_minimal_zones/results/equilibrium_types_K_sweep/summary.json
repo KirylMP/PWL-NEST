@@ -1,0 +1,160 @@
+{
+  "K_range": [
+    0.025,
+    0.2
+  ],
+  "I_range": [
+    0.0,
+    2.0
+  ],
+  "n_K": 36,
+  "n_C": 1600,
+  "spectral_transition_counts": [
+    {
+      "K_ER": 0.025,
+      "count": 3
+    },
+    {
+      "K_ER": 0.030000000000000002,
+      "count": 3
+    },
+    {
+      "K_ER": 0.035,
+      "count": 3
+    },
+    {
+      "K_ER": 0.04,
+      "count": 7
+    },
+    {
+      "K_ER": 0.045,
+      "count": 7
+    },
+    {
+      "K_ER": 0.05,
+      "count": 7
+    },
+    {
+      "K_ER": 0.055,
+      "count": 7
+    },
+    {
+      "K_ER": 0.060000000000000005,
+      "count": 5
+    },
+    {
+      "K_ER": 0.065,
+      "count": 5
+    },
+    {
+      "K_ER": 0.07,
+      "count": 5
+    },
+    {
+      "K_ER": 0.07500000000000001,
+      "count": 5
+    },
+    {
+      "K_ER": 0.08,
+      "count": 5
+    },
+    {
+      "K_ER": 0.08499999999999999,
+      "count": 3
+    },
+    {
+      "K_ER": 0.09,
+      "count": 3
+    },
+    {
+      "K_ER": 0.095,
+      "count": 3
+    },
+    {
+      "K_ER": 0.1,
+      "count": 3
+    },
+    {
+      "K_ER": 0.10500000000000001,
+      "count": 3
+    },
+    {
+      "K_ER": 0.11000000000000001,
+      "count": 3
+    },
+    {
+      "K_ER": 0.11499999999999999,
+      "count": 1
+    },
+    {
+      "K_ER": 0.12,
+      "count": 1
+    },
+    {
+      "K_ER": 0.125,
+      "count": 1
+    },
+    {
+      "K_ER": 0.13,
+      "count": 1
+    },
+    {
+      "K_ER": 0.135,
+      "count": 1
+    },
+    {
+      "K_ER": 0.14,
+      "count": 1
+    },
+    {
+      "K_ER": 0.145,
+      "count": 1
+    },
+    {
+      "K_ER": 0.15,
+      "count": 1
+    },
+    {
+      "K_ER": 0.155,
+      "count": 1
+    },
+    {
+      "K_ER": 0.16,
+      "count": 1
+    },
+    {
+      "K_ER": 0.165,
+      "count": 1
+    },
+    {
+      "K_ER": 0.16999999999999998,
+      "count": 1
+    },
+    {
+      "K_ER": 0.175,
+      "count": 1
+    },
+    {
+      "K_ER": 0.18,
+      "count": 1
+    },
+    {
+      "K_ER": 0.185,
+      "count": 1
+    },
+    {
+      "K_ER": 0.19,
+      "count": 1
+    },
+    {
+      "K_ER": 0.195,
+      "count": 1
+    },
+    {
+      "K_ER": 0.2,
+      "count": 1
+    }
+  ],
+  "definition": "type-changing trace/determinant/discriminant roots on physical LR equilibria",
+  "caveat": "Finite-grid bracketing may miss tangencies or close transitions. These are LR spectral transitions, not a proof of minimal PWA threshold count."
+}

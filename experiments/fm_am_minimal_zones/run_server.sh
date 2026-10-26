@@ -9,7 +9,7 @@ export WORKERS="${WORKERS:-8}"
 export MPLCONFIGDIR="${MPLCONFIGDIR:-$HERE/.cache/matplotlib}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HERE/.cache}"
 mkdir -p "$HERE/logs" "$MPLCONFIGDIR" "$XDG_CACHE_HOME"
-export VALIDATE_DENSE=1
+export VALIDATE_DENSE="${VALIDATE_DENSE:-1}"
 echo "Started $(date -u +%FT%TZ), workers per audit=$WORKERS, Poincare scale=$POINCARE_WEIGHT_SCALE"
 git rev-parse HEAD
 python3 -m pip freeze > logs/server_environment.txt
@@ -31,5 +31,5 @@ if ((STATUS)); then
   echo 'A model pipeline failed; inspect logs before resuming.' >&2
   exit "$STATUS"
 fi
-python3 -u "$HERE/sweep_K_zeros.py" 2>&1 | tee "$HERE/logs/K_sweep.log"
+python3 -u "$HERE/sweep_K_thresholds.py" 2>&1 | tee "$HERE/logs/K_sweep.log"
 echo "Completed $(date -u +%FT%TZ)"
