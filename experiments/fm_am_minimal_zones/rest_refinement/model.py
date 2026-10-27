@@ -112,16 +112,19 @@ class Model:
         old=np.asarray(parent['parameters'],float);nold=len(self.base)+1;idx=self.kind
         x=np.r_[old[:2],old[2:2+nold][idx],old[2+nold:2+2*nold][idx],old[2+2*nold:6+2*nold],old[6+2*nold:10+2*nold]]
         try:
-            return self.constrain_events(x)
+            constrained=self.constrain_events(x)
+            if self.physically_valid_events(constrained):return constrained
+            if self.case!='fm':raise ValueError('Fixed event heights outside physical domain')
         except ValueError as exc:
             if self.case!='fm' or str(exc) not in ('Rest/event constraints incompatible with saddle','Derived determinant outside bounds'):
                 raise
-            # The old fit did not fix the rest point. Its duplicated regional
-            # slopes therefore need not satisfy the new event constraints.
-            # Find a nearby admissible starting point, keeping all cuts and
-            # the coordinate transform fixed. This is initialization only.
+        # The old fit did not fix the rest point; require admissible event
+        # heights as well as a saddle determinant during initialization.
+        # Keeping the cuts and transform fixed, vary regional slopes and the
+        # input coefficient; the remaining coefficients are derived exactly.
+        if self.case=='fm':
             from scipy.optimize import minimize
-            indices=np.array([2+self.n+r for r in (0,2,3,4,5,6)])
+            indices=np.array([2+self.n+r for r in (0,2,3,4,5,6)]+[2+r for r in range(7)]+[self.ni])
             original=x[indices].copy()
             bounds=list(zip(self.lo[indices]+1e-7,self.upper[indices]-1e-7))
             initial=np.clip(original,*np.asarray(bounds).T)
@@ -130,15 +133,23 @@ class Model:
                 z=np.r_[float(self.f.phi(self.rest[0],m['shape'])),m['th']]
                 width=np.diff(z);I0,I1=self.event_I;last=self.event_indices[-1]
                 return (m['D'][0]*width[0]*(I1/I0-1)-sum(m['D'][r]*width[r] for r in range(2,last+1)))/width[1]
+            def heights(y):
+                trial=x.copy();trial[indices]=y;m=self.unpack(trial)
+                trial[self.n0]+=self.rest[1]-self.basis(self.rest[0],0.,m)@m['N']
+                return self.event_heights(trial)
             lower=np.exp(self.lo[self.dep_det]+1e-5);upper=np.exp(self.upper[self.dep_det]-1e-5)
             result=minimize(lambda y: float(np.sum((y-original)**2)),initial,method='SLSQP',bounds=bounds,
                 constraints=[{'type':'ineq','fun':lambda y:-required(y)-lower},
-                             {'type':'ineq','fun':lambda y:upper+required(y)}],
+                             {'type':'ineq','fun':lambda y:upper+required(y)},
+                             {'type':'ineq','fun':lambda y:heights(y)-1e-4},
+                             {'type':'ineq','fun':lambda y:1.-1e-4-heights(y)}],
                 options={'maxiter':1000,'ftol':1e-12})
             x[indices]=result.x
             try:
                 x=self.constrain_events(x)
             except ValueError as failure:
                 raise ValueError(f'FM initialization could not satisfy rest and event constraints: {result.message}; {failure}') from failure
-            print(f'FM initialization adjusted regional determinants: distance={np.linalg.norm(result.x-original):.6g}, optimizer={result.message}',flush=True)
+            if not self.physically_valid_events(x):
+                raise ValueError(f'FM initialization could not find physical event heights: {self.event_heights(x).tolist()}; {result.message}')
+            print(f'FM initialization adjusted regional parameters: distance={np.linalg.norm(result.x-original):.6g}, event heights={self.event_heights(x).tolist()}, optimizer={result.message}',flush=True)
             return x
