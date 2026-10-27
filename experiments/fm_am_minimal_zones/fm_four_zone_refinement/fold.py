@@ -62,7 +62,10 @@ class BoundaryFold:
             if min(states[:,1])<=0 or max(states[:,1])>=1:raise FoldError('Segment leaves physical h domain')
             all_states.extend(states)
         state=np.asarray(all_states)
-        from model import reference
+        if hasattr(model,'f'):
+            reference=model.f
+        else:
+            from model import reference
         zlo,zhi=reference.phi(np.array([1e-12,reference.CMAX]),m['shape'])
         if min(state[:,0])<=zlo or max(state[:,0])>=zhi:raise FoldError('Segment leaves physical C domain')
         eps=1e-5;eye=np.eye(n)
