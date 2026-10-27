@@ -135,24 +135,38 @@ def main():
     if seed.get('stage') not in ('poincare','closed'):raise ValueError('Run poincare before closed')
     target=float(os.environ.get('FM_FIXED_FOLD_I','1.1231503495944923'))
     probes=list(dict.fromkeys([float(os.environ.get('FM_FOLD_PROBE_I','1.1')),1.05,1.,.9,.8,.65,.55]))
-    times=[]
-    for I in probes:
-        try:times.append((I,*start_times(model,base,I,target)))
-        except (ValueError,FloatingPointError) as e:print(f'FOLD no orbit at I={I}: {e}',flush=True)
-    anchor=None;meta=None;dep=None
+    seed_options=[('current candidate',base)]
+    base_path=ROOT/'results'/'base'/'candidate.json'
+    if args.variant!='base' and base_path.exists():
+        parent=json.loads(base_path.read_text())
+        if parent.get('stage')=='closed':
+            seed_options.append(('lifted base closed candidate',model.lift_base(parent['parameters'])))
+        else:
+            print(f'FOLD fallback unavailable: {base_path} is not a closed candidate',flush=True)
+    anchor=None;meta=None;dep=None;seed_name=None
     candidates=[j for j in model.active if j not in (model.n0,model.ni)]
     budget=int(os.environ.get('FM_FOLD_SOLVER_MAX_NFEV','200'))
-    for index in candidates:
-        for I,fold,t in times:
-            try:
-                print(f'FOLD trying parameter={index} I={I}',flush=True)
-                projected,info=fold.solve(base,t,index,budget);info['independent_check']=independent_fold(model,projected,fold,info)
-                base=projected;anchor=info['crossing_times'];meta=info;dep=index;selected_fold=fold;break
-            except (ValueError,FloatingPointError) as e:print(f'FOLD rejected: {e}',flush=True)
+    for name,trial_base in seed_options:
+        print(f'FOLD initialization seed: {name}',flush=True)
+        times=[]
+        for I in probes:
+            try:times.append((I,*start_times(model,trial_base,I,target)))
+            except (ValueError,FloatingPointError) as e:print(f'FOLD no orbit at I={I}: {e}',flush=True)
+        for index in candidates:
+            for I,fold,t in times:
+                try:
+                    print(f'FOLD trying parameter={index} I={I} seed={name}',flush=True)
+                    projected,info=fold.solve(trial_base,t,index,budget)
+                    info['independent_check']=independent_fold(model,projected,fold,info)
+                    base=projected;anchor=info['crossing_times'];meta=info;dep=index;selected_fold=fold;seed_name=name
+                    break
+                except (ValueError,FloatingPointError) as e:print(f'FOLD rejected: {e}',flush=True)
+            if dep is not None:break
         if dep is not None:break
-    if dep is None:raise FoldError('No verified fold initialization. Geometry candidate retained.')
+        print(f'FOLD seed failed: {name}',flush=True)
+    if dep is None:raise FoldError('No verified fold initialization from any available seed. Existing candidate retained.')
     fold=selected_fold
-    print(f'FOLD initialized parameter={int(dep)} target_I={target:.12g} crossings={fold.boundaries}',flush=True)
+    print(f'FOLD initialized parameter={int(dep)} target_I={target:.12g} crossings={fold.boundaries} seed={seed_name}',flush=True)
     active=np.array([j for j in model.active if j!=dep]);scale=np.full(model.size,.2);scale[model.n0:model.hi+1]=.03
     bounds=list(zip(np.maximum(-1.,(model.lo[active]-base[active])/scale[active]),np.minimum(1.,(model.hi_bounds[active]-base[active])/scale[active])))
     count_weight=float(os.environ.get('FM_CYCLE_COUNT_WEIGHT',str(6*f.POINCARE_SCALE)));count_reference=cycle_count_loss.reference_grid() if count_weight else []
@@ -171,7 +185,7 @@ def main():
             cost=float(parts['total'])
             if cost<best:
                 info=dict(info);info['independent_check']=independent_fold(model,x,fold,info)
-                save(path,model,x,dict(stage='closed',loss=cost,loss_components=parts,fold_constraint=info,training_settings=dict(poincare_weight_scale=f.POINCARE_SCALE,training_cycle_inputs=sorted({q['I'] for q in f.TARGETS}),count_weight=count_weight,count_seeds=seeds,count_inputs=[r['I'] for r in count_reference],fixed_fold_I=target),optimized_parameter_count=len(active),derived_parameter_indices=sorted(model.derived+[dep]),cycle_count_training=report,calls=calls))
+                save(path,model,x,dict(stage='closed',loss=cost,loss_components=parts,fold_constraint=info,fold_initialization_seed=seed_name,training_settings=dict(poincare_weight_scale=f.POINCARE_SCALE,training_cycle_inputs=sorted({q['I'] for q in f.TARGETS}),count_weight=count_weight,count_seeds=seeds,count_inputs=[r['I'] for r in count_reference],fixed_fold_I=target),optimized_parameter_count=len(active),derived_parameter_indices=sorted(model.derived+[dep]),cycle_count_training=report,calls=calls))
                 best=cost
             if calls==1 or calls%20==0:print(f'CLOSED {args.variant} eval={calls} best={best:.7g} elapsed={time.monotonic()-start:.1f}s parts={parts}',flush=True)
             return cost
