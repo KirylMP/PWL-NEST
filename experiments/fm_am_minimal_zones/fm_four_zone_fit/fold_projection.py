@@ -16,8 +16,9 @@ from boundary_fold_experiment import (REGIONS, matching, starting_times,
                                       local_nondegeneracy, verify_trajectory)
 
 
-FOLD_PARAMETER=4  # x[4] = log(trace of region 3); fixed events use x[11], x[13]
-FOLD_ACTIVE=np.array([i for i in f.ACTIVE if i!=FOLD_PARAMETER],dtype=int)
+# Use one dependent parameter for the entire fit. Try the original x[4] first,
+# then other nongauge parameters if it cannot locate a physical fold.
+FOLD_PARAMETER_CANDIDATES=(4,5,3,2,6,7,9,8,14,16,17,15)
 DEFAULT_TARGET_I=1.1231503495944923  # numerical LR estimate, not an exact constant
 
 
@@ -33,26 +34,37 @@ class FoldProjector:
         self.target_I=float(target_I);self.probe_I=float(probe_I);self.max_nfev=int(max_nfev)
         self.attempts=0;self.failures=0;self.seconds=0.;self.last_error=None
         seed=f.constrain_events(seed)
-        # Retry ordinary probes if the chosen point lacks a large stable cycle.
-        errors=[];times0=None
-        for I in dict.fromkeys([self.probe_I,1.05,1.0,.9,.8,.65,.55]):
-            try:
-                times0,_=starting_times(seed,I);self.used_probe_I=float(I);break
-            except (ValueError,StopIteration) as e:errors.append(f'{I}: {e}')
-        if times0 is None:
-            raise FoldProjectionError('No usable initial large-cycle itinerary: '+'; '.join(errors))
-        initial=np.r_[times0,seed[FOLD_PARAMETER]]
-        x,metadata=self._solve(seed,initial)
-        # Independent validation once at initialization; every saved best is
-        # independently checked again in the caller.
-        metadata['independent_check']=verify_trajectory(self.target_I,x,np.asarray(metadata['crossing_times']))
-        self.anchor=np.r_[metadata['crossing_times'],x[FOLD_PARAMETER]]
-        self.initial=x;self.initial_metadata=metadata
+        errors=[];times_cache={};probes=list(dict.fromkeys([self.probe_I,1.05,1.0,.9,.8,.65,.55]))
+        for index in FOLD_PARAMETER_CANDIDATES:
+            self.parameter_index=index
+            for I in probes:
+                if I not in times_cache:
+                    print(f'FOLD INIT: searching for a large orbit at I={I}',flush=True)
+                    try:times_cache[I]=starting_times(seed,I)[0]
+                    except (ValueError,StopIteration) as e:
+                        times_cache[I]=None;errors.append(f'probe I={I}: {e}')
+                        print(f'FOLD INIT: no usable orbit at I={I}: {e}',flush=True)
+                times0=times_cache[I]
+                if times0 is None:continue
+                print(f'FOLD INIT: trying parameter[{index}] from I={I}',flush=True)
+                try:
+                    x,metadata=self._solve(seed,np.r_[times0,seed[index]])
+                    metadata['independent_check']=verify_trajectory(self.target_I,x,np.asarray(metadata['crossing_times']))
+                except (FoldProjectionError,ValueError,FloatingPointError) as e:
+                    errors.append(f'parameter[{index}], probe I={I}: {e}')
+                    print(f'FOLD INIT: rejected parameter[{index}] at I={I}: {e}',flush=True)
+                    continue
+                self.used_probe_I=float(I);self.active=np.array([j for j in f.ACTIVE if j!=index],dtype=int)
+                self.anchor=np.r_[metadata['crossing_times'],x[index]]
+                self.initial=x;self.initial_metadata=metadata
+                print(f'FOLD INIT: selected parameter[{index}], probe I={I}',flush=True)
+                return
+        raise FoldProjectionError('Could not initialize a verified fold using the tested parameters and probes: '+'; '.join(errors))
 
     def _solve(self,raw,initial):
         started=time.monotonic();self.attempts+=1
         try:
-            base=f.constrain_events(raw);index=FOLD_PARAMETER;target=self.target_I
+            base=f.constrain_events(raw);index=self.parameter_index;target=self.target_I
             lo=np.r_[np.full(6,1e-5),f.LO[index]+1e-8]
             hi=np.r_[np.full(6,30.),f.HI[index]-1e-8]
             start=np.clip(np.asarray(initial,dtype=float),lo+1e-9,hi-1e-9)

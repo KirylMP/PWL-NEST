@@ -58,6 +58,28 @@ class FoldConstraintTest(unittest.TestCase):
         self.assertIn('Fold equations not resolved',result.stdout)
         self.assertEqual(hashlib.sha256(candidate.read_bytes()).hexdigest(),before)
 
+    def test_initialization_can_choose_another_dependent_parameter(self):
+        # A reproducible nearby model for which x[4] does not find a fold,
+        # but x[5] does. This exercises actual boundary equations, not mocks.
+        setup="""
+import json,numpy as np,fit_four as f
+p=f.P/'candidate.json';d=json.loads(p.read_text());base=f.constrain_events(d['parameters'])
+active=[i for i in f.ACTIVE if i!=4];rng=np.random.default_rng(2027)
+base[active]+=rng.normal(size=len(active))*.22;base=np.clip(base,f.LO+1e-5,f.HI-1e-5)
+d['parameters']=f.constrain_events(base).tolist();p.write_text(json.dumps(d))
+"""
+        self.run_python(['-c',setup])
+        env=dict(self.env,FM_FOLD_SOLVER_MAX_NFEV='200',FM_CLOSED_MAXFEV='2')
+        output=self.run_python(['closed_fit.py'],env=env).stdout
+        result=json.loads((self.fm/'candidate.json').read_text())
+        self.assertIn('FOLD INIT: rejected parameter[4]',output)
+        self.assertIn('FOLD INIT: selected parameter[5]',output)
+        self.assertTrue(result['fold_constrained'])
+        self.assertEqual(result['optimized_parameter_count'],15)
+        self.assertEqual(result['derived_parameter_indices'],[5,11,13])
+        self.assertEqual(result['fold_constraint']['parameter_index'],5)
+        self.assertLess(result['fold_constraint']['matching_residual'],1e-8)
+
     def test_disable_fold_retains_previous_16_parameter_mode(self):
         env=dict(self.env,FM_FIX_FOLD='0')
         self.run_python(['closed_fit.py'],env=env)

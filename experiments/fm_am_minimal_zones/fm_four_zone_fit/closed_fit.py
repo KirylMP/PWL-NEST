@@ -10,7 +10,7 @@ sys.path.insert(0,str(f.P.parent))
 from equilibrium_loss import model_cost
 from loss_weights import closed_components
 from cycle_count_loss import reference_grid, evaluate as cycle_count_loss
-from fold_projection import FoldProjector, FoldProjectionError, FOLD_ACTIVE, DEFAULT_TARGET_I
+from fold_projection import FoldProjector, FoldProjectionError, DEFAULT_TARGET_I
 EQ_SOURCE=[(float(I),f.eqs(float(I))) for I in np.linspace(.4,1.2,25)]
 NO_CYCLE_INPUTS=tuple(float(s.strip()) for s in os.environ.get('FM_NO_CYCLE_INPUTS','1.5,2.0').split(',') if s.strip())
 
@@ -103,8 +103,8 @@ def run():
         budget=int(os.environ.get('FM_FOLD_SOLVER_MAX_NFEV','120'))
         print(f'Initializing constrained fold at I={target:.12g}, probe={probe}, solver budget={budget}',flush=True)
         projector=FoldProjector(seed['parameters'],target,probe,budget)
-        base=projector.initial;active=FOLD_ACTIVE
-        print(f'Fold initialized: I={target:.12g}, parameter[4]={base[4]:.10g}, active={len(active)}, probe={projector.used_probe_I}',flush=True)
+        base=projector.initial;active=projector.active
+        print(f'Fold initialized: I={target:.12g}, parameter[{projector.parameter_index}]={base[projector.parameter_index]:.10g}, active={len(active)}, probe={projector.used_probe_I}',flush=True)
     else:
         base=f.constrain_events(seed['parameters']);active=f.ACTIVE
         print('Fixed cycle-fold constraint disabled; active=16',flush=True)
@@ -158,7 +158,8 @@ def run():
                     print(f'CLOSED FM eval={calls} fold independent check failed: {e}',flush=True)
                     return float(1e12+np.dot(y,y))
             best=cost
-            f.write(x,'candidate.json',dict(loss=cost,actual_equilibrium_set_loss=eq_loss,cycle_weight=6.*f.POINCARE_SCALE,loss_components=parts,extra_cycle_inputs=list(NO_CYCLE_INPUTS),extra_cycle_counts=extra_counts,extra_cycle_diagnostics=extra_diag,poincare_count_seeds=count_seeds,poincare_count_training=count_report,fit_scope='geometry/equilibria/spectrum/events + actual equilibrium set matching + actual stable and unstable return roots, extrema and periods + numerical Poincare excess-cycle count',closed_orbit_training=residual(x,True),fold_constrained=projector is not None,fixed_fold_I=projector.target_I if projector else None,fold_constraint=fold_meta,optimized_parameter_count=len(active),derived_parameter_indices=[4,11,13] if projector else [11,13],calls=calls))
+            derived=sorted([projector.parameter_index,11,13]) if projector else [11,13]
+            f.write(x,'candidate.json',dict(loss=cost,actual_equilibrium_set_loss=eq_loss,cycle_weight=6.*f.POINCARE_SCALE,loss_components=parts,extra_cycle_inputs=list(NO_CYCLE_INPUTS),extra_cycle_counts=extra_counts,extra_cycle_diagnostics=extra_diag,poincare_count_seeds=count_seeds,poincare_count_training=count_report,fit_scope='geometry/equilibria/spectrum/events + actual equilibrium set matching + actual stable and unstable return roots, extrema and periods + numerical Poincare excess-cycle count',closed_orbit_training=residual(x,True),fold_constrained=projector is not None,fixed_fold_I=projector.target_I if projector else None,fold_constraint=fold_meta,optimized_parameter_count=len(active),derived_parameter_indices=derived,calls=calls))
         if calls==1 or calls%100==0:
             bad=[dict(I=r['I'],extra_stable=r['extra_stable'],extra_unstable=r['extra_unstable'],diagnostics=r['diagnostics']) for r in count_report if r['loss'] or r['diagnostics'].get('timeouts') or r['diagnostics'].get('unresolved') or not r['equilibrium_sections']]
             stats='' if projector is None else f' fold_attempts={projector.attempts} fold_rejected={projector.failures} independent_rejected={independent_rejects} fold_seconds={projector.seconds:.1f}'
@@ -167,7 +168,7 @@ def run():
     o=minimize(objective,np.zeros(len(active)),method='Powell',bounds=bounds,
                options=dict(maxfev=int(os.environ.get('FM_CLOSED_MAXFEV','4500')),xtol=2e-3,ftol=3e-5))
     if not np.isfinite(best):raise ValueError('No physically admissible fixed-event candidate was found')
-    stats=None if projector is None else dict(target_I=projector.target_I,attempts=projector.attempts,failures=projector.failures,independent_rejects=independent_rejects,seconds=projector.seconds,last_error=projector.last_error)
+    stats=None if projector is None else dict(target_I=projector.target_I,dependent_parameter_index=projector.parameter_index,probe_I=projector.used_probe_I,attempts=projector.attempts,failures=projector.failures,independent_rejects=independent_rejects,seconds=projector.seconds,last_error=projector.last_error)
     (f.P/'closed_optimizer.json').write_text(json.dumps(dict(nfev=o.nfev,fun=float(o.fun),best_visited=best,success=bool(o.success),message=o.message,fold_projection=stats),indent=2))
 
 
