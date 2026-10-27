@@ -11,7 +11,8 @@ export POINCARE_WEIGHT_SCALE="${POINCARE_WEIGHT_SCALE:-100}"
 export FM_TARGET_GRID_SIZE="${FM_TARGET_GRID_SIZE:-10}"
 export FM_CYCLE_COUNT_POINTS="${FM_CYCLE_COUNT_POINTS:-17}" FM_CYCLE_COUNT_SEEDS="${FM_CYCLE_COUNT_SEEDS:-32}"
 export FM_CYCLE_COUNT_WEIGHT="${FM_CYCLE_COUNT_WEIGHT:-600}" WORKERS="${WORKERS:-16}"
-for model in am fm; do
+for model in ${MODELS:-am fm}; do
+  if [[ "$model" != am && "$model" != fm ]]; then printf 'Unknown model: %s\n' "$model" >&2; exit 1; fi
   parent_var="${model^^}_PARENT_CANDIDATE"
   parent_args=()
   if [[ -n "${!parent_var:-}" ]]; then parent_args=(--parent "${!parent_var}");fi
