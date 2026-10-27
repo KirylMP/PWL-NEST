@@ -69,8 +69,8 @@ def render(axes, rows, lr, cuts, label, xmin, xmax):
             c.step([r['I'] for r in data],[sum(bool(q['stable'])==stable for q in r['cycles']) for r in data],
                    where='mid',color=col,ls=style,lw=1.3,label=f'{label_prefix} {"stable" if stable else "unstable"}')
     a.set(title=f'{label}: equilibria and cycle extrema',ylabel=r'$C$ ($\mu$M)',xlim=(xmin,xmax))
-    b.set(title='Cycle periods',ylabel='Period (s)',xlim=(xmin,xmax),bottom=0)
-    c.set(title='Detected cycles',ylabel='Number of cycles',xlim=(xmin,xmax),bottom=-.1)
+    b.set(title='Cycle periods',ylabel='Period (s)',xlim=(xmin,xmax));b.set_ylim(bottom=0)
+    c.set(title='Detected cycles',ylabel='Number of cycles',xlim=(xmin,xmax));c.set_ylim(bottom=-.1)
     for ax in axes:
         ax.set_xlabel(r'$I$ ($\mu$M)');ax.grid(alpha=.16);ax.spines[['top','right']].set_visible(False)
     c.legend(fontsize=7,loc='best')
