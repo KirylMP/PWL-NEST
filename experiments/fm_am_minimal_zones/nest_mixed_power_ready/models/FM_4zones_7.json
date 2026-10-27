@@ -1,0 +1,622 @@
+{
+  "variant": "base",
+  "parameters": [
+    2.146472719206825,
+    -1.041480366195602,
+    1.8646556695292802,
+    3.0962906775500665,
+    0.14465830528000403,
+    -0.3525452384244759,
+    -2.3651995017261997,
+    -3.767489585627843,
+    -8.426199260284553,
+    -0.7775552473081518,
+    0.6217419187171203,
+    0.5563554181065978,
+    -0.11281996987466095,
+    0.07908547651708403,
+    -0.07925844759980598,
+    -4.572074626250149,
+    2.118680066915935,
+    3.9978585914156133
+  ],
+  "physical_thresholds_C": [
+    0.0624450437666669,
+    0.13693821763740716,
+    0.3623042888621253
+  ],
+  "fixed_event_threshold_indices": [
+    0,
+    2
+  ],
+  "fixed_equilibrium_threshold_I": [
+    0.5290700389163683,
+    0.8600205557570602
+  ],
+  "fixed_event_heights": [
+    0.9156531913042824,
+    0.6035587970675445
+  ],
+  "regional_types": [
+    "stable_node",
+    "saddle",
+    "unstable_focus",
+    "stable_focus"
+  ],
+  "alpha": [
+    1.9021364431403815,
+    0.7131554592169859,
+    -0.11281996987466095,
+    -1.1163549300483275,
+    0.226853286629836,
+    0.21725560081277298
+  ],
+  "beta": [
+    1.4157623461746685,
+    0.41702408892196646,
+    0.07908547651708403,
+    -0.8125692156727133,
+    0.10854130987822885,
+    0.13480122609529838
+  ],
+  "a": 8.554630533463468,
+  "b": 0.352931826700042,
+  "transform": {
+    "p": -0.07925844759980598,
+    "e": -4.572074626250149,
+    "n": 2.118680066915935,
+    "k": 3.9978585914156133
+  },
+  "trace": [
+    -6.453713293223831,
+    3.0962906775500665,
+    1.1556446251299315,
+    -0.702896771148967
+  ],
+  "determinant": [
+    0.8940802421282225,
+    -0.023110006218162425,
+    0.334097677369572,
+    0.583044039379402
+  ],
+  "derived_parameter_indices": [
+    2,
+    11,
+    13
+  ],
+  "stage": "closed",
+  "loss": 4452.09970894917,
+  "loss_components": {
+    "geometry": 17.822166447815892,
+    "equilibrium_sets": 4.762377375975775,
+    "cycles_raw": 7.382525275208963,
+    "cycle_weight": 600.0,
+    "cycles_weighted": 4429.515165125378,
+    "total": 4452.09970894917,
+    "poincare_count_raw": 0.0,
+    "poincare_count_weight": 600.0
+  },
+  "fold_constraint": {
+    "I": 1.1231503495944923,
+    "parameter_index": 2,
+    "crossing_times": [
+      0.7552507727566892,
+      0.30441140750527673,
+      5.614843877786208,
+      2.9676186068407504,
+      2.516973295476244,
+      1.5442900376331066
+    ],
+    "residual": 4.92828000631107e-13,
+    "trace_integral": 3.552713678800501e-15,
+    "singular_values": [
+      1.070864112393425,
+      0.12423677474448054,
+      0.0636858760019516,
+      0.06175170714186595,
+      0.03815518332110895,
+      8.253803816710817e-13
+    ],
+    "curvature_samples": [
+      -7.703783038279771e-06,
+      -7.706736883480038e-06,
+      -7.807625719895116e-06
+    ],
+    "input_derivative": -0.23582543387228155,
+    "parameter_derivative": -0.0005282223633326604,
+    "scope": "local fold on all-threshold itinerary; finite segment sampling",
+    "independent_check": {
+      "period": 13.703388002644255,
+      "closure_h": -5.13922238098985e-13,
+      "log_multiplier": 2.3354707781463196e-07
+    }
+  },
+  "fold_initialization_seed": "current candidate",
+  "training_settings": {
+    "poincare_weight_scale": 100.0,
+    "training_cycle_inputs": [
+      0.53,
+      0.55,
+      0.6,
+      0.65,
+      0.725,
+      0.8,
+      0.858,
+      0.9,
+      0.925,
+      1.0,
+      1.054,
+      1.1,
+      1.12
+    ],
+    "count_weight": 600.0,
+    "count_seeds": 32,
+    "count_inputs": [
+      0.45,
+      0.5,
+      0.52,
+      0.53,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0,
+      1.05,
+      1.1,
+      1.12,
+      1.14,
+      1.15,
+      1.2,
+      1.25,
+      1.5,
+      2.0
+    ],
+    "fixed_fold_I": 1.1231503495944923
+  },
+  "optimized_parameter_count": 15,
+  "cycle_count_training": [
+    {
+      "I": 0.45,
+      "reference_stable": 0,
+      "reference_unstable": 0,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.5,
+      "reference_stable": 0,
+      "reference_unstable": 0,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.52,
+      "reference_stable": 0,
+      "reference_unstable": 0,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 3,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.53,
+      "reference_stable": 1,
+      "reference_unstable": 0,
+      "stable": 1,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.55,
+      "reference_stable": 1,
+      "reference_unstable": 0,
+      "stable": 1,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.6,
+      "reference_stable": 1,
+      "reference_unstable": 0,
+      "stable": 1,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.65,
+      "reference_stable": 1,
+      "reference_unstable": 0,
+      "stable": 1,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.7,
+      "reference_stable": 1,
+      "reference_unstable": 0,
+      "stable": 1,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.75,
+      "reference_stable": 1,
+      "reference_unstable": 0,
+      "stable": 1,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.8,
+      "reference_stable": 1,
+      "reference_unstable": 0,
+      "stable": 1,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.85,
+      "reference_stable": 1,
+      "reference_unstable": 0,
+      "stable": 1,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.9,
+      "reference_stable": 1,
+      "reference_unstable": 1,
+      "stable": 1,
+      "unstable": 1,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 0.95,
+      "reference_stable": 1,
+      "reference_unstable": 1,
+      "stable": 1,
+      "unstable": 1,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 1.0,
+      "reference_stable": 1,
+      "reference_unstable": 1,
+      "stable": 1,
+      "unstable": 1,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 1.05,
+      "reference_stable": 1,
+      "reference_unstable": 1,
+      "stable": 1,
+      "unstable": 1,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 1
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 1
+      }
+    },
+    {
+      "I": 1.1,
+      "reference_stable": 1,
+      "reference_unstable": 1,
+      "stable": 1,
+      "unstable": 1,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 1
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 1
+      }
+    },
+    {
+      "I": 1.12,
+      "reference_stable": 1,
+      "reference_unstable": 1,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 1
+      }
+    },
+    {
+      "I": 1.14,
+      "reference_stable": 0,
+      "reference_unstable": 0,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 1.15,
+      "reference_stable": 0,
+      "reference_unstable": 0,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 1.2,
+      "reference_stable": 0,
+      "reference_unstable": 0,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 1.25,
+      "reference_stable": 0,
+      "reference_unstable": 0,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 1.5,
+      "reference_stable": 0,
+      "reference_unstable": 0,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    },
+    {
+      "I": 2.0,
+      "reference_stable": 0,
+      "reference_unstable": 0,
+      "stable": 0,
+      "unstable": 0,
+      "extra_stable": 0,
+      "extra_unstable": 0,
+      "loss": 0.0,
+      "equilibrium_sections": 1,
+      "diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      },
+      "reference_diagnostics": {
+        "timeouts": 0,
+        "unresolved": 0
+      }
+    }
+  ],
+  "calls": 1430
+}

@@ -25,13 +25,36 @@ def work_initial(case,I):
     c=brentq(field,1e-6,.2);return float(c),float(h(c))
 
 
+def pwa_initial(case,I):
+    """Choose a stable physical equilibrium of the compiled PWA candidate."""
+    manifest=json.loads((HERE/'module'/'generated'/'manifest.json').read_text())
+    candidate=Candidate(manifest[case]['path']);solutions=[]
+    for j,coeff in enumerate(candidate.coefficients):
+        A=coeff[:,1:3]
+        if abs(np.linalg.det(A))<1e-12 or np.max(np.real(np.linalg.eigvals(A)))>=-1e-9:
+            continue
+        z,h=np.linalg.solve(A,-coeff[:,0]-coeff[:,3]*I)
+        low=-np.inf if j==0 else candidate.z_thresholds[j-1]
+        high=np.inf if j==len(candidate.coefficients)-1 else candidate.z_thresholds[j]
+        if not (low-1e-10<=z<=high+1e-10 and np.isfinite(h) and 0<=h<=1):
+            continue
+        try:C=float(candidate.inverse(np.asarray([z]))[0])
+        except ValueError:continue
+        solutions.append((C,float(h)))
+    if not solutions:raise RuntimeError(f'{case}: no stable physical PWA equilibrium at IP3={I}')
+    reference_C,_=work_initial(case,I)
+    return min(solutions,key=lambda q:abs(q[0]-reference_C))
+
+
 def run(model,case,duration_ms,dt_ms,threads,nodes,connected,record,timing_mode="simulate",protocol="dynamic"):
     nest.ResetKernel()
     nest.SetKernelStatus({'resolution':dt_ms,'local_num_threads':threads,'print_time':False})
     nest.Install('pwa_astrocyte_module')
     if protocol=='work-pulse':
         baseline=.2 if case=='am' else .45
-        c0,h0=work_initial(case,baseline);tau_ms=20000.;delta=.7;delay=10.
+        init_mode=os.environ.get('PWA_INIT_MODE','equilibrium')
+        if init_mode not in ('equilibrium','lr'):raise ValueError('PWA_INIT_MODE must be equilibrium or lr')
+        c0,h0=(pwa_initial(case,baseline) if model!='astrocyte_lr_1994' and init_mode=='equilibrium' else work_initial(case,baseline));tau_ms=20000.;delta=.7;delay=10.
         if duration_ms<=20000.:raise ValueError('work-pulse duration must exceed 20 seconds')
         if abs(delay/dt_ms-round(delay/dt_ms))>1e-9:raise ValueError('10 ms connection delay must be an integer number of simulation steps')
         spike_ms=[20000.-delay]
@@ -71,7 +94,7 @@ def run(model,case,duration_ms,dt_ms,threads,nodes,connected,record,timing_mode=
         events={k:np.asarray(ev[k],dtype=float) for k in ('times','Ca_astro','IP3','h_IP3R')}
         if post_meter:
             pe=post_meter.get('events');events['sic_times']=np.asarray(pe['times'],dtype=float);events['I_SIC']=np.asarray(pe['I_SIC'],dtype=float)
-    return elapsed,events,dict(spike_times_ms=spike_ms,delay_ms=delay,baseline_ip3=baseline,delta_ip3=delta,tau_ip3_ms=tau_ms,initial_C=c0,initial_h=h0,protocol=protocol,case=case,model=model,connected_sic=connected,nodes=nodes,threads=threads,resolution_ms=dt_ms,timing_breakdown=parts)
+    return elapsed,events,dict(spike_times_ms=spike_ms,delay_ms=delay,baseline_ip3=baseline,delta_ip3=delta,tau_ip3_ms=tau_ms,initial_C=c0,initial_h=h0,initialization=(os.environ.get('PWA_INIT_MODE','equilibrium') if protocol=='work-pulse' and model!='astrocyte_lr_1994' else ('lr_equilibrium' if protocol=='work-pulse' else 'shared_dynamic')),protocol=protocol,case=case,model=model,connected_sic=connected,nodes=nodes,threads=threads,resolution_ms=dt_ms,timing_breakdown=parts)
 
 
 def validate_candidate(case,manifest,duration_ms,dt_ms,protocol):
@@ -102,14 +125,14 @@ def main():
     for case in ('am','fm'):
         validation[case],pwa_trace=validate_candidate(case,manifest,a.validation_s*1000,a.resolution_ms,a.protocol)
         print('VALIDATION',case,json.dumps(validation[case]),flush=True)
-        _,lr_trace,_=run('astrocyte_lr_1994',case,a.validation_s*1000,a.resolution_ms,1,1,True,True,protocol=a.protocol)
+        _,lr_trace,lr_proto=run('astrocyte_lr_1994',case,a.validation_s*1000,a.resolution_ms,1,1,True,True,protocol=a.protocol)
         if not np.array_equal(lr_trace['times'],pwa_trace['times']) or not np.array_equal(lr_trace['sic_times'],pwa_trace['sic_times']):
             raise RuntimeError('LR and PWA recording grids differ')
         errors={}
         for key in ('Ca_astro','h_IP3R','IP3','I_SIC'):
             delta=pwa_trace[key]-lr_trace[key]
             errors[key]=dict(rmse=float(np.sqrt(np.mean(delta**2))),max_abs=float(np.max(abs(delta))))
-        approximation[case]=dict(errors=errors,scope='One driven protocol; baseline NEST uses its built-in GSL tolerances')
+        approximation[case]=dict(errors=errors,lr_initial_C=lr_proto['initial_C'],lr_initial_h=lr_proto['initial_h'],pwa_initial_C=validation[case]['protocol']['initial_C'],pwa_initial_h=validation[case]['protocol']['initial_h'],pwa_initialization=validation[case]['protocol']['initialization'],scope='One driven protocol; baseline NEST uses its built-in GSL tolerances')
         for model_name,events in [('pwa',pwa_trace),('lr',lr_trace)]:
             for key,values in events.items():traces[f'{case}_{model_name}_{key}']=values
         print('LR COMPARISON',case,json.dumps(errors),flush=True)
