@@ -37,6 +37,6 @@ if [[ -z "$abi" ]]; then
 fi
 if [[ "$abi" != 0 && "$abi" != 1 ]]; then echo 'NEST_GLIBCXX_ABI must be 0 or 1' >&2; exit 1; fi
 printf 'NEST include=%s; Boost include=%s; C++ ABI=%s\n' "$nest_include" "${boost_include:-system}" "$abi"
-cmake -S module -B module/build -Dwith-nest="$nest_config" -DNEST_INCLUDE_DIR="$nest_include" -DBOOST_INCLUDE_DIR="$boost_include" -DEXTRA_INCLUDE_DIR="$PWD/module/deps/include" -DNEST_GLIBCXX_ABI="$abi"
+cmake -S module -B module/build -Dwith-nest="$nest_config" -DNEST_INCLUDE_DIR="$nest_include" -DBOOST_INCLUDE_DIR="$boost_include" -DEXTRA_INCLUDE_DIR="$PWD/module/deps/include" -DNEST_GLIBCXX_ABI="$abi" -DPWA_PROFILE_ENABLED="${PWA_PROFILE:-0}"
 cmake --build module/build -j "${BUILD_JOBS:-4}"
 printf '\nBuilt %s/module/build/pwa_astrocyte_module.so\n' "$(pwd)"

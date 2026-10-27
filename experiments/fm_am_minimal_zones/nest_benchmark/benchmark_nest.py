@@ -4,7 +4,7 @@
 The compiled extension must be on LD_LIBRARY_PATH and generated from the
 candidate files being validated. By default, timings cover nest.Run after Prepare.
 """
-import argparse,hashlib,json,os,platform,statistics,time
+import argparse,ctypes,hashlib,json,os,platform,statistics,time
 from datetime import datetime,timezone
 from pathlib import Path
 import numpy as np
@@ -14,6 +14,22 @@ from latent_flow import Candidate
 from validate_latent_flow import reference
 
 HERE=Path(__file__).resolve().parent
+PROFILE_NAMES=('advance_calls','advance_ns','crossings','crossing_ns','inverse_calls','inverse_ns','sic_calls','sic_ns','sic_active_calls','exponential_calls','exponential_ns','cached_full_steps')
+
+
+def profile_library():
+    if os.environ.get('PWA_PROFILE','0')!='1':return None
+    path=next((Path(d)/'pwa_astrocyte_module.so' for d in os.environ.get('LD_LIBRARY_PATH','').split(os.pathsep) if d and (Path(d)/'pwa_astrocyte_module.so').is_file()),None)
+    if path is None:raise RuntimeError('Instrumented PWA module not found in LD_LIBRARY_PATH')
+    lib=ctypes.CDLL(str(path.resolve()))
+    try:lib.pwa_profile_reset.argtypes=[];lib.pwa_profile_snapshot.argtypes=[ctypes.POINTER(ctypes.c_uint64)]
+    except AttributeError as e:raise RuntimeError('Module lacks profiling symbols; rebuild with PWA_PROFILE=1') from e
+    return lib
+
+
+def profile_snapshot(lib):
+    out=(ctypes.c_uint64*len(PROFILE_NAMES))();lib.pwa_profile_snapshot(out)
+    return dict(zip(PROFILE_NAMES,map(int,out)))
 
 
 def work_initial(case,I):
@@ -50,6 +66,7 @@ def run(model,case,duration_ms,dt_ms,threads,nodes,connected,record,timing_mode=
     nest.ResetKernel()
     nest.SetKernelStatus({'resolution':dt_ms,'local_num_threads':threads,'print_time':False})
     nest.Install('pwa_astrocyte_module')
+    profiler=profile_library()
     if protocol=='work-pulse':
         baseline=.2 if case=='am' else .45
         init_mode=os.environ.get('PWA_INIT_MODE','equilibrium')
@@ -82,11 +99,17 @@ def run(model,case,duration_ms,dt_ms,threads,nodes,connected,record,timing_mode=
     if timing_mode=='run':
         start=time.perf_counter();nest.Prepare();parts['prepare_seconds']=time.perf_counter()-start
         try:
+            if profiler:profiler.pwa_profile_reset()
             start=time.perf_counter();nest.Run(duration_ms);elapsed=time.perf_counter()-start
+            if profiler:parts['pwa_profile']=profile_snapshot(profiler)
         finally:
             start=time.perf_counter();nest.Cleanup();parts['cleanup_seconds']=time.perf_counter()-start
     else:
+        if profiler:profiler.pwa_profile_reset()
         start=time.perf_counter();nest.Simulate(duration_ms);elapsed=time.perf_counter()-start
+        if profiler:parts['pwa_profile']=profile_snapshot(profiler)
+    if profiler and model!='astrocyte_lr_1994' and not parts['pwa_profile']['advance_calls']:
+        raise RuntimeError('PWA profiling reported zero propagation calls; check the loaded module')
     parts['timed_seconds']=elapsed;parts['timing_mode']=timing_mode
     events=None
     if meter:

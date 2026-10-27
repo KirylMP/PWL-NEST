@@ -4,6 +4,33 @@
 #include <cmath>
 #include <utility>
 #include <vector>
+#ifdef PWA_PROFILE
+#include <chrono>
+#include <cstdint>
+#include <mutex>
+namespace {
+struct ProfileCounts {std::uint64_t values[12]{};};
+std::mutex profile_mutex;
+std::vector<ProfileCounts*> profile_registry;
+ProfileCounts& profile_local(){
+ static thread_local ProfileCounts* data=[](){auto* p=new ProfileCounts;std::lock_guard<std::mutex> lock(profile_mutex);profile_registry.push_back(p);return p;}();
+ return *data;
+}
+struct ProfileTimer {
+ int slot; std::chrono::steady_clock::time_point start;
+ explicit ProfileTimer(int n):slot(n),start(std::chrono::steady_clock::now()){}
+ ~ProfileTimer(){profile_local().values[slot]+=std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-start).count();}
+};
+}
+// Called only while NEST workers are idle, outside nest.Run.
+extern "C" void pwa_profile_reset(){std::lock_guard<std::mutex> lock(profile_mutex);for(auto* p:profile_registry)for(auto& v:p->values)v=0;}
+extern "C" void pwa_profile_snapshot(std::uint64_t* out){std::lock_guard<std::mutex> lock(profile_mutex);for(int i=0;i<12;++i){out[i]=0;for(auto* p:profile_registry)out[i]+=p->values[i];}}
+#define PWA_COUNT(i) (++profile_local().values[i])
+#define PWA_TIMER(i) ProfileTimer timer_##i(i)
+#else
+#define PWA_COUNT(i) ((void)0)
+#define PWA_TIMER(i) ((void)0)
+#endif
 namespace {
 constexpr double CMAX=2./1.185;
 using V=std::array<double,4>; using M=std::array<std::array<double,4>,4>;
@@ -11,6 +38,7 @@ M identity(){M a{};for(int i=0;i<4;++i)a[i][i]=1.;return a;}
 M multiply(const M&a,const M&b){M c{};for(int i=0;i<4;++i)for(int k=0;k<4;++k)for(int j=0;j<4;++j)c[i][j]+=a[i][k]*b[k][j];return c;}
 V multiply(const M&a,const V&x){V y{};for(int i=0;i<4;++i)for(int j=0;j<4;++j)y[i]+=a[i][j]*x[j];return y;}
 M exponential(M a,double t){
+ PWA_COUNT(9);PWA_TIMER(10);
  double norm=0.;for(int i=0;i<4;++i){double sum=0.;for(int j=0;j<4;++j)sum+=std::abs(a[i][j]*t);norm=std::max(norm,sum);}
  int scale=norm>.5?std::max(0,(int)std::ceil(std::log2(norm/.5))):0;double factor=t/std::ldexp(1.,scale);
  for(auto&row:a)for(double&x:row)x*=factor;
@@ -65,6 +93,7 @@ int pwa_to_z(const PwaConfig&m,double C,double&z){
  z=transform(m).value(C);return std::isfinite(z)?0:-100;
 }
 int pwa_to_c(const PwaConfig&m,double z,double&hint){
+ PWA_COUNT(4);PWA_TIMER(5);
  if(!std::isfinite(z))return -102;
  const auto& tr=transform(m);if(m.affine){hint=m.ref*(z+1.);return (hint>1e-14&&hint<CMAX)?0:-103;}
  double low=1e-14,high=CMAX,x=(hint>low&&hint<high)?hint:.5;
@@ -77,6 +106,7 @@ int pwa_to_c(const PwaConfig&m,double z,double&hint){
  hint=(low+high)/2.;return 0;
 }
 int pwa_advance_z(const PwaConfig&m,double&z,double&h,double&I,double I0,double tau,double dt){
+ PWA_COUNT(0);PWA_TIMER(1);
  if(!std::isfinite(z)||!std::isfinite(h)||!std::isfinite(I)||!std::isfinite(I0)||I0<0.||I0>1.3||tau<=0.||dt<=0.)return -100;
  const Cache& cache=get_cache(m,I0,tau,dt);V y{z,h,I,1.};
  int r=std::upper_bound(m.thresholds,m.thresholds+m.regions-1,z)-m.thresholds;
@@ -84,11 +114,13 @@ int pwa_advance_z(const PwaConfig&m,double&z,double&h,double&I,double I0,double 
  if(r>0&&z==m.thresholds[r-1]){const double* p=m.coeff+8*r;if(p[0]+p[1]*z+p[2]*h+p[3]*I<0.)--r;}
  double left=dt;int exits=0;
  while(left>1e-15){
-  V end=multiply(std::abs(left-dt)<1e-15?cache.flow[r]:exponential(cache.matrix[r],left),y);
+  const bool cached=std::abs(left-dt)<1e-15;if(cached)PWA_COUNT(11);
+  V end=multiply(cached?cache.flow[r]:exponential(cache.matrix[r],left),y);
   int direction=0;double boundary=0.;
   if(r<m.regions-1&&end[0]>m.thresholds[r]){direction=1;boundary=m.thresholds[r];}
   else if(r>0&&end[0]<m.thresholds[r-1]){direction=-1;boundary=m.thresholds[r-1];}
   if(!direction){y=end;left=0.;break;}
+  PWA_COUNT(2);PWA_TIMER(3);
   double low=0.,high=left;
   for(int j=0;j<42&&high-low>1e-13;++j){const double mid=(low+high)/2.;
    if((multiply(exponential(cache.matrix[r],mid),y)[0]-boundary)*direction>=0.)high=mid;else low=mid;}
@@ -100,7 +132,9 @@ int pwa_advance_z(const PwaConfig&m,double&z,double&h,double&I,double I0,double 
  return 0;
 }
 int pwa_sic(const PwaConfig&m,double z,double threshold,double scale,double&hint,double&value){
+ PWA_COUNT(6);PWA_TIMER(7);
  if(z<=sic_cut(m,threshold)){value=0.;return 0;}
+ PWA_COUNT(8);
  const int status=pwa_to_c(m,z,hint);if(status)return status;
  const double a=(hint-threshold)*1000.;value=a>1.?std::log(a)*scale:0.;return 0;
 }
