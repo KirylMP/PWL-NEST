@@ -41,6 +41,13 @@ def build(case,path):
             end=s.index('    double step_;',start)
             s=s[:start]+s[end:]
             s=s.replace('    double IntegrationStep_;  //!< current integration time step, updated by GSL\n','')
+            s=s.replace('  Parameters_ P_;\n  State_ S_;\n  Buffers_ B_;',
+                '  Parameters_ P_;\n  State_ S_;\n  Buffers_ B_;\n  double latent_z_ = 0.;\n  mutable double calcium_hint_ = .073;\n  bool latent_ready_ = false;\n  double calcium_physical_() const;\n  void reset_latent_from_calcium_();')
+            s=s.replace('    return S_.y_[ elem ];','    return elem == State_::Ca_astro ? calcium_physical_() : S_.y_[ elem ];')
+            s=s.replace('  S_.get( d );','  State_ physical = S_;\n  physical.y_[ State_::Ca_astro ] = calcium_physical_();\n  physical.get( d );')
+            s=s.replace('  State_ stmp = S_;', '  State_ stmp = S_;\n  stmp.y_[ State_::Ca_astro ] = calcium_physical_();')
+            s=s.replace('  P_ = ptmp;\n  S_ = stmp;',
+                '  if ( !std::isfinite(stmp.y_[ State_::Ca_astro ]) || stmp.y_[ State_::Ca_astro ] <= 1e-14 || stmp.y_[ State_::Ca_astro ] >= 2.0/1.185 )\n    throw BadProperty( "PWA calcium must lie in the physical interval" );\n  P_ = ptmp;\n  S_ = stmp;\n  reset_latent_from_calcium_();')
             needle='  ptmp.set( d, this );        // throws if BadProperty'
             replacement=needle+'''
   // Fitted field coefficients are embedded at build time. LR biophysical
@@ -65,6 +72,32 @@ def build(case,path):
             start=s.index('  B_.IntegrationStep_ = B_.step_;')
             end=s.index('  B_.J_noise_ = 0.0;',start)
             s=s[:start]+s[end:]
+            s=s.replace('  , B_( n.B_, *this )\n', '  , B_( n.B_, *this )\n  , latent_z_( n.latent_z_ )\n  , calcium_hint_( n.calcium_hint_ )\n  , latent_ready_( n.latent_ready_ )\n')
+            s=s.replace('  B_.logger_.init();\n}', '  B_.logger_.init();\n  if ( !latent_ready_ ) reset_latent_from_calcium_();\n  if ( pwa_prepare( pwa_config, P_.IP3_0_, P_.tau_IP3_ / 1000.0, B_.step_ / 1000.0, P_.SIC_th_ ) != 0 )\n    throw BadProperty( "Invalid PWA solver configuration" );\n}')
+            marker=f'inline void\nnest::{class_name}::update('
+            helper=f'''double
+nest::{class_name}::calcium_physical_() const
+{{
+  if ( !latent_ready_ ) return S_.y_[ State_::Ca_astro ];
+  if ( pwa_to_c( pwa_config, latent_z_, calcium_hint_ ) != 0 )
+    throw KernelException( "PWA calcium inversion failed" );
+  return calcium_hint_;
+}}
+
+void
+nest::{class_name}::reset_latent_from_calcium_()
+{{
+  double z;
+  if ( pwa_to_z( pwa_config, S_.y_[ State_::Ca_astro ], z ) != 0 )
+    throw BadProperty( "PWA calcium must lie in the physical interval" );
+  latent_z_ = z;
+  calcium_hint_ = S_.y_[ State_::Ca_astro ];
+  latent_ready_ = true;
+}}
+
+'''
+            if marker not in s:raise ValueError('Upstream update marker changed')
+            s=s.replace(marker,helper+marker)
             if case=='fm':
                 s=s.replace('Km_SERCA_( 0.1 )', 'Km_SERCA_( 0.05 )')
             target=f'#include "{class_name}.h"'
@@ -75,14 +108,20 @@ def build(case,path):
     // Physical CurrentEvent forcing is not part of this experimental model.
     if ( B_.J_noise_ != 0.0 )
       throw KernelException( "PWA astrocyte does not support CurrentEvent input" );
-    const int pwa_status = pwa_advance( pwa_config,
-      S_.y_[ State_::Ca_astro ], S_.y_[ State_::h_IP3R ], S_.y_[ State_::IP3 ],
+    const int pwa_status = pwa_advance_z( pwa_config,
+      latent_z_, S_.y_[ State_::h_IP3R ], S_.y_[ State_::IP3 ],
       P_.IP3_0_, P_.tau_IP3_ / 1000.0, B_.step_ / 1000.0 );
     if ( pwa_status != 0 )
       throw KernelException( std::string( "PWA astrocyte integration failed, status=" ) + std::to_string( pwa_status ) );
 
 '''
             s=s[:begin]+replacement+s[end:]
+            begin=s.index('    const double calc_thr =',s.index(f'nest::{class_name}::update('))
+            end=s.index('    B_.sic_values[ lag ] = sic_value;',begin)+len('    B_.sic_values[ lag ] = sic_value;')
+            s=s[:begin]+'''    double sic_value;
+    if ( pwa_sic( pwa_config, latent_z_, P_.SIC_th_, P_.SIC_scale_, calcium_hint_, sic_value ) != 0 )
+      throw KernelException( "PWA SIC evaluation failed" );
+    B_.sic_values[ lag ] = sic_value;'''+s[end:]
         (out/f'{class_name}.{ext}').write_text(s)
     return dict(path=str(Path(path).resolve()),sha256=sha,physical_thresholds_C=model.thresholds.tolist(),coefficients_from='alpha,beta,a,b,transform',case=case)
 
