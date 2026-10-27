@@ -25,8 +25,12 @@ from geometry_reference import truth,gauss
 from lr_reference import eqs,jac,gate,input_at_C,CMAX
 from counts import ret,cycles
 TC=np.array([.0624450437666669,.13693821763740716,.3623042888621253])
-OLD=json.loads((DATA_DIR/'previous_selected.json').read_text())['candidate']
-SH=np.array([OLD['transform'][k] for k in ['p','e','n','k']])
+if COORDINATE=='mixed':
+    OLD=json.loads((DATA_DIR/'previous_selected.json').read_text())['candidate']
+    SH=np.array([OLD['transform'][k] for k in ['p','e','n','k']])
+else:
+    OLD=None
+    SH=np.zeros(4)
 # x: log(a,b), four T parameters, four D parameters, N/H at C_ref,I=.8,
 # globally affine I coefficients, map(p,e,n,k). Types hold by construction.
 LO=np.r_[np.log([.2,.03]),[-5,-6,-5,-5],[-8,-9,-9,-9],[-2,-2,-2,-2],[-4,-6,.15,-4]]
@@ -100,6 +104,11 @@ def equilibrium(I,m):
     return [dict(z=[float(z[r]),float(h[r])],C=float(inverse(z[r],m)),region=int(r),stable=bool(r in [0,3])) for r in np.where(valid & (h>0)&(h<1))[0] if 0<inverse(z[r],m)<CMAX]
 
 def initialize():
+    if COORDINATE=='affine':
+        # Independent affine-coordinate seed. Do not copy coefficients from
+        # previous_selected.json: those describe a different nonlinear map.
+        return np.r_[np.log([5.,.2]),np.log(1.5),3.,np.log(.68),np.log(.72),
+                     0.,np.log(.096),np.log(.19),np.log(.294),.6,.6,.6,.6,np.zeros(4)]
     x=np.r_[np.log([OLD['a'],OLD['b']]),np.log(1.5),3.,np.log(.68),np.log(.72),0.,np.log(.096),np.log(.19),np.log(.294),.6,.6,OLD['alpha'][2],OLD['beta'][2],SH]
     omth=phi(np.array(OLD['physical_thresholds_C']),SH);bb=np.r_[1,0,.8,np.maximum(-omth,0)]
     x[10:12]=[bb@OLD['alpha'],bb@OLD['beta']]

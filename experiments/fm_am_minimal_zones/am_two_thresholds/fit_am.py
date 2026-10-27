@@ -80,7 +80,9 @@ def geometric(x):
 
 def initial():
     saved=ROOT/'mixed_power'/'candidate.json'
-    if saved.exists():
+    # The nonlinear-map coefficients are not an affine-map seed. Affine fits
+    # start from the independent hard-coded vector below.
+    if KIND!='affine' and saved.exists():
         candidate=json.loads(saved.read_text())
         if np.allclose(candidate.get('physical_thresholds_C',[]),FIXED_TC,rtol=0,atol=1e-10):
             return np.asarray(candidate['parameters'][:16],dtype=float)
