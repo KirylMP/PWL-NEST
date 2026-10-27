@@ -1,0 +1,40 @@
+{
+  "repository": "https://github.com/STM-Document-Engineering/elsarticle",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha": "842cf85e3ce5e5ffaf7ffb24f73f9f15ef9e82c6",
+      "size": 19101
+    },
+    {
+      "path": "README.md",
+      "sha": "70c8e76cead7341ed91db98fa5609d7ab6c6b2b6",
+      "size": 2084
+    },
+    {
+      "path": "elsarticle.cls",
+      "sha": "63e820fd3b76fe67f75e10c8c5bea1ac0781485c",
+      "size": 45216
+    },
+    {
+      "path": "elsarticle.dtx",
+      "sha": "fdbe7d87701b8a6948b3ef88b65cd425ca9e6dbe",
+      "size": 48572
+    },
+    {
+      "path": "elsarticle.ins",
+      "sha": "d3bc88c9e70fd3cb8694de2d39c1ec71971646e3",
+      "size": 2626
+    },
+    {
+      "path": "elsarticle-num.bst",
+      "sha": "855a14e4281af05797f7bec10a26206afd06a70b",
+      "size": 29462
+    },
+    {
+      "path": "elsarticle-template-num.tex",
+      "sha": "26872819c14cfca594cbaa7f898c8130f5be8190",
+      "size": 8424
+    }
+  ]
+}
