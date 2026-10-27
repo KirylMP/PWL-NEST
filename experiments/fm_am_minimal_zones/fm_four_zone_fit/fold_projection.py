@@ -16,9 +16,10 @@ from boundary_fold_experiment import (REGIONS, matching, starting_times,
                                       local_nondegeneracy, verify_trajectory)
 
 
-# Use one dependent parameter for the entire fit. Try the original x[4] first,
-# then other nongauge parameters if it cannot locate a physical fold.
-FOLD_PARAMETER_CANDIDATES=(4,5,3,2,6,7,9,8,14,16,17,15)
+# Use one dependent parameter for the entire fit. Try regional parameters first,
+# then the relative kinetic scales log(a), log(b). A common scaling of a and b
+# only changes time, but changing either one alone can move the cycle fold.
+FOLD_PARAMETER_CANDIDATES=(4,5,3,2,6,7,9,8,0,1,14,16,17,15)
 DEFAULT_TARGET_I=1.1231503495944923  # numerical LR estimate, not an exact constant
 
 
