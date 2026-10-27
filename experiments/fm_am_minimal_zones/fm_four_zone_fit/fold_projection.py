@@ -61,7 +61,73 @@ class FoldProjector:
                 self.initial=x;self.initial_metadata=metadata
                 print(f'FOLD INIT: selected parameter[{index}], probe I={I}',flush=True)
                 return
+        # The seed can be too far from the requested fold for any one
+        # parameter to resolve the boundary equations. Jointly adjust the
+        # active coefficients to reach the fold, then freeze all but one
+        # regular parameter for the main closed-orbit fit.
+        nearby=sorted(times_cache.items(),key=lambda q:abs(q[0]-self.target_I))[:3]
+        for I,times0 in nearby:
+            if times0 is None:continue
+            print(f'FOLD INIT: joint parameter projection from I={I}',flush=True)
+            try:joint_x,joint_times=self._solve_joint(seed,times0)
+            except FoldProjectionError as e:
+                errors.append(f'joint projection, probe I={I}: {e}')
+                print(f'FOLD INIT: joint projection rejected at I={I}: {e}',flush=True)
+                continue
+            for index in FOLD_PARAMETER_CANDIDATES:
+                if index not in f.ACTIVE:continue
+                self.parameter_index=index
+                try:
+                    x,metadata=self._solve(joint_x,np.r_[joint_times,joint_x[index]])
+                    metadata['independent_check']=verify_trajectory(self.target_I,x,np.asarray(metadata['crossing_times']))
+                except (FoldProjectionError,ValueError,FloatingPointError) as e:
+                    errors.append(f'joint seed parameter[{index}], probe I={I}: {e}')
+                    continue
+                self.used_probe_I=float(I);self.parameter_index=index
+                self.active=np.array([j for j in f.ACTIVE if j!=index],dtype=int)
+                self.anchor=np.r_[metadata['crossing_times'],x[index]]
+                self.initial=x;self.initial_metadata=metadata
+                print(f'FOLD INIT: selected joint projection, parameter[{index}], probe I={I}',flush=True)
+                return
         raise FoldProjectionError('Could not initialize a verified fold using the tested parameters and probes: '+'; '.join(errors))
+
+    def _solve_joint(self,seed,times0):
+        """Project the fitted model onto the fold equations with minimal drift."""
+        base=f.constrain_events(seed);active=np.asarray(f.ACTIVE,dtype=int)
+        scales=np.array([.2,.15,.2,.25,.2,.2,.6,.35,.6,.35,.02,.02,.03,.03,.3,.3,.15,.25])[active]
+        lo=np.r_[np.full(6,1e-5),f.LO[active]+1e-8]
+        hi=np.r_[np.full(6,30.),f.HI[active]-1e-8]
+        start=np.clip(np.r_[times0,base[active]],lo+1e-9,hi-1e-9)
+
+        def unpack(v):
+            x=base.copy();x[active]=v[6:]
+            return f.constrain_events(x)
+
+        best=None
+        for regularizer in (1e-4,1e-6,1e-8):
+            def objective(v):
+                try:
+                    x=unpack(v);m=f.unpack(x);g=matching(v[:6],self.target_I,x)
+                    trace=sum(m['T'][r]*dt for r,dt in zip(REGIONS,v[:6]))
+                    out=np.r_[g,trace/10.,regularizer*(v[6:]-base[active])/scales]
+                    if not np.all(np.isfinite(out)):return np.full(7+len(active),1e6)
+                    return out
+                except (ValueError,FloatingPointError,OverflowError):
+                    return np.full(7+len(active),1e6)
+
+            sol=least_squares(objective,start,bounds=(lo,hi),max_nfev=max(self.max_nfev,300),
+                ftol=1e-10,xtol=1e-10,gtol=1e-10,x_scale='jac')
+            start=sol.x;x=unpack(sol.x);res=objective(sol.x)
+            match_error=float(np.max(np.abs(res[:6])));trace_error=float(abs(res[6]*10.))
+            best=(match_error,trace_error,int(sol.nfev),regularizer)
+            print(f'FOLD INIT: joint regularizer={regularizer:g} matching={match_error:.3g} trace={trace_error:.3g} nfev={sol.nfev}',flush=True)
+            if match_error<=1e-8 and trace_error<=1e-7:
+                if not f.physically_valid_events(x):
+                    raise FoldProjectionError('Joint fold projection found nonphysical fixed-event heights')
+                return x,np.asarray(sol.x[:6])
+        assert best is not None
+        match_error,trace_error,nfev,regularizer=best
+        raise FoldProjectionError(f'Joint fold equations not resolved (matching={match_error:.3g}, trace={trace_error:.3g}, nfev={nfev}, regularizer={regularizer:g})')
 
     def _solve(self,raw,initial):
         started=time.monotonic();self.attempts+=1
