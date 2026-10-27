@@ -13,7 +13,7 @@ P=f.P
 def main():
     name=sys.argv[1] if len(sys.argv)>1 else 'candidate'
     model=json.loads((P/(name+'.json')).read_text());x=np.array(model['parameters']);m=f.unpack(x)
-    ds=json.loads((P/(name+'_branches.json')).read_text());rows=ds['rows'];lr=json.loads((P/'LR_cycles_reference.json').read_text())['rows']
+    ds=json.loads((P/(name+'_branches.json')).read_text());rows=ds['rows'];lr=json.loads((f.DATA_DIR/'LR_cycles_reference.json').read_text())['rows']
     plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':False,'axes.grid':True,'grid.alpha':.16})
     fig,axs=plt.subplots(1,3,figsize=(15,4.5))
     for I in np.linspace(.4,1.25,1200):
@@ -34,7 +34,9 @@ def main():
     fig.legend(handles=handles,loc='lower center',ncol=4);fig.tight_layout(rect=(0,.09,1,1));fig.savefig(P/(name+'_comparison.png'),dpi=180);fig.savefig(P/(name+'_comparison.pdf'));plt.close(fig)
     metrics=dict(max_detected_cycles=max(len(r['cycles']) for r in rows),I_samples=len(rows),events=ds['events'],samples=[],independent_checks=[])
     for I in [.55,.65,.8,.9,1.,1.1]:
-        r=min(rows,key=lambda r:abs(r['I']-I));src=min(lr,key=lambda r:abs(r['I']-I))
+        r=min(rows,key=lambda r:abs(r['I']-I))
+        I=float(r['I'])
+        src=min(lr,key=lambda row:abs(row['I']-I))
         metrics['samples'].append(dict(I=r['I'],model=r['cycles'],LR=src['cycles']))
         for q in r['cycles']:
             direct=-1 if q['backward'] else 1

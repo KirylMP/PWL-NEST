@@ -36,6 +36,7 @@ class FoldProjector:
         seed=f.constrain_events(seed)
         errors=[];times_cache={};probes=list(dict.fromkeys([self.probe_I,1.05,1.0,.9,.8,.65,.55]))
         for index in FOLD_PARAMETER_CANDIDATES:
+            if index not in f.ACTIVE:continue
             self.parameter_index=index
             for I in probes:
                 if I not in times_cache:

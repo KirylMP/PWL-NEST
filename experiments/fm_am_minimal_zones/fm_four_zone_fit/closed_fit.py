@@ -18,7 +18,7 @@ NO_CYCLE_INPUTS=tuple(float(s.strip()) for s in os.environ.get('FM_NO_CYCLE_INPU
 def validate_no_cycle_inputs():
     if not NO_CYCLE_INPUTS or not all(np.isfinite(x) for x in NO_CYCLE_INPUTS):
         raise ValueError('FM_NO_CYCLE_INPUTS must contain finite reference I values')
-    rows=json.loads((f.P/'LR_cycles_reference.json').read_text())['rows']
+    rows=json.loads((f.DATA_DIR/'LR_cycles_reference.json').read_text())['rows']
     for I in NO_CYCLE_INPUTS:
         row=min(rows,key=lambda q:abs(q['I']-I))
         if abs(row['I']-I)>1e-8 or row['cycles']:
@@ -107,7 +107,7 @@ def run():
         print(f'Fold initialized: I={target:.12g}, parameter[{projector.parameter_index}]={base[projector.parameter_index]:.10g}, active={len(active)}, probe={projector.used_probe_I}',flush=True)
     else:
         base=f.constrain_events(seed['parameters']);active=f.ACTIVE
-        print('Fixed cycle-fold constraint disabled; active=16',flush=True)
+        print(f'Fixed cycle-fold constraint disabled; active={len(active)}',flush=True)
     scale=np.array([.2,.15,.2,.25,.2,.2,.6,.35,.6,.35,.02,.02,.03,.03,.3,.3,.15,.25])
     bounds=list(zip(np.maximum(-1.,(f.LO[active]-base[active])/scale[active]),np.minimum(1.,(f.HI[active]-base[active])/scale[active])))
     if any(a>0 or b<0 or a>=b for a,b in bounds):raise ValueError('Starting candidate violates active parameter bounds')

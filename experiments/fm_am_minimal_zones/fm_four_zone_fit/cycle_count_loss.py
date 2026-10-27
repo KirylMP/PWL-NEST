@@ -11,7 +11,7 @@ import fit_four as f
 
 
 def reference_grid():
-    rows=json.loads((f.P/'LR_cycles_reference.json').read_text())['rows']
+    rows=json.loads((f.DATA_DIR/'LR_cycles_reference.json').read_text())['rows']
     explicit=os.environ.get('FM_CYCLE_COUNT_I')
     if explicit:
         desired=[float(v.strip()) for v in explicit.split(',') if v.strip()]

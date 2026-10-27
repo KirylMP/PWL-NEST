@@ -8,17 +8,24 @@ import sys,json,time
 import numpy as np
 from scipy.optimize import least_squares
 from scipy.special import expit
-P=Path(__file__).resolve().parent
-sys.path.insert(0,str(P/'support'))
-sys.path.insert(0,str(P.parent))
+DATA_DIR=Path(__file__).resolve().parent
+P=Path(os.environ.get('FM_OUTPUT_DIR',str(DATA_DIR))).resolve()
+P.mkdir(parents=True,exist_ok=True)
+sys.path.insert(0,str(DATA_DIR/'support'))
+sys.path.insert(0,str(DATA_DIR.parent))
 from loss_weights import poincare_scale
 POINCARE_SCALE=poincare_scale()
 from fit import phi,dphi
+COORDINATE=os.environ.get('FM_COORDINATE','mixed')
+if COORDINATE not in ('mixed','affine'):raise ValueError('FM_COORDINATE must be mixed or affine')
+if COORDINATE=='affine':
+    def phi(c,shape=None):return np.asarray(c,dtype=float)/.5-1.
+    def dphi(c,shape=None):return np.ones_like(np.asarray(c,dtype=float))/.5
 from geometry_reference import truth,gauss
 from lr_reference import eqs,jac,gate,input_at_C,CMAX
 from counts import ret,cycles
 TC=np.array([.0624450437666669,.13693821763740716,.3623042888621253])
-OLD=json.loads((P/'previous_selected.json').read_text())['candidate']
+OLD=json.loads((DATA_DIR/'previous_selected.json').read_text())['candidate']
 SH=np.array([OLD['transform'][k] for k in ['p','e','n','k']])
 # x: log(a,b), four T parameters, four D parameters, N/H at C_ref,I=.8,
 # globally affine I coefficients, map(p,e,n,k). Types hold by construction.
@@ -26,7 +33,7 @@ LO=np.r_[np.log([.2,.03]),[-5,-6,-5,-5],[-8,-9,-9,-9],[-2,-2,-2,-2],[-4,-6,.15,-
 HI=np.r_[np.log([40,1.2]),[3,6,2,2],[8,1,1,1],[3,3,2,2],[5,3,2.5,4]]
 # Exact LR reference input values for the first and third physical C thresholds.
 FIXED_EVENT_I=np.array([.5290700389163683,.8600205557570602])
-ACTIVE=np.array([i for i in range(18) if i not in (11,13)])
+ACTIVE=np.array([i for i in range(18) if i not in (11,13) and not (COORDINATE=='affine' and i>=14)])
 
 def unpack(x):
     a,b=np.exp(x[:2]);T=np.array([-np.exp(x[2]),x[3],np.exp(x[4]),-np.exp(x[5])])
@@ -78,6 +85,7 @@ def physically_valid_events(x):
     return bool(np.all(np.isfinite(heights)) and np.all((heights>0)&(heights<1)))
 
 def inverse(z,m):
+    if COORDINATE=='affine':return .5*(np.asarray(z)+1.)
     z=np.asarray(z);lo=np.full_like(z,-700.);hi=np.full_like(z,3.)
     for _ in range(60):
         mid=(lo+hi)/2;mask=phi(.5*np.exp(mid),m['shape'])<z
@@ -130,7 +138,10 @@ def write(x,path,extra=None):
     out['training_cycle_inputs']=sorted({q['I'] for q in TARGETS})
     out['training_cycle_count']=len(TARGETS)
     out['training_cycle_residual_scale']=float(TARGET_NORMALIZATION)
-    out['transform']['C_ref']=.5
+    if COORDINATE=='affine':
+        out['transform']=None
+        out['coordinate_family']='affine'
+    else:out['transform']['C_ref']=.5
     if extra:out.update(extra)
     (P/path).write_text(json.dumps(out,indent=2))
 
@@ -146,7 +157,7 @@ def geometry():
     (P/'geometry_runs.json').write_text(json.dumps(runs,indent=2))
 
 def prepare_targets():
-    source=json.loads((P/'LR_cycles_reference.json').read_text())['rows'];targets=[]
+    source=json.loads((DATA_DIR/'LR_cycles_reference.json').read_text())['rows'];targets=[]
     rows=[r for r in source if r['cycles']]
     explicit=os.environ.get('FM_TARGET_I')
     if explicit:

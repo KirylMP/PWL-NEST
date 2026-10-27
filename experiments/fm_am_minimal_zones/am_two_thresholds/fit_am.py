@@ -15,7 +15,7 @@ POINCARE_SCALE=poincare_scale()
 from coordinates import phi,dphi
 from lr_reference import eq,eqs,jac,rhs,CMAX
 from counts import ret,cycles
-KIND=os.environ.get('MAP_KIND','mixed_power');P=ROOT/'fits'/f'{KIND}_fixed';P.mkdir(parents=True,exist_ok=True)
+KIND=os.environ.get('MAP_KIND','mixed_power');P=Path(os.environ.get('AM_OUTPUT_DIR',str(ROOT/'fits'/f'{KIND}_fixed'))).resolve();P.mkdir(parents=True,exist_ok=True)
 FIXED_TC=np.array([.15880902539171288,.32705145045357475])
 ACTIVE=np.r_[np.arange(12),np.arange(12,16) if KIND!='affine' else []].astype(int)
 LO=np.r_[np.log([.15,.03]),[-5,-6,-5],[-8,-9,-9],[-1,-1,-2,-5],[-5,-6,.15,-4]]
