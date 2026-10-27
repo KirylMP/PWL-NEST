@@ -93,8 +93,8 @@ def run():
     validate_no_cycle_inputs()
     seed=json.loads((f.P/'candidate.json').read_text())
     (f.P/'before_closed.json').write_text(json.dumps(seed,indent=2))
-    base=np.array(seed['parameters']);scale=np.array([.2,.15,.2,.25,.2,.2,.6,.35,.6,.35,.02,.02,.03,.03,.3,.3,.15,.25])
-    bounds=list(zip(np.maximum(-1.,(f.LO-base)/scale),np.minimum(1.,(f.HI-base)/scale)))
+    base=f.constrain_events(seed['parameters']);scale=np.array([.2,.15,.2,.25,.2,.2,.6,.35,.6,.35,.02,.02,.03,.03,.3,.3,.15,.25])
+    bounds=list(zip(np.maximum(-1.,(f.LO[f.ACTIVE]-base[f.ACTIVE])/scale[f.ACTIVE]),np.minimum(1.,(f.HI[f.ACTIVE]-base[f.ACTIVE])/scale[f.ACTIVE])))
     best=np.inf;calls=0;start=time.monotonic()
     extra_weight=float(os.environ.get('FM_EXTRA_CYCLES_WEIGHT','0'))
     if not np.isfinite(extra_weight) or extra_weight<0:
@@ -109,7 +109,7 @@ def run():
     print(f'Poincare extra-cycle count: weight={count_weight:g}, seeds={count_seeds}, I={[r["I"] for r in count_reference]}',flush=True)
     def objective(y):
         nonlocal best,calls
-        x=base+scale*y;g=f.geometric(x);r=residual(x)
+        x=base.copy();x[f.ACTIVE]+=scale[f.ACTIVE]*y;x=f.constrain_events(x);g=f.geometric(x);r=residual(x)
         eq_loss=model_cost(f.unpack(x),EQ_SOURCE,f.equilibrium)
         parts=closed_components(g@g,eq_loss,r@r,6.,f.POINCARE_SCALE)
         extra_raw,extra_counts,extra_diag=extra_cycle_penalty(x) if extra_weight else (0.,[],[])
@@ -122,15 +122,16 @@ def run():
                      poincare_count_weighted=count_weight*count_raw)
         parts['total']+=parts['extra_cycles_weighted']+parts['poincare_count_weighted']
         cost=parts['total'];calls+=1
-        if cost<best:
+        if cost<best and f.physically_valid_events(x):
             best=cost
             f.write(x,'candidate.json',dict(loss=cost,actual_equilibrium_set_loss=eq_loss,cycle_weight=6.*f.POINCARE_SCALE,loss_components=parts,extra_cycle_inputs=list(NO_CYCLE_INPUTS),extra_cycle_counts=extra_counts,extra_cycle_diagnostics=extra_diag,poincare_count_seeds=count_seeds,poincare_count_training=count_report,fit_scope='geometry/equilibria/spectrum/events + actual equilibrium set matching + actual stable and unstable return roots, extrema and periods + numerical Poincare excess-cycle count',closed_orbit_training=residual(x,True),calls=calls))
         if calls==1 or calls%100==0:
             bad=[dict(I=r['I'],extra_stable=r['extra_stable'],extra_unstable=r['extra_unstable'],diagnostics=r['diagnostics']) for r in count_report if r['loss'] or r['diagnostics'].get('timeouts') or r['diagnostics'].get('unresolved') or not r['equilibrium_sections']]
             print(f'CLOSED FM eval={calls} best={best:.7g} elapsed={time.monotonic()-start:.1f}s count_flags={bad} extra_counts={extra_counts} components={parts}',flush=True)
         return cost
-    o=minimize(objective,np.zeros(len(base)),method='Powell',bounds=bounds,
+    o=minimize(objective,np.zeros(len(f.ACTIVE)),method='Powell',bounds=bounds,
                options=dict(maxfev=int(os.environ.get('FM_CLOSED_MAXFEV','4500')),xtol=2e-3,ftol=3e-5))
+    if not np.isfinite(best):raise ValueError('No physically admissible fixed-event candidate was found')
     (f.P/'closed_optimizer.json').write_text(json.dumps(dict(nfev=o.nfev,fun=float(o.fun),best_visited=best,success=bool(o.success),message=o.message),indent=2))
 
 

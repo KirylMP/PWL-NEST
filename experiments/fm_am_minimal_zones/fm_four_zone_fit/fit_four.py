@@ -24,6 +24,9 @@ SH=np.array([OLD['transform'][k] for k in ['p','e','n','k']])
 # globally affine I coefficients, map(p,e,n,k). Types hold by construction.
 LO=np.r_[np.log([.2,.03]),[-5,-6,-5,-5],[-8,-9,-9,-9],[-2,-2,-2,-2],[-4,-6,.15,-4]]
 HI=np.r_[np.log([40,1.2]),[3,6,2,2],[8,1,1,1],[3,3,2,2],[5,3,2.5,4]]
+# Exact LR reference input values for the first and third physical C thresholds.
+FIXED_EVENT_I=np.array([.5290700389163683,.8600205557570602])
+ACTIVE=np.array([i for i in range(18) if i not in (11,13)])
 
 def unpack(x):
     a,b=np.exp(x[:2]);T=np.array([-np.exp(x[2]),x[3],np.exp(x[4]),-np.exp(x[5])])
@@ -41,8 +44,38 @@ def basis(c,I,m):
     z=phi(np.asarray(c),m['shape']);z,I=np.broadcast_arrays(z,I)
     return np.stack([np.ones_like(z),z,I,*[np.maximum(z-t,0) for t in m['th']]],axis=-1)
 
+def constrain_events(x):
+    """Eliminate H(0,.8) and H_I so the two threshold equilibria are exact.
+
+    Parameters 11 and 13 are derived; their original box bounds do not apply.
+    The regional trace/determinant parameterization and fixed C cuts are intact.
+    """
+    x=np.asarray(x,dtype=float).copy();m=unpack(x)
+    differences=basis(TC,.8,m)@(m['N']-m['H'])-(x[10]-x[11])
+    slope=(differences[0]-differences[2])/(FIXED_EVENT_I[1]-FIXED_EVENT_I[0])
+    if not np.isfinite(slope) or abs(slope)<1e-12:
+        raise ValueError('Degenerate event constraint: equilibrium input coefficient difference is zero')
+    x[13]=x[12]-slope
+    x[11]=x[10]+differences[0]+slope*(FIXED_EVENT_I[0]-.8)
+    return x
+
+def solve_constrained(fun,x,**kwargs):
+    base=constrain_events(x)
+    def expand(v):
+        q=base.copy();q[ACTIVE]=v;return constrain_events(q)
+    initial=np.clip(base[ACTIVE],LO[ACTIVE]+1e-10,HI[ACTIVE]-1e-10)
+    result=least_squares(lambda v:fun(expand(v)),initial,bounds=(LO[ACTIVE],HI[ACTIVE]),**kwargs)
+    return expand(result.x),result
+
 def events(m):
     bb=basis(TC,0,m);return (bb@(m['N']-m['H']))/(m['H'][2]-m['N'][2])
+
+def fixed_event_heights(m):
+    return np.array([basis(TC[j],FIXED_EVENT_I[k],m)@m['N'] for k,j in enumerate((0,2))])
+
+def physically_valid_events(x):
+    heights=fixed_event_heights(unpack(x))
+    return bool(np.all(np.isfinite(heights)) and np.all((heights>0)&(heights<1)))
 
 def inverse(z,m):
     z=np.asarray(z);lo=np.full_like(z,-700.);hi=np.full_like(z,3.)
@@ -80,10 +113,19 @@ def geometric(x):
     regs=np.searchsorted(TC,ce);sr=np.column_stack([(m['T'][regs]-sp[:,0]),(m['D'][regs]-sp[:,1])/.15])
     # Fold/BEB locations: lower node-saddle fold, saddle-focus fold, upper focus-focus.
     ev=(events(m)-[.52907,.482304,.860021])/.04
-    return np.r_[(geo*w[:,:,None]/.025).ravel(),(er/.04/np.sqrt(len(ce))).ravel(),.35*sr.ravel()/np.sqrt(len(ce)),2*ev]
+    # The enforced intersections must also lie in the physical h interval.
+    threshold_h=fixed_event_heights(m)
+    domain=1000*np.r_[np.maximum(-threshold_h,0),np.maximum(threshold_h-1,0)]
+    return np.r_[(geo*w[:,:,None]/.025).ravel(),(er/.04/np.sqrt(len(ce))).ravel(),.35*sr.ravel()/np.sqrt(len(ce)),2*ev,domain]
 
 def write(x,path,extra=None):
     m=unpack(x);out=dict(schema_version=1,regions=4,threshold_count_m=3,physical_thresholds_C=TC.tolist(),alpha=m['N'].tolist(),beta=m['H'].tolist(),a=m['a'],b=m['b'],transform=dict(zip(['p','e','n','k'],m['shape'])),regional_types=['stable_node','saddle','unstable_focus','stable_focus'],trace=m['T'].tolist(),determinant=m['D'].tolist(),discriminant=(m['T']**2-4*m['D']).tolist(),equilibrium_threshold_I=events(m).tolist(),parameters=x.tolist(),accepted=False,notes=['Fixed physical cuts; hard regional types by parameterization','Numerical experiment; no proof of minimality or cycle completeness'])
+    if not np.allclose(events(m)[[0,2]],FIXED_EVENT_I,rtol=0,atol=1e-10):
+        raise ValueError('Refusing to save parameters violating the fixed threshold intersections')
+    heights=fixed_event_heights(m).tolist()
+    if not physically_valid_events(x):
+        raise ValueError('Refusing to save: fixed threshold equilibria must have 0 < h < 1')
+    out.update(fixed_equilibrium_threshold_I=FIXED_EVENT_I.tolist(),fixed_event_threshold_indices=[0,2],fixed_event_heights=heights,fixed_event_physical=all(0<h<1 for h in heights),optimized_parameter_count=len(ACTIVE),derived_parameter_indices=[11,13])
     out['poincare_weight_scale']=POINCARE_SCALE
     out['training_cycle_inputs']=sorted({q['I'] for q in TARGETS})
     out['training_cycle_count']=len(TARGETS)
@@ -97,10 +139,10 @@ def geometry():
     for j in range(10):
         x=base.copy() if j==0 else base+rng.normal(size=18)*np.r_[.25,.2,.5,.6,.4,.4,1.,.5,.5,.5,.04,.04,.03,.03,.3,.3,.1,.3]
         x=np.clip(x,LO+1e-5,HI-1e-5)
-        o=least_squares(geometric,x,bounds=(LO,HI),max_nfev=1300,ftol=1e-9,xtol=1e-9,gtol=1e-7,x_scale='jac')
+        x,o=solve_constrained(geometric,x,max_nfev=1300,ftol=1e-9,xtol=1e-9,gtol=1e-7,x_scale='jac')
         v=float(o.fun@o.fun);runs.append(dict(run=j,loss=v,nfev=o.nfev,optimality=o.optimality,message=o.message))
-        print('GEOMETRY',runs[-1],events(unpack(o.x)),flush=True)
-        if best is None or v<best[0]:best=v,o.x;write(o.x,'geometry.json',dict(loss=v,optimizer=runs[-1]))
+        print('GEOMETRY',runs[-1],events(unpack(x)),flush=True)
+        if best is None or v<best[0]:best=v,x;write(x,'geometry.json',dict(loss=v,optimizer=runs[-1]))
     (P/'geometry_runs.json').write_text(json.dumps(runs,indent=2))
 
 def prepare_targets():
@@ -157,8 +199,8 @@ def poincare():
             cost=float(out@out)
             if calls%100==0:print('RETURN',weight,calls,'loss',round(cost,5),'geom',round(float(g@g),5),'p',round(float(r@r),5),'sec',round(time.time()-start),flush=True)
             return out
-        o=least_squares(fun,x,bounds=(LO,HI),max_nfev=160 if os.environ.get('REFINE')=='1' else 100,diff_step=3e-4,ftol=None if os.environ.get('REFINE')=='1' else 2e-5,xtol=None if os.environ.get('REFINE')=='1' else 2e-5,gtol=1e-5,x_scale='jac')
-        x=o.x;write(x,f'poincare_{base_weight:g}.json',dict(loss=float(o.fun@o.fun),poincare_weight=weight,optimizer=dict(nfev=o.nfev,optimality=o.optimality,message=o.message),return_targets=p_residual(x,True)))
+        x,o=solve_constrained(fun,x,max_nfev=160 if os.environ.get('REFINE')=='1' else 100,diff_step=3e-4,ftol=None if os.environ.get('REFINE')=='1' else 2e-5,xtol=None if os.environ.get('REFINE')=='1' else 2e-5,gtol=1e-5,x_scale='jac')
+        write(x,f'poincare_{base_weight:g}.json',dict(loss=float(o.fun@o.fun),poincare_weight=weight,optimizer=dict(nfev=o.nfev,optimality=o.optimality,message=o.message),return_targets=p_residual(x,True)))
         print('STAGE DONE',weight,o.nfev,o.fun@o.fun,flush=True)
     write(x,'candidate.json',dict(return_targets=p_residual(x,True),fit_scope='hard types + nullclines + source-equilibrium anchors + soft spectrum + threshold events + Poincare orbit closure and periods'))
 
@@ -191,27 +233,28 @@ def orbit_fit():
         pred=np.column_stack([m['a']*(h-bb@m['N'])/dphi(C,m['shape']),m['b']*(bb@m['H']-h)])
         return ((pred-vel)/[.12,.012]/np.sqrt(len(C))).ravel()
     for w in [1.,5.,20.,60.]:
-        o=least_squares(lambda v:np.r_[geometric(v),np.sqrt(w)*field_res(v)],x,bounds=(LO,HI),max_nfev=900,ftol=1e-9,xtol=1e-9,gtol=1e-7,x_scale='jac')
-        x=o.x;write(x,f'orbit_{w:g}.json',dict(loss=float(o.fun@o.fun),orbit_velocity_weight=w,optimizer=dict(nfev=o.nfev,optimality=o.optimality,message=o.message)))
+        x,o=solve_constrained(lambda v:np.r_[geometric(v),np.sqrt(w)*field_res(v)],x,max_nfev=900,ftol=1e-9,xtol=1e-9,gtol=1e-7,x_scale='jac')
+        write(x,f'orbit_{w:g}.json',dict(loss=float(o.fun@o.fun),orbit_velocity_weight=w,optimizer=dict(nfev=o.nfev,optimality=o.optimality,message=o.message)))
         print('ORBIT',w,o.nfev,'loss',float(o.fun@o.fun),'events',events(unpack(x)),flush=True)
     write(x,'candidate.json',dict(fit_scope='hard types + geometry + equilibrium anchors + soft spectrum + threshold events + physical vector-field error on LR periodic orbits',orbit_fit_seed=seed_path.name,orbit_velocity_weight=60.,optimizer=dict(nfev=o.nfev,optimality=o.optimality,message=o.message)))
 
 def powell_fit():
     from scipy.optimize import minimize
     os.environ['FIT_EXTREMA']='1'
-    seed=json.loads((P/'orbit_60.json').read_text());base=np.array(seed['parameters'])
+    seed=json.loads((P/'orbit_60.json').read_text());base=constrain_events(seed['parameters'])
     scale=np.array([.4,.3,.4,.5,.4,.4,1.2,.7,1.2,.7,.04,.04,.06,.06,.6,.6,.3,.5])
-    bounds=list(zip(np.maximum(-1.5,(LO-base)/scale),np.minimum(1.5,(HI-base)/scale)))
+    bounds=list(zip(np.maximum(-1.5,(LO[ACTIVE]-base[ACTIVE])/scale[ACTIVE]),np.minimum(1.5,(HI[ACTIVE]-base[ACTIVE])/scale[ACTIVE])))
     calls=0;best=np.inf;start=time.time()
     def objective(y):
         nonlocal calls,best
-        x=base+scale*y;g=geometric(x);p=p_residual(x)
+        x=base.copy();x[ACTIVE]+=scale[ACTIVE]*y;x=constrain_events(x);g=geometric(x);p=p_residual(x)
         cost=float(g@g+6*POINCARE_SCALE*(p@p));calls+=1
-        if cost<best:
+        if cost<best and physically_valid_events(x):
             best=cost;write(x,'powell_best.json',dict(loss=cost,poincare_weight=6.*POINCARE_SCALE,fit_scope='hard regional types + geometry/equilibria/spectrum/events + Poincare closure, period, extrema; derivative-free local refinement',calls=calls))
         if calls%200==0:print('POWELL',calls,'best',round(best,5),'sec',round(time.time()-start),flush=True)
         return cost
-    o=minimize(objective,np.zeros(18),method='Powell',bounds=bounds,options=dict(maxfev=6500,xtol=2e-3,ftol=3e-5))
+    o=minimize(objective,np.zeros(len(ACTIVE)),method='Powell',bounds=bounds,options=dict(maxfev=6500,xtol=2e-3,ftol=3e-5))
+    if not np.isfinite(best):raise ValueError('Powell found no physically admissible fixed-event candidate')
     (P/'powell_optimizer.json').write_text(json.dumps(dict(nfev=o.nfev,fun=float(o.fun),success=bool(o.success),message=o.message),indent=2))
     bestmodel=json.loads((P/'powell_best.json').read_text());(P/'candidate.json').write_text(json.dumps(bestmodel,indent=2))
 
