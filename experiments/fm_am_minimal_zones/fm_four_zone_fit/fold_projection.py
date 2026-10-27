@@ -119,15 +119,37 @@ class FoldProjector:
                 ftol=1e-10,xtol=1e-10,gtol=1e-10,x_scale='jac')
             start=sol.x;x=unpack(sol.x);res=objective(sol.x)
             match_error=float(np.max(np.abs(res[:6])));trace_error=float(abs(res[6]*10.))
-            best=(match_error,trace_error,int(sol.nfev),regularizer)
+            best=(match_error,trace_error,int(sol.nfev),regularizer,sol.x.copy())
             print(f'FOLD INIT: joint regularizer={regularizer:g} matching={match_error:.3g} trace={trace_error:.3g} nfev={sol.nfev}',flush=True)
             if match_error<=1e-8 and trace_error<=1e-7:
                 if not f.physically_valid_events(x):
                     raise FoldProjectionError('Joint fold projection found nonphysical fixed-event heights')
                 return x,np.asarray(sol.x[:6])
         assert best is not None
-        match_error,trace_error,nfev,regularizer=best
-        raise FoldProjectionError(f'Joint fold equations not resolved (matching={match_error:.3g}, trace={trace_error:.3g}, nfev={nfev}, regularizer={regularizer:g})')
+        # The proximity penalty can leave a small but unacceptable closure
+        # residual. Starting at that near-fold point, solve only the seven
+        # fold equations so proximity no longer trades away exact closure.
+        start=best[4]
+        def fold_equations(v):
+            try:
+                x=unpack(v);m=f.unpack(x);g=matching(v[:6],self.target_I,x)
+                trace=sum(m['T'][r]*dt for r,dt in zip(REGIONS,v[:6]))
+                out=np.r_[g,trace/10.]
+                if not np.all(np.isfinite(out)):return np.full(7,1e6)
+                return out
+            except (ValueError,FloatingPointError,OverflowError):
+                return np.full(7,1e6)
+        sol=least_squares(fold_equations,start,bounds=(lo,hi),
+            max_nfev=max(5*self.max_nfev,500),ftol=1e-13,xtol=1e-13,
+            gtol=1e-13,x_scale='jac')
+        x=unpack(sol.x);res=fold_equations(sol.x)
+        match_error=float(np.max(np.abs(res[:6])));trace_error=float(abs(res[6]*10.))
+        print(f'FOLD INIT: unregularized correction matching={match_error:.3g} trace={trace_error:.3g} nfev={sol.nfev}',flush=True)
+        if match_error<=1e-8 and trace_error<=1e-7:
+            if not f.physically_valid_events(x):
+                raise FoldProjectionError('Unregularized fold correction found nonphysical fixed-event heights')
+            return x,np.asarray(sol.x[:6])
+        raise FoldProjectionError(f'Joint fold equations not resolved after unregularized correction (matching={match_error:.3g}, trace={trace_error:.3g}, nfev={sol.nfev}; regularized start matching={best[0]:.3g}, trace={best[1]:.3g}, regularizer={best[3]:g})')
 
     def _solve(self,raw,initial):
         started=time.monotonic();self.attempts+=1
