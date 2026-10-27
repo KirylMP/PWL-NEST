@@ -176,17 +176,19 @@ def plot_branches(model,rows,path):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('case',choices=['am','fm']);ap.add_argument('stage',choices=['prepare','geometry','poincare','closed','validate'])
-    ap.add_argument('--coordinate',choices=['mixed','affine'],default='mixed');ap.add_argument('--out',type=Path,required=True);ap.add_argument('--parent',type=Path)
-    a=ap.parse_args();a.out.mkdir(parents=True,exist_ok=True);model=Model(a.case,a.coordinate);f=model.f;install(model)
+    ap.add_argument('--coordinate',choices=['mixed','affine'],default='mixed');ap.add_argument('--construction',choices=['refined','base'],default='refined');ap.add_argument('--out',type=Path,required=True);ap.add_argument('--parent',type=Path)
+    a=ap.parse_args();a.out.mkdir(parents=True,exist_ok=True);model=Model(a.case,a.coordinate,a.construction);f=model.f;install(model)
     path=a.out/'candidate.json';scale=float(os.environ.get('POINCARE_WEIGHT_SCALE','100'));start=time.monotonic()
     if not np.isfinite(scale) or scale<=0:raise ValueError('POINCARE_WEIGHT_SCALE must be finite and positive')
     if a.stage=='prepare':
         if path.exists():raise ValueError(f'Candidate exists: {path}')
         parent=(a.parent or model.default_parent).resolve();x=model.lift_parent(json.loads(parent.read_text()))
-        save(path,model,x,dict(stage='prepare',parent=str(parent),note='Rest and fixed events exact; additional cuts fixed at one-third and two-thirds.'))
+        save(path,model,x,dict(stage='prepare',parent=str(parent),note=f'Rest and fixed events exact; construction={a.construction}.'))
         print(f'PREPARE {a.case} saved {path}; rest={model.rest.tolist()}',flush=True);return
     if not path.exists():raise ValueError('Run prepare first')
-    seed=json.loads(path.read_text());base=model.constrain_events(seed['parameters'])
+    seed=json.loads(path.read_text())
+    if seed.get('threshold_count_m')!=len(model.cuts):raise ValueError('Candidate threshold count does not match --construction')
+    base=model.constrain_events(seed['parameters'])
     if a.stage=='validate':
         from concurrent.futures import ThreadPoolExecutor
         n=int(os.environ.get('VALIDATE_GRID_SIZE','81'));workers=int(os.environ.get('WORKERS','4'))

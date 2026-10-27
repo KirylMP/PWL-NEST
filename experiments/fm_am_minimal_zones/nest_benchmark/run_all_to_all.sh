@@ -2,8 +2,9 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 export OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 MPLCONFIGDIR="${MPLCONFIGDIR:-/tmp/pwa_nest_mpl}"
-mkdir -p results
-run_dir="$(mktemp -d "$PWD/results/all_to_all_$(date -u +%Y%m%dT%H%M%SZ)_XXXXXX")"
+result_root="${NETWORK_RESULTS_DIR:-$PWD/results}"
+mkdir -p "$result_root"
+run_dir="$(mktemp -d "$result_root/all_to_all_$(date -u +%Y%m%dT%H%M%SZ)_XXXXXX")"
 printf 'NETWORK_RESULTS=%s\n' "$run_dir"
 trap 'printf "Network stopped; files: %s\n" "$run_dir" >&2' ERR
 PWA_PROFILE=0 bash build_module.sh 2>&1 | tee "$run_dir/build.log"

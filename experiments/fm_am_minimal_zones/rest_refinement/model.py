@@ -8,9 +8,9 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 class Model:
-    def __init__(self,case,coordinate='mixed'):
-        if case not in ('am','fm') or coordinate not in ('mixed','affine'):raise ValueError('Invalid case or coordinate')
-        self.case=case;self.coordinate=coordinate
+    def __init__(self,case,coordinate='mixed',construction='refined'):
+        if case not in ('am','fm') or coordinate not in ('mixed','affine') or construction not in ('refined','base'):raise ValueError('Invalid case, coordinate or construction')
+        self.case=case;self.coordinate=coordinate;self.construction=construction
         if case=='am':
             import os
             os.environ['MAP_KIND']='affine' if coordinate=='affine' else 'mixed_power'
@@ -28,9 +28,11 @@ class Model:
             self.kind=np.array([0,1,1,1,2,2,2,3]);self.event_indices=[0,6]
             self.default_parent=ROOT/'fm_four_zone_fit/candidate.json'
         cuts=list(self.base)
-        intervals=[(self.base[0],self.base[1])] if case=='am' else [(self.base[0],self.base[1]),(self.base[1],self.base[2])]
+        intervals=[] if construction=='base' else ([(self.base[0],self.base[1])] if case=='am' else [(self.base[0],self.base[1]),(self.base[1],self.base[2])])
         for lo,hi in intervals:cuts.extend([lo+(hi-lo)/3,lo+2*(hi-lo)/3])
         self.cuts=np.sort(cuts);self.n=len(self.cuts)+1
+        if construction=='base':
+            self.kind=np.arange(self.n);self.event_indices=[0,len(self.cuts)-1]
         self.n0=2+2*self.n;self.h0=self.n0+1;self.ni=self.n0+2;self.hi=self.n0+3;self.shape=self.n0+4
         self.size=self.shape+4;self.dep_det=2+self.n+1
         self.derived=[self.dep_det,self.n0,self.h0,self.hi]
@@ -114,17 +116,17 @@ class Model:
         try:
             constrained=self.constrain_events(x)
             if self.physically_valid_events(constrained):return constrained
-            if self.case!='fm':raise ValueError('Fixed event heights outside physical domain')
         except ValueError as exc:
-            if self.case!='fm' or str(exc) not in ('Rest/event constraints incompatible with saddle','Derived determinant outside bounds'):
+            if str(exc) not in ('Rest/event constraints incompatible with saddle','Rest/event constraints incompatible with unstable focus','Derived determinant outside bounds'):
                 raise
         # The old fit did not fix the rest point; require admissible event
         # heights as well as a saddle determinant during initialization.
         # Keeping the cuts and transform fixed, vary regional slopes and the
         # input coefficient; the remaining coefficients are derived exactly.
-        if self.case=='fm':
+        if self.case in ('am','fm'):
             from scipy.optimize import minimize
-            indices=np.array([2+self.n+r for r in (0,2,3,4,5,6)]+[2+r for r in range(7)]+[self.ni])
+            last=self.event_indices[-1]
+            indices=np.array([2+self.n+r for r in range(last+1) if r!=1]+[2+r for r in range(last+1)]+[self.ni])
             original=x[indices].copy()
             bounds=list(zip(self.lo[indices]+1e-7,self.upper[indices]-1e-7))
             initial=np.clip(original,*np.asarray(bounds).T)
@@ -137,10 +139,14 @@ class Model:
                 trial=x.copy();trial[indices]=y;m=self.unpack(trial)
                 trial[self.n0]+=self.rest[1]-self.basis(self.rest[0],0.,m)@m['N']
                 return self.event_heights(trial)
+            def difference(y):
+                if self.case=='fm':return -required(y)
+                trial=x.copy();trial[indices]=y
+                return required(y)-self.unpack(trial)['T'][1]**2/4
             lower=np.exp(self.lo[self.dep_det]+1e-5);upper=np.exp(self.upper[self.dep_det]-1e-5)
             result=minimize(lambda y: float(np.sum((y-original)**2)),initial,method='SLSQP',bounds=bounds,
-                constraints=[{'type':'ineq','fun':lambda y:-required(y)-lower},
-                             {'type':'ineq','fun':lambda y:upper+required(y)},
+                constraints=[{'type':'ineq','fun':lambda y:difference(y)-lower},
+                             {'type':'ineq','fun':lambda y:upper-difference(y)},
                              {'type':'ineq','fun':lambda y:heights(y)-1e-4},
                              {'type':'ineq','fun':lambda y:1.-1e-4-heights(y)}],
                 options={'maxiter':1000,'ftol':1e-12})
@@ -148,8 +154,8 @@ class Model:
             try:
                 x=self.constrain_events(x)
             except ValueError as failure:
-                raise ValueError(f'FM initialization could not satisfy rest and event constraints: {result.message}; {failure}') from failure
+                raise ValueError(f'{self.case.upper()} initialization could not satisfy rest and event constraints: {result.message}; {failure}') from failure
             if not self.physically_valid_events(x):
-                raise ValueError(f'FM initialization could not find physical event heights: {self.event_heights(x).tolist()}; {result.message}')
-            print(f'FM initialization adjusted regional parameters: distance={np.linalg.norm(result.x-original):.6g}, event heights={self.event_heights(x).tolist()}, optimizer={result.message}',flush=True)
+                raise ValueError(f'{self.case.upper()} initialization could not find physical event heights: {self.event_heights(x).tolist()}; {result.message}')
+            print(f'{self.case.upper()} initialization adjusted regional parameters: distance={np.linalg.norm(result.x-original):.6g}, event heights={self.event_heights(x).tolist()}, optimizer={result.message}',flush=True)
             return x
