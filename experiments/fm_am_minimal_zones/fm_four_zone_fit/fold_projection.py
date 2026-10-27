@@ -1,0 +1,121 @@
+"""Numerical elimination of one FM parameter using the large-cycle fold.
+
+The projection follows a single, transverse six-segment boundary itinerary.
+It returns no candidate on failure; every successful result is checked against
+the boundary equations, physical domain, crossing order and local fold tests.
+"""
+import os
+import time
+
+import numpy as np
+from scipy.linalg import expm
+from scipy.optimize import least_squares
+
+import fit_four as f
+from boundary_fold_experiment import (REGIONS, matching, starting_times,
+                                      local_nondegeneracy, verify_trajectory)
+
+
+FOLD_PARAMETER=4  # x[4] = log(trace of region 3); fixed events use x[11], x[13]
+FOLD_ACTIVE=np.array([i for i in f.ACTIVE if i!=FOLD_PARAMETER],dtype=int)
+DEFAULT_TARGET_I=1.1231503495944923  # numerical LR estimate, not an exact constant
+
+
+class FoldProjectionError(ValueError):
+    pass
+
+
+class FoldProjector:
+    def __init__(self,seed,target_I=DEFAULT_TARGET_I,probe_I=1.1,max_nfev=120):
+        if not np.isfinite(target_I) or target_I<0 or not np.isfinite(probe_I) or probe_I<0:
+            raise FoldProjectionError('Fold target and probe I must be finite and nonnegative')
+        if max_nfev<1:raise FoldProjectionError('Fold solver budget must be positive')
+        self.target_I=float(target_I);self.probe_I=float(probe_I);self.max_nfev=int(max_nfev)
+        self.attempts=0;self.failures=0;self.seconds=0.;self.last_error=None
+        seed=f.constrain_events(seed)
+        # Retry ordinary probes if the chosen point lacks a large stable cycle.
+        errors=[];times0=None
+        for I in dict.fromkeys([self.probe_I,1.05,1.0,.9,.8,.65,.55]):
+            try:
+                times0,_=starting_times(seed,I);self.used_probe_I=float(I);break
+            except (ValueError,StopIteration) as e:errors.append(f'{I}: {e}')
+        if times0 is None:
+            raise FoldProjectionError('No usable initial large-cycle itinerary: '+'; '.join(errors))
+        initial=np.r_[times0,seed[FOLD_PARAMETER]]
+        x,metadata=self._solve(seed,initial)
+        # Independent validation once at initialization; every saved best is
+        # independently checked again in the caller.
+        metadata['independent_check']=verify_trajectory(self.target_I,x,np.asarray(metadata['crossing_times']))
+        self.anchor=np.r_[metadata['crossing_times'],x[FOLD_PARAMETER]]
+        self.initial=x;self.initial_metadata=metadata
+
+    def _solve(self,raw,initial):
+        started=time.monotonic();self.attempts+=1
+        try:
+            base=f.constrain_events(raw);index=FOLD_PARAMETER;target=self.target_I
+            lo=np.r_[np.full(6,1e-5),f.LO[index]+1e-8]
+            hi=np.r_[np.full(6,30.),f.HI[index]-1e-8]
+            start=np.clip(np.asarray(initial,dtype=float),lo+1e-9,hi-1e-9)
+            def reconstruct(v):
+                x=base.copy();x[index]=v[6];return f.constrain_events(x)
+            def objective(v):
+                try:
+                    x=reconstruct(v);m=f.unpack(x);g=matching(v[:6],target,x)
+                    trace=sum(m['T'][r]*dt for r,dt in zip(REGIONS,v[:6]))
+                    out=np.r_[g,trace/10.]
+                    if not np.all(np.isfinite(out)):return np.full(7,1e6)
+                    return out
+                except (ValueError,FloatingPointError,OverflowError):
+                    return np.full(7,1e6)
+            sol=least_squares(objective,start,bounds=(lo,hi),max_nfev=self.max_nfev,
+                              ftol=1e-11,xtol=1e-11,gtol=1e-11,x_scale='jac')
+            x=reconstruct(sol.x);times=sol.x[:6];res=objective(sol.x)
+            match_error=float(np.max(np.abs(res[:6])));trace_error=float(abs(res[6]*10.))
+            if match_error>1e-8 or trace_error>1e-7:
+                raise FoldProjectionError(f'Fold equations not resolved (matching={match_error:.3g}, trace={trace_error:.3g}, nfev={sol.nfev})')
+            if min(sol.x[6]-lo[6],hi[6]-sol.x[6])<1e-7:
+                raise FoldProjectionError('Dependent fold parameter hit its search bound')
+            if not f.physically_valid_events(x):raise FoldProjectionError('Fixed equilibrium crossings outside physical h interval')
+            self._check_itinerary(x,times)
+            diagnostic=local_nondegeneracy(times,target,x,index)
+            ss=diagnostic['singular_values'];curv=diagnostic['curvature_samples']
+            if (not np.all(np.isfinite(ss)) or not np.all(np.isfinite(curv)) or
+                not np.isfinite(diagnostic['input_derivative']) or not np.isfinite(diagnostic['parameter_derivative']) or
+                ss[0]<=0 or ss[-1]>1e-6*ss[0] or ss[-2]<1e-8*ss[0] or abs(diagnostic['input_derivative'])<1e-8 or
+                abs(diagnostic['parameter_derivative'])<1e-8 or min(abs(v) for v in curv)<1e-9 or
+                len({np.sign(v) for v in curv})!=1 or not diagnostic['roots_locally_on_lower_I']):
+                raise FoldProjectionError('Fold nondegeneracy or upper-bound orientation unresolved')
+            meta=dict(target_I=target,parameter_index=index,parameter_value=float(x[index]),
+                crossing_times=times.tolist(),matching_residual=match_error,trace_integral=trace_error,
+                solver_nfev=int(sol.nfev),solver_success=bool(sol.success),
+                local_nondegeneracy=diagnostic,
+                note='Numerical constrained fold on assumed itinerary; finite sampling is not a global proof.')
+            return x,meta
+        except (ValueError,FloatingPointError,OverflowError,np.linalg.LinAlgError) as e:
+            self.failures+=1;self.last_error=f'{type(e).__name__}: {e}'
+            if isinstance(e,FoldProjectionError):raise
+            raise FoldProjectionError(self.last_error) from e
+        finally:self.seconds+=time.monotonic()-started
+
+    def _check_itinerary(self,x,times):
+        _,m,z,h,matrices=matching(times,self.target_I,x,True)
+        lower,upper=f.phi(np.array([1e-12,f.CMAX]),m['shape'])
+        expected=(1,1,1,-1,-1,-1)
+        for j,(r,M) in enumerate(zip(REGIONS,matrices)):
+            y0=np.r_[z[j],h[j],1.];normal=float((M@y0)[0])
+            if expected[j]*normal<=1e-8:raise FoldProjectionError(f'Leg {j+1} has wrong or grazing crossing')
+            states=np.array([(expm(M*t)@y0)[:2] for t in np.linspace(0,times[j],65)])
+            if not np.all(np.isfinite(states)):raise FoldProjectionError(f'Leg {j+1} contains nonfinite states')
+            lo=-np.inf if r==0 else m['th'][r-1];hi=np.inf if r==3 else m['th'][r]
+            if np.min(states[:,0])<lo-1e-7 or np.max(states[:,0])>hi+1e-7:
+                raise FoldProjectionError(f'Leg {j+1} left its expected region')
+            if np.min(states[:,0])<=lower or np.max(states[:,0])>=upper or np.min(states[:,1])<=0 or np.max(states[:,1])>=1:
+                raise FoldProjectionError(f'Leg {j+1} left physical state domain')
+
+    def project(self,raw):
+        # A fixed anchor keeps the projection deterministic for repeated
+        # optimizer inputs. Failed projections never fall back to an old x.
+        return self._solve(raw,self.anchor)
+
+    def independent_check(self,x,meta):
+        return verify_trajectory(self.target_I,x,np.asarray(meta['crossing_times']))

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Experimental analytic boundary-matching solve for an FM cycle fold.
 
-This is a standalone candidate transformation, not a constraint inside the
-main optimizer. It assumes the transverse itinerary R2,R3,R4,R3,R2,R1 and
-checks that the candidate actually follows it. Nothing is written to the
-input candidate file.
+This standalone candidate transformation assumes the transverse itinerary
+R2,R3,R4,R3,R2,R1 and checks that the candidate follows it. The main FM
+closed-stage optimizer separately enforces the same fold by default. Nothing
+is written to the input candidate file.
 """
 import argparse
 import json
@@ -165,7 +165,7 @@ def main():
         crossing_times=times.tolist(),period=float(sum(times)),verification=verification,
         local_nondegeneracy=diagnostic,optimizer=dict(success=bool(result.success),
         message=result.message,nfev=result.nfev,max_residual=error),
-        note='Experimental one-candidate fold solve; the main optimizer does not enforce this condition.')
+        note='Experimental one-candidate fold solve; main FM closed stage separately enforces the fold by default.')
     f.write(x,output_path,dict(fold_condition_experiment=fold))
     print(json.dumps(fold,indent=2),flush=True)
     print(f'Candidate saved separately to {output_path}',flush=True)
