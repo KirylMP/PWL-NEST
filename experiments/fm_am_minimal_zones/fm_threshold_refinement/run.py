@@ -32,6 +32,13 @@ def install_model(model):
     f.unpack=model.unpack;f.basis=model.basis;f.equilibrium=model.equilibrium
 
 
+def json_numpy(value):
+    """Convert NumPy values nested in optimization and audit records."""
+    if isinstance(value, np.generic):return value.item()
+    if isinstance(value, np.ndarray):return value.tolist()
+    raise TypeError(f'Object of type {type(value).__name__} is not JSON serializable')
+
+
 def save(path,model,x,extra):
     m=model.unpack(x)
     if not model.physically_valid_events(x):raise ValueError('Nonphysical fixed-event height')
@@ -41,7 +48,7 @@ def save(path,model,x,extra):
         alpha=m['N'].tolist(),beta=m['H'].tolist(),a=m['a'],b=m['b'],
         transform=dict(zip(['p','e','n','k'],m['shape'])),trace=m['T'].tolist(),determinant=m['D'].tolist(),
         derived_parameter_indices=extra.pop('derived_parameter_indices',model.derived),**extra)
-    tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(obj,indent=2));tmp.replace(path)
+    tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(obj,indent=2,default=json_numpy));tmp.replace(path)
 
 
 def start_times(model,x,I,target):
@@ -145,6 +152,7 @@ def main():
         if dep is not None:break
     if dep is None:raise FoldError('No verified fold initialization. Geometry candidate retained.')
     fold=selected_fold
+    print(f'FOLD initialized parameter={int(dep)} target_I={target:.12g} crossings={fold.boundaries}',flush=True)
     active=np.array([j for j in model.active if j!=dep]);scale=np.full(model.size,.2);scale[model.n0:model.hi+1]=.03
     bounds=list(zip(np.maximum(-1.,(model.lo[active]-base[active])/scale[active]),np.minimum(1.,(model.hi_bounds[active]-base[active])/scale[active])))
     count_weight=float(os.environ.get('FM_CYCLE_COUNT_WEIGHT',str(6*f.POINCARE_SCALE)));count_reference=cycle_count_loss.reference_grid() if count_weight else []
@@ -163,7 +171,8 @@ def main():
             cost=float(parts['total'])
             if cost<best:
                 info=dict(info);info['independent_check']=independent_fold(model,x,fold,info)
-                best=cost;save(path,model,x,dict(stage='closed',loss=cost,loss_components=parts,fold_constraint=info,training_settings=dict(poincare_weight_scale=f.POINCARE_SCALE,training_cycle_inputs=sorted({q['I'] for q in f.TARGETS}),count_weight=count_weight,count_seeds=seeds,count_inputs=[r['I'] for r in count_reference],fixed_fold_I=target),optimized_parameter_count=len(active),derived_parameter_indices=sorted(model.derived+[dep]),cycle_count_training=report,calls=calls))
+                save(path,model,x,dict(stage='closed',loss=cost,loss_components=parts,fold_constraint=info,training_settings=dict(poincare_weight_scale=f.POINCARE_SCALE,training_cycle_inputs=sorted({q['I'] for q in f.TARGETS}),count_weight=count_weight,count_seeds=seeds,count_inputs=[r['I'] for r in count_reference],fixed_fold_I=target),optimized_parameter_count=len(active),derived_parameter_indices=sorted(model.derived+[dep]),cycle_count_training=report,calls=calls))
+                best=cost
             if calls==1 or calls%20==0:print(f'CLOSED {args.variant} eval={calls} best={best:.7g} elapsed={time.monotonic()-start:.1f}s parts={parts}',flush=True)
             return cost
         except (ValueError,FloatingPointError,OverflowError) as e:
