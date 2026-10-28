@@ -19,7 +19,7 @@ export FM_CYCLE_COUNT_POINTS="${FM_CYCLE_COUNT_POINTS:-17}" FM_CYCLE_COUNT_SEEDS
 export FM_CYCLE_COUNT_WEIGHT="${FM_CYCLE_COUNT_WEIGHT:-600}" WORKERS="${WORKERS:-16}"
 construction="${CONSTRUCTION:-refined}"
 lower_type="${FM_LOWER_TYPE:-node}"
-if [[ "$construction" != refined && "$construction" != base && "$construction" != split && "$construction" != split_fixed && "$construction" != six_fixed ]]; then printf 'Unknown construction: %s\n' "$construction" >&2; exit 1; fi
+if [[ "$construction" != refined && "$construction" != base && "$construction" != split && "$construction" != split_fixed && "$construction" != six_fixed && "$construction" != full_fixed ]]; then printf 'Unknown construction: %s\n' "$construction" >&2; exit 1; fi
 for model in ${MODELS:-am fm}; do
   if [[ "$model" != am && "$model" != fm ]]; then printf 'Unknown model: %s\n' "$model" >&2; exit 1; fi
   parent_var="${model^^}_PARENT_CANDIDATE"

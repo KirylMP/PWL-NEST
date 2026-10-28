@@ -9,8 +9,8 @@ ROOT=Path(__file__).resolve().parents[1]
 
 class Model:
     def __init__(self,case,coordinate='mixed',construction='refined',fm_lower_type='node'):
-        if case not in ('am','fm') or coordinate not in ('mixed','affine') or construction not in ('refined','base','split','split_fixed','six_fixed'):raise ValueError('Invalid case, coordinate or construction')
-        if fm_lower_type not in ('node','focus') or (fm_lower_type=='focus' and (case!='fm' or construction not in ('base','split','split_fixed'))) or (construction in ('split','split_fixed') and (case!='fm' or fm_lower_type!='focus')) or (construction=='six_fixed' and (case!='fm' or fm_lower_type!='node')):raise ValueError('Invalid FM lower type for construction')
+        if case not in ('am','fm') or coordinate not in ('mixed','affine') or construction not in ('refined','base','split','split_fixed','six_fixed','full_fixed'):raise ValueError('Invalid case, coordinate or construction')
+        if fm_lower_type not in ('node','focus') or (fm_lower_type=='focus' and (case!='fm' or construction not in ('base','split','split_fixed'))) or (construction in ('split','split_fixed') and (case!='fm' or fm_lower_type!='focus')) or (construction in ('six_fixed','full_fixed') and (case!='fm' or fm_lower_type!='node')):raise ValueError('Invalid FM lower type for construction')
         self.case=case;self.coordinate=coordinate;self.construction=construction;self.fm_lower_type=fm_lower_type
         if case=='am':
             import os
@@ -29,7 +29,7 @@ class Model:
             self.kind=np.array([0,1,1,1,2,2,2,3]);self.event_indices=[0,6]
             self.default_parent=ROOT/'fm_four_zone_fit/candidate.json'
         cuts=list(self.base)
-        intervals=[] if construction in ('base','split','split_fixed','six_fixed') else ([(self.base[0],self.base[1])] if case=='am' else [(self.base[0],self.base[1]),(self.base[1],self.base[2])])
+        intervals=[] if construction in ('base','split','split_fixed','six_fixed','full_fixed') else ([(self.base[0],self.base[1])] if case=='am' else [(self.base[0],self.base[1]),(self.base[1],self.base[2])])
         if construction=='split':cuts.append(0.05214116272147648)
         if construction=='split_fixed':
             cuts=[0.05214116272147648,0.06128930910964862,0.1357042423799119,float(self.base[2])]
@@ -37,6 +37,10 @@ class Model:
         if construction=='six_fixed':
             cuts=[0.04861935111371004,0.06128930910964862,0.1357042423799119,0.25181841575270236,0.3926251934101712]
             self.event_I=np.array([0.5107261652060441,0.5439919432478553,0.48230398233782223,0.5747315355622029,0.8600205557570602])
+            self.default_parent=ROOT/'fm_four_zone_fit/previous_selected.json'
+        if construction=='full_fixed':
+            cuts=[0.04861935111371004,0.05214116272147648,0.05484469312764684,0.06128930910964862,0.1357042423799119,0.25181841575270236,0.3926251934101712]
+            self.event_I=np.array([0.5107261652060441,0.5290700389163682,0.5373937039464933,0.5439919432478553,0.48230398233782223,0.5747315355622029,0.8600205557570602])
             self.default_parent=ROOT/'fm_four_zone_fit/previous_selected.json'
         for lo,hi in intervals:cuts.extend([lo+(hi-lo)/3,lo+2*(hi-lo)/3])
         self.cuts=np.sort(cuts);self.n=len(self.cuts)+1
@@ -46,9 +50,10 @@ class Model:
             self.kind=np.array([0,2,1,2,3]);self.event_indices=[0,len(self.cuts)-1]
         if construction=='split_fixed':self.event_indices=list(range(4))
         if construction=='six_fixed':self.kind=np.array([0,3,1,4,2,3]);self.event_indices=list(range(5))
+        if construction=='full_fixed':self.kind=np.array([0,3,2,4,1,4,2,3]);self.event_indices=list(range(7))
         self.n0=2+2*self.n;self.h0=self.n0+1;self.ni=self.n0+2;self.hi=self.n0+3;self.shape=self.n0+4
         self.size=self.shape+4;self.dep_region=2 if construction in ('split','split_fixed') else 1;self.dep_det=2+self.n+self.dep_region
-        self.derived=([2+self.n+r for r in range(1,len(self.event_I))] if construction in ('split_fixed','six_fixed') else [self.dep_det])+[self.n0,self.h0,self.hi]
+        self.derived=([2+self.n+r for r in range(1,len(self.event_I))] if construction in ('split_fixed','six_fixed','full_fixed') else [self.dep_det])+[self.n0,self.h0,self.hi]
         self.active=np.array([i for i in range(self.size) if i not in self.derived and not (coordinate=='affine' and i>=self.shape)],dtype=int)
         if case=='am':
             lo_u=np.array([-5.,-6.,-5.])[self.kind];hi_u=np.array([3.,2.,2.])[self.kind]
@@ -92,7 +97,7 @@ class Model:
         z=np.r_[zr,m['th']];last=self.event_indices[-1]
         if not zr<m['th'][0]:raise ValueError('LR rest is not in first region')
         D=m['D'];width=np.diff(z)
-        if self.construction in ('split_fixed','six_fixed'):
+        if self.construction in ('split_fixed','six_fixed','full_fixed'):
             I0=self.event_I[0]
             target=D[0]*width[0]*np.diff(self.event_I)/(I0*width[1:len(self.event_I)])
             for r,value in enumerate(target,1):
@@ -144,13 +149,13 @@ class Model:
         return out
 
     def lift_parent(self,parent):
-        if self.construction=='six_fixed' and ('candidate' in parent or len(parent.get('physical_thresholds_C',[]))==7):
+        if self.construction in ('six_fixed','full_fixed') and ('candidate' in parent or len(parent.get('physical_thresholds_C',[]))==7):
             parent=parent.get('candidate',parent)
             if len(parent['physical_thresholds_C'])!=7 or parent.get('transform') is None:raise ValueError('Expected transformed 8-region FM parent')
             a=float(parent['a']);b=float(parent['b']);alpha=np.asarray(parent['alpha'],float);beta=np.asarray(parent['beta'],float)
             shape=np.array([parent['transform'][k] for k in ('p','e','n','k')],float)
             old_th=self.f.phi(np.asarray(parent['physical_thresholds_C'],float),shape)
-            selected=[0,3,4,5,6,7];u=[];v=[]
+            selected=[0,3,6,5,4,5,6,7] if self.construction=='full_fixed' else [0,3,4,5,6,7];u=[];v=[]
             for r,kind in zip(selected,self.kind):
                 ns=alpha[1]+sum(alpha[3:3+r]);hs=beta[1]+sum(beta[3:3+r]);T=-a*ns-b;D=a*b*(ns-hs)
                 if kind==1:
@@ -167,12 +172,13 @@ class Model:
             at=np.r_[1.,0.,.8,np.maximum(-old_th,0.)]
             x=np.r_[np.log([a,b]),u,v,alpha@at,beta@at,alpha[2],beta[2],shape]
             return self.initialize_fixed_events(x)
+        if self.construction=='full_fixed':raise ValueError('Full FM initialization requires the 8-region candidate')
         if not np.allclose(parent['physical_thresholds_C'],self.base,rtol=0,atol=1e-10):raise ValueError('Parent physical thresholds mismatch')
         if (parent.get('transform') is None)!=(self.coordinate=='affine'):raise ValueError('Parent coordinate family mismatch')
         old=np.asarray(parent['parameters'],float);nold=len(self.base)+1;idx=np.array([0,3,1,2,2,3]) if self.construction=='six_fixed' else self.kind
         x=np.r_[old[:2],old[2:2+nold][idx],old[2+nold:2+2*nold][idx],old[2+2*nold:6+2*nold],old[6+2*nold:10+2*nold]]
         if self.fm_lower_type=='focus' and parent.get('fm_lower_type')!='focus':x[2+self.n]=-6.
-        if self.construction in ('split_fixed','six_fixed'):return self.initialize_fixed_events(x)
+        if self.construction in ('split_fixed','six_fixed','full_fixed'):return self.initialize_fixed_events(x)
         try:
             constrained=self.constrain_events(x)
             if self.physically_valid_events(constrained):return constrained
