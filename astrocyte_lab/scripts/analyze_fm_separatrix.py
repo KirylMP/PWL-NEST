@@ -21,9 +21,11 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('model_dir',type=Path);p.add_argument('--start',type=float,default=.515);p.add_argument('--stop',type=float,default=.531)
     p.add_argument('--points',type=int,default=33);p.add_argument('--workers',type=int,default=8);p.add_argument('--section',type=float,default=.2)
-    p.add_argument('--epsilon',type=float,default=1e-6);p.add_argument('--max-time',type=float,default=150.)
+    p.add_argument('--epsilon',type=float,default=1e-6);p.add_argument('--max-time',type=float,default=600.)
+    p.add_argument('--output-prefix',default='separatrix_onset',help='Output filename stem within the model directory')
     a=p.parse_args()
     if a.start>=a.stop or a.points<3 or a.workers<1 or a.epsilon<=0 or a.max_time<=0 or not .14<a.section<1.:p.error('Invalid arguments')
+    if not a.output_prefix or Path(a.output_prefix).name!=a.output_prefix:p.error('output-prefix must be a simple filename')
     candidate=a.model_dir/'parameters.json'
     if not candidate.exists():candidate=a.model_dir/'candidate.json'
     data=json.loads(candidate.read_text())
@@ -59,7 +61,10 @@ def main():
                 sol=solve_ivp(rhs,(0,direction*a.max_time),state+sign*epsilon*v,method='DOP853',rtol=1e-9,atol=1e-11,max_step=.1,events=(crossing,domain))
                 if len(sol.t_events[0]):
                     y=sol.y_events[0][0];hits[label].append(dict(h=float(y[1]),sign=sign,time=float(sol.t_events[0][0])))
-                detail.append(dict(manifold=label,sign=sign,crossed=bool(len(sol.t_events[0])),domain_exit=bool(len(sol.t_events[1])),solver_success=bool(sol.success)))
+                final=sol.y[:,-1];final_c=float(f.inverse(np.asarray(final[0]),m)) if key=='pwa' else float(final[0])
+                detail.append(dict(manifold=label,sign=sign,crossed=bool(len(sol.t_events[0])),domain_exit=bool(len(sol.t_events[1])),solver_success=bool(sol.success),
+                    reached_time_limit=bool(sol.success and not len(sol.t_events[0]) and not len(sol.t_events[1]) and abs(sol.t[-1])>=a.max_time-1e-7),
+                    final_time=float(sol.t[-1]),final_C=final_c,final_h=float(final[1]),message=sol.message))
         out=dict(I=I,key=key,epsilon=epsilon,saddle_C=float(physical[0]),saddle_h=float(physical[1]),eigenvalues=[float(z.real) for z in eigs],hits=hits,details=detail)
         out['ok']=len(hits['unstable'])==1 and len(hits['stable'])==1
         if out['ok']:out['difference_h']=hits['unstable'][0]['h']-hits['stable'][0]['h']
@@ -91,13 +96,16 @@ def main():
             except (ValueError,RuntimeError) as exc:print(f'SEPARATRIX {key} root unresolved: {exc}',flush=True)
     output=dict(candidate=str(candidate.resolve()),settings=vars(a)|{'model_dir':str(a.model_dir)},
         method='Forward unstable and backward stable saddle eigenvector branches, finite offset, first crossing of chosen vertical C section. Match heights; scan and finite offset can miss or misidentify connections.',rows=rows,roots=roots)
-    dest=a.model_dir/'separatrix_onset.json';dest.write_text(json.dumps(output,indent=2)+'\n')
+    dest=a.model_dir/(a.output_prefix+'.json');dest.write_text(json.dumps(output,indent=2)+'\n')
     fig,ax=plt.subplots(figsize=(9,5),layout='constrained')
     for key,color in [('lr','tab:purple'),('pwa','black')]:
         ax.plot([r['I'] for r in rows],[r[key].get('difference_h',np.nan) for r in rows],'.-',color=color,label=key.upper())
         for root in roots[key]:ax.axvline(root['I'],color=color,ls=':',alpha=.5)
+    if not any(row[key]['ok'] for row in rows for key in ('lr','pwa')):
+        ax.text(.5,.5,'No unambiguous section crossings found.\nSee JSON branch diagnostics.',transform=ax.transAxes,ha='center',va='center')
+        ax.set_xlim(a.start,a.stop)
     ax.axhline(0,color='gray',lw=.8);ax.set(xlabel='I (µM)',ylabel='h unstable minus h stable at section',title=f'Saddle manifold matching, C={a.section:g} µM')
-    ax.grid(alpha=.25);ax.legend();image=a.model_dir/'separatrix_onset.png';fig.savefig(image,dpi=160);plt.close(fig)
+    ax.grid(alpha=.25);ax.legend();image=a.model_dir/(a.output_prefix+'.png');fig.savefig(image,dpi=160);plt.close(fig)
     print(f'Saved {dest}\nSaved {image}')
 
 
