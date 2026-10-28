@@ -32,13 +32,14 @@ def main():
     if not path.exists():path=args.model_dir/'parameters.json'
     data=json.loads(path.read_text())
     count=len(data['physical_thresholds_C'])
-    if data.get('case')!='fm' or count not in (3,4):raise ValueError('Expected 3- or split 4-threshold FM candidate')
+    if data.get('case')!='fm' or count not in (3,4,5):raise ValueError('Expected 3-, 4-, or 5-threshold FM candidate')
     construction=data.get('construction','split' if count==4 else 'base')
-    if construction not in ('base','split','split_fixed'):raise ValueError('Unsupported FM construction')
+    if construction not in ('base','split','split_fixed','six_fixed'):raise ValueError('Unsupported FM construction')
     model=Model('fm','mixed',construction,data.get('fm_lower_type','node'))
     x=model.constrain_events(data['parameters']);m=model.unpack(x);f=model.f
     bounds=f.phi(np.array([1e-12,f.CMAX]),m['shape'])
-    grid=np.unique(np.r_[np.linspace(args.start,args.stop,args.points),model.event_I[0]])
+    lower_lr_event=float(f.FIXED_EVENT_I[0])
+    grid=np.unique(np.r_[np.linspace(args.start,args.stop,args.points),lower_lr_event])
     grid=grid[(grid>=args.start)&(grid<=args.stop)]
     def scan(I):
         I=float(I);lreq=f.eqs(I);pwaeq=model.equilibrium(I,m)
@@ -69,7 +70,7 @@ def main():
         for stable,style in [(True,'-'),(False,'--')]:
             axes[2].step([r['I'] for r in rows],[sum(q['stable']==stable for q in r[key]) for r in rows],
                          where='mid',color=color,linestyle=style,label=f'{label} '+('stable' if stable else 'unstable'))
-    for ax in axes:ax.axvline(model.event_I[0],color='gray',linestyle=':',alpha=.8);ax.set_xlabel('I (µM)');ax.grid(alpha=.25)
+    for ax in axes:ax.axvline(lower_lr_event,color='gray',linestyle=':',alpha=.8);ax.set_xlabel('I (µM)');ax.grid(alpha=.25)
     axes[0].set_ylabel('Cycle extrema C (µM)');axes[1].set_ylabel('Period (s)');axes[2].set_ylabel('Found cycles');axes[2].legend()
     fig.suptitle('Lower FM transition: filled = stable, open = unstable; finite scan')
     fig.savefig(args.model_dir/'lower_bifurcation.png',dpi=160);plt.close(fig)
