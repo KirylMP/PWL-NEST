@@ -215,7 +215,16 @@ def main():
         plot_branches(model,rows,a.out/'candidate_bifurcation.png')
         print(f'VALIDATE saved {a.out}/candidate_branches.json',flush=True);return
     if a.stage=='poincare' and seed.get('stage')!='geometry':raise ValueError('Run geometry before poincare')
-    if a.stage=='closed' and seed.get('stage')!='poincare':raise ValueError('Run poincare before closed')
+    if a.stage=='closed' and seed.get('stage')!='poincare':
+        if not (a.case=='fm' and a.construction=='full_fixed' and seed.get('stage')=='closed' and os.environ.get('FM_RESUME_CLOSED')=='1'):
+            raise ValueError('Run poincare before closed')
+    local_weight=float(os.environ.get('FM_LOCAL_FOCUS_WEIGHT','0'))
+    local_target=float(os.environ.get('FM_LOCAL_FOCUS_TARGET','5'))
+    local_floor=float(os.environ.get('FM_LOCAL_FOCUS_FLOOR','0.1'))
+    if not all(np.isfinite(v) for v in (local_weight,local_target,local_floor)) or local_weight<0 or local_floor<=0 or local_target<local_floor:
+        raise ValueError('Invalid FM local focus penalty settings')
+    if local_weight and (a.case!='fm' or a.construction!='full_fixed'):
+        raise ValueError('Local focus penalty requires FM full_fixed')
     os.environ['FIT_EXTREMA']='1';fold=None;fold_info=None;dep=None;count_reference=[];eq_source=[];count_weight=0.
     if a.stage=='closed':
         from equilibrium_loss import model_cost
@@ -224,7 +233,17 @@ def main():
     if a.stage=='closed' and a.case=='fm':
         import closed_fit,cycle_count_loss
         target=float(os.environ.get('FM_FIXED_FOLD_I','1.1231503495944923'))
-        fold,base,dep,fold_info=fm_fold_seed(model,base,target)
+        saved_fold=seed.get('fold_constraint') if os.environ.get('FM_RESUME_CLOSED')=='1' else None
+        if saved_fold and abs(float(saved_fold['I'])-target)<1e-10:
+            spec=importlib.util.spec_from_file_location('refinement_fold',ROOT/'fm_four_zone_refinement/fold.py')
+            mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+            fold=mod.BoundaryFold(model,target);dep=int(saved_fold['parameter_index'])
+            if dep not in model.active:raise ValueError('Saved fold dependent parameter is not active')
+            base,fold_info=fold.solve(base,saved_fold['crossing_times'],dep,int(os.environ.get('FM_FOLD_SOLVER_MAX_NFEV','200')))
+            verify_fold(model,base,fold,fold_info)
+            print(f'FOLD restored and verified at I={target}, parameter={dep}',flush=True)
+        else:
+            fold,base,dep,fold_info=fm_fold_seed(model,base,target)
         count_weight=float(os.environ.get('FM_CYCLE_COUNT_WEIGHT','600'))
         if not np.isfinite(count_weight) or count_weight<0:raise ValueError('FM_CYCLE_COUNT_WEIGHT must be finite and nonnegative')
         count_reference=cycle_count_loss.reference_grid() if count_weight else []
@@ -255,11 +274,19 @@ def main():
                 else:
                     r,report=am_cycle_residual(model,x);parts['cycles_raw']=float(r@r);cost=parts['geometry']+eq_loss+2*scale*parts['cycles_raw']
             else:cost=parts['geometry']
+            if local_weight and a.stage=='closed':
+                m=model.unpack(x);t=m['T'][1:3];d=m['D'][1:3];disc=4*d-t*t
+                if np.any(disc<=0):raise ValueError('Local focus regions do not have complex eigenvalues')
+                log_m=float(np.pi*np.sum(t/np.sqrt(disc)))
+                penalty=max(0.,log_m-local_target)**2+max(0.,local_floor-log_m)**2
+                parts.update(local_focus_log_m0=log_m,local_focus_penalty_raw=float(penalty),local_focus_penalty_weighted=float(local_weight*penalty))
+                cost+=local_weight*penalty
             if not np.isfinite(cost):raise ValueError('Nonfinite loss')
             if cost<best:
                 extra=dict(stage=a.stage,loss=float(cost),loss_components=parts,calls=calls,fold_constrained=fold is not None,
                            training_settings=dict(poincare_weight_scale=scale,training_cycle_inputs=sorted({float(q['I']) for q in f.TARGETS}),
                              fm_cycle_count_weight=count_weight if a.case=='fm' and a.stage=='closed' else None,
+                             fm_local_focus_weight=local_weight, fm_local_focus_target=local_target, fm_local_focus_floor=local_floor,
                              fixed_fold_I=target if fold is not None else None))
                 if info is not None:
                     info=dict(info);info['independent_check']=verify_fold(model,x,fold,info);extra['fold_constraint']=info
