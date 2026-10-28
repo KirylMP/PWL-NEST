@@ -23,7 +23,7 @@ if [[ ! -f "$parent" ]]; then printf 'Parent candidate not found: %s\n' "$parent
 export FM_PARENT_CANDIDATE="$(cd "$(dirname "$parent")" && pwd)/$(basename "$parent")"
 printf 'PARENT=%s\n' "$FM_PARENT_CANDIDATE"
 status=0
-for variant in upper70 upper100 upper_both; do
+for variant in ${UPPER_VARIANTS:-upper70 upper100 upper_both upper_three}; do
   printf '\n==== %s ====\n' "$variant"
   bash "$lab/scripts/fit.sh" "$variant" || status=1
 done

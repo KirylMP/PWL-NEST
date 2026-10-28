@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 class Model:
     def __init__(self,case,coordinate='mixed',construction='refined',fm_lower_type='node'):
-        upper_modes=('upper70','upper100','upper_both')
+        upper_modes=('upper70','upper100','upper_both','upper_three')
         if case not in ('am','fm') or coordinate not in ('mixed','affine') or construction not in ('refined','base','split','split_fixed','six_fixed','full_fixed',*upper_modes):raise ValueError('Invalid case, coordinate or construction')
         if fm_lower_type not in ('node','focus') or (fm_lower_type=='focus' and (case!='fm' or construction not in ('base','split','split_fixed'))) or (construction in ('split','split_fixed') and (case!='fm' or fm_lower_type!='focus')) or (construction in ('six_fixed','full_fixed',*upper_modes) and (case!='fm' or fm_lower_type!='node')):raise ValueError('Invalid FM lower type for construction')
         self.case=case;self.coordinate=coordinate;self.construction=construction;self.fm_lower_type=fm_lower_type
@@ -43,7 +43,7 @@ class Model:
             cuts=[0.04861935111371004,0.05214116272147648,0.05484469312764684,0.06128930910964862,0.1357042423799119,0.25181841575270236,0.3926251934101712]
             self.event_I=np.array([0.5107261652060441,0.5290700389163682,0.5373937039464933,0.5439919432478553,0.48230398233782223,0.5747315355622029,0.8600205557570602])
             self.default_parent=ROOT/'fm_four_zone_fit/previous_selected.json'
-            cuts+=({'upper70':[.7],'upper100':[1.0],'upper_both':[.7,1.0]}.get(construction,[]))
+            cuts+=({'upper70':[.7],'upper100':[1.0],'upper_both':[.7,1.0],'upper_three':[.7,.95,1.1]}.get(construction,[]))
         for lo,hi in intervals:cuts.extend([lo+(hi-lo)/3,lo+2*(hi-lo)/3])
         self.cuts=np.sort(cuts);self.n=len(self.cuts)+1
         if construction=='base':
@@ -70,7 +70,9 @@ class Model:
             self.upper=np.r_[np.log([40,1.2]),hi_u,hi_d,[3,3,2,2],[5,3,2.5,4]]
             if fm_lower_type=='focus':self.lo[2+self.n]=-9.;self.upper[2+self.n]=1.
         if self.extra_cuts:
-            lo,hi=([.45],[1.35]) if self.extra_cuts==1 else ([.45,.905],[.895,1.35])
+            if self.extra_cuts==1:lo,hi=[.45],[1.35]
+            elif self.extra_cuts==2:lo,hi=[.45,.905],[.895,1.35]
+            else:lo,hi=[.45,.905,1.055],[.895,1.045,1.35]
             self.lo=np.r_[self.lo,lo];self.upper=np.r_[self.upper,hi]
         self.hi_bounds=self.upper;self.fixed=self.event_indices
 
@@ -92,7 +94,7 @@ class Model:
         th=self.f.phi(cuts,shape)
         N=np.r_[0.,ns[0],x[self.ni],np.diff(ns)];H=np.r_[0.,hs[0],x[self.hi],np.diff(hs)]
         at=np.r_[1.,0.,.8,np.maximum(-th,0.)];N[0]=x[self.n0]-at@N;H[0]=x[self.h0]-at@H
-        capacity=9 if self.extra_cuts else 7
+        capacity=10 if self.extra_cuts==3 else (9 if self.extra_cuts else 7)
         co=np.zeros((2,4+capacity));idx=[0,1,3,*range(4,4+len(th))]
         co[0,idx]=-a*N;co[0,2]=a;co[1,idx]=b*H;co[1,2]=-b
         return dict(a=a,b=b,T=T,D=D,N=N,H=H,shape=shape,th=th,tc=cuts,co=co,padded=np.r_[th,np.full(capacity-len(th),1e100)])
@@ -106,7 +108,7 @@ class Model:
         z=np.r_[zr,m['th']];last=self.event_indices[-1]
         if not zr<m['th'][0]:raise ValueError('LR rest is not in first region')
         D=m['D'];width=np.diff(z)
-        if self.construction in ('split_fixed','six_fixed','full_fixed','upper70','upper100','upper_both'):
+        if self.construction in ('split_fixed','six_fixed','full_fixed','upper70','upper100','upper_both','upper_three'):
             I0=self.event_I[0]
             target=D[0]*width[0]*np.diff(self.event_I)/(I0*width[1:len(self.event_I)])
             for r,value in enumerate(target,1):

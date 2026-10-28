@@ -9,25 +9,25 @@ if not (P/'libflow.so').exists():subprocess.run(['g++','-O3','-shared','-fPIC',s
 LIB=ctypes.CDLL(str(P/'libflow.so'));PTR=ctypes.POINTER(ctypes.c_double)
 LIB.first_return.argtypes=[ctypes.c_int,PTR,PTR,ctypes.c_double,ctypes.c_int,*([ctypes.c_double]*6),PTR]
 LIB.first_return.restype=ctypes.c_int
-_LIB9=None
-_LIB9_LOCK=threading.Lock()
-def lib9():
-    global _LIB9
-    with _LIB9_LOCK:
-        if _LIB9 is None:
-            path=P/'libflow9.so';src=P/'flow.cpp'
+_EXT_LIBS={}
+_LIB_LOCK=threading.Lock()
+def extended_lib(capacity):
+    with _LIB_LOCK:
+        if capacity not in _EXT_LIBS:
+            path=P/f'libflow{capacity}.so';src=P/'flow.cpp'
             if not path.exists() or path.stat().st_mtime_ns<src.stat().st_mtime_ns:
-                tmp=P/f'.libflow9_{os.getpid()}.so'
-                subprocess.run(['g++','-O3','-shared','-fPIC','-DMAX_CUTS=9',str(src),'-o',str(tmp)],check=True)
+                tmp=P/f'.libflow{capacity}_{os.getpid()}.so'
+                subprocess.run(['g++','-O3','-shared','-fPIC',f'-DMAX_CUTS={capacity}',str(src),'-o',str(tmp)],check=True)
                 os.replace(tmp,path)
-            _LIB9=ctypes.CDLL(str(path));_LIB9.first_return.argtypes=LIB.first_return.argtypes;_LIB9.first_return.restype=ctypes.c_int
-        return _LIB9
+            lib=ctypes.CDLL(str(path));lib.first_return.argtypes=LIB.first_return.argtypes;lib.first_return.restype=ctypes.c_int
+            _EXT_LIBS[capacity]=lib
+        return _EXT_LIBS[capacity]
 
 def ret(I,s,section,co=None,th=None,bounds=None,back=False,tol=2e-9,fast=False):
     mode=(2 if fast else 1) if co is not None else 0;co=np.ascontiguousarray(np.zeros((2,11)) if co is None else co,dtype=float);th=np.ascontiguousarray(np.zeros(7) if th is None else th,dtype=float);out=np.zeros(7)
     lo,hi=(0,CMAX) if bounds is None else bounds
-    if co.shape not in ((2,11),(2,13)) or th.shape not in ((7,),(9,)) or co.shape[1]!=len(th)+4:raise ValueError('Unsupported return-map coefficient layout')
-    lib=LIB if len(th)==7 else lib9()
+    if co.shape not in ((2,11),(2,13),(2,14)) or th.shape not in ((7,),(9,),(10,)) or co.shape[1]!=len(th)+4:raise ValueError('Unsupported return-map coefficient layout')
+    lib=LIB if len(th)==7 else extended_lib(len(th))
     status=lib.first_return(mode,co.ctypes.data_as(PTR),th.ctypes.data_as(PTR),float(I),-1 if back else 1,float(section),float(s),float(lo),float(hi),float(tol),3000.,out.ctypes.data_as(PTR))
     return status,out
 
