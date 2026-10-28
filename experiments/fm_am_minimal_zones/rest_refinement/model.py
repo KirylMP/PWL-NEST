@@ -10,8 +10,8 @@ ROOT=Path(__file__).resolve().parents[1]
 class Model:
     def __init__(self,case,coordinate='mixed',construction='refined',fm_lower_type='node'):
         upper_modes=('upper70','upper100','upper_both','upper_three')
-        if case not in ('am','fm') or coordinate not in ('mixed','affine') or construction not in ('refined','base','split','split_fixed','six_fixed','full_fixed',*upper_modes):raise ValueError('Invalid case, coordinate or construction')
-        if fm_lower_type not in ('node','focus') or (fm_lower_type=='focus' and (case!='fm' or construction not in ('base','split','split_fixed'))) or (construction in ('split','split_fixed') and (case!='fm' or fm_lower_type!='focus')) or (construction in ('six_fixed','full_fixed',*upper_modes) and (case!='fm' or fm_lower_type!='node')):raise ValueError('Invalid FM lower type for construction')
+        if case not in ('am','fm') or coordinate not in ('mixed','affine') or construction not in ('refined','base','split','split_fixed','six_fixed','full_fixed','full_h_fixed',*upper_modes):raise ValueError('Invalid case, coordinate or construction')
+        if fm_lower_type not in ('node','focus') or (fm_lower_type=='focus' and (case!='fm' or construction not in ('base','split','split_fixed'))) or (construction in ('split','split_fixed') and (case!='fm' or fm_lower_type!='focus')) or (construction in ('six_fixed','full_fixed','full_h_fixed',*upper_modes) and (case!='fm' or fm_lower_type!='node')):raise ValueError('Invalid FM lower type for construction')
         self.case=case;self.coordinate=coordinate;self.construction=construction;self.fm_lower_type=fm_lower_type
         if case=='am':
             import os
@@ -30,7 +30,7 @@ class Model:
             self.kind=np.array([0,1,1,1,2,2,2,3]);self.event_indices=[0,6]
             self.default_parent=ROOT/'fm_four_zone_fit/candidate.json'
         cuts=list(self.base)
-        intervals=[] if construction in ('base','split','split_fixed','six_fixed','full_fixed',*upper_modes) else ([(self.base[0],self.base[1])] if case=='am' else [(self.base[0],self.base[1]),(self.base[1],self.base[2])])
+        intervals=[] if construction in ('base','split','split_fixed','six_fixed','full_fixed','full_h_fixed',*upper_modes) else ([(self.base[0],self.base[1])] if case=='am' else [(self.base[0],self.base[1]),(self.base[1],self.base[2])])
         if construction=='split':cuts.append(0.05214116272147648)
         if construction=='split_fixed':
             cuts=[0.05214116272147648,0.06128930910964862,0.1357042423799119,float(self.base[2])]
@@ -39,7 +39,7 @@ class Model:
             cuts=[0.04861935111371004,0.06128930910964862,0.1357042423799119,0.25181841575270236,0.3926251934101712]
             self.event_I=np.array([0.5107261652060441,0.5439919432478553,0.48230398233782223,0.5747315355622029,0.8600205557570602])
             self.default_parent=ROOT/'fm_four_zone_fit/previous_selected.json'
-        if construction in ('full_fixed',*upper_modes):
+        if construction in ('full_fixed','full_h_fixed',*upper_modes):
             cuts=[0.04861935111371004,0.05214116272147648,0.05484469312764684,0.06128930910964862,0.1357042423799119,0.25181841575270236,0.3926251934101712]
             self.event_I=np.array([0.5107261652060441,0.5290700389163682,0.5373937039464933,0.5439919432478553,0.48230398233782223,0.5747315355622029,0.8600205557570602])
             self.default_parent=ROOT/'fm_four_zone_fit/previous_selected.json'
@@ -52,11 +52,12 @@ class Model:
             self.kind=np.array([0,2,1,2,3]);self.event_indices=[0,len(self.cuts)-1]
         if construction=='split_fixed':self.event_indices=list(range(4))
         if construction=='six_fixed':self.kind=np.array([0,3,1,4,2,3]);self.event_indices=list(range(5))
-        if construction in ('full_fixed',*upper_modes):self.kind=np.r_[[0,3,2,4,1,4,2,3],np.full(len(self.cuts)-7,3)].astype(int);self.event_indices=list(range(7))
+        if construction in ('full_fixed','full_h_fixed',*upper_modes):self.kind=np.r_[[0,3,2,4,1,4,2,3],np.full(len(self.cuts)-7,3)].astype(int);self.event_indices=list(range(7))
         self.n0=2+2*self.n;self.h0=self.n0+1;self.ni=self.n0+2;self.hi=self.n0+3;self.shape=self.n0+4
         self.cut_start=self.shape+4;self.extra_cuts=len(self.cuts)-7 if construction in upper_modes else 0
         self.size=self.cut_start+self.extra_cuts;self.dep_region=2 if construction in ('split','split_fixed') else 1;self.dep_det=2+self.n+self.dep_region
         self.derived=([2+self.n+r for r in range(1,len(self.event_I))] if construction in ('split_fixed','six_fixed','full_fixed',*upper_modes) else [self.dep_det])+[self.n0,self.h0,self.hi]
+        if construction=='full_h_fixed':self.derived=list(range(2,2+len(self.event_I)))+list(range(2+self.n,2+self.n+len(self.event_I)))+[self.n0,self.h0]
         self.active=np.array([i for i in range(self.size) if i not in self.derived and not (coordinate=='affine' and self.shape<=i<self.cut_start)],dtype=int)
         if case=='am':
             lo_u=np.array([-5.,-6.,-5.])[self.kind];hi_u=np.array([3.,2.,2.])[self.kind]
@@ -104,6 +105,7 @@ class Model:
         return np.stack([np.ones_like(z),z,I,*[np.maximum(z-t,0.) for t in m['th']]],axis=-1)
 
     def constrain_events(self,x):
+        if self.construction=='full_h_fixed':return self.constrain_full_h(x)
         x=np.asarray(x,float).copy();m=self.unpack(x);zr=float(self.f.phi(self.rest[0],m['shape']))
         z=np.r_[zr,m['th']];last=self.event_indices[-1]
         if not zr<m['th'][0]:raise ValueError('LR rest is not in first region')
@@ -149,6 +151,72 @@ class Model:
     def physically_valid_events(self,x):
         h=self.event_heights(x);return bool(np.isfinite(h).all() and np.all((h>0)&(h<1)))
 
+    def full_h_spectra(self,x):
+        """Slopes through LR rest and all LR (C,h,I) event anchors."""
+        x=np.asarray(x,float);a,b=np.exp(x[:2]);shape=x[self.shape:self.cut_start]
+        z=self.f.phi(np.r_[self.rest[0],self.cuts],shape)
+        h=np.r_[self.rest[1],self.f.gate(self.cuts,self.event_I)]
+        inputs=np.r_[0.,self.event_I];width=np.diff(z)
+        if np.any(width<=0):raise ValueError('Nonmonotone coordinate map')
+        ns=(np.diff(h)-x[self.ni]*np.diff(inputs))/width
+        hs=(np.diff(h)-x[self.hi]*np.diff(inputs))/width
+        return -a*ns-b,a*b*(ns-hs)
+
+    def full_h_margins(self,x):
+        T,D=self.full_h_spectra(x);margins=[]
+        for r,(t,d) in enumerate(zip(T,D)):
+            u=2+r;v=2+self.n+r;kind=self.kind[r]
+            if kind==1:
+                margins.extend([t-self.lo[u],self.upper[u]-t,-d-np.exp(self.lo[v]),np.exp(self.upper[v])+d])
+                continue
+            magnitude=t if kind in (2,4) else -t
+            margins.extend([magnitude-np.exp(self.lo[u]),np.exp(self.upper[u])-magnitude])
+            if kind in (0,4):
+                margins.extend([d-t*t/4*expit(self.lo[v]),t*t/4*expit(self.upper[v])-d])
+            else:
+                margins.extend([d-t*t/4-np.exp(self.lo[v]),np.exp(self.upper[v])-(d-t*t/4)])
+        return np.asarray(margins)
+
+    def constrain_full_h(self,x):
+        x=np.asarray(x,float).copy();T,D=self.full_h_spectra(x)
+        if not np.isfinite(np.r_[T,D]).all() or np.min(self.full_h_margins(x))<=0:raise ValueError('Rest, LR event heights, regional types or parameter bounds incompatible')
+        for r,(t,d) in enumerate(zip(T,D)):
+            kind=self.kind[r];ui=2+r;vi=2+self.n+r
+            if kind==1:x[ui]=t;x[vi]=np.log(-d)
+            elif kind in (0,4):
+                ratio=d/(t*t/4);x[ui]=np.log(abs(t));x[vi]=np.log(ratio/(1-ratio))
+            else:x[ui]=np.log(abs(t));x[vi]=np.log(d-t*t/4)
+        m=self.unpack(x);rest_basis=self.basis(self.rest[0],0.,m)
+        x[self.n0]+=self.rest[1]-rest_basis@m['N'];x[self.h0]+=self.rest[1]-rest_basis@m['H']
+        return x
+
+    def initialize_full_h(self,seed):
+        from scipy.optimize import minimize
+        import os
+        if seed.shape!=(self.size,):raise ValueError('Parent parameter layout mismatch')
+        indices=np.r_[[0,1,self.ni,self.hi],np.arange(self.shape,self.cut_start)]
+        original=seed[indices].copy();lo=self.lo[indices]+1e-7;hi=self.upper[indices]-1e-7
+        initial=np.clip(original,lo,hi);bounds=list(zip(lo,hi));rng=np.random.default_rng(20261028)
+        starts=int(os.environ.get('FULL_H_INIT_STARTS','12'));budget=int(os.environ.get('FULL_H_INIT_MAXITER','1500'))
+        if starts<1 or budget<1:raise ValueError('FULL_H_INIT_STARTS and FULL_H_INIT_MAXITER must be positive')
+        def trial(y):q=seed.copy();q[indices]=y;return q
+        def margins(y):return self.full_h_margins(trial(y))
+        best=None
+        for j in range(starts):
+            y0=initial if j==0 else np.clip(initial+rng.normal(0,[.3,.3,.1,.1,.4,.4,.15,.4]),lo,hi)
+            sol=minimize(lambda y:float(np.sum((y-original)**2)),y0,method='SLSQP',bounds=bounds,
+                         constraints=[dict(type='ineq',fun=margins)],options=dict(maxiter=budget,ftol=1e-11))
+            margin=float(np.min(margins(sol.x)))
+            print(f'FULL_H initialization {j+1}/{starts}: min_margin={margin:.6g} status={sol.message}',flush=True)
+            if margin>1e-10:
+                try:
+                    q=self.constrain_full_h(trial(sol.x));dist=float(np.sum((sol.x-original)**2))
+                    if best is None or dist<best[0]:best=(dist,q)
+                except ValueError:pass
+        if best is None:raise ValueError('Could not find initialization satisfying all exact LR heights and regional types; check feasibility before fitting')
+        print(f'FULL_H initialized: distance={np.sqrt(best[0]):.6g}',flush=True)
+        return best[1]
+
     def equilibrium(self,I,m):
         n=m['N'][1]+np.r_[0,np.cumsum(m['N'][3:])];h=m['H'][1]+np.r_[0,np.cumsum(m['H'][3:])]
         nc=m['N'][0]-np.r_[0,np.cumsum(m['N'][3:]*m['th'])];hc=m['H'][0]-np.r_[0,np.cumsum(m['H'][3:]*m['th'])]
@@ -160,6 +228,10 @@ class Model:
         return out
 
     def lift_parent(self,parent):
+        if self.construction=='full_h_fixed':
+            if parent.get('case')!='fm' or parent.get('construction')!='full_fixed' or parent.get('stage')!='closed':raise ValueError('full_h_fixed requires a closed full_fixed FM parent')
+            if not np.allclose(parent['physical_thresholds_C'],self.cuts,rtol=0,atol=1e-10):raise ValueError('Parent fixed thresholds mismatch')
+            return self.initialize_full_h(np.asarray(parent['parameters'],float))
         if self.extra_cuts:
             if parent.get('case')!='fm' or parent.get('construction')!='full_fixed' or parent.get('stage')!='closed':raise ValueError('Upper refinement requires a closed full_fixed FM candidate')
             if not np.allclose(parent['physical_thresholds_C'],self.cuts[:7],rtol=0,atol=1e-10):raise ValueError('Parent fixed threshold mismatch')

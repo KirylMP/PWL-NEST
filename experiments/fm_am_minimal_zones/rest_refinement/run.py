@@ -25,7 +25,7 @@ def geometry(model,x):
     geo=np.stack([b@m['N'],b@m['H']],axis=-1)-y
     be=model.basis(ce,ie,m);er=np.stack([be@m['N']-he,be@m['H']-he],axis=-1)
     regs=np.searchsorted(m['tc'],ce);sr=np.column_stack([m['T'][regs]-sp[:,0],(m['D'][regs]-sp[:,1])/.15])
-    mid=m['tc'][4] if model.construction in ('full_fixed','upper70','upper100','upper_both','upper_three') else (m['tc'][2] if model.construction in ('split_fixed','six_fixed') else model.base[1]);bmid=model.basis(mid,0.,m);ev=(bmid@(m['N']-m['H']))/(m['H'][2]-m['N'][2])
+    mid=m['tc'][4] if model.construction in ('full_fixed','full_h_fixed','upper70','upper100','upper_both','upper_three') else (m['tc'][2] if model.construction in ('split_fixed','six_fixed') else model.base[1]);bmid=model.basis(mid,0.,m);ev=(bmid@(m['N']-m['H']))/(m['H'][2]-m['N'][2])
     return np.r_[(geo*w[:,:,None]/.025).ravel(),(er/.04/np.sqrt(len(ce))).ravel(),.35*sr.ravel()/np.sqrt(len(ce)),2*(ev-.482304)/.04]
 
 
@@ -59,6 +59,10 @@ def save(path,model,x,extra):
         trace=m['T'].tolist(),determinant=m['D'].tolist(),regional_parent_types=model.kind.tolist(),
         regional_types=([('stable_focus' if model.fm_lower_type=='focus' else 'stable_node') if k==0 else {1:'saddle',2:'unstable_focus',3:'stable_focus',4:'unstable_node'}[int(k)] for k in model.kind] if model.case=='fm' else None),
         derived_parameter_indices=model.derived,accepted=False,**extra)
+    if model.construction=='full_h_fixed':
+        target_h=np.asarray(model.f.gate(model.cuts,model.event_I),float)
+        obj['fixed_event_target_h']=target_h.tolist()
+        obj['fixed_event_height_residuals']=(model.event_heights(x)-target_h).tolist()
     tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(obj,indent=2,allow_nan=False,default=json_numpy));tmp.replace(path)
 
 
@@ -178,7 +182,7 @@ def plot_branches(model,rows,path):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('case',choices=['am','fm']);ap.add_argument('stage',choices=['prepare','geometry','poincare','closed','validate'])
-    ap.add_argument('--coordinate',choices=['mixed','affine'],default='mixed');ap.add_argument('--construction',choices=['refined','base','split','split_fixed','six_fixed','full_fixed','upper70','upper100','upper_both','upper_three'],default='refined');ap.add_argument('--fm-lower-type',choices=['node','focus'],default='node');ap.add_argument('--out',type=Path,required=True);ap.add_argument('--parent',type=Path)
+    ap.add_argument('--coordinate',choices=['mixed','affine'],default='mixed');ap.add_argument('--construction',choices=['refined','base','split','split_fixed','six_fixed','full_fixed','full_h_fixed','upper70','upper100','upper_both','upper_three'],default='refined');ap.add_argument('--fm-lower-type',choices=['node','focus'],default='node');ap.add_argument('--out',type=Path,required=True);ap.add_argument('--parent',type=Path)
     a=ap.parse_args();a.out.mkdir(parents=True,exist_ok=True);model=Model(a.case,a.coordinate,a.construction,a.fm_lower_type);f=model.f;install(model)
     path=a.out/'candidate.json';scale=float(os.environ.get('POINCARE_WEIGHT_SCALE','100'));start=time.monotonic()
     if not np.isfinite(scale) or scale<=0:raise ValueError('POINCARE_WEIGHT_SCALE must be finite and positive')
