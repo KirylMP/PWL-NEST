@@ -22,6 +22,7 @@ def main():
     p.add_argument('model_dir',type=Path);p.add_argument('--start',type=float,default=.515);p.add_argument('--stop',type=float,default=.531)
     p.add_argument('--points',type=int,default=33);p.add_argument('--workers',type=int,default=8);p.add_argument('--section',type=float,default=.2)
     p.add_argument('--epsilon',type=float,default=1e-6);p.add_argument('--max-time',type=float,default=600.)
+    p.add_argument('--unstable-branch',choices=['left','right'],default='left',help='Initial calcium direction of the outgoing saddle branch')
     p.add_argument('--output-prefix',default='separatrix_onset',help='Output filename stem within the model directory')
     a=p.parse_args()
     if a.start>=a.stop or a.points<3 or a.workers<1 or a.epsilon<=0 or a.max_time<=0 or not .14<a.section<1.:p.error('Invalid arguments')
@@ -60,14 +61,17 @@ def main():
             for sign in (-1,1):
                 sol=solve_ivp(rhs,(0,direction*a.max_time),state+sign*epsilon*v,method='DOP853',rtol=1e-9,atol=1e-11,max_step=.1,events=(crossing,domain))
                 if len(sol.t_events[0]):
-                    y=sol.y_events[0][0];hits[label].append(dict(h=float(y[1]),sign=sign,time=float(sol.t_events[0][0])))
+                    y=sol.y_events[0][0];hits[label].append(dict(h=float(y[1]),sign=sign,time=float(sol.t_events[0][0]),initial_C_direction='left' if sign*v[0]<0 else 'right'))
                 final=sol.y[:,-1];final_c=float(f.inverse(np.asarray(final[0]),m)) if key=='pwa' else float(final[0])
                 detail.append(dict(manifold=label,sign=sign,crossed=bool(len(sol.t_events[0])),domain_exit=bool(len(sol.t_events[1])),solver_success=bool(sol.success),
                     reached_time_limit=bool(sol.success and not len(sol.t_events[0]) and not len(sol.t_events[1]) and abs(sol.t[-1])>=a.max_time-1e-7),
                     final_time=float(sol.t[-1]),final_C=final_c,final_h=float(final[1]),message=sol.message))
         out=dict(I=I,key=key,epsilon=epsilon,saddle_C=float(physical[0]),saddle_h=float(physical[1]),eigenvalues=[float(z.real) for z in eigs],hits=hits,details=detail)
-        out['ok']=len(hits['unstable'])==1 and len(hits['stable'])==1
-        if out['ok']:out['difference_h']=hits['unstable'][0]['h']-hits['stable'][0]['h']
+        outgoing=[q for q in hits['unstable'] if q['initial_C_direction']==a.unstable_branch]
+        out['ok']=len(outgoing)==1 and len(hits['stable'])==1
+        if out['ok']:
+            out['selected_unstable']=outgoing[0];out['selected_stable']=hits['stable'][0]
+            out['difference_h']=outgoing[0]['h']-hits['stable'][0]['h']
         else:out['reason']='Section crossings missing or ambiguous'
         return out
     grid=np.linspace(a.start,a.stop,a.points);rows=[]
@@ -82,11 +86,11 @@ def main():
         for left,right in zip(rows[:-1],rows[1:]):
             l,r=left[key],right[key]
             if not(l['ok'] and r['ok']) or l['difference_h']*r['difference_h']>0:continue
-            if (l['hits']['unstable'][0]['sign'],l['hits']['stable'][0]['sign'])!=(r['hits']['unstable'][0]['sign'],r['hits']['stable'][0]['sign']):continue
-            signs=(l['hits']['unstable'][0]['sign'],l['hits']['stable'][0]['sign'])
+            if (l['selected_unstable']['sign'],l['selected_stable']['sign'])!=(r['selected_unstable']['sign'],r['selected_stable']['sign']):continue
+            signs=(l['selected_unstable']['sign'],l['selected_stable']['sign'])
             def fun(I):
                 v=calculate(I,key,a.epsilon)
-                if not v['ok'] or (v['hits']['unstable'][0]['sign'],v['hits']['stable'][0]['sign'])!=signs:raise ValueError('Manifold section itinerary changed')
+                if not v['ok'] or (v['selected_unstable']['sign'],v['selected_stable']['sign'])!=signs:raise ValueError('Manifold section itinerary changed')
                 return v['difference_h']
             try:
                 root=float(brentq(fun,l['I'],r['I'],xtol=1e-9));check=calculate(root,key,a.epsilon)
