@@ -34,7 +34,7 @@ def main():
     count=len(data['physical_thresholds_C'])
     if data.get('case')!='fm' or count not in (3,4):raise ValueError('Expected 3- or split 4-threshold FM candidate')
     construction=data.get('construction','split' if count==4 else 'base')
-    if construction not in ('base','split'):raise ValueError('Unsupported FM construction')
+    if construction not in ('base','split','split_fixed'):raise ValueError('Unsupported FM construction')
     model=Model('fm','mixed',construction,data.get('fm_lower_type','node'))
     x=model.constrain_events(data['parameters']);m=model.unpack(x);f=model.f
     bounds=f.phi(np.array([1e-12,f.CMAX]),m['shape'])

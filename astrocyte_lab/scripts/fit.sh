@@ -4,15 +4,15 @@ set -euo pipefail
 lab="$(cd "$(dirname "$0")/.." && pwd)"
 repo="$(cd "$lab/.." && pwd)"
 construction="${1:-base}"
-if [[ "$construction" != base && "$construction" != refined && "$construction" != focus && "$construction" != split ]]; then
-  printf 'Usage: bash astrocyte_lab/scripts/fit.sh [base|refined|focus|split]\n' >&2; exit 2
+if [[ "$construction" != base && "$construction" != refined && "$construction" != focus && "$construction" != split && "$construction" != split_fixed ]]; then
+  printf 'Usage: bash astrocyte_lab/scripts/fit.sh [base|refined|focus|split|split_fixed]\n' >&2; exit 2
 fi
 mkdir -p "$lab/runs"
 run="$(mktemp -d "$lab/runs/fit_${construction}_$(date -u +%Y%m%dT%H%M%SZ)_XXXXXX")"
 printf 'RUN_DIR=%s\n' "$run"
 export REST_RUN_DIR="$run" WORKERS="${WORKERS:-16}"
-if [[ "$construction" == split ]]; then
-  export CONSTRUCTION=split FM_LOWER_TYPE=focus MODELS=fm
+if [[ "$construction" == split || "$construction" == split_fixed ]]; then
+  export CONSTRUCTION="$construction" FM_LOWER_TYPE=focus MODELS=fm
 elif [[ "$construction" == focus ]]; then
   export CONSTRUCTION=base FM_LOWER_TYPE=focus MODELS=fm
 else
@@ -21,12 +21,12 @@ fi
 status=0
 bash "$repo/experiments/fm_am_minimal_zones/rest_refinement/run_server.sh" || status=$?
 analysis_status=0
-if [[ ( "$construction" == focus || "$construction" == split ) && -f "$run/fm/candidate.json" ]]; then
+if [[ ( "$construction" == focus || "$construction" == split || "$construction" == split_fixed ) && -f "$run/fm/candidate.json" ]]; then
   printf 'Analyzing lower FM transition; finite scan can take time.\n'
   python3 -u "$lab/scripts/analyze_lower_fm.py" "$run/fm" 2>&1 | tee "$run/logs/fm_lower_analysis.log" || analysis_status=$?
 fi
 # Preserve any completed models even if a later fit or validation failed.
-if [[ ( "$construction" == focus || "$construction" == split ) && "$status" != 0 ]]; then
+if [[ ( "$construction" == focus || "$construction" == split || "$construction" == split_fixed ) && "$status" != 0 ]]; then
   python3 "$lab/scripts/import_run.py" "$run" --allow-incomplete || true
 else
   python3 "$lab/scripts/import_run.py" "$run" || true
