@@ -226,6 +226,13 @@ def main():
     if local_weight and (a.case!='fm' or a.construction!='full_fixed'):
         raise ValueError('Local focus penalty requires FM full_fixed')
     os.environ['FIT_EXTREMA']='1';fold=None;fold_info=None;dep=None;count_reference=[];eq_source=[];count_weight=0.
+    lower_reference=[];lower_weight=float(os.environ.get('FM_LOWER_LARGE_WEIGHT','0'))
+    lower_seeds=int(os.environ.get('FM_LOWER_LARGE_SEEDS','32'))
+    lower_cmax=float(os.environ.get('FM_LOWER_LARGE_CMAX','0.5'))
+    if not np.isfinite(lower_weight) or lower_weight<0 or not np.isfinite(lower_cmax) or lower_cmax<=0 or lower_seeds<4:
+        raise ValueError('Invalid lower large-cycle loss settings')
+    if lower_weight and (a.case!='fm' or a.construction!='full_fixed' or a.stage!='closed'):
+        raise ValueError('Lower large-cycle loss requires FM full_fixed closed stage')
     if a.stage=='closed':
         from equilibrium_loss import model_cost
         grid=np.linspace(.4,1.2,25) if a.case=='fm' else np.linspace(.2,.8,25)
@@ -247,6 +254,14 @@ def main():
         count_weight=float(os.environ.get('FM_CYCLE_COUNT_WEIGHT','600'))
         if not np.isfinite(count_weight) or count_weight<0:raise ValueError('FM_CYCLE_COUNT_WEIGHT must be finite and nonnegative')
         count_reference=cycle_count_loss.reference_grid() if count_weight else []
+        if lower_weight:
+            lower_inputs=[float(v.strip()) for v in os.environ.get('FM_LOWER_LARGE_I','0.524,0.526,0.5275,0.528').split(',') if v.strip()]
+            if not lower_inputs or not all(np.isfinite(v) and v>=0 for v in lower_inputs) or len(set(lower_inputs))!=len(lower_inputs):raise ValueError('Invalid FM_LOWER_LARGE_I')
+            for I in lower_inputs:
+                cycles,diag=f.cycles(I,f.eqs(I),n=lower_seeds,tol=1e-9)
+                count=sum(bool(q['stable']) and q['max']>=lower_cmax for q in cycles)
+                lower_reference.append(dict(I=I,stable_large=count,diagnostics=diag))
+                print(f'LOWER REFERENCE I={I:.7f} LR_stable_large={count} diagnostics={diag}',flush=True)
     active=np.array([i for i in model.active if i!=dep],dtype=int);param_scale=np.full(model.size,.2);param_scale[model.ni]=.03;param_scale[model.shape:model.cut_start]=[.3,.3,.15,.25];param_scale[model.cut_start:]=.6
     bounds=list(zip(np.maximum(-1.5,(model.lo[active]-base[active])/param_scale[active]),np.minimum(1.5,(model.upper[active]-base[active])/param_scale[active])))
     if any(lo>0 or hi<0 or lo>=hi for lo,hi in bounds):raise ValueError('Initial candidate violates active parameter bounds')
@@ -271,6 +286,15 @@ def main():
                         print(f'COUNT eval={calls} {done}/{total} I={row["I"]:.6g} stable={row["stable"]} unstable={row["unstable"]} diagnostics={row["diagnostics"]}',flush=True)
                     count,report=cycle_count_loss.evaluate(x,count_reference,int(os.environ.get('FM_CYCLE_COUNT_SEEDS','32')),count_progress if calls==1 or calls%100==0 else None) if count_weight else (0.,[])
                     parts.update(cycles_raw=float(r@r),poincare_count_raw=count);cost=parts['geometry']+eq_loss+6*scale*parts['cycles_raw']+count_weight*count
+                    if lower_weight:
+                        mm=model.unpack(x);bb=f.phi(np.array([1e-12,f.CMAX]),mm['shape']);lower_report=[]
+                        for ref in lower_reference:
+                            I=ref['I'];found,diag=f.cycles(I,model.equilibrium(I,mm),mm['co'],mm['padded'],bb,n=lower_seeds,tol=1e-9)
+                            number=sum(bool(q['stable']) and float(f.inverse(np.asarray(q['max']),mm))>=lower_cmax for q in found)
+                            lower_report.append(dict(I=I,lr_stable_large=ref['stable_large'],pwa_stable_large=number,extra=max(0,number-ref['stable_large']),lr_diagnostics=ref['diagnostics'],pwa_diagnostics=diag))
+                        lower_loss=float(np.mean([q['extra']**2 for q in lower_report]))
+                        parts.update(lower_large_raw=lower_loss,lower_large_weighted=lower_weight*lower_loss)
+                        cost+=lower_weight*lower_loss
                 else:
                     r,report=am_cycle_residual(model,x);parts['cycles_raw']=float(r@r);cost=parts['geometry']+eq_loss+2*scale*parts['cycles_raw']
             else:cost=parts['geometry']
@@ -287,10 +311,12 @@ def main():
                            training_settings=dict(poincare_weight_scale=scale,training_cycle_inputs=sorted({float(q['I']) for q in f.TARGETS}),
                              fm_cycle_count_weight=count_weight if a.case=='fm' and a.stage=='closed' else None,
                              fm_local_focus_weight=local_weight, fm_local_focus_target=local_target, fm_local_focus_floor=local_floor,
+                             fm_lower_large_weight=lower_weight, fm_lower_large_inputs=[q['I'] for q in lower_reference], fm_lower_large_seeds=lower_seeds, fm_lower_large_cmax=lower_cmax,
                              fixed_fold_I=target if fold is not None else None))
                 if info is not None:
                     info=dict(info);info['independent_check']=verify_fold(model,x,fold,info);extra['fold_constraint']=info
                 if a.stage=='closed':extra['cycle_report']=report
+                if lower_weight and a.stage=='closed':extra['lower_large_cycle_report']=lower_report
                 save(path,model,x,extra);best=cost
             if calls==1 or calls%100==0:print(f'{a.stage.upper()} {a.case} eval={calls} best={best:.7g} elapsed={time.monotonic()-start:.1f}s components={parts}',flush=True)
             return float(cost)

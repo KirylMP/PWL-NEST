@@ -37,9 +37,11 @@ export FM_CYCLE_COUNT_WEIGHT="${FM_CYCLE_COUNT_WEIGHT:-600}" WORKERS="${WORKERS:
 mkdir -p "$lab/runs"
 printf 'PARENT=%s\n' "$parent"
 failures=0
+run_label="${FM_EXPERIMENT_LABEL:-local_focus}"
+if [[ ! "$run_label" =~ ^[a-zA-Z0-9_]+$ ]]; then printf 'Invalid FM_EXPERIMENT_LABEL\n' >&2; exit 1; fi
 for target in ${FM_LOCAL_FOCUS_TARGETS:-2 5 8}; do
   label="${target//./p}"
-  run="$(mktemp -d "$lab/runs/fit_local_focus_${label}_$(date -u +%Y%m%dT%H%M%SZ)_XXXXXX")"
+  run="$(mktemp -d "$lab/runs/fit_${run_label}_${label}_$(date -u +%Y%m%dT%H%M%SZ)_XXXXXX")"
   mkdir -p "$run/fm" "$run/logs"
   cp "$parent" "$run/fm/parent_candidate.json"
   cp "$parent" "$run/fm/candidate.json"
