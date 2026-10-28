@@ -6,8 +6,9 @@
 ## Файлы
 
 - `main.tex` — рукопись на английском языке, формат `preprint`, 12 pt.
-- `references.bib` — база литературы; пока без записей. После добавления ссылок
-  нужно раскомментировать `\bibliography{references}` в `main.tex`.
+- `references.bib` — база литературы.
+- `figure1.tex` — подпись и подключение фигуры 1.
+- `figures/` — фигура 1 в PDF, SVG и PNG, численные данные и описание расчёта.
 - `highlights.txt` — отдельная заготовка highlights.
 - `template/elsarticle-template-num.tex` — неизменённый исходный шаблон Elsevier
   с числовыми ссылками.
