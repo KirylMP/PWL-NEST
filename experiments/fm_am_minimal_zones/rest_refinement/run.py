@@ -24,8 +24,8 @@ def geometry(model,x):
     C,I,w,y,ce,ie,he,sp=f.DATA;b=model.basis(C,I,m)
     geo=np.stack([b@m['N'],b@m['H']],axis=-1)-y
     be=model.basis(ce,ie,m);er=np.stack([be@m['N']-he,be@m['H']-he],axis=-1)
-    regs=np.searchsorted(model.cuts,ce);sr=np.column_stack([m['T'][regs]-sp[:,0],(m['D'][regs]-sp[:,1])/.15])
-    mid=model.cuts[4] if model.construction=='full_fixed' else (model.cuts[2] if model.construction in ('split_fixed','six_fixed') else model.base[1]);bmid=model.basis(mid,0.,m);ev=(bmid@(m['N']-m['H']))/(m['H'][2]-m['N'][2])
+    regs=np.searchsorted(m['tc'],ce);sr=np.column_stack([m['T'][regs]-sp[:,0],(m['D'][regs]-sp[:,1])/.15])
+    mid=m['tc'][4] if model.construction in ('full_fixed','upper70','upper100','upper_both') else (m['tc'][2] if model.construction in ('split_fixed','six_fixed') else model.base[1]);bmid=model.basis(mid,0.,m);ev=(bmid@(m['N']-m['H']))/(m['H'][2]-m['N'][2])
     return np.r_[(geo*w[:,:,None]/.025).ravel(),(er/.04/np.sqrt(len(ce))).ravel(),.35*sr.ravel()/np.sqrt(len(ce)),2*(ev-.482304)/.04]
 
 
@@ -47,9 +47,10 @@ def save(path,model,x,extra):
     eq=model.equilibrium(0.,m);near=min(eq,key=lambda q:abs(q['C']-model.rest[0]))
     events=[]
     for j,I in zip(model.event_indices,model.event_I):
-        b=model.basis(model.cuts[j],I,m);events.append(float(b@(m['N']-m['H'])))
+        b=model.basis(m['tc'][j],I,m);events.append(float(b@(m['N']-m['H'])))
     obj=dict(case=model.case,coordinate_family=model.coordinate,construction=model.construction,threshold_count_m=len(model.cuts),fm_lower_type=model.fm_lower_type if model.case=='fm' else None,
-        physical_thresholds_C=model.cuts.tolist(),original_thresholds_C=model.base.tolist(),thresholds_optimized=False,
+        physical_thresholds_C=m['tc'].tolist(),original_thresholds_C=model.base.tolist(),thresholds_optimized=bool(model.extra_cuts),
+        optimized_threshold_indices=list(range(7,len(model.cuts))) if model.extra_cuts else [],
         fixed_event_threshold_indices=model.event_indices,fixed_equilibrium_threshold_I=model.event_I.tolist(),
         fixed_event_residuals=events,fixed_event_heights=model.event_heights(x).tolist(),
         fixed_rest=dict(I=0.,C=float(model.rest[0]),h=float(model.rest[1]),model_C=near['C'],model_h=near['z'][1],stable=near['stable']),
@@ -122,7 +123,7 @@ def fm_fold_seed(model,x,target):
             if tuple(q[1] for q in seq)==fold.boundaries:times=np.diff([q[0] for q in seq]);break
         if times is None:print(f'FOLD itinerary unresolved I={I}',flush=True);continue
         for dep in model.active:
-            if dep in (model.ni,):continue
+            if dep==model.ni or (model.extra_cuts and dep>=model.cut_start):continue
             try:
                 y,info=fold.solve(x,times,int(dep),int(os.environ.get('FM_FOLD_SOLVER_MAX_NFEV','200')))
                 print(f'FOLD found target={target} probe={I} parameter={dep}',flush=True)
@@ -169,7 +170,7 @@ def plot_branches(model,rows,path):
         source=np.genfromtxt(model.f.ROOT/'LR_stable_cycles.csv',delimiter=',',names=True,dtype=None,encoding='utf8')
         ax[0].scatter(source['I'],source['Cmin'],s=7,c='tab:purple');ax[0].scatter(source['I'],source['Cmax'],s=7,c='tab:purple')
         ax[1].scatter(source['I'],source['T'],s=7,c='tab:purple')
-    for t in model.cuts:ax[0].axhline(t,color='tab:cyan',linestyle='--',alpha=.5,linewidth=.8)
+    for t in model.unpack(model.constrain_events(json.loads((path.parent/'candidate.json').read_text())['parameters']))['tc']:ax[0].axhline(t,color='tab:cyan',linestyle='--',alpha=.5,linewidth=.8)
     for a in ax:a.set_xlabel('I (µM)');a.grid(alpha=.2)
     ax[0].set_ylabel('C (µM)');ax[1].set_ylabel('Period (s)');ax[2].set_ylabel('Detected cycles');ax[2].legend()
     fig.suptitle(f'{model.case.upper()}: fixed rest and refined thresholds');fig.savefig(path,dpi=160);plt.close(fig)
@@ -177,7 +178,7 @@ def plot_branches(model,rows,path):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('case',choices=['am','fm']);ap.add_argument('stage',choices=['prepare','geometry','poincare','closed','validate'])
-    ap.add_argument('--coordinate',choices=['mixed','affine'],default='mixed');ap.add_argument('--construction',choices=['refined','base','split','split_fixed','six_fixed','full_fixed'],default='refined');ap.add_argument('--fm-lower-type',choices=['node','focus'],default='node');ap.add_argument('--out',type=Path,required=True);ap.add_argument('--parent',type=Path)
+    ap.add_argument('--coordinate',choices=['mixed','affine'],default='mixed');ap.add_argument('--construction',choices=['refined','base','split','split_fixed','six_fixed','full_fixed','upper70','upper100','upper_both'],default='refined');ap.add_argument('--fm-lower-type',choices=['node','focus'],default='node');ap.add_argument('--out',type=Path,required=True);ap.add_argument('--parent',type=Path)
     a=ap.parse_args();a.out.mkdir(parents=True,exist_ok=True);model=Model(a.case,a.coordinate,a.construction,a.fm_lower_type);f=model.f;install(model)
     path=a.out/'candidate.json';scale=float(os.environ.get('POINCARE_WEIGHT_SCALE','100'));start=time.monotonic()
     if not np.isfinite(scale) or scale<=0:raise ValueError('POINCARE_WEIGHT_SCALE must be finite and positive')
@@ -223,7 +224,7 @@ def main():
         count_weight=float(os.environ.get('FM_CYCLE_COUNT_WEIGHT','600'))
         if not np.isfinite(count_weight) or count_weight<0:raise ValueError('FM_CYCLE_COUNT_WEIGHT must be finite and nonnegative')
         count_reference=cycle_count_loss.reference_grid() if count_weight else []
-    active=np.array([i for i in model.active if i!=dep],dtype=int);param_scale=np.full(model.size,.2);param_scale[model.ni]=.03;param_scale[model.shape:]=[.3,.3,.15,.25]
+    active=np.array([i for i in model.active if i!=dep],dtype=int);param_scale=np.full(model.size,.2);param_scale[model.ni]=.03;param_scale[model.shape:model.cut_start]=[.3,.3,.15,.25];param_scale[model.cut_start:]=.6
     bounds=list(zip(np.maximum(-1.5,(model.lo[active]-base[active])/param_scale[active]),np.minimum(1.5,(model.upper[active]-base[active])/param_scale[active])))
     if any(lo>0 or hi<0 or lo>=hi for lo,hi in bounds):raise ValueError('Initial candidate violates active parameter bounds')
     best=np.inf;calls=0

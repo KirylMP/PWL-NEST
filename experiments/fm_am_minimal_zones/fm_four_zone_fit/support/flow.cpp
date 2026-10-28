@@ -1,6 +1,10 @@
 #include <cmath>
 #include <algorithm>
 #include <cstring>
+#ifndef MAX_CUTS
+#define MAX_CUTS 7
+#endif
+static constexpr int STRIDE = 4 + MAX_CUTS;
 // Adaptive Dormand-Prince 5(4), 2D state plus integrated divergence.
 // mode=0 LR FM; mode=1 PWA in z,h. Outputs forward-time stability even in reverse.
 static void fun(int mode,const double* co,const double* th,double I,int dir,const double* y,double* f){
@@ -9,8 +13,8 @@ static void fun(int mode,const double* co,const double* th,double I,int dir,cons
   f[0]=(6*m*m*m*n*n*n*h*h*h+.11)*d-.9*c*c/(c*c+.0025);
   f[1]=.2*(q*(1-h)-c*h);
   tr=6*m*m*m*h*h*h*(3*n*n*.08234/((c+.08234)*(c+.08234))*d-1.185*n*n*n)-.13035-.0045*c/((c*c+.0025)*(c*c+.0025))-.2*(q+c);
- }else{f[0]=co[0]+co[1]*c+co[2]*h+co[3]*I;f[1]=co[11]+co[12]*c+co[13]*h+co[14]*I;tr=co[1]+co[13];
-  for(int k=0;k<7;k++)if(c>th[k]){f[0]+=co[k+4]*(c-th[k]);f[1]+=co[k+15]*(c-th[k]);tr+=co[k+4];}
+ }else{f[0]=co[0]+co[1]*c+co[2]*h+co[3]*I;f[1]=co[STRIDE]+co[STRIDE+1]*c+co[STRIDE+2]*h+co[STRIDE+3]*I;tr=co[1]+co[STRIDE+2];
+  for(int k=0;k<MAX_CUTS;k++)if(c>th[k]){f[0]+=co[k+4]*(c-th[k]);f[1]+=co[STRIDE+k+4]*(c-th[k]);tr+=co[k+4];}
  }
  f[0]*=dir;f[1]*=dir;f[2]=tr*dir;
 }
