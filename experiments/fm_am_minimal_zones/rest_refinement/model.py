@@ -204,13 +204,27 @@ class Model:
         best=None
         for j in range(starts):
             y0=initial if j==0 else np.clip(initial+rng.normal(0,[.3,.3,.1,.1,.4,.4,.15,.4]),lo,hi)
-            sol=minimize(lambda y:float(np.sum((y-original)**2)),y0,method='SLSQP',bounds=bounds,
-                         constraints=[dict(type='ineq',fun=margins)],options=dict(maxiter=budget,ftol=1e-11))
-            margin=float(np.min(margins(sol.x)))
-            print(f'FULL_H initialization {j+1}/{starts}: min_margin={margin:.6g} status={sol.message}',flush=True)
-            if margin>1e-10:
+            # A nearest-point objective tends to land exactly on an active
+            # inequality. First find an interior point by maximizing the
+            # smallest physical margin; then approach the parent while
+            # retaining a strict positive safety margin.
+            initial_margin=float(np.min(margins(y0)))
+            interior=minimize(lambda v:-v[-1],np.r_[y0,np.clip(initial_margin,-100.,1.)],method='SLSQP',
+                bounds=bounds+[(-100.,1.)],constraints=[dict(type='ineq',fun=lambda v:margins(v[:-1])-v[-1])],
+                options=dict(maxiter=budget,ftol=1e-11))
+            y_inside=interior.x[:-1];available=float(np.min(margins(y_inside)))
+            if available<=1e-9:
+                print(f'FULL_H initialization {j+1}/{starts}: no interior point, min_margin={available:.6g} status={interior.message}',flush=True)
+                continue
+            required=min(1e-4,available/4)
+            closest=minimize(lambda y:float(np.sum((y-original)**2)),y_inside,method='SLSQP',bounds=bounds,
+                constraints=[dict(type='ineq',fun=lambda y:margins(y)-required)],options=dict(maxiter=budget,ftol=1e-11))
+            choices=[(float(np.min(margins(y))),y) for y in (closest.x,y_inside)]
+            print(f'FULL_H initialization {j+1}/{starts}: interior={available:.6g} nearest={choices[0][0]:.6g} target={required:.6g} status={closest.message}',flush=True)
+            for margin,y in choices:
+                if margin<=1e-10:continue
                 try:
-                    q=self.constrain_full_h(trial(sol.x));dist=float(np.sum((sol.x-original)**2))
+                    q=self.constrain_full_h(trial(y));dist=float(np.sum((y-original)**2))
                     if best is None or dist<best[0]:best=(dist,q)
                 except ValueError:pass
         if best is None:raise ValueError('Could not find initialization satisfying all exact LR heights and regional types; check feasibility before fitting')
