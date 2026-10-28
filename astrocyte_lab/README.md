@@ -57,6 +57,14 @@ bash astrocyte_lab/scripts/fit.sh full_fixed  # FM: 8 областей, 7 пер
 
 ## Запуск NEST
 
+Для сравнения равновесий LR и сохранённой FM-модели:
+
+```bash
+python3 astrocyte_lab/scripts/plot_fm_equilibria.py astrocyte_lab/models/ИМЯ_FM
+```
+
+В папке модели создаются `equilibria_comparison.png` и `equilibria_comparison.json`. На рисунке отдельно показана увеличенная область седла с координатами C и h; существующие сканы циклов наложены как точки. Ветви равновесий вычисляются по сетке C; циклы из ранее сохранённых сканов, а не новые результаты продолжения.
+
 Выберите пути из `list_models.py` и передайте оба явно:
 
 ```bash
