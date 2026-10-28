@@ -48,7 +48,7 @@ def save(path,model,x,extra):
     events=[]
     for j,I in zip(model.event_indices,model.event_I):
         b=model.basis(model.cuts[j],I,m);events.append(float(b@(m['N']-m['H'])))
-    obj=dict(case=model.case,coordinate_family=model.coordinate,threshold_count_m=len(model.cuts),fm_lower_type=model.fm_lower_type if model.case=='fm' else None,
+    obj=dict(case=model.case,coordinate_family=model.coordinate,construction=model.construction,threshold_count_m=len(model.cuts),fm_lower_type=model.fm_lower_type if model.case=='fm' else None,
         physical_thresholds_C=model.cuts.tolist(),original_thresholds_C=model.base.tolist(),thresholds_optimized=False,
         fixed_event_threshold_indices=model.event_indices,fixed_equilibrium_threshold_I=model.event_I.tolist(),
         fixed_event_residuals=events,fixed_event_heights=model.event_heights(x).tolist(),
@@ -177,7 +177,7 @@ def plot_branches(model,rows,path):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('case',choices=['am','fm']);ap.add_argument('stage',choices=['prepare','geometry','poincare','closed','validate'])
-    ap.add_argument('--coordinate',choices=['mixed','affine'],default='mixed');ap.add_argument('--construction',choices=['refined','base'],default='refined');ap.add_argument('--fm-lower-type',choices=['node','focus'],default='node');ap.add_argument('--out',type=Path,required=True);ap.add_argument('--parent',type=Path)
+    ap.add_argument('--coordinate',choices=['mixed','affine'],default='mixed');ap.add_argument('--construction',choices=['refined','base','split'],default='refined');ap.add_argument('--fm-lower-type',choices=['node','focus'],default='node');ap.add_argument('--out',type=Path,required=True);ap.add_argument('--parent',type=Path)
     a=ap.parse_args();a.out.mkdir(parents=True,exist_ok=True);model=Model(a.case,a.coordinate,a.construction,a.fm_lower_type);f=model.f;install(model)
     path=a.out/'candidate.json';scale=float(os.environ.get('POINCARE_WEIGHT_SCALE','100'));start=time.monotonic()
     if not np.isfinite(scale) or scale<=0:raise ValueError('POINCARE_WEIGHT_SCALE must be finite and positive')
@@ -190,6 +190,7 @@ def main():
     seed=json.loads(path.read_text())
     if seed.get('threshold_count_m')!=len(model.cuts):raise ValueError('Candidate threshold count does not match --construction')
     if a.case=='fm' and seed.get('fm_lower_type','node')!=a.fm_lower_type:raise ValueError('Candidate lower type does not match --fm-lower-type')
+    if seed.get('construction',a.construction)!=a.construction:raise ValueError('Candidate construction mismatch')
     base=model.constrain_events(seed['parameters'])
     if a.stage=='validate':
         from concurrent.futures import ThreadPoolExecutor

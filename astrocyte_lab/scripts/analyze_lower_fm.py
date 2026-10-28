@@ -31,8 +31,11 @@ def main():
     path=args.model_dir/'candidate.json'
     if not path.exists():path=args.model_dir/'parameters.json'
     data=json.loads(path.read_text())
-    if data.get('case')!='fm' or len(data['physical_thresholds_C'])!=3:raise ValueError('Expected 3-threshold FM candidate')
-    model=Model('fm','mixed','base',data.get('fm_lower_type','node'))
+    count=len(data['physical_thresholds_C'])
+    if data.get('case')!='fm' or count not in (3,4):raise ValueError('Expected 3- or split 4-threshold FM candidate')
+    construction=data.get('construction','split' if count==4 else 'base')
+    if construction not in ('base','split'):raise ValueError('Unsupported FM construction')
+    model=Model('fm','mixed',construction,data.get('fm_lower_type','node'))
     x=model.constrain_events(data['parameters']);m=model.unpack(x);f=model.f
     bounds=f.phi(np.array([1e-12,f.CMAX]),m['shape'])
     grid=np.unique(np.r_[np.linspace(args.start,args.stop,args.points),model.event_I[0]])

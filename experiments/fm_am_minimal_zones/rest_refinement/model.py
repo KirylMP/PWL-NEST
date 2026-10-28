@@ -9,8 +9,8 @@ ROOT=Path(__file__).resolve().parents[1]
 
 class Model:
     def __init__(self,case,coordinate='mixed',construction='refined',fm_lower_type='node'):
-        if case not in ('am','fm') or coordinate not in ('mixed','affine') or construction not in ('refined','base'):raise ValueError('Invalid case, coordinate or construction')
-        if fm_lower_type not in ('node','focus') or (fm_lower_type=='focus' and (case!='fm' or construction!='base')):raise ValueError('Lower focus requires base FM')
+        if case not in ('am','fm') or coordinate not in ('mixed','affine') or construction not in ('refined','base','split'):raise ValueError('Invalid case, coordinate or construction')
+        if fm_lower_type not in ('node','focus') or (fm_lower_type=='focus' and (case!='fm' or construction not in ('base','split'))) or (construction=='split' and (case!='fm' or fm_lower_type!='focus')):raise ValueError('Split construction requires FM with lower focus')
         self.case=case;self.coordinate=coordinate;self.construction=construction;self.fm_lower_type=fm_lower_type
         if case=='am':
             import os
@@ -29,13 +29,16 @@ class Model:
             self.kind=np.array([0,1,1,1,2,2,2,3]);self.event_indices=[0,6]
             self.default_parent=ROOT/'fm_four_zone_fit/candidate.json'
         cuts=list(self.base)
-        intervals=[] if construction=='base' else ([(self.base[0],self.base[1])] if case=='am' else [(self.base[0],self.base[1]),(self.base[1],self.base[2])])
+        intervals=[] if construction in ('base','split') else ([(self.base[0],self.base[1])] if case=='am' else [(self.base[0],self.base[1]),(self.base[1],self.base[2])])
+        if construction=='split':cuts.append(0.05214116272147648)
         for lo,hi in intervals:cuts.extend([lo+(hi-lo)/3,lo+2*(hi-lo)/3])
         self.cuts=np.sort(cuts);self.n=len(self.cuts)+1
         if construction=='base':
             self.kind=np.arange(self.n);self.event_indices=[0,len(self.cuts)-1]
+        if construction=='split':
+            self.kind=np.array([0,2,1,2,3]);self.event_indices=[0,len(self.cuts)-1]
         self.n0=2+2*self.n;self.h0=self.n0+1;self.ni=self.n0+2;self.hi=self.n0+3;self.shape=self.n0+4
-        self.size=self.shape+4;self.dep_det=2+self.n+1
+        self.size=self.shape+4;self.dep_region=2 if construction=='split' else 1;self.dep_det=2+self.n+self.dep_region
         self.derived=[self.dep_det,self.n0,self.h0,self.hi]
         self.active=np.array([i for i in range(self.size) if i not in self.derived and not (coordinate=='affine' and i>=self.shape)],dtype=int)
         if case=='am':
@@ -80,7 +83,8 @@ class Model:
         z=np.r_[zr,m['th']];last=self.event_indices[-1]
         if not zr<m['th'][0]:raise ValueError('LR rest is not in first region')
         D=m['D'];width=np.diff(z);I0,I1=self.event_I
-        required=(D[0]*width[0]*(I1/I0-1)-sum(D[r]*width[r] for r in range(2,last+1)))/width[1]
+        dep=self.dep_region
+        required=(D[0]*width[0]*(I1/I0-1)-sum(D[r]*width[r] for r in range(1,last+1) if r!=dep))/width[dep]
         if self.case=='am':
             q=required-m['T'][1]**2/4
             if not np.isfinite(q) or q<=0:raise ValueError('Rest/event constraints incompatible with unstable focus')
@@ -130,7 +134,7 @@ class Model:
         if self.case in ('am','fm'):
             from scipy.optimize import minimize
             last=self.event_indices[-1]
-            indices=np.array([2+self.n+r for r in range(last+1) if r!=1]+[2+r for r in range(last+1)]+[self.ni])
+            indices=np.array([2+self.n+r for r in range(last+1) if r!=self.dep_region]+[2+r for r in range(last+1)]+[self.ni])
             original=x[indices].copy()
             bounds=list(zip(self.lo[indices]+1e-7,self.upper[indices]-1e-7))
             initial=np.clip(original,*np.asarray(bounds).T)
@@ -138,7 +142,8 @@ class Model:
                 trial=x.copy();trial[indices]=y;m=self.unpack(trial)
                 z=np.r_[float(self.f.phi(self.rest[0],m['shape'])),m['th']]
                 width=np.diff(z);I0,I1=self.event_I;last=self.event_indices[-1]
-                return (m['D'][0]*width[0]*(I1/I0-1)-sum(m['D'][r]*width[r] for r in range(2,last+1)))/width[1]
+                dep=self.dep_region
+                return (m['D'][0]*width[0]*(I1/I0-1)-sum(m['D'][r]*width[r] for r in range(1,last+1) if r!=dep))/width[dep]
             def heights(y):
                 trial=x.copy();trial[indices]=y;m=self.unpack(trial)
                 trial[self.n0]+=self.rest[1]-self.basis(self.rest[0],0.,m)@m['N']
