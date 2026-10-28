@@ -52,9 +52,14 @@ def main():
             target = Path(tmp)
             shutil.copy2(candidate, target / 'parameters.json')
             for old, new in [('candidate_bifurcation.png', 'bifurcation.png'),
-                             ('candidate_branches.json', 'branches.json')]:
+                             ('candidate_branches.json', 'branches.json'),
+                             ('lower_bifurcation.png', 'lower_bifurcation.png'),
+                             ('lower_bifurcation.json', 'lower_bifurcation.json')]:
                 if (source / old).is_file():
                     shutil.copy2(source / old, target / new)
+            analysis_log = fit / 'logs' / f'{case}_lower_analysis.log'
+            if analysis_log.is_file():
+                shutil.copy2(analysis_log, target / 'lower_analysis.log')
             optimizers = {}
             for path in sorted(source.glob('*_optimizer.json')):
                 optimizers[path.name] = json.loads(path.read_text())
@@ -62,6 +67,8 @@ def main():
                 stage=data.get('stage'), complete=data.get('stage') == 'closed',
                 accepted=data.get('accepted'), loss=data.get('loss'),
                 fold_constrained=data.get('fold_constrained'),
+                fm_lower_type=data.get('fm_lower_type', 'node' if case=='fm' else None),
+                has_lower_analysis=(target / 'lower_bifurcation.json').is_file(),
                 has_bifurcation=(target / 'bifurcation.png').is_file(),
                 parameter_sha256=sha, source_candidate=str(candidate), source_run=str(run),
                 imported_utc=datetime.now(timezone.utc).isoformat(), optimizers=optimizers)

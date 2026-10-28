@@ -10,6 +10,6 @@ if not models:
 for path in models:
     try:
         data = json.loads(path.read_text())
-        print(f'{path.parent.name}  stage={data.get("stage")}  loss={data.get("loss")}  fold={data.get("fold_constrained")}  plot={data.get("has_bifurcation")}')
+        print(f'{path.parent.name}  stage={data.get("stage")}  loss={data.get("loss")}  lower={data.get("fm_lower_type")}  fold={data.get("fold_constrained")}  plot={data.get("has_bifurcation")}')
     except (ValueError, OSError) as exc:
         print(f'{path.parent.name}: cannot read metadata: {exc}')

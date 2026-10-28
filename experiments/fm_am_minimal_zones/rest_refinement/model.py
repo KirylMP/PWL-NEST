@@ -8,9 +8,10 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 class Model:
-    def __init__(self,case,coordinate='mixed',construction='refined'):
+    def __init__(self,case,coordinate='mixed',construction='refined',fm_lower_type='node'):
         if case not in ('am','fm') or coordinate not in ('mixed','affine') or construction not in ('refined','base'):raise ValueError('Invalid case, coordinate or construction')
-        self.case=case;self.coordinate=coordinate;self.construction=construction
+        if fm_lower_type not in ('node','focus') or (fm_lower_type=='focus' and (case!='fm' or construction!='base')):raise ValueError('Lower focus requires base FM')
+        self.case=case;self.coordinate=coordinate;self.construction=construction;self.fm_lower_type=fm_lower_type
         if case=='am':
             import os
             os.environ['MAP_KIND']='affine' if coordinate=='affine' else 'mixed_power'
@@ -47,6 +48,7 @@ class Model:
             lo_d=np.array([-8.,-9.,-9.,-9.])[self.kind];hi_d=np.array([8.,1.,1.,1.])[self.kind]
             self.lo=np.r_[np.log([.2,.03]),lo_u,lo_d,[-2,-2,-2,-2],[-4,-6,.15,-4]]
             self.upper=np.r_[np.log([40,1.2]),hi_u,hi_d,[3,3,2,2],[5,3,2.5,4]]
+            if fm_lower_type=='focus':self.lo[2+self.n]=-9.;self.upper[2+self.n]=1.
         self.hi_bounds=self.upper;self.fixed=self.event_indices
 
     def unpack(self,x):
@@ -59,6 +61,7 @@ class Model:
         else:
             T=np.where(self.kind==1,u,np.where(self.kind==2,np.exp(u),-np.exp(u)))
             D=np.where(self.kind==0,T*T/4*expit(v),np.where(self.kind==1,-np.exp(v),T*T/4+np.exp(v)))
+            if self.fm_lower_type=='focus':D[0]=T[0]**2/4+np.exp(v[0])
         ns=-(T+b)/a;hs=ns-D/(a*b)
         shape=None if self.coordinate=='affine' else x[self.shape:]
         th=self.f.phi(self.cuts,shape)
@@ -113,6 +116,7 @@ class Model:
         if (parent.get('transform') is None)!=(self.coordinate=='affine'):raise ValueError('Parent coordinate family mismatch')
         old=np.asarray(parent['parameters'],float);nold=len(self.base)+1;idx=self.kind
         x=np.r_[old[:2],old[2:2+nold][idx],old[2+nold:2+2*nold][idx],old[2+2*nold:6+2*nold],old[6+2*nold:10+2*nold]]
+        if self.fm_lower_type=='focus' and parent.get('fm_lower_type')!='focus':x[2+self.n]=-6.
         try:
             constrained=self.constrain_events(x)
             if self.physically_valid_events(constrained):return constrained
