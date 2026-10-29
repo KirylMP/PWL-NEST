@@ -9,6 +9,7 @@
 - `references.bib` — база литературы.
 - `figure1.tex` — подпись и подключение фигуры 1.
 - `figures/` — фигура 1 в PDF, SVG и PNG, численные данные и описание расчёта.
+- `data/astrocyte_neuron_ratio/` — таблица и исходная сводка замеров ускорения NEST при изменении числа астроцитов на нейрон.
 - `highlights.txt` — отдельная заготовка highlights.
 - `template/elsarticle-template-num.tex` — неизменённый исходный шаблон Elsevier
   с числовыми ссылками.
