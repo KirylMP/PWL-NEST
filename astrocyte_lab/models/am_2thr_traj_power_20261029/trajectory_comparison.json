@@ -1,0 +1,311 @@
+{
+  "case": "am",
+  "method": "DOP853 independent fixed-input forward trajectories from the same physical initial state; peaks in second half; inputs used in LR orbit-field fitting. Not a bifurcation diagram or a cycle completeness test.",
+  "settings": {
+    "duration": 300.0,
+    "sample": 0.1
+  },
+  "models": [
+    "astrocyte_lab/models/am_2thr_traj_identity_20261029",
+    "astrocyte_lab/models/am_2thr_traj_power_20261029"
+  ],
+  "rows": [
+    {
+      "I": 0.3605101203872668,
+      "LR": {
+        "Cmin": 0.12786351484185104,
+        "Cmax": 0.19830225429425768,
+        "peaks": 12,
+        "period": 12.799999999999983,
+        "nfev": 81005,
+        "gate_min": 0.6997858864040803,
+        "gate_max": 0.7194571012918122,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.14778823101973884,
+        "Cmax": 0.1766079894814907,
+        "peaks": 12,
+        "period": 12.599999999999994,
+        "nfev": 85241,
+        "gate_min": 0.6325110428902653,
+        "gate_max": 0.7192869482785502,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.14790087055282314,
+        "Cmax": 0.17640927764004255,
+        "peaks": 12,
+        "period": 12.699999999999989,
+        "nfev": 85193,
+        "gate_min": 0.79537572778252,
+        "gate_max": 0.8481026318311679,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.38135717644475736,
+      "LR": {
+        "Cmin": 0.10976611363115432,
+        "Cmax": 0.2684563116541601,
+        "peaks": 11,
+        "period": 13.0,
+        "nfev": 81005,
+        "gate_min": 0.6707640751346633,
+        "gate_max": 0.7140670494257598,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.120226558738639,
+        "Cmax": 0.24957795335093105,
+        "peaks": 12,
+        "period": 12.599999999999994,
+        "nfev": 86525,
+        "gate_min": 0.6281857042564744,
+        "gate_max": 0.7137412928308523,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.12073190503602967,
+        "Cmax": 0.24868585765573745,
+        "peaks": 12,
+        "period": 12.699999999999989,
+        "nfev": 86357,
+        "gate_min": 0.7923632270903167,
+        "gate_max": 0.8448267752892246,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.4200731376943827,
+      "LR": {
+        "Cmin": 0.10329967459449402,
+        "Cmax": 0.35003686104609205,
+        "peaks": 12,
+        "period": 12.5,
+        "nfev": 81005,
+        "gate_min": 0.6399558920823406,
+        "gate_max": 0.7029890256088823,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.08962286572581704,
+        "Cmax": 0.3508140970850934,
+        "peaks": 12,
+        "period": 12.099999999999966,
+        "nfev": 92657,
+        "gate_min": 0.6216865056858917,
+        "gate_max": 0.7024189235962641,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.08998517186534113,
+        "Cmax": 0.35003730184601983,
+        "peaks": 12,
+        "period": 12.099999999999994,
+        "nfev": 92069,
+        "gate_min": 0.7880955031730789,
+        "gate_max": 0.8380988207936315,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.45878909894400804,
+      "LR": {
+        "Cmin": 0.10392875658967347,
+        "Cmax": 0.40318317075687654,
+        "peaks": 12,
+        "period": 11.900000000000006,
+        "nfev": 81005,
+        "gate_min": 0.6213585640215925,
+        "gate_max": 0.6935866257521084,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.0933927299884752,
+        "Cmax": 0.3854008151441325,
+        "peaks": 14,
+        "period": 11.400000000000006,
+        "nfev": 93617,
+        "gate_min": 0.6152481952670484,
+        "gate_max": 0.6927765950079067,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.0937356155561786,
+        "Cmax": 0.3843842052189661,
+        "peaks": 14,
+        "period": 11.400000000000006,
+        "nfev": 94541,
+        "gate_min": 0.7840414681658318,
+        "gate_max": 0.8323263024837354,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.5004832110589892,
+      "LR": {
+        "Cmin": 0.10775577555155127,
+        "Cmax": 0.4449774980612557,
+        "peaks": 13,
+        "period": 11.5,
+        "nfev": 81005,
+        "gate_min": 0.6074592039731331,
+        "gate_max": 0.6849199042984817,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.10062546617844385,
+        "Cmax": 0.41493608056316916,
+        "peaks": 13,
+        "period": 11.100000000000023,
+        "nfev": 94217,
+        "gate_min": 0.6084752153276599,
+        "gate_max": 0.6868884106355124,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.10095562338027687,
+        "Cmax": 0.4135428531946031,
+        "peaks": 13,
+        "period": 11.199999999999989,
+        "nfev": 94733,
+        "gate_min": 0.7797131914327745,
+        "gate_max": 0.8290203701381246,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.5391991723086145,
+      "LR": {
+        "Cmin": 0.11411408458084457,
+        "Cmax": 0.4742881779680208,
+        "peaks": 13,
+        "period": 11.199999999999989,
+        "nfev": 81005,
+        "gate_min": 0.5979584872362586,
+        "gate_max": 0.6776362976818819,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.1093741441409979,
+        "Cmax": 0.4397804646918381,
+        "peaks": 13,
+        "period": 11.199999999999989,
+        "nfev": 95633,
+        "gate_min": 0.6022077186841871,
+        "gate_max": 0.6821910910839883,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.10967866216678396,
+        "Cmax": 0.4379938173847553,
+        "peaks": 13,
+        "period": 11.150000000000006,
+        "nfev": 94349,
+        "gate_min": 0.7758490859799912,
+        "gate_max": 0.8261673299852169,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.5808932844235957,
+      "LR": {
+        "Cmin": 0.1261885583617229,
+        "Cmax": 0.4957447943580694,
+        "peaks": 13,
+        "period": 11.0,
+        "nfev": 81005,
+        "gate_min": 0.59048269929109,
+        "gate_max": 0.6694971635770165,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.12166960303868946,
+        "Cmax": 0.4648446950566161,
+        "peaks": 13,
+        "period": 11.400000000000006,
+        "nfev": 93737,
+        "gate_min": 0.5962014271154544,
+        "gate_max": 0.6768259205504131,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.12192241640419031,
+        "Cmax": 0.46260308917807724,
+        "peaks": 13,
+        "period": 11.399999999999977,
+        "nfev": 94229,
+        "gate_min": 0.7721427373292018,
+        "gate_max": 0.8229012555122764,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.619609245673221,
+      "LR": {
+        "Cmin": 0.15252107676319945,
+        "Cmax": 0.4957301627294269,
+        "peaks": 14,
+        "period": 10.900000000000006,
+        "nfev": 81005,
+        "gate_min": 0.5868242408983865,
+        "gate_max": 0.6579637231945059,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.13943750927604195,
+        "Cmax": 0.48576173172347803,
+        "peaks": 12,
+        "period": 11.900000000000006,
+        "nfev": 93485,
+        "gate_min": 0.5911501632091782,
+        "gate_max": 0.6710674670439735,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.13958174415108185,
+        "Cmax": 0.48309224717350374,
+        "peaks": 13,
+        "period": 11.849999999999994,
+        "nfev": 93209,
+        "gate_min": 0.7690560381949102,
+        "gate_max": 0.8193793506927528,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.6340770467554636,
+      "LR": {
+        "Cmin": 0.18307173669394494,
+        "Cmax": 0.47137869876505706,
+        "peaks": 14,
+        "period": 10.799999999999983,
+        "nfev": 81005,
+        "gate_min": 0.588574912037485,
+        "gate_max": 0.647211173578044,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.17963568443915467,
+        "Cmax": 0.4644679323142372,
+        "peaks": 12,
+        "period": 12.299999999999983,
+        "nfev": 86657,
+        "gate_min": 0.5916765974893278,
+        "gate_max": 0.6578576815303218,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.17918391801895572,
+        "Cmax": 0.46257210415779365,
+        "peaks": 12,
+        "period": 12.199999999999989,
+        "nfev": 86345,
+        "gate_min": 0.7694080838044319,
+        "gate_max": 0.8112257683479609,
+        "gate_physical": true
+      }
+    }
+  ]
+}

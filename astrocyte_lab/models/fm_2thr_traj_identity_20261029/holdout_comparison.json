@@ -1,0 +1,147 @@
+{
+  "case": "fm",
+  "method": "DOP853 independent fixed-input forward trajectories from the same physical initial state; peaks in second half. Initial state taken from nearest LR training orbit. Not a bifurcation diagram or a cycle completeness test.",
+  "settings": {
+    "duration": 300.0,
+    "sample": 0.1,
+    "inputs_source": "explicit"
+  },
+  "models": [
+    "astrocyte_lab/models/fm_2thr_traj_identity_20261029",
+    "astrocyte_lab/models/fm_2thr_traj_power_20261029"
+  ],
+  "rows": [
+    {
+      "I": 0.575,
+      "LR": {
+        "Cmin": 0.030410294016323395,
+        "Cmax": 1.0287555681221934,
+        "peaks": 5,
+        "period": 31.19999999999999,
+        "nfev": 81137,
+        "gate_min": 0.5550127451440803,
+        "gate_max": 0.8907037188085194,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.0300161476242244,
+        "Cmax": 0.667525775057888,
+        "peaks": 6,
+        "period": 29.399999999999977,
+        "nfev": 87005,
+        "gate_min": 0.6190455206751417,
+        "gate_max": 0.8979583460211775,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.03180088801616402,
+        "Cmax": 0.6681453038582891,
+        "peaks": 5,
+        "period": 30.09999999999998,
+        "nfev": 86969,
+        "gate_min": 0.7977791728184691,
+        "gate_max": 0.962356622627043,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.725,
+      "LR": {
+        "Cmin": 0.030802093331273442,
+        "Cmax": 1.0585291995834956,
+        "peaks": 7,
+        "period": 21.80000000000001,
+        "nfev": 81233,
+        "gate_min": 0.5447767039082444,
+        "gate_max": 0.870366812432411,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.031015994774314416,
+        "Cmax": 0.8520230550160477,
+        "peaks": 7,
+        "period": 20.900000000000006,
+        "nfev": 90197,
+        "gate_min": 0.5563340043043062,
+        "gate_max": 0.870366812432411,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.03270421472834018,
+        "Cmax": 0.8533356477137144,
+        "peaks": 8,
+        "period": 21.099999999999966,
+        "nfev": 89945,
+        "gate_min": 0.759881297625996,
+        "gate_max": 0.9387480381776435,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.875,
+      "LR": {
+        "Cmin": 0.03126144191023265,
+        "Cmax": 1.0778055814732024,
+        "peaks": 8,
+        "period": 18.69999999999999,
+        "nfev": 81185,
+        "gate_min": 0.5403134188068912,
+        "gate_max": 0.8476526702751216,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.03352375609968157,
+        "Cmax": 1.010329754887232,
+        "peaks": 8,
+        "period": 19.0,
+        "nfev": 90137,
+        "gate_min": 0.4989060095229136,
+        "gate_max": 0.8386579381658934,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.03500268834617676,
+        "Cmax": 1.0123682778888863,
+        "peaks": 8,
+        "period": 19.0,
+        "nfev": 91313,
+        "gate_min": 0.7228448797396022,
+        "gate_max": 0.9154386652427695,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 1.05,
+      "LR": {
+        "Cmin": 0.032081861964426875,
+        "Cmax": 1.0941831309452832,
+        "peaks": 9,
+        "period": 17.299999999999983,
+        "nfev": 81077,
+        "gate_min": 0.5371518429381726,
+        "gate_max": 0.8339123074441014,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.039372839050436106,
+        "Cmax": 1.1922441823361996,
+        "peaks": 8,
+        "period": 18.80000000000001,
+        "nfev": 90893,
+        "gate_min": 0.42263046120981757,
+        "gate_max": 0.830307134827917,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.040369281700690214,
+        "Cmax": 1.1952120930880499,
+        "peaks": 8,
+        "period": 18.69999999999999,
+        "nfev": 90857,
+        "gate_min": 0.6748286905278781,
+        "gate_max": 0.9108501303290275,
+        "gate_physical": true
+      }
+    }
+  ]
+}

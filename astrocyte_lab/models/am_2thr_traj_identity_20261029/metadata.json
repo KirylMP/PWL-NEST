@@ -1,0 +1,11 @@
+{
+  "case": "am",
+  "gate_coordinate": "identity",
+  "gate_power": 1.0,
+  "trajectory_loss": 0.7178780792675277,
+  "fold_verified": false,
+  "training_comparison": "trajectory_comparison.json",
+  "holdout_comparison": "holdout_comparison.json",
+  "note": "Finite fixed-input trajectories; not a complete bifurcation analysis.",
+  "accepted": false
+}

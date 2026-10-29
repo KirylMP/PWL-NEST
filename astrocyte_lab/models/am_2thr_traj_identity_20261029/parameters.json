@@ -1,0 +1,274 @@
+{
+  "case": "AM",
+  "threshold_count_m": 2,
+  "physical_thresholds_C": [
+    0.1556894888082623,
+    0.32330383468421175
+  ],
+  "fixed_equilibrium_threshold_I": [
+    0.35453381865657685,
+    0.6368818163953428
+  ],
+  "event_q": [
+    0.7030235437890406,
+    0.6031487450659124
+  ],
+  "rest_target": [
+    0.05563833512124773,
+    0.722072295839805
+  ],
+  "rest_actual": [
+    {
+      "C": 0.055638335121247745,
+      "z": [
+        0.055638335121247745,
+        0.722072295839805
+      ],
+      "h": 0.722072295839805,
+      "region": 0,
+      "stable": true
+    }
+  ],
+  "gate_coordinate": "identity",
+  "gate_power": 1.0,
+  "observable_calcium": "physical C",
+  "parameters": [
+    0.9956585075969685,
+    -1.6005354829252443,
+    3.9997867922984582,
+    -0.7169097328647617,
+    -0.6921424132484324,
+    -1.3213188970660277,
+    -1.3550361811219402,
+    -0.20237460880521285,
+    0.0
+  ],
+  "alpha": [
+    0.6927659452623245,
+    0.5267294665380593,
+    -0.20237460880521285,
+    -0.7816881510735587,
+    0.36532762526527385
+  ],
+  "beta": [
+    0.7627110927513854,
+    -0.730410009987174,
+    0.1523962151699061,
+    -0.12216358204342426,
+    0.37598179345699145
+  ],
+  "a": 2.7065060093624917,
+  "b": 0.20178843479753894,
+  "trace": [
+    -1.627384901291096,
+    0.488258777036946,
+    -0.5005026361296461
+  ],
+  "determinant": [
+    0.6865761794632771,
+    0.32638236857567093,
+    0.3205636839913261
+  ],
+  "discriminant": [
+    -0.09792310090287826,
+    -1.0671328409490697,
+    -1.0317518471925795
+  ],
+  "loss": 12.092465699766406,
+  "field_weight": 10.0,
+  "geometry_optimizer": [
+    {
+      "start": 1,
+      "loss": 12.092465699772964,
+      "nfev": 14,
+      "optimality": 0.0003974418239816106,
+      "success": true
+    },
+    {
+      "start": 2,
+      "loss": 12.092465700297721,
+      "nfev": 12,
+      "optimality": 0.0017379657528829113,
+      "success": true
+    },
+    {
+      "start": 3,
+      "loss": 12.092465699766406,
+      "nfev": 16,
+      "optimality": 0.00014097212388746483,
+      "success": true
+    },
+    {
+      "start": 4,
+      "loss": 12.092465699775666,
+      "nfev": 14,
+      "optimality": 0.000472915053627133,
+      "success": true
+    },
+    {
+      "start": 5,
+      "loss": 12.092465699777383,
+      "nfev": 15,
+      "optimality": 0.0005020659600895001,
+      "success": true
+    },
+    {
+      "start": 6,
+      "loss": 12.092465699857168,
+      "nfev": 10,
+      "optimality": 0.000755254208764808,
+      "success": true
+    },
+    {
+      "start": 7,
+      "loss": 12.092465699848296,
+      "nfev": 13,
+      "optimality": 0.0008187518671961525,
+      "success": true
+    },
+    {
+      "start": 8,
+      "loss": 12.092465699807839,
+      "nfev": 14,
+      "optimality": 0.000687922015300652,
+      "success": true
+    }
+  ],
+  "fold_constraint": null,
+  "fold_optimizer": null,
+  "fold_error": null,
+  "method": "Rest and equilibrium crossings exact; nullcline, equilibrium, spectrum and LR-orbit vector-field loss; no Poincare or cycle count loss.",
+  "accepted": false,
+  "trajectory_fit": {
+    "loss": 0.7178780792675277,
+    "duration": 240,
+    "dt": 0.04,
+    "geometry_weight": 0.02,
+    "targets": [
+      {
+        "I": 0.3605101203872668,
+        "valid": true,
+        "peaks": 10,
+        "Cmin": 0.14778820234135487,
+        "Cmax": 0.17660824251662288,
+        "period": 12.60955704688529,
+        "target_Cmin": 0.12786351484185104,
+        "target_Cmax": 0.19830225429425768,
+        "target_period": 12.799999999999983,
+        "gate_min": 0.632507092940424,
+        "gate_max": 0.7192869482785502
+      },
+      {
+        "I": 0.38135717644475736,
+        "valid": true,
+        "peaks": 9,
+        "Cmin": 0.1202262000820153,
+        "Cmax": 0.24957896570642374,
+        "period": 12.609558986579977,
+        "target_Cmin": 0.10976611363115432,
+        "target_Cmax": 0.2684563116541601,
+        "target_period": 13.0,
+        "gate_min": 0.6281858902580458,
+        "gate_max": 0.7137412928308523
+      },
+      {
+        "I": 0.4200731376943827,
+        "valid": true,
+        "peaks": 10,
+        "Cmin": 0.08962245508116783,
+        "Cmax": 0.350813729334844,
+        "period": 12.051814257036748,
+        "target_Cmin": 0.10329967459449402,
+        "target_Cmax": 0.35003686104609205,
+        "target_period": 12.5,
+        "gate_min": 0.6216673564632328,
+        "gate_max": 0.7024189235962641
+      },
+      {
+        "I": 0.45878909894400804,
+        "valid": true,
+        "peaks": 10,
+        "Cmin": 0.09339253136535147,
+        "Cmax": 0.38540346978967305,
+        "period": 11.385367416570055,
+        "target_Cmin": 0.10392875658967347,
+        "target_Cmax": 0.40318317075687654,
+        "target_period": 11.900000000000006,
+        "gate_min": 0.6152482126490691,
+        "gate_max": 0.6927765950079067
+      },
+      {
+        "I": 0.5004832110589892,
+        "valid": true,
+        "peaks": 11,
+        "Cmin": 0.10062286541260314,
+        "Cmax": 0.4149366012303302,
+        "period": 11.141140041161496,
+        "target_Cmin": 0.10775577555155127,
+        "target_Cmax": 0.4449774980612557,
+        "target_period": 11.5,
+        "gate_min": 0.6084751822436745,
+        "gate_max": 0.6868885350972744
+      },
+      {
+        "I": 0.5391991723086145,
+        "valid": true,
+        "peaks": 11,
+        "Cmin": 0.10937354852778293,
+        "Cmax": 0.43978008492552123,
+        "period": 11.153422156630823,
+        "target_Cmin": 0.11411408458084457,
+        "target_Cmax": 0.4742881779680208,
+        "target_period": 11.199999999999989,
+        "gate_min": 0.602207722402715,
+        "gate_max": 0.6821908729603601
+      },
+      {
+        "I": 0.5808932844235957,
+        "valid": true,
+        "peaks": 10,
+        "Cmin": 0.12166961231413853,
+        "Cmax": 0.46484427021767044,
+        "period": 11.381741594337853,
+        "target_Cmin": 0.1261885583617229,
+        "target_Cmax": 0.4957447943580694,
+        "target_period": 11.0,
+        "gate_min": 0.5962015176871935,
+        "gate_max": 0.676826938910013
+      },
+      {
+        "I": 0.619609245673221,
+        "valid": true,
+        "peaks": 10,
+        "Cmin": 0.13943783916779703,
+        "Cmax": 0.48576060816720473,
+        "period": 11.890270767224514,
+        "target_Cmin": 0.15252107676319945,
+        "target_Cmax": 0.4957301627294269,
+        "target_period": 10.900000000000006,
+        "gate_min": 0.5911502508256118,
+        "gate_max": 0.6710671757354523
+      },
+      {
+        "I": 0.6340770467554636,
+        "valid": true,
+        "peaks": 10,
+        "Cmin": 0.18229336432361398,
+        "Cmax": 0.4618585012294488,
+        "period": 12.26526975145363,
+        "target_Cmin": 0.18307173669394494,
+        "target_Cmax": 0.47137869876505706,
+        "target_period": 10.799999999999983,
+        "gate_min": 0.5918955100947078,
+        "gate_max": 0.6568572260465388
+      }
+    ],
+    "optimizer": {
+      "success": true,
+      "message": "`xtol` termination condition is satisfied.",
+      "nfev": 21,
+      "optimality": 0.09274195542888834
+    },
+    "method": "RK4 fixed-input extrema and period over the second half of a finite trajectory; no Poincare map. Target inputs used for training; independent DOP853 validation still required."
+  }
+}

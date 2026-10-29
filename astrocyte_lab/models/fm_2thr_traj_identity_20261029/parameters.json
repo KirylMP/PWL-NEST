@@ -1,0 +1,279 @@
+{
+  "case": "FM",
+  "threshold_count_m": 2,
+  "physical_thresholds_C": [
+    0.05214116272147648,
+    0.3926251934101712
+  ],
+  "fixed_equilibrium_threshold_I": [
+    0.5290700389163683,
+    0.8600205557570602
+  ],
+  "event_q": [
+    0.9093311715748849,
+    0.6154189239939891
+  ],
+  "rest_target": [
+    0.028126136738174372,
+    0.8371177795140704
+  ],
+  "rest_actual": [
+    {
+      "C": 0.028126136738174372,
+      "z": [
+        0.028126136738174372,
+        0.8371177795140704
+      ],
+      "h": 0.8371177795140704,
+      "region": 0,
+      "stable": true
+    }
+  ],
+  "gate_coordinate": "identity",
+  "gate_power": 1.0,
+  "gate_power_bounds": [
+    0.5,
+    2.5
+  ],
+  "observable_calcium": "physical C",
+  "parameters": [
+    0.46161851770886386,
+    -1.7029425255460375,
+    2.6035086027911225,
+    -0.40154351265751537,
+    -1.6676749248836917,
+    -9.998753251811824,
+    -2.1065222719131795,
+    -0.33600040430270844,
+    0.0
+  ],
+  "alpha": [
+    0.5443425935315491,
+    10.409363671518754,
+    -0.33600040430270844,
+    -10.945990131645715,
+    0.5407474331079176
+  ],
+  "beta": [
+    0.7914660882784016,
+    1.6231056422941936,
+    0.06281676421432864,
+    -2.54738243591457,
+    0.47663213711116253
+  ],
+  "a": 1.5866399127309445,
+  "b": 0.182146763219894,
+  "trace": [
+    -16.698058630583073,
+    0.6692861966450634,
+    -0.18868526343076544
+  ],
+  "determinant": [
+    2.539240207839708,
+    0.11203145982224534,
+    0.13056086528598101
+  ],
+  "discriminant": [
+    268.66820119903105,
+    -0.0001818262693669137,
+    -0.4866413325079867
+  ],
+  "loss": 33.40574501869014,
+  "field_weight": 1.0,
+  "geometry_optimizer": [
+    {
+      "start": 1,
+      "loss": 29.364146340125473,
+      "nfev": 16,
+      "optimality": 0.0005840954221510295,
+      "success": true
+    },
+    {
+      "start": 2,
+      "loss": 29.36414633921492,
+      "nfev": 11,
+      "optimality": 0.00137548587606407,
+      "success": true
+    },
+    {
+      "start": 3,
+      "loss": 29.36414633950973,
+      "nfev": 17,
+      "optimality": 0.000734870763646627,
+      "success": true
+    },
+    {
+      "start": 4,
+      "loss": 29.36414634299795,
+      "nfev": 17,
+      "optimality": 0.00126935312102456,
+      "success": true
+    },
+    {
+      "start": 5,
+      "loss": 29.36414633987552,
+      "nfev": 11,
+      "optimality": 0.0028424219289287394,
+      "success": true
+    },
+    {
+      "start": 6,
+      "loss": 29.364146344640332,
+      "nfev": 11,
+      "optimality": 0.0019669306264992474,
+      "success": true
+    },
+    {
+      "start": 7,
+      "loss": 29.364146339648897,
+      "nfev": 18,
+      "optimality": 0.00211522795663722,
+      "success": true
+    },
+    {
+      "start": 8,
+      "loss": 29.364146342073305,
+      "nfev": 10,
+      "optimality": 0.0045615842277267225,
+      "success": true
+    }
+  ],
+  "fold_constraint": {
+    "I": 1.1231503495944923,
+    "parameter_index": 2,
+    "crossing_times": [
+      2.3443954865731005,
+      11.924057068157568,
+      5.450591757937936,
+      0.17769631682046458
+    ],
+    "residual": 2.7755575615628914e-15,
+    "trace_integral": 0.0,
+    "singular_values": [
+      0.05768032504696709,
+      0.05615834942169494,
+      0.04472554892420439,
+      4.578400163235935e-12
+    ],
+    "curvature_samples": [
+      -0.0011807209193835507,
+      -0.0011807221323164925,
+      -0.001180736787059163
+    ],
+    "input_derivative": -0.3956415244566732,
+    "parameter_derivative": -2.9365885014673164e-05,
+    "scope": "local fold on all-threshold itinerary; finite segment sampling",
+    "independent_check": {
+      "period": 19.89674062948909,
+      "closure_h": -3.3306690738754696e-16,
+      "log_multiplier": -1.5993730066463697e-10
+    }
+  },
+  "fold_optimizer": {
+    "success": true,
+    "message": "Optimization terminated successfully",
+    "nfev": 893,
+    "constraint_residual": 1.5837331446277858e-12
+  },
+  "fold_error": null,
+  "method": "Rest and equilibrium crossings exact; nullcline, equilibrium, spectrum and LR-orbit vector-field loss; no Poincare or cycle count loss.",
+  "accepted": false,
+  "trajectory_fit": {
+    "loss": 8.808419778731759,
+    "duration": 240,
+    "dt": 0.04,
+    "geometry_weight": 0.02,
+    "targets": [
+      {
+        "I": 0.55,
+        "valid": true,
+        "peaks": 3,
+        "Cmin": 0.03017738936209769,
+        "Cmax": 0.6223019235741355,
+        "period": 35.13266670604712,
+        "target_Cmin": 0.030349462829437564,
+        "target_Cmax": 1.0207700428149027,
+        "target_period": 35.80000000000001,
+        "gate_min": 0.6308747015770717,
+        "gate_max": 0.9041486123073396
+      },
+      {
+        "I": 0.65,
+        "valid": true,
+        "peaks": 6,
+        "Cmin": 0.03028101262335175,
+        "Cmax": 0.7672883283104097,
+        "period": 23.295066921296474,
+        "target_Cmin": 0.030600445491758017,
+        "target_Cmax": 1.0458541831910313,
+        "target_period": 24.89999999999999,
+        "gate_min": 0.5893939102147611,
+        "gate_max": 0.8793872613524133
+      },
+      {
+        "I": 0.8,
+        "valid": true,
+        "peaks": 7,
+        "Cmin": 0.03209070814742894,
+        "Cmax": 0.9320442941713007,
+        "period": 19.670115582660042,
+        "target_Cmin": 0.031019608578044876,
+        "target_Cmax": 1.0690212717218235,
+        "target_period": 19.950000000000017,
+        "gate_min": 0.5292000232678602,
+        "gate_max": 0.8490761821134001
+      },
+      {
+        "I": 0.9,
+        "valid": true,
+        "peaks": 6,
+        "Cmin": 0.034100377427388806,
+        "Cmax": 1.036282978853549,
+        "period": 18.859366571387945,
+        "target_Cmin": 0.031349970515248834,
+        "target_Cmax": 1.0804804826503445,
+        "target_period": 18.400000000000006,
+        "gate_min": 0.4877380299502902,
+        "gate_max": 0.8386579381658934
+      },
+      {
+        "I": 1.0,
+        "valid": true,
+        "peaks": 6,
+        "Cmin": 0.03709777885833574,
+        "Cmax": 1.1401039079435065,
+        "period": 18.645461524969352,
+        "target_Cmin": 0.03177730209291524,
+        "target_Cmax": 1.0899778545371637,
+        "target_period": 17.5,
+        "gate_min": 0.44528246413659256,
+        "gate_max": 0.830307134827917
+      },
+      {
+        "I": 1.1,
+        "valid": true,
+        "peaks": 6,
+        "Cmin": 0.043390627068520024,
+        "Cmax": 1.2446394375761105,
+        "period": 19.179988088982146,
+        "target_Cmin": 0.0326300130276839,
+        "target_Cmax": 1.097976217270142,
+        "target_period": 17.299999999999997,
+        "gate_min": 0.402022669700718,
+        "gate_max": 0.8234823493690464
+      }
+    ],
+    "optimizer": {
+      "success": true,
+      "message": "Optimization terminated successfully",
+      "nfev": 927,
+      "nit": 52,
+      "constraint_residual": 1.3303086632276972e-09,
+      "fold_solver_errors": [
+        "0: Fold degeneracy or upper-bound orientation unresolved",
+        "1: Fold degeneracy or upper-bound orientation unresolved"
+      ]
+    },
+    "method": "RK4 fixed-input extrema and period over the second half of a finite trajectory; no Poincare map. Target inputs used for training; independent DOP853 validation still required."
+  }
+}
