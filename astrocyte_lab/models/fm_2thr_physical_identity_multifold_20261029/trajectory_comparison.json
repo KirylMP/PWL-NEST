@@ -1,0 +1,212 @@
+{
+  "case": "fm",
+  "method": "DOP853 independent fixed-input forward trajectories from the same physical initial state; peaks in second half; inputs used in LR orbit-field fitting. Not a bifurcation diagram or a cycle completeness test.",
+  "settings": {
+    "duration": 300.0,
+    "sample": 0.1
+  },
+  "models": [
+    "astrocyte_lab/models/fm_2thr_physical_identity_multifold_20261029",
+    "astrocyte_lab/models/fm_2thr_physical_power_from_identity_20261029"
+  ],
+  "rows": [
+    {
+      "I": 0.55,
+      "LR": {
+        "Cmin": 0.030349462829437564,
+        "Cmax": 1.0207700428149027,
+        "peaks": 4,
+        "period": 35.80000000000001,
+        "nfev": 81185,
+        "gate_min": 0.5578606349603055,
+        "gate_max": 0.8961352115508405,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.0007181797043112489,
+        "Cmax": 0.5529159390602608,
+        "peaks": 5,
+        "period": 28.80000000000001,
+        "nfev": 86309,
+        "gate_min": 0.5672985190937285,
+        "gate_max": 0.8891207934633585,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.0034994404164192592,
+        "Cmax": 0.5461262568768817,
+        "peaks": 6,
+        "period": 29.5,
+        "nfev": 86513,
+        "gate_min": 0.7579435622131372,
+        "gate_max": 0.9429320189803951,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.65,
+      "LR": {
+        "Cmin": 0.030600445491758017,
+        "Cmax": 1.0458541831910313,
+        "peaks": 7,
+        "period": 24.89999999999999,
+        "nfev": 81245,
+        "gate_min": 0.5494769678919966,
+        "gate_max": 0.8764131410841411,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.002269814068518443,
+        "Cmax": 0.6364988524518741,
+        "peaks": 8,
+        "period": 21.100000000000023,
+        "nfev": 88709,
+        "gate_min": 0.5526115201419556,
+        "gate_max": 0.870366812432411,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.005058908053518181,
+        "Cmax": 0.6246723147693111,
+        "peaks": 7,
+        "period": 21.30000000000001,
+        "nfev": 88733,
+        "gate_min": 0.7488156220532164,
+        "gate_max": 0.9329345160427869,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.8,
+      "LR": {
+        "Cmin": 0.031019608578044876,
+        "Cmax": 1.0690212717218235,
+        "peaks": 7,
+        "period": 19.950000000000017,
+        "nfev": 81149,
+        "gate_min": 0.5424500178278205,
+        "gate_max": 0.8554431581740114,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.00764639344534654,
+        "Cmax": 0.7217333336598003,
+        "peaks": 8,
+        "period": 18.69999999999999,
+        "nfev": 89849,
+        "gate_min": 0.5305014051874415,
+        "gate_max": 0.8490761821134001,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.010180199993451017,
+        "Cmax": 0.7039764295326763,
+        "peaks": 8,
+        "period": 18.599999999999994,
+        "nfev": 89801,
+        "gate_min": 0.7354183708139259,
+        "gate_max": 0.9214532981786203,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 0.9,
+      "LR": {
+        "Cmin": 0.031349970515248834,
+        "Cmax": 1.0804804826503445,
+        "peaks": 8,
+        "period": 18.400000000000006,
+        "nfev": 81065,
+        "gate_min": 0.5397365449092119,
+        "gate_max": 0.8453510328790568,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.012838103910117854,
+        "Cmax": 0.771879574040418,
+        "peaks": 8,
+        "period": 18.099999999999994,
+        "nfev": 90425,
+        "gate_min": 0.5151475950489292,
+        "gate_max": 0.8386579381658934,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.015061460600377679,
+        "Cmax": 0.7503293287797871,
+        "peaks": 8,
+        "period": 18.0,
+        "nfev": 90641,
+        "gate_min": 0.7262575893919564,
+        "gate_max": 0.9157826907570676,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 1.0,
+      "LR": {
+        "Cmin": 0.03177730209291524,
+        "Cmax": 1.0899778545371637,
+        "peaks": 9,
+        "period": 17.5,
+        "nfev": 81101,
+        "gate_min": 0.537941026153505,
+        "gate_max": 0.8373291880811312,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.020037623302817564,
+        "Cmax": 0.8196836544744167,
+        "peaks": 8,
+        "period": 18.0,
+        "nfev": 90545,
+        "gate_min": 0.4993181308149338,
+        "gate_max": 0.830307134827917,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.021909119441117217,
+        "Cmax": 0.7943355889220598,
+        "peaks": 8,
+        "period": 17.80000000000001,
+        "nfev": 90377,
+        "gate_min": 0.7168898663236701,
+        "gate_max": 0.9112119036118224,
+        "gate_physical": true
+      }
+    },
+    {
+      "I": 1.1,
+      "LR": {
+        "Cmin": 0.0326300130276839,
+        "Cmax": 1.097976217270142,
+        "peaks": 9,
+        "period": 17.299999999999997,
+        "nfev": 81113,
+        "gate_min": 0.5367511353003913,
+        "gate_max": 0.8308194235026445,
+        "gate_physical": true
+      },
+      "identity": {
+        "Cmin": 0.03448607754608874,
+        "Cmax": 0.8661248093548202,
+        "peaks": 8,
+        "period": 18.80000000000001,
+        "nfev": 89417,
+        "gate_min": 0.4831292893135384,
+        "gate_max": 0.8234823493690464,
+        "gate_physical": true
+      },
+      "power": {
+        "Cmin": 0.0355604673602989,
+        "Cmax": 0.8369413891365776,
+        "peaks": 8,
+        "period": 18.5,
+        "nfev": 89753,
+        "gate_min": 0.7073484105144066,
+        "gate_max": 0.9074592816042686,
+        "gate_physical": true
+      }
+    }
+  ]
+}

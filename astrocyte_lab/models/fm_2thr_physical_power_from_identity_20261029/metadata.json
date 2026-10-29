@@ -1,0 +1,10 @@
+{
+  "case": "fm",
+  "gate_coordinate": "power",
+  "gate_power": 0.5000000050000001,
+  "field_weight": 1.0,
+  "loss": 29.85483415424553,
+  "fold_verified": true,
+  "validation": "Fixed-input DOP853 trajectories, in-sample inputs; no completeness claim.",
+  "accepted": false
+}

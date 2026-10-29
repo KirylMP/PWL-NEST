@@ -1,0 +1,181 @@
+{
+  "case": "FM",
+  "threshold_count_m": 2,
+  "physical_thresholds_C": [
+    0.05214116272147648,
+    0.3926251934101712
+  ],
+  "fixed_equilibrium_threshold_I": [
+    0.5290700389163683,
+    0.8600205557570602
+  ],
+  "event_q": [
+    0.8248771012633695,
+    0.6115130450255519
+  ],
+  "rest_target": [
+    0.028126136738174372,
+    0.8371177795140704
+  ],
+  "rest_actual": [
+    {
+      "C": 0.028126136738174372,
+      "z": [
+        0.028126136738174372,
+        0.8371177795140704
+      ],
+      "h": 0.8371177795140704,
+      "region": 0,
+      "stable": true
+    }
+  ],
+  "gate_coordinate": "identity",
+  "gate_power": 1.0,
+  "gate_power_bounds": [
+    0.5,
+    2.5
+  ],
+  "observable_calcium": "physical C",
+  "parameters": [
+    0.43742870335784256,
+    -1.5002426584278294,
+    0.7977161906590664,
+    -0.6615630731150959,
+    -1.2606555248543065,
+    -9.99999999,
+    -1.7841979022541725,
+    -0.15370717950910276,
+    0.0
+  ],
+  "alpha": [
+    0.7562106481976226,
+    2.8765817385306263,
+    -0.15370717950910276,
+    -3.353827574138476,
+    0.5162407008464402
+  ],
+  "beta": [
+    0.8791406234684149,
+    -1.4940851758467342,
+    0.04468182722450814,
+    0.8240052029632059,
+    0.16484936407983652
+  ],
+  "a": 1.548719876170991,
+  "b": 0.2230760223033347,
+  "trace": [
+    -4.678095336196221,
+    0.5160440891223759,
+    -0.28346814516694874
+  ],
+  "determinant": [
+    1.509987925412281,
+    0.06662077540975214,
+    0.18802025196712788
+  ],
+  "discriminant": [
+    15.84462427289171,
+    -0.00018159972086595477,
+    -0.6717268185441212
+  ],
+  "loss": 33.40574501869014,
+  "field_weight": 1.0,
+  "geometry_optimizer": [
+    {
+      "start": 1,
+      "loss": 29.364146340125473,
+      "nfev": 16,
+      "optimality": 0.0005840954221510295,
+      "success": true
+    },
+    {
+      "start": 2,
+      "loss": 29.36414633921492,
+      "nfev": 11,
+      "optimality": 0.00137548587606407,
+      "success": true
+    },
+    {
+      "start": 3,
+      "loss": 29.36414633950973,
+      "nfev": 17,
+      "optimality": 0.000734870763646627,
+      "success": true
+    },
+    {
+      "start": 4,
+      "loss": 29.36414634299795,
+      "nfev": 17,
+      "optimality": 0.00126935312102456,
+      "success": true
+    },
+    {
+      "start": 5,
+      "loss": 29.36414633987552,
+      "nfev": 11,
+      "optimality": 0.0028424219289287394,
+      "success": true
+    },
+    {
+      "start": 6,
+      "loss": 29.364146344640332,
+      "nfev": 11,
+      "optimality": 0.0019669306264992474,
+      "success": true
+    },
+    {
+      "start": 7,
+      "loss": 29.364146339648897,
+      "nfev": 18,
+      "optimality": 0.00211522795663722,
+      "success": true
+    },
+    {
+      "start": 8,
+      "loss": 29.364146342073305,
+      "nfev": 10,
+      "optimality": 0.0045615842277267225,
+      "success": true
+    }
+  ],
+  "fold_constraint": {
+    "I": 1.1231503495944923,
+    "parameter_index": 2,
+    "crossing_times": [
+      2.9461233094208317,
+      9.4516852816736,
+      6.868206916329915,
+      0.5099031197033148
+    ],
+    "residual": 3.552713678800501e-15,
+    "trace_integral": 8.881784197001252e-16,
+    "singular_values": [
+      0.07495182612979155,
+      0.03522987572465556,
+      0.02870995673812497,
+      1.2244664636359098e-11
+    ],
+    "curvature_samples": [
+      -0.0005563821220648529,
+      -0.0005563949935567002,
+      -0.0005564721446002362
+    ],
+    "input_derivative": -0.21788916148158924,
+    "parameter_derivative": -5.2094838839983274e-05,
+    "scope": "local fold on all-threshold itinerary; finite segment sampling",
+    "independent_check": {
+      "period": 19.775918627127883,
+      "closure_h": 1.8207657603852567e-14,
+      "log_multiplier": -1.1195339150306554e-10
+    }
+  },
+  "fold_optimizer": {
+    "success": true,
+    "message": "Optimization terminated successfully",
+    "nfev": 893,
+    "constraint_residual": 1.5837331446277858e-12
+  },
+  "fold_error": null,
+  "method": "Rest and equilibrium crossings exact; nullcline, equilibrium, spectrum and LR-orbit vector-field loss; no Poincare or cycle count loss.",
+  "accepted": false
+}

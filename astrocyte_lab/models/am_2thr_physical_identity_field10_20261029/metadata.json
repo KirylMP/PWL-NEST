@@ -1,0 +1,10 @@
+{
+  "case": "am",
+  "gate_coordinate": "identity",
+  "gate_power": 1.0,
+  "field_weight": 10.0,
+  "loss": 12.092465699766406,
+  "fold_verified": false,
+  "validation": "Fixed-input DOP853 trajectories, in-sample inputs; no completeness claim.",
+  "accepted": false
+}
