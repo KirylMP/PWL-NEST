@@ -6,6 +6,7 @@ import numpy as np
 import nest
 from scipy.integrate import solve_ivp
 from latent_flow import Candidate
+from benchmark_nest import pwa_initial
 
 HERE=Path(__file__).resolve().parent
 
@@ -14,9 +15,17 @@ def init():
     nest.ResetKernel();nest.SetKernelStatus({'resolution':1.,'local_num_threads':1,'print_time':False});nest.Install('pwa_astrocyte_module')
 
 
-def trajectory(case,split):
-    init();base=.4 if case=='am' else .55
-    node=nest.Create(f'astrocyte_{case}_pwa',params={'Ca_astro':.1,'h_IP3R':.75,'IP3':base,'IP3_0':base,'tau_IP3':30000.,'delta_IP3':.15})
+def trajectory(case,split,model):
+    init()
+    if model.direct_calcium:
+        # Start each phenomenological model at its own stable equilibrium.
+        # Its hidden coordinate need not equal the gate of Li–Rinzel.
+        base=.2 if case=='am' else .45
+        calcium,hidden=pwa_initial(case,base)
+    else:
+        base=.4 if case=='am' else .55
+        calcium,hidden=.1,.75
+    node=nest.Create(f'astrocyte_{case}_pwa',params={'Ca_astro':calcium,'h_IP3R':hidden,'IP3':base,'IP3_0':base,'tau_IP3':30000.,'delta_IP3':.15})
     source=nest.Create('spike_generator',params={'spike_times':[4000.,9000.,14000.]})
     nest.Connect(source,node,syn_spec={'delay':1.,'weight':1.})
     if split:
@@ -53,7 +62,8 @@ def boundary_checks(case,path):
 def main():
     manifest=json.loads((HERE/'module/generated/manifest.json').read_text());out={}
     for case in ('am','fm'):
-        continuous=trajectory(case,False);split=trajectory(case,True);error=float(np.max(abs(continuous-split)))
+        model=Candidate(manifest[case]['path'])
+        continuous=trajectory(case,False,model);split=trajectory(case,True,model);error=float(np.max(abs(continuous-split)))
         if error>2e-9:raise RuntimeError(f'{case} split Simulate mismatch {error}')
         boundaries=boundary_checks(case,Path(manifest[case]['path']))
         out[case]=dict(split_simulate_max_abs_error=error,threshold_checks=boundaries)
