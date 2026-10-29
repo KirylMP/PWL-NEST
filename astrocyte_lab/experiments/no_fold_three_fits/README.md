@@ -1,0 +1,5 @@
+# Mixed-coordinate models fitted without folds
+
+Independent K=0.05,0.075,0.10; physical rest and two C thresholds and equilibrium crossing inputs are fixed. Previous mixed-coordinate models are the initial seeds. Fit the 64-sample C waveform (peak-aligned normalized phase) and period at seven stable-cycle reference inputs. Four other inputs are held out. No fold location, M=1, fold target, fold matching or unstable-cycle search is used. Exact rest and crossings are preserved by the model parameterization; positive physical event heights are penalized and checked before selection. Regional type restrictions match previous model. The solver handles finite forward trajectories and may have nonsmooth residuals or fail to identify cycles.
+
+After candidate selection independent DOP853 stable trajectories are calculated at all 11 reference inputs, compared to the archived fixed-fold models. No global cycle completeness is implied. `baseline_comparison.json`, `validation.json` and `comparison.png` live alongside model parameters. The seeds include old metadata; new output never inherits any fold constraint.
