@@ -1,0 +1,794 @@
+{
+  "scope": "Physical C models with unrestricted q; no fold or Poincare constraint, no fold scan. Selection by training loss; DOP853 validation on common finite inputs.",
+  "snapshot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/paper_frozen_v1",
+  "settings": {
+    "starts": 6,
+    "jitter": 0.035,
+    "peak_weight": {
+      "fm": 1.0,
+      "afm": 0.0,
+      "am": 0.0
+    },
+    "duration": 350.0,
+    "validation_duration": 450.0,
+    "dt": 0.01
+  },
+  "trials": [
+    {
+      "mode": "fm",
+      "start": 0,
+      "peak_weight": 1.0,
+      "jitter": 0,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.850203586399369,
+      "initial_loss": 16.26128283108833,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 164
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 29,
+          "optimality": 0.001827691277590761,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_00/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 1,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.8494643213449,
+      "initial_loss": 54.632201039096415,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 539
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 32,
+          "optimality": 0.015839121006229813,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_01/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 2,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.849793615998816,
+      "initial_loss": 21.55546372291456,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 1059
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 25,
+          "optimality": 0.041561928219886926,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_02/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_02/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 3,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.854715658695973,
+      "initial_loss": 44.48640191718528,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 172
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 43,
+          "optimality": 0.009090970282343038,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_03/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_03/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 4,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.84946586248979,
+      "initial_loss": 25.19232002561185,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 165
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 31,
+          "optimality": 0.00305367944669426,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_04/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_04/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 5,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.853780207812997,
+      "initial_loss": 16.34903982938536,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 161
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 24,
+          "optimality": 0.0081815438117954,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_05/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_05/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 0,
+      "peak_weight": 0.0,
+      "jitter": 0,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.19072924064700614,
+      "initial_loss": 3.449630477033932,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 182
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 24,
+          "optimality": 0.002351470030181881,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_00/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 1,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.19056135479660982,
+      "initial_loss": 12.460047053014067,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 3895
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 28,
+          "optimality": 0.00429353357255807,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_01/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 2,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.1905551311488436,
+      "initial_loss": 1.4053474112558597,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 181
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 45,
+          "optimality": 0.00025205688300495975,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_02/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_02/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 3,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.19055498812346996,
+      "initial_loss": 4.867124360133648,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 172
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 27,
+          "optimality": 0.0017800924399481786,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_03/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_03/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 4,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.1905553918462919,
+      "initial_loss": 1.6106028750479315,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 177
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 30,
+          "optimality": 0.005150406875641142,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_04/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_04/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 5,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.1905561361567511,
+      "initial_loss": 5.831414885525612,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 184
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 25,
+          "optimality": 0.004982568950917643,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_05/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_05/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 0,
+      "peak_weight": 0.0,
+      "jitter": 0,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.041511616397680105,
+      "initial_loss": 2.7463447678236226,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 685
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 31,
+          "optimality": 0.0003385770629943199,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_00/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 1,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.0415115526114914,
+      "initial_loss": 20.988746394761748,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 344
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 38,
+          "optimality": 0.00015788443623402883,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_01/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 2,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.041512212560959744,
+      "initial_loss": 2.426573236635806,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 1957
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 25,
+          "optimality": 0.0008328644053802031,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_02/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_02/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 3,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.041511565305031195,
+      "initial_loss": 19.38978302594537,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 356
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 35,
+          "optimality": 0.00015032912272269192,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_03/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_03/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 4,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.04151176622924592,
+      "initial_loss": 4.082992911709408,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 2448
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 44,
+          "optimality": 0.0006214125291072981,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_04/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_04/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 5,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.041511732670479286,
+      "initial_loss": 4.668087649495089,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 1817
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 33,
+          "optimality": 0.00027470099757653403,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_05/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_05/fit.log"
+    }
+  ],
+  "validation": {
+    "fm": {
+      "old_physical": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/paper_frozen_v1/fm_physical/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/old_physical/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/old_physical/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/old_physical/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.0022213325964664924,
+            "mean_abs_Cmax": 0.24044210812275058,
+            "mean_abs_period": 0.568105149331432,
+            "mean_abs_shape_rmse": 0.19074364826900903
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.002448429328095938,
+            "mean_abs_Cmax": 0.21791163493465449,
+            "mean_abs_period": 0.6534303345070924,
+            "mean_abs_shape_rmse": 0.20091986202394901
+          }
+        }
+      },
+      "frozen_mixed": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/paper_frozen_v1/fm_mixed/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/frozen_mixed/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/frozen_mixed/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/frozen_mixed/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.0020482863816023533,
+            "mean_abs_Cmax": 0.06090725527133824,
+            "mean_abs_period": 0.42722320964884375,
+            "mean_abs_shape_rmse": 0.06707572930798322
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.002540213519714689,
+            "mean_abs_Cmax": 0.061742963867051,
+            "mean_abs_period": 0.38282576060463214,
+            "mean_abs_shape_rmse": 0.06872430293995911
+          }
+        }
+      },
+      "new_rank_01": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_01/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/new_rank_01/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/new_rank_01/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/new_rank_01/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.005067755430112679,
+            "mean_abs_Cmax": 0.13393216264581562,
+            "mean_abs_period": 1.0699081617170236,
+            "mean_abs_shape_rmse": 0.19195919234878353
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.004924291936690148,
+            "mean_abs_Cmax": 0.12754049068002205,
+            "mean_abs_period": 0.7440397480968386,
+            "mean_abs_shape_rmse": 0.2045995200898748
+          }
+        }
+      },
+      "new_rank_02": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/trial_04/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/new_rank_02/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/new_rank_02/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/fm/comparison/new_rank_02/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.005059870603375871,
+            "mean_abs_Cmax": 0.13394065698726956,
+            "mean_abs_period": 1.0696303326782706,
+            "mean_abs_shape_rmse": 0.19195212437570772
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.004918631305480552,
+            "mean_abs_Cmax": 0.12755544209187838,
+            "mean_abs_period": 0.7435824757455691,
+            "mean_abs_shape_rmse": 0.20459049141164048
+          }
+        }
+      }
+    },
+    "afm": {
+      "old_physical": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/paper_frozen_v1/afm_physical/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/old_physical/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/old_physical/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/old_physical/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.004358067176801734,
+            "mean_abs_Cmax": 0.13919313431034047,
+            "mean_abs_period": 1.8664536778425875,
+            "mean_abs_shape_rmse": 0.11158874230801405
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.0038553782167168385,
+            "mean_abs_Cmax": 0.1604915337254837,
+            "mean_abs_period": 1.8027828192122541,
+            "mean_abs_shape_rmse": 0.12831585030867065
+          }
+        }
+      },
+      "frozen_mixed": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/paper_frozen_v1/afm_mixed/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/frozen_mixed/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/frozen_mixed/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/frozen_mixed/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.012248847387977388,
+            "mean_abs_Cmax": 0.0054478406106260235,
+            "mean_abs_period": 0.10164875929046145,
+            "mean_abs_shape_rmse": 0.009949699190609035
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.011227864554884975,
+            "mean_abs_Cmax": 0.0031688599031642894,
+            "mean_abs_period": 0.16857473777220378,
+            "mean_abs_shape_rmse": 0.0105429679828291
+          }
+        }
+      },
+      "new_rank_01": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_03/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/new_rank_01/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/new_rank_01/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/new_rank_01/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.01746040627135462,
+            "mean_abs_Cmax": 0.05572482708900165,
+            "mean_abs_period": 0.15048509123469753,
+            "mean_abs_shape_rmse": 0.03307171184401063
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.016281186498461615,
+            "mean_abs_Cmax": 0.054692849719301384,
+            "mean_abs_period": 0.11234907763090973,
+            "mean_abs_shape_rmse": 0.03532095904463415
+          }
+        }
+      },
+      "new_rank_02": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/trial_02/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/new_rank_02/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/new_rank_02/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/afm/comparison/new_rank_02/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.017445377517579103,
+            "mean_abs_Cmax": 0.0557023342241471,
+            "mean_abs_period": 0.15070926494672676,
+            "mean_abs_shape_rmse": 0.03306874928401355
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.016265326504506232,
+            "mean_abs_Cmax": 0.05466835413462709,
+            "mean_abs_period": 0.1123248795578462,
+            "mean_abs_shape_rmse": 0.035318999875222704
+          }
+        }
+      }
+    },
+    "am": {
+      "old_physical": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/paper_frozen_v1/am_physical/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/old_physical/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/old_physical/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/old_physical/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.02933526801814839,
+            "mean_abs_Cmax": 0.06707489257471898,
+            "mean_abs_period": 2.6892758526225697,
+            "mean_abs_shape_rmse": 0.058179633186537336
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.02923042830286117,
+            "mean_abs_Cmax": 0.07397476241523805,
+            "mean_abs_period": 3.1672015122073134,
+            "mean_abs_shape_rmse": 0.06346959852901375
+          }
+        }
+      },
+      "frozen_mixed": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/paper_frozen_v1/am_mixed/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/frozen_mixed/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/frozen_mixed/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/frozen_mixed/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.009098779227686685,
+            "mean_abs_Cmax": 0.00762884402624867,
+            "mean_abs_period": 0.07332644576009832,
+            "mean_abs_shape_rmse": 0.009062927634611265
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.012356765886059235,
+            "mean_abs_Cmax": 0.010413687543429653,
+            "mean_abs_period": 0.10759875051961387,
+            "mean_abs_shape_rmse": 0.011150420630739018
+          }
+        }
+      },
+      "new_rank_01": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_01/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/new_rank_01/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/new_rank_01/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/new_rank_01/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.01786181484396759,
+            "mean_abs_Cmax": 0.01663358783547971,
+            "mean_abs_period": 0.11788898992781631,
+            "mean_abs_shape_rmse": 0.0154514473769226
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.021962420978156656,
+            "mean_abs_Cmax": 0.014364675183841005,
+            "mean_abs_period": 0.20544144836301825,
+            "mean_abs_shape_rmse": 0.01763567426954639
+          }
+        }
+      },
+      "new_rank_02": {
+        "exit_code": 0,
+        "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/trial_03/parameters.json",
+        "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/new_rank_02/validation.json",
+        "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/new_rank_02/comparison.png",
+        "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/physical_no_fold_20261029T183743Z_V23NCi/am/comparison/new_rank_02/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.01786859170646486,
+            "mean_abs_Cmax": 0.01662977894624757,
+            "mean_abs_period": 0.11794773104890867,
+            "mean_abs_shape_rmse": 0.015450757198100311
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.021974080499427454,
+            "mean_abs_Cmax": 0.014367825776793117,
+            "mean_abs_period": 0.2054192625458029,
+            "mean_abs_shape_rmse": 0.01763464627905456
+          }
+        }
+      }
+    }
+  }
+}

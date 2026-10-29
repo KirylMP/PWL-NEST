@@ -1,0 +1,64 @@
+{
+  "K": 0.075,
+  "identity": {
+    "train": {
+      "total": 7,
+      "valid": 7,
+      "mean_abs_Cmin": 0.00435806931718444,
+      "mean_abs_Cmax": 0.1391931521663373,
+      "mean_abs_period": 1.8664546465759113,
+      "mean_abs_shape_rmse": 0.11158874304865805
+    },
+    "holdout": {
+      "total": 4,
+      "valid": 4,
+      "mean_abs_Cmin": 0.003855378109914846,
+      "mean_abs_Cmax": 0.16049153217545223,
+      "mean_abs_period": 1.8027828796291345,
+      "mean_abs_shape_rmse": 0.12831585009911425
+    },
+    "local_branches": [
+      {
+        "I": 0.9046635644477613,
+        "stable": 1,
+        "unstable": 0
+      },
+      {
+        "I": 0.9066635644477613,
+        "stable": 0,
+        "unstable": 0
+      }
+    ]
+  },
+  "mixed": {
+    "train": {
+      "total": 7,
+      "valid": 7,
+      "mean_abs_Cmin": 0.007692881558901288,
+      "mean_abs_Cmax": 0.02735214520184375,
+      "mean_abs_period": 1.0132036317423367,
+      "mean_abs_shape_rmse": 0.06133484418694025
+    },
+    "holdout": {
+      "total": 4,
+      "valid": 4,
+      "mean_abs_Cmin": 0.0066186005076718825,
+      "mean_abs_Cmax": 0.03730133858185497,
+      "mean_abs_period": 0.92801576509504,
+      "mean_abs_shape_rmse": 0.06954177225868155
+    },
+    "local_branches": [
+      {
+        "I": 0.9046635644477613,
+        "stable": 1,
+        "unstable": 0
+      },
+      {
+        "I": 0.9066635644477613,
+        "stable": 0,
+        "unstable": 0
+      }
+    ]
+  },
+  "note": "Same nominal inputs; finite DOP853 validation. This is not a cycle completeness check."
+}

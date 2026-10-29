@@ -1,0 +1,10 @@
+{
+  "early_identity_nest_summary.json": "171a117c5d3902e30e34a4df3c109a1d08897b6b860c444d941623e671748236",
+  "mixed_fold_K_0.050_comparison.json": "8e7972d8658ba79a8504bd9237e7c181910119040fbfa2f34b84a57bbb9385ba",
+  "mixed_fold_K_0.075_comparison.json": "1ef7eecbb91eb2fe4b18521aa4509282774db00212dccc74bbbbbd3784bee4fc",
+  "mixed_fold_K_0.100_comparison.json": "2c05cc45017d1f97c437feb1511ffff46030f093567dd63c818287f462b9ba60",
+  "mixed_fold_audit.json": "3260c28380f06c475e0c2fe14dd9fc6f8835693750d526688ebe07f28384fcfb",
+  "network_100_edge_summary.json": "a2f2df1ccd2be62ef1ec7b457a3750eeb2bb349ea7d1e32d61da565798a6a36a",
+  "physical_no_fold_summary.json": "510fa0508c30d839a3b8254a172693fc4a774fd9dcdbcc609bd510afeb7416e8",
+  "rational_summary.json": "c197ef58a4e6ef85e2c0e02f08a03b8015d7bb6ff23ca5b57ba6fd04bbae21f6"
+}

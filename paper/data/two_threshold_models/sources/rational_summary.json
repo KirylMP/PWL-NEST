@@ -1,0 +1,556 @@
+{
+  "scope": "FM2, weighted Cmax and waveform/period objective. Finite validation only; no fold or global cycle count. The mixed-coordinate seeds are reparameterized as starting guesses, not equivalent models.",
+  "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8",
+  "settings": {
+    "top": 4,
+    "starts": 2,
+    "peak_weight": 1.0,
+    "jitter": 0.03,
+    "duration": 350.0,
+    "validation_duration": 450.0,
+    "dt": 0.01
+  },
+  "trials": [
+    {
+      "family": "fractional",
+      "seed_rank": 0,
+      "start": 0,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_011_start_03/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 6.870114333840688,
+      "initial_loss": 48.40859044855584,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_00_start_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_00_start_00/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 794
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 55,
+          "optimality": 0.23950330147268237,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "fractional",
+      "seed_rank": 0,
+      "start": 1,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_011_start_03/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 8.539973599929297,
+      "initial_loss": 49.55054139871956,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_00_start_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_00_start_01/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 430
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 20,
+          "optimality": 16867.50322321444,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "fractional",
+      "seed_rank": 1,
+      "start": 0,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_011_start_01/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 216.93966298684242,
+      "initial_loss": 191.99999999999986,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_01_start_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_01_start_00/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 217
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 18,
+          "optimality": 192006.994972197,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "fractional",
+      "seed_rank": 1,
+      "start": 1,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_011_start_01/parameters.json",
+      "exit_code": 0,
+      "status": "no_valid_candidate",
+      "loss": null,
+      "initial_loss": 191.99999999999986,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_01_start_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_01_start_01/fit.log",
+      "optimizers": null
+    },
+    {
+      "family": "fractional",
+      "seed_rank": 2,
+      "start": 0,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_000_start_03/parameters.json",
+      "exit_code": 0,
+      "status": "no_valid_candidate",
+      "loss": null,
+      "initial_loss": 191.99999999999986,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_02_start_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_02_start_00/fit.log",
+      "optimizers": null
+    },
+    {
+      "family": "fractional",
+      "seed_rank": 2,
+      "start": 1,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_000_start_03/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 6.802459404477293,
+      "initial_loss": 191.99999999999986,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_02_start_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_02_start_01/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 873
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 34,
+          "optimality": 0.06969520590961709,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "fractional",
+      "seed_rank": 3,
+      "start": 0,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_016_start_01/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 6.974784339837501,
+      "initial_loss": 48.435158737773904,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_03_start_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_03_start_00/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 416
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 67,
+          "optimality": 990.7294029585413,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "fractional",
+      "seed_rank": 3,
+      "start": 1,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_016_start_01/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 6.799526850323168,
+      "initial_loss": 124.1960819248735,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_03_start_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_03_start_01/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 426
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 50,
+          "optimality": 0.16797035891301648,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "rational",
+      "seed_rank": 0,
+      "start": 0,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_011_start_03/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 7.317299549507048,
+      "initial_loss": 54.917123242281605,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_00_start_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_00_start_00/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 226
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 53,
+          "optimality": 1458.198524878371,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "rational",
+      "seed_rank": 0,
+      "start": 1,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_011_start_03/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 39.82409070466566,
+      "initial_loss": 53.36033325388912,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_00_start_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_00_start_01/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 233
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 14,
+          "optimality": 58483.89563566939,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "rational",
+      "seed_rank": 1,
+      "start": 0,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_011_start_01/parameters.json",
+      "exit_code": 0,
+      "status": "no_valid_candidate",
+      "loss": null,
+      "initial_loss": 191.99999999999986,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_01_start_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_01_start_00/fit.log",
+      "optimizers": null
+    },
+    {
+      "family": "rational",
+      "seed_rank": 1,
+      "start": 1,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_011_start_01/parameters.json",
+      "exit_code": 0,
+      "status": "no_valid_candidate",
+      "loss": null,
+      "initial_loss": 191.99999999999986,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_01_start_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_01_start_01/fit.log",
+      "optimizers": null
+    },
+    {
+      "family": "rational",
+      "seed_rank": 2,
+      "start": 0,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_000_start_03/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 6.404068448032457,
+      "initial_loss": 191.99999999999986,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_02_start_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_02_start_00/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 2419
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 30,
+          "optimality": 146.41002444996292,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "rational",
+      "seed_rank": 2,
+      "start": 1,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_000_start_03/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 4.662910893254579,
+      "initial_loss": 191.99999999999986,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_02_start_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_02_start_01/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 705
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 56,
+          "optimality": 285.04033997856465,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "rational",
+      "seed_rank": 3,
+      "start": 0,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_016_start_01/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 4.870106105011524,
+      "initial_loss": 54.93678921243017,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_03_start_00/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_03_start_00/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 456
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 73,
+          "optimality": 2579.941302340166,
+          "finite_difference_relative": 0.001
+        }
+      }
+    },
+    {
+      "family": "rational",
+      "seed_rank": 3,
+      "start": 1,
+      "seed": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/seed_016_start_01/parameters.json",
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 34.30769996359172,
+      "initial_loss": 159.8172545233251,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_03_start_01/parameters.json",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_03_start_01/fit.log",
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 491
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 25,
+          "optimality": 24559.579000768565,
+          "finite_difference_relative": 0.001
+        }
+      }
+    }
+  ],
+  "validation": {
+    "previous_mixed": {
+      "exit_code": 0,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/previous_mixed/validation.json",
+      "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/previous_mixed/comparison.png",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/previous_mixed/validate.log",
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_peak_20261029T175253Z_4BaiP8/comparison/rank_01/parameters.json",
+      "metrics": {
+        "train": {
+          "total": 7,
+          "valid": 7,
+          "mean_abs_Cmin": 0.0020482863816023533,
+          "mean_abs_Cmax": 0.06090725527133824,
+          "mean_abs_period": 0.42722320964884375,
+          "mean_abs_shape_rmse": 0.06707572930798322
+        },
+        "holdout": {
+          "total": 4,
+          "valid": 4,
+          "mean_abs_Cmin": 0.002540213519714689,
+          "mean_abs_Cmax": 0.061742963867051,
+          "mean_abs_period": 0.38282576060463214,
+          "mean_abs_shape_rmse": 0.06872430293995911
+        }
+      }
+    },
+    "fractional_rank_01": {
+      "exit_code": 0,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/fractional_rank_01/validation.json",
+      "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/fractional_rank_01/comparison.png",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/fractional_rank_01/validate.log",
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_03_start_01/parameters.json",
+      "metrics": {
+        "train": {
+          "total": 7,
+          "valid": 7,
+          "mean_abs_Cmin": 0.003785111143005531,
+          "mean_abs_Cmax": 0.15633272402756773,
+          "mean_abs_period": 0.31907504502308776,
+          "mean_abs_shape_rmse": 0.0956548592998228
+        },
+        "holdout": {
+          "total": 4,
+          "valid": 4,
+          "mean_abs_Cmin": 0.003268243715319497,
+          "mean_abs_Cmax": 0.17110706446254909,
+          "mean_abs_period": 0.19452756204219668,
+          "mean_abs_shape_rmse": 0.09774924186158723
+        }
+      }
+    },
+    "fractional_rank_02": {
+      "exit_code": 0,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/fractional_rank_02/validation.json",
+      "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/fractional_rank_02/comparison.png",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/fractional_rank_02/validate.log",
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_02_start_01/parameters.json",
+      "metrics": {
+        "train": {
+          "total": 7,
+          "valid": 7,
+          "mean_abs_Cmin": 0.0040903581226978515,
+          "mean_abs_Cmax": 0.15617624267440336,
+          "mean_abs_period": 0.3065923721567937,
+          "mean_abs_shape_rmse": 0.09614869849680503
+        },
+        "holdout": {
+          "total": 4,
+          "valid": 4,
+          "mean_abs_Cmin": 0.003404281038733631,
+          "mean_abs_Cmax": 0.17085301116646953,
+          "mean_abs_period": 0.18765772047450469,
+          "mean_abs_shape_rmse": 0.09834490471193086
+        }
+      }
+    },
+    "fractional_rank_03": {
+      "exit_code": 0,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/fractional_rank_03/validation.json",
+      "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/fractional_rank_03/comparison.png",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/fractional_rank_03/validate.log",
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/fractional/seed_00_start_00/parameters.json",
+      "metrics": {
+        "train": {
+          "total": 7,
+          "valid": 7,
+          "mean_abs_Cmin": 0.005620323811515266,
+          "mean_abs_Cmax": 0.1534322590301586,
+          "mean_abs_period": 0.3574729677427432,
+          "mean_abs_shape_rmse": 0.10303848860618967
+        },
+        "holdout": {
+          "total": 4,
+          "valid": 4,
+          "mean_abs_Cmin": 0.005150760230316091,
+          "mean_abs_Cmax": 0.16739322318788444,
+          "mean_abs_period": 0.17215218046435155,
+          "mean_abs_shape_rmse": 0.1064615367906269
+        }
+      }
+    },
+    "rational_rank_01": {
+      "exit_code": 0,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/rational_rank_01/validation.json",
+      "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/rational_rank_01/comparison.png",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/rational_rank_01/validate.log",
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_02_start_01/parameters.json",
+      "metrics": {
+        "train": {
+          "total": 7,
+          "valid": 7,
+          "mean_abs_Cmin": 0.0012240801285052516,
+          "mean_abs_Cmax": 0.10961731296356451,
+          "mean_abs_period": 0.5852154711266816,
+          "mean_abs_shape_rmse": 0.10311335490799178
+        },
+        "holdout": {
+          "total": 4,
+          "valid": 3,
+          "mean_abs_Cmin": 0.0010926527747288212,
+          "mean_abs_Cmax": 0.10578081668099071,
+          "mean_abs_period": 0.3667431092370066,
+          "mean_abs_shape_rmse": 0.09830830977047218
+        }
+      }
+    },
+    "rational_rank_02": {
+      "exit_code": 0,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/rational_rank_02/validation.json",
+      "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/rational_rank_02/comparison.png",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/rational_rank_02/validate.log",
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_03_start_00/parameters.json",
+      "metrics": {
+        "train": {
+          "total": 7,
+          "valid": 7,
+          "mean_abs_Cmin": 0.003050078718787774,
+          "mean_abs_Cmax": 0.10935323053467425,
+          "mean_abs_period": 0.5052269509963025,
+          "mean_abs_shape_rmse": 0.1102928304318757
+        },
+        "holdout": {
+          "total": 4,
+          "valid": 3,
+          "mean_abs_Cmin": 0.0033156058696542554,
+          "mean_abs_Cmax": 0.10576513178084983,
+          "mean_abs_period": 0.30565319947150255,
+          "mean_abs_shape_rmse": 0.10535333429804516
+        }
+      }
+    },
+    "rational_rank_03": {
+      "exit_code": 0,
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/rational_rank_03/validation.json",
+      "plot": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/rational_rank_03/comparison.png",
+      "log": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/comparison/rational_rank_03/validate.log",
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/fm2_rational_20261029T180210Z_GS3f0n/rational/seed_02_start_00/parameters.json",
+      "metrics": {
+        "train": {
+          "total": 7,
+          "valid": 7,
+          "mean_abs_Cmin": 0.009319789468631462,
+          "mean_abs_Cmax": 0.10545022428394975,
+          "mean_abs_period": 0.6192905966798321,
+          "mean_abs_shape_rmse": 0.1501646950097773
+        },
+        "holdout": {
+          "total": 4,
+          "valid": 3,
+          "mean_abs_Cmin": 0.00921311148176409,
+          "mean_abs_Cmax": 0.10200076888620428,
+          "mean_abs_period": 0.3900733392773456,
+          "mean_abs_shape_rmse": 0.14353241278198922
+        }
+      }
+    }
+  }
+}

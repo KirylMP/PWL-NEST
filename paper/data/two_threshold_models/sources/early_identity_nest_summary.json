@@ -1,0 +1,362 @@
+{
+  "run": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat",
+  "rows": [
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 1,
+      "nodes": 64,
+      "case": "am",
+      "sic": false,
+      "speedup": 11.944513954543178,
+      "LR_seconds": 13.36224091425538,
+      "PWA_seconds": 1.1186927291564643,
+      "C_rmse": 0.07540850732051146,
+      "SIC_rmse": 1.2354038825800382,
+      "independent_max_error_C_q_I": [
+        2.7440083538721183e-10,
+        2.1007862116562137e-11,
+        3.421374294987345e-12
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/benchmark/nest_20261029T085213Z_1726897/one_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 1,
+      "nodes": 64,
+      "case": "am",
+      "sic": true,
+      "speedup": 2.1999108540293015,
+      "LR_seconds": 22.552496650721878,
+      "PWA_seconds": 10.251550243236125,
+      "C_rmse": 0.07540850732051146,
+      "SIC_rmse": 1.2354038825800382,
+      "independent_max_error_C_q_I": [
+        2.7440083538721183e-10,
+        2.1007862116562137e-11,
+        3.421374294987345e-12
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/benchmark/nest_20261029T085213Z_1726897/one_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 1,
+      "nodes": 64,
+      "case": "fm",
+      "sic": false,
+      "speedup": 11.637767673913451,
+      "LR_seconds": 13.351088628172874,
+      "PWA_seconds": 1.1472207559272647,
+      "C_rmse": 0.36038765372852927,
+      "SIC_rmse": 2.404383358055257,
+      "independent_max_error_C_q_I": [
+        2.923859487857783e-10,
+        3.0246916082887765e-11,
+        3.451128272047299e-12
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/benchmark/nest_20261029T085213Z_1726897/one_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 1,
+      "nodes": 64,
+      "case": "fm",
+      "sic": true,
+      "speedup": 2.1925512862562786,
+      "LR_seconds": 22.524951345287263,
+      "PWA_seconds": 10.273397701792419,
+      "C_rmse": 0.36038765372852927,
+      "SIC_rmse": 2.404383358055257,
+      "independent_max_error_C_q_I": [
+        2.923859487857783e-10,
+        3.0246916082887765e-11,
+        3.451128272047299e-12
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/benchmark/nest_20261029T085213Z_1726897/one_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 16,
+      "nodes": 64,
+      "case": "am",
+      "sic": false,
+      "speedup": 9.755082098907629,
+      "LR_seconds": 0.8771675173193216,
+      "PWA_seconds": 0.08991902973502874,
+      "C_rmse": 0.07540850732051146,
+      "SIC_rmse": 1.2354038825800382,
+      "independent_max_error_C_q_I": [
+        2.7440083538721183e-10,
+        2.1007862116562137e-11,
+        3.421374294987345e-12
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/benchmark/nest_20261029T085213Z_1726897/multi_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 16,
+      "nodes": 64,
+      "case": "am",
+      "sic": true,
+      "speedup": 1.8933733620389177,
+      "LR_seconds": 1.6658982601948082,
+      "PWA_seconds": 0.8798572397790849,
+      "C_rmse": 0.07540850732051146,
+      "SIC_rmse": 1.2354038825800382,
+      "independent_max_error_C_q_I": [
+        2.7440083538721183e-10,
+        2.1007862116562137e-11,
+        3.421374294987345e-12
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/benchmark/nest_20261029T085213Z_1726897/multi_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 16,
+      "nodes": 64,
+      "case": "fm",
+      "sic": false,
+      "speedup": 9.488833357490499,
+      "LR_seconds": 0.8772049169056118,
+      "PWA_seconds": 0.09244602406397462,
+      "C_rmse": 0.36038765372852927,
+      "SIC_rmse": 2.404383358055257,
+      "independent_max_error_C_q_I": [
+        2.923859487857783e-10,
+        3.0246916082887765e-11,
+        3.451128272047299e-12
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/benchmark/nest_20261029T085213Z_1726897/multi_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 16,
+      "nodes": 64,
+      "case": "fm",
+      "sic": true,
+      "speedup": 1.9450663621383162,
+      "LR_seconds": 1.6430383059196174,
+      "PWA_seconds": 0.8447209503501654,
+      "C_rmse": 0.36038765372852927,
+      "SIC_rmse": 2.404383358055257,
+      "independent_max_error_C_q_I": [
+        2.923859487857783e-10,
+        3.0246916082887765e-11,
+        3.451128272047299e-12
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/benchmark/nest_20261029T085213Z_1726897/multi_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 16,
+      "case": "am",
+      "network": "all_to_all",
+      "neurons": 10,
+      "astrocytes": 90,
+      "speedup": 3.0512439024704685,
+      "LR_seconds": 1.8438308259937912,
+      "PWA_seconds": 0.6042882460169494,
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/network/all_to_all_20261029T085920Z_RIn9rT/network_summary.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 0.1,
+      "threads": 16,
+      "case": "fm",
+      "network": "all_to_all",
+      "neurons": 10,
+      "astrocytes": 90,
+      "speedup": 2.9498191533160703,
+      "LR_seconds": 1.8201702905353159,
+      "PWA_seconds": 0.6170447054319084,
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_0p1ms/network/all_to_all_20261029T085920Z_RIn9rT/network_summary.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 1,
+      "nodes": 64,
+      "case": "am",
+      "sic": false,
+      "speedup": 10.597624179601981,
+      "LR_seconds": 1.3550835703499615,
+      "PWA_seconds": 0.12786673195660114,
+      "C_rmse": 0.07540850281522833,
+      "SIC_rmse": 1.2354042575560162,
+      "independent_max_error_C_q_I": [
+        2.024947987067094e-10,
+        1.5589307622576598e-11,
+        5.476175068963585e-13
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/benchmark/nest_20261029T085942Z_1741948/one_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 1,
+      "nodes": 64,
+      "case": "am",
+      "sic": true,
+      "speedup": 2.0032244093746665,
+      "LR_seconds": 2.510168024804443,
+      "PWA_seconds": 1.2530638170428574,
+      "C_rmse": 0.07540850281522833,
+      "SIC_rmse": 1.2354042575560162,
+      "independent_max_error_C_q_I": [
+        2.024947987067094e-10,
+        1.5589307622576598e-11,
+        5.476175068963585e-13
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/benchmark/nest_20261029T085942Z_1741948/one_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 1,
+      "nodes": 64,
+      "case": "fm",
+      "sic": false,
+      "speedup": 10.258229993073542,
+      "LR_seconds": 1.3463842468336225,
+      "PWA_seconds": 0.13124917726963758,
+      "C_rmse": 0.36038765377968096,
+      "SIC_rmse": 2.404383502604278,
+      "independent_max_error_C_q_I": [
+        2.9323943273595887e-10,
+        2.993416625685086e-11,
+        4.46753745109163e-13
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/benchmark/nest_20261029T085942Z_1741948/one_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 1,
+      "nodes": 64,
+      "case": "fm",
+      "sic": true,
+      "speedup": 1.975559616026522,
+      "LR_seconds": 2.4910413790494204,
+      "PWA_seconds": 1.2609294899739325,
+      "C_rmse": 0.36038765377968096,
+      "SIC_rmse": 2.404383502604278,
+      "independent_max_error_C_q_I": [
+        2.9323943273595887e-10,
+        2.993416625685086e-11,
+        4.46753745109163e-13
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/benchmark/nest_20261029T085942Z_1741948/one_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 16,
+      "nodes": 64,
+      "case": "am",
+      "sic": false,
+      "speedup": 6.366594058806866,
+      "LR_seconds": 0.10995063884183764,
+      "PWA_seconds": 0.01726993080228567,
+      "C_rmse": 0.07540850281522833,
+      "SIC_rmse": 1.2354042575560162,
+      "independent_max_error_C_q_I": [
+        2.024947987067094e-10,
+        1.5589307622576598e-11,
+        5.476175068963585e-13
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/benchmark/nest_20261029T085942Z_1741948/multi_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 16,
+      "nodes": 64,
+      "case": "am",
+      "sic": true,
+      "speedup": 1.4099601587068342,
+      "LR_seconds": 0.31115898210555315,
+      "PWA_seconds": 0.22068636491894722,
+      "C_rmse": 0.07540850281522833,
+      "SIC_rmse": 1.2354042575560162,
+      "independent_max_error_C_q_I": [
+        2.024947987067094e-10,
+        1.5589307622576598e-11,
+        5.476175068963585e-13
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/benchmark/nest_20261029T085942Z_1741948/multi_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 16,
+      "nodes": 64,
+      "case": "fm",
+      "sic": false,
+      "speedup": 6.115116639105518,
+      "LR_seconds": 0.1111877909861505,
+      "PWA_seconds": 0.018182448111474514,
+      "C_rmse": 0.36038765377968096,
+      "SIC_rmse": 2.404383502604278,
+      "independent_max_error_C_q_I": [
+        2.9323943273595887e-10,
+        2.993416625685086e-11,
+        4.46753745109163e-13
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/benchmark/nest_20261029T085942Z_1741948/multi_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 16,
+      "nodes": 64,
+      "case": "fm",
+      "sic": true,
+      "speedup": 1.3727738275827865,
+      "LR_seconds": 0.31114350305870175,
+      "PWA_seconds": 0.2266531432978809,
+      "C_rmse": 0.36038765377968096,
+      "SIC_rmse": 2.404383502604278,
+      "independent_max_error_C_q_I": [
+        2.9323943273595887e-10,
+        2.993416625685086e-11,
+        4.46753745109163e-13
+      ],
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/benchmark/nest_20261029T085942Z_1741948/multi_thread.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 16,
+      "case": "am",
+      "network": "all_to_all",
+      "neurons": 10,
+      "astrocytes": 90,
+      "speedup": 1.4304197309976003,
+      "LR_seconds": 0.5327181899920106,
+      "PWA_seconds": 0.37242089048959315,
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/network/all_to_all_20261029T090035Z_Sk00sN/network_summary.json"
+    },
+    {
+      "mode": "identity",
+      "resolution_ms": 1.0,
+      "threads": 16,
+      "case": "fm",
+      "network": "all_to_all",
+      "neurons": 10,
+      "astrocytes": 90,
+      "speedup": 1.3681834136222633,
+      "LR_seconds": 0.5103169539943337,
+      "PWA_seconds": 0.3729887008666992,
+      "source": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/nest_physical_job_20261029T085208Z_nzlaat/identity/dt_1p0ms/network/all_to_all_20261029T090035Z_Sk00sN/network_summary.json"
+    }
+  ],
+  "note": "Only completed JSON files. No timing row implies no completed measurement; inspect logs. Speedup = median LR / median PWA. NEST h_IP3R records q in power mode."
+}

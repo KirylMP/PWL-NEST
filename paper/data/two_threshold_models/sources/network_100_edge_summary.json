@@ -1,0 +1,523 @@
+{
+  "scope": "NEST all-to-all closed-loop network; whole nest.Run timing, all astrocytes observed. Ratio does not isolate mathematical transform cost.",
+  "rows": [
+    {
+      "mode": "afm",
+      "coordinate": "mixed",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.8630791725590825,
+      "pwa_median_s": 0.7608265993185341,
+      "lr_over_pwa": 2.448756621059025,
+      "lr_runs_s": [
+        1.8071693209931254,
+        1.8630791725590825,
+        1.8773493911139667
+      ],
+      "pwa_runs_s": [
+        0.7481415132060647,
+        0.809069637209177,
+        0.7608265993185341
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "2c524fb21af13f58cc6babbd3e7adec3287412a2af5ca52cf60f2e7833d3bf14",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/afm/mixed/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "afm",
+      "coordinate": "mixed",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.8225764310918748,
+      "pwa_median_s": 0.7636851309798658,
+      "lr_over_pwa": 2.3865548210338616,
+      "lr_runs_s": [
+        1.8225764310918748,
+        1.802253625355661,
+        1.828023865353316
+      ],
+      "pwa_runs_s": [
+        0.7636851309798658,
+        0.7974616000428796,
+        0.7469163029454648
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "2c524fb21af13f58cc6babbd3e7adec3287412a2af5ca52cf60f2e7833d3bf14",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/afm/mixed/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "afm",
+      "coordinate": "physical",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.8508352530188859,
+      "pwa_median_s": 0.6621739529073238,
+      "lr_over_pwa": 2.79508918297474,
+      "lr_runs_s": [
+        1.8508352530188859,
+        1.8446613140404224,
+        1.9062892328947783
+      ],
+      "pwa_runs_s": [
+        0.6454764590598643,
+        0.6621739529073238,
+        0.7158184559084475
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "d591a37cf5c3b244e643dc42d4f5551c5ec4fca42ac3cb64aa2a189f06f7c770",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/afm/physical/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "afm",
+      "coordinate": "physical",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 2.097809714730829,
+      "pwa_median_s": 0.6628821734338999,
+      "lr_over_pwa": 3.164679635090556,
+      "lr_runs_s": [
+        2.0972862942144275,
+        2.1047473698854446,
+        2.097809714730829
+      ],
+      "pwa_runs_s": [
+        0.6153143239207566,
+        0.7424241281114519,
+        0.6628821734338999
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "d591a37cf5c3b244e643dc42d4f5551c5ec4fca42ac3cb64aa2a189f06f7c770",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/afm/physical/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "am",
+      "coordinate": "mixed",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.8363328059203923,
+      "pwa_median_s": 0.6514228777959943,
+      "lr_over_pwa": 2.818956577228894,
+      "lr_runs_s": [
+        1.8201697752811015,
+        1.8363328059203923,
+        1.8981278911232948
+      ],
+      "pwa_runs_s": [
+        0.641275875736028,
+        0.6514228777959943,
+        0.6704899463802576
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "dcb83ea77b845afff5dfc74750e1000325c43a409c42975778d539d7913605ba",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/am/mixed/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "am",
+      "coordinate": "mixed",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.8367018639110029,
+      "pwa_median_s": 0.6250264109112322,
+      "lr_over_pwa": 2.9385988045421265,
+      "lr_runs_s": [
+        1.8367018639110029,
+        1.7896884852088988,
+        1.8610095661133528
+      ],
+      "pwa_runs_s": [
+        0.6250264109112322,
+        0.6093151848763227,
+        0.6785672986879945
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "dcb83ea77b845afff5dfc74750e1000325c43a409c42975778d539d7913605ba",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/am/mixed/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "am",
+      "coordinate": "physical",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.8369614561088383,
+      "pwa_median_s": 0.6494856593199074,
+      "lr_over_pwa": 2.8283325886400115,
+      "lr_runs_s": [
+        1.8369614561088383,
+        1.8501760861836374,
+        1.835986039135605
+      ],
+      "pwa_runs_s": [
+        0.6066675828769803,
+        0.6494856593199074,
+        0.6735669928602874
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "f8ab0f6cfd9dfde61fc292d0de2196b7e77472b5330c986145f62dcee69bd9ed",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/am/physical/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "am",
+      "coordinate": "physical",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.809383173007518,
+      "pwa_median_s": 0.6520024542696774,
+      "lr_over_pwa": 2.775117119818588,
+      "lr_runs_s": [
+        1.8834170689806342,
+        1.8051637238822877,
+        1.809383173007518
+      ],
+      "pwa_runs_s": [
+        0.608202719129622,
+        0.7541961348615587,
+        0.6520024542696774
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "f8ab0f6cfd9dfde61fc292d0de2196b7e77472b5330c986145f62dcee69bd9ed",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/am/physical/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "fm",
+      "coordinate": "mixed",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.8332586861215532,
+      "pwa_median_s": 0.6949114827439189,
+      "lr_over_pwa": 2.638118280738103,
+      "lr_runs_s": [
+        1.8332586861215532,
+        1.83138827374205,
+        1.8620750727131963
+      ],
+      "pwa_runs_s": [
+        0.6883711097761989,
+        0.6949114827439189,
+        0.7014420079067349
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "2fcf2376464b8ff5268ebc930b0abc4d797066e34c79fb7e5c49d1ddc39fdbb2",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/fm/mixed/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "fm",
+      "coordinate": "mixed",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.8456378420814872,
+      "pwa_median_s": 0.6817683903500438,
+      "lr_over_pwa": 2.7071331968527788,
+      "lr_runs_s": [
+        1.8456378420814872,
+        1.905677534174174,
+        1.7831993089057505
+      ],
+      "pwa_runs_s": [
+        0.6817683903500438,
+        0.689202053938061,
+        0.6740423422306776
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "2fcf2376464b8ff5268ebc930b0abc4d797066e34c79fb7e5c49d1ddc39fdbb2",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/fm/mixed/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "fm",
+      "coordinate": "physical",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.857775331940502,
+      "pwa_median_s": 0.6884289099834859,
+      "lr_over_pwa": 2.6985725105371685,
+      "lr_runs_s": [
+        1.8642590278759599,
+        1.8095531943254173,
+        1.857775331940502
+      ],
+      "pwa_runs_s": [
+        0.6162382327020168,
+        0.6884289099834859,
+        0.6958772921934724
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "bca949df48224d0abaa89cf322e4edd4540a9f042ff04e1723004a0d030a6dc4",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/fm/physical/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "fm",
+      "coordinate": "physical",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 16,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 1.8310292549431324,
+      "pwa_median_s": 0.6917207427322865,
+      "lr_over_pwa": 2.6470642584904924,
+      "lr_runs_s": [
+        1.8481828309595585,
+        1.8310292549431324,
+        1.8193717240355909
+      ],
+      "pwa_runs_s": [
+        0.6909431703388691,
+        0.6917207427322865,
+        0.6981611959636211
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "bca949df48224d0abaa89cf322e4edd4540a9f042ff04e1723004a0d030a6dc4",
+      "path": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/PWL-NEST-fixed-events/astrocyte_lab/runs/paper_network_20261029T190607Z_8nhyEx/fm/physical/record_10ms/network_summary.json"
+    }
+  ],
+  "comparisons": [
+    {
+      "mode": "am",
+      "record_interval_ms": 10.0,
+      "physical_over_mixed": 1.043159845548153,
+      "mixed_over_physical": 0.9586258561117509,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "am",
+      "record_interval_ms": 1000.0,
+      "physical_over_mixed": 0.9970261737158492,
+      "mixed_over_physical": 1.0029826963048196,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "afm",
+      "record_interval_ms": 10.0,
+      "physical_over_mixed": 0.8680045565158142,
+      "mixed_over_physical": 1.1520676850061915,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "afm",
+      "record_interval_ms": 1000.0,
+      "physical_over_mixed": 0.8703349140269641,
+      "mixed_over_physical": 1.148982976418913,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "fm",
+      "record_interval_ms": 10.0,
+      "physical_over_mixed": 1.0145978495382175,
+      "mixed_over_physical": 0.9856121816689621,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "fm",
+      "record_interval_ms": 1000.0,
+      "physical_over_mixed": 0.9906713690571985,
+      "mixed_over_physical": 1.009416473751209,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    }
+  ]
+}
