@@ -62,6 +62,16 @@ def build(case,path):
             if needle not in s:raise ValueError('Upstream set_status structure changed')
             s=s.replace(needle,replacement)
         if ext=='cpp':
+            # The fitted q is a free hidden coordinate, not LR's receptor fraction.
+            old_guard='''  if ( y_[ h_IP3R ] < 0 || y_[ h_IP3R ] > 1 )
+  {
+    throw BadProperty( "The fraction of active IP3 receptors on the astrocytic ER must be between 0 and 1." );
+  }'''
+            if old_guard not in s:raise ValueError('Upstream hidden-state validation changed')
+            s=s.replace(old_guard,'''  if ( !std::isfinite( y_[ h_IP3R ] ) )
+  {
+    throw BadProperty( "PWA hidden coordinate must be finite." );
+  }''')
             start=s.index('extern "C" int\n'+class_name+'_dynamics')
             end=s.index('\n}\n}\n\n/*',start)
             s=s[:start]+s[end+3:]  # preserve the namespace closing brace

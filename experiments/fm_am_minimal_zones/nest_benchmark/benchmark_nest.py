@@ -33,7 +33,7 @@ def profile_snapshot(lib):
 
 
 def work_initial(case,I):
-    K=.1 if case=='am' else .05
+    K=float(os.environ.get('PAPER_K_ER', .1 if case=='am' else .05))
     def h(c):
         q=1.049*(I+.13)/(I+.9434);return q/(q+c)
     def field(c):
@@ -52,7 +52,7 @@ def pwa_initial(case,I):
         z,h=np.linalg.solve(A,-coeff[:,0]-coeff[:,3]*I)
         low=-np.inf if j==0 else candidate.z_thresholds[j-1]
         high=np.inf if j==len(candidate.coefficients)-1 else candidate.z_thresholds[j]
-        if not (low-1e-10<=z<=high+1e-10 and np.isfinite(h) and 0<=h<=1):
+        if not (low-1e-10<=z<=high+1e-10 and np.isfinite(h) and (os.environ.get('PWA_UNRESTRICTED_Q')=='1' or 0<=h<=1)):
             continue
         try:C=float(candidate.inverse(np.asarray([z]))[0])
         except ValueError:continue
