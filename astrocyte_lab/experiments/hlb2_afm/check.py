@@ -18,7 +18,13 @@ def check(path):
  for region in (1,0):
   co=m['co'];matrix=mp.matrix([[mp.mpf(repr(float(co[i,1]+sum(co[i,4:4+region])))),mp.mpf(repr(float(co[i,2])))] for i in (0,1)]);inp=mp.matrix([mp.mpf(repr(float(co[i,3]))) for i in (0,1)]);A.append(matrix);b.append(inp);Ainv.append(matrix**-1)
  def matrixexp(i,t):
-  M=A[i];tr=(M[0,0]+M[1,1])/2;w=mp.sqrt(((M[0,0]-M[1,1])/2)**2+M[0,1]*M[1,0]);E=mp.exp(tr*t)*(mp.cosh(w*t)*mp.eye(2)+(mp.sinh(w*t)/w)*(M-tr*mp.eye(2)));return E.apply(mp.re)
+  M=A[i];tr=(M[0,0]+M[1,1])/2;w2=((M[0,0]-M[1,1])/2)**2+M[0,1]*M[1,0]
+  if w2<0:
+   w=mp.sqrt(-w2);c=mp.cos(w*t);s=mp.sin(w*t)/w
+  elif w2>0:
+   w=mp.sqrt(w2);c=mp.cosh(w*t);s=mp.sinh(w*t)/w
+  else:c=mp.mpf(1);s=t
+  return mp.exp(tr*t)*(c*mp.eye(2)+s*(M-tr*mp.eye(2)))
  def flow(i,t):
   E=matrixexp(i,t);g=Ainv[i]*(E-mp.eye(2))*b[i];u=-g[0]/E[0,1];return u,E[1,1]*u+g[1]
  def fun(t1,t2):
