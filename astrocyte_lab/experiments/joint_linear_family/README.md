@@ -1,0 +1,5 @@
+# Joint linear family
+
+Uses LR cycle targets from the uploaded `summary (3).json` at K=0.045–0.110. The missing 0.01–0.04 range is not extrapolated. The eight unconstrained latent parameters are linear between fitted endpoint vectors; all model coefficients are reconstructed using the existing exact rest and two LR equilibrium crossing constraints. Thus the physical `alpha`, `beta`, `a`, `b` are not necessarily linear in K. Thresholds and rest are recomputed from LR at each K; the result is not yet a standalone simple formula independent of LR.
+
+The objective fits Cmin, Cmax and periods on finite RK4 trajectories plus weak regularization and a soft event-height penalty. One third of stored inputs per K are held out. For each candidate, inspect optimizer convergence, nonphysical event heights, failures to find cycles and the holdout errors. `validate_joint.py` uses DOP853 and new K values between the training points; it requires actual LR root computations and finite, converged cycles. It is not global cycle enumeration. No folds or unstable cycles are enforced. No extrapolation outside the fitted interval.
