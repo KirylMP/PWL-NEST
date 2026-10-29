@@ -1,0 +1,5 @@
+# FM2: further amplitude refinement
+
+Continue the free-hidden run at K_ER=0.05. Each of the top seeds gets an unchanged start and reproducible jittered starts. The objective keeps the prior normalized waveform and period residuals and adds `sqrt(peak_weight) * (Cmax - Cmax_LR)/0.08` for each training input. Thus peak_weight=1 gives the peak term equal normalization to the waveform RMS term. Loss values with different peak weights are not directly comparable. No fold or Poincare conditions are calculated; q is unrestricted.
+
+The best candidates are ranked by weighted training loss. DOP853 validates the previous model and top new models on the same training and holdout inputs. Holdout metrics support comparison but do not prove global behavior. Baseline is not assumed to be a member of the new training search; check `comparison/previous` before replacing it. Shape errors use normalized phase and peak alignment. Jitter is a fraction of each active parameter's bound range; starts are clipped to bounds. The model's fixed event and rest constraints are reapplied.
