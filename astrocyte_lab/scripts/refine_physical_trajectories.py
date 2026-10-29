@@ -22,6 +22,8 @@ def main():
     ap.add_argument('--duration',type=float,default=240);ap.add_argument('--dt',type=float,default=.04)
     ap.add_argument('--max-nfev',type=int,default=1800);ap.add_argument('--geometry-weight',type=float,default=.02)
     ap.add_argument('--cmax-scale',type=float,default=.08,help='Cmax residual scale in micromolar; lower means higher weight')
+    ap.add_argument('--seed-jitter',type=float,default=0.,help='Gaussian perturbation of active parameters before optimization')
+    ap.add_argument('--random-seed',type=int,default=20261029)
     args=ap.parse_args();args.out.mkdir(parents=True,exist_ok=True)
     seed=json.loads((args.seed/'parameters.json').read_text());model=PhysicalModel(seed['case'].lower(),seed['gate_coordinate']);x0=np.asarray(seed['parameters'],float);m0=model.unpack(x0);d=data(model)
     reference=json.loads((args.seed/'trajectory_comparison.json').read_text());samples=np.load(model.root/'orbit_samples.npz');rows=[]
@@ -30,14 +32,14 @@ def main():
         if len(inds) and target['period'] is not None:
             j=inds[0];rows.append((I,float(samples['C'][j]),float(samples['h'][j]),float(target['Cmin']),float(target['Cmax']),float(target['period'])))
     if not rows:raise ValueError('No matching reference trajectory targets')
-    if args.duration<60 or args.dt<=0 or args.geometry_weight<0 or args.cmax_scale<=0:raise ValueError('Invalid settings')
+    if args.duration<60 or args.dt<=0 or args.geometry_weight<0 or args.cmax_scale<=0 or args.seed_jitter<0:raise ValueError('Invalid settings')
     libpath=args.out/'trajectory_engine.so';src=ROOT/'physical_trajectory_engine.cpp'
     subprocess.run(['g++','-O3','-std=c++17','-shared','-fPIC',str(src),'-o',str(libpath)],check=True)
     lib=ctypes.CDLL(str(libpath));pointer=ctypes.POINTER(ctypes.c_double)
     lib.simulate.argtypes=[pointer,pointer,ctypes.c_double,ctypes.c_double,ctypes.c_double,ctypes.c_double,ctypes.c_int,pointer];lib.simulate.restype=ctypes.c_int
-    steps=round(args.duration/args.dt);counts=0;best=np.inf;start=time.monotonic()
+    steps=round(args.duration/args.dt);counts=0;best=np.inf;start=time.monotonic();last_checkpoint=0.
     def metric(x,details=False):
-        nonlocal counts,best
+        nonlocal counts,best,last_checkpoint
         counts+=1;m=model.unpack(x);co=np.ascontiguousarray(m['co'],dtype=np.float64);cuts=np.ascontiguousarray(model.cuts,dtype=np.float64);rr=[];report=[]
         for I,C,h,cmin,cmax,period in rows:
             output=np.zeros(6,dtype=np.float64)
@@ -47,18 +49,26 @@ def main():
             else:r=[8.,8.,8.]
             rr.extend(r);report.append(dict(I=I,valid=bool(status),peaks=int(output[3]),Cmin=float(output[0]),Cmax=float(output[1]),period=float(output[2]) if output[3]>=2 else None,target_Cmin=cmin,target_Cmax=cmax,target_period=period,gate_min=float(output[4]),gate_max=float(output[5])))
         r=np.r_[np.asarray(rr)/np.sqrt(len(rows)),np.sqrt(args.geometry_weight)*residual(model,x,d)];cost=float(r@r)
-        if cost<best:best=cost
+        if cost<best:
+            best=cost;now=time.monotonic()
+            if now-last_checkpoint>=5. or counts==1:
+                checkpoint=dict(case=model.case,gate=model.gate,parameters=np.asarray(x).tolist(),loss=cost,eval=counts,elapsed_s=now-start,scope='Unverified intermediate parameters; FM fold and physical admissibility are not guaranteed. Not a final candidate.')
+                tmp=args.out/'checkpoint_unverified.tmp';tmp.write_text(json.dumps(checkpoint,indent=2,allow_nan=False)+'\n');tmp.replace(args.out/'checkpoint_unverified.json');last_checkpoint=now
         if counts==1 or counts%100==0:print(f'FIT {model.case} {model.gate} eval={counts} best={best:.6g} elapsed={time.monotonic()-start:.1f}s',flush=True)
         return (r,report) if details else r
     active=model.active;lo=model.lo[active]+1e-7;hi=model.hi_bounds[active]-1e-7
+    rng=np.random.default_rng(args.random_seed)
+    start_active=np.clip(x0[active]+rng.normal(0,args.seed_jitter,len(active)),lo+1e-9,hi-1e-9)
     if model.case=='am':
         def expand(v):x=x0.copy();x[active]=v;return model.constrain_events(x)
-        sol=least_squares(lambda v:metric(expand(v)),np.clip(x0[active],lo+1e-9,hi-1e-9),bounds=(lo,hi),max_nfev=args.max_nfev,diff_step=2e-4,x_scale='jac',ftol=1e-7,xtol=1e-7,gtol=1e-7)
-        x=expand(sol.x);info=None;opt=dict(success=bool(sol.success),message=str(sol.message),nfev=int(sol.nfev),optimality=float(sol.optimality))
+        sol=least_squares(lambda v:metric(expand(v)),start_active,bounds=(lo,hi),max_nfev=args.max_nfev,diff_step=2e-4,x_scale='jac',ftol=1e-7,xtol=1e-7,gtol=1e-7)
+        candidate=expand(sol.x);r_candidate=metric(candidate);r_original=metric(x0)
+        x=candidate if model.physically_valid_events(candidate) and r_candidate@r_candidate<r_original@r_original else x0
+        info=None;opt=dict(success=bool(sol.success),message=str(sol.message),nfev=int(sol.nfev),optimality=float(sol.optimality),selected_seed=bool(np.array_equal(x,x0)))
     else:
         if not seed.get('fold_constraint'):raise ValueError('FM seed must have a verified fold')
         info0=seed['fold_constraint'];fold=BoundaryFold(model,info0['I']);times=np.asarray(info0['crossing_times'],float);n=len(times)
-        v0=np.r_[np.clip(x0[active],lo+1e-9,hi-1e-9),times];bounds=list(zip(np.r_[lo,np.full(n,1e-5)],np.r_[hi,np.full(n,30.)]))
+        v0=np.r_[start_active,times];bounds=list(zip(np.r_[lo,np.full(n,1e-5)],np.r_[hi,np.full(n,30.)]))
         def expand(v):x=x0.copy();x[active]=v[:len(active)];return model.constrain_events(x),v[len(active):]
         def constraint(v):
             try:
@@ -79,7 +89,7 @@ def main():
         info0=dict(info0);info0['independent_check']=independent_fold(model,x0,fold,info0);r0=metric(x0);candidates.append((float(r0@r0),x0,info0))
         _,x,info=min(candidates,key=lambda k:k[0]);opt['fold_solver_errors']=errors
     r,report=metric(x,True);m=model.unpack(x);final=dict(seed)
-    final.update(parameters=x.tolist(),alpha=m['N'].tolist(),beta=m['H'].tolist(),a=float(m['a']),b=float(m['b']),gate_power=float(m['gamma']),trace=m['T'].tolist(),determinant=m['D'].tolist(),discriminant=(m['T']**2-4*m['D']).tolist(),event_q=(model.basis(model.cuts,model.events,m)@m['N']).tolist(),rest_actual=model.equilibrium(0.,m),fold_constraint=info,trajectory_fit=dict(loss=float(r@r),duration=args.duration,dt=args.dt,geometry_weight=args.geometry_weight,cmax_scale=args.cmax_scale,targets=report,optimizer=opt,method='RK4 fixed-input extrema and period over the second half of a finite trajectory; no Poincare map. Target inputs used for training; independent DOP853 validation still required.'),accepted=False)
+    final.update(parameters=x.tolist(),alpha=m['N'].tolist(),beta=m['H'].tolist(),a=float(m['a']),b=float(m['b']),gate_power=float(m['gamma']),gate_power_bounds=[model.gamma_min,model.gamma_max],trace=m['T'].tolist(),determinant=m['D'].tolist(),discriminant=(m['T']**2-4*m['D']).tolist(),event_q=(model.basis(model.cuts,model.events,m)@m['N']).tolist(),rest_actual=model.equilibrium(0.,m),fold_constraint=info,trajectory_fit=dict(loss=float(r@r),duration=args.duration,dt=args.dt,geometry_weight=args.geometry_weight,cmax_scale=args.cmax_scale,seed_jitter=args.seed_jitter,random_seed=args.random_seed,targets=report,optimizer=opt,method='RK4 fixed-input extrema and period over the second half of a finite trajectory; no Poincare map. Target inputs used for training; independent DOP853 validation still required.'),accepted=False)
     (args.out/'parameters.json').write_text(json.dumps(final,indent=2,allow_nan=False)+'\n')
     print(f'SAVED {args.out / "parameters.json"} loss={float(r@r):.7g} fold_verified={info is not None}',flush=True)
 
