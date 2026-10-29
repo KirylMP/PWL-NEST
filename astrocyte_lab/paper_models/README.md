@@ -1,0 +1,7 @@
+# Paper six-model snapshot
+
+A model is a pair of two-threshold physical-calcium or mixed-calcium coordinates and K_ER=0.05 (FM), 0.075 (AFM), 0.10 (AM). The five tracked folders contain parameters and original comparison artifacts from the user-provided archives. The server-only final FM mixed candidate is imported from `runs/fm2_peak_20261029T175253Z_4BaiP8/comparison/rank_01` when `freeze_on_server.py` creates a new six-folder snapshot and SHA-256 manifest. The destination must not exist; no model is overwritten. The original files and the chosen local server source remain untouched. Checksums document exact inputs and are not filesystem write protection.
+
+The direct-C three were supplied in `models_for_review.zip`: their fitting imposed the LR cycle-fold condition, unlike the mixed models from `free_hidden_for_review.zip` and the later FM `fm2_peak` run, which fit stable trajectories without imposing a fold. Thus these are different fitted models, not an exact coordinate rewrite of the same dynamics. Their fitness and biological behavior should be compared, and network speed differences cannot be attributed solely to coordinate transforms. Mixed q is unrestricted; the existing NEST implementation must be checked for q range and coordinate/inverse correctness before benchmarking these specific models.
+
+All comparison plots and validation files are historical finite computations with their original protocols; they do not certify complete cycle inventories or a network benchmark.
