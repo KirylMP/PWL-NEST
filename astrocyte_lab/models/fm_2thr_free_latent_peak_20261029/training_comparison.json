@@ -1,0 +1,202 @@
+{
+  "case": "fm",
+  "method": "DOP853, fixed I and same initial observed C and Cdot; C and h for LR are taken near the peak of the nearest archived LR orbit, but h is never an objective for the free model. Peaks in latter half. Not a complete cycle or bifurcation scan.",
+  "settings": {
+    "duration": 300.0,
+    "inputs_source": "training"
+  },
+  "rows": [
+    {
+      "I": 0.55,
+      "C0": 1.0162741240333995,
+      "initial_Cdot": -0.05597103014270799,
+      "LR": {
+        "Cmin": 0.03034949224483376,
+        "Cmax": 1.0207306770189437,
+        "peaks": 4,
+        "period": 35.80000000000001,
+        "hidden_min": 0.5578600108857871,
+        "hidden_max": 0.8961352110734752,
+        "physical_C_domain": true
+      },
+      "baseline": {
+        "Cmin": 0.030173842784985666,
+        "Cmax": 0.622302283694046,
+        "peaks": 4,
+        "period": 35.099999999999994,
+        "hidden_min": 0.5740399757252127,
+        "hidden_max": 0.9041485447672134,
+        "physical_C_domain": true
+      },
+      "free": {
+        "Cmin": 0.03375571392519175,
+        "Cmax": 0.638189704208612,
+        "peaks": 4,
+        "period": 36.099999999999994,
+        "hidden_min": -0.32408408198742716,
+        "hidden_max": 0.2287929911706236,
+        "physical_C_domain": true
+      }
+    },
+    {
+      "I": 0.65,
+      "C0": 1.0456101130397006,
+      "initial_Cdot": -0.014086402052871927,
+      "LR": {
+        "Cmin": 0.03060062658578617,
+        "Cmax": 1.0458417389801307,
+        "peaks": 6,
+        "period": 24.899999999999977,
+        "hidden_min": 0.5494763512930115,
+        "hidden_max": 0.8764130382805425,
+        "physical_C_domain": true
+      },
+      "baseline": {
+        "Cmin": 0.030279199435946237,
+        "Cmax": 0.7672875066079027,
+        "peaks": 6,
+        "period": 23.30000000000001,
+        "hidden_min": 0.5522437918770375,
+        "hidden_max": 0.8793870992482271,
+        "physical_C_domain": true
+      },
+      "free": {
+        "Cmin": 0.03373478183852427,
+        "Cmax": 0.8003231127177692,
+        "peaks": 6,
+        "period": 23.30000000000001,
+        "hidden_min": -0.3554118472718264,
+        "hidden_max": 0.1909215581558243,
+        "physical_C_domain": true
+      }
+    },
+    {
+      "I": 0.8,
+      "C0": 1.0685877355415963,
+      "initial_Cdot": -0.018405031847749886,
+      "LR": {
+        "Cmin": 0.031019746569983367,
+        "Cmax": 1.0690148210299375,
+        "peaks": 8,
+        "period": 19.900000000000034,
+        "hidden_min": 0.5424498746702753,
+        "hidden_max": 0.8554433890935828,
+        "physical_C_domain": true
+      },
+      "baseline": {
+        "Cmin": 0.032092437567834656,
+        "Cmax": 0.9320458839730682,
+        "peaks": 8,
+        "period": 19.69999999999999,
+        "hidden_min": 0.519577737541606,
+        "hidden_max": 0.8422455131739768,
+        "physical_C_domain": true
+      },
+      "free": {
+        "Cmin": 0.03515763414755987,
+        "Cmax": 0.989845590442285,
+        "peaks": 8,
+        "period": 19.599999999999994,
+        "hidden_min": -0.40226820691981613,
+        "hidden_max": 0.13411481036691972,
+        "physical_C_domain": true
+      }
+    },
+    {
+      "I": 0.9,
+      "C0": 1.0803682859226418,
+      "initial_Cdot": 0.009783487173898098,
+      "LR": {
+        "Cmin": 0.031349932240550556,
+        "Cmax": 1.08043286656255,
+        "peaks": 8,
+        "period": 18.399999999999977,
+        "hidden_min": 0.5397365376007214,
+        "hidden_max": 0.8453508908279211,
+        "physical_C_domain": true
+      },
+      "baseline": {
+        "Cmin": 0.03409472647445074,
+        "Cmax": 1.0362823771982261,
+        "peaks": 8,
+        "period": 18.899999999999977,
+        "hidden_min": 0.49866432003365013,
+        "hidden_max": 0.8174843054992439,
+        "physical_C_domain": true
+      },
+      "free": {
+        "Cmin": 0.03681155423629193,
+        "Cmax": 1.1120281226682183,
+        "peaks": 7,
+        "period": 18.75,
+        "hidden_min": -0.4400327815767241,
+        "hidden_max": 0.09624365641753299,
+        "physical_C_domain": true
+      }
+    },
+    {
+      "I": 1.0,
+      "C0": 1.0892875532077075,
+      "initial_Cdot": 0.024932408749896995,
+      "LR": {
+        "Cmin": 0.03177683302270739,
+        "Cmax": 1.0899892980659638,
+        "peaks": 9,
+        "period": 17.5,
+        "hidden_min": 0.5379426485798412,
+        "hidden_max": 0.8373291724566448,
+        "physical_C_domain": true
+      },
+      "baseline": {
+        "Cmin": 0.03709329458129391,
+        "Cmax": 1.1401044938109086,
+        "peaks": 8,
+        "period": 18.600000000000023,
+        "hidden_min": 0.4700377045773706,
+        "hidden_max": 0.7927229618012472,
+        "physical_C_domain": true
+      },
+      "free": {
+        "Cmin": 0.03929358737505868,
+        "Cmax": 1.2350700745428318,
+        "peaks": 8,
+        "period": 18.599999999999994,
+        "hidden_min": -0.49858883122728886,
+        "hidden_max": 0.05837229914160556,
+        "physical_C_domain": true
+      }
+    },
+    {
+      "I": 1.1,
+      "C0": 1.09747616336859,
+      "initial_Cdot": 0.022721291519071762,
+      "LR": {
+        "Cmin": 0.03262668443579697,
+        "Cmax": 1.0980654665762222,
+        "peaks": 9,
+        "period": 17.299999999999997,
+        "hidden_min": 0.5367511173422782,
+        "hidden_max": 0.8308195366149727,
+        "physical_C_domain": true
+      },
+      "baseline": {
+        "Cmin": 0.6044779697065651,
+        "Cmax": 0.6044783476725648,
+        "peaks": 0,
+        "period": null,
+        "hidden_min": 0.4569443499710405,
+        "hidden_max": 0.5693344710605324,
+        "physical_C_domain": true
+      },
+      "free": {
+        "Cmin": 0.6465154213869253,
+        "Cmax": 0.6465167864913929,
+        "peaks": 0,
+        "period": null,
+        "hidden_min": -0.4917420123123364,
+        "hidden_max": -0.3232961271285038,
+        "physical_C_domain": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "case": "am",
+  "gate_coordinate": "free",
+  "hidden_bounds": null,
+  "gauge": "q(rest)=0, coefficient of q in Cdot is 1",
+  "loss": 0.3705270845123205,
+  "fold_verified": false,
+  "validation": "DOP853 trajectories with same initial observed C and Cdot; finite trajectories, not a completeness proof",
+  "accepted": false
+}

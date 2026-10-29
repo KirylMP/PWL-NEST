@@ -1,0 +1,225 @@
+{
+  "case": "FM",
+  "threshold_count_m": 2,
+  "model_family": "physical_C_free_latent",
+  "gate_coordinate": "free",
+  "hidden_variable": "q is scaled by gauge, not physical LR h",
+  "gauge": "q(rest)=0, coefficient of q in Cdot is 1",
+  "hidden_bounds": null,
+  "physical_thresholds_C": [
+    0.05214116272147648,
+    0.3926251934101712
+  ],
+  "fixed_equilibrium_threshold_I": [
+    0.5290700389163683,
+    0.8600205557570602
+  ],
+  "rest_C_target": 0.028126136738174372,
+  "rest_actual": [
+    {
+      "C": 0.02812613673817438,
+      "z": [
+        0.02812613673817438,
+        1.1102230246251565e-16
+      ],
+      "region": 0,
+      "stable": true
+    }
+  ],
+  "parameters": [
+    0.0,
+    -1.70294252817102,
+    2.9109342910230516,
+    -0.33382644287805285,
+    -1.7477677577424962,
+    -9.999999898166017,
+    -2.1442639716782472,
+    -0.5331116521132966,
+    0.0
+  ],
+  "alpha": [
+    -0.6075810837037764,
+    21.602009879982315,
+    -0.5331116521132966,
+    -22.500334711970027,
+    0.8903403515081143
+  ],
+  "beta": [
+    -0.15864118896251533,
+    5.640347639610194,
+    0.1914043953732275,
+    -7.242902152766918,
+    0.9097521560598769
+  ],
+  "a": 1.0,
+  "b": 0.18214676274176195,
+  "trace": [
+    -21.784156642724078,
+    0.7161780692459478,
+    -0.17416228226216654
+  ],
+  "determinant": [
+    2.907365105061201,
+    0.12827315665159916,
+    0.12473735929351978
+  ],
+  "discriminant": [
+    462.92002021449474,
+    -0.0001815997375429479,
+    -0.46861693661131254
+  ],
+  "fold_constraint": {
+    "I": 1.1231503495944923,
+    "parameter_index": 2,
+    "crossing_times": [
+      2.198589989766079,
+      12.34175538056055,
+      5.111119932903421,
+      0.1416435671837754
+    ],
+    "residual": 2.5701663020072374e-14,
+    "trace_integral": 1.509903313490213e-14,
+    "singular_values": [
+      0.10507546132545195,
+      0.08861301142672949,
+      0.08067541256732001,
+      1.0160254114054153e-12
+    ],
+    "curvature_samples": [
+      -0.002291899096919031,
+      -0.0022919009962794512,
+      -0.0022919149459795485
+    ],
+    "input_derivative": -0.7225120623469062,
+    "parameter_derivative": -3.9684141286104515e-05,
+    "scope": "local fold on all-threshold itinerary; finite segment sampling",
+    "independent_check": {
+      "period": 19.79310887041382,
+      "closure_C": 3.650552082845593e-14,
+      "closure_q": -3.352873534367973e-13,
+      "log_multiplier": -1.2027929624514044e-08,
+      "method": "Independent DOP853 integration over boundary-matched period; no event-root search"
+    }
+  },
+  "trajectory_fit": {
+    "loss": 38.554944592421265,
+    "duration": 240.0,
+    "dt": 0.04,
+    "cmax_scale": 0.08,
+    "equilibrium_weight": 0.02,
+    "jitter": 0.0,
+    "random_seed": 20261029,
+    "targets": [
+      {
+        "I": 0.55,
+        "initial_C": 1.0162741240333995,
+        "initial_Cdot": -0.05597103014270799,
+        "initial_q": -0.14125438262130022,
+        "valid": true,
+        "peaks": 3,
+        "Cmin": 0.03376078031486022,
+        "Cmax": 0.6381885814278244,
+        "period": 36.11982526618327,
+        "target_Cmin": 0.030349462829437564,
+        "target_Cmax": 1.0207700428149027,
+        "target_period": 35.80000000000001,
+        "q_min": -0.32408445102942063,
+        "q_max": 0.2287925343258429
+      },
+      {
+        "I": 0.65,
+        "initial_C": 1.0456101130397006,
+        "initial_Cdot": -0.014086402052871927,
+        "initial_q": -0.15291515237436196,
+        "valid": true,
+        "peaks": 5,
+        "Cmin": 0.03373597790089195,
+        "Cmax": 0.8003232597314118,
+        "period": 23.343623885735504,
+        "target_Cmin": 0.030600445491758017,
+        "target_Cmax": 1.0458541831910313,
+        "target_period": 24.89999999999999,
+        "q_min": -0.3554244712513571,
+        "q_max": 0.1909214802662783
+      },
+      {
+        "I": 0.8,
+        "initial_C": 1.0685877355415963,
+        "initial_Cdot": -0.018405031847749886,
+        "initial_q": -0.23738399436457117,
+        "valid": true,
+        "peaks": 6,
+        "Cmin": 0.035172066625047876,
+        "Cmax": 0.989844158300011,
+        "period": 19.558689051729562,
+        "target_Cmin": 0.031019608578044876,
+        "target_Cmax": 1.0690212717218235,
+        "target_period": 19.950000000000017,
+        "q_min": -0.4022682069887239,
+        "q_max": 0.1341123296015968
+      },
+      {
+        "I": 0.9,
+        "initial_C": 1.0803682859226418,
+        "initial_Cdot": 0.009783487173898098,
+        "initial_q": -0.2626007021288097,
+        "valid": true,
+        "peaks": 6,
+        "Cmin": 0.03680845059376412,
+        "Cmax": 1.1120373001358894,
+        "period": 18.751231347665602,
+        "target_Cmin": 0.031349970515248834,
+        "target_Cmax": 1.0804804826503445,
+        "target_period": 18.400000000000006,
+        "q_min": -0.44003382520112766,
+        "q_max": 0.09624284843100106
+      },
+      {
+        "I": 1.0,
+        "initial_C": 1.0892875532077075,
+        "initial_Cdot": 0.024932408749896995,
+        "initial_q": -0.30083416147966596,
+        "valid": true,
+        "peaks": 6,
+        "Cmin": 0.03930368390141043,
+        "Cmax": 1.2350682733836513,
+        "period": 18.559528136189822,
+        "target_Cmin": 0.03177730209291524,
+        "target_Cmax": 1.0899778545371637,
+        "target_period": 17.5,
+        "q_min": -0.49858807708641273,
+        "q_max": 0.05837103219981422
+      },
+      {
+        "I": 1.1,
+        "initial_C": 1.09747616336859,
+        "initial_Cdot": 0.022721291519071762,
+        "initial_q": -0.3564218257198068,
+        "valid": true,
+        "peaks": 7,
+        "Cmin": 0.6465020990781418,
+        "Cmax": 0.6465222831168872,
+        "period": 18.356959754605572,
+        "target_Cmin": 0.0326300130276839,
+        "target_Cmax": 1.097976217270142,
+        "target_period": 17.299999999999997,
+        "q_min": -0.4917420123617772,
+        "q_max": -0.32329199564680366
+      }
+    ],
+    "optimizer": {
+      "success": true,
+      "message": "Optimization terminated successfully",
+      "nfev": 333,
+      "nit": 20,
+      "constraint_residual": 3.3744029397098085e-08,
+      "fold_errors": [
+        "1: Fold degeneracy or upper-bound orientation unresolved",
+        "fallback 1: Fold degeneracy or upper-bound orientation unresolved"
+      ]
+    },
+    "initialization": "For each reference trajectory use its observed near-peak C0 and Cdot; q0=N(C0,I)+Cdot. No fit to h or h nullclines.",
+    "method": "Finite RK4 trajectories, no Poincare; equilibrium calcium and spectra regularizer, no hidden-state targets. Independent DOP853 required."
+  },
+  "accepted": false
+}

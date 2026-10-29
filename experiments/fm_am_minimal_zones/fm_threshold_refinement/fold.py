@@ -59,7 +59,9 @@ class BoundaryFold:
             states=np.array([(expm(M*s)@y0)[:2] for s in np.linspace(0,t[j],65)])
             lo=-np.inf if r==0 else m['th'][r-1];hi=np.inf if r==model.n-1 else m['th'][r]
             if not np.isfinite(states).all() or min(states[:,0])<lo-1e-7 or max(states[:,0])>hi+1e-7:raise FoldError('Segment leaves region')
-            if min(states[:,1])<=0 or max(states[:,1])>=1:raise FoldError('Segment leaves physical h domain')
+            if hasattr(model,'hidden_state_admissible'):
+                if not model.hidden_state_admissible(states[:,1]):raise FoldError('Segment leaves allowed hidden-state domain')
+            elif min(states[:,1])<=0 or max(states[:,1])>=1:raise FoldError('Segment leaves physical h domain')
             all_states.extend(states)
         state=np.asarray(all_states)
         if hasattr(model,'f'):
