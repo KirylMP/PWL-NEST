@@ -67,17 +67,23 @@ def run(model,case,duration_ms,dt_ms,threads,nodes,connected,record,timing_mode=
     nest.SetKernelStatus({'resolution':dt_ms,'local_num_threads':threads,'print_time':False})
     nest.Install('pwa_astrocyte_module')
     profiler=profile_library()
+    compiled=None
+    if model!='astrocyte_lr_1994':
+        manifest=json.loads((HERE/'module'/'generated'/'manifest.json').read_text())
+        compiled=Candidate(manifest[case]['path'])
     if protocol=='work-pulse':
         baseline=.2 if case=='am' else .45
         init_mode=os.environ.get('PWA_INIT_MODE','equilibrium')
         if init_mode not in ('equilibrium','lr'):raise ValueError('PWA_INIT_MODE must be equilibrium or lr')
-        c0,h0=(pwa_initial(case,baseline) if model!='astrocyte_lr_1994' and init_mode=='equilibrium' else work_initial(case,baseline));tau_ms=20000.;delta=.7;delay=10.
+        c0,h0=(pwa_initial(case,baseline) if compiled is not None and init_mode=='equilibrium' else work_initial(case,baseline));tau_ms=20000.;delta=.7;delay=10.
+        if compiled is not None and init_mode=='lr' and compiled.gate_coordinate=='power':h0=h0**compiled.gate_power
         if duration_ms<=20000.:raise ValueError('work-pulse duration must exceed 20 seconds')
         if abs(delay/dt_ms-round(delay/dt_ms))>1e-9:raise ValueError('10 ms connection delay must be an integer number of simulation steps')
         spike_ms=[20000.-delay]
     else:
         baseline=.4 if case=='am' else .55
         c0,h0=.1,.75;tau_ms=30000.;delta=.15;delay=dt_ms
+        if compiled is not None and compiled.gate_coordinate=='power':h0=h0**compiled.gate_power
         nsteps=int(round(duration_ms/dt_ms));spike_steps=sorted(set(int(nsteps*x) for x in (.2,.45,.7)))
         spike_ms=[float(x*dt_ms) for x in spike_steps if x>=1 and x+1<nsteps]
     pars={'IP3_0':baseline,'IP3':baseline,'tau_IP3':tau_ms,'Ca_astro':c0,'h_IP3R':h0,'delta_IP3':delta}
@@ -128,6 +134,8 @@ def validate_candidate(case,manifest,duration_ms,dt_ms,protocol):
     jumps=[(s,proto['delta_ip3']) for s in jump_times]
     expected=reference(model,[proto['initial_C'],proto['initial_h'],proto['baseline_ip3']],proto['baseline_ip3'],proto['tau_ip3_ms']/1000.,duration_ms/1000.,jumps,times)
     got=np.column_stack([ev['Ca_astro'],ev['h_IP3R'],ev['IP3']]);err=np.abs(got-expected)
+    if model.gate_coordinate=='power' and (np.any(got[:,1]<0) or np.any(got[:,1]>1)):
+        raise RuntimeError(f'{case}: transformed gate q left [0,1] in the validation protocol')
     maxerr=err.max(axis=0);rms=np.sqrt(np.mean(err**2,axis=0))
     if maxerr[0]>2e-4 or maxerr[1]>2e-4 or maxerr[2]>2e-8:raise RuntimeError(f'{case}: NEST differs from independent solver: max error {maxerr}')
     return dict(protocol=proto,samples=len(times),max_abs_error_C_h_I=maxerr.tolist(),rmse_C_h_I=rms.tolist(),validation_seconds=elapsed),ev
@@ -152,10 +160,11 @@ def main():
         if not np.array_equal(lr_trace['times'],pwa_trace['times']) or not np.array_equal(lr_trace['sic_times'],pwa_trace['sic_times']):
             raise RuntimeError('LR and PWA recording grids differ')
         errors={}
-        for key in ('Ca_astro','h_IP3R','IP3','I_SIC'):
+        keys=('Ca_astro','IP3','I_SIC') if manifest[case].get('hidden_coordinate')=='power' else ('Ca_astro','h_IP3R','IP3','I_SIC')
+        for key in keys:
             delta=pwa_trace[key]-lr_trace[key]
             errors[key]=dict(rmse=float(np.sqrt(np.mean(delta**2))),max_abs=float(np.max(abs(delta))))
-        approximation[case]=dict(errors=errors,lr_initial_C=lr_proto['initial_C'],lr_initial_h=lr_proto['initial_h'],pwa_initial_C=validation[case]['protocol']['initial_C'],pwa_initial_h=validation[case]['protocol']['initial_h'],pwa_initialization=validation[case]['protocol']['initialization'],scope='One driven protocol; baseline NEST uses its built-in GSL tolerances')
+        approximation[case]=dict(errors=errors,lr_initial_C=lr_proto['initial_C'],lr_initial_h=lr_proto['initial_h'],pwa_initial_C=validation[case]['protocol']['initial_C'],pwa_initial_hidden=validation[case]['protocol']['initial_h'],pwa_hidden_coordinate=manifest[case].get('hidden_coordinate','identity'),pwa_initialization=validation[case]['protocol']['initialization'],scope='One driven protocol; h_IP3R records q when hidden_coordinate=power; baseline NEST uses built-in GSL tolerances')
         for model_name,events in [('pwa',pwa_trace),('lr',lr_trace)]:
             for key,values in events.items():traces[f'{case}_{model_name}_{key}']=values
         print('LR COMPARISON',case,json.dumps(errors),flush=True)

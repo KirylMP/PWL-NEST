@@ -16,8 +16,8 @@ def literal(v):
 
 def build(case,path):
     model=Candidate(path);orig=json.loads(Path(path).read_text())
-    expected={'am':2,'fm':3}[case]
-    if len(model.thresholds)!=expected:raise ValueError(f'{case} requires {expected} physical thresholds')
+    expected=(2,) if case=='am' else (2,3)
+    if len(model.thresholds) not in expected:raise ValueError(f'{case} requires threshold count in {expected}')
     class_name=f'astrocyte_{case}_pwa';out=HERE/'generated';out.mkdir(exist_ok=True)
     raw=Path(path).read_bytes();sha=hashlib.sha256(raw).hexdigest()
     transform=model.transform or {};vals=[transform.get(k,default) for k,default in [('p',0),('e',0),('n',1),('k',0),('C_ref',.5)]]
@@ -26,7 +26,7 @@ def build(case,path):
     txt='#pragma once\n#include "bridge.h"\n'
     txt+='static const double pwa_thresholds[] = {'+','.join(map(literal,model.z_thresholds))+'};\n'
     txt+='static const double pwa_coeff[] = {'+','.join(map(literal,model.coefficients.ravel()))+'};\n'
-    txt+='static const PwaConfig pwa_config = {'+str(len(model.thresholds)+1)+',pwa_thresholds,pwa_coeff,'+','.join(map(literal,vals))+','+('false' if model.transform else 'true')+'};\n'
+    txt+='static const PwaConfig pwa_config = {'+str(len(model.thresholds)+1)+',pwa_thresholds,pwa_coeff,'+','.join(map(literal,vals))+','+('false' if model.transform else 'true')+','+('true' if model.direct_calcium else 'false')+'};\n'
     (out/f'{case}_constants.h').write_text(txt)
     for ext in ('h','cpp'):
         s=(HERE/'upstream'/f'astrocyte_lr_1994.{ext}').read_text()
@@ -123,7 +123,7 @@ nest::{class_name}::reset_latent_from_calcium_()
       throw KernelException( "PWA SIC evaluation failed" );
     B_.sic_values[ lag ] = sic_value;'''+s[end:]
         (out/f'{class_name}.{ext}').write_text(s)
-    return dict(path=str(Path(path).resolve()),sha256=sha,physical_thresholds_C=model.thresholds.tolist(),coefficients_from='alpha,beta,a,b,transform',case=case)
+    return dict(path=str(Path(path).resolve()),sha256=sha,physical_thresholds_C=model.thresholds.tolist(),coefficients_from='alpha,beta,a,b,transform',case=case,direct_calcium=model.direct_calcium,hidden_coordinate=model.gate_coordinate,gate_power=model.gate_power)
 
 
 def main():

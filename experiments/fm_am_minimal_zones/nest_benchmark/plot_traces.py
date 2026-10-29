@@ -12,7 +12,7 @@ p.add_argument('traces',type=Path)
 a=p.parse_args();data=np.load(a.traces)
 fig,axes=plt.subplots(2,4,figsize=(16,7),constrained_layout=True)
 for row,case in enumerate(('am','fm')):
-    for col,(key,title) in enumerate([('Ca_astro',r'$C$ ($\mu$M)'),('h_IP3R',r'$h$'),('IP3',r'$I$ ($\mu$M)'),('I_SIC',r'$I_{SIC}$ (pA)')]):
+    for col,(key,title) in enumerate([('Ca_astro',r'$C$ ($\mu$M)'),('h_IP3R',r'LR $h$ / PWA hidden $q$'),('IP3',r'$I$ ($\mu$M)'),('I_SIC',r'$I_{SIC}$ (pA)')]):
         ax=axes[row,col]
         for model,label,color in [('lr','Li–Rinzel','#a855c7'),('pwa','PWA','#111111')]:
             timekey='sic_times' if key=='I_SIC' else 'times'

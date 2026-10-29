@@ -51,12 +51,12 @@ struct Transform {
  const PwaConfig* cfg;double wp,we,wl,zmin,zmax;
  explicit Transform(const PwaConfig& m):cfg(&m){const double mx=std::max({m.p,m.e,0.});wp=std::exp(m.p-mx);we=std::exp(m.e-mx);wl=std::exp(-mx);const double sum=wp+we+wl;wp/=sum;we/=sum;wl/=sum;zmin=value(1e-14);zmax=value(CMAX);}
  double value(double c)const{
-  const auto&m=*cfg;if(m.affine)return c/m.ref-1.;const double t=c/m.ref;
+  const auto&m=*cfg;if(m.direct_calcium)return c;if(m.affine)return c/m.ref-1.;const double t=c/m.ref;
   const double e=std::abs(m.k)>1e-7?std::expm1(std::clamp(m.k*(t-1.),-700.,700.))/m.k:t-1.;
   return wp*std::expm1(m.n*std::log(t))/m.n+we*e+wl*std::log(t);
  }
  double derivative(double c)const{
-  const auto&m=*cfg;if(m.affine)return 1./m.ref;const double t=c/m.ref;
+  const auto&m=*cfg;if(m.direct_calcium)return 1.;if(m.affine)return 1./m.ref;const double t=c/m.ref;
   return (wp*std::pow(t,m.n-1.)+we*std::exp(std::clamp(m.k*(t-1.),-700.,700.))+wl/t)/m.ref;
  }
 };
@@ -95,7 +95,7 @@ int pwa_to_z(const PwaConfig&m,double C,double&z){
 int pwa_to_c(const PwaConfig&m,double z,double&hint){
  PWA_COUNT(4);PWA_TIMER(5);
  if(!std::isfinite(z))return -102;
- const auto& tr=transform(m);if(m.affine){hint=m.ref*(z+1.);return (hint>1e-14&&hint<CMAX)?0:-103;}
+ const auto& tr=transform(m);if(m.direct_calcium){hint=z;return (hint>1e-14&&hint<CMAX)?0:-103;}if(m.affine){hint=m.ref*(z+1.);return (hint>1e-14&&hint<CMAX)?0:-103;}
  double low=1e-14,high=CMAX,x=(hint>low&&hint<high)?hint:.5;
  for(int j=0;j<16;++j){const double r=tr.value(x)-z;if(std::abs(r)<2e-13){hint=x;return 0;}
   if(r>0.)high=x;else low=x;double next=x-r/tr.derivative(x);

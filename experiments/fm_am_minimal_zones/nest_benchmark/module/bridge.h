@@ -5,6 +5,7 @@ struct PwaConfig {
     const double* coeff;
     double p,e,n,k,ref;
     bool affine;
+    bool direct_calcium;
 };
 // State z,h,I is propagated in seconds. All functions return zero on success.
 int pwa_prepare(const PwaConfig&, double I0, double tau_s, double dt_s, double sic_threshold);
