@@ -1,0 +1,54 @@
+{
+  "scope": "Local one-cut search only; finite starting values and trajectory sampling. No general absence proof; found cycles checked by independent DOP853. HLB1 is focus-focus only; q has no physical bounds.",
+  "models": {
+    "candidate": {
+      "local": {
+        "path": "/workspace/paper-results/paper/figures/figure5_data/models/AM.json",
+        "sha256": "dcb83ea77b845afff5dfc74750e1000325c43a409c42975778d539d7913605ba",
+        "K": 0.1,
+        "threshold_C": 0.1556894888082623,
+        "I_cross": 0.3545338186565767,
+        "region_types": [
+          {
+            "trace": -0.6786517262491861,
+            "determinant": 0.305121495910617,
+            "discriminant": -0.7599178181014676,
+            "type": "stable focus",
+            "omega": 0.43586632644122314
+          },
+          {
+            "trace": 0.37515960588794095,
+            "determinant": 0.29285328972204816,
+            "discriminant": -1.0306684289981975,
+            "type": "unstable focus",
+            "omega": 0.5076092072151069
+          }
+        ],
+        "hlb1_focus_pair": true,
+        "alpha": -0.4089731558313346,
+        "limiting_return_multiplier": 0.27669843120235943,
+        "hlb1_criticality": "supercritical_stable_cycle"
+      },
+      "cycles": [
+        {
+          "ivp_closure": 1.0357032620027522e-15,
+          "ivp_log_multiplier": -1.183714072232573,
+          "I": 0.3555338186565767,
+          "delta_I": 0.001,
+          "Cmin": 0.1538329745051455,
+          "Cmax": 0.1586532085581716,
+          "amplitude": 0.004820234053026118,
+          "period": 12.925792602932052,
+          "log_multiplier": -1.183714066105237,
+          "stable": true,
+          "matching_error": 5.995204332975845e-15,
+          "crossing_speeds": [
+            0.0015241622022997836,
+            -0.007895135032805145
+          ],
+          "scope": "numerical threshold matching, sampled itinerary, independent DOP853 closure and multiplier check"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "scope": "Local one-cut search only; finite starting values and trajectory sampling. No general absence proof; found cycles checked by independent DOP853. HLB1 is focus-focus only; q has no physical bounds.",
+  "models": {
+    "candidate": {
+      "local": {
+        "path": "/workspace/paper-results/paper/figures/figure5_data/models/FM.json",
+        "sha256": "44ea2b8555dc5118b52c6de61ff892deed0f465f5d8419c8611b6bc355f3d715",
+        "K": 0.05,
+        "threshold_C": 0.05214116272147651,
+        "I_cross": 0.5290700389163678,
+        "region_types": [
+          {
+            "trace": -2.212307706467218,
+            "determinant": 0.36897320361392677,
+            "discriminant": 3.418412573638536,
+            "type": "stable node",
+            "omega": null
+          },
+          {
+            "trace": 0.45397404022279597,
+            "determinant": 0.05157051204294816,
+            "discriminant": -0.0001896189755838662,
+            "type": "unstable focus",
+            "omega": 0.006885110303834395
+          }
+        ],
+        "hlb1_focus_pair": false,
+        "alpha": null,
+        "limiting_return_multiplier": null,
+        "hlb1_criticality": "focus_focus_assumption_not_met"
+      },
+      "cycles": []
+    }
+  }
+}

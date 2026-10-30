@@ -1,0 +1,74 @@
+{
+  "system": "zdot = y-F(z); ydot=delta-z; F(z)=s_left*z for z<0, s_right*z otherwise",
+  "method": "DOP853, attracting forward trajectory, last two peak events, divergence integral",
+  "cases": [
+    {
+      "name": "HLB1",
+      "delta": 0.12,
+      "threshold": 0.0,
+      "slopes": [
+        1.0,
+        -0.45
+      ],
+      "traces": [
+        -1.0,
+        0.45
+      ],
+      "determinants": [
+        1.0,
+        1.0
+      ],
+      "discriminants": [
+        -3.0,
+        -3.7975
+      ],
+      "equilibrium": [
+        0.12,
+        -0.054
+      ],
+      "period": 6.6400871419251075,
+      "closure_error": 6.905587213168474e-14,
+      "period_change": 2.0463630789890885e-12,
+      "log_floquet_multiplier": -0.9970469292463378,
+      "z_min": -0.3032069892754674,
+      "z_max": 0.561116286190879,
+      "y_min": -0.655623957488186,
+      "y_max": 0.23724710038328414,
+      "coordinate_note": "dimensionless constructed PWA example, not fitted LR or physical calcium"
+    },
+    {
+      "name": "HLB2",
+      "delta": 0.12,
+      "threshold": 0.0,
+      "slopes": [
+        3.0,
+        -0.45
+      ],
+      "traces": [
+        -3.0,
+        0.45
+      ],
+      "determinants": [
+        1.0,
+        1.0
+      ],
+      "discriminants": [
+        5.0,
+        -3.7975
+      ],
+      "equilibrium": [
+        0.12,
+        -0.054
+      ],
+      "period": 7.121164918436989,
+      "closure_error": 1.8769430454312896e-12,
+      "period_change": 8.526512829121202e-13,
+      "log_floquet_multiplier": -5.547117465277495,
+      "z_min": -0.09131558959356435,
+      "z_max": 0.3833017102995425,
+      "y_min": -0.4131085267330284,
+      "y_max": 0.11984492909038265,
+      "coordinate_note": "dimensionless constructed PWA example, not fitted LR or physical calcium"
+    }
+  ]
+}

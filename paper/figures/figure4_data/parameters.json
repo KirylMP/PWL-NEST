@@ -1,0 +1,78 @@
+{
+  "system": "zdot = y-F(z); ydot=-z; F continuous piecewise linear with F(0)=0",
+  "method": "DOP853, attracting forward trajectory, last two peak events, divergence integral",
+  "cases": [
+    {
+      "name": "BC1",
+      "slopes": [
+        1.0,
+        -0.45,
+        1.0
+      ],
+      "thresholds": [
+        -1.0,
+        1.0
+      ],
+      "traces": [
+        -1.0,
+        0.45,
+        -1.0
+      ],
+      "determinants": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "discriminants": [
+        -3.0,
+        -3.7975,
+        -3.0
+      ],
+      "period": 6.421762309372582,
+      "closure_error": 2.3946955529652314e-12,
+      "period_change": 1.1880274541908875e-11,
+      "log_floquet_multiplier": -2.862723603940708,
+      "x_min": -1.7465600452568142,
+      "x_max": 1.7465614863233634,
+      "y_min": -1.7932573910059066,
+      "y_max": 1.79325685287095,
+      "coordinate_note": "dimensionless constructed PWA example, not fitted LR or physical calcium"
+    },
+    {
+      "name": "BC2",
+      "slopes": [
+        3.0,
+        -0.45,
+        1.0
+      ],
+      "thresholds": [
+        -1.0,
+        1.0
+      ],
+      "traces": [
+        -3.0,
+        0.45,
+        -1.0
+      ],
+      "determinants": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "discriminants": [
+        5.0,
+        -3.7975,
+        -3.0
+      ],
+      "period": 6.593423568576725,
+      "closure_error": 6.998401858027137e-12,
+      "period_change": 1.750777300912887e-11,
+      "log_floquet_multiplier": -5.854882052465371,
+      "x_min": -1.392552169823297,
+      "x_max": 1.544162619788947,
+      "y_min": -1.7045691939910905,
+      "y_max": 1.442547155559521,
+      "coordinate_note": "dimensionless constructed PWA example, not fitted LR or physical calcium"
+    }
+  ]
+}

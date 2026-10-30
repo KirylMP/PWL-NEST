@@ -1,0 +1,1143 @@
+{
+  "scope": "finite multistart candidate fold search",
+  "results": [
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 0,
+      "I": 0.9125084051268093,
+      "times": [
+        3.835694611101155,
+        5.3081878909425475,
+        14.482238015617348,
+        1.1410123808609576
+      ],
+      "residual": 3.432129500335142e-14,
+      "nfev": 17,
+      "status": "candidate_fold",
+      "ivp_closure": 3.2379211969015437e-13,
+      "ivp_log_multiplier": 4.660974249701827e-08,
+      "period": 24.767132898522007,
+      "Cmin": 0.051031257466295096,
+      "Cmax": 1.2105079931628804,
+      "log_multiplier": -2.6645352591003757e-15,
+      "matching_error": 5.8264504332328215e-12,
+      "crossing_speeds": [
+        0.10434152881419756,
+        3.0994702155554408,
+        -0.1350936623930079,
+        -0.23611307609766286
+      ],
+      "singular_values": [
+        532.5763210261271,
+        28.669074396313096,
+        25.20191685452331,
+        1.1820774319049124e-10
+      ],
+      "curvature": -0.06316042127723555,
+      "input_derivative": -287.9867526286655,
+      "nondegenerate": true,
+      "reasons": []
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 1,
+      "I": 0.8513812854633105,
+      "times": [
+        4.408951796505816,
+        0.0010001797953400847,
+        21.204698240172476,
+        5.454749568797235
+      ],
+      "residual": 1.319612881709359,
+      "nfev": 138,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 2,
+      "I": 0.8600210405144719,
+      "times": [
+        3.962568226742301,
+        9.911180274151365,
+        39.37934829729149,
+        4.005938935977507
+      ],
+      "residual": 0.006000557569704218,
+      "nfev": 600,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 3,
+      "I": 0.8514612117285024,
+      "times": [
+        4.417443000920795,
+        0.022611857448580134,
+        21.262781412063095,
+        5.4560390439496125
+      ],
+      "residual": 1.3196474979962227,
+      "nfev": 600,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 4,
+      "I": 0.8513827529509912,
+      "times": [
+        4.408943083919225,
+        0.0010063079497264929,
+        21.207856640961346,
+        5.45526591586546
+      ],
+      "residual": 1.319614455450467,
+      "nfev": 391,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 5,
+      "I": 0.8528912598732507,
+      "times": [
+        4.398908868528399,
+        0.40292710759100614,
+        22.235291789704572,
+        5.441651477529317
+      ],
+      "residual": 1.320721453654273,
+      "nfev": 600,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 6,
+      "I": 0.9125084051268083,
+      "times": [
+        3.8356946111012316,
+        5.308187890942551,
+        14.482238015617428,
+        1.1410123808609864
+      ],
+      "residual": 2.3438933173020482e-14,
+      "nfev": 14,
+      "status": "candidate_fold",
+      "ivp_closure": 1.6172863889384132e-13,
+      "ivp_log_multiplier": 4.6609325933099494e-08,
+      "period": 24.767132898522195,
+      "Cmin": 0.05103125746629503,
+      "Cmax": 1.2105079931628673,
+      "log_multiplier": 0.0,
+      "matching_error": 3.979039320256561e-12,
+      "crossing_speeds": [
+        0.10434152881417447,
+        3.0994702155553715,
+        -0.13509366239300502,
+        -0.23611307609766818
+      ],
+      "singular_values": [
+        532.5763210451643,
+        28.669074390290042,
+        25.20191685165021,
+        2.912169199927544e-11
+      ],
+      "curvature": -0.0631545477167501,
+      "input_derivative": -287.9867526180856,
+      "nondegenerate": true,
+      "reasons": []
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 7,
+      "I": 0.8600210623393187,
+      "times": [
+        3.962569594447691,
+        9.911178535023327,
+        39.37869714675516,
+        4.005808701352957
+      ],
+      "residual": 0.006000597191371708,
+      "nfev": 600,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 8,
+      "I": 0.912508405126808,
+      "times": [
+        3.8356946111012555,
+        5.308187890942549,
+        14.482238015617352,
+        1.141012380860977
+      ],
+      "residual": 2.980092931998319e-14,
+      "nfev": 17,
+      "status": "candidate_fold",
+      "ivp_closure": 1.2121276869476305e-13,
+      "ivp_log_multiplier": 4.6609459548006826e-08,
+      "period": 24.767132898522135,
+      "Cmin": 0.051031257466295096,
+      "Cmax": 1.2105079931628673,
+      "log_multiplier": 8.881784197001252e-16,
+      "matching_error": 5.059064278611913e-12,
+      "crossing_speeds": [
+        0.10434152881416647,
+        3.0994702155553693,
+        -0.13509366239300402,
+        -0.23611307609766463
+      ],
+      "singular_values": [
+        532.5763210272532,
+        28.669074388410383,
+        25.20191685063955,
+        1.52173684668952e-10
+      ],
+      "curvature": -0.06316718453021952,
+      "input_derivative": -287.9867526320876,
+      "nondegenerate": true,
+      "reasons": []
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 9,
+      "I": 0.9125084051268088,
+      "times": [
+        3.8356946111012236,
+        5.308187890942554,
+        14.482238015617577,
+        1.1410123808610144
+      ],
+      "residual": 1.6407253221114337e-14,
+      "nfev": 27,
+      "status": "candidate_fold",
+      "ivp_closure": 2.322128593641386e-13,
+      "ivp_log_multiplier": 4.6608940808007954e-08,
+      "period": 24.76713289852237,
+      "Cmin": 0.05103125746629494,
+      "Cmax": 1.210507993162869,
+      "log_multiplier": -4.440892098500626e-16,
+      "matching_error": 2.7853275241795927e-12,
+      "crossing_speeds": [
+        0.10434152881417535,
+        3.099470215555381,
+        -0.13509366239300613,
+        -0.23611307609768417
+      ],
+      "singular_values": [
+        532.5763210283795,
+        28.66907439152674,
+        25.201916852695902,
+        1.903540016094733e-10
+      ],
+      "curvature": -0.06317411101277225,
+      "input_derivative": -287.9867526308154,
+      "nondegenerate": true,
+      "reasons": []
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 10,
+      "I": 0.8513828196811315,
+      "times": [
+        4.408927201001506,
+        0.001016998796192605,
+        21.207877231121678,
+        5.455259922531503
+      ],
+      "residual": 1.319614551804784,
+      "nfev": 447,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 11,
+      "I": 0.8513828249165257,
+      "times": [
+        4.408931148441583,
+        0.0010148110871458671,
+        21.208116069960152,
+        5.455313871414136
+      ],
+      "residual": 1.3196145503739802,
+      "nfev": 347,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 12,
+      "I": 0.8600210674040419,
+      "times": [
+        3.9625688393525227,
+        9.911178131378344,
+        39.37855987044179,
+        4.005779072723532
+      ],
+      "residual": 0.006000597640692583,
+      "nfev": 600,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 13,
+      "I": 0.8513826734902128,
+      "times": [
+        4.408930827081041,
+        0.0010028151376171388,
+        21.207822954211984,
+        5.455268465306947
+      ],
+      "residual": 1.3196144076004335,
+      "nfev": 128,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 14,
+      "I": 0.8600210614571928,
+      "times": [
+        3.9625698501533613,
+        9.911178605310623,
+        39.37871681950169,
+        4.005813244780383
+      ],
+      "residual": 0.006000594786019834,
+      "nfev": 600,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 15,
+      "I": 0.8513827747261546,
+      "times": [
+        4.408928259674424,
+        0.0010006668248277982,
+        21.207851846337416,
+        5.455261564235676
+      ],
+      "residual": 1.3196145249587607,
+      "nfev": 131,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 16,
+      "I": 0.8516883906453615,
+      "times": [
+        4.406879079683469,
+        0.07473545431333274,
+        21.421817020171265,
+        5.4573439240587565
+      ],
+      "residual": 1.319840131311343,
+      "nfev": 600,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 17,
+      "I": 0.8600210668016711,
+      "times": [
+        3.962574446552886,
+        9.911178179422684,
+        39.3784713471209,
+        4.005772526161543
+      ],
+      "residual": 0.006000603213335903,
+      "nfev": 600,
+      "status": "unresolved"
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 18,
+      "I": 0.9125084051268085,
+      "times": [
+        3.8356946111012045,
+        5.308187890942555,
+        14.482238015617646,
+        1.141012380861024
+      ],
+      "residual": 2.494572173414323e-14,
+      "nfev": 29,
+      "status": "candidate_fold",
+      "ivp_closure": 2.1798207850909048e-13,
+      "ivp_log_multiplier": 4.660880719310062e-08,
+      "period": 24.76713289852243,
+      "Cmin": 0.05103125746629494,
+      "Cmax": 1.2105079931628624,
+      "log_multiplier": 4.440892098500626e-16,
+      "matching_error": 4.234834705130197e-12,
+      "crossing_speeds": [
+        0.10434152881418202,
+        3.0994702155553444,
+        -0.13509366239300558,
+        -0.23611307609768062
+      ],
+      "singular_values": [
+        532.5763210400281,
+        28.669074391530447,
+        25.20191685244604,
+        8.974966384493326e-11
+      ],
+      "curvature": -0.06315100035883085,
+      "input_derivative": -287.9867526199992,
+      "nondegenerate": true,
+      "reasons": []
+    },
+    {
+      "model": "fm",
+      "itinerary": "both_thresholds",
+      "start": 19,
+      "I": 0.9125084051268082,
+      "times": [
+        3.835694611101277,
+        5.3081878909425555,
+        14.482238015617352,
+        1.1410123808609784
+      ],
+      "residual": 1.4733043708755733e-14,
+      "nfev": 14,
+      "status": "candidate_fold",
+      "ivp_closure": 1.8533499301809766e-13,
+      "ivp_log_multiplier": 4.6609396670352354e-08,
+      "period": 24.767132898522163,
+      "Cmin": 0.05103125746629498,
+      "Cmax": 1.2105079931628615,
+      "log_multiplier": -8.881784197001252e-16,
+      "matching_error": 2.5011104298755527e-12,
+      "crossing_speeds": [
+        0.10434152881415892,
+        3.0994702155553386,
+        -0.1350936623930058,
+        -0.2361130760976753
+      ],
+      "singular_values": [
+        532.5763210281143,
+        28.669074402282693,
+        25.20191685524087,
+        4.5060098036266224e-10
+      ],
+      "curvature": -0.06316022991256087,
+      "input_derivative": -287.9867525976581,
+      "nondegenerate": true,
+      "reasons": []
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 0,
+      "I": 0.8600205557570997,
+      "times": [
+        6.606595739700522,
+        15.878103969462577
+      ],
+      "residual": 4.5580353973963046e-14,
+      "nfev": 9,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 22.4846997091631,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": 0.0,
+      "matching_error": 7.737810392427491e-12,
+      "crossing_speeds": [
+        1.1743939154484906e-12,
+        -9.514611321037592e-14
+      ],
+      "singular_values": [
+        1.819783318546441e-08,
+        3.759239740443885e-11
+      ],
+      "curvature": -1.745192678475177e-05,
+      "input_derivative": 196.37234566991117,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 1,
+      "I": 0.8600205557570599,
+      "times": [
+        10.70269893937871,
+        25.722561695747913
+      ],
+      "residual": 3.756507593354622e-13,
+      "nfev": 12,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 36.42526063512662,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": 0.0,
+      "matching_error": 6.377121053446899e-11,
+      "crossing_speeds": [
+        2.424727085781342e-13,
+        1.1102230246251565e-15
+      ],
+      "singular_values": [
+        1.4711380528968184e-07,
+        2.84979958488333e-10
+      ],
+      "curvature": -4.095480671388172e-05,
+      "input_derivative": -69.19217776169612,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 2,
+      "I": 0.8600205557570606,
+      "times": [
+        12.770316061920033,
+        30.691813778703477
+      ],
+      "residual": 1.3309965623250917e-14,
+      "nfev": 17,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 43.46212984062351,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -1.7763568394002505e-15,
+      "matching_error": 2.2595258997171186e-12,
+      "crossing_speeds": [
+        -3.7636560534792807e-14,
+        0.0
+      ],
+      "singular_values": [
+        5.820892551316309e-07,
+        7.105272990874806e-11
+      ],
+      "curvature": 7.810171684723004e-06,
+      "input_derivative": 272.4204742470911,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 3,
+      "I": 0.8600205557570603,
+      "times": [
+        13.520253057026194,
+        32.49419098596722
+      ],
+      "residual": 6.631125326074348e-13,
+      "nfev": 17,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 46.01444404299342,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": 0.0,
+      "matching_error": 1.1257128562647267e-10,
+      "crossing_speeds": [
+        -1.1790568521519162e-13,
+        5.551115123125783e-16
+      ],
+      "singular_values": [
+        1.8545199441126532e-08,
+        2.842165726530754e-10
+      ],
+      "curvature": 0.00015105020043743877,
+      "input_derivative": 620.6985320935676,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 4,
+      "I": 0.8600205557570602,
+      "times": [
+        10.457231954894796,
+        25.1326133389437
+      ],
+      "residual": 1.1941299346897756e-13,
+      "nfev": 13,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 35.58984529383849,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -1.7763568394002505e-15,
+      "matching_error": 2.0271784251235658e-11,
+      "crossing_speeds": [
+        1.9950707752514063e-13,
+        5.551115123125783e-16
+      ],
+      "singular_values": [
+        3.0445564613761527e-07,
+        1.6204656647737477e-10
+      ],
+      "curvature": 3.050219325976305e-07,
+      "input_derivative": -71.0369118696161,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 5,
+      "I": 0.8600205557570633,
+      "times": [
+        6.301424161859732,
+        15.14466329405345
+      ],
+      "residual": 7.366521854377867e-15,
+      "nfev": 10,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 21.44608745591318,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -8.881784197001252e-16,
+      "matching_error": 1.2505552149377763e-12,
+      "crossing_speeds": [
+        8.08242361927114e-14,
+        -6.328271240363392e-15
+      ],
+      "singular_values": [
+        1.3667022253945712e-08,
+        1.1063774939644147e-10
+      ],
+      "curvature": -1.711762372348709e-07,
+      "input_derivative": 178.8352291792402,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 6,
+      "I": 0.8600205557570605,
+      "times": [
+        2.2943885094483494,
+        5.514267973207717
+      ],
+      "residual": 1.7763568394002506e-16,
+      "nfev": 5,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 7.808656482656067,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -1.7763568394002505e-15,
+      "matching_error": 2.1316282072803006e-14,
+      "crossing_speeds": [
+        1.1102230246251565e-16,
+        3.3306690738754696e-16
+      ],
+      "singular_values": [
+        1.1569826121099922e-10,
+        6.545530253311841e-11
+      ],
+      "curvature": 2.0401643606271295e-06,
+      "input_derivative": -411.1337720685073,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 7,
+      "I": 0.8600205557570613,
+      "times": [
+        14.007277553967139,
+        33.66469178589267
+      ],
+      "residual": 1.1483821597645768e-12,
+      "nfev": 20,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 47.671969339859814,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": 0.0,
+      "matching_error": 1.949516104104987e-10,
+      "crossing_speeds": [
+        -2.633337992108409e-12,
+        -1.9984014443252818e-15
+      ],
+      "singular_values": [
+        2.6354033900800595e-07,
+        3.552713162292288e-10
+      ],
+      "curvature": 4.271481808456149e-06,
+      "input_derivative": -199.2479695445818,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 8,
+      "I": 0.8600205557570513,
+      "times": [
+        6.35340845440232,
+        15.269600861643681
+      ],
+      "residual": 1.0170822787578531e-14,
+      "nfev": 10,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 21.623009316046,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -8.881784197001252e-16,
+      "matching_error": 1.7266188478970435e-12,
+      "crossing_speeds": [
+        -2.6478819137309983e-13,
+        2.2315482794965646e-14
+      ],
+      "singular_values": [
+        9.260184925318724e-09,
+        1.1803713198919858e-10
+      ],
+      "curvature": -1.4714255280392262e-05,
+      "input_derivative": -179.90382940327248,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 9,
+      "I": 0.8600205557570602,
+      "times": [
+        19.927390523396323,
+        47.89292262415816
+      ],
+      "residual": 6.543773444767037e-11,
+      "nfev": 19,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 67.82031314755449,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -3.552713678800501e-15,
+      "matching_error": 1.1108838293694134e-08,
+      "crossing_speeds": [
+        2.3808721660856236e-10,
+        1.2212453270876722e-15
+      ],
+      "singular_values": [
+        0.0001865965179499508,
+        2.170202833532403e-10
+      ],
+      "curvature": 5.598588740839202e-06,
+      "input_derivative": -514.943328448858,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 10,
+      "I": 0.8600205557702759,
+      "times": [
+        6.399415509729609,
+        15.380172907610683
+      ],
+      "residual": 1.4331651978167756e-11,
+      "nfev": 9,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 21.779588417340292,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": 3.552713678800501e-15,
+      "matching_error": 2.432969381516159e-09,
+      "crossing_speeds": [
+        3.864070174941503e-10,
+        -3.154632111090905e-11
+      ],
+      "singular_values": [
+        2.052595508765519e-09,
+        0.0
+      ],
+      "curvature": -0.0001513435609998111,
+      "input_derivative": 96.34811776251517,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 11,
+      "I": 0.8600205557578654,
+      "times": [
+        6.227833152797755,
+        14.967796759586685
+      ],
+      "residual": 1.6472128839718233e-12,
+      "nfev": 10,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 21.19562991238444,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": 0.0,
+      "matching_error": 2.7963409365838743e-10,
+      "crossing_speeds": [
+        2.3643864643929646e-11,
+        -1.9033663534173684e-12
+      ],
+      "singular_values": [
+        9.096118151836756e-09,
+        1.4264529057876362e-10
+      ],
+      "curvature": 2.7823042157267536e-06,
+      "input_derivative": 170.92910943537805,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 12,
+      "I": 0.8600205557570603,
+      "times": [
+        2.174129872458985,
+        5.225241791407539
+      ],
+      "residual": 2.92986664662756e-16,
+      "nfev": 7,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 7.399371663866524,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -4.440892098500626e-16,
+      "matching_error": 4.973799150320701e-14,
+      "crossing_speeds": [
+        2.220446049250313e-16,
+        2.220446049250313e-16
+      ],
+      "singular_values": [
+        1.1296161522831217e-10,
+        3.352052232439942e-11
+      ],
+      "curvature": -4.217903377201753e-06,
+      "input_derivative": 265.55236947333617,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 13,
+      "I": 0.8600205557570652,
+      "times": [
+        7.9158976373763785,
+        19.024842846458593
+      ],
+      "residual": 8.496613275219925e-15,
+      "nfev": 6,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 26.940740483834972,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": 0.0,
+      "matching_error": 1.4424017535930034e-12,
+      "crossing_speeds": [
+        2.489120021209601e-13,
+        -1.176836406102666e-14
+      ],
+      "singular_values": [
+        2.4252494375567687e-09,
+        1.0616813078143895e-10
+      ],
+      "curvature": 7.77844307368813e-06,
+      "input_derivative": 250.163818279621,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 14,
+      "I": 0.8600205557570584,
+      "times": [
+        11.38948296215083,
+        27.373158848622257
+      ],
+      "residual": 5.978183616254492e-13,
+      "nfev": 11,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 38.76264181077309,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -1.7763568394002505e-15,
+      "matching_error": 1.0148681894861511e-10,
+      "crossing_speeds": [
+        8.854028621385623e-13,
+        6.217248937900877e-15
+      ],
+      "singular_values": [
+        1.455995519480365e-07,
+        7.926776170207057e-11
+      ],
+      "curvature": -7.311300527650593e-06,
+      "input_derivative": -305.27834886928565,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 15,
+      "I": 0.8600205557570818,
+      "times": [
+        6.310169544157433,
+        15.165681696699332
+      ],
+      "residual": 3.712559593655209e-14,
+      "nfev": 8,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 21.475851240856766,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -8.881784197001252e-16,
+      "matching_error": 6.302514066192089e-12,
+      "crossing_speeds": [
+        6.279421427279885e-13,
+        -5.0959236830294685e-14
+      ],
+      "singular_values": [
+        1.364325750175884e-08,
+        7.021729841109395e-11
+      ],
+      "curvature": -1.4004952601870542e-06,
+      "input_derivative": 176.0922474864451,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 16,
+      "I": 0.8600205557570509,
+      "times": [
+        7.494996512879724,
+        18.013261075916578
+      ],
+      "residual": 2.0216079861730165e-14,
+      "nfev": 9,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 25.5082575887963,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -1.7763568394002505e-15,
+      "matching_error": 3.431921413721284e-12,
+      "crossing_speeds": [
+        -3.9979131116751887e-13,
+        2.375877272697835e-14
+      ],
+      "singular_values": [
+        3.6419857607968746e-08,
+        2.5340685297853375e-10
+      ],
+      "curvature": 1.4892903317923235e-05,
+      "input_derivative": 235.7106338398298,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 17,
+      "I": 0.8600205557570606,
+      "times": [
+        6.669682213823055,
+        16.029724203945065
+      ],
+      "residual": 1.0338243738814392e-14,
+      "nfev": 9,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 22.69940641776812,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": 0.0,
+      "matching_error": 1.7550405573274475e-12,
+      "crossing_speeds": [
+        5.329070518200751e-15,
+        0.0
+      ],
+      "singular_values": [
+        9.162408556654223e-09,
+        5.2347308833553835e-11
+      ],
+      "curvature": 6.506700046327239e-07,
+      "input_derivative": 199.3707281282666,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 18,
+      "I": 0.8600205557570625,
+      "times": [
+        6.50730138172619,
+        15.63946273854492
+      ],
+      "residual": 3.055432360054456e-15,
+      "nfev": 10,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 22.146764120271108,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": -8.881784197001252e-16,
+      "matching_error": 5.186961971048731e-13,
+      "crossing_speeds": [
+        5.917488721252084e-14,
+        -4.884981308350689e-15
+      ],
+      "singular_values": [
+        4.5481673114577344e-09,
+        5.550268325327188e-13
+      ],
+      "curvature": -8.647401093051122e-06,
+      "input_derivative": -192.14947183779938,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    },
+    {
+      "model": "fm",
+      "itinerary": "upper_threshold_only",
+      "start": 19,
+      "I": 0.8600205557570596,
+      "times": [
+        18.792241126649575,
+        45.16473690604207
+      ],
+      "residual": 3.139829261572453e-11,
+      "nfev": 16,
+      "status": "invalid_itinerary",
+      "ivp_closure": null,
+      "ivp_log_multiplier": null,
+      "period": 63.95697803269165,
+      "Cmin": null,
+      "Cmax": null,
+      "log_multiplier": 0.0,
+      "matching_error": 5.330235808287398e-09,
+      "crossing_speeds": [
+        -2.732114534609309e-11,
+        2.9976021664879227e-15
+      ],
+      "singular_values": [
+        9.362235563023283e-05,
+        9.152396763314252e-10
+      ],
+      "curvature": 3.1383102276669055e-06,
+      "input_derivative": 336.5840806491162,
+      "nondegenerate": true,
+      "reasons": [
+        "wrong or grazing threshold crossing",
+        "wrong or grazing threshold crossing"
+      ]
+    }
+  ]
+}

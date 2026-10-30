@@ -1,0 +1,20 @@
+{
+  "models": {
+    "AM": {
+      "path": "models/AM.json",
+      "sha256": "dcb83ea77b845afff5dfc74750e1000325c43a409c42975778d539d7913605ba",
+      "source": "paper_models/am_mixed/parameters.json"
+    },
+    "AFM": {
+      "path": "models/AFM.json",
+      "sha256": "2c524fb21af13f58cc6babbd3e7adec3287412a2af5ca52cf60f2e7833d3bf14",
+      "source": "paper_models/afm_mixed/parameters.json"
+    },
+    "FM": {
+      "path": "models/FM.json",
+      "sha256": "44ea2b8555dc5118b52c6de61ff892deed0f465f5d8419c8611b6bc355f3d715",
+      "source": "free_hidden_for_review.zip:K_0.050/model/parameters.json (earlier candidate; not final server-only snapshot)"
+    }
+  },
+  "notes": "AFM/FM dashed local candidate curves assume an exactly fixed boundary equilibrium; matching uses high precision and finite itinerary sampling. No independent IVP or coefficient sensitivity verification; FM offsets are below double precision. LR plotted continuation and finite forward PWA scan are not exhaustive."
+}

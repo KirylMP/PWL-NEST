@@ -11,7 +11,8 @@
     "d5": 0.08234,
     "a2": 0.2,
     "KER_AM": 0.1,
-    "KER_FM": 0.05
+    "KER_FM": 0.05,
+    "KER_AFM": 0.075
   },
   "bvp_tolerance": 1e-08,
   "ivp_closure_tolerance": 2e-06,
@@ -112,6 +113,41 @@
       "displayed": true,
       "bvp_residual": 1.999289781557014e-09,
       "nodes": 5556
+    },
+    {
+      "case": "AFM",
+      "kind": "trace_zero",
+      "C": 0.09206029266047164,
+      "h": 0.806946718281393,
+      "I": 0.34124655902403,
+      "trace": -3.885780586188048e-15,
+      "determinant": 0.19067999580671902,
+      "discriminant": -0.7627199832268761
+    },
+    {
+      "case": "AFM",
+      "kind": "trace_zero",
+      "C": 0.36936712324808996,
+      "h": 0.5992589732430853,
+      "I": 0.774600282214456,
+      "trace": 9.381384558082573e-15,
+      "determinant": 0.3815239579814866,
+      "discriminant": -1.5260958319259463
+    },
+    {
+      "kind": "cycle_fold",
+      "case": "AFM",
+      "I": 0.9056635642663887,
+      "period_s": 12.314829171284591,
+      "C_min": 0.08632886587531559,
+      "C_max": 0.7865373900383333,
+      "log_floquet_multiplier": 9.638905857651411e-13,
+      "stable": false,
+      "ivp_closure": 3.8891112552619234e-13,
+      "ivp_waveform_error": 3.8891112552619234e-13,
+      "displayed": true,
+      "bvp_residual": 1.998075960709879e-09,
+      "nodes": 3462
     }
   ],
   "validation": {
@@ -159,7 +195,14 @@
       "calcium_nullcline_residual": 5.551115123125783e-16,
       "gate_nullcline_residual": 1.1102230246251566e-17,
       "jacobian_complex_step_error": 4.440892098500626e-16
+    },
+    "AFM_upper": {
+      "computed": 140,
+      "displayed": 140,
+      "max_displayed_closure": 2.362301437797143e-09,
+      "max_displayed_waveform_error": 2.3623014100415674e-09,
+      "max_bvp_residual": 9.999949481703513e-09
     }
   },
-  "plot_script_sha256": "c8c7ff97e3f3c7b3aafae2ceaa680dda0710530dd2b68e82f36a6c028e43c9ea"
+  "plot_script_sha256": "fbfa3d8f9f72ec8c58e4808a7992087a6f8504c890be9057b72a247bb148d110"
 }

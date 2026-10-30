@@ -1,0 +1,36 @@
+{
+  "fixed": {
+    "AM": {
+      "sha256": "0b2c59c8bd76b7b89f280ddfefa37a9f6c799e894a126677b2852ef6ee3f39d5",
+      "source": "mixed_models_for_review.zip",
+      "note": ""
+    },
+    "FM": {
+      "sha256": "522e56c0c189572c0cbf156e1a5bf23d10402b3df670c780e7110c91a3ff90de",
+      "source": "mixed_models_for_review.zip",
+      "note": ""
+    },
+    "AFM": {
+      "sha256": "91c07d8550b7c2e3b125c5ddf0b26cf8ea6a17b7a7dee55cca0a9e1f0f0d78aa",
+      "source": "mixed_models_for_review.zip",
+      "note": ""
+    }
+  },
+  "no_fold": {
+    "AM": {
+      "sha256": "dcb83ea77b845afff5dfc74750e1000325c43a409c42975778d539d7913605ba",
+      "source": "free_hidden_for_review.zip",
+      "note": ""
+    },
+    "FM": {
+      "sha256": "44ea2b8555dc5118b52c6de61ff892deed0f465f5d8419c8611b6bc355f3d715",
+      "source": "free_hidden_for_review.zip",
+      "note": "earlier FM candidate; final frozen FM remains server-only"
+    },
+    "AFM": {
+      "sha256": "2c524fb21af13f58cc6babbd3e7adec3287412a2af5ca52cf60f2e7833d3bf14",
+      "source": "free_hidden_for_review.zip",
+      "note": ""
+    }
+  }
+}

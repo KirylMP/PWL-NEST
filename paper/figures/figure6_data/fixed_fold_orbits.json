@@ -1,0 +1,26 @@
+{
+  "AM": {
+    "I": 0.6383571385950001,
+    "period": 20.225132128605537,
+    "Cmin": 0.15566956614894234,
+    "Cmax": 0.6184041878244619,
+    "matching_error": 2.0799084676781376e-11,
+    "status": "stored local neutral orbit"
+  },
+  "FM": {
+    "I": 1.1231503496462252,
+    "period": 18.56767980018541,
+    "Cmin": 0.05196768223460284,
+    "Cmax": 1.1262994824148393,
+    "matching_error": 8.826273045769994e-15,
+    "status": "stored local neutral orbit"
+  },
+  "AFM": {
+    "I": 0.9056635644477613,
+    "period": 15.350287471712457,
+    "Cmin": 0.09034844051567485,
+    "Cmax": 0.968386880956826,
+    "matching_error": 1.1868284133242923e-13,
+    "status": "stored local neutral orbit"
+  }
+}

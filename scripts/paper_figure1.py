@@ -39,11 +39,33 @@ COLORS = dict(calcium='#e88719', gate='#26854b', stable='#265f98',
               unstable='#c43b40', maximum='#151515', minimum='#39a65a')
 PARAMETERS = dict(C0=2., c1=.185, rC=6., rL=.11, vER=.9, d1=.13,
                   d2=1.049, d3=.9434, d5=.08234, a2=.2,
-                  KER_AM=.1, KER_FM=.05)
+                  KER_AM=.1, KER_AFM=.075, KER_FM=.05)
 
 
 def field(case, y, ip3):
-    return lr_field(np.array([y[0], y[1], np.full_like(y[0], ip3)]).T, case).T
+    c, h = y
+    ker = PARAMETERS['KER_' + case]
+    q = 1.049 * (ip3 + .13) / (ip3 + .9434)
+    dc = (6*(ip3/(ip3+.13))**3*(c/(c+.08234))**3*h**3+.11)*(2-1.185*c)-.9*c*c/(c*c+ker*ker)
+    return np.array([dc, .2*(q-(q+c)*h)])
+
+def rhs(case, ip3):
+    return lambda t, y: field(case, y, ip3)
+
+def afm_events():
+    def inp(c): return brentq(lambda i: field('AFM', [c, equilibrium_h(c,i)], i)[0], 0, 1.3)
+    lo=brentq(lambda c: field('AFM',[c,equilibrium_h(c,0)],0)[0],1e-8,C_MAX)
+    hi=brentq(lambda c: field('AFM',[c,equilibrium_h(c,1.3)],1.3)[0],1e-8,C_MAX)
+    def values(c):
+        i=inp(c); h=equilibrium_h(c,i); j=jacobian('AFM',[c,h],i); t=np.trace(j); d=np.linalg.det(j)
+        return np.array([t,d,t*t-4*d])
+    grid=np.linspace(lo+1e-9,hi-1e-9,1601); v=np.array([values(c) for c in grid]); out=[]
+    for k,kind in enumerate(('trace_zero','fold','node_focus')):
+        for i in np.flatnonzero(v[:-1,k]*v[1:,k]<0):
+            c=brentq(lambda c: values(c)[k],grid[i],grid[i+1]); ip=inp(c); t,d,disc=values(c)
+            if kind=='trace_zero' and d<=0: continue
+            out.append(dict(kind=kind,C=float(c),h=float(equilibrium_h(c,ip)),I=float(ip),trace=float(t),determinant=float(d),discriminant=float(disc)))
+    return out
 
 
 def jacobian(case, y, ip3):
@@ -138,7 +160,7 @@ def continue_cycles(case, hopf, lower=False):
         if iteration % 30 == 0:
             print(f'{case} {"lower" if lower else "upper"}: '
                   f'I={sol.p[1]:.9f}, T={sol.p[0]:.4f} s', flush=True)
-        if case == 'AM' and sol.p[1] < .355 and sol.y[0].max() < .17:
+        if case in ('AM','AFM') and sol.p[1] < hopf['I'] and sol.y[0].max() < (0.19 if case == 'AM' else 0.13):
             break
         # The independently resolved part is selected by IVP validation later.
         if case == 'FM' and sol.p[0] >= 65:
@@ -167,7 +189,7 @@ def cycle_metrics(case, sol):
                                    & (peaks < 2 * (len(PHASE) - 1)))
     # Reverse-time integration attracts to an unstable planar cycle.
     direction = 1 if log_multiplier < 0 else -1
-    ivp = solve_ivp(lr_rhs(case, ip3), (0, direction * period), orbit[:, 0],
+    ivp = solve_ivp(rhs(case, ip3), (0, direction * period), orbit[:, 0],
                     method='DOP853', rtol=2e-11, atol=2e-13,
                     max_step=.06, dense_output=True)
     closure = float(np.max(np.abs(ivp.y[:, -1] - orbit[:, 0])))
@@ -218,10 +240,10 @@ def refine_cycle_fold(case, solutions, rows):
 
 
 def equilibria(case):
-    force = lambda c, ip3: lr_field([c, equilibrium_h(c, ip3), ip3], case)[0]
+    force = lambda c, ip3: field(case, [c, equilibrium_h(c, ip3)], ip3)[0]
     low = brentq(lambda c: force(c, 0), 1e-8, C_MAX)
     high = brentq(lambda c: force(c, 1.3), 1e-8, C_MAX)
-    events = spectral_events(case)
+    events = afm_events() if case == 'AFM' else spectral_events(case)
     calcium = np.unique(np.r_[np.linspace(low + 1e-10, high - 1e-10, 1801),
                               [e['C'] for e in events]])
     inputs, gates, stable, saddle = [], [], [], []
@@ -255,7 +277,7 @@ def compute():
                     reference_figure_doi='10.1007/s10867-009-9155-y',
                     events=[], validation={})
     all_rows = []
-    for case in ['AM', 'FM']:
+    for case in ['AM', 'AFM', 'FM']:
         eq, spectral = equilibria(case)
         np.savez_compressed(DATA / f'{case}_equilibria.npz', **eq)
         hopfs = sorted([e for e in spectral if e['kind'] == 'trace_zero'], key=lambda e: e['I'])
@@ -267,7 +289,7 @@ def compute():
             branches['upper'].extend(seed_cycle(case, hopfs[0], a)
                                      for a in [.012, .008, .004, .002, .001, .0002]
                                      if hopfs[0]['C'] + a < last_max)
-        else:
+        elif case == 'FM':
             branches['lower'] = continue_cycles(case, hopfs[0], lower=True)
         for name, solutions in branches.items():
             rows, orbits = zip(*(cycle_metrics(case, s) for s in solutions))
@@ -291,9 +313,9 @@ def compute():
                 displayed_period_range_s=[min(r['period_s'] for r in displayed),
                                           max(r['period_s'] for r in displayed)])
         # Independent algebraic checks of equilibria, nullclines, and Jacobian.
-        residual = np.max(np.abs(lr_field(np.column_stack([eq['C'], eq['h'], eq['I']]), case)))
+        residual = np.max(np.abs(field(case,[eq['C'], eq['h']],eq['I'])))
         c = np.linspace(.005, 1.2, 4001)
-        ip3 = .4 if case == 'AM' else .6
+        ip3 = {'AM':.4,'AFM':.5,'FM':.6}[case]
         hc, hh = nullclines(case, ip3, c)
         physical = (hc > 0) & (hc < 1)
         calcium_error = np.max(np.abs(field(case, np.array([c[physical], hc[physical]]), ip3)[0]))
@@ -308,13 +330,13 @@ def compute():
             calcium_nullcline_residual=float(calcium_error), gate_nullcline_residual=float(gate_error),
             jacobian_complex_step_error=float(jac_error))
         # A full cycle at the phase-plane input, obtained independently by IVP.
-        rhs = lr_rhs(case, ip3)
-        transient = solve_ivp(rhs, (0, 900), [.6 if case == 'AM' else 1., .8],
+        flow = rhs(case, ip3)
+        transient = solve_ivp(flow, (0, 900), [.6 if case == 'AM' else 1., .8],
                               method='DOP853', rtol=2e-11, atol=2e-13, max_step=.15)
         def peak(t, state):
-            return rhs(t, state)[0]
+            return flow(t, state)[0]
         peak.direction = -1
-        sol = solve_ivp(rhs, (0, 150), transient.y[:, -1], events=peak,
+        sol = solve_ivp(flow, (0, 150), transient.y[:, -1], events=peak,
                         method='DOP853', rtol=2e-11, atol=2e-13,
                         max_step=.06, dense_output=True)
         t0, t1 = sol.t_events[0][-2:]
@@ -343,7 +365,7 @@ def load_rows():
 def phase_panel(ax, case):
     data = np.load(DATA / f'{case}_phase_plane.npz')
     ip3, orbit = float(data['I']), data['orbit']
-    xmax = .8 if case == 'AM' else 1.15
+    xmax = {'AM':.8,'AFM':1.,'FM':1.15}[case]
     c = np.linspace(.0005, xmax, 5000)
     hc, hh = nullclines(case, ip3, c)
     cx, hy = np.meshgrid(np.linspace(.025, xmax - .015, 19), np.linspace(.42, .98, 17))
@@ -379,10 +401,10 @@ def plot():
         'ytick.direction': 'in', 'xtick.top': True, 'ytick.right': True,
         'xtick.labelsize': 7.5, 'ytick.labelsize': 7.5, 'pdf.fonttype': 42,
         'ps.fonttype': 42, 'svg.fonttype': 'none', 'savefig.dpi': 600})
-    fig, axes = plt.subplots(2, 3, figsize=(7.2, 4.5))
-    fig.subplots_adjust(left=.09, right=.985, bottom=.17, top=.89,
-                        wspace=.47, hspace=.63)
-    for n, case in enumerate(['AM', 'FM']):
+    fig, axes = plt.subplots(3, 3, figsize=(7.2, 7.0))
+    fig.subplots_adjust(left=.09, right=.985, bottom=.13, top=.93,
+                        wspace=.47, hspace=.62)
+    for n, case in enumerate(['AM', 'AFM', 'FM']):
         phase_panel(axes[n, 0], case)
         ax, period_ax = axes[n, 1:]
         eq = np.load(DATA / f'{case}_equilibria.npz')
@@ -390,7 +412,7 @@ def plot():
                                      (False, COLORS['unstable'], '--')]:
             ax.plot(eq['I'], np.where(eq['stable'] == stable, eq['C'], np.nan),
                     color=color, ls=style, lw=1.3)
-        branches = ['upper'] if case == 'AM' else ['upper', 'lower']
+        branches = ['upper'] if case in ('AM','AFM') else ['upper', 'lower']
         for branch in branches:
             selected = [r for r in rows if r['case'] == case and r['branch'] == branch and r['displayed']]
             for stable in [True, False]:
@@ -415,23 +437,23 @@ def plot():
                                facecolors=color, edgecolors='white', linewidths=.3, zorder=5)
                 period_ax.scatter(event['I'], event['period_s'], marker='D', s=15,
                                   color=COLORS['maximum'], zorder=5)
-        xlim = (.0, .8) if case == 'AM' else (.38, 1.2)
-        ax.set(xlim=xlim, ylim=(0, .7 if case == 'AM' else 1.2),
+        xlim = {'AM':(.0,.8),'AFM':(0,1.0),'FM':(.38,1.2)}[case]
+        ax.set(xlim=xlim, ylim=(0, {'AM':.7,'AFM':1.,'FM':1.2}[case]),
                xlabel=r'$[\mathrm{IP}_3]$ ($\mu$M)', ylabel=r'$[\mathrm{Ca}^{2+}]$ ($\mu$M)')
-        period_ax.set(xlim=(.34, .66) if case == 'AM' else (.5, 1.16),
-                      ylim=(9, 14) if case == 'AM' else (8, 65),
+        period_ax.set(xlim={'AM':(.34,.66),'AFM':(.35,.9),'FM':(.5,1.16)}[case],
+                      ylim={'AM':(9,14),'AFM':(8,35),'FM':(8,65)}[case],
                       xlabel=r'$[\mathrm{IP}_3]$ ($\mu$M)', ylabel='Period (s)')
         if case == 'FM':
             ax.set_xticks([.4, .6, .8, 1., 1.2])
             period_ax.set_xticks([.5, .7, .9, 1.1])
             period_ax.set_yticks([10, 20, 30, 40, 50, 60])
-    for ax, letter in zip(axes.flat, 'abcdef'):
+    for ax, letter in zip(axes.flat, 'abcdefghi'):
         ax.text(-.25, 1.055, letter, fontsize=10.5, fontweight='bold', transform=ax.transAxes)
-    for row, case in enumerate(['AM', 'FM']):
-        axes[row, 0].set_title(rf'{case}: $K_{{ER}}={PARAMETERS["KER_" + case]:.2f}\,\mu$M',
+    for row, case in enumerate(['AM', 'AFM', 'FM']):
+        axes[row, 0].set_title(rf'{case}: $K_{{ER}}={PARAMETERS["KER_" + case]:g}\,\mu$M',
                                loc='left', fontsize=8.5, pad=11)
     for col, title in enumerate(['Phase plane', 'Equilibria and limit cycles', 'Oscillation period']):
-        fig.text((.21, .545, .87)[col], .973, title, ha='center', fontsize=9)
+        fig.text((.21, .545, .87)[col], .985, title, ha='center', fontsize=9)
     handles = [Line2D([], [], color=COLORS['calcium'], lw=1.8, label=r'$\dot C=0$'),
                Line2D([], [], color=COLORS['gate'], lw=1.8, label=r'$\dot h=0$'),
                Line2D([], [], color=COLORS['stable'], lw=1.6, label='Stable equilibrium'),
