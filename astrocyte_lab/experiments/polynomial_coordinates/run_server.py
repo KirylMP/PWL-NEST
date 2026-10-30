@@ -81,5 +81,6 @@ def main():
    v=m.get('validation',{});metrics=v.get('metrics',{});tr=metrics.get('train',{});ho=metrics.get('holdout',{})
    w.writerow(dict(mode=m['mode'],family=m['family'],degree=m['degree'],status=m.get('fit_status',m['status']),min_derivative=m.get('min_derivative'),max_abs_z_error=m.get('max_abs_z_error'),train_loss=m.get('winner',{}).get('loss'),validation_exit=v.get('exit_code'),train_valid=tr.get('valid'),train_total=tr.get('total'),train_period=tr.get('mean_abs_period'),train_shape=tr.get('mean_abs_shape_rmse'),holdout_valid=ho.get('valid'),holdout_total=ho.get('total'),holdout_period=ho.get('mean_abs_period'),holdout_shape=ho.get('mean_abs_shape_rmse'),model=m.get('winner',{}).get('path')))
  print('SAVED',out/'summary.json','and',out/'results.csv',flush=True)
- if any(m.get('fit_status')=='no_candidate' or m.get('validation',{}).get('exit_code',0)!=0 for m in maps):raise SystemExit('Some viable maps have failed fits or validations; inspect results.csv and logs')
+ missing=[(mode,family) for mode in a.modes for family in ('taylor','chebyshev') if not any(m['mode']==mode and m['family']==family and m.get('validation',{}).get('exit_code')==0 for m in maps)]
+ if missing or any(m.get('fit_status')=='no_candidate' or m.get('validation',{}).get('exit_code',0)!=0 for m in maps):raise SystemExit(f'Some families lack successful fits or viable maps failed: missing={missing}; inspect results.csv and logs')
 if __name__=='__main__':main()
