@@ -1,0 +1,36 @@
+{
+  "note": "Linear tangent extensions in original G-ChI C,I,h coordinates. They are geometric proposals, not equilibria of a constructed PWA system. Hidden coordinate q is not identified with h. Input gamma is not assigned to virtual points.",
+  "A_C_I_h": [
+    0.1413662895296086,
+    0.4826275230335106,
+    0.761214133492684
+  ],
+  "B_C_I_h": [
+    0.19440002375914472,
+    0.5101655465229324,
+    0.7038348679734376
+  ],
+  "middle_C": 0.16788315664437667,
+  "tangent_d_C_I_h_by_dC_A": [
+    1.000000000001,
+    0.1127105713316645,
+    -1.266713897013494
+  ],
+  "tangent_d_C_I_h_by_dC_B": [
+    1.000000000001,
+    0.8518534086177086,
+    -0.917060765431854
+  ],
+  "gap_endpoints_at_middle_C": [
+    [
+      0.16788315664440318,
+      0.4856162542759419,
+      0.7276248494131472
+    ],
+    [
+      0.16788315664435016,
+      0.48757706288535446,
+      0.7281524464265616
+    ]
+  ]
+}
