@@ -1,0 +1,103 @@
+
+             -- N E S T --
+
+ Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.10.0
+ Built  : Jun 10 2026 07:01:20
+
+ This program is provided AS IS and comes with NO WARRANTY.
+ See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.1 to 1 ms
+[INFO] [2026-10-30 12:06:15] Temporal resolution changed from 0.1 to 1 ms.
+[INFO] [2026-10-30 12:06:15] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:06:15] Preparing 1 node for simulation.
+[INFO] [2026-10-30 12:06:15] Number of local nodes: 1
+Simulation time (ms): 1
+Number of OpenMP threads: 1
+Not using MPI
+[INFO] [2026-10-30 12:06:15] Simulation finished.
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.1 to 1 ms
+[INFO] [2026-10-30 12:06:15] Temporal resolution changed from 0.1 to 1 ms.
+[INFO] [2026-10-30 12:06:15] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:06:15] Preparing 1 node for simulation.
+[INFO] [2026-10-30 12:06:15] Number of local nodes: 1
+Simulation time (ms): 1
+Number of OpenMP threads: 1
+Not using MPI
+[INFO] [2026-10-30 12:06:15] Simulation finished.
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.1 to 1 ms
+[INFO] [2026-10-30 12:06:15] Temporal resolution changed from 0.1 to 1 ms.
+[INFO] [2026-10-30 12:06:15] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:06:15] Preparing 1 node for simulation.
+[INFO] [2026-10-30 12:06:15] Number of local nodes: 1
+Simulation time (ms): 1
+Number of OpenMP threads: 1
+Not using MPI
+[INFO] [2026-10-30 12:06:15] Simulation finished.
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.1 to 1 ms
+[INFO] [2026-10-30 12:06:15] Temporal resolution changed from 0.1 to 1 ms.
+[INFO] [2026-10-30 12:06:15] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:06:15] Preparing 1 node for simulation.
+[INFO] [2026-10-30 12:06:15] Number of local nodes: 1
+Simulation time (ms): 1
+Number of OpenMP threads: 1
+Not using MPI
+[INFO] [2026-10-30 12:06:15] Simulation finished.
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.5 to 5 ms
+[INFO] [2026-10-30 12:06:15] Default for delta_tau changed from 0.1 to 1 ms
+[INFO] [2026-10-30 12:06:15] Temporal resolution changed from 0.1 to 1 ms.
+[INFO] [2026-10-30 12:06:15] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:06:15] Preparing 1 node for simulation.
+[INFO] [2026-10-30 12:06:15] Number of local nodes: 1
+Simulation time (ms): 1
+Number of OpenMP threads: 1
+Not using MPI
+[INFO] [2026-10-30 12:06:15] Simulation finished.
+NEST_DOP853_CHECK [
+  {
+    "label": "equilibrium",
+    "C_initial": 0.04855209341230447,
+    "q_initial": 100.39014773747641,
+    "max_scaled_error": 0.0
+  },
+  {
+    "label": "cut_down",
+    "C_initial": 0.05214116272147651,
+    "q_initial": 117.8231345764634,
+    "max_scaled_error": 1.2061359565994934e-16
+  },
+  {
+    "label": "cut_up",
+    "C_initial": 0.05214116272147651,
+    "q_initial": 117.9231345764634,
+    "max_scaled_error": 4.82045275094194e-16
+  },
+  {
+    "label": "cut_down",
+    "C_initial": 0.3926251934101712,
+    "q_initial": 75.71561181614199,
+    "max_scaled_error": 1.8771042876801962e-16
+  },
+  {
+    "label": "cut_up",
+    "C_initial": 0.3926251934101712,
+    "q_initial": 75.81561181614198,
+    "max_scaled_error": 1.8746282509378425e-16
+  }
+]

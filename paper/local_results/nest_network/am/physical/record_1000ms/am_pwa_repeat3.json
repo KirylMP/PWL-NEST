@@ -1,0 +1,40 @@
+{
+  "case": "am",
+  "model": "pwa",
+  "graph": {
+    "neuron_to_neuron": {
+      "count": 90,
+      "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+    },
+    "neuron_to_astro": {
+      "count": 90,
+      "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+    },
+    "astro_to_neuron": {
+      "count": 90,
+      "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+    }
+  },
+  "initial_C": 0.11207929980333933,
+  "initial_h": -2.8078023917080728,
+  "baseline_ip3": 0.2,
+  "times_seconds": {
+    "build": 0.007960380986332893,
+    "prepare": 8.046100265346467e-05,
+    "run": 2.7314942950033583,
+    "cleanup": 1.4131976058706641e-05
+  },
+  "firing_rate_hz": 3.6566666666666667,
+  "astro_C_range": [
+    0.11238114891256416,
+    0.14680835338896178
+  ],
+  "astro_IP3_range": [
+    0.20828196632977267,
+    0.3252825755360141
+  ],
+  "sic_max": 0.0,
+  "notices": [
+    "No SIC observed in recorded neurons."
+  ]
+}

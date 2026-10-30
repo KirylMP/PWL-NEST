@@ -1,0 +1,38 @@
+{
+  "am_physical": {
+    "sha256": "03c87818201e40fcdeb193743c3c46306e10b025d96c0d2fa8f4623cde267acf",
+    "source": "paper/local_results/physical_no_fold_multistart/am/comparison/new_rank_01/parameters.json",
+    "validation": "paper/local_results/physical_no_fold_multistart/am/comparison/new_rank_01/validation.json",
+    "note": "Selected local fit, minimum training loss among six starts."
+  },
+  "am_mixed": {
+    "sha256": "dcb83ea77b845afff5dfc74750e1000325c43a409c42975778d539d7913605ba",
+    "source": "paper/local_results/physical_no_fold_multistart/am/comparison/frozen_mixed/parameters.json",
+    "validation": "paper/local_results/physical_no_fold_multistart/am/comparison/frozen_mixed/validation.json",
+    "note": "Previously archived mixed model."
+  },
+  "afm_physical": {
+    "sha256": "0609334d53bb60e62e30103c239a1ab675fe4610342a0208797b46ab8153ff4d",
+    "source": "paper/local_results/physical_no_fold_multistart/afm/comparison/new_rank_01/parameters.json",
+    "validation": "paper/local_results/physical_no_fold_multistart/afm/comparison/new_rank_01/validation.json",
+    "note": "Selected local fit, minimum training loss among six starts."
+  },
+  "afm_mixed": {
+    "sha256": "2c524fb21af13f58cc6babbd3e7adec3287412a2af5ca52cf60f2e7833d3bf14",
+    "source": "paper/local_results/physical_no_fold_multistart/afm/comparison/frozen_mixed/parameters.json",
+    "validation": "paper/local_results/physical_no_fold_multistart/afm/comparison/frozen_mixed/validation.json",
+    "note": "Previously archived mixed model."
+  },
+  "fm_physical": {
+    "sha256": "a2822b1f40b53b576696f754fa33fd787a53360ca885013aac455876938b40b3",
+    "source": "paper/local_results/physical_no_fold_multistart/fm/comparison/new_rank_01/parameters.json",
+    "validation": "paper/local_results/physical_no_fold_multistart/fm/comparison/new_rank_01/validation.json",
+    "note": "Selected local fit, minimum training loss among six starts."
+  },
+  "fm_mixed": {
+    "sha256": "44ea2b8555dc5118b52c6de61ff892deed0f465f5d8419c8611b6bc355f3d715",
+    "source": "paper/local_results/physical_no_fold_multistart/fm/comparison/frozen_mixed/parameters.json",
+    "validation": "paper/local_results/physical_no_fold_multistart/fm/comparison/frozen_mixed/validation.json",
+    "note": "Earlier archived mixed FM; final frozen server model unavailable."
+  }
+}

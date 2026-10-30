@@ -1,0 +1,288 @@
+{
+  "settings": {
+    "output": "/workspace/paper-local/paper/local_results/nest_network/fm/physical/record_10ms",
+    "case": "am",
+    "neurons": 10,
+    "duration": 60.0,
+    "dt": 0.1,
+    "threads": 2,
+    "seed": 100,
+    "repeats": 3,
+    "delta_ip3": 0.008,
+    "poisson_rate": 2000.0,
+    "weight": 1.0,
+    "record_interval": 10.0,
+    "K_ER": 0.05,
+    "baseline_ip3": 0.45
+  },
+  "nest_version": "3.10.0",
+  "candidate_manifest": {
+    "am": {
+      "path": "/workspace/paper-local/paper/local_results/nest_network/fm/physical/parameters.json",
+      "sha256": "a2822b1f40b53b576696f754fa33fd787a53360ca885013aac455876938b40b3",
+      "physical_thresholds_C": [
+        0.05214116272147651,
+        0.3926251934101712
+      ],
+      "coefficients_from": "alpha,beta,a,b,transform",
+      "case": "am",
+      "direct_calcium": true,
+      "hidden_coordinate": "identity",
+      "gate_power": 1.0
+    },
+    "fm": {
+      "path": "/workspace/paper-local/paper/local_results/nest_network/fm/physical/parameters.json",
+      "sha256": "a2822b1f40b53b576696f754fa33fd787a53360ca885013aac455876938b40b3",
+      "physical_thresholds_C": [
+        0.05214116272147651,
+        0.3926251934101712
+      ],
+      "coefficients_from": "alpha,beta,a,b,transform",
+      "case": "fm",
+      "direct_calcium": true,
+      "hidden_coordinate": "identity",
+      "gate_power": 1.0
+    }
+  },
+  "topology": "all-to-all directed, no autapses, one independent astrocyte per connection; record all astrocytes",
+  "results": {
+    "am": {
+      "lr": [
+        {
+          "case": "am",
+          "model": "lr",
+          "graph": {
+            "neuron_to_neuron": {
+              "count": 90,
+              "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+            },
+            "neuron_to_astro": {
+              "count": 90,
+              "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+            },
+            "astro_to_neuron": {
+              "count": 90,
+              "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+            }
+          },
+          "initial_C": 0.04252319858337997,
+          "initial_h": 0.9112560651867909,
+          "baseline_ip3": 0.45,
+          "times_seconds": {
+            "build": 0.0075781450141221285,
+            "prepare": 0.0001242180005647242,
+            "run": 16.09869424099452,
+            "cleanup": 1.524301478639245e-05
+          },
+          "firing_rate_hz": 3.6766666666666667,
+          "astro_C_range": [
+            0.030320385920199634,
+            1.028873090616697
+          ],
+          "astro_IP3_range": [
+            0.45,
+            0.5760447547745289
+          ],
+          "sic_max": 2.9079598029145366,
+          "notices": []
+        },
+        {
+          "case": "am",
+          "model": "lr",
+          "graph": {
+            "neuron_to_neuron": {
+              "count": 90,
+              "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+            },
+            "neuron_to_astro": {
+              "count": 90,
+              "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+            },
+            "astro_to_neuron": {
+              "count": 90,
+              "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+            }
+          },
+          "initial_C": 0.04252319858337997,
+          "initial_h": 0.9112560651867909,
+          "baseline_ip3": 0.45,
+          "times_seconds": {
+            "build": 0.008817612018901855,
+            "prepare": 0.00012404797598719597,
+            "run": 15.649897487979615,
+            "cleanup": 1.6434001736342907e-05
+          },
+          "firing_rate_hz": 3.6766666666666667,
+          "astro_C_range": [
+            0.030320385920199634,
+            1.028873090616697
+          ],
+          "astro_IP3_range": [
+            0.45,
+            0.5760447547745289
+          ],
+          "sic_max": 2.9079598029145366,
+          "notices": []
+        },
+        {
+          "case": "am",
+          "model": "lr",
+          "graph": {
+            "neuron_to_neuron": {
+              "count": 90,
+              "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+            },
+            "neuron_to_astro": {
+              "count": 90,
+              "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+            },
+            "astro_to_neuron": {
+              "count": 90,
+              "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+            }
+          },
+          "initial_C": 0.04252319858337997,
+          "initial_h": 0.9112560651867909,
+          "baseline_ip3": 0.45,
+          "times_seconds": {
+            "build": 0.006359728024108335,
+            "prepare": 6.155300070531666e-05,
+            "run": 16.233997339993948,
+            "cleanup": 1.5614001313224435e-05
+          },
+          "firing_rate_hz": 3.6766666666666667,
+          "astro_C_range": [
+            0.030320385920199634,
+            1.028873090616697
+          ],
+          "astro_IP3_range": [
+            0.45,
+            0.5760447547745289
+          ],
+          "sic_max": 2.9079598029145366,
+          "notices": []
+        }
+      ],
+      "pwa": [
+        {
+          "case": "am",
+          "model": "pwa",
+          "graph": {
+            "neuron_to_neuron": {
+              "count": 90,
+              "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+            },
+            "neuron_to_astro": {
+              "count": 90,
+              "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+            },
+            "astro_to_neuron": {
+              "count": 90,
+              "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+            }
+          },
+          "initial_C": 0.04855209341230447,
+          "initial_h": 100.39014773747641,
+          "baseline_ip3": 0.45,
+          "times_seconds": {
+            "build": 0.013009223999688402,
+            "prepare": 0.00016005098586902022,
+            "run": 3.263500291010132,
+            "cleanup": 1.590399187989533e-05
+          },
+          "firing_rate_hz": 3.67,
+          "astro_C_range": [
+            0.0370715260487964,
+            0.7068167743781374
+          ],
+          "astro_IP3_range": [
+            0.45,
+            0.5761052034919097
+          ],
+          "sic_max": 2.7728332593411142,
+          "notices": []
+        },
+        {
+          "case": "am",
+          "model": "pwa",
+          "graph": {
+            "neuron_to_neuron": {
+              "count": 90,
+              "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+            },
+            "neuron_to_astro": {
+              "count": 90,
+              "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+            },
+            "astro_to_neuron": {
+              "count": 90,
+              "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+            }
+          },
+          "initial_C": 0.04855209341230447,
+          "initial_h": 100.39014773747641,
+          "baseline_ip3": 0.45,
+          "times_seconds": {
+            "build": 0.0089121249911841,
+            "prepare": 0.00011207000352442265,
+            "run": 2.883314809005242,
+            "cleanup": 1.6164995031431317e-05
+          },
+          "firing_rate_hz": 3.67,
+          "astro_C_range": [
+            0.0370715260487964,
+            0.7068167743781374
+          ],
+          "astro_IP3_range": [
+            0.45,
+            0.5761052034919097
+          ],
+          "sic_max": 2.7728332593411142,
+          "notices": []
+        },
+        {
+          "case": "am",
+          "model": "pwa",
+          "graph": {
+            "neuron_to_neuron": {
+              "count": 90,
+              "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+            },
+            "neuron_to_astro": {
+              "count": 90,
+              "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+            },
+            "astro_to_neuron": {
+              "count": 90,
+              "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+            }
+          },
+          "initial_C": 0.04855209341230447,
+          "initial_h": 100.39014773747641,
+          "baseline_ip3": 0.45,
+          "times_seconds": {
+            "build": 0.00835130299674347,
+            "prepare": 7.159801316447556e-05,
+            "run": 3.123732705018483,
+            "cleanup": 1.6686011804267764e-05
+          },
+          "firing_rate_hz": 3.67,
+          "astro_C_range": [
+            0.0370715260487964,
+            0.7068167743781374
+          ],
+          "astro_IP3_range": [
+            0.45,
+            0.5761052034919097
+          ],
+          "sic_max": 2.7728332593411142,
+          "notices": []
+        }
+      ],
+      "median_lr_s": 16.09869424099452,
+      "median_pwa_s": 3.123732705018483,
+      "speedup": 5.1536721484302745,
+      "note": "One seed and identical checked connectivity; closed-loop spike histories can diverge."
+    }
+  }
+}

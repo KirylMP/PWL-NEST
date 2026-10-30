@@ -1,0 +1,719 @@
+{
+  "scope": "Physical C models with unrestricted q; no fold or Poincare constraint, no fold scan. Selection by training loss; DOP853 validation on common finite inputs.",
+  "snapshot": "/workspace/paper-local/astrocyte_lab/paper_models",
+  "settings": {
+    "starts": 6,
+    "jitter": 0.035,
+    "peak_weight": {
+      "fm": 1.0,
+      "afm": 0.0,
+      "am": 0.0
+    },
+    "duration": 350,
+    "validation_duration": 450,
+    "dt": 0.01
+  },
+  "trials": [
+    {
+      "mode": "fm",
+      "start": 0,
+      "peak_weight": 1.0,
+      "jitter": 0,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.879099192320359,
+      "initial_loss": 16.261282831088334,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 163
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 45,
+          "optimality": 837.2647473687,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_00/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_00/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 1,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.849462112598,
+      "initial_loss": 54.632201039096415,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 515
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 24,
+          "optimality": 0.014891599961524218,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_01/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_01/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 2,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.849499603665905,
+      "initial_loss": 21.55546372291456,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 1327
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 28,
+          "optimality": 0.014912399191250229,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_02/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_02/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 3,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.908396007971897,
+      "initial_loss": 44.48640191718528,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 177
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 304,
+          "optimality": 0.051781575359129715,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_03/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_03/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 4,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.849815294662225,
+      "initial_loss": 25.19232002561185,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 165
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 34,
+          "optimality": 0.04189031553236551,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_04/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_04/fit.log"
+    },
+    {
+      "mode": "fm",
+      "start": 5,
+      "peak_weight": 1.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 10.862115436202208,
+      "initial_loss": 16.34903982938536,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 157
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 29,
+          "optimality": 0.007785191645021897,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_05/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_05/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 0,
+      "peak_weight": 0.0,
+      "jitter": 0,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.1905551242556598,
+      "initial_loss": 3.4496304770339314,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 178
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 23,
+          "optimality": 0.004994346688082095,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_00/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_00/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 1,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.19055558435005687,
+      "initial_loss": 12.460047053014069,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 1795
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 25,
+          "optimality": 0.002314135010814747,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_01/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_01/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 2,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.1905806298816033,
+      "initial_loss": 1.4053474112558597,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 178
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 37,
+          "optimality": 0.0006019876852780843,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_02/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_02/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 3,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.19078995812530575,
+      "initial_loss": 4.867124360133648,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 174
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 37,
+          "optimality": 0.0037415174453548344,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_03/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_03/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 4,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.1905586047474598,
+      "initial_loss": 1.6106028750479315,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 180
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 29,
+          "optimality": 0.002992252273519546,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_04/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_04/fit.log"
+    },
+    {
+      "mode": "afm",
+      "start": 5,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.19055558512078066,
+      "initial_loss": 5.8314148855256125,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 176
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 26,
+          "optimality": 0.0019655779254036513,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_05/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_05/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 0,
+      "peak_weight": 0.0,
+      "jitter": 0,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.6547621249264077,
+      "initial_loss": 2.7463447678236226,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 365
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 27,
+          "optimality": 387.0017178389689,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_00/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_00/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 1,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.04151166797364197,
+      "initial_loss": 20.988746394761748,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 337
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 42,
+          "optimality": 0.00035511247901626284,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_01/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_01/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 2,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.041511902551536466,
+      "initial_loss": 2.4265732366356887,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 1357
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 22,
+          "optimality": 0.0011632219330962453,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_02/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_02/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 3,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.04151153699064044,
+      "initial_loss": 19.389783025945377,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 369
+        },
+        "least_squares": {
+          "success": true,
+          "message": "Both `ftol` and `xtol` termination conditions are satisfied.",
+          "nfev": 37,
+          "optimality": 0.00040483991890458344,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_03/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_03/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 4,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.04151160941130797,
+      "initial_loss": 4.082992911709408,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 756
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 35,
+          "optimality": 0.0003168800578920524,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_04/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_04/fit.log"
+    },
+    {
+      "mode": "am",
+      "start": 5,
+      "peak_weight": 0.0,
+      "jitter": 0.035,
+      "exit_code": 0,
+      "status": "training_cycles_found",
+      "loss": 0.04151179526364267,
+      "initial_loss": 4.66808764949509,
+      "optimizers": {
+        "powell": {
+          "success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 2814
+        },
+        "least_squares": {
+          "success": true,
+          "message": "`xtol` termination condition is satisfied.",
+          "nfev": 25,
+          "optimality": 0.000531002647737151,
+          "finite_difference_relative": 0.001
+        }
+      },
+      "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_05/parameters.json",
+      "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_05/fit.log"
+    }
+  ],
+  "validation": {
+    "fm": {
+      "old_physical": {
+        "exit_code": 0,
+        "source": "/workspace/paper-local/astrocyte_lab/paper_models/fm_physical/parameters.json",
+        "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/old_physical/validation.json",
+        "plot": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/old_physical/comparison.png",
+        "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/old_physical/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.0022213326551950015,
+            "mean_abs_Cmax": 0.24044207968223688,
+            "mean_abs_period": 0.5681046050454727,
+            "mean_abs_shape_rmse": 0.19074364707689231
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.002448429637399576,
+            "mean_abs_Cmax": 0.21791158777615888,
+            "mean_abs_period": 0.6534305011593347,
+            "mean_abs_shape_rmse": 0.2009198568799995
+          }
+        }
+      },
+      "frozen_mixed": {
+        "exit_code": 0,
+        "source": "/workspace/paper-local/astrocyte_lab/paper_models/fm_mixed/parameters.json",
+        "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/frozen_mixed/validation.json",
+        "plot": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/frozen_mixed/comparison.png",
+        "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/frozen_mixed/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.002151995803786657,
+            "mean_abs_Cmax": 0.061916956007257266,
+            "mean_abs_period": 0.43398039795633686,
+            "mean_abs_shape_rmse": 0.06683362830324231
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.00258904036930516,
+            "mean_abs_Cmax": 0.0624311102799025,
+            "mean_abs_period": 0.4166457201273488,
+            "mean_abs_shape_rmse": 0.06842980373371005
+          }
+        }
+      },
+      "new_rank_01": {
+        "exit_code": 0,
+        "source": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/trial_01/parameters.json",
+        "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/new_rank_01/validation.json",
+        "plot": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/new_rank_01/comparison.png",
+        "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/new_rank_01/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.005057634530248553,
+            "mean_abs_Cmax": 0.1339423880861887,
+            "mean_abs_period": 1.0693847619876433,
+            "mean_abs_shape_rmse": 0.19195157162695672
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.004916893486393636,
+            "mean_abs_Cmax": 0.12755836521296457,
+            "mean_abs_period": 0.7433419905395766,
+            "mean_abs_shape_rmse": 0.20458976321682332
+          }
+        }
+      }
+    },
+    "afm": {
+      "old_physical": {
+        "exit_code": 0,
+        "source": "/workspace/paper-local/astrocyte_lab/paper_models/afm_physical/parameters.json",
+        "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/old_physical/validation.json",
+        "plot": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/old_physical/comparison.png",
+        "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/old_physical/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.004358067319439564,
+            "mean_abs_Cmax": 0.139193089830488,
+            "mean_abs_period": 1.8664533674277177,
+            "mean_abs_shape_rmse": 0.11158872789622067
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.0038553772366970024,
+            "mean_abs_Cmax": 0.16049166233410306,
+            "mean_abs_period": 1.802781527267598,
+            "mean_abs_shape_rmse": 0.12831587321338614
+          }
+        }
+      },
+      "frozen_mixed": {
+        "exit_code": 0,
+        "source": "/workspace/paper-local/astrocyte_lab/paper_models/afm_mixed/parameters.json",
+        "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/frozen_mixed/validation.json",
+        "plot": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/frozen_mixed/comparison.png",
+        "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/frozen_mixed/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.012248847457814972,
+            "mean_abs_Cmax": 0.005447835114279994,
+            "mean_abs_period": 0.10164895485429984,
+            "mean_abs_shape_rmse": 0.009949700261915701
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.011227864849462447,
+            "mean_abs_Cmax": 0.003168864726566495,
+            "mean_abs_period": 0.1685747898350627,
+            "mean_abs_shape_rmse": 0.010542968115454769
+          }
+        }
+      },
+      "new_rank_01": {
+        "exit_code": 0,
+        "source": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_00/parameters.json",
+        "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/new_rank_01/validation.json",
+        "plot": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/new_rank_01/comparison.png",
+        "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/new_rank_01/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.01740839006352151,
+            "mean_abs_Cmax": 0.055642130251030854,
+            "mean_abs_period": 0.15151714468142277,
+            "mean_abs_shape_rmse": 0.033059997151014826
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.01622458343018509,
+            "mean_abs_Cmax": 0.05460339804227926,
+            "mean_abs_period": 0.1122988755648322,
+            "mean_abs_shape_rmse": 0.03531129020472025
+          }
+        }
+      }
+    },
+    "am": {
+      "old_physical": {
+        "exit_code": 0,
+        "source": "/workspace/paper-local/astrocyte_lab/paper_models/am_physical/parameters.json",
+        "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/comparison/old_physical/validation.json",
+        "plot": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/comparison/old_physical/comparison.png",
+        "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/comparison/old_physical/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.029335253339607632,
+            "mean_abs_Cmax": 0.06707481838001476,
+            "mean_abs_period": 2.6892738928530417,
+            "mean_abs_shape_rmse": 0.05817960604324362
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.029230412042609465,
+            "mean_abs_Cmax": 0.07397453881494048,
+            "mean_abs_period": 3.1671982177743274,
+            "mean_abs_shape_rmse": 0.06346952519218484
+          }
+        }
+      },
+      "frozen_mixed": {
+        "exit_code": 0,
+        "source": "/workspace/paper-local/astrocyte_lab/paper_models/am_mixed/parameters.json",
+        "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/comparison/frozen_mixed/validation.json",
+        "plot": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/comparison/frozen_mixed/comparison.png",
+        "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/comparison/frozen_mixed/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.009098786659659902,
+            "mean_abs_Cmax": 0.007628904046668292,
+            "mean_abs_period": 0.07332619829894936,
+            "mean_abs_shape_rmse": 0.009062934027908382
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.012356765277001736,
+            "mean_abs_Cmax": 0.010413688286308315,
+            "mean_abs_period": 0.10759845695996262,
+            "mean_abs_shape_rmse": 0.01115041209676948
+          }
+        }
+      },
+      "new_rank_01": {
+        "exit_code": 0,
+        "source": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_03/parameters.json",
+        "path": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/comparison/new_rank_01/validation.json",
+        "plot": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/comparison/new_rank_01/comparison.png",
+        "log": "/workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/comparison/new_rank_01/validate.log",
+        "metrics": {
+          "train": {
+            "total": 7,
+            "valid": 7,
+            "mean_abs_Cmin": 0.01786066134353972,
+            "mean_abs_Cmax": 0.016631024299510282,
+            "mean_abs_period": 0.11792610278516642,
+            "mean_abs_shape_rmse": 0.015450937211899678
+          },
+          "holdout": {
+            "total": 4,
+            "valid": 4,
+            "mean_abs_Cmin": 0.02196112393307203,
+            "mean_abs_Cmax": 0.01436211879309239,
+            "mean_abs_period": 0.2054602066525888,
+            "mean_abs_shape_rmse": 0.017635147362425548
+          }
+        }
+      }
+    }
+  }
+}

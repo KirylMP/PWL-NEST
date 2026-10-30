@@ -1,0 +1,95 @@
+
+             -- N E S T --
+
+ Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.10.0
+ Built  : Jun 10 2026 07:01:20
+
+ This program is provided AS IS and comes with NO WARRANTY.
+ See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+NETWORK start case=am model=lr repeat=1/3
+[WARNING] [2026-10-30 11:59:48] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 11:59:48] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 11:59:48] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 11:59:48] Preparing 108 nodes for simulation.
+[INFO] [2026-10-30 11:59:48] Number of local nodes: 108
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:00:06] Simulation finished.
+NETWORK done case=am model=lr time=18.007s rate=3.657Hz IP3=[0.2, 0.32610508528776094] SICmax=0
+NETWORK NOTE No SIC observed in recorded neurons.
+NETWORK start case=am model=pwa repeat=1/3
+[WARNING] [2026-10-30 12:00:06] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:00:06] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:00:06] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:00:06] Preparing 108 nodes for simulation.
+[INFO] [2026-10-30 12:00:06] Number of local nodes: 108
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:00:09] Simulation finished.
+NETWORK done case=am model=pwa time=3.220s rate=3.657Hz IP3=[0.2, 0.32610508529159676] SICmax=0
+NETWORK NOTE No SIC observed in recorded neurons.
+NETWORK start case=am model=pwa repeat=2/3
+[WARNING] [2026-10-30 12:00:10] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:00:10] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:00:10] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:00:10] Preparing 108 nodes for simulation.
+[INFO] [2026-10-30 12:00:10] Number of local nodes: 108
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:00:13] Simulation finished.
+NETWORK done case=am model=pwa time=2.959s rate=3.657Hz IP3=[0.2, 0.32610508529159676] SICmax=0
+NETWORK NOTE No SIC observed in recorded neurons.
+NETWORK start case=am model=lr repeat=2/3
+[WARNING] [2026-10-30 12:00:13] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:00:13] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:00:13] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:00:13] Preparing 108 nodes for simulation.
+[INFO] [2026-10-30 12:00:13] Number of local nodes: 108
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:00:29] Simulation finished.
+NETWORK done case=am model=lr time=15.967s rate=3.657Hz IP3=[0.2, 0.32610508528776094] SICmax=0
+NETWORK NOTE No SIC observed in recorded neurons.
+NETWORK start case=am model=lr repeat=3/3
+[WARNING] [2026-10-30 12:00:29] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:00:29] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:00:29] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:00:29] Preparing 108 nodes for simulation.
+[INFO] [2026-10-30 12:00:29] Number of local nodes: 108
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:00:45] Simulation finished.
+NETWORK done case=am model=lr time=16.105s rate=3.657Hz IP3=[0.2, 0.32610508528776094] SICmax=0
+NETWORK NOTE No SIC observed in recorded neurons.
+NETWORK start case=am model=pwa repeat=3/3
+[WARNING] [2026-10-30 12:00:45] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:00:45] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:00:45] loaded module pwa_astrocyte_module
+[INFO] [2026-10-30 12:00:45] Preparing 108 nodes for simulation.
+[INFO] [2026-10-30 12:00:45] Number of local nodes: 108
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:00:48] Simulation finished.
+NETWORK done case=am model=pwa time=2.775s rate=3.657Hz IP3=[0.2, 0.32610508529159676] SICmax=0
+NETWORK NOTE No SIC observed in recorded neurons.
+NETWORK RESULT am: LR=16.105s PWA=2.959s speedup=5.444

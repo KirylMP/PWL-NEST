@@ -1,0 +1,8 @@
+{
+  "architecture": "x86_64",
+  "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+  "cpu_quota_max": "200000 100000",
+  "os": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "note": "cgroup permits two CPU equivalents; shared virtual host, timing not comparable to historical server"
+}

@@ -1,0 +1,1259 @@
+{
+  "scope": "Finite closed-loop network with 100 fixed neurons and variable independent astrocytes. SIC normalized per target; sampled oscillations not assumed.",
+  "settings": {
+    "out": "/workspace/paper-local/paper/local_results/nest_scaling/physical",
+    "reuse_lr": null,
+    "ratios": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "neurons": 100,
+    "indegree": 10,
+    "duration": 60.0,
+    "dt": 0.1,
+    "threads": 2,
+    "repeats": 3,
+    "seed": 100,
+    "record_interval": 10.0,
+    "ip3": 0.6,
+    "delta_ip3": 0.0002,
+    "poisson_rate": 2000,
+    "weight": 1,
+    "sic_weight": 0.05
+  },
+  "candidate": {
+    "path": "/workspace/paper-local/paper/local_results/nest_scaling/physical/parameters.json",
+    "sha256": "a2822b1f40b53b576696f754fa33fd787a53360ca885013aac455876938b40b3",
+    "physical_thresholds_C": [
+      0.05214116272147651,
+      0.3926251934101712
+    ],
+    "coefficients_from": "alpha,beta,a,b,transform",
+    "case": "am",
+    "direct_calcium": true,
+    "hidden_coordinate": "identity",
+    "gate_power": 1.0
+  },
+  "neuron_edge_count": 1000,
+  "neuron_edge_sha256": "2936d71a60cc69689d675bf3347ae5a6978917c644e51780f2b373544ee73ab4",
+  "ratios": {
+    "1": {
+      "lr": [
+        {
+          "kind": "lr",
+          "ratio": 1,
+          "neurons": 100,
+          "astrocytes": 100,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 100,
+              "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"
+            },
+            "astro_neuron": {
+              "count": 100,
+              "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"
+            }
+          },
+          "run_s": 30.30592732600053,
+          "build_s": 0.9738840920035727,
+          "prepare_s": 0.00047642801655456424,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478883570606515,
+            1.0359564623163493
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.05
+        },
+        {
+          "kind": "lr",
+          "ratio": 1,
+          "neurons": 100,
+          "astrocytes": 100,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 100,
+              "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"
+            },
+            "astro_neuron": {
+              "count": 100,
+              "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"
+            }
+          },
+          "run_s": 27.63921778401709,
+          "build_s": 1.0351162060105707,
+          "prepare_s": 0.00025474399444647133,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478883570606515,
+            1.0359564623163493
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.05
+        },
+        {
+          "kind": "lr",
+          "ratio": 1,
+          "neurons": 100,
+          "astrocytes": 100,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 100,
+              "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"
+            },
+            "astro_neuron": {
+              "count": 100,
+              "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"
+            }
+          },
+          "run_s": 27.985734955000225,
+          "build_s": 1.062881345016649,
+          "prepare_s": 0.00032521001412533224,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478883570606515,
+            1.0359564623163493
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.05
+        }
+      ],
+      "pwa": [
+        {
+          "kind": "pwa",
+          "ratio": 1,
+          "neurons": 100,
+          "astrocytes": 100,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 100,
+              "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"
+            },
+            "astro_neuron": {
+              "count": 100,
+              "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"
+            }
+          },
+          "run_s": 13.831213627010584,
+          "build_s": 1.1180623300024308,
+          "prepare_s": 0.00037012898246757686,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208496619455115,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.05
+        },
+        {
+          "kind": "pwa",
+          "ratio": 1,
+          "neurons": 100,
+          "astrocytes": 100,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 100,
+              "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"
+            },
+            "astro_neuron": {
+              "count": 100,
+              "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"
+            }
+          },
+          "run_s": 13.726303443982033,
+          "build_s": 1.0483035779907368,
+          "prepare_s": 0.00034858498838730156,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208496619455115,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.05
+        },
+        {
+          "kind": "pwa",
+          "ratio": 1,
+          "neurons": 100,
+          "astrocytes": 100,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 100,
+              "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"
+            },
+            "astro_neuron": {
+              "count": 100,
+              "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"
+            }
+          },
+          "run_s": 14.607051568018505,
+          "build_s": 1.0781160979822744,
+          "prepare_s": 0.0006890709919389337,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208496619455115,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.05
+        }
+      ],
+      "lr_median_s": 27.985734955000225,
+      "pwa_median_s": 13.831213627010584,
+      "speedup": 2.023375222861693
+    },
+    "2": {
+      "lr": [
+        {
+          "kind": "lr",
+          "ratio": 2,
+          "neurons": 100,
+          "astrocytes": 200,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 200,
+              "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"
+            },
+            "astro_neuron": {
+              "count": 200,
+              "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"
+            }
+          },
+          "run_s": 44.50306878000265,
+          "build_s": 1.164167451002868,
+          "prepare_s": 0.0006519239977933466,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.025
+        },
+        {
+          "kind": "lr",
+          "ratio": 2,
+          "neurons": 100,
+          "astrocytes": 200,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 200,
+              "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"
+            },
+            "astro_neuron": {
+              "count": 200,
+              "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"
+            }
+          },
+          "run_s": 50.49529679000261,
+          "build_s": 1.1777421480219346,
+          "prepare_s": 0.0005179309810046107,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.025
+        },
+        {
+          "kind": "lr",
+          "ratio": 2,
+          "neurons": 100,
+          "astrocytes": 200,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 200,
+              "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"
+            },
+            "astro_neuron": {
+              "count": 200,
+              "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"
+            }
+          },
+          "run_s": 44.57925813100883,
+          "build_s": 1.1263519040076062,
+          "prepare_s": 0.0005543760198634118,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.025
+        }
+      ],
+      "pwa": [
+        {
+          "kind": "pwa",
+          "ratio": 2,
+          "neurons": 100,
+          "astrocytes": 200,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 200,
+              "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"
+            },
+            "astro_neuron": {
+              "count": 200,
+              "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"
+            }
+          },
+          "run_s": 15.25751725799637,
+          "build_s": 1.0369399840128608,
+          "prepare_s": 0.00047657900722697377,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.025
+        },
+        {
+          "kind": "pwa",
+          "ratio": 2,
+          "neurons": 100,
+          "astrocytes": 200,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 200,
+              "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"
+            },
+            "astro_neuron": {
+              "count": 200,
+              "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"
+            }
+          },
+          "run_s": 16.13797793001868,
+          "build_s": 1.1120326520176604,
+          "prepare_s": 0.0006130840047262609,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.025
+        },
+        {
+          "kind": "pwa",
+          "ratio": 2,
+          "neurons": 100,
+          "astrocytes": 200,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 200,
+              "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"
+            },
+            "astro_neuron": {
+              "count": 200,
+              "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"
+            }
+          },
+          "run_s": 15.744399754999904,
+          "build_s": 1.0175740139966365,
+          "prepare_s": 0.00044074500328861177,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.025
+        }
+      ],
+      "lr_median_s": 44.57925813100883,
+      "pwa_median_s": 15.744399754999904,
+      "speedup": 2.83143586447949
+    },
+    "4": {
+      "lr": [
+        {
+          "kind": "lr",
+          "ratio": 4,
+          "neurons": 100,
+          "astrocytes": 400,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 400,
+              "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"
+            },
+            "astro_neuron": {
+              "count": 400,
+              "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"
+            }
+          },
+          "run_s": 77.45649458799744,
+          "build_s": 1.0698209200054407,
+          "prepare_s": 0.0009973640262614936,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.0125
+        },
+        {
+          "kind": "lr",
+          "ratio": 4,
+          "neurons": 100,
+          "astrocytes": 400,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 400,
+              "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"
+            },
+            "astro_neuron": {
+              "count": 400,
+              "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"
+            }
+          },
+          "run_s": 75.27605862999917,
+          "build_s": 1.0104353089991491,
+          "prepare_s": 0.000824613991426304,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.0125
+        },
+        {
+          "kind": "lr",
+          "ratio": 4,
+          "neurons": 100,
+          "astrocytes": 400,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 400,
+              "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"
+            },
+            "astro_neuron": {
+              "count": 400,
+              "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"
+            }
+          },
+          "run_s": 77.80768317301408,
+          "build_s": 1.1588271289947443,
+          "prepare_s": 0.0005900859832763672,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.0125
+        }
+      ],
+      "pwa": [
+        {
+          "kind": "pwa",
+          "ratio": 4,
+          "neurons": 100,
+          "astrocytes": 400,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 400,
+              "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"
+            },
+            "astro_neuron": {
+              "count": 400,
+              "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"
+            }
+          },
+          "run_s": 20.226810232008575,
+          "build_s": 1.175035595020745,
+          "prepare_s": 0.0008072280033957213,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.0125
+        },
+        {
+          "kind": "pwa",
+          "ratio": 4,
+          "neurons": 100,
+          "astrocytes": 400,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 400,
+              "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"
+            },
+            "astro_neuron": {
+              "count": 400,
+              "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"
+            }
+          },
+          "run_s": 20.938583025999833,
+          "build_s": 1.178922994993627,
+          "prepare_s": 0.0008377929916605353,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.0125
+        },
+        {
+          "kind": "pwa",
+          "ratio": 4,
+          "neurons": 100,
+          "astrocytes": 400,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 400,
+              "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"
+            },
+            "astro_neuron": {
+              "count": 400,
+              "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"
+            }
+          },
+          "run_s": 20.2490819109953,
+          "build_s": 1.1240792769822292,
+          "prepare_s": 0.000715993985068053,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.0125
+        }
+      ],
+      "lr_median_s": 77.45649458799744,
+      "pwa_median_s": 20.2490819109953,
+      "speedup": 3.825185503641939
+    },
+    "8": {
+      "lr": [
+        {
+          "kind": "lr",
+          "ratio": 8,
+          "neurons": 100,
+          "astrocytes": 800,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 800,
+              "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"
+            },
+            "astro_neuron": {
+              "count": 800,
+              "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"
+            }
+          },
+          "run_s": 144.97864172401023,
+          "build_s": 1.1739744810038246,
+          "prepare_s": 0.0014987649919930845,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.00625
+        },
+        {
+          "kind": "lr",
+          "ratio": 8,
+          "neurons": 100,
+          "astrocytes": 800,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 800,
+              "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"
+            },
+            "astro_neuron": {
+              "count": 800,
+              "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"
+            }
+          },
+          "run_s": 140.90257519797888,
+          "build_s": 1.2496368190040812,
+          "prepare_s": 0.0011329080152790993,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.00625
+        },
+        {
+          "kind": "lr",
+          "ratio": 8,
+          "neurons": 100,
+          "astrocytes": 800,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 800,
+              "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"
+            },
+            "astro_neuron": {
+              "count": 800,
+              "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"
+            }
+          },
+          "run_s": 139.2038598729996,
+          "build_s": 1.057620620005764,
+          "prepare_s": 0.001110946002881974,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.00625
+        }
+      ],
+      "pwa": [
+        {
+          "kind": "pwa",
+          "ratio": 8,
+          "neurons": 100,
+          "astrocytes": 800,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 800,
+              "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"
+            },
+            "astro_neuron": {
+              "count": 800,
+              "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"
+            }
+          },
+          "run_s": 26.128687794000143,
+          "build_s": 1.0291576599993277,
+          "prepare_s": 0.0010101239895448089,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.00625
+        },
+        {
+          "kind": "pwa",
+          "ratio": 8,
+          "neurons": 100,
+          "astrocytes": 800,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 800,
+              "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"
+            },
+            "astro_neuron": {
+              "count": 800,
+              "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"
+            }
+          },
+          "run_s": 26.941241550986888,
+          "build_s": 1.2645424989750609,
+          "prepare_s": 0.001379669993184507,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.00625
+        },
+        {
+          "kind": "pwa",
+          "ratio": 8,
+          "neurons": 100,
+          "astrocytes": 800,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 800,
+              "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"
+            },
+            "astro_neuron": {
+              "count": 800,
+              "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"
+            }
+          },
+          "run_s": 25.284246678987984,
+          "build_s": 1.094220197002869,
+          "prepare_s": 0.0009787220042198896,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.3205127868768813,
+          "sic_weight_per_astro": 0.00625
+        }
+      ],
+      "lr_median_s": 140.90257519797888,
+      "pwa_median_s": 26.128687794000143,
+      "speedup": 5.39263878495781
+    },
+    "16": {
+      "lr": [
+        {
+          "kind": "lr",
+          "ratio": 16,
+          "neurons": 100,
+          "astrocytes": 1600,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 1600,
+              "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"
+            },
+            "astro_neuron": {
+              "count": 1600,
+              "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"
+            }
+          },
+          "run_s": 265.3936917320243,
+          "build_s": 1.2333961380063556,
+          "prepare_s": 0.00266669801203534,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.003125
+        },
+        {
+          "kind": "lr",
+          "ratio": 16,
+          "neurons": 100,
+          "astrocytes": 1600,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 1600,
+              "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"
+            },
+            "astro_neuron": {
+              "count": 1600,
+              "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"
+            }
+          },
+          "run_s": 272.4882478970103,
+          "build_s": 1.1401825539942365,
+          "prepare_s": 0.002296524995472282,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.003125
+        },
+        {
+          "kind": "lr",
+          "ratio": 16,
+          "neurons": 100,
+          "astrocytes": 1600,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 1600,
+              "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"
+            },
+            "astro_neuron": {
+              "count": 1600,
+              "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"
+            }
+          },
+          "run_s": 265.54444196799886,
+          "build_s": 1.193210708006518,
+          "prepare_s": 0.003078482986893505,
+          "rate_hz": 3.61,
+          "sampled_C_range": [
+            0.030478925288051597,
+            1.0359458481798198
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258217660594
+          ],
+          "first_astro_peaks": 3,
+          "first_astro_C_range": [
+            0.03047930201959609,
+            1.0359458481798198
+          ],
+          "max_abs_sic": 0.3366264251978243,
+          "sic_weight_per_astro": 0.003125
+        }
+      ],
+      "pwa": [
+        {
+          "kind": "pwa",
+          "ratio": 16,
+          "neurons": 100,
+          "astrocytes": 1600,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 1600,
+              "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"
+            },
+            "astro_neuron": {
+              "count": 1600,
+              "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"
+            }
+          },
+          "run_s": 40.95231902899104,
+          "build_s": 1.13805405999301,
+          "prepare_s": 0.001829149987315759,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.32051278687688123,
+          "sic_weight_per_astro": 0.003125
+        },
+        {
+          "kind": "pwa",
+          "ratio": 16,
+          "neurons": 100,
+          "astrocytes": 1600,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 1600,
+              "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"
+            },
+            "astro_neuron": {
+              "count": 1600,
+              "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"
+            }
+          },
+          "run_s": 34.99335685800179,
+          "build_s": 1.179276695009321,
+          "prepare_s": 0.0017614969983696938,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.32051278687688123,
+          "sic_weight_per_astro": 0.003125
+        },
+        {
+          "kind": "pwa",
+          "ratio": 16,
+          "neurons": 100,
+          "astrocytes": 1600,
+          "graph": {
+            "neuron_neuron": {
+              "count": 1000,
+              "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"
+            },
+            "neuron_astro": {
+              "count": 1600,
+              "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"
+            },
+            "astro_neuron": {
+              "count": 1600,
+              "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"
+            }
+          },
+          "run_s": 37.69828291499289,
+          "build_s": 1.1457049029995687,
+          "prepare_s": 0.0017714120040182024,
+          "rate_hz": 3.6098333333333334,
+          "sampled_C_range": [
+            0.028208363851717395,
+            0.8047393457982446
+          ],
+          "sampled_IP3_range": [
+            0.6,
+            0.6031258309640939
+          ],
+          "first_astro_peaks": 2,
+          "first_astro_C_range": [
+            0.028208649886101257,
+            0.8047393457982446
+          ],
+          "max_abs_sic": 0.32051278687688123,
+          "sic_weight_per_astro": 0.003125
+        }
+      ],
+      "lr_median_s": 265.54444196799886,
+      "pwa_median_s": 37.69828291499289,
+      "speedup": 7.043939973785646
+    }
+  }
+}

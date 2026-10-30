@@ -1,0 +1,38 @@
+{
+  "case": "am",
+  "model": "pwa",
+  "graph": {
+    "neuron_to_neuron": {
+      "count": 90,
+      "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+    },
+    "neuron_to_astro": {
+      "count": 90,
+      "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+    },
+    "astro_to_neuron": {
+      "count": 90,
+      "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+    }
+  },
+  "initial_C": 0.08377307448697549,
+  "initial_h": 7.905865868298293,
+  "baseline_ip3": 0.3,
+  "times_seconds": {
+    "build": 0.008437912998488173,
+    "prepare": 7.170799653977156e-05,
+    "run": 4.008468782994896,
+    "cleanup": 0.00011270897812210023
+  },
+  "firing_rate_hz": 3.6733333333333333,
+  "astro_C_range": [
+    0.03555214812275342,
+    0.6104496948669158
+  ],
+  "astro_IP3_range": [
+    0.3,
+    0.42610381557452326
+  ],
+  "sic_max": 2.68842210911405,
+  "notices": []
+}

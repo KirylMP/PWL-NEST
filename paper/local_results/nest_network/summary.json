@@ -1,0 +1,523 @@
+{
+  "scope": "NEST all-to-all closed-loop network; whole nest.Run timing, all astrocytes observed. Ratio does not isolate mathematical transform cost.",
+  "rows": [
+    {
+      "mode": "afm",
+      "coordinate": "mixed",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 16.14128952298779,
+      "pwa_median_s": 4.203396901983069,
+      "lr_over_pwa": 3.8400583859622412,
+      "lr_runs_s": [
+        16.14128952298779,
+        16.198751218005782,
+        16.003620239993325
+      ],
+      "pwa_runs_s": [
+        4.4856568230025005,
+        4.169428610999603,
+        4.203396901983069
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "2c524fb21af13f58cc6babbd3e7adec3287412a2af5ca52cf60f2e7833d3bf14",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/afm/mixed/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "afm",
+      "coordinate": "mixed",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 15.90238785999827,
+      "pwa_median_s": 4.4296322370064445,
+      "lr_over_pwa": 3.5900018351738248,
+      "lr_runs_s": [
+        15.997895165986847,
+        15.90238785999827,
+        15.351551414001733
+      ],
+      "pwa_runs_s": [
+        4.4296322370064445,
+        4.437188925978262,
+        4.008468782994896
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "2c524fb21af13f58cc6babbd3e7adec3287412a2af5ca52cf60f2e7833d3bf14",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/afm/mixed/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "afm",
+      "coordinate": "physical",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 16.851874237006996,
+      "pwa_median_s": 3.079807341011474,
+      "lr_over_pwa": 5.471730004862085,
+      "lr_runs_s": [
+        17.299510263022967,
+        15.813847967016045,
+        16.851874237006996
+      ],
+      "pwa_runs_s": [
+        3.079807341011474,
+        2.8840457139885984,
+        3.548758686025394
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "0609334d53bb60e62e30103c239a1ab675fe4610342a0208797b46ab8153ff4d",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/afm/physical/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "afm",
+      "coordinate": "physical",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 15.714009684015764,
+      "pwa_median_s": 2.985035665013129,
+      "lr_over_pwa": 5.264261954453616,
+      "lr_runs_s": [
+        15.45673822099343,
+        16.074175724003,
+        15.714009684015764
+      ],
+      "pwa_runs_s": [
+        2.985035665013129,
+        3.124477058998309,
+        2.856259099993622
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "0609334d53bb60e62e30103c239a1ab675fe4610342a0208797b46ab8153ff4d",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/afm/physical/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "am",
+      "coordinate": "mixed",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 15.592833867995068,
+      "pwa_median_s": 2.830454840994207,
+      "lr_over_pwa": 5.508949884011585,
+      "lr_runs_s": [
+        15.592833867995068,
+        15.834137682017172,
+        15.530622332997154
+      ],
+      "pwa_runs_s": [
+        2.7438355799822602,
+        3.0558293829963077,
+        2.830454840994207
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "dcb83ea77b845afff5dfc74750e1000325c43a409c42975778d539d7913605ba",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/am/mixed/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "am",
+      "coordinate": "mixed",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 16.104980892996537,
+      "pwa_median_s": 2.9585583959997166,
+      "lr_over_pwa": 5.443523073525326,
+      "lr_runs_s": [
+        18.007099879003363,
+        15.966595222009346,
+        16.104980892996537
+      ],
+      "pwa_runs_s": [
+        3.2195618160185404,
+        2.9585583959997166,
+        2.775451887981035
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "dcb83ea77b845afff5dfc74750e1000325c43a409c42975778d539d7913605ba",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/am/mixed/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "am",
+      "coordinate": "physical",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 18.173764489998575,
+      "pwa_median_s": 2.7314942950033583,
+      "lr_over_pwa": 6.653414771263958,
+      "lr_runs_s": [
+        15.566024739993736,
+        18.173764489998575,
+        18.486835643998347
+      ],
+      "pwa_runs_s": [
+        2.8786908779875375,
+        2.585270098003093,
+        2.7314942950033583
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "03c87818201e40fcdeb193743c3c46306e10b025d96c0d2fa8f4623cde267acf",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/am/physical/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "am",
+      "coordinate": "physical",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 17.537028878025012,
+      "pwa_median_s": 2.9989702100283466,
+      "lr_over_pwa": 5.8476835879804385,
+      "lr_runs_s": [
+        17.537028878025012,
+        19.498431807995075,
+        17.165509866987122
+      ],
+      "pwa_runs_s": [
+        2.9989702100283466,
+        3.0982621319999453,
+        2.991232997010229
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "03c87818201e40fcdeb193743c3c46306e10b025d96c0d2fa8f4623cde267acf",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/am/physical/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "fm",
+      "coordinate": "mixed",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 16.784723780001514,
+      "pwa_median_s": 3.5706288579967804,
+      "lr_over_pwa": 4.700775254871546,
+      "lr_runs_s": [
+        16.386932148016058,
+        16.784723780001514,
+        16.87842710298719
+      ],
+      "pwa_runs_s": [
+        3.5706288579967804,
+        3.305230511992704,
+        3.770081258000573
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "44ea2b8555dc5118b52c6de61ff892deed0f465f5d8419c8611b6bc355f3d715",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/fm/mixed/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "fm",
+      "coordinate": "mixed",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 16.247192512004403,
+      "pwa_median_s": 3.640718252019724,
+      "lr_over_pwa": 4.462633850612064,
+      "lr_runs_s": [
+        17.757798595004715,
+        15.909794959996361,
+        16.247192512004403
+      ],
+      "pwa_runs_s": [
+        3.640718252019724,
+        3.9156824969977606,
+        3.463525721017504
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "44ea2b8555dc5118b52c6de61ff892deed0f465f5d8419c8611b6bc355f3d715",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/fm/mixed/record_10ms/network_summary.json"
+    },
+    {
+      "mode": "fm",
+      "coordinate": "physical",
+      "record_interval_ms": 1000.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 15.732923267001752,
+      "pwa_median_s": 2.7669066180242226,
+      "lr_over_pwa": 5.68610561864073,
+      "lr_runs_s": [
+        16.00292775602429,
+        14.9102956050192,
+        15.732923267001752
+      ],
+      "pwa_runs_s": [
+        2.9686574340157676,
+        2.711915530002443,
+        2.7669066180242226
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "a2822b1f40b53b576696f754fa33fd787a53360ca885013aac455876938b40b3",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/fm/physical/record_1000ms/network_summary.json"
+    },
+    {
+      "mode": "fm",
+      "coordinate": "physical",
+      "record_interval_ms": 10.0,
+      "dt_ms": 0.1,
+      "threads": 2,
+      "duration_s": 60.0,
+      "neuron_count": 10,
+      "astro_count": 90,
+      "lr_median_s": 16.09869424099452,
+      "pwa_median_s": 3.123732705018483,
+      "lr_over_pwa": 5.1536721484302745,
+      "lr_runs_s": [
+        16.09869424099452,
+        15.649897487979615,
+        16.233997339993948
+      ],
+      "pwa_runs_s": [
+        3.263500291010132,
+        2.883314809005242,
+        3.123732705018483
+      ],
+      "graph": {
+        "neuron_to_neuron": {
+          "count": 90,
+          "sha256": "f1c796bedf55091770787aa263630a943977ffd241ed1eff9ebd1c59a9091b5b"
+        },
+        "neuron_to_astro": {
+          "count": 90,
+          "sha256": "6641ebdf8a4b0615f96147e4f13c2ec1ef9f1c65395e62fbc09602f65244b3bf"
+        },
+        "astro_to_neuron": {
+          "count": 90,
+          "sha256": "e94f510ca0c12a422156ce5cc70980eda79479d2540044df98022b1e33e58567"
+        }
+      },
+      "candidate_sha256": "a2822b1f40b53b576696f754fa33fd787a53360ca885013aac455876938b40b3",
+      "path": "/workspace/paper-local/paper/local_results/nest_network/fm/physical/record_10ms/network_summary.json"
+    }
+  ],
+  "comparisons": [
+    {
+      "mode": "am",
+      "record_interval_ms": 10.0,
+      "physical_over_mixed": 1.0136592923375354,
+      "mixed_over_physical": 0.9865247697714716,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "am",
+      "record_interval_ms": 1000.0,
+      "physical_over_mixed": 0.9650372284490896,
+      "mixed_over_physical": 1.036229453662735,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "afm",
+      "record_interval_ms": 10.0,
+      "physical_over_mixed": 0.6738788922645241,
+      "mixed_over_physical": 1.4839461681899073,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "afm",
+      "record_interval_ms": 1000.0,
+      "physical_over_mixed": 0.7326948686569401,
+      "mixed_over_physical": 1.3648246258814958,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "fm",
+      "record_interval_ms": 10.0,
+      "physical_over_mixed": 0.857999023485424,
+      "mixed_over_physical": 1.165502491993207,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    },
+    {
+      "mode": "fm",
+      "record_interval_ms": 1000.0,
+      "physical_over_mixed": 0.7749073701198204,
+      "mixed_over_physical": 1.290476821565621,
+      "same_topology": true,
+      "note": "Different fitted dynamics; this ratio includes model dynamics, SIC, observation and network effects."
+    }
+  ]
+}

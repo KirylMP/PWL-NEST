@@ -1,0 +1,12 @@
+VALIDATE I= 0.5555460802636232 valid= True
+VALIDATE I= 0.5835577320090194 valid= True
+VALIDATE I= 0.6115693837544156 valid= True
+VALIDATE I= 0.6395810354998118 valid= True
+VALIDATE I= 0.667592687245208 valid= True
+VALIDATE I= 0.6956043389906041 valid= True
+VALIDATE I= 0.7236159907360005 valid= True
+VALIDATE I= 0.7516276424813966 valid= True
+VALIDATE I= 0.7796392942267928 valid= True
+VALIDATE I= 0.807650945972189 valid= True
+VALIDATE I= 0.8356625977175852 valid= True
+SAVED /workspace/paper-local/paper/local_results/physical_no_fold_multistart/fm/comparison/frozen_mixed/validation.json

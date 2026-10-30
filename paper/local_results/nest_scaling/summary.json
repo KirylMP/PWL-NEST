@@ -1,0 +1,270 @@
+{
+  "scope": "Whole network nest.Run, same fixed neuronal topology, normalized SIC per neuron, three repeats; trace peaks indicate finite observed oscillations. Different model dynamics may change network activity.",
+  "rows": [
+    {
+      "coordinate": "physical",
+      "ratio": 1,
+      "astrocytes": 100,
+      "lr_median_s": 27.985734955000225,
+      "pwa_median_s": 13.831213627010584,
+      "speedup": 2.023375222861693,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258309640939
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.028208649886101257,
+        0.8047393457982446
+      ]
+    },
+    {
+      "coordinate": "physical",
+      "ratio": 2,
+      "astrocytes": 200,
+      "lr_median_s": 44.57925813100883,
+      "pwa_median_s": 15.744399754999904,
+      "speedup": 2.83143586447949,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258309640939
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.028208649886101257,
+        0.8047393457982446
+      ]
+    },
+    {
+      "coordinate": "physical",
+      "ratio": 4,
+      "astrocytes": 400,
+      "lr_median_s": 77.45649458799744,
+      "pwa_median_s": 20.2490819109953,
+      "speedup": 3.825185503641939,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258309640939
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.028208649886101257,
+        0.8047393457982446
+      ]
+    },
+    {
+      "coordinate": "physical",
+      "ratio": 8,
+      "astrocytes": 800,
+      "lr_median_s": 140.90257519797888,
+      "pwa_median_s": 26.128687794000143,
+      "speedup": 5.39263878495781,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258309640939
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.028208649886101257,
+        0.8047393457982446
+      ]
+    },
+    {
+      "coordinate": "physical",
+      "ratio": 16,
+      "astrocytes": 1600,
+      "lr_median_s": 265.54444196799886,
+      "pwa_median_s": 37.69828291499289,
+      "speedup": 7.043939973785646,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258309640939
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.028208649886101257,
+        0.8047393457982446
+      ]
+    },
+    {
+      "coordinate": "mixed",
+      "ratio": 1,
+      "astrocytes": 100,
+      "lr_median_s": 27.985734955000225,
+      "pwa_median_s": 15.799666515988065,
+      "speedup": 1.7712864335890117,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258327861229
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.027284202682457296,
+        0.9647915691824598
+      ]
+    },
+    {
+      "coordinate": "mixed",
+      "ratio": 2,
+      "astrocytes": 200,
+      "lr_median_s": 44.57925813100883,
+      "pwa_median_s": 18.934368074988015,
+      "speedup": 2.354409608731399,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258327861229
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.027284202682457296,
+        0.9647915691824598
+      ]
+    },
+    {
+      "coordinate": "mixed",
+      "ratio": 4,
+      "astrocytes": 400,
+      "lr_median_s": 77.45649458799744,
+      "pwa_median_s": 25.581663727003615,
+      "speedup": 3.027813023209884,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258327861229
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.027284202682457296,
+        0.9647915691824598
+      ]
+    },
+    {
+      "coordinate": "mixed",
+      "ratio": 8,
+      "astrocytes": 800,
+      "lr_median_s": 140.90257519797888,
+      "pwa_median_s": 38.83241060900036,
+      "speedup": 3.628478711165082,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258327861229
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.027284202682457296,
+        0.9647915691824598
+      ]
+    },
+    {
+      "coordinate": "mixed",
+      "ratio": 16,
+      "astrocytes": 1600,
+      "lr_median_s": 265.54444196799886,
+      "pwa_median_s": 70.54528722699615,
+      "speedup": 3.7641698319768238,
+      "lr_first_trace_peaks": 3,
+      "pwa_first_trace_peaks": 2,
+      "lr_ip3_range": [
+        0.6,
+        0.6031258217660594
+      ],
+      "pwa_ip3_range": [
+        0.6,
+        0.6031258327861229
+      ],
+      "lr_C_range": [
+        0.03047930201959609,
+        1.0359458481798198
+      ],
+      "pwa_C_range": [
+        0.027284202682457296,
+        0.9647915691824598
+      ]
+    }
+  ],
+  "neuron_edge_sha256": "2936d71a60cc69689d675bf3347ae5a6978917c644e51780f2b373544ee73ab4",
+  "details": {
+    "physical": "/workspace/paper-local/paper/local_results/nest_scaling/physical/summary.json",
+    "mixed": "/workspace/paper-local/paper/local_results/nest_scaling/mixed/summary.json"
+  }
+}

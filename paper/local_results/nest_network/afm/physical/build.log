@@ -1,0 +1,44 @@
+{
+  "am": {
+    "path": "/workspace/paper-local/paper/local_results/nest_network/afm/physical/parameters.json",
+    "sha256": "0609334d53bb60e62e30103c239a1ab675fe4610342a0208797b46ab8153ff4d",
+    "physical_thresholds_C": [
+      0.09206029266047171,
+      0.36936712324809223
+    ],
+    "coefficients_from": "alpha,beta,a,b,transform",
+    "case": "am",
+    "direct_calcium": true,
+    "hidden_coordinate": "identity",
+    "gate_power": 1.0
+  },
+  "fm": {
+    "path": "/workspace/paper-local/paper/local_results/nest_network/afm/physical/parameters.json",
+    "sha256": "0609334d53bb60e62e30103c239a1ab675fe4610342a0208797b46ab8153ff4d",
+    "physical_thresholds_C": [
+      0.09206029266047171,
+      0.36936712324809223
+    ],
+    "coefficients_from": "alpha,beta,a,b,transform",
+    "case": "fm",
+    "direct_calcium": true,
+    "hidden_coordinate": "identity",
+    "gate_power": 1.0
+  }
+}
+NEST include=/workspace/paper-local/.venv/lib/python3.12/site-packages/nest/include/nest; Boost include=/workspace/paper-local/experiments/fm_am_minimal_zones/nest_benchmark/module/deps/include; C++ ABI=0
+CMake Warning at CMakeLists.txt:11 (message):
+  nest-config compiler '/opt/rh/devtoolset-10/root/usr/bin/g++' is missing.
+  CMake will use the system C++ compiler; override with NEST_CXX if needed.
+
+
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /workspace/paper-local/experiments/fm_am_minimal_zones/nest_benchmark/module/build
+[ 16%] Building CXX object CMakeFiles/pwa_astrocyte_module.dir/generated/astrocyte_am_pwa.cpp.o
+[ 33%] Building CXX object CMakeFiles/pwa_astrocyte_module.dir/generated/astrocyte_fm_pwa.cpp.o
+[ 50%] Building CXX object CMakeFiles/pwa_astrocyte_module.dir/pwa_event.cpp.o
+[ 66%] Linking CXX shared module pwa_astrocyte_module.so
+[100%] Built target pwa_astrocyte_module
+
+Built /workspace/paper-local/experiments/fm_am_minimal_zones/nest_benchmark/module/build/pwa_astrocyte_module.so

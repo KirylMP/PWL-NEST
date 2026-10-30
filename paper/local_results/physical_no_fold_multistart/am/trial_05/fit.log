@@ -1,0 +1,34 @@
+initial K=0.100 eval=1 loss=4.668088 best_valid=4.668088 elapsed=0.0s
+INITIAL K=0.100 loss=4.668088
+powell K=0.100 eval=100 loss=4.551576 best_valid=3.065876 elapsed=2.5s
+powell K=0.100 eval=200 loss=2.080051 best_valid=1.027846 elapsed=3.8s
+powell K=0.100 eval=300 loss=1.191802 best_valid=1.027846 elapsed=5.2s
+powell K=0.100 eval=400 loss=0.908004 best_valid=0.9080038 elapsed=6.5s
+powell K=0.100 eval=500 loss=0.2273673 best_valid=0.2273673 elapsed=7.9s
+powell K=0.100 eval=600 loss=0.1677956 best_valid=0.1322633 elapsed=9.3s
+powell K=0.100 eval=700 loss=91.46948 best_valid=0.1054365 elapsed=10.7s
+powell K=0.100 eval=800 loss=0.1022476 best_valid=0.1022472 elapsed=12.0s
+powell K=0.100 eval=900 loss=0.07502933 best_valid=0.07502933 elapsed=13.5s
+powell K=0.100 eval=1000 loss=0.08127831 best_valid=0.06828661 elapsed=14.9s
+powell K=0.100 eval=1100 loss=0.06313254 best_valid=0.06313183 elapsed=16.3s
+powell K=0.100 eval=1200 loss=0.06255799 best_valid=0.06255799 elapsed=17.9s
+powell K=0.100 eval=1300 loss=0.06028165 best_valid=0.06028161 elapsed=19.3s
+powell K=0.100 eval=1400 loss=0.05841591 best_valid=0.05841591 elapsed=20.7s
+powell K=0.100 eval=1500 loss=0.05600399 best_valid=0.05600399 elapsed=22.1s
+powell K=0.100 eval=1600 loss=0.05596932 best_valid=0.05596932 elapsed=23.5s
+powell K=0.100 eval=1700 loss=0.05444924 best_valid=0.05444924 elapsed=24.9s
+powell K=0.100 eval=1800 loss=128 best_valid=0.05399023 elapsed=26.3s
+powell K=0.100 eval=1900 loss=0.05353501 best_valid=0.0535346 elapsed=27.7s
+powell K=0.100 eval=2000 loss=0.05346009 best_valid=0.05346009 elapsed=29.1s
+powell K=0.100 eval=2100 loss=0.05341038 best_valid=0.05341038 elapsed=30.4s
+powell K=0.100 eval=2200 loss=0.0533092 best_valid=0.053309 elapsed=31.8s
+powell K=0.100 eval=2300 loss=0.05329517 best_valid=0.05329517 elapsed=32.9s
+powell K=0.100 eval=2400 loss=0.05309435 best_valid=0.05309432 elapsed=33.9s
+powell K=0.100 eval=2500 loss=0.05307588 best_valid=0.05307588 elapsed=34.8s
+powell K=0.100 eval=2600 loss=0.05291732 best_valid=0.05291595 elapsed=35.7s
+powell K=0.100 eval=2700 loss=128 best_valid=0.05291563 elapsed=36.1s
+powell K=0.100 eval=2800 loss=0.2846946 best_valid=0.05291563 elapsed=36.7s
+POWELL DONE K=0.100 nfev=2814 best=0.05291563 success=True
+least_squares K=0.100 eval=2900 loss=0.0415311 best_valid=0.0415289 elapsed=37.6s
+LEAST_SQUARES DONE K=0.100 nfev=25 best=0.0415118 success=True optimality=0.000531003
+SAVED /workspace/paper-local/paper/local_results/physical_no_fold_multistart/am/trial_05/parameters.json training_cycles_found

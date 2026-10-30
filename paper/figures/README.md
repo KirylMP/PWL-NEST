@@ -176,11 +176,11 @@ h означает доступность рецепторов после Ca²�
   `continued_pwa_cycles.json` и `upper_pwa_cycles.json` содержат продолжение
   на маршрутах через оба и только верхний порог соответственно.
 - `figure7_nest_speed.{pdf,svg,png}` — сравнение сетевого времени NEST и
-  ускорения при изменении отношения числа астроцитов к нейронам. Источники:
-  `../data/two_threshold_models/network_timings.csv` и
-  `../data/astrocyte_neuron_ratio/timings.csv`, с подробностями в README
-  соответствующих каталогов. Разница между моделями не изолирует стоимость
-  преобразования координат; для масштабного эксперимента сырых повторов нет.
+  ускорения при изменении отношения числа астроцитов к нейронам. Использованы
+  локальные результаты из `../local_results/nest_network/summary.json` и
+  `../local_results/nest_scaling/summary.json`; подробности — в
+  `../local_results/README.md`. Серверные CSV в `../data/` сохранены отдельно.
+  Разница между моделями не изолирует стоимость преобразования координат.
 
 Подписи областей задают тип региональной динамики, а не наличие нескольких
 реальных равновесий одновременно. Примеры HLB1/HLB2 и BC1/BC2 рассчитаны
@@ -196,7 +196,7 @@ PYTHONPATH=src python scripts/paper_mechanism_figures.py
 Перерисовка нижних переходов: `PYTHONPATH=src python scripts/paper_lower_onset.py --plot-only`.
 Перерисовка сравнения периодов и бифуркационных диаграмм:
 `PYTHONPATH=src python scripts/paper_full_model_comparison.py --plot-only`.
-Фигура времени NEST: `python scripts/paper_nest_speed_figure.py`.
+Фигура локального времени NEST: `python scripts/paper_nest_speed_figure.py --local`.
 Для повторного поиска складки у предыдущей FM-модели без фиксации и
 продолжения ветвей нужны скрипты соседнего checkout PWL-NEST (по умолчанию
 `../PWL-NEST`): `scripts/paper_find_previous_fm_fold.py`, затем

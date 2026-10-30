@@ -1,0 +1,9 @@
+initial K=0.075 eval=1 loss=4.867124 best_valid=4.867124 elapsed=0.0s
+INITIAL K=0.075 loss=4.867124
+powell K=0.075 eval=100 loss=128 best_valid=4.42997 elapsed=1.0s
+POWELL DONE K=0.075 nfev=174 best=4.42997 success=True
+least_squares K=0.075 eval=200 loss=2.641559 best_valid=2.641556 elapsed=2.4s
+least_squares K=0.075 eval=300 loss=0.1913645 best_valid=0.1912668 elapsed=3.7s
+least_squares K=0.075 eval=400 loss=0.190795 best_valid=0.1907946 elapsed=5.2s
+LEAST_SQUARES DONE K=0.075 nfev=37 best=0.19079 success=True optimality=0.00374152
+SAVED /workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/trial_03/parameters.json training_cycles_found

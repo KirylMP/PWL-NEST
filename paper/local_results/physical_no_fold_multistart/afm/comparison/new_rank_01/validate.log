@@ -1,0 +1,12 @@
+VALIDATE I= 0.37591485687926446 valid= True
+VALIDATE I= 0.41259391601010265 valid= True
+VALIDATE I= 0.4492729751409408 valid= True
+VALIDATE I= 0.4859520342717789 valid= True
+VALIDATE I= 0.522631093402617 valid= True
+VALIDATE I= 0.5593101525334553 valid= True
+VALIDATE I= 0.5959892116642934 valid= True
+VALIDATE I= 0.6326682707951317 valid= True
+VALIDATE I= 0.6693473299259698 valid= True
+VALIDATE I= 0.7060263890568079 valid= True
+VALIDATE I= 0.7427054481876461 valid= True
+SAVED /workspace/paper-local/paper/local_results/physical_no_fold_multistart/afm/comparison/new_rank_01/validation.json

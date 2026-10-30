@@ -1,0 +1,407 @@
+
+             -- N E S T --
+
+ Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.10.0
+ Built  : Jun 10 2026 07:01:20
+
+ This program is provided AS IS and comes with NO WARRANTY.
+ See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+START ratio=1 kind=lr repeat=1
+[WARNING] [2026-10-30 12:10:35] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:10:35] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:10:35] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:10:36] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:10:36] Preparing 208 nodes for simulation.
+[INFO] [2026-10-30 12:10:36] Number of local nodes: 208
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:11:06] Simulation finished.
+DONE {"kind": "lr", "ratio": 1, "neurons": 100, "astrocytes": 100, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 100, "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"}, "astro_neuron": {"count": 100, "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"}}, "run_s": 30.30592732600053, "build_s": 0.9738840920035727, "prepare_s": 0.00047642801655456424, "rate_hz": 3.61, "sampled_C_range": [0.030478883570606515, 1.0359564623163493], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.05}
+START ratio=1 kind=pwa repeat=1
+[WARNING] [2026-10-30 12:11:06] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:11:06] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:11:06] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:11:07] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:11:07] Preparing 208 nodes for simulation.
+[INFO] [2026-10-30 12:11:07] Number of local nodes: 208
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:11:21] Simulation finished.
+DONE {"kind": "pwa", "ratio": 1, "neurons": 100, "astrocytes": 100, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 100, "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"}, "astro_neuron": {"count": 100, "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"}}, "run_s": 13.831213627010584, "build_s": 1.1180623300024308, "prepare_s": 0.00037012898246757686, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208496619455115, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.05}
+START ratio=1 kind=pwa repeat=2
+[WARNING] [2026-10-30 12:11:21] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:11:21] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:11:21] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:11:22] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:11:22] Preparing 208 nodes for simulation.
+[INFO] [2026-10-30 12:11:22] Number of local nodes: 208
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:11:36] Simulation finished.
+DONE {"kind": "pwa", "ratio": 1, "neurons": 100, "astrocytes": 100, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 100, "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"}, "astro_neuron": {"count": 100, "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"}}, "run_s": 13.726303443982033, "build_s": 1.0483035779907368, "prepare_s": 0.00034858498838730156, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208496619455115, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.05}
+START ratio=1 kind=lr repeat=2
+[WARNING] [2026-10-30 12:11:36] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:11:36] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:11:36] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:11:37] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:11:37] Preparing 208 nodes for simulation.
+[INFO] [2026-10-30 12:11:37] Number of local nodes: 208
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:12:04] Simulation finished.
+DONE {"kind": "lr", "ratio": 1, "neurons": 100, "astrocytes": 100, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 100, "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"}, "astro_neuron": {"count": 100, "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"}}, "run_s": 27.63921778401709, "build_s": 1.0351162060105707, "prepare_s": 0.00025474399444647133, "rate_hz": 3.61, "sampled_C_range": [0.030478883570606515, 1.0359564623163493], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.05}
+START ratio=1 kind=lr repeat=3
+[WARNING] [2026-10-30 12:12:04] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:12:04] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:12:04] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:12:06] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:12:06] Preparing 208 nodes for simulation.
+[INFO] [2026-10-30 12:12:06] Number of local nodes: 208
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:12:34] Simulation finished.
+DONE {"kind": "lr", "ratio": 1, "neurons": 100, "astrocytes": 100, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 100, "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"}, "astro_neuron": {"count": 100, "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"}}, "run_s": 27.985734955000225, "build_s": 1.062881345016649, "prepare_s": 0.00032521001412533224, "rate_hz": 3.61, "sampled_C_range": [0.030478883570606515, 1.0359564623163493], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.05}
+START ratio=1 kind=pwa repeat=3
+[WARNING] [2026-10-30 12:12:34] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:12:34] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:12:34] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:12:35] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:12:35] Preparing 208 nodes for simulation.
+[INFO] [2026-10-30 12:12:35] Number of local nodes: 208
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:12:49] Simulation finished.
+DONE {"kind": "pwa", "ratio": 1, "neurons": 100, "astrocytes": 100, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 100, "sha256": "f1186f804d43991b9f01675f0061824cf7d52278981d8e234e8942c24c68bc9e"}, "astro_neuron": {"count": 100, "sha256": "71c034d4681943eb1717d81d1d2fdf4ed3e21de670a6878019baf4f5a56e8540"}}, "run_s": 14.607051568018505, "build_s": 1.0781160979822744, "prepare_s": 0.0006890709919389337, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208496619455115, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.05}
+START ratio=2 kind=lr repeat=1
+[WARNING] [2026-10-30 12:12:50] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:12:50] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:12:50] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:12:51] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:12:51] Preparing 308 nodes for simulation.
+[INFO] [2026-10-30 12:12:51] Number of local nodes: 308
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:13:36] Simulation finished.
+DONE {"kind": "lr", "ratio": 2, "neurons": 100, "astrocytes": 200, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 200, "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"}, "astro_neuron": {"count": 200, "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"}}, "run_s": 44.50306878000265, "build_s": 1.164167451002868, "prepare_s": 0.0006519239977933466, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.025}
+START ratio=2 kind=pwa repeat=1
+[WARNING] [2026-10-30 12:13:36] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:13:36] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:13:36] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:13:37] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:13:37] Preparing 308 nodes for simulation.
+[INFO] [2026-10-30 12:13:37] Number of local nodes: 308
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:13:52] Simulation finished.
+DONE {"kind": "pwa", "ratio": 2, "neurons": 100, "astrocytes": 200, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 200, "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"}, "astro_neuron": {"count": 200, "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"}}, "run_s": 15.25751725799637, "build_s": 1.0369399840128608, "prepare_s": 0.00047657900722697377, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.025}
+START ratio=2 kind=pwa repeat=2
+[WARNING] [2026-10-30 12:13:52] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:13:52] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:13:52] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:13:53] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:13:53] Preparing 308 nodes for simulation.
+[INFO] [2026-10-30 12:13:53] Number of local nodes: 308
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:14:09] Simulation finished.
+DONE {"kind": "pwa", "ratio": 2, "neurons": 100, "astrocytes": 200, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 200, "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"}, "astro_neuron": {"count": 200, "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"}}, "run_s": 16.13797793001868, "build_s": 1.1120326520176604, "prepare_s": 0.0006130840047262609, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.025}
+START ratio=2 kind=lr repeat=2
+[WARNING] [2026-10-30 12:14:09] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:14:09] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:14:09] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:14:11] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:14:11] Preparing 308 nodes for simulation.
+[INFO] [2026-10-30 12:14:11] Number of local nodes: 308
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:15:01] Simulation finished.
+DONE {"kind": "lr", "ratio": 2, "neurons": 100, "astrocytes": 200, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 200, "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"}, "astro_neuron": {"count": 200, "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"}}, "run_s": 50.49529679000261, "build_s": 1.1777421480219346, "prepare_s": 0.0005179309810046107, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.025}
+START ratio=2 kind=lr repeat=3
+[WARNING] [2026-10-30 12:15:01] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:15:01] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:15:01] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:15:02] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:15:02] Preparing 308 nodes for simulation.
+[INFO] [2026-10-30 12:15:02] Number of local nodes: 308
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:15:47] Simulation finished.
+DONE {"kind": "lr", "ratio": 2, "neurons": 100, "astrocytes": 200, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 200, "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"}, "astro_neuron": {"count": 200, "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"}}, "run_s": 44.57925813100883, "build_s": 1.1263519040076062, "prepare_s": 0.0005543760198634118, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.025}
+START ratio=2 kind=pwa repeat=3
+[WARNING] [2026-10-30 12:15:47] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:15:47] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:15:47] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:15:48] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:15:48] Preparing 308 nodes for simulation.
+[INFO] [2026-10-30 12:15:48] Number of local nodes: 308
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:16:04] Simulation finished.
+DONE {"kind": "pwa", "ratio": 2, "neurons": 100, "astrocytes": 200, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 200, "sha256": "7f1b09c455a59da59979caec9fd6ec7195e1a5e1f4fe7efac896cf4b086e6d24"}, "astro_neuron": {"count": 200, "sha256": "7aa613eef8962edcf6e75788e095d5ab18dd4f2934da050438323759ffbc0066"}}, "run_s": 15.744399754999904, "build_s": 1.0175740139966365, "prepare_s": 0.00044074500328861177, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.025}
+START ratio=4 kind=lr repeat=1
+[WARNING] [2026-10-30 12:16:04] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:16:04] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:16:04] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:16:05] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:16:05] Preparing 508 nodes for simulation.
+[INFO] [2026-10-30 12:16:05] Number of local nodes: 508
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:17:23] Simulation finished.
+DONE {"kind": "lr", "ratio": 4, "neurons": 100, "astrocytes": 400, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 400, "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"}, "astro_neuron": {"count": 400, "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"}}, "run_s": 77.45649458799744, "build_s": 1.0698209200054407, "prepare_s": 0.0009973640262614936, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.0125}
+START ratio=4 kind=pwa repeat=1
+[WARNING] [2026-10-30 12:17:23] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:17:23] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:17:23] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:17:24] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:17:24] Preparing 508 nodes for simulation.
+[INFO] [2026-10-30 12:17:24] Number of local nodes: 508
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:17:44] Simulation finished.
+DONE {"kind": "pwa", "ratio": 4, "neurons": 100, "astrocytes": 400, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 400, "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"}, "astro_neuron": {"count": 400, "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"}}, "run_s": 20.226810232008575, "build_s": 1.175035595020745, "prepare_s": 0.0008072280033957213, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.0125}
+START ratio=4 kind=pwa repeat=2
+[WARNING] [2026-10-30 12:17:45] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:17:45] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:17:45] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:17:46] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:17:46] Preparing 508 nodes for simulation.
+[INFO] [2026-10-30 12:17:46] Number of local nodes: 508
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:18:07] Simulation finished.
+DONE {"kind": "pwa", "ratio": 4, "neurons": 100, "astrocytes": 400, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 400, "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"}, "astro_neuron": {"count": 400, "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"}}, "run_s": 20.938583025999833, "build_s": 1.178922994993627, "prepare_s": 0.0008377929916605353, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.0125}
+START ratio=4 kind=lr repeat=2
+[WARNING] [2026-10-30 12:18:07] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:18:07] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:18:07] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:18:08] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:18:08] Preparing 508 nodes for simulation.
+[INFO] [2026-10-30 12:18:08] Number of local nodes: 508
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:19:23] Simulation finished.
+DONE {"kind": "lr", "ratio": 4, "neurons": 100, "astrocytes": 400, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 400, "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"}, "astro_neuron": {"count": 400, "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"}}, "run_s": 75.27605862999917, "build_s": 1.0104353089991491, "prepare_s": 0.000824613991426304, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.0125}
+START ratio=4 kind=lr repeat=3
+[WARNING] [2026-10-30 12:19:23] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:19:23] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:19:23] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:19:24] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:19:24] Preparing 508 nodes for simulation.
+[INFO] [2026-10-30 12:19:24] Number of local nodes: 508
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:20:42] Simulation finished.
+DONE {"kind": "lr", "ratio": 4, "neurons": 100, "astrocytes": 400, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 400, "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"}, "astro_neuron": {"count": 400, "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"}}, "run_s": 77.80768317301408, "build_s": 1.1588271289947443, "prepare_s": 0.0005900859832763672, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.0125}
+START ratio=4 kind=pwa repeat=3
+[WARNING] [2026-10-30 12:20:42] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:20:42] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:20:42] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:20:43] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:20:43] Preparing 508 nodes for simulation.
+[INFO] [2026-10-30 12:20:43] Number of local nodes: 508
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:21:03] Simulation finished.
+DONE {"kind": "pwa", "ratio": 4, "neurons": 100, "astrocytes": 400, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 400, "sha256": "9aebde8d7acff4a5dc00b4aa51368b85c8397581dfca238ab077e4f49d9e1169"}, "astro_neuron": {"count": 400, "sha256": "899818f57b43f42872fd829bb93dd3a72e39affe49a9561762d3fa8138c8e494"}}, "run_s": 20.2490819109953, "build_s": 1.1240792769822292, "prepare_s": 0.000715993985068053, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.0125}
+START ratio=8 kind=lr repeat=1
+[WARNING] [2026-10-30 12:21:04] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:21:04] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:21:04] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:21:05] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:21:05] Preparing 908 nodes for simulation.
+[INFO] [2026-10-30 12:21:05] Number of local nodes: 908
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:23:30] Simulation finished.
+DONE {"kind": "lr", "ratio": 8, "neurons": 100, "astrocytes": 800, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 800, "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"}, "astro_neuron": {"count": 800, "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"}}, "run_s": 144.97864172401023, "build_s": 1.1739744810038246, "prepare_s": 0.0014987649919930845, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.00625}
+START ratio=8 kind=pwa repeat=1
+[WARNING] [2026-10-30 12:23:30] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:23:30] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:23:30] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:23:31] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:23:31] Preparing 908 nodes for simulation.
+[INFO] [2026-10-30 12:23:31] Number of local nodes: 908
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:23:58] Simulation finished.
+DONE {"kind": "pwa", "ratio": 8, "neurons": 100, "astrocytes": 800, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 800, "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"}, "astro_neuron": {"count": 800, "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"}}, "run_s": 26.128687794000143, "build_s": 1.0291576599993277, "prepare_s": 0.0010101239895448089, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.00625}
+START ratio=8 kind=pwa repeat=2
+[WARNING] [2026-10-30 12:23:58] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:23:58] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:23:58] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:23:59] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:23:59] Preparing 908 nodes for simulation.
+[INFO] [2026-10-30 12:23:59] Number of local nodes: 908
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:24:26] Simulation finished.
+DONE {"kind": "pwa", "ratio": 8, "neurons": 100, "astrocytes": 800, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 800, "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"}, "astro_neuron": {"count": 800, "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"}}, "run_s": 26.941241550986888, "build_s": 1.2645424989750609, "prepare_s": 0.001379669993184507, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.00625}
+START ratio=8 kind=lr repeat=2
+[WARNING] [2026-10-30 12:24:26] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:24:26] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:24:26] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:24:27] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:24:27] Preparing 908 nodes for simulation.
+[INFO] [2026-10-30 12:24:27] Number of local nodes: 908
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:26:48] Simulation finished.
+DONE {"kind": "lr", "ratio": 8, "neurons": 100, "astrocytes": 800, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 800, "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"}, "astro_neuron": {"count": 800, "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"}}, "run_s": 140.90257519797888, "build_s": 1.2496368190040812, "prepare_s": 0.0011329080152790993, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.00625}
+START ratio=8 kind=lr repeat=3
+[WARNING] [2026-10-30 12:26:48] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:26:48] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:26:48] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:26:49] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:26:49] Preparing 908 nodes for simulation.
+[INFO] [2026-10-30 12:26:49] Number of local nodes: 908
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:29:08] Simulation finished.
+DONE {"kind": "lr", "ratio": 8, "neurons": 100, "astrocytes": 800, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 800, "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"}, "astro_neuron": {"count": 800, "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"}}, "run_s": 139.2038598729996, "build_s": 1.057620620005764, "prepare_s": 0.001110946002881974, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.00625}
+START ratio=8 kind=pwa repeat=3
+[WARNING] [2026-10-30 12:29:08] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:29:08] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:29:08] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:29:10] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:29:10] Preparing 908 nodes for simulation.
+[INFO] [2026-10-30 12:29:10] Number of local nodes: 908
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:29:35] Simulation finished.
+DONE {"kind": "pwa", "ratio": 8, "neurons": 100, "astrocytes": 800, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 800, "sha256": "7e0256ec114ea52552aaee7e949c398bb76877d4b926068108107fa5b9c8a6c9"}, "astro_neuron": {"count": 800, "sha256": "bd8d18d5ecb4a66c4b52a20f893c448b47f4eb86987ff756a08e1a4f1ac9b6ac"}}, "run_s": 25.284246678987984, "build_s": 1.094220197002869, "prepare_s": 0.0009787220042198896, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.3205127868768813, "sic_weight_per_astro": 0.00625}
+START ratio=16 kind=lr repeat=1
+[WARNING] [2026-10-30 12:29:36] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:29:36] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:29:36] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:29:37] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:29:37] Preparing 1708 nodes for simulation.
+[INFO] [2026-10-30 12:29:37] Number of local nodes: 1708
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:34:02] Simulation finished.
+DONE {"kind": "lr", "ratio": 16, "neurons": 100, "astrocytes": 1600, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 1600, "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"}, "astro_neuron": {"count": 1600, "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"}}, "run_s": 265.3936917320243, "build_s": 1.2333961380063556, "prepare_s": 0.00266669801203534, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.003125}
+START ratio=16 kind=pwa repeat=1
+[WARNING] [2026-10-30 12:34:03] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:34:03] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:34:03] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:34:04] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:34:04] Preparing 1708 nodes for simulation.
+[INFO] [2026-10-30 12:34:04] Number of local nodes: 1708
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:34:45] Simulation finished.
+DONE {"kind": "pwa", "ratio": 16, "neurons": 100, "astrocytes": 1600, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 1600, "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"}, "astro_neuron": {"count": 1600, "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"}}, "run_s": 40.95231902899104, "build_s": 1.13805405999301, "prepare_s": 0.001829149987315759, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.32051278687688123, "sic_weight_per_astro": 0.003125}
+START ratio=16 kind=pwa repeat=2
+[WARNING] [2026-10-30 12:34:45] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:34:45] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:34:45] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:34:46] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:34:46] Preparing 1708 nodes for simulation.
+[INFO] [2026-10-30 12:34:46] Number of local nodes: 1708
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:35:21] Simulation finished.
+DONE {"kind": "pwa", "ratio": 16, "neurons": 100, "astrocytes": 1600, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 1600, "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"}, "astro_neuron": {"count": 1600, "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"}}, "run_s": 34.99335685800179, "build_s": 1.179276695009321, "prepare_s": 0.0017614969983696938, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.32051278687688123, "sic_weight_per_astro": 0.003125}
+START ratio=16 kind=lr repeat=2
+[WARNING] [2026-10-30 12:35:21] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:35:21] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:35:21] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:35:22] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:35:22] Preparing 1708 nodes for simulation.
+[INFO] [2026-10-30 12:35:22] Number of local nodes: 1708
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:39:55] Simulation finished.
+DONE {"kind": "lr", "ratio": 16, "neurons": 100, "astrocytes": 1600, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 1600, "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"}, "astro_neuron": {"count": 1600, "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"}}, "run_s": 272.4882478970103, "build_s": 1.1401825539942365, "prepare_s": 0.002296524995472282, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.003125}
+START ratio=16 kind=lr repeat=3
+[WARNING] [2026-10-30 12:39:55] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:39:55] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:39:55] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:39:56] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:39:56] Preparing 1708 nodes for simulation.
+[INFO] [2026-10-30 12:39:56] Number of local nodes: 1708
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:44:21] Simulation finished.
+DONE {"kind": "lr", "ratio": 16, "neurons": 100, "astrocytes": 1600, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 1600, "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"}, "astro_neuron": {"count": 1600, "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"}}, "run_s": 265.54444196799886, "build_s": 1.193210708006518, "prepare_s": 0.003078482986893505, "rate_hz": 3.61, "sampled_C_range": [0.030478925288051597, 1.0359458481798198], "sampled_IP3_range": [0.6, 0.6031258217660594], "first_astro_peaks": 3, "first_astro_C_range": [0.03047930201959609, 1.0359458481798198], "max_abs_sic": 0.3366264251978243, "sic_weight_per_astro": 0.003125}
+START ratio=16 kind=pwa repeat=3
+[WARNING] [2026-10-30 12:44:21] OMP_NUM_THREADS is set in your environment, but NEST ignores it.
+For details, see the Guide to parallel computing in the NEST Documentation.
+[INFO] [2026-10-30 12:44:21] Temporal resolution changed from 0.1 to 0.1 ms.
+[INFO] [2026-10-30 12:44:21] loaded module pwa_astrocyte_module
+[WARNING] [2026-10-30 12:44:22] New connections created, connection descriptors previously obtained using 'GetConnections' are now invalid.
+[INFO] [2026-10-30 12:44:23] Preparing 1708 nodes for simulation.
+[INFO] [2026-10-30 12:44:23] Number of local nodes: 1708
+Simulation time (ms): 60000
+Number of OpenMP threads: 2
+Not using MPI
+[INFO] [2026-10-30 12:45:00] Simulation finished.
+DONE {"kind": "pwa", "ratio": 16, "neurons": 100, "astrocytes": 1600, "graph": {"neuron_neuron": {"count": 1000, "sha256": "22975df0da1d1162cea1bca935c16efcafd1487bbb3de2593ef231913b8b7078"}, "neuron_astro": {"count": 1600, "sha256": "f6c14a5c5b4abc3bc0206aa06550f9f09d93f63e64ccc15ecdfd7fee47c5a29b"}, "astro_neuron": {"count": 1600, "sha256": "92bff2c95a98323749cbd2a26e00f780a20e2557757478a4de8710a375412295"}}, "run_s": 37.69828291499289, "build_s": 1.1457049029995687, "prepare_s": 0.0017714120040182024, "rate_hz": 3.6098333333333334, "sampled_C_range": [0.028208363851717395, 0.8047393457982446], "sampled_IP3_range": [0.6, 0.6031258309640939], "first_astro_peaks": 2, "first_astro_C_range": [0.028208649886101257, 0.8047393457982446], "max_abs_sic": 0.32051278687688123, "sic_weight_per_astro": 0.003125}
+SAVED /workspace/paper-local/paper/local_results/nest_scaling/physical/summary.json

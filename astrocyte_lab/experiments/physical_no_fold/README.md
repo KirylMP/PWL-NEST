@@ -1,0 +1,5 @@
+# Physical-C models without fold fixation
+
+Independent FM / AFM / AM fits in physical calcium and unrestricted hidden q. Fixed physical thresholds, I=0 rest and two equilibrium transition inputs. No fold or Poincare condition. Optimize stable waveform and period using the same finite training inputs as frozen mixed models, and the same four holdout inputs for DOP853 comparison. FM additionally uses the Cmax term (peak weight 1), matching its latest frozen mixed optimization; AM/AFM use weight 0. Parameters are initialized from frozen physical-C models, plus reproducible random perturbations; they are no longer constrained by their old folds. Finite optimizer results do not prove global optimality.
+
+Frozen models are read only. The script writes independent results and compares candidate models with both the frozen physical and frozen mixed models; q has no physical bounds in either. Fit and validation engines have different numerical methods. RMSE waveform is peak-aligned and normalized by phase, not a time-domain network comparison. No fold analysis is performed.
