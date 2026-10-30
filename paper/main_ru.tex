@@ -1,0 +1,32 @@
+\documentclass[preprint,12pt]{elsarticle}
+\usepackage{fontspec}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\usepackage{amsmath,amssymb,graphicx,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\todo}[1]{\par\smallskip\noindent\textbf{Для доработки:} #1\par\smallskip}
+\newcommand{\rufigure}[4]{\begin{figure}[p]\centering\includegraphics[width=\linewidth]{figures/#1.pdf}\caption{#2}\label{#3}\end{figure}}
+\journal{Chaos, Solitons \& Fractals}
+\abstracttitle{Аннотация}
+\keywordtitle{Ключевые слова}
+\emergencystretch=4em
+\sloppy
+\begin{document}
+\begin{frontmatter}
+\title{Трёхзонный кусочно-аффинный осциллятор кальциевой динамики астроцитов: механизмы колебаний, точность и моделирование в NEST}
+\author{Состав авторов уточняется}
+\begin{abstract}
+Для сетевых исследований необходимы компактные модели кальциевой динамики астроцитов, сочетающие точность с эффективным вычислением траекторий. Мы рассматриваем непрерывный трёхзонный кусочно-аффинный осциллятор как феноменологическое представление режимов Li--Rinzel. Исследуются локальные Hopf-подобные переходы и большие циклы. Региональный поток допускает аналитическое вычисление при постоянном IP$_3$ и его экспоненциальной релаксации. Сравниваются физические и смешанные координаты, подборы с фиксацией верхней складки циклов и без неё. Освобождение складки существенно улучшает точность AM и AFM; смешанные координаты уменьшают ошибку формы во всех трёх режимах относительно физических вариантов без фиксации складки. В сети NEST с 10 нейронами и 90 астроцитами отношение медианных времён Li--Rinzel и PWA составляет 2.39--3.16. Ускорение сопровождается ошибкой аппроксимации и не означает полной бифуркационной эквивалентности.
+\end{abstract}
+\begin{keyword}
+Астроциты \sep Кальциевая динамика \sep Кусочно-аффинные системы \sep Бифуркации \sep NEST
+\end{keyword}
+\end{frontmatter}
+\input{ru_text}
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+\end{document}
