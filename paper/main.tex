@@ -1,5 +1,5 @@
 % Working manuscript based on Elsevier's elsarticle-template-num.tex.
-% The unmodified upstream template and its license are in template/.
+% Draft structure and provisional wording; verify all claims before submission.
 \documentclass[preprint,12pt]{elsarticle}
 
 \usepackage[T1]{fontenc}
@@ -13,47 +13,116 @@
 \begin{document}
 \begin{frontmatter}
 
-\title{Working title}
+\title{Three-zone piecewise-affine models of astrocytic calcium oscillations: dynamics and network simulation}
 \author{Authors to be added}
 % Add author affiliations and the corresponding author's email here.
 
 \begin{abstract}
-\textit{To be written: motivation, method, principal results, and significance.}
+% Draft: state motivation, construction, three regimes, accuracy and network
+% benchmarks. Insert quantitative results only after verifying model provenance.
+\textit{To be written after final selection and validation of the models.}
 \end{abstract}
 
 \begin{keyword}
-% Replace these draft keywords when the scope is agreed.
-Astrocytes \sep Calcium dynamics \sep Piecewise affine models \sep NEST
+Astrocytes \sep Calcium dynamics \sep Piecewise affine models \sep Bifurcations \sep NEST
 \end{keyword}
-
 \end{frontmatter}
 
 \section{Introduction}
 \label{sec:introduction}
-% Motivation, related work, research question, and contributions.
+Astrocytic calcium dynamics can display amplitude, frequency, and mixed
+amplitude--frequency modulation as the input changes. The Li--Rinzel model
+provides a reduced description of intracellular calcium signalling
+\cite{LiRinzel1994}, and its astrocytic dynamics have been studied across these
+regimes \cite{DePitta2009}.
 
-\section{Model and methods}
+% Explain motivation for phenomenological reduction and network simulation.
+% State the research question and distinguish the present two-threshold models
+% from a separate high-accuracy reproduction of the full LR bifurcation diagram.
+Here we investigate continuous three-zone piecewise-affine oscillators as
+phenomenological representations of selected Li--Rinzel regimes. We compare
+local and global oscillatory behaviour, fits in physical and transformed
+coordinates, and simulation times in NEST networks.
+
+\section{Models and methods}
 \label{sec:methods}
-% Reference model, approximation, solver, and validation protocols.
 
+\subsection{Li--Rinzel reference and modulation regimes}
+% Give full equations, parameters, units, initial conditions, I and K_ER.
+% Define how AM, AFM and FM are assessed and state the input ranges.
+% Specify equilibrium and periodic-orbit continuation and stability checks.
 \input{figure1}
 \input{figure2}
+
+\subsection{Three-zone piecewise-affine oscillator}
+% Write the actual system, its parameters and two thresholds. Define physical
+% and mixed coordinate maps and how C is recovered. State continuity,
+% admissibility, rest and equilibrium-crossing constraints and their domains.
+% Derive zone equilibria and Jacobians, including trace and determinant.
+% Explicitly say when only one equilibrium exists; do not assume this globally.
+
+\subsection{Local and large-cycle mechanisms}
+% Derive or cite the relevant one-boundary hypotheses and HLB1/HLB2 labels.
+% Illustrative examples in Figs. 3--4 are not fitted LR models. Give the
+% return-map matching problem and conditions for an orbit crossing both cuts.
+% Floquet multiplier and M=1 are necessary local fold conditions, together
+% with the orbit, nondegeneracy and continuation checks.
+Hopf-like bifurcations of continuous piecewise-smooth systems and the dynamics
+of three-zone systems have been studied in detail
+\cite{Simpson2022,SimpsonMeiss2007,LlibrePonceValls2015,ChenLiXieYue2017}.
+A two-cycle bound is known for a particular three-zone Liénard system
+\cite{ChenFengJiaMeng2026}; its hypotheses must be checked before applying it
+to any of the present models.
 \input{figure3}
 \input{figure4}
-\input{figure5}
-\input{figure6}
+
+\subsection{Parameter fitting and validation}
+% Document candidates for K_ER = 0.05, 0.075 and 0.1 micromolar, the
+% constraints, free parameters, objective components, weights and optimization.
+% Explain fixed-fold and no-fold variants and which final files are used.
+% Detail stability classification, numerical continuation, cycle search,
+% tolerance and the limitations of finite scans.
+
+\subsection{NEST implementation and benchmarks}
+% Describe the actual implementation, analytic regional flow, crossing
+% handling, coordinate recovery, SIC, timing boundaries and hardware/version.
+% Give topologies, seeds, recording settings and model provenance.
+% Distinguish network speedup from isolated astrocyte speedup.
+The network simulations use NEST \cite{GewaltigDiesmann2007}; the precise
+version and model implementation are reported with the benchmark protocol.
 
 \section{Results}
 \label{sec:results}
-% Add verified results and figures from the repository.
+
+\subsection{Equilibrium structure and oscillation mechanisms}
+% Compare LR spectra and PWA types, and identify supported local mechanisms.
+% Separate evidence from hypotheses; report unresolved lower transitions.
+
+\subsection{Amplitude, periods and cycle branches}
+% Compare fixed-fold and no-fold fits for AM, FM and AFM. Quantify the errors
+% from the archived tables. Include stable and unstable branches and clearly
+% state the earlier FM candidate provenance in the displayed figures.
+\input{figure5}
+\input{figure6}
+
+\subsection{Network simulation time}
+% Summarize medians, input conditions, accuracy tradeoffs, and scaling.
+% Physical and mixed fits are distinct models, so this is not an isolated
+% measurement of transformation cost. Avoid generalizing beyond these runs.
 \input{figure7}
 
 \section{Discussion}
 \label{sec:discussion}
-% Interpretation, limitations, and comparison with related methods.
+% Explain what three zones reproduce phenomenologically and where they differ
+% from LR. Discuss lower and upper transitions, unstable branches, fold
+% constraints, hidden-coordinate interpretation and waveform/phase errors.
+% Compare relevant PWA literature without claiming unverified theorems.
+% Discuss timing composition, fixed-step network scheduling and limitations.
+% Outline the separate higher-accuracy LR PWA study as future work.
 
 \section{Conclusions}
 \label{sec:conclusions}
+% Summarize only results supported by final candidate provenance and data.
 
 % Complete these statements with the authors before submission.
 \section*{CRediT authorship contribution statement}
@@ -63,5 +132,4 @@ Astrocytes \sep Calcium dynamics \sep Piecewise affine models \sep NEST
 
 \bibliographystyle{elsarticle-num}
 \bibliography{references}
-
 \end{document}
