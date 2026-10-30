@@ -1,7 +1,7 @@
-\documentclass[preprint,12pt]{elsarticle}
+\documentclass[final,5p,times,twocolumn]{elsarticle}
 \usepackage{fontspec}
-\setmainfont{DejaVu Serif}
-\setsansfont{DejaVu Sans}
+\setmainfont{Liberation Serif}
+\setsansfont{Liberation Sans}
 \setmonofont{DejaVu Sans Mono}
 \usepackage{polyglossia}
 \setdefaultlanguage{russian}
@@ -9,13 +9,14 @@
 \usepackage{amsmath,amssymb,graphicx,booktabs}
 \usepackage[hidelinks]{hyperref}
 \newcommand{\todo}[1]{\par\smallskip\noindent\textbf{Для доработки:} #1\par\smallskip}
-\newcommand{\rufigure}[4]{\begin{figure}[p]\centering\includegraphics[width=\linewidth]{figures/#1.pdf}\caption{#2}\label{#3}\end{figure}}
+\newcommand{\rufigure}[4]{\begin{figure*}[tp]\centering\includegraphics[width=\textwidth,height=.73\textheight,keepaspectratio]{figures/#1.pdf}\caption{#2}\label{#3}\end{figure*}}
 \journal{Chaos, Solitons \& Fractals}
 \abstracttitle{Аннотация}
 \keywordtitle{Ключевые слова}
 \emergencystretch=4em
 \sloppy
 \begin{document}
+\raggedbottom
 \begin{frontmatter}
 \title{Трёхзонный кусочно-аффинный осциллятор кальциевой динамики астроцитов: механизмы колебаний, точность и моделирование в NEST}
 \author{Состав авторов уточняется}
