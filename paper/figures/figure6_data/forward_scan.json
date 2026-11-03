@@ -2575,313 +2575,317 @@
         {
           "I": 0.5305393826055202,
           "valid": true,
-          "Cmin": 0.025737900366613366,
-          "Cmax": 0.7489992994206958,
-          "period": 59.59786111500409,
-          "period_change": 9.12022647980848e-06,
+          "Cmin": 0.02605955690481946,
+          "Cmax": 0.7507539356775637,
+          "period": 59.901841721638334,
+          "period_change": 0.0001085969662426578,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.5412740544500965,
           "valid": true,
-          "Cmin": 0.025896135231452042,
-          "Cmax": 0.8263694485201564,
-          "period": 41.470010849630285,
-          "period_change": 5.4720219964110584e-05,
+          "Cmin": 0.026202770428233855,
+          "Cmax": 0.8270391350354941,
+          "period": 41.62968907383049,
+          "period_change": 5.925363950609608e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.5520087262946727,
           "valid": true,
-          "Cmin": 0.02610804277248783,
-          "Cmax": 0.8642762644523717,
-          "period": 36.380302167020204,
-          "period_change": 6.231346048934938e-06,
+          "Cmin": 0.026411570293606114,
+          "Cmax": 0.8644216819164722,
+          "period": 36.496725906806546,
+          "period_change": 6.574404812909052e-05,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.5627433981392489,
           "valid": true,
-          "Cmin": 0.026340291349475208,
-          "Cmax": 0.89232681348609,
-          "period": 33.391452049944974,
-          "period_change": 2.773898813757114e-06,
+          "Cmin": 0.026633764730984704,
+          "Cmax": 0.8920982677493241,
+          "period": 33.48169222743741,
+          "period_change": 2.899837227232638e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.5734780699838251,
           "valid": true,
-          "Cmin": 0.026582555566015926,
-          "Cmax": 0.9153173705130385,
-          "period": 31.299498221554018,
-          "period_change": 3.0917806270736037e-07,
+          "Cmin": 0.02687001924881785,
+          "Cmax": 0.914794802583181,
+          "period": 31.370927141647712,
+          "period_change": 4.1831640373857226e-08,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.5842127418284013,
           "valid": true,
-          "Cmin": 0.02683468675306874,
-          "Cmax": 0.9351184350369485,
-          "period": 29.70585133171926,
-          "period_change": 1.3307037534104893e-05,
+          "Cmin": 0.027115262796012594,
+          "Cmax": 0.9343523580419955,
+          "period": 29.762596804962868,
+          "period_change": 1.5939409649945446e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.5949474136729775,
           "valid": true,
-          "Cmin": 0.027095584299687087,
-          "Cmax": 0.9526849719033129,
-          "period": 28.429246967320637,
-          "period_change": 4.572980401462701e-06,
+          "Cmin": 0.02736902932464727,
+          "Cmax": 0.9517104247561182,
+          "period": 28.473895283045636,
+          "period_change": 6.925504294486018e-07,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.6056820855175538,
           "valid": true,
-          "Cmin": 0.027360330837584962,
-          "Cmax": 0.96857930470566,
-          "period": 27.372032547831168,
-          "period_change": 3.256753075220331e-06,
+          "Cmin": 0.027627620571914677,
+          "Cmax": 0.9674230016334118,
+          "period": 27.406372374934676,
+          "period_change": 1.4368575875778333e-05,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.6164167573621299,
           "valid": true,
-          "Cmin": 0.027634269133103496,
-          "Cmax": 0.9831656178661013,
-          "period": 26.475668774642372,
-          "period_change": 1.2167721024525235e-05,
+          "Cmin": 0.027894416374237695,
+          "Cmax": 0.9818478163949234,
+          "period": 26.50097013757113,
+          "period_change": 3.8490622955578147e-07,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.6271514292067061,
           "valid": true,
-          "Cmin": 0.027913554902781267,
-          "Cmax": 0.9966945303529696,
-          "period": 25.702391397208316,
-          "period_change": 2.3184130327535968e-05,
+          "Cmin": 0.028167579593582043,
+          "Cmax": 0.9952318808965687,
+          "period": 25.719591998327815,
+          "period_change": 8.694280495546991e-08,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.6378861010512823,
           "valid": true,
-          "Cmin": 0.028200051480561397,
-          "Cmax": 1.0093472693699808,
-          "period": 25.02646903912489,
-          "period_change": 4.209315079606313e-06,
+          "Cmin": 0.028448947217918606,
+          "Cmax": 1.0077534347324044,
+          "period": 25.0362381660384,
+          "period_change": 4.829817044083029e-07,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.6486207728958585,
           "valid": true,
-          "Cmin": 0.028493605708608077,
-          "Cmax": 1.0212594599703657,
-          "period": 24.429528944516278,
-          "period_change": 1.7228135220648255e-06,
+          "Cmin": 0.028734653679872962,
+          "Cmax": 1.0195459952392405,
+          "period": 24.432420956080705,
+          "period_change": 1.9222381979489e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.6593554447404347,
           "valid": true,
-          "Cmin": 0.028794993072534115,
-          "Cmax": 1.0325361964053836,
-          "period": 23.898167361984292,
-          "period_change": 6.359816779877292e-07,
+          "Cmin": 0.029028258819290092,
+          "Cmax": 1.0307125386044511,
+          "period": 23.894558467405886,
+          "period_change": 1.4087061117606936e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.6700901165850109,
           "valid": true,
-          "Cmin": 0.02910352936090874,
-          "Cmax": 1.0432606927522965,
-          "period": 23.422244697873793,
-          "period_change": 2.823847387389833e-05,
+          "Cmin": 0.029329449533938932,
+          "Cmax": 1.041334591756958,
+          "period": 23.412425214937684,
+          "period_change": 7.277897339008632e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.6808247884295872,
           "valid": true,
-          "Cmin": 0.029419482300846976,
-          "Cmax": 1.0534973851279812,
-          "period": 22.993982928657033,
-          "period_change": 4.0205168261309154e-07,
+          "Cmin": 0.029638462759365953,
+          "Cmax": 1.0514777722949236,
+          "period": 22.978142280048587,
+          "period_change": 2.050410330411978e-07,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.6915594602741634,
           "valid": true,
-          "Cmin": 0.02974355138869082,
-          "Cmax": 1.0633032194858,
-          "period": 22.607314281501658,
-          "period_change": 1.2639783335544053e-06,
+          "Cmin": 0.029955936343787386,
+          "Cmax": 1.061195676865475,
+          "period": 22.585555755810105,
+          "period_change": 7.89527462075057e-07,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.7022941321187396,
           "valid": true,
-          "Cmin": 0.030076583000488898,
-          "Cmax": 1.0727227203964447,
-          "period": 22.25744524781544,
-          "period_change": 1.8441270412949962e-06,
+          "Cmin": 0.03028225821852428,
+          "Cmax": 1.070533049819503,
+          "period": 22.229808213105116,
+          "period_change": 2.0613936158042634e-07,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.7130288039633158,
           "valid": true,
-          "Cmin": 0.030419432074608694,
-          "Cmax": 1.0817940743928833,
-          "period": 21.94059149683676,
-          "period_change": 3.755544412342715e-06,
+          "Cmin": 0.030616495645022026,
+          "Cmax": 1.0795275106924769,
+          "period": 21.907023280269186,
+          "period_change": 4.304784511077742e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.723763475807892,
           "valid": true,
-          "Cmin": 0.030772929398255516,
-          "Cmax": 1.090549626569995,
-          "period": 21.653726859568792,
-          "period_change": 9.107801588470466e-07,
+          "Cmin": 0.030961370481551925,
+          "Cmax": 1.0882105831955897,
+          "period": 21.614117756283804,
+          "period_change": 4.1876546674757265e-08,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.7344981476524682,
           "valid": true,
-          "Cmin": 0.031137927465276403,
-          "Cmax": 1.0990175139055665,
-          "period": 21.394497543726516,
-          "period_change": 6.307679996098159e-06,
+          "Cmin": 0.03131764389368959,
+          "Cmax": 1.096610197764862,
+          "period": 21.34864262474582,
+          "period_change": 3.6450476272875676e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.7452328194970443,
           "valid": true,
-          "Cmin": 0.03151536759513648,
-          "Cmax": 1.1072213763444547,
-          "period": 21.161066220329303,
-          "period_change": 1.073643716154038e-06,
+          "Cmin": 0.03168609351322924,
+          "Cmax": 1.1047496428789507,
+          "period": 21.108689067916316,
+          "period_change": 2.3231905288412236e-09,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.7559674913416206,
           "valid": true,
-          "Cmin": 0.0319064517598973,
-          "Cmax": 1.1151828183001136,
-          "period": 20.952102016153162,
-          "period_change": 1.1584687740651134e-05,
+          "Cmin": 0.03206764154413713,
+          "Cmax": 1.1126498577777346,
+          "period": 20.89281439815045,
+          "period_change": 5.677679837390315e-08,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.7667021631861968,
           "valid": true,
-          "Cmin": 0.03231286811450105,
-          "Cmax": 1.1229191263721197,
-          "period": 20.766717923960186,
-          "period_change": 5.804837428513565e-07,
+          "Cmin": 0.03246352183374497,
+          "Cmax": 1.1203289304260202,
+          "period": 20.700009122221104,
+          "period_change": 8.822928521112772e-08,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.777436835030773,
           "valid": true,
-          "Cmin": 0.03273711912622676,
-          "Cmax": 1.1304478589078142,
-          "period": 20.604472789070428,
-          "period_change": 8.692627488926519e-07,
+          "Cmin": 0.032875574013235556,
+          "Cmax": 1.127803008760557,
+          "period": 20.52967883219469,
+          "period_change": 3.758710590773262e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.7881715068753492,
           "valid": true,
-          "Cmin": 0.03318079588152459,
-          "Cmax": 1.1377830423749777,
-          "period": 20.46539291739566,
-          "period_change": 1.168957851405139e-06,
+          "Cmin": 0.03330668061170086,
+          "Cmax": 1.1350859899145274,
+          "period": 20.381662653914418,
+          "period_change": 2.4702148948563263e-07,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.7989061787199254,
           "valid": true,
-          "Cmin": 0.033648122609785475,
-          "Cmax": 1.1449374905537688,
-          "period": 20.35004355528656,
-          "period_change": 1.5986952348612249e-06,
+          "Cmin": 0.03375961484065688,
+          "Cmax": 1.142190957107875,
+          "period": 20.256255321204662,
+          "period_change": 1.6538043837499572e-05,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.8096408505645016,
           "valid": true,
-          "Cmin": 0.03414131162727594,
-          "Cmax": 1.1519228823987662,
-          "period": 20.259642321788647,
-          "period_change": 1.4743011433893116e-07,
+          "Cmin": 0.03423774929115424,
+          "Cmax": 1.1491292439166139,
+          "period": 20.15438334963426,
+          "period_change": 1.5061590374898515e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.8203755224090779,
           "valid": true,
-          "Cmin": 0.034665303087538485,
-          "Cmax": 1.1587501123500636,
-          "period": 20.196258743227986,
-          "period_change": 1.6110770502564264e-05,
+          "Cmin": 0.034744220042053214,
+          "Cmax": 1.155911010500722,
+          "period": 20.077582645925986,
+          "period_change": 5.820788373966934e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.8311101942536541,
           "valid": true,
-          "Cmin": 0.03522916909848281,
-          "Cmax": 1.1654271761241295,
-          "period": 20.163172509050924,
-          "period_change": 8.493611858284567e-08,
+          "Cmin": 0.03528680822338546,
+          "Cmax": 1.1625456744567413,
+          "period": 20.028454246423053,
+          "period_change": 5.900192263652571e-07,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.8418448660982303,
           "valid": true,
-          "Cmin": 0.03584144998214082,
-          "Cmax": 1.1719640206716397,
-          "period": 20.16541463541762,
-          "period_change": 1.7435579593438888e-06,
+          "Cmin": 0.03587374791210604,
+          "Cmax": 1.1690416126638563,
+          "period": 20.010954813911667,
+          "period_change": 2.924641876234091e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.8525795379428065,
           "valid": true,
-          "Cmin": 0.036516643963717635,
-          "Cmax": 1.178367923911143,
-          "period": 20.210882936505982,
-          "period_change": 1.534955458737386e-06,
+          "Cmin": 0.03651567747393021,
+          "Cmax": 1.175406521578502,
+          "period": 20.03123852987119,
+          "period_change": 3.3786000130930915e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.8633142097873827,
           "valid": true,
-          "Cmin": 0.037275856976358636,
-          "Cmax": 1.1846458755322267,
-          "period": 20.312394886602192,
-          "period_change": 1.838830030465033e-07,
+          "Cmin": 0.03723208157415811,
+          "Cmax": 1.1816470892758713,
+          "period": 20.09907619358603,
+          "period_change": 1.1214985988772241e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.8740488816319589,
           "valid": true,
-          "Cmin": 0.03815962648769342,
-          "Cmax": 1.1908041594239878,
-          "period": 20.492247111121287,
-          "period_change": 1.5071625512064202e-06,
+          "Cmin": 0.03805373982171596,
+          "Cmax": 1.1877699142314446,
+          "period": 20.23087344317389,
+          "period_change": 5.965499667581753e-07,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.8847835534765351,
           "valid": true,
-          "Cmin": 0.03924354710123642,
-          "Cmax": 1.1968480580128342,
-          "period": 20.793718501528133,
-          "period_change": 3.3178071134898346e-07,
+          "Cmin": 0.03903581092864087,
+          "Cmax": 1.193780532105261,
+          "period": 20.456653505576014,
+          "period_change": 2.2192116375663318e-06,
           "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.8955182253211114,
-          "valid": false,
-          "reason": "nonconverged_or_small"
+          "valid": true,
+          "Cmin": 0.04029875974791726,
+          "Cmax": 1.1996833670451303,
+          "period": 20.840096487577625,
+          "period_change": 1.5091571185621433e-05,
+          "scope": "finite forward DOP853, converged peak spacing; only attracting trajectories"
         },
         {
           "I": 0.9062528971656876,
@@ -2891,7 +2895,7 @@
         {
           "I": 0.9169875690102638,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 0.92772224085484,
@@ -2906,22 +2910,22 @@
         {
           "I": 0.9491915845439924,
           "valid": false,
-          "reason": "insufficient_peaks_or_domain"
+          "reason": "nonconverged_or_small"
         },
         {
           "I": 0.9599262563885687,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 0.9706609282331449,
           "valid": false,
-          "reason": "insufficient_peaks_or_domain"
+          "reason": "nonconverged_or_small"
         },
         {
           "I": 0.981395600077721,
           "valid": false,
-          "reason": "insufficient_peaks_or_domain"
+          "reason": "nonconverged_or_small"
         },
         {
           "I": 0.9921302719222972,
@@ -2931,7 +2935,7 @@
         {
           "I": 1.0028649437668733,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 1.0135996156114495,
@@ -2941,27 +2945,27 @@
         {
           "I": 1.0243342874560257,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 1.035068959300602,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 1.0458036311451782,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 1.0565383029897544,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 1.0672729748343306,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 1.0780076466789068,
@@ -2981,12 +2985,12 @@
         {
           "I": 1.1102116622126355,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 1.1209463340572117,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 1.1316810059017879,
@@ -2996,14 +3000,20 @@
         {
           "I": 1.142415677746364,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         },
         {
           "I": 1.1531503495909403,
           "valid": false,
-          "reason": "nonconverged_or_small"
+          "reason": "insufficient_peaks_or_domain"
         }
       ]
     }
+  },
+  "final_fm_scan": {
+    "duration": 600.0,
+    "points": 61,
+    "candidate_sha256": "2fcf2376464b8ff5268ebc930b0abc4d797066e34c79fb7e5c49d1ddc39fdbb2",
+    "method": "finite forward DOP853, not exhaustive"
   }
 }

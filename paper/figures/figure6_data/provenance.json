@@ -23,9 +23,9 @@
       "note": ""
     },
     "FM": {
-      "sha256": "44ea2b8555dc5118b52c6de61ff892deed0f465f5d8419c8611b6bc355f3d715",
-      "source": "free_hidden_for_review.zip",
-      "note": "earlier FM candidate; final frozen FM remains server-only"
+      "sha256": "2fcf2376464b8ff5268ebc930b0abc4d797066e34c79fb7e5c49d1ddc39fdbb2",
+      "source": "PWL-LR-NEST/astrocyte_lab/paper_models/fm_mixed",
+      "note": "final candidate; forward scan, fold search and both-threshold continuation recalculated; older upper-only data excluded"
     },
     "AFM": {
       "sha256": "2c524fb21af13f58cc6babbd3e7adec3287412a2af5ca52cf60f2e7833d3bf14",

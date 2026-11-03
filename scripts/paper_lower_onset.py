@@ -77,6 +77,15 @@ def compute(workers,duration):
     (DATA/'pwa_forward_scan.json').write_text(json.dumps({'duration':duration,'results':output},indent=2)+'\n')
     for c in CASES:print(c,'resolved forward cycles:',sum(v['valid'] for v in output[c]),'/ 41',flush=True)
 
+def compute_final_fm(workers,duration):
+    path=DATA/'pwa_forward_scan.json'; data=json.loads(path.read_text()); d=json.loads((DATA/'models/FM.json').read_text())
+    tasks=[('FM',d,float(I),duration) for I in d['fixed_equilibrium_threshold_I'][0]+np.linspace(-WINDOW['FM'],WINDOW['FM'],41)]
+    with ProcessPoolExecutor(max_workers=workers) as pool: rows=list(pool.map(simulate,tasks))
+    data['results']['FM']=rows
+    data['final_fm_scan']={'duration':duration,'sha256':hashlib.sha256((DATA/'models/FM.json').read_bytes()).hexdigest(),'scope':'finite forward scan; not exhaustive'}
+    path.write_text(json.dumps(data,indent=2)+'\n')
+    print('final FM resolved forward cycles:',sum(v['valid'] for v in rows),'/ 41',flush=True)
+
 def compute_lr_local_seeds():
     metadata=json.loads((lr.DATA/'metadata.json').read_text());out={}
     for case in CASES:
@@ -116,7 +125,7 @@ def plot():
         branch=[r for r in scan[case] if r['valid']]
         for key in ('Cmin','Cmax'):ax.scatter([r['I']-cross for r in branch],[r[key] for r in branch],s=12,c='#282828',zorder=4)
         for stable in (True,False):
-            branch=[r for r in searches.get(case,[]) if r['stable']==stable]
+            branch=[r for r in (searches.get(case,[]) if case!='FM' else []) if r['stable']==stable]
             for key in ('Cmin','Cmax'):
                 ax.scatter([r['I']-cross for r in branch],[r[key] for r in branch],s=15,facecolor='#282828' if stable else 'white',edgecolor='#282828',lw=.7,zorder=4)
         if case=='AM':
@@ -126,7 +135,7 @@ def plot():
                 for extremum in (zmin,zmax):
                     cc=inverse(zthr+(extremum-zthr)*ds/delta,m[0]);ax.plot(ds,cc,c='#262626',lw=1.)
         ax.set_xlim(-WINDOW[case],WINDOW[case]);ax.set_xlabel(r'$I-I_{\rm lower}$ ($\mu$M)')
-        ax.set_title(case+' PWA'+(' (earlier candidate)' if case=='FM' else ''),fontsize=9)
+        ax.set_title(case+' PWA'+(' (final candidate; forward only)' if case=='FM' else ''),fontsize=9)
         for axis in axes[:,col]:axis.axvline(0,color='.5',ls=':',lw=.8);axis.set_ylim(*YLIM[case]);axis.grid(alpha=.16)
     for axis in axes[:,0]:axis.set_ylabel(r'Calcium $C$ ($\mu$M)')
     fig.suptitle('Lower transition: LR and fitted two-threshold PWA',fontsize=12)
@@ -134,7 +143,8 @@ def plot():
     fig.savefig(OUT/'figure5_lower_onset.pdf',bbox_inches='tight');fig.savefig(OUT/'figure5_lower_onset.svg',bbox_inches='tight');fig.savefig(OUT/'figure5_lower_onset.png',dpi=300,bbox_inches='tight');plt.close(fig)
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--plot-only',action='store_true');p.add_argument('--workers',type=int,default=6);p.add_argument('--duration',type=float,default=600);a=p.parse_args()
-    if not a.plot_only:compute(a.workers,a.duration);compute_lr_local_seeds()
+    p=argparse.ArgumentParser();p.add_argument('--plot-only',action='store_true');p.add_argument('--only-final-fm',action='store_true');p.add_argument('--workers',type=int,default=6);p.add_argument('--duration',type=float,default=600);a=p.parse_args()
+    if a.only_final_fm:compute_final_fm(a.workers,a.duration)
+    elif not a.plot_only:compute(a.workers,a.duration);compute_lr_local_seeds()
     plot()
 if __name__=='__main__':main()

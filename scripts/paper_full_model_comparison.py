@@ -41,6 +41,19 @@ def compute(workers,duration,points):
     for mode in MODES:
         for case in CASES:print(mode,case,'cycles found',sum(r['valid'] for r in output[mode][case]),'/',points,flush=True)
 
+def compute_final_fm(workers,duration,points):
+    """Replace only the old free-FM scan; preserve other published scans."""
+    data=json.loads((DATA/'forward_scan.json').read_text()); d=model('no_fold','FM')
+    meta=json.loads((lr.DATA/'metadata.json').read_text())
+    fold=next(e['I'] for e in meta['events'] if e['case']=='FM' and e['kind']=='cycle_fold')
+    inputs=np.linspace(max(XLIM['FM'][0],d['fixed_equilibrium_threshold_I'][0]-.02),min(XLIM['FM'][1],fold+.03),points)
+    with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as pool:
+        rows=list(pool.map(simulate,[('FM',d,float(I),duration) for I in inputs]))
+    data['models']['no_fold']['FM']=rows
+    data['final_fm_scan']={'duration':duration,'points':points,'candidate_sha256':hashlib.sha256((DATA/'no_fold/FM/parameters.json').read_bytes()).hexdigest(), 'method':'finite forward DOP853, not exhaustive'}
+    (DATA/'forward_scan.json').write_text(json.dumps(data,indent=2)+'\n')
+    print('final FM cycles found',sum(r['valid'] for r in rows),'/',points,flush=True)
+
 def fold_metrics(d):
     """Reconstruct stored M=1 orbit from four affine segments."""
     shape,cuts,N,H,a,b=unpack(d);I=d['fold_constraint']['I'];times=d['fold_constraint']['crossing_times'];boundaries=[0,1,1,0,0];regions=[1,2,1,0];states=[];mismatches=[];starts=[];ends=[]
@@ -54,8 +67,14 @@ def fold_metrics(d):
 
 def build_data():
     data=json.loads((DATA/'forward_scan.json').read_text());models={mode:{case:model(mode,case) for case in CASES} for mode in MODES};rows=lr.load_rows();metadata=json.loads((lr.DATA/'metadata.json').read_text())
+    fm_hash=hashlib.sha256((DATA/'no_fold/FM/parameters.json').read_bytes()).hexdigest()
+    if data.get('final_fm_scan',{}).get('candidate_sha256')!=fm_hash:
+        raise ValueError('Final FM scan does not match candidate; run --only-final-fm')
+    continuation=json.loads((DATA/'continued_pwa_cycles.json').read_text())
+    if fm_hash not in continuation.get('final_fm_note',''):
+        raise ValueError('Final FM continuation provenance does not match candidate')
     markers={case:fold_metrics(models['fixed'][case]) for case in CASES};(DATA/'fixed_fold_orbits.json').write_text(json.dumps(markers,indent=2)+'\n')
-    provenance={mode:{case:dict(sha256=hashlib.sha256((DATA/mode/case/'parameters.json').read_bytes()).hexdigest(),source='mixed_models_for_review.zip' if mode=='fixed' else 'free_hidden_for_review.zip',note='earlier FM candidate; final frozen FM remains server-only' if (mode,case)==('no_fold','FM') else '') for case in CASES} for mode in MODES}
+    provenance={mode:{case:dict(sha256=hashlib.sha256((DATA/mode/case/'parameters.json').read_bytes()).hexdigest(),source=('PWL-LR-NEST/astrocyte_lab/paper_models/fm_mixed' if (mode,case)==('no_fold','FM') else 'mixed_models_for_review.zip' if mode=='fixed' else 'free_hidden_for_review.zip'),note='final candidate; forward scan, fold search and both-threshold continuation recalculated; older upper-only data excluded' if (mode,case)==('no_fold','FM') else '') for case in CASES} for mode in MODES}
     (DATA/'provenance.json').write_text(json.dumps(provenance,indent=2)+'\n')
     return data,models,rows,metadata,markers
 
@@ -103,10 +122,10 @@ def make(kind,data,models,rows,metadata,markers):
                     for cycle in branch['cycles']:
                         vals=[cycle['period']] if kind=='period' else [cycle['Cmin'],cycle['Cmax']]
                         ax.scatter([branch['I']]*len(vals),vals,s=12 if cycle['stable'] else 16,facecolors='#202020' if cycle['stable'] else 'white',edgecolors='#202020' if cycle['stable'] else '#a32839',linewidths=.8,zorder=4)
-                for cycle in fold_branches.get(f'{mode}_{case}',[]):
+                for cycle in ([] if (mode,case)==('no_fold','FM') else fold_branches.get(f'{mode}_{case}',[])):
                     vals=[cycle['period']] if kind=='period' else [cycle['Cmin'],cycle['Cmax']]
                     ax.scatter([cycle['I']]*len(vals),vals,s=12 if cycle['stable'] else 16,facecolors='#202020' if cycle['stable'] else 'white',edgecolors='#202020' if cycle['stable'] else '#a32839',linewidths=.8,zorder=4)
-                for branch in continued+upper:
+                for branch in continued+([] if (mode,case)==('no_fold','FM') else upper):
                     if branch['mode']!=mode or branch['case']!=case:continue
                     for stable in (True,False):
                         subset=[r for r in branch['points'] if r['stable']==stable]
@@ -127,7 +146,7 @@ def make(kind,data,models,rows,metadata,markers):
             if i==0:ax.set_title(case+rf' ($K_{{ER}}={lr.PARAMETERS["KER_"+case]:g}\,\mu$M)',fontsize=9)
             if j==0:ax.set_ylabel(('Li–Rinzel','PWA: fold fixed','PWA: no fold target')[i]+'\n'+('Period (s)' if kind=='period' else r'$C$ ($\mu$M)'),fontsize=8)
             if i==2:ax.set_xlabel(r'$I$ ($\mu$M)')
-            if (mode,case)==('no_fold','FM'):ax.text(.98,.96,'earlier candidate',transform=ax.transAxes,ha='right',va='top',fontsize=6.5,bbox=dict(facecolor='white',alpha=.8,edgecolor='none'))
+            if (mode,case)==('no_fold','FM'):ax.text(.98,.96,'final candidate',transform=ax.transAxes,ha='right',va='top',fontsize=6.5,bbox=dict(facecolor='white',alpha=.8,edgecolor='none'))
     legend=[Line2D([],[],marker='o',ls='',color='#202020',ms=4,label='stable cycle'),Line2D([],[],marker='o',ls='',color='#a32839',mfc='white',ms=4,label='unstable cycle'),Line2D([],[],marker='D',ls='',color='#7354a4',ms=4,label='cycle fold')]
     if kind=='bifurcation':legend=[Line2D([],[],color='#245f9b',label='stable equilibrium'),Line2D([],[],color='#bf434a',ls='--',label='unstable equilibrium')]+legend
     fig.legend(handles=legend,loc='lower center',bbox_to_anchor=(.5,.025),ncol=len(legend),frameon=False,fontsize=7)
@@ -135,7 +154,8 @@ def make(kind,data,models,rows,metadata,markers):
     save(fig,'figure5_period_comparison' if kind=='period' else 'figure6_bifurcation_comparison')
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--plot-only',action='store_true');p.add_argument('--workers',type=int,default=6);p.add_argument('--duration',type=float,default=600);p.add_argument('--points',type=int,default=61);a=p.parse_args()
-    if not a.plot_only:compute(a.workers,a.duration,a.points)
+    p=argparse.ArgumentParser();p.add_argument('--plot-only',action='store_true');p.add_argument('--only-final-fm',action='store_true');p.add_argument('--workers',type=int,default=6);p.add_argument('--duration',type=float,default=600);p.add_argument('--points',type=int,default=61);a=p.parse_args()
+    if a.only_final_fm:compute_final_fm(a.workers,a.duration,a.points)
+    elif not a.plot_only:compute(a.workers,a.duration,a.points)
     v=build_data();make('period',*v);make('bifurcation',*v)
 if __name__=='__main__':main()

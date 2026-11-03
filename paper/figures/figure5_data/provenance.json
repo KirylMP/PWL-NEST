@@ -12,9 +12,9 @@
     },
     "FM": {
       "path": "models/FM.json",
-      "sha256": "44ea2b8555dc5118b52c6de61ff892deed0f465f5d8419c8611b6bc355f3d715",
-      "source": "free_hidden_for_review.zip:K_0.050/model/parameters.json (earlier candidate; not final server-only snapshot)"
+      "sha256": "2fcf2376464b8ff5268ebc930b0abc4d797066e34c79fb7e5c49d1ddc39fdbb2",
+      "source": "PWL-LR-NEST/astrocyte_lab/paper_models/fm_mixed/parameters.json"
     }
   },
-  "notes": "AFM/FM dashed local candidate curves assume an exactly fixed boundary equilibrium; matching uses high precision and finite itinerary sampling. No independent IVP or coefficient sensitivity verification; FM offsets are below double precision. LR plotted continuation and finite forward PWA scan are not exhaustive."
+  "notes": "Final FM uses finite forward scan; old local FM cycle data excluded. LR continuation and PWA scans are not exhaustive."
 }
