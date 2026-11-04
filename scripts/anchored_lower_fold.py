@@ -63,10 +63,15 @@ def anchor_model(base, changes, cut, da, db):
     return three,model,checks
 
 
-def anchored_fold(base,changes,pivot,cut,da,db):
+def anchored_fold(base,changes,pivot,cut,da,db,initial_fold=None):
     if pivot not in FREE:raise ValueError('pivot is not free')
     I=base['fold_constraint']['I']; original=np.array(base['fold_constraint']['crossing_times'])
-    seed=np.r_[original,float(changes.get(pivot,0.))]
+    if initial_fold is None:
+        seed=np.r_[original,float(changes.get(pivot,0.))]
+    else:
+        seed=np.r_[np.asarray(initial_fold['times'],float),float(initial_fold['pivot_delta'])]
+        if len(seed)!=5 or np.any(~np.isfinite(seed)) or np.any(seed[:4]<=1e-5) or np.any(seed[:4]>=120):
+            raise ValueError('invalid initial fold')
     scale=np.r_[np.maximum(original,.2),max(abs(base[pivot[0]][pivot[1]]),.5)]
     def equations(z):
         trial=dict(changes);trial[pivot]=z[4]
