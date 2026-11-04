@@ -1,7 +1,6 @@
 """Parallel, restartable batch of independent robust anchored three-zone fits."""
 import argparse
 import concurrent.futures
-import itertools
 import json
 import os
 import signal
@@ -23,7 +22,8 @@ def main():
     p.add_argument('--dry-run',action='store_true');a=p.parse_args()
     if (a.seed_start<0 or a.seed_end<a.seed_start or a.workers<1 or a.max_nfev<1 or a.duration<=0
         or a.max_init_tries<1 or a.bound<=2.1 or len(set(a.cases))!=len(a.cases)):p.error('invalid settings')
-    tasks=list(itertools.product(a.cases,range(a.seed_start,a.seed_end+1)))
+    # Interleave cases so AM, AFM and FM start together instead of in blocks.
+    tasks=[(case,seed) for seed in range(a.seed_start,a.seed_end+1) for case in a.cases]
     print(f'{len(tasks)} tasks; at most {a.workers} concurrent processes',flush=True)
     if a.dry_run:return
     root=a.output.resolve();root.mkdir(parents=True,exist_ok=True)
