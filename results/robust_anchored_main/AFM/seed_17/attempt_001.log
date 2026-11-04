@@ -1,0 +1,26 @@
+invalid_start AFM 17 attempt 1 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 2 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 3 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 4 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 5 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 6 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 7 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 8 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 9 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 10 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 11 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 12 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 13 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 14 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 15 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 17 attempt 16 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+valid_start 17 attempt 17 loss 9.242058763936708 x [-1.2269726454802088, -0.8443902606645324, -2.9379577978318716, 0.3730044175376732, 0.29341551195639326]
+AFM 17 calls 20 best 9.242058763936708 fold {'attempts': {'reference': 20, 'nearest': 19, 'original': 17}, 'successes': {'reference': 1, 'nearest': 2, 'original': 1}, 'all_failed': 16, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 17 calls 40 best 2.630641969083937 fold {'attempts': {'reference': 40, 'nearest': 29, 'original': 17}, 'successes': {'reference': 11, 'nearest': 12, 'original': 1}, 'all_failed': 16, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 17 calls 60 best 0.5874531187273305 fold {'attempts': {'reference': 60, 'nearest': 29, 'original': 17}, 'successes': {'reference': 31, 'nearest': 12, 'original': 1}, 'all_failed': 16, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 17 calls 80 best 0.4959491624786885 fold {'attempts': {'reference': 80, 'nearest': 29, 'original': 17}, 'successes': {'reference': 51, 'nearest': 12, 'original': 1}, 'all_failed': 16, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 17 calls 100 best 0.4946611019684701 fold {'attempts': {'reference': 100, 'nearest': 29, 'original': 17}, 'successes': {'reference': 71, 'nearest': 12, 'original': 1}, 'all_failed': 16, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 17 calls 120 best 0.4939813361601538 fold {'attempts': {'reference': 120, 'nearest': 29, 'original': 17}, 'successes': {'reference': 91, 'nearest': 12, 'original': 1}, 'all_failed': 16, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 17 calls 140 best 0.49382690780419525 fold {'attempts': {'reference': 140, 'nearest': 29, 'original': 17}, 'successes': {'reference': 111, 'nearest': 12, 'original': 1}, 'all_failed': 16, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 17 calls 160 best 0.4938135835816765 fold {'attempts': {'reference': 160, 'nearest': 29, 'original': 17}, 'successes': {'reference': 131, 'nearest': 12, 'original': 1}, 'all_failed': 16, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+done 17 reference 0.6855520785926039 initial 9.242058763936708 best 0.4938135835816765 status `xtol` termination condition is satisfied.

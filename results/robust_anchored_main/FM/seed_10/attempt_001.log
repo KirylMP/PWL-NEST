@@ -1,0 +1,6 @@
+invalid_start FM 10 attempt 1 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+valid_start 10 attempt 2 loss 36.66306321370816 x [-2.1844823758769603, 1.134218878686787, 2.050486345873674, -0.44694601557014035, 2.741556020720197]
+FM 10 calls 20 best 24.455525519624892 fold {'attempts': {'reference': 20, 'nearest': 1, 'original': 1}, 'successes': {'reference': 19, 'nearest': 0, 'original': 0}, 'all_failed': 1, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+FM 10 calls 40 best 22.41178122124187 fold {'attempts': {'reference': 40, 'nearest': 1, 'original': 1}, 'successes': {'reference': 39, 'nearest': 0, 'original': 0}, 'all_failed': 1, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+FM 10 calls 60 best 22.29344374644547 fold {'attempts': {'reference': 60, 'nearest': 1, 'original': 1}, 'successes': {'reference': 59, 'nearest': 0, 'original': 0}, 'all_failed': 1, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+done 10 reference 46.19811824677071 initial 36.66306321370816 best 22.29344374644547 status `xtol` termination condition is satisfied.

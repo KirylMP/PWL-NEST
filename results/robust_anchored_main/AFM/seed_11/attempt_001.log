@@ -1,0 +1,21 @@
+invalid_start AFM 11 attempt 1 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 2 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 3 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 4 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 5 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 6 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 7 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 8 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 9 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 10 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 11 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 12 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 11 attempt 13 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+valid_start 11 attempt 14 loss 2.9644960366904565 x [-1.8260830203280742, -2.6284785891092843, 0.5903526439442288, 2.37454651044769, -2.8383395316917834]
+AFM 11 calls 20 best 2.887377178544432 fold {'attempts': {'reference': 20, 'nearest': 13, 'original': 13}, 'successes': {'reference': 7, 'nearest': 0, 'original': 0}, 'all_failed': 13, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 11 calls 40 best 0.8242361464651625 fold {'attempts': {'reference': 40, 'nearest': 13, 'original': 13}, 'successes': {'reference': 27, 'nearest': 0, 'original': 0}, 'all_failed': 13, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 11 calls 60 best 0.6583939857854995 fold {'attempts': {'reference': 60, 'nearest': 13, 'original': 13}, 'successes': {'reference': 47, 'nearest': 0, 'original': 0}, 'all_failed': 13, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 11 calls 80 best 0.5171572850933281 fold {'attempts': {'reference': 80, 'nearest': 13, 'original': 13}, 'successes': {'reference': 67, 'nearest': 0, 'original': 0}, 'all_failed': 13, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 11 calls 100 best 0.49493814758366633 fold {'attempts': {'reference': 100, 'nearest': 13, 'original': 13}, 'successes': {'reference': 87, 'nearest': 0, 'original': 0}, 'all_failed': 13, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+AFM 11 calls 120 best 0.49486271968236784 fold {'attempts': {'reference': 120, 'nearest': 13, 'original': 13}, 'successes': {'reference': 107, 'nearest': 0, 'original': 0}, 'all_failed': 13, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+done 11 reference 0.6855520785926039 initial 2.9644960366904565 best 0.49486271968236784 status `xtol` termination condition is satisfied.

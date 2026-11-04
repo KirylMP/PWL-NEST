@@ -1,0 +1,28 @@
+invalid_start AFM 29 attempt 1 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 2 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 3 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 4 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 5 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 6 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 7 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 8 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 9 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 10 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 11 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 12 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 13 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 14 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 15 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 16 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 17 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 18 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+AFM 29 calls 20 best inf fold {'attempts': {'reference': 20, 'nearest': 19, 'original': 19}, 'successes': {'reference': 1, 'nearest': 0, 'original': 0}, 'all_failed': 19, 'note': 'reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence'}
+invalid_start AFM 29 attempt 19 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+invalid_start AFM 29 attempt 20 reason reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved
+Traceback (most recent call last):
+  File "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/pwl-robust-anchored/scripts/fit_robust_anchored.py", line 143, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/pwl-robust-anchored/scripts/fit_robust_anchored.py", line 88, in main
+    raise RuntimeError('no feasible start found; see start_failure.json and log')
+RuntimeError: no feasible start found; see start_failure.json and log

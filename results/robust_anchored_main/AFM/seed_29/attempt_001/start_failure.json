@@ -1,0 +1,22 @@
+{
+  "case": "AFM",
+  "seed": 29,
+  "tries": 20,
+  "reasons": {
+    "reference: fold equations unresolved; nearest: fold equations unresolved; original: fold equations unresolved": 20
+  },
+  "fold_solver": {
+    "attempts": {
+      "reference": 21,
+      "nearest": 20,
+      "original": 20
+    },
+    "successes": {
+      "reference": 1,
+      "nearest": 0,
+      "original": 0
+    },
+    "all_failed": 20,
+    "note": "reference seed tried first; nearest cached and original fold are fallback; numerical failure does not prove nonexistence"
+  }
+}
