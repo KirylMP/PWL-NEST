@@ -1,0 +1,7 @@
+valid_start AM 0 attempt 1 loss 14.85796579944311 x [0.0, 0.0, 0.0, 0.0, 0.0]
+AM seed 0 calls 20 best 1.7012220077617901
+AM seed 0 calls 40 best 1.0539718634608253
+AM seed 0 calls 60 best 1.0104184621787182
+AM seed 0 calls 80 best 1.0057398439242011
+AM seed 0 calls 100 best 1.005461958643855
+done AM 0 initial 14.85796579944311 best 1.005461958643855 `ftol` termination condition is satisfied.

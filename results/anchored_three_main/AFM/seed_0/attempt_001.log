@@ -1,0 +1,6 @@
+valid_start AFM 0 attempt 1 loss 28.025390037630142 x [0.0, 0.0, 0.0, 0.0, 0.0]
+AFM seed 0 calls 20 best 2.3265135961560124
+AFM seed 0 calls 40 best 0.7349139517044047
+AFM seed 0 calls 60 best 0.6974742236795238
+AFM seed 0 calls 80 best 0.6967153943276987
+done AFM 0 initial 28.025390037630142 best 0.6967153943276987 `xtol` termination condition is satisfied.

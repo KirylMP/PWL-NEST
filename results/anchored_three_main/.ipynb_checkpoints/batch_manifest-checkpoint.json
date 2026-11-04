@@ -1,0 +1,14 @@
+{
+  "cases": [
+    "AM",
+    "AFM",
+    "FM"
+  ],
+  "seed_start": 0,
+  "seed_end": 31,
+  "max_nfev": 20,
+  "training": "all",
+  "duration": 400.0,
+  "max_init_tries": 20,
+  "scope": "three zones; fixed rest, equilibrium crossings and fold"
+}
