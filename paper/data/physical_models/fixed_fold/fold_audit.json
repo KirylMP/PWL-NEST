@@ -1,0 +1,32 @@
+{
+  "scope": "Sampled neutral orbit minima from numerical continuation; SHA256 binds model. Sampling is not a proof of the true minimum.",
+  "results": {
+    "am": {
+      "sha256": "719cbc9874bb19988961a4d9a024f517de225cd8d0aa19c46c634023496aa1ce",
+      "neutral": {
+        "I": 0.6383571385950001,
+        "Cmin": 0.1556661986407405,
+        "matching": 1.0117906512618902e-11,
+        "closure": 3.8238007205038116e-10
+      }
+    },
+    "afm": {
+      "sha256": "b350589a04f229f74e684b714704ff004de67d086825380b9381a0aaf3f3a655",
+      "neutral": {
+        "I": 0.9056635644477613,
+        "Cmin": 0.09051594765633447,
+        "matching": 9.603429163007604e-14,
+        "closure": 1.5231149674832523e-12
+      }
+    },
+    "fm": {
+      "sha256": "5f9cccbee15e5c6fca5379d4c19a883dad982d18885810ab53785aedca2ea728",
+      "neutral": {
+        "I": 1.1231503496462252,
+        "Cmin": 0.051937277798173066,
+        "matching": 1.9206858326015208e-14,
+        "closure": 4.424904886946024e-12
+      }
+    }
+  }
+}
