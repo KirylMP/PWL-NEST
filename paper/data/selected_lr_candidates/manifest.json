@@ -1,0 +1,67 @@
+{
+  "status": "working selection; not yet independently validated or accepted for NEST",
+  "selection_note": "FM seed 8 selected by user for more accurate period; FM seed 6 retained as an alternative.",
+  "models": {
+    "AM": {
+      "seed": 16,
+      "candidate_path": "paper/data/selected_lr_candidates/AM/candidate.json",
+      "candidate_sha256": "bb375e7dd48b5036df9d435df0a2b01c8e195f2b914d9103d0611957ba533394",
+      "report_path": "paper/data/selected_lr_candidates/AM/report.json",
+      "report_sha256": "e0251270917142495dcb304ac2f6336abd58b6880682fb5594fed1e356050481",
+      "source_path": "results/robust_anchored_main/AM/seed_16/attempt_001/candidate.json",
+      "holdout_count": 4,
+      "holdout_mae": {
+        "Cmin": 0.005979541975566514,
+        "Cmax": 0.016323121836554155,
+        "period": 0.5343678067832798
+      },
+      "fold_I": 0.6383571385950001,
+      "fold_closure": 4.996003610813204e-16,
+      "optimizer_status": "`xtol` termination condition is satisfied.",
+      "source_commit": "1f4fae65a3995f2d8b2141356079610d9b3c9e69"
+    },
+    "AFM": {
+      "seed": 10,
+      "candidate_path": "paper/data/selected_lr_candidates/AFM/candidate.json",
+      "candidate_sha256": "b8bd8eacd235e57150d7abe6ea2e05b94f338736ca7d190d5a7115c55b830c93",
+      "report_path": "paper/data/selected_lr_candidates/AFM/report.json",
+      "report_sha256": "2ecf453e3373bf7877352a5155009779e1ddbf095d52e88c87536e48839b5039",
+      "source_path": "results/robust_anchored_main/AFM/seed_10/attempt_001/candidate.json",
+      "holdout_count": 4,
+      "holdout_mae": {
+        "Cmin": 0.0022966015598515736,
+        "Cmax": 0.017137950739925523,
+        "period": 0.5005684268613919
+      },
+      "fold_I": 0.9056635644477613,
+      "fold_closure": 3.217565103241782e-13,
+      "optimizer_status": "`xtol` termination condition is satisfied.",
+      "source_commit": "1f4fae65a3995f2d8b2141356079610d9b3c9e69"
+    },
+    "FM": {
+      "seed": 8,
+      "candidate_path": "paper/data/selected_lr_candidates/FM/candidate.json",
+      "candidate_sha256": "851cd4c00ac91337ea6d666fb68c574730b77e0319ace5dad580fe7d44ffb577",
+      "report_path": "paper/data/selected_lr_candidates/FM/report.json",
+      "report_sha256": "55480875163287ec790285f0370785cc3a02b6d5b575952140462d975eb9a5fd",
+      "source_commit": "a041899404ec06c5c47de0046fd8987bb2a8ef09",
+      "source_path": "results/anchored_three_main/FM/seed_8/attempt_001/candidate.json",
+      "holdout_count": 4,
+      "holdout_mae": {
+        "Cmin": 0.002517348654831061,
+        "Cmax": 0.18259431383655023,
+        "period": 0.28375807009622633
+      },
+      "fold_I": 1.1231503496462252,
+      "fold_closure": 9.227396624567064e-12,
+      "optimizer_status": "`ftol` termination condition is satisfied."
+    }
+  },
+  "alternatives": {
+    "FM_seed6": {
+      "candidate_path": "paper/data/selected_lr_candidates/alternatives/FM_seed6/candidate.json",
+      "candidate_sha256": "430a4c1e169701419a529cb9430ecaaa2f711de4f5ede83c982ca4c91426eb44",
+      "source_commit": "1f4fae65a3995f2d8b2141356079610d9b3c9e69"
+    }
+  }
+}
