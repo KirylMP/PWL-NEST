@@ -1,0 +1,76 @@
+{
+  "case": "AFM",
+  "seed": 816,
+  "source": "random independent x and random flight times; fixed underlying a,b,anchors and scales",
+  "settings": {
+    "case": "AFM",
+    "seed": 816,
+    "max_nfev": 300,
+    "bound": 40.0,
+    "max_field_draws": 1000,
+    "screen_margin": 0.0001,
+    "output": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/pwl-random-64/results/random_64/AFM/seed_816/joint.json"
+  },
+  "initial_x": [
+    35.81676964166698,
+    35.254965635883224,
+    -5.398293211884031,
+    -6.038389198565369,
+    -8.429269164993698,
+    0.9270311947752816
+  ],
+  "initial_times": [
+    0.4191777517243866,
+    5.381489289683864,
+    0.5416896988069482,
+    4.643273072517934
+  ],
+  "spectral_draws": 70,
+  "nfev": 28,
+  "calls": 258,
+  "optimizer_status": "`gtol` termination condition is satisfied.",
+  "best": {
+    "loss": 3.73702546489532e-26,
+    "x": [
+      14.710639692686605,
+      14.55099721518077,
+      3.913753498119632,
+      -31.94884043837068,
+      -6.858868609217694,
+      5.411545707737835
+    ],
+    "times": [
+      0.8601179408071619,
+      3.6348451955704917,
+      2.0815030530337126,
+      0.09930732913970852
+    ],
+    "return_max": 1.599198204416119e-15,
+    "logM": 5.073719222536965e-13,
+    "minimum_spectral_constraint": 0.5808358037099166
+  },
+  "orbit": {
+    "I": 0.9056635644477613,
+    "times": [
+      0.8601179408071619,
+      3.6348451955704917,
+      2.0815030530337126,
+      0.09930732913970852
+    ],
+    "period": 6.675773518551075,
+    "Cmin": 0.09156363407780077,
+    "Cmax": 0.8328616322662024,
+    "physical": true,
+    "logM": 5.073719222536965e-13,
+    "stable": false,
+    "matching": 1.599198204416119e-15,
+    "closure": 1.831137325103427e-11,
+    "crossing_speeds": [
+      0.014559524126429413,
+      0.7704927327890649,
+      -0.10011384380346819,
+      -0.027470226461663305
+    ]
+  },
+  "status_validation": "validated_sampled"
+}

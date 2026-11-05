@@ -1,0 +1,53 @@
+{
+  "case": "AM",
+  "seed": 465,
+  "source": "random independent x and random flight times; fixed underlying a,b,anchors and scales",
+  "settings": {
+    "case": "AM",
+    "seed": 465,
+    "max_nfev": 300,
+    "bound": 40.0,
+    "max_field_draws": 1000,
+    "screen_margin": 0.0001,
+    "output": "/media/disk1/kizemin/Users/lab_b/Documents/mikholap/pwl-random-64/results/random_64/AM/seed_465/joint.json"
+  },
+  "initial_x": [
+    20.428637147706567,
+    21.32004309838551,
+    -33.293045935158,
+    -4.770768260969575,
+    20.62048146786097,
+    -34.05829749394275
+  ],
+  "initial_times": [
+    1.8977650388346228,
+    23.250858736740348,
+    6.5866219064824145,
+    13.481099018955994
+  ],
+  "spectral_draws": 12,
+  "nfev": 300,
+  "calls": 2610,
+  "optimizer_status": "The maximum number of function evaluations is exceeded.",
+  "best": {
+    "loss": 34.79506653918078,
+    "x": [
+      -2.1291693437458385,
+      -4.472230151530806,
+      -2.141850367675719,
+      13.972159505643932,
+      6.663318894626751,
+      -2.2413763526462747
+    ],
+    "times": [
+      2.00880705410959,
+      12.967621207567417,
+      3.973443485836803,
+      1.0122153247005201
+    ],
+    "return_max": 0.05822495438568176,
+    "logM": -1.2378368869167247,
+    "minimum_spectral_constraint": 0.26487846323155506
+  },
+  "status_validation": "unresolved"
+}
