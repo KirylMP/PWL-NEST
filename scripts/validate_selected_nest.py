@@ -45,7 +45,7 @@ def run_case(case, I, initial, args):
     return {'case': case, 'I': I, 'initial_C': float(initial[0]), 'initial_q': float(initial[1]),
             'candidate_sha256': sha, 'samples': len(times), 'first_time_s': float(times[0]),
             'max_abs_C': float(errors[0]), 'max_abs_q': float(errors[1]), 'max_abs_IP3': iperr,
-            'region_crossings': int(node.get('region_crossings')),
+            'region_crossings': int(np.sum(node.get('region_crossings'))),
             'passed': bool(max(errors) <= args.tolerance and iperr <= 1e-10)}
 
 
