@@ -28,3 +28,18 @@ python scripts/summarize_focus_fit.py results/lower_stable_main
 Each start writes its own status, log, and fitted report when available. AM starts near one known feasible candidate; AFM/FM attempt to find individual feasible seeds. Failure at any stage is reported without a claim of nonexistence. Existing per-start folders are skipped, not resumed; use a new output directory for an independent batch. Holdout has four inputs and is excluded from loss; `4/4` counts found cycles, not accuracy. Optimizer `xtol` is not proof of global convergence, and near-zero discriminants require caution. Recheck fitted candidates and compare holdout errors, not just the loss.
 
 On the local test with one start, three objective evaluations and 100 initialization evaluations, all AM/AFM/FM completed with 4/4 holdout cycles, but all hit their short optimization budget. This is a smoke test, not a fitted result. The AFM and FM middle discriminants were approximately −0.0105 and −0.0119, so proximity to the focus–node boundary remains a concern.
+
+## Continue until a candidate count is reached
+
+`run_until_candidates.py` continues an existing compatible batch directory. It scans previous completed reports, and launches new unique seed numbers only for cases below the requested target. A counted candidate has a completed report and candidate, seven positive-calcium stable training cycles, a numerically matched neutral fold with positive sampled calcium, and the required spectral signs and focus conditions. The four holdout points do not enter the count or optimization; report their results separately. Candidates can be near-duplicates, and optimizer termination is not a proof of convergence or of global optimality.
+
+The cap `--max-new-attempts` is per case and per invocation. The runner returns a nonzero status if the cap is reached before the target. A new invocation can continue with fresh seed numbers; existing files and logs are never overwritten. Stop with Ctrl+C; queued jobs are cancelled, active process groups terminated, and existing files remain. An interrupted/incomplete directory is not counted and is not resumed as an optimizer checkpoint. Never run two controllers on the same output directory simultaneously.
+
+```bash
+python -m unittest discover -s tests -p 'test_until_candidates.py' -v
+python -u scripts/run_until_candidates.py --output results/lower_stable_main \
+  --target 16 --workers 16 --max-new-attempts 128
+python scripts/summarize_focus_fit.py results/lower_stable_main
+```
+
+Settings for the new tasks come from the existing `manifest.json`; mismatched batch scope is rejected. AFM and FM start generation still uses the existing random perturbation and local fold solver, not uniform exploration of all possible fields. Numerically unresolved or rejected starts count toward the cap, not toward the candidate target. Positivity, return routes and fold are checked numerically with finite sampling.
