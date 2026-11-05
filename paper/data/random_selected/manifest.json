@@ -1,0 +1,26 @@
+{
+  "status": "working selection; validation pending",
+  "models": {
+    "AM": {
+      "seed": 465,
+      "candidate_path": "paper/data/random_selected/AM/candidate.json",
+      "candidate_sha256": "682cdfef88c745781ef33a8a6f953cd9df4563482d6a411b0255ddb2fad59fe7",
+      "report_path": "paper/data/random_selected/AM/report.json",
+      "report_sha256": "4f22391f037ab7d0e5c94db466d293ef0bebf80e9f4cdae5dc7ea3d23055c8ee"
+    },
+    "AFM": {
+      "seed": 800,
+      "candidate_path": "paper/data/random_selected/AFM/candidate.json",
+      "candidate_sha256": "62e947674484f4a71252349044b9f53bf9744f4258fe1808d767fb026e4477cc",
+      "report_path": "paper/data/random_selected/AFM/report.json",
+      "report_sha256": "8f6b41adb600eda7b7146ffabb868f4072f01adc90880308d352eca446a018c2"
+    },
+    "FM": {
+      "seed": 474,
+      "candidate_path": "paper/data/random_selected/FM/candidate.json",
+      "candidate_sha256": "802935c522ea77184aee6849e4b8790ee16d98ed440e53b7e9ac68ccfb3c17b2",
+      "report_path": "paper/data/random_selected/FM/report.json",
+      "report_sha256": "af6dbbf046850318fed98dbbb04b550acac5bb76509c3d3c729085d5ec02138d"
+    }
+  }
+}

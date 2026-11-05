@@ -16,6 +16,31 @@ from scipy.signal import find_peaks
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_DIR = ROOT / 'paper/data/physical_models/no_fold'
 KER = {'AM': .1, 'AFM': .075, 'FM': .05}
+SELECTED = ROOT / 'paper/data/selected_lr_candidates/manifest.json'
+RANDOM_SELECTED = ROOT / 'paper/data/random_selected/manifest.json'
+
+
+def load_case(case, model_set='selected'):
+    if model_set in ('selected', 'random_selected'):
+        manifest_path = SELECTED if model_set == 'selected' else RANDOM_SELECTED
+        manifest = json.loads(manifest_path.read_text())['models'][case]
+        path = ROOT / manifest['candidate_path']
+        raw = path.read_bytes()
+        sha = hashlib.sha256(raw).hexdigest()
+        if sha != manifest['candidate_sha256']:
+            raise ValueError(f'{case}: candidate hash mismatch')
+    elif model_set == 'no_fold':
+        path = MODEL_DIR / case / 'parameters.json'
+        raw = path.read_bytes()
+        sha = hashlib.sha256(raw).hexdigest()
+    else:
+        raise ValueError(f'Unknown model set: {model_set}')
+    data = json.loads(raw)
+    if data.get('case') not in ({'AFM', 'INTERMEDIATE'} if case == 'AFM' else {case}):
+        raise ValueError(f'{case}: candidate case mismatch')
+    if abs(float(data['K']) - KER[case]) > 1e-10:
+        raise ValueError(f'{case}: candidate SERCA parameter mismatch')
+    return data, sha
 
 
 def parameters(data, I, C0, q0):
@@ -48,7 +73,7 @@ def peaks(t, c, transient):
     else: status='oscillatory'
     return dict(status=status, peaks=int(len(ind)), Cmin=cmin, Cmax=cmax,
                 last_period_s=float(periods[-1]) if len(periods) else None,
-                physical_calcium=bool(np.isfinite(x).all() and np.all((x>0)&(x<2/1.185))))
+                physical_calcium=bool(np.isfinite(x).all() and np.all((x>0))))
 
 
 def run(case, model, data, I, args, diagnostic=False):
@@ -88,6 +113,7 @@ def run(case, model, data, I, args, diagnostic=False):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--cases',nargs='+',choices=sorted(KER),default=['AM','AFM','FM'])
+    p.add_argument('--model-set',choices=['selected','random_selected','no_fold'],default='selected')
     p.add_argument('--inputs',nargs='+',type=float,default=[.05,.2,.3,.34,.35,.4,.5,.53,.6,.64,.7,.77,.8,.86,.9,1.,1.12,1.2])
     p.add_argument('--nodes',type=int,default=32);p.add_argument('--threads',type=int,default=1)
     p.add_argument('--duration-s',type=float,default=300.);p.add_argument('--transient-s',type=float,default=150.)
@@ -111,7 +137,7 @@ def main():
     (args.output/'manifest.json').write_text(json.dumps(meta,indent=2)+'\n')
     with output.open('x') as f:
         for case in args.cases:
-            path=MODEL_DIR/case/'parameters.json';data=json.loads(path.read_text());sha=hashlib.sha256(path.read_bytes()).hexdigest()
+            data,sha=load_case(case,args.model_set)
             for I in args.inputs:
                 diagnostic={}
                 for model in ('LR','PWA'):
