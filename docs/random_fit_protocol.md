@@ -1,0 +1,9 @@
+# Independent random-start fitting
+
+For each AM, AFM and FM case draw new independent starting fields until the requested number of eligible results is obtained. No previous fitted candidate or fold-flight times initialize this run. The fixed LR targets (rest, two equilibrium thresholds and fold input), base a and b, calcium thresholds and coefficient scales remain as in the earlier protocol.
+
+Each draw samples six normalized free-coefficient offsets uniformly from [-40, 40]; anchor equations determine the dependent coefficients. The lower region must be stable (node or focus), the middle region an unstable focus and the upper region a stable focus. The four flight times are sampled independently log-uniformly from 0.05 to 50 seconds. A joint numerical search seeks a cycle at the prescribed fold with log M = 0; the dependent coefficient is then refined by the existing fold solver. Finite ranges and finite numerical searches cannot prove that a solution does not exist. These starts are not uniform over all possible PWA models.
+
+The subsequent fitting objective is unchanged: normalized errors in calcium minimum, maximum, period and peak-aligned waveform. Physical calcium is a hard numerical eligibility check, not a loss term. A result counts when the numerical checks for the fold, spectra and seven training cycles pass; four holdout points are reported separately. Sampled positivity does not prove positivity everywhere. Optimizer termination and holdout results should be examined separately from eligibility. Check the fold's nondegeneracy and crossings separately when interpreting the result.
+
+`run_random_fit_batch.py` defaults to 64 eligible results per case and 16 processes; the attempt count is unlimited unless `--max-new-attempts` is given. Interrupted or rejected attempts are retained, and the same command resumes using new seeds. The computation time and acceptance rate are not known in advance.

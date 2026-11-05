@@ -24,7 +24,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--case',choices=['AM','AFM','FM'],required=True);p.add_argument('--seed-dir',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--max-nfev',type=int,default=80)
-    p.add_argument('--seed',type=int,default=0);p.add_argument('--max-init-tries',type=int,default=20)
+    p.add_argument('--seed',type=int,default=0);p.add_argument('--initial-exact',action='store_true');p.add_argument('--max-init-tries',type=int,default=20)
     p.add_argument('--start-sigma',type=float,default=.1);p.add_argument('--bound',type=float,default=40.)
     p.add_argument('--shape-scale',type=float,default=.1,help='dimensionless RMS shape error scale')
     a=p.parse_args()
@@ -79,7 +79,7 @@ def main():
         print(a.case,'seed',a.seed,'call',calls,status,'best',best['loss'],flush=True);return res
     rng=np.random.default_rng(a.seed);start=None
     for attempt in range(a.max_init_tries):
-        x=reference.copy() if a.seed==0 and attempt==0 else np.clip(reference+rng.normal(0,a.start_sigma,len(free)),-a.bound+.001,a.bound-.001)
+        x=reference.copy() if (a.seed==0 or a.initial_exact) and attempt==0 else np.clip(reference+rng.normal(0,a.start_sigma,len(free)),-a.bound+.001,a.bound-.001)
         before=best['loss'];r=residual(x)
         if max(abs(r))<50:start=x;break
     if start is None:
@@ -96,7 +96,7 @@ def main():
         holdout.append({'I':row['I'],'target':{k:row[k] for k in ('target_Cmin','target_Cmax','target_period')},'cycle':result})
     rep={'case':a.case,'seed':a.seed,'scope':'local fit, numeric fold and sampled physical routes; numerical failures not nonexistence',
          'source_sha256':hashlib.sha256(base_path.read_bytes()).hexdigest(),'loss':'sum_i[(dCmin/.03)^2+(dCmax/.08)^2+(dT/5)^2+mean((normalized_shape−target_shape)^2)/shape_scale²]',
-         'shape_scale':a.shape_scale,'start_sigma':a.start_sigma,'max_nfev':a.max_nfev,'nfev':int(sol.nfev),'calls':calls,
+         'initial_exact':a.initial_exact,'shape_scale':a.shape_scale,'start_sigma':a.start_sigma,'max_nfev':a.max_nfev,'nfev':int(sol.nfev),'calls':calls,
          'optimizer_success':bool(sol.success),'message':str(sol.message),'initial_loss':initial_loss,'best':best,'holdout':holdout,'failures':fail}
     (a.output/'report.json').write_text(json.dumps(rep,indent=2,allow_nan=False)+'\n')
     print('FINISHED',a.case,'seed',a.seed,'initial',initial_loss,'best',best['loss'],'holdout',sum(bool(x['cycle']['candidates']) for x in holdout),'/',len(holdout),flush=True)
