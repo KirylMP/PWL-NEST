@@ -1,0 +1,32 @@
+{
+  "nest_version": "3.10.0",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+  "processor": "",
+  "module_sha256": "fbc7a9af1181f64aba0f904018e2b4b64b070e4b72794c9435357a6a91e0e6cf",
+  "settings": {
+    "cases": [
+      "AM"
+    ],
+    "model_set": "random_selected",
+    "inputs": [
+      0.2,
+      0.5
+    ],
+    "threshold": 0.2,
+    "nodes": 32,
+    "threads": 1,
+    "duration_s": 120.0,
+    "transient_s": 40.0,
+    "dt_ms": 0.1,
+    "interval_ms": 50.0,
+    "repeats": 3,
+    "warmup": 1,
+    "output": "results/ca_events_AM"
+  },
+  "caveats": [
+    "Constant IP3; finite forward observation; q is hidden and not LR h.",
+    "Per-run crossing counters include transient; timing includes PWA counter overhead.",
+    "Fixed-dt NEST; timed runs include spike_recorder; diagnostic calcium recorded on a separate node.",
+    "One spike per below-to-at-or-above threshold tick; no within-tick crossing interpolation; no SIC generated."
+  ]
+}
