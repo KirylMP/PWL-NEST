@@ -1,0 +1,7 @@
+{
+  "case": "FM",
+  "seed": 21,
+  "stage": "solve_dependent_fold",
+  "status": "fold_or_focus_rejected",
+  "detail": "numerically unresolved or failed checks"
+}

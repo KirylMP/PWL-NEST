@@ -1,0 +1,13 @@
+{
+  "cases": [
+    "AM",
+    "AFM",
+    "FM"
+  ],
+  "seeds": 16,
+  "max_nfev": 80,
+  "joint_nfev": 250,
+  "start_sigma": 0.1,
+  "shape_scale": 0.1,
+  "scope": "fixed rest, thresholds, fold; lower stable; middle and upper foci; physical calcium; period/amplitudes/aligned waveform"
+}
