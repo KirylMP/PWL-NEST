@@ -1,5 +1,0 @@
-valid_start FM 0 attempt 1 loss 71.72963237072408 x [0.0, 0.0, 0.0, 0.0, 0.0]
-FM seed 0 calls 20 best 61.67854542605471
-FM seed 0 calls 40 best 56.5020654451048
-FM seed 0 calls 60 best 56.23696381871365
-done FM 0 initial 71.72963237072408 best 56.23448772843567 `ftol` termination condition is satisfied.
