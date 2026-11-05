@@ -1,4 +1,4 @@
-"""Three-focus necessary-condition screening under fixed equilibrium anchors.
+"""Stable-node-or-focus / unstable-focus / stable-focus screening under fixed equilibrium anchors.
 
 Does not impose the fold or prove cycle existence. Use before a costly fit.
 """
@@ -34,7 +34,7 @@ def anchored(base,x):
 def constraints(base,x,margin):
     n,h,T,D,_=anchored(base,x)
     # Focus plus sign trace and increasing equilibrium; strict margins are numerical choices.
-    return np.r_[-T[0]-margin,T[1]-margin,-T[2]-margin,4*D-T*T-margin, h[2]-n[2]-margin]
+    return np.r_[-T[0]-margin,T[1]-margin,-T[2]-margin,4*D[1:]-T[1:]**2-margin,D[0]-margin,h[2]-n[2]-margin]
 
 
 def main():
@@ -57,6 +57,6 @@ def main():
         out[case]={'source_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'best':best,'attempts':attempts}
         print(case,'feasible',len(good),'/',len(attempts),'best',None if best is None else round(best['objective'],4),flush=True)
     a.output.parent.mkdir(parents=True,exist_ok=True)
-    a.output.write_text(json.dumps({'scope':'necessary screening only: 3 foci and fixed rest/threshold equilibria; NO fold or cycle conditions','settings':vars(a)|{'output':str(a.output)},'results':out},indent=2,allow_nan=False)+'\n')
+    a.output.write_text(json.dumps({'scope':'necessary screening only: stable lower and middle/upper foci with fixed equilibrium anchors; NO fold or cycle conditions','settings':vars(a)|{'output':str(a.output)},'results':out},indent=2,allow_nan=False)+'\n')
 
 if __name__=='__main__':main()

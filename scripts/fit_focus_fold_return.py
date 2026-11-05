@@ -1,4 +1,4 @@
-"""Three-focus, fixed-fold fitting by regional return maps.
+"""Fixed-fold fitting with stable lower zone and two foci by regional return maps.
 
 Candidates violating numerical constraints or sampled calcium positivity are
 rejected. The loss contains Cmin, Cmax, period and peak-aligned cycle shape.
@@ -53,7 +53,7 @@ def main():
         try:
             d,_,checks,fold=anchored_fold(base,changes,pivot,cut,0.,0.,initial_fold=hint)
             T=np.array(d['trace']);D=np.array(d['determinant']);disc=T*T-4*D
-            if not (T[0]<0<T[1] and T[2]<0 and np.all(disc<-1e-6)):raise ValueError('focus conditions')
+            if not (T[0]<0<T[1] and T[2]<0 and D[0]>1e-8 and np.all(disc[1:]<-1e-6)):raise ValueError('focus conditions')
             arr=[];results=[]
             for row,seed_cycle,target in zip(rows,data,targets):
                 name=seed_cycle['route'];sol=solve_cycle(d,row['I'],fold['times'],extra_seeds={name:[seed_cycle['times']]},route_names=(name,))

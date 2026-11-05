@@ -7,7 +7,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True,type=Path);p.add_argument('--cases',nargs='+',default=['AM','AFM','FM'],choices=['AM','AFM','FM']);p.add_argument('--seeds',type=int,default=16);p.add_argument('--workers',type=int,default=16);p.add_argument('--max-nfev',type=int,default=80);p.add_argument('--joint-nfev',type=int,default=250);p.add_argument('--start-sigma',type=float,default=.1);p.add_argument('--shape-scale',type=float,default=.1);a=p.parse_args()
     if min(a.seeds,a.workers,a.max_nfev,a.joint_nfev)<1 or min(a.start_sigma,a.shape_scale)<=0:p.error('invalid settings')
     root=a.output.resolve();root.mkdir(parents=True,exist_ok=True)
-    manifest={'cases':a.cases,'seeds':a.seeds,'max_nfev':a.max_nfev,'joint_nfev':a.joint_nfev,'start_sigma':a.start_sigma,'shape_scale':a.shape_scale,'scope':'fixed rest, thresholds, fold; three foci; physical calcium; period/amplitudes/aligned waveform'};path=root/'manifest.json'
+    manifest={'cases':a.cases,'seeds':a.seeds,'max_nfev':a.max_nfev,'joint_nfev':a.joint_nfev,'start_sigma':a.start_sigma,'shape_scale':a.shape_scale,'scope':'fixed rest, thresholds, fold; lower stable; middle and upper foci; physical calcium; period/amplitudes/aligned waveform'};path=root/'manifest.json'
     if path.exists() and json.loads(path.read_text())!=manifest:raise SystemExit('Existing output has different settings')
     path.write_text(json.dumps(manifest,indent=2)+'\n');env=os.environ.copy()
     for k in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS'):env[k]='1'
