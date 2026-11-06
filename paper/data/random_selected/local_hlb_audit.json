@@ -1,0 +1,112 @@
+{
+  "results": {
+    "AM": {
+      "candidate_sha256": "682cdfef88c745781ef33a8a6f953cd9df4563482d6a411b0255ddb2fad59fe7",
+      "I1_I2": [
+        0.3545338186565767,
+        0.6368818163953429
+      ],
+      "threshold_C": [
+        0.1556894888082623,
+        0.3233038346842117
+      ],
+      "T": [
+        -2.1708312805472376,
+        0.5130961543980858,
+        -0.3748957516290462
+      ],
+      "D": [
+        0.7847271511224845,
+        0.37304106074465776,
+        0.2064604981599003
+      ],
+      "discriminant": [
+        1.5735998441124215,
+        -1.2288965793205269,
+        -0.6852951680500937
+      ],
+      "beta_oriented": 0.22145378710791253,
+      "equilibrium_dC_dI": [
+        0.282204823410458,
+        0.5936445351775768,
+        1.0726206178985394
+      ],
+      "upper_alpha": 0.00998282602677314,
+      "lower": "HLB2, local stable cycle for I>I1",
+      "upper": "HLB1, local unstable cycle for I>I2",
+      "scope": "local two-zone theorems with reflected coordinates and parameter orientation; no global completeness or basin claim"
+    },
+    "AFM": {
+      "candidate_sha256": "62e947674484f4a71252349044b9f53bf9744f4258fe1808d767fb026e4477cc",
+      "I1_I2": [
+        0.3412465590240299,
+        0.7746002822144619
+      ],
+      "threshold_C": [
+        0.09206029266047171,
+        0.36936712324809223
+      ],
+      "T": [
+        -15.29846972190335,
+        1.2998333766861219,
+        -0.6350471679125005
+      ],
+      "D": [
+        1.841113846919928,
+        0.42242941140603574,
+        0.5162805855887553
+      ],
+      "discriminant": [
+        226.67872044431385,
+        -0.00015083847689734142,
+        -1.6618374368813338
+      ],
+      "beta_oriented": 0.2703162681090547,
+      "equilibrium_dC_dI": [
+        0.14682213626347845,
+        0.639908729861683,
+        0.5235840270863407
+      ],
+      "upper_alpha": 105.34294113202823,
+      "lower": "HLB2, local stable cycle for I>I1",
+      "upper": "HLB1, local unstable cycle for I>I2",
+      "scope": "local two-zone theorems with reflected coordinates and parameter orientation; no global completeness or basin claim"
+    },
+    "FM": {
+      "candidate_sha256": "802935c522ea77184aee6849e4b8790ee16d98ed440e53b7e9ac68ccfb3c17b2",
+      "I1_I2": [
+        0.5290700389163678,
+        0.8600205557570602
+      ],
+      "threshold_C": [
+        0.05214116272147651,
+        0.3926251934101712
+      ],
+      "T": [
+        -33.60586686624781,
+        0.8388716005328178,
+        -0.12820162016394052
+      ],
+      "D": [
+        3.996778143839412,
+        0.17633813794280467,
+        0.10021830727918477
+      ],
+      "discriminant": [
+        1113.3671752566145,
+        -0.001646989590727177,
+        -0.38443757370407977
+      ],
+      "beta_oriented": 0.1814178160048201,
+      "equilibrium_dC_dI": [
+        0.04539101483139749,
+        1.028806463090038,
+        1.810226304256292
+      ],
+      "upper_alpha": 20.46368964237596,
+      "lower": "HLB2, local stable cycle for I>I1",
+      "upper": "HLB1, local unstable cycle for I>I2",
+      "scope": "local two-zone theorems with reflected coordinates and parameter orientation; no global completeness or basin claim"
+    }
+  }
+}

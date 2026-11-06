@@ -1,0 +1,30 @@
+{
+  "nest_version": "3.10.0",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+  "processor": "",
+  "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+  "settings": {
+    "cases": [
+      "AFM"
+    ],
+    "model_set": "random_selected",
+    "inputs": [
+      0.2,
+      0.6
+    ],
+    "nodes": 32,
+    "threads": 1,
+    "duration_s": 120.0,
+    "transient_s": 40.0,
+    "dt_ms": 0.1,
+    "interval_ms": 50.0,
+    "repeats": 3,
+    "warmup": 1,
+    "output": "results/two_inputs_AFM"
+  },
+  "caveats": [
+    "Constant IP3; finite forward observation; q is hidden and not LR h.",
+    "Per-run crossing counters include transient; timing includes PWA counter overhead.",
+    "Fixed-dt NEST; no recording in timed runs; diagnostic run has a separate single node."
+  ]
+}

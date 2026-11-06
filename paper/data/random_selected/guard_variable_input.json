@@ -1,0 +1,176 @@
+{
+  "protocol": [
+    [
+      0.0,
+      80.0,
+      0.2
+    ],
+    [
+      80.0,
+      160.0,
+      0.58
+    ],
+    [
+      160.0,
+      240.0,
+      0.3
+    ],
+    [
+      240.0,
+      320.0,
+      0.75
+    ],
+    [
+      320.0,
+      400.0,
+      0.2
+    ]
+  ],
+  "solver": "DOP853 rtol=1e-10 atol=1e-12 max_step=0.03 s",
+  "initial": "same selected PWA rest state",
+  "events": "continuous upward crossings of C=0.2 \u00b5M; not NEST tick-quantized",
+  "recovery": "zero crossing: from t=320 s to upward C=0 after a negative minimum; 1pct: first 0.1s sample after t=320 staying within 1% of equilibrium C until t=400; null if not attained",
+  "results": {
+    "AM": {
+      "sha256": "682cdfef88c745781ef33a8a6f953cd9df4563482d6a411b0255ddb2fad59fe7",
+      "models": {
+        "three": {
+          "equilibrium_C_uM": 0.11207929980333922,
+          "recovery_to_1pct_s_sampled": 13.399999999999977,
+          "min_C_uM": -0.056741085641764034,
+          "time_of_min_s": 321.72888486228214,
+          "negative_recovery_after_320_s": 3.2092583557399053,
+          "event_count_total": 8,
+          "event_times_s": [
+            80.32887801841451,
+            92.20562075055578,
+            104.09575853544034,
+            115.98783576265087,
+            127.8799235030956,
+            139.77201130480364,
+            151.6640991009979,
+            240.1610026806423
+          ],
+          "event_count_after_320": 0
+        },
+        "four": {
+          "equilibrium_C_uM": 0.11207929980333961,
+          "recovery_to_1pct_s_sampled": 14.100000000000023,
+          "min_C_uM": 0.02241418409939666,
+          "time_of_min_s": 320.972168685904,
+          "negative_recovery_after_320_s": null,
+          "event_count_total": 8,
+          "event_times_s": [
+            80.32887801841451,
+            92.20562074788997,
+            104.09575853251917,
+            115.98783579942052,
+            127.87992360419365,
+            139.77201139982193,
+            151.66409919909418,
+            240.1610026806423
+          ],
+          "event_count_after_320": 0
+        }
+      }
+    },
+    "AFM": {
+      "sha256": "62e947674484f4a71252349044b9f53bf9744f4258fe1808d767fb026e4477cc",
+      "models": {
+        "three": {
+          "equilibrium_C_uM": 0.07132217112469813,
+          "recovery_to_1pct_s_sampled": 30.80000000000001,
+          "min_C_uM": 0.04130324315306851,
+          "time_of_min_s": 0.11117176595518193,
+          "negative_recovery_after_320_s": null,
+          "event_count_total": 15,
+          "event_times_s": [
+            85.47831187906368,
+            97.73940491471744,
+            110.0004979564713,
+            122.26159099486084,
+            134.52268403965383,
+            146.78377707687702,
+            159.04487011568835,
+            242.1843861602344,
+            252.80475947795284,
+            263.42513263095543,
+            274.0455106447119,
+            284.66588334708035,
+            295.2862565029955,
+            305.9066296558466,
+            316.52700280594655
+          ],
+          "event_count_after_320": 0
+        },
+        "four": {
+          "equilibrium_C_uM": 0.07132217112469807,
+          "recovery_to_1pct_s_sampled": 30.80000000000001,
+          "min_C_uM": 0.04130324315306844,
+          "time_of_min_s": 0.11117176595516352,
+          "negative_recovery_after_320_s": null,
+          "event_count_total": 15,
+          "event_times_s": [
+            85.47831187906372,
+            97.73940491982457,
+            110.0004979581659,
+            122.26159099515864,
+            134.52268403190962,
+            146.78377706766872,
+            159.04487010338468,
+            242.184386160234,
+            252.8047593182132,
+            263.42513247291714,
+            274.04550562648984,
+            284.6658787798378,
+            295.2862519323009,
+            305.9066251552428,
+            316.5269983140799
+          ],
+          "event_count_after_320": 0
+        }
+      }
+    },
+    "FM": {
+      "sha256": "802935c522ea77184aee6849e4b8790ee16d98ed440e53b7e9ac68ccfb3c17b2",
+      "models": {
+        "three": {
+          "equilibrium_C_uM": 0.03720433970445509,
+          "recovery_to_1pct_s_sampled": 31.69999999999999,
+          "min_C_uM": 0.0213305395304018,
+          "time_of_min_s": 320.18816822754695,
+          "negative_recovery_after_320_s": null,
+          "event_count_total": 7,
+          "event_times_s": [
+            80.57804980756971,
+            111.30050748981766,
+            139.74775092653422,
+            240.27851602089083,
+            262.27338131766015,
+            282.25658623290997,
+            302.2397911459643
+          ],
+          "event_count_after_320": 0
+        },
+        "four": {
+          "equilibrium_C_uM": 0.03720433970445508,
+          "recovery_to_1pct_s_sampled": 31.600000000000023,
+          "min_C_uM": 0.02404032481998797,
+          "time_of_min_s": 320.1026537721635,
+          "negative_recovery_after_320_s": null,
+          "event_count_total": 7,
+          "event_times_s": [
+            80.57804980756967,
+            111.30050748400164,
+            139.74775092500587,
+            240.2785160208908,
+            262.27338129544916,
+            282.25658620743525,
+            302.23979112178
+          ],
+          "event_count_after_320": 0
+        }
+      }
+    }
+  }
+}

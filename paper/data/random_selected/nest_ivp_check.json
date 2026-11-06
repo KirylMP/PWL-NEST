@@ -1,0 +1,63 @@
+{
+  "scope": "PWA calcium only; recorded samples; finite comparison; no LR numerical accuracy claim",
+  "method": "scipy.solve_ivp DOP853",
+  "rtol": 1e-10,
+  "atol": 1e-12,
+  "max_step_s": 0.03,
+  "results": [
+    {
+      "case": "AM",
+      "I": 0.2,
+      "candidate_sha256": "682cdfef88c745781ef33a8a6f953cd9df4563482d6a411b0255ddb2fad59fe7",
+      "samples": 2399,
+      "max_abs_C": 9.763301278553627e-13,
+      "rmse_C": 7.809849036751193e-13,
+      "last_abs_C": 9.763301278553627e-13
+    },
+    {
+      "case": "AM",
+      "I": 0.5,
+      "candidate_sha256": "682cdfef88c745781ef33a8a6f953cd9df4563482d6a411b0255ddb2fad59fe7",
+      "samples": 2399,
+      "max_abs_C": 9.510394999301397e-09,
+      "rmse_C": 2.8367680078087795e-09,
+      "last_abs_C": 4.793053842711004e-09
+    },
+    {
+      "case": "AFM",
+      "I": 0.2,
+      "candidate_sha256": "62e947674484f4a71252349044b9f53bf9744f4258fe1808d767fb026e4477cc",
+      "samples": 2399,
+      "max_abs_C": 1.5750525883539979e-12,
+      "rmse_C": 1.665202969381764e-13,
+      "last_abs_C": 1.6940615576999107e-13
+    },
+    {
+      "case": "AFM",
+      "I": 0.6,
+      "candidate_sha256": "62e947674484f4a71252349044b9f53bf9744f4258fe1808d767fb026e4477cc",
+      "samples": 2399,
+      "max_abs_C": 5.156756910373872e-09,
+      "rmse_C": 1.03480242010039e-09,
+      "last_abs_C": 2.071247173773827e-09
+    },
+    {
+      "case": "FM",
+      "I": 0.2,
+      "candidate_sha256": "802935c522ea77184aee6849e4b8790ee16d98ed440e53b7e9ac68ccfb3c17b2",
+      "samples": 2399,
+      "max_abs_C": 2.020460188045803e-12,
+      "rmse_C": 6.887367412632023e-14,
+      "last_abs_C": 4.6782022700142534e-14
+    },
+    {
+      "case": "FM",
+      "I": 0.7,
+      "candidate_sha256": "802935c522ea77184aee6849e4b8790ee16d98ed440e53b7e9ac68ccfb3c17b2",
+      "samples": 2399,
+      "max_abs_C": 3.687501113486258e-08,
+      "rmse_C": 7.535529099023814e-09,
+      "last_abs_C": 1.5114588747255908e-10
+    }
+  ]
+}

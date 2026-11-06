@@ -1,0 +1,793 @@
+{
+  "records": [
+    {
+      "case": "AM",
+      "I": 0.2,
+      "modes": {
+        "sic": {
+          "runs_sha256": "df30aeb15e9558cfbfc6ffe1151966cfb4aa42a29d0d8265b0eb8edbff9aff4a",
+          "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+          "models": {
+            "LR": {
+              "times": [
+                14.973003236053046,
+                15.010359862004407,
+                14.973210709053092
+              ],
+              "median": 14.973210709053092,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.08214964034346126,
+                "Cmax": 0.0823314861727417,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            },
+            "PWA": {
+              "times": [
+                2.31968150701141,
+                2.313404053042177,
+                2.319554658024572
+              ],
+              "median": 2.319554658024572,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.11207929980432112,
+                "Cmax": 0.11207930045343784,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            }
+          },
+          "speedup": 6.455209260645272
+        },
+        "events": {
+          "runs_sha256": "f1a9f0509dd194c9e7d020dcff3c5df2ff16c06bd945bc2d9d704a8379d3ea00",
+          "module_sha256": "fbc7a9af1181f64aba0f904018e2b4b64b070e4b72794c9435357a6a91e0e6cf",
+          "models": {
+            "LR": {
+              "times": [
+                13.517199208028615,
+                13.448179965023883,
+                13.501637776033022
+              ],
+              "median": 13.501637776033022,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.08214964034346126,
+                "Cmax": 0.0823314861727417,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": [],
+              "recorded_events": [
+                0,
+                0,
+                0
+              ]
+            },
+            "PWA": {
+              "times": [
+                0.6458114660345018,
+                0.6519705159589648,
+                0.6515050250454806
+              ],
+              "median": 0.6515050250454806,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.11207929980432112,
+                "Cmax": 0.11207930045343784,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": [],
+              "recorded_events": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "speedup": 20.723766136862096
+        }
+      },
+      "max_trace_difference": {
+        "LR": 0.0,
+        "PWA": 0.0
+      }
+    },
+    {
+      "case": "AM",
+      "I": 0.5,
+      "modes": {
+        "sic": {
+          "runs_sha256": "df30aeb15e9558cfbfc6ffe1151966cfb4aa42a29d0d8265b0eb8edbff9aff4a",
+          "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+          "models": {
+            "LR": {
+              "times": [
+                15.057100475998595,
+                15.091271109995432,
+                15.068631075962912
+              ],
+              "median": 15.068631075962912,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 7,
+                "Cmin": 0.10769520295519958,
+                "Cmax": 0.44455875540628165,
+                "last_period_s": 11.5,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            },
+            "PWA": {
+              "times": [
+                2.416518036974594,
+                2.44388680299744,
+                2.4092715769656934
+              ],
+              "median": 2.416518036974594,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 7,
+                "Cmin": 0.10600966335194209,
+                "Cmax": 0.43143985377482463,
+                "last_period_s": 11.25,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            }
+          },
+          "speedup": 6.235679124012819
+        },
+        "events": {
+          "runs_sha256": "f1a9f0509dd194c9e7d020dcff3c5df2ff16c06bd945bc2d9d704a8379d3ea00",
+          "module_sha256": "fbc7a9af1181f64aba0f904018e2b4b64b070e4b72794c9435357a6a91e0e6cf",
+          "models": {
+            "LR": {
+              "times": [
+                13.469493818003684,
+                13.47844121902017,
+                13.481235467013903
+              ],
+              "median": 13.47844121902017,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 7,
+                "Cmin": 0.10769520295519958,
+                "Cmax": 0.44455875540628165,
+                "last_period_s": 11.5,
+                "physical_calcium": true
+              },
+              "events_s": [
+                1.0407,
+                12.4723,
+                23.9566,
+                35.44820000000001,
+                46.940200000000004,
+                58.4321,
+                69.92410000000001,
+                81.4161,
+                92.9081,
+                104.40010000000001,
+                115.8921
+              ],
+              "recorded_events": [
+                352,
+                352,
+                352
+              ]
+            },
+            "PWA": {
+              "times": [
+                0.6541271100286394,
+                0.6472652169759385,
+                0.6460020059603266
+              ],
+              "median": 0.6472652169759385,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 7,
+                "Cmin": 0.10600966335194209,
+                "Cmax": 0.43143985377482463,
+                "last_period_s": 11.25,
+                "physical_calcium": true
+              },
+              "events_s": [
+                0.49340000000000006,
+                12.5131,
+                23.808100000000003,
+                35.1029,
+                46.3976,
+                57.6924,
+                68.9872,
+                80.28190000000001,
+                91.5767,
+                102.8715,
+                114.1662
+              ],
+              "recorded_events": [
+                352,
+                352,
+                352
+              ]
+            }
+          },
+          "speedup": 20.823676084422157
+        }
+      },
+      "max_trace_difference": {
+        "LR": 0.0,
+        "PWA": 0.0
+      }
+    },
+    {
+      "case": "AFM",
+      "I": 0.2,
+      "modes": {
+        "sic": {
+          "runs_sha256": "3cbd600fbdda9719bdf41e91449003b969558d1bcfb0c38ace6553507c481ac7",
+          "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+          "models": {
+            "LR": {
+              "times": [
+                15.00568448001286,
+                15.037846811988857,
+                15.039190788054839
+              ],
+              "median": 15.037846811988857,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.054542873621382985,
+                "Cmax": 0.054745723790363826,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            },
+            "PWA": {
+              "times": [
+                2.3043951470172033,
+                2.3588804629980586,
+                2.3224558099755086
+              ],
+              "median": 2.3224558099755086,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.07108261992852602,
+                "Cmax": 0.07132215642326545,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            }
+          },
+          "speedup": 6.474976508658496
+        },
+        "events": {
+          "runs_sha256": "6932c664eead4c0cd66db345daba7c3f8aeb968cac32051c5ffa3e54b4715235",
+          "module_sha256": "fbc7a9af1181f64aba0f904018e2b4b64b070e4b72794c9435357a6a91e0e6cf",
+          "models": {
+            "LR": {
+              "times": [
+                13.486264099017717,
+                13.48124530602945,
+                13.49939158395864
+              ],
+              "median": 13.486264099017717,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.054542873621382985,
+                "Cmax": 0.054745723790363826,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": [],
+              "recorded_events": [
+                0,
+                0,
+                0
+              ]
+            },
+            "PWA": {
+              "times": [
+                0.6523373799864203,
+                0.6486681739916094,
+                0.6460751239792444
+              ],
+              "median": 0.6486681739916094,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.07108261992852602,
+                "Cmax": 0.07132215642326545,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": [],
+              "recorded_events": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "speedup": 20.790697986659914
+        }
+      },
+      "max_trace_difference": {
+        "LR": 0.0,
+        "PWA": 0.0
+      }
+    },
+    {
+      "case": "AFM",
+      "I": 0.6,
+      "modes": {
+        "sic": {
+          "runs_sha256": "3cbd600fbdda9719bdf41e91449003b969558d1bcfb0c38ace6553507c481ac7",
+          "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+          "models": {
+            "LR": {
+              "times": [
+                15.089335124997888,
+                15.069555616006255,
+                15.120615978026763
+              ],
+              "median": 15.089335124997888,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 6,
+                "Cmin": 0.05461027391823014,
+                "Cmax": 0.7135914335714472,
+                "last_period_s": 13.25,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            },
+            "PWA": {
+              "times": [
+                2.376177140045911,
+                2.4320108799729496,
+                2.3807073769858107
+              ],
+              "median": 2.3807073769858107,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 7,
+                "Cmin": 0.06091458422114784,
+                "Cmax": 0.6752369144322057,
+                "last_period_s": 11.899999999999991,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            }
+          },
+          "speedup": 6.338172961055945
+        },
+        "events": {
+          "runs_sha256": "6932c664eead4c0cd66db345daba7c3f8aeb968cac32051c5ffa3e54b4715235",
+          "module_sha256": "fbc7a9af1181f64aba0f904018e2b4b64b070e4b72794c9435357a6a91e0e6cf",
+          "models": {
+            "LR": {
+              "times": [
+                13.489338569983374,
+                13.472162098973058,
+                13.47899743099697
+              ],
+              "median": 13.47899743099697,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 6,
+                "Cmin": 0.05461027391823014,
+                "Cmax": 0.7135914335714472,
+                "last_period_s": 13.25,
+                "physical_calcium": true
+              },
+              "events_s": [
+                1.0315,
+                14.347,
+                27.599,
+                40.851099999999995,
+                54.1031,
+                67.35510000000001,
+                80.6071,
+                93.85910000000001,
+                107.11110000000001
+              ],
+              "recorded_events": [
+                288,
+                288,
+                288
+              ]
+            },
+            "PWA": {
+              "times": [
+                0.6494927449966781,
+                0.6510432609939016,
+                0.6489113040152006
+              ],
+              "median": 0.6494927449966781,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 7,
+                "Cmin": 0.06091458422114784,
+                "Cmax": 0.6752369144322057,
+                "last_period_s": 11.899999999999991,
+                "physical_calcium": true
+              },
+              "events_s": [
+                8.539399999999999,
+                20.48,
+                32.4206,
+                44.361200000000004,
+                56.3018,
+                68.24239999999999,
+                80.18310000000001,
+                92.1237,
+                104.0643,
+                116.0049
+              ],
+              "recorded_events": [
+                320,
+                320,
+                320
+              ]
+            }
+          },
+          "speedup": 20.75311469578603
+        }
+      },
+      "max_trace_difference": {
+        "LR": 0.0,
+        "PWA": 0.0
+      }
+    },
+    {
+      "case": "FM",
+      "I": 0.2,
+      "modes": {
+        "sic": {
+          "runs_sha256": "12a33748d8cb41fc964ad91a9293995a2d00b614fd5debe8c97e275b0eae8307",
+          "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+          "models": {
+            "LR": {
+              "times": [
+                14.986889276013244,
+                15.045102780975867,
+                15.035090504970867
+              ],
+              "median": 15.035090504970867,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.031590356241754686,
+                "Cmax": 0.03165543376013159,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            },
+            "PWA": {
+              "times": [
+                2.479414266999811,
+                2.510811521031428,
+                2.4850075659924187
+              ],
+              "median": 2.4850075659924187,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.03720434102420953,
+                "Cmax": 0.03722273466002437,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            }
+          },
+          "speedup": 6.050319810179901
+        },
+        "events": {
+          "runs_sha256": "ecdca0d3aa0f0ef13096dca4abe00563dc314082cea71b046a77a35015740ea4",
+          "module_sha256": "fbc7a9af1181f64aba0f904018e2b4b64b070e4b72794c9435357a6a91e0e6cf",
+          "models": {
+            "LR": {
+              "times": [
+                13.54306859697681,
+                13.506385303975549,
+                13.530067661951762
+              ],
+              "median": 13.530067661951762,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.031590356241754686,
+                "Cmax": 0.03165543376013159,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": [],
+              "recorded_events": [
+                0,
+                0,
+                0
+              ]
+            },
+            "PWA": {
+              "times": [
+                0.6539860619814135,
+                0.6482859299867414,
+                0.6539401549962349
+              ],
+              "median": 0.6539401549962349,
+              "diagnostic": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.03720434102420953,
+                "Cmax": 0.03722273466002437,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "events_s": [],
+              "recorded_events": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "speedup": 20.690070121217225
+        }
+      },
+      "max_trace_difference": {
+        "LR": 0.0,
+        "PWA": 0.0
+      }
+    },
+    {
+      "case": "FM",
+      "I": 0.7,
+      "modes": {
+        "sic": {
+          "runs_sha256": "12a33748d8cb41fc964ad91a9293995a2d00b614fd5debe8c97e275b0eae8307",
+          "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+          "models": {
+            "LR": {
+              "times": [
+                15.044607502990402,
+                15.072935464035254,
+                15.091741436976008
+              ],
+              "median": 15.072935464035254,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 4,
+                "Cmin": 0.03073423224866363,
+                "Cmax": 1.0546060245818039,
+                "last_period_s": 22.650000000000006,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            },
+            "PWA": {
+              "times": [
+                2.562129409983754,
+                2.5802838199888356,
+                2.567247737024445
+              ],
+              "median": 2.567247737024445,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 4,
+                "Cmin": 0.037502703500791185,
+                "Cmax": 1.006609434496208,
+                "last_period_s": 21.0,
+                "physical_calcium": true
+              },
+              "events_s": null,
+              "recorded_events": null
+            }
+          },
+          "speedup": 5.871243061842352
+        },
+        "events": {
+          "runs_sha256": "ecdca0d3aa0f0ef13096dca4abe00563dc314082cea71b046a77a35015740ea4",
+          "module_sha256": "fbc7a9af1181f64aba0f904018e2b4b64b070e4b72794c9435357a6a91e0e6cf",
+          "models": {
+            "LR": {
+              "times": [
+                13.494946306978818,
+                13.512182380014565,
+                13.51698056398891
+              ],
+              "median": 13.512182380014565,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 4,
+                "Cmin": 0.03073423224866363,
+                "Cmax": 1.0546060245818039,
+                "last_period_s": 22.650000000000006,
+                "physical_calcium": true
+              },
+              "events_s": [
+                4.864400000000001,
+                27.5135,
+                50.1625,
+                72.8115,
+                95.4606,
+                118.1096
+              ],
+              "recorded_events": [
+                192,
+                192,
+                192
+              ]
+            },
+            "PWA": {
+              "times": [
+                0.6411268259980716,
+                0.6565379639505409,
+                0.6454155659885146
+              ],
+              "median": 0.6454155659885146,
+              "diagnostic": {
+                "status": "oscillatory",
+                "peaks": 4,
+                "Cmin": 0.037502703500791185,
+                "Cmax": 1.006609434496208,
+                "last_period_s": 21.0,
+                "physical_calcium": true
+              },
+              "events_s": [
+                0.28490000000000004,
+                23.9099,
+                44.8898,
+                65.8697,
+                86.84960000000001,
+                107.8295
+              ],
+              "recorded_events": [
+                192,
+                192,
+                192
+              ]
+            }
+          },
+          "speedup": 20.935631385523507
+        }
+      },
+      "max_trace_difference": {
+        "LR": 0.0,
+        "PWA": 0.0
+      }
+    }
+  ],
+  "ordinal_lags": {
+    "AM": {
+      "lr": [
+        1.0407,
+        12.4723,
+        23.9566,
+        35.44820000000001,
+        46.940200000000004,
+        58.4321,
+        69.92410000000001,
+        81.4161,
+        92.9081,
+        104.40010000000001,
+        115.8921
+      ],
+      "pwa": [
+        0.49340000000000006,
+        12.5131,
+        23.808100000000003,
+        35.1029,
+        46.3976,
+        57.6924,
+        68.9872,
+        80.28190000000001,
+        91.5767,
+        102.8715,
+        114.1662
+      ],
+      "ordinal_delta": [
+        -0.5472999999999999,
+        0.04079999999999906,
+        -0.14849999999999852,
+        -0.3453000000000088,
+        -0.5426000000000073,
+        -0.7396999999999991,
+        -0.9369000000000085,
+        -1.1341999999999928,
+        -1.3314000000000021,
+        -1.5286000000000115,
+        -1.7258999999999958
+      ]
+    },
+    "AFM": {
+      "lr": [
+        1.0315,
+        14.347,
+        27.599,
+        40.851099999999995,
+        54.1031,
+        67.35510000000001,
+        80.6071,
+        93.85910000000001,
+        107.11110000000001
+      ],
+      "pwa": [
+        8.539399999999999,
+        20.48,
+        32.4206,
+        44.361200000000004,
+        56.3018,
+        68.24239999999999,
+        80.18310000000001,
+        92.1237,
+        104.0643,
+        116.0049
+      ],
+      "ordinal_delta": [
+        7.5078999999999985,
+        6.133000000000001,
+        4.8216,
+        3.5101000000000084,
+        2.1987000000000023,
+        0.887299999999982,
+        -0.4239999999999924,
+        -1.7354000000000127,
+        -3.0468000000000046
+      ]
+    },
+    "FM": {
+      "lr": [
+        4.864400000000001,
+        27.5135,
+        50.1625,
+        72.8115,
+        95.4606,
+        118.1096
+      ],
+      "pwa": [
+        0.28490000000000004,
+        23.9099,
+        44.8898,
+        65.8697,
+        86.84960000000001,
+        107.8295
+      ],
+      "ordinal_delta": [
+        -4.5795,
+        -3.6036,
+        -5.2727,
+        -6.941800000000001,
+        -8.61099999999999,
+        -10.280100000000004
+      ]
+    }
+  },
+  "scope": "finite diagnostic trajectories; ordinal event pairing; no matched output intervention"
+}

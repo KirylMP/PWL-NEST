@@ -1,0 +1,51 @@
+{
+  "method": "DOP853",
+  "rtol": 1e-11,
+  "atol": 1e-13,
+  "max_step_s": 0.03,
+  "scope": "comparison at recorded samples, six fixed inputs; not an error bound",
+  "results": [
+    {
+      "case": "AM",
+      "I": 0.2,
+      "samples": 2399,
+      "max_abs_C": 3.316791286067655e-15,
+      "rmse_C": 1.21608945246516e-15
+    },
+    {
+      "case": "AM",
+      "I": 0.5,
+      "samples": 2399,
+      "max_abs_C": 1.0286216323152075e-13,
+      "rmse_C": 3.05300760865481e-14
+    },
+    {
+      "case": "AFM",
+      "I": 0.2,
+      "samples": 2399,
+      "max_abs_C": 1.3739009929736312e-15,
+      "rmse_C": 4.33030427555174e-16
+    },
+    {
+      "case": "AFM",
+      "I": 0.6,
+      "samples": 2399,
+      "max_abs_C": 3.7231329130804625e-13,
+      "rmse_C": 7.358535818776174e-14
+    },
+    {
+      "case": "FM",
+      "I": 0.2,
+      "samples": 2399,
+      "max_abs_C": 1.2909812108219398e-14,
+      "rmse_C": 4.2324690463202315e-16
+    },
+    {
+      "case": "FM",
+      "I": 0.7,
+      "samples": 2399,
+      "max_abs_C": 2.397415599375563e-12,
+      "rmse_C": 2.7705561469396256e-13
+    }
+  ]
+}

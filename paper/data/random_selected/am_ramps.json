@@ -1,0 +1,26 @@
+{
+  "scope": "AM 465, piecewise-linear input ramps, finite sampling; not general positivity proof",
+  "rtol": 1e-09,
+  "atol": 1e-11,
+  "max_step_s": 0.03,
+  "results": [
+    {
+      "ramp_s": 1.0,
+      "post_320_sampled_min_C": -0.0553971037903506,
+      "min_time_s": 322.20000000000005,
+      "sample_interval_s": 0.1
+    },
+    {
+      "ramp_s": 5.0,
+      "post_320_sampled_min_C": 0.01455647852429073,
+      "min_time_s": 325.1,
+      "sample_interval_s": 0.1
+    },
+    {
+      "ramp_s": 10.0,
+      "post_320_sampled_min_C": 0.0776308611319885,
+      "min_time_s": 324.8,
+      "sample_interval_s": 0.1
+    }
+  ]
+}

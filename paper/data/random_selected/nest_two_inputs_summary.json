@@ -1,0 +1,377 @@
+{
+  "scope": "32 independent astrocytes; three timed runs after warmup; separate one-cell diagnostics",
+  "cases": {
+    "AM": {
+      "candidate_sha256": "682cdfef88c745781ef33a8a6f953cd9df4563482d6a411b0255ddb2fad59fe7",
+      "runs_sha256": "df30aeb15e9558cfbfc6ffe1151966cfb4aa42a29d0d8265b0eb8edbff9aff4a",
+      "manifest": {
+        "nest_version": "3.10.0",
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+        "processor": "",
+        "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+        "settings": {
+          "cases": [
+            "AM"
+          ],
+          "model_set": "random_selected",
+          "inputs": [
+            0.2,
+            0.5
+          ],
+          "nodes": 32,
+          "threads": 1,
+          "duration_s": 120.0,
+          "transient_s": 40.0,
+          "dt_ms": 0.1,
+          "interval_ms": 50.0,
+          "repeats": 3,
+          "warmup": 1,
+          "output": "results/two_inputs_AM"
+        },
+        "caveats": [
+          "Constant IP3; finite forward observation; q is hidden and not LR h.",
+          "Per-run crossing counters include transient; timing includes PWA counter overhead.",
+          "Fixed-dt NEST; no recording in timed runs; diagnostic run has a separate single node."
+        ]
+      },
+      "inputs": [
+        {
+          "I": 0.2,
+          "times": {
+            "LR": [
+              14.973003236053046,
+              15.010359862004407,
+              14.973210709053092
+            ],
+            "PWA": [
+              2.31968150701141,
+              2.313404053042177,
+              2.319554658024572
+            ]
+          },
+          "median": {
+            "LR": 14.973210709053092,
+            "PWA": 2.319554658024572
+          },
+          "speedup": 6.455209260645272,
+          "diagnostics": {
+            "LR": {
+              "dynamics": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.08214964034346126,
+                "Cmax": 0.0823314861727417,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 0.0
+            },
+            "PWA": {
+              "dynamics": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.11207929980432112,
+                "Cmax": 0.11207930045343784,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 0.0
+            }
+          }
+        },
+        {
+          "I": 0.5,
+          "times": {
+            "LR": [
+              15.057100475998595,
+              15.091271109995432,
+              15.068631075962912
+            ],
+            "PWA": [
+              2.416518036974594,
+              2.44388680299744,
+              2.4092715769656934
+            ]
+          },
+          "median": {
+            "LR": 15.068631075962912,
+            "PWA": 2.416518036974594
+          },
+          "speedup": 6.235679124012819,
+          "diagnostics": {
+            "LR": {
+              "dynamics": {
+                "status": "oscillatory",
+                "peaks": 7,
+                "Cmin": 0.10769520295519958,
+                "Cmax": 0.44455875540628165,
+                "last_period_s": 11.5,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 0.0
+            },
+            "PWA": {
+              "dynamics": {
+                "status": "oscillatory",
+                "peaks": 7,
+                "Cmin": 0.10600966335194209,
+                "Cmax": 0.43143985377482463,
+                "last_period_s": 11.25,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 2.220446049250313e-16
+            }
+          }
+        }
+      ]
+    },
+    "AFM": {
+      "candidate_sha256": "62e947674484f4a71252349044b9f53bf9744f4258fe1808d767fb026e4477cc",
+      "runs_sha256": "3cbd600fbdda9719bdf41e91449003b969558d1bcfb0c38ace6553507c481ac7",
+      "manifest": {
+        "nest_version": "3.10.0",
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+        "processor": "",
+        "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+        "settings": {
+          "cases": [
+            "AFM"
+          ],
+          "model_set": "random_selected",
+          "inputs": [
+            0.2,
+            0.6
+          ],
+          "nodes": 32,
+          "threads": 1,
+          "duration_s": 120.0,
+          "transient_s": 40.0,
+          "dt_ms": 0.1,
+          "interval_ms": 50.0,
+          "repeats": 3,
+          "warmup": 1,
+          "output": "results/two_inputs_AFM"
+        },
+        "caveats": [
+          "Constant IP3; finite forward observation; q is hidden and not LR h.",
+          "Per-run crossing counters include transient; timing includes PWA counter overhead.",
+          "Fixed-dt NEST; no recording in timed runs; diagnostic run has a separate single node."
+        ]
+      },
+      "inputs": [
+        {
+          "I": 0.2,
+          "times": {
+            "LR": [
+              15.00568448001286,
+              15.037846811988857,
+              15.039190788054839
+            ],
+            "PWA": [
+              2.3043951470172033,
+              2.3588804629980586,
+              2.3224558099755086
+            ]
+          },
+          "median": {
+            "LR": 15.037846811988857,
+            "PWA": 2.3224558099755086
+          },
+          "speedup": 6.474976508658496,
+          "diagnostics": {
+            "LR": {
+              "dynamics": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.054542873621382985,
+                "Cmax": 0.054745723790363826,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 0.0
+            },
+            "PWA": {
+              "dynamics": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.07108261992852602,
+                "Cmax": 0.07132215642326545,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 0.0
+            }
+          }
+        },
+        {
+          "I": 0.6,
+          "times": {
+            "LR": [
+              15.089335124997888,
+              15.069555616006255,
+              15.120615978026763
+            ],
+            "PWA": [
+              2.376177140045911,
+              2.4320108799729496,
+              2.3807073769858107
+            ]
+          },
+          "median": {
+            "LR": 15.089335124997888,
+            "PWA": 2.3807073769858107
+          },
+          "speedup": 6.338172961055945,
+          "diagnostics": {
+            "LR": {
+              "dynamics": {
+                "status": "oscillatory",
+                "peaks": 6,
+                "Cmin": 0.05461027391823014,
+                "Cmax": 0.7135914335714472,
+                "last_period_s": 13.25,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 0.0
+            },
+            "PWA": {
+              "dynamics": {
+                "status": "oscillatory",
+                "peaks": 7,
+                "Cmin": 0.06091458422114784,
+                "Cmax": 0.6752369144322057,
+                "last_period_s": 11.899999999999991,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 3.3306690738754696e-16
+            }
+          }
+        }
+      ]
+    },
+    "FM": {
+      "candidate_sha256": "802935c522ea77184aee6849e4b8790ee16d98ed440e53b7e9ac68ccfb3c17b2",
+      "runs_sha256": "12a33748d8cb41fc964ad91a9293995a2d00b614fd5debe8c97e275b0eae8307",
+      "manifest": {
+        "nest_version": "3.10.0",
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+        "processor": "",
+        "module_sha256": "6e00e5bbd618824d4d9cf2a031bc6618b877388f5f2d6663099e767df856946b",
+        "settings": {
+          "cases": [
+            "FM"
+          ],
+          "model_set": "random_selected",
+          "inputs": [
+            0.2,
+            0.7
+          ],
+          "nodes": 32,
+          "threads": 1,
+          "duration_s": 120.0,
+          "transient_s": 40.0,
+          "dt_ms": 0.1,
+          "interval_ms": 50.0,
+          "repeats": 3,
+          "warmup": 1,
+          "output": "results/two_inputs_FM"
+        },
+        "caveats": [
+          "Constant IP3; finite forward observation; q is hidden and not LR h.",
+          "Per-run crossing counters include transient; timing includes PWA counter overhead.",
+          "Fixed-dt NEST; no recording in timed runs; diagnostic run has a separate single node."
+        ]
+      },
+      "inputs": [
+        {
+          "I": 0.2,
+          "times": {
+            "LR": [
+              14.986889276013244,
+              15.045102780975867,
+              15.035090504970867
+            ],
+            "PWA": [
+              2.479414266999811,
+              2.510811521031428,
+              2.4850075659924187
+            ]
+          },
+          "median": {
+            "LR": 15.035090504970867,
+            "PWA": 2.4850075659924187
+          },
+          "speedup": 6.050319810179901,
+          "diagnostics": {
+            "LR": {
+              "dynamics": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.031590356241754686,
+                "Cmax": 0.03165543376013159,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 0.0
+            },
+            "PWA": {
+              "dynamics": {
+                "status": "insufficient_peaks",
+                "peaks": 0,
+                "Cmin": 0.03720434102420953,
+                "Cmax": 0.03722273466002437,
+                "last_period_s": null,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 0.0
+            }
+          }
+        },
+        {
+          "I": 0.7,
+          "times": {
+            "LR": [
+              15.044607502990402,
+              15.072935464035254,
+              15.091741436976008
+            ],
+            "PWA": [
+              2.562129409983754,
+              2.5802838199888356,
+              2.567247737024445
+            ]
+          },
+          "median": {
+            "LR": 15.072935464035254,
+            "PWA": 2.567247737024445
+          },
+          "speedup": 5.871243061842352,
+          "diagnostics": {
+            "LR": {
+              "dynamics": {
+                "status": "oscillatory",
+                "peaks": 4,
+                "Cmin": 0.03073423224866363,
+                "Cmax": 1.0546060245818039,
+                "last_period_s": 22.650000000000006,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 0.0
+            },
+            "PWA": {
+              "dynamics": {
+                "status": "oscillatory",
+                "peaks": 4,
+                "Cmin": 0.037502703500791185,
+                "Cmax": 1.006609434496208,
+                "last_period_s": 21.0,
+                "physical_calcium": true
+              },
+              "max_ip3_drift": 1.1102230246251565e-16
+            }
+          }
+        }
+      ]
+    }
+  }
+}
