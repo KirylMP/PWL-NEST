@@ -2,7 +2,10 @@
 % Draft structure and provisional wording; verify all claims before submission.
 \documentclass[final,5p,times,twocolumn]{elsarticle}
 
-\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\IfFontExistsTF{Liberation Serif}{\setmainfont{Liberation Serif}}{\setmainfont{DejaVu Serif}}
+\IfFontExistsTF{Liberation Sans}{\setsansfont{Liberation Sans}}{\setsansfont{DejaVu Sans}}
+\setmonofont{DejaVu Sans Mono}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -19,9 +22,19 @@
 % Add author affiliations and the corresponding author's email here.
 
 \begin{abstract}
-% Draft: state motivation, construction, three regimes, accuracy and network
-% benchmarks. Insert quantitative results only after verifying model provenance.
-\textit{To be written after final selection and validation of the models.}
+We study a continuous three-zone piecewise-affine oscillator as a
+phenomenological approximation of calcium dynamics in the Li--Rinzel model.
+Both systems have two state variables; the simplification concerns the
+vector field and regional propagation. Three parameter sets are fitted with
+fixed equilibrium crossings and a prescribed neutral cycle, and their local
+boundary bifurcations, periodic responses and numerical return maps are
+examined. In isolated-population NEST tests, the ratios of median Li--Rinzel
+to PWA run times range from 5.87 to 6.47 with SIC output and 20.69 to 20.94
+with a calcium-threshold spike recorder. These represent different output
+setups rather than a controlled decomposition of SIC cost. A time-varying
+input exposes an unphysical negative-calcium transient in the selected AM
+model, and FM amplitudes remain imperfect. The results demonstrate both the
+computational promise and the limits of the selected approximations.
 \end{abstract}
 
 \begin{keyword}
@@ -41,9 +54,9 @@ regimes \cite{DePitta2009}.
 % State the research question and distinguish the present two-threshold models
 % from a separate high-accuracy reproduction of the full LR bifurcation diagram.
 Here we investigate continuous three-zone piecewise-affine oscillators as
-phenomenological representations of selected Li--Rinzel regimes. We compare
-local and global oscillatory behaviour, fits in physical and transformed
-coordinates, and simulation times in NEST networks.
+phenomenological representations of selected Li--Rinzel regimes. Both models
+are two-dimensional: the simplification concerns the vector field and its
+regional propagation rather than a reduction in state dimension.
 
 \section{Models and methods}
 \label{sec:methods}
@@ -52,6 +65,18 @@ coordinates, and simulation times in NEST networks.
 % Give full equations, parameters, units, initial conditions, I and K_ER.
 % Define how AM, AFM and FM are assessed and state the input ranges.
 % Specify equilibrium and periodic-orbit continuation and stability checks.
+We use cytosolic calcium $C$, the IP$_3$ receptor gating variable $h$, and
+IP$_3$ concentration $I$ in $\mu$M. With time in seconds, the reference is
+\begin{align}
+\dot C &= [6 m_\infty^3 n_\infty^3 h^3+0.11](2-1.185C)\notag\\
+       &\quad -0.9\frac{C^2}{C^2+K_{\rm ER}^2},\\
+\dot h &=0.2[Q_2-(Q_2+C)h],\notag\\
+m_\infty&=\frac{I}{I+0.13},\quad n_\infty=\frac{C}{C+0.08234},\notag\\
+Q_2&=1.049\frac{I+0.13}{I+0.9434}.\notag
+\end{align}
+We use $K_{\rm ER}=0.1$, $0.075$ and $0.05\,\mu$M for AM, AFM and FM,
+respectively. Regime names refer to the reference responses over the sampled
+inputs, rather than proof of modulation character in each fitted PWA field.
 \input{figure1}
 \input{figure2}
 
@@ -61,6 +86,26 @@ coordinates, and simulation times in NEST networks.
 % admissibility, rest and equilibrium-crossing constraints and their domains.
 % Derive zone equilibria and Jacobians, including trace and determinant.
 % Explicitly say when only one equilibrium exists; do not assume this globally.
+The fitted system uses physical $C$ and a hidden coordinate $q$:
+\begin{align}
+\dot C&=a[q-N(C,I)],\quad \dot q=b[H(C,I)-q],\\
+N(C,I)&=\alpha_0+\alpha_1 C+\alpha_I I\notag\\
+       &\quad +\alpha_L(C-C_L)_++\alpha_R(C-C_R)_+,\notag\\
+H(C,I)&=\beta_0+\beta_1 C+\beta_I I\notag\\
+       &\quad +\beta_L(C-C_L)_++\beta_R(C-C_R)_+.\notag
+\end{align}
+Here $(x)_+=\max(x,0)$, $C_L<C_R$ and $a,b>0$. This representation is continuous
+across the two boundaries. In region $j$, write $N=n_j C+n_{0j}+\alpha_I I$
+and $H=h_j C+h_{0j}+\beta_I I$. Its Jacobian has trace
+$T_j=-a n_j-b$ and determinant $D_j=ab(n_j-h_j)$. A regional equilibrium
+is an equilibrium of the full model only when it lies in that region.
+The hidden variable $q$ is not identified with $h$.
+
+For constant $I$, each regional state satisfies an affine linear equation
+and can be propagated with a matrix exponential. Propagation is valid until
+the first boundary crossing, which is computed separately. For an
+exponentially relaxing input, augmenting the state with $I$ and a constant
+coordinate yields another linear system between input events.
 
 \subsection{Local and large-cycle mechanisms}
 % Derive or cite the relevant one-boundary hypotheses and HLB1/HLB2 labels.
@@ -68,21 +113,41 @@ coordinates, and simulation times in NEST networks.
 % return-map matching problem and conditions for an orbit crossing both cuts.
 % Floquet multiplier and M=1 are necessary local fold conditions, together
 % with the orbit, nondegeneracy and continuation checks.
+For a chosen transverse itinerary $\sigma$, a periodic orbit is a zero of
+$G_\sigma(s,I)=P_\sigma(s,I)-s$, where $s$ is a coordinate on a switching
+section and $P_\sigma$ is the first-return map. For continuous planar fields,
+$\log M=\sum_j T_jt_j$ along a transverse orbit; $M<1$ and $M>1$ indicate
+stable and unstable cycles. A neutral orbit satisfies $G=G_s=0$. An ordinary
+fold further requires $G_{ss}\ne0$ and $G_I\ne0$, with transverse crossings
+and a locally unchanged itinerary. These conditions are checked numerically
+below; a near-grazing trajectory requires particular care.
 Hopf-like bifurcations of continuous piecewise-smooth systems and the dynamics
 of three-zone systems have been studied in detail
 \cite{Simpson2022,SimpsonMeiss2007,LlibrePonceValls2015,ChenLiXieYue2017}.
 A two-cycle bound is known for a particular three-zone Liénard system
 \cite{ChenFengJiaMeng2026}; its hypotheses must be checked before applying it
 to any of the present models.
-\input{figure3}
-\input{figure4}
+For the selected models, the lower boundary separates a stable node from an
+unstable focus. Reflecting the normal coordinate $x=-(C-C_L)$ and setting
+$\mu=I-I_1$ gives the positive transversality coefficient
+$\beta=ab(\beta_I-\alpha_I)$. The local hypotheses of Theorem 5.2 of
+\cite{Simpson2022} then yield a unique stable HLB2 cycle for $I>I_1$
+sufficiently close to $I_1$. This local statement does not establish a large
+cycle on the full interval.
+
+At the upper boundary set $x=C-C_R$ and $\mu=I_2-I$. The left and right
+regions are respectively an unstable and a stable focus, and the same
+oriented $\beta$ is positive. With $\lambda_j=T_j/2$ and
+$\omega_j=\sqrt{4D_j-T_j^2}/2$, the HLB1 criticality quantity
+$\alpha=\lambda_M/\omega_M+\lambda_R/\omega_R$ is 0.00998, 105.343 and
+20.464 for AM, AFM and FM. Theorem 5.1 of \cite{Simpson2022} therefore gives
+an unstable local cycle for $I>I_2$ sufficiently close to $I_2$. The small
+AM value and near-node central foci in AFM/FM make full-precision parameters
+essential. These local theorems do not prove global branch completeness.
+The dimensionless illustrative phase portraits are provided in \ref{app:phase-portraits}.
 
 \subsection{Parameter fitting and validation}
-% Document candidates for K_ER = 0.05, 0.075 and 0.1 micromolar, the
-% constraints, free parameters, objective components, weights and optimization.
-% Explain fixed-fold and no-fold variants and which final files are used.
-% Detail stability classification, numerical continuation, cycle search,
-% tolerance and the limitations of finite scans.
+\input{random_selected_methods}
 
 \subsection{NEST implementation and benchmarks}
 % Describe the actual implementation, analytic regional flow, crossing
@@ -91,46 +156,218 @@ to any of the present models.
 % Distinguish network speedup from isolated astrocyte speedup.
 The network simulations use NEST \cite{GewaltigDiesmann2007}; the precise
 version and model implementation are reported with the benchmark protocol.
+For the selected physical-coordinate candidates, we additionally time an
+isolated population of 32 independent astrocytes in NEST 3.10.0, with one
+thread and $0.1$ ms resolution. For each constant input and model, a warmup
+precedes three timed \texttt{nest.Run} calls of 120 s biological duration.
+Each call uses a separately constructed simulation; construction, preparation,
+cleanup and recording are excluded from the timed interval. Model order is
+alternated. A separate single-cell run records calcium every 50 ms; its first
+40 s are excluded from the extrema and peak diagnostic.
+The PWA solver uses regional propagation and crossing checks at NEST steps;
+its event counters are enabled during timing. The NEST 3.10.0 upstream LR
+source uses GSL RKF45 with absolute tolerance $10^{-3}$ and zero relative
+tolerance; the exact source revision of the installed wheel remains to be
+verified. The CPU model was not captured in the run manifest and must be
+supplied before submission.
+As an implementation check, the recorded PWA calcium was also compared with
+independent SciPy DOP853 integration at the same initial state and constant
+input (relative tolerance $10^{-10}$, absolute tolerance $10^{-12}$, maximum
+step $0.03$ s). The maximum sampled discrepancy across the six tests was
+$3.69\times10^{-8}$ $\mu$M. The LR traces were also compared at the same
+samples with independent DOP853 integration (relative tolerance $10^{-11}$,
+absolute tolerance $10^{-13}$, maximum step $0.03$ s), yielding a maximum
+sampled discrepancy of $2.40\times10^{-12}$ $\mu$M. These finite checks do
+not certify an error bound or equal accuracy for other inputs.
 
 \section{Results}
 \label{sec:results}
 
 \subsection{Equilibrium structure and oscillation mechanisms}
-% Compare LR spectra and PWA types, and identify supported local mechanisms.
-% Separate evidence from hypotheses; report unresolved lower transitions.
+\input{random_selected_results}
 
 \subsection{Amplitude, periods and cycle branches}
 % Compare fixed-fold and no-fold fits for AM, FM and AFM. Quantify the errors
 % from the archived tables. Include stable and unstable branches and clearly
 % state the earlier FM candidate provenance in the displayed figures.
-\input{figure5}
-\input{figure6}
+% Continued stable and unstable branches for the new candidates remain to be computed.
 
-\subsection{Network simulation time}
-% Summarize medians, input conditions, accuracy tradeoffs, and scaling.
-% Physical and mixed fits are distinct models, so this is not an isolated
-% measurement of transformation cost. Avoid generalizing beyond these runs.
-\input{figure7}
+\subsection{Response to a shared time-dependent input}
+We apply the same piecewise-constant IP$_3$ sequence to LR and all three PWA
+models, with 80 s segments at $I=0.2,0.58,0.3,0.75,0.2\,\mu$M, respectively
+(Fig.~\ref{fig:variable-input}). Each model starts from its own $I=0$
+equilibrium; the PWA hidden variable $q$ is not the LR receptor variable $h$.
+Both systems are integrated using DOP853 with relative tolerance $10^{-9}$,
+absolute tolerance $10^{-11}$ and maximum step 0.1 s, restarting at each
+input discontinuity. This is an evaluation input, not a fitting target, and
+is not a NEST benchmark.
+
+The comparison reveals substantial transient and phase differences. In AM,
+PWA calcium becomes negative after the final decrease from 0.75 to 0.2 $\mu$M,
+reaching approximately $-0.0567\,\mu$M at 321.7 s. Reducing the maximum
+integration step from 0.1 to 0.005 s with tighter tolerances retains this
+minimum, so it is not explained by this step-size choice. Replacing each
+jump with a one-second linear ramp still yields a negative sampled AM minimum
+($-0.0554\,\mu$M); in this particular protocol 5 s and 10 s ramps remain
+positive, with minima after the final change of 0.0146 and $0.0776\,\mu$M.
+These finite tests do not establish positivity for all smooth inputs. The abrupt input
+tests states outside the sampled fixed-input fitting cycles; the model does
+not guarantee calcium positivity for arbitrary time-varying inputs. FM also
+shows a large first transient after the second increase. Raw time-domain RMSE
+over the complete protocol is 0.120, 0.217 and $0.241\,\mu$M for AM, AFM
+and FM, respectively; these values include phase drift and should not be
+interpreted as cycle-shape error alone.
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/random_selected_variable_input.pdf}
+\caption{Response to the same piecewise-constant IP$_3$ protocol. Top: input;
+below: LR (black) and selected PWA model (red) for AM, AFM and FM. Abrupt
+changes are applied to both systems at the same times. The negative transient
+in AM exposes a limitation of the selected physical-coordinate field.}
+\label{fig:variable-input}
+\end{figure*}
+
+\subsection{Isolated astrocyte simulation time}
+For these isolated populations, ratios of median LR and PWA run times range
+from 5.87 to 6.47 across the six sampled conditions (Fig.~\ref{fig:random-nest}).
+Both models display detected oscillations at $I=0.5$, $0.6$ and $0.7$ $\mu$M
+for AM, AFM and FM, respectively; no peaks are detected after the initial 40 s
+at $I=0.2$ $\mu$M. No detected peaks alone does not prove an equilibrium.
+The AM quiet-state calcium differs by approximately $0.030$ $\mu$M. In the
+oscillatory tests, sampled last periods are 11.50 versus 11.25 s (AM), 13.25
+versus 11.90 s (AFM), and 22.65 versus 21.00 s (FM), for LR versus PWA.
+These are finite observations at 50 ms recording intervals. The comparison
+does not establish equal numerical error, speedup at other inputs, or a network
+speedup; the trials use the same deterministic setup and are not independent
+biological samples.
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/random_selected_nest.pdf}
+\caption{Isolated astrocyte tests in NEST. Left and middle: separate single-cell
+calcium recordings at the low and oscillatory inputs, respectively, after the
+first 40 s. Black denotes LR and red PWA. Right: median runtime of three
+32-astrocyte runs after warmup; dots are the individual timings. Inputs and
+models correspond to the same row. Recorded diagnostics and timed populations
+are separate simulations.}
+\label{fig:random-nest}
+\end{figure*}
+
+We also tested an event-output variant in which both implementations omit SIC
+generation and emit a NEST spike when calcium crosses $0.2\,\mu$M upward
+between successive NEST steps. The crossing time is quantized to the $0.1$ ms
+step. All 32 nodes connect to a spike recorder, included in the timed run.
+The LR event implementation is derived from the NEST 3.10 LR model; the PWA
+event implementation uses the same regional propagation as above. Three
+timed repeats and a warmup use the same inputs and duration as the SIC-output
+experiments. The recorder and SIC-output runs therefore differ in both the
+output computation and recording setup.
+
+The median LR/PWA timing ratios for event output range from 20.69 to 20.94
+over the six conditions (Fig.~\ref{fig:ca-spikes}). Recorded and emitted event
+counts agreed in every run; a comparison with 50 ms diagnostic calcium
+recordings found corresponding upward crossings. In the separate single-cell
+diagnostics, recorded calcium matched the previous SIC run at every saved
+sample. This does not isolate the individual cost of SIC evaluation versus
+secondary-event delivery, nor establish network speedup or equal event
+accuracy. In the AFM oscillatory test the 32 LR astrocytes emitted 288 events
+and the PWA astrocytes emitted 320. Event-time differences depend on the
+pairing convention, initial transient and period mismatch;
+Fig.~\ref{fig:ca-spikes} displays ordinal pairs only, without claiming unique
+event correspondence.
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/ca_spike_benchmark.pdf}
+\caption{Comparison of isolated-astrocyte outputs. Top: median \texttt{nest.Run}
+times and individual repeats for SIC-output runs (without attached SIC
+receivers) and calcium-threshold spike runs (with a spike recorder). Middle:
+ratios of LR and PWA median times. Bottom: event times in the single-cell
+oscillatory diagnostics, paired by ordinal number from the start and shown as
+PWA minus LR. Unpaired events are omitted; ordinal pairing is one choice, not
+proof of event correspondence. The two timing setups differ.}
+\label{fig:ca-spikes}
+\end{figure*}
+
+\subsection{An optional lower calcium zone}
+As an exploratory safeguard, we retain the fitted coefficients and add a
+continuous fourth zone below $C_g=0.025\,\mu\mathrm M$, replacing the calcium
+equation by $\dot C_{4}=\dot C_{3}+k\max(0,C_g-C)$ with
+$k=100\,\mathrm{s}^{-1}$ and leaving the second equation unchanged. The fields
+are identical for $C\geq C_g$; the saved fitting and fold trajectories stay
+above this threshold at the checked samples. This fixed gain was not fitted,
+and finite repulsion does not establish nonnegative calcium for arbitrary
+initial states or inputs. The three-zone global analysis does not automatically
+extend to the four-zone system.
+
+We compared the variants in the same event-output NEST implementation using
+32 isolated astrocytes, one thread, a $0.1$ ms step, 120 s simulated time, one
+warmup and three timed repeats with alternating order. At seven constant inputs
+from $0.2$ to $0.9\,\mu\mathrm M$, the extra threshold was never crossed;
+the four-zone median runtime was $1.28$--$3.89\%$ higher
+(Fig.~\ref{fig:lower-guard}). In a separate reset from a shared state reached
+after $I=1.2\,\mu\mathrm M$ to $I=0$, the guard was entered and exited once
+per AM or FM cell. In the single-cell diagnostic, sampled every 50 ms, the
+minimum calcium changed from $-0.23865$ to $0.01775\,\mu\mathrm M$ for AM
+and from $-0.02223$ to $0.01304\,\mu\mathrm M$ for FM; AFM did not enter the
+guard. Reset timing overheads were $2.48\%$, $3.15\%$ and $3.84\%$ for AM,
+AFM and FM. These are finite tests with three repeats, not a confidence
+interval or a measurement of frequent guard activations.
+We also replayed the complete time-dependent protocol of Fig.~\ref{fig:variable-input} with the same initial PWA state for both variants, using independent DOP853 integration (relative tolerance $10^{-10}$, absolute tolerance $10^{-12}$, maximum step $0.03$ s). Following the $0.75\to0.2\,\mu\mathrm M$ decrease at $t=320$ s, the AM minimum changed from $-0.05674$ to $0.02241\,\mu\mathrm M$ (Fig.~\ref{fig:guard-variable}). The unguarded AM trace crossed back above zero $3.21$ s after the decrease; the guarded trace stayed positive in this simulation. Defining settling time as the first 0.1 s sample after the decrease that remains within 1\% of the $I=0.2$ equilibrium until the end at 400 s gives 13.4 s and 14.1 s, respectively. Continuous upward crossings of $C=0.2\,\mu\mathrm M$ number 8 in both AM variants over the complete protocol and zero after the final decrease. These crossings are numerical diagnostics, not tick-quantized NEST event counts.
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/guard_variable_input.pdf}
+\caption{The final input decrease of the complete Fig.~\ref{fig:variable-input} protocol, repeated from identical initial states with three and four zones. Vertical dotted line: $I=0.75\to0.2\,\mu\mathrm M$. Horizontal dashed line: $C_g=0.025\,\mu\mathrm M$. Curves are from separate DOP853 integrations, not the NEST benchmark.}
+\label{fig:guard-variable}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/lower_guard_comparison.pdf}
+\caption{Effect and measured cost of the optional lower zone. Left: percentage
+difference of median four- and three-zone runtimes at constant input; no guard
+crossings occurred. Right: separately recorded single-cell reset responses for
+AM and FM, zoomed around the guard; the upper parts of the curves are clipped.
+The dashed line is $C_g=0.025\,\mu\mathrm M$. The timing experiment consists
+of three repeats per variant.}
+\label{fig:lower-guard}
+\end{figure*}
 
 \section{Discussion}
 \label{sec:discussion}
-% Explain what three zones reproduce phenomenologically and where they differ
-% from LR. Discuss lower and upper transitions, unstable branches, fold
-% constraints, hidden-coordinate interpretation and waveform/phase errors.
-% Compare relevant PWA literature without claiming unverified theorems.
-% Discuss timing composition, fixed-step network scheduling and limitations.
-% Outline the separate higher-accuracy LR PWA study as future work.
+The same three-zone field class admits all three selected parameter sets and
+provides explicit regional flows, return maps and local bifurcation criteria.
+The agreement is phenomenological: matching selected extrema, periods and
+equilibrium crossings does not imply equivalence of the full LR phase portrait.
+In particular, the FM fit has a sizeable amplitude error, and the
+time-dependent-input test reveals an unphysical AM transient. The sampled
+physicality constraints used in fitting do not ensure positivity for all
+reachable states. The optional lower zone mitigates the tested reset responses,
+but its physical invariance and dynamics require further analysis.
+
+The isolated-cell timings depend strongly on the output and measurement setup.
+The SIC and spike experiments cannot separate the costs of the logarithmic
+readout, secondary-event transmission, recorder and other implementation
+details. Spike trains differ between LR and PWA because their dynamics differ.
+Network-level behaviour, downstream effects and time-varying NEST input remain
+to be assessed before drawing conclusions about network acceleration.
 
 \section{Conclusions}
 \label{sec:conclusions}
-% Summarize only results supported by final candidate provenance and data.
+Continuous three-zone PWA systems provide computationally accessible
+approximations to selected Li--Rinzel calcium responses while permitting local
+and global-cycle analysis. The measured timing advantage applies to the
+specified isolated-population configurations. The observed negative-calcium
+transient and FM amplitude mismatch delimit the current candidates' use and
+motivate further physicality and network validation.
 
 % Complete these statements with the authors before submission.
 \section*{CRediT authorship contribution statement}
 \section*{Declaration of competing interest}
 \section*{Acknowledgements}
 \section*{Data availability}
+Selected full-precision model files, source scripts and recorded benchmark data are available at the fixed revision \url{https://github.com/KirylMP/PWL-NEST/tree/bd4018389206b6e7b326b2d6c7413d6f57c16ba8}.
 
+\clearpage
+\appendix
+\section{Illustrative dimensionless phase portraits}\label{app:phase-portraits}
+These examples illustrate the oscillator mechanisms; their parameters are not fitted to Li--Rinzel.
+\input{figure3}
+\input{figure4}
+\clearpage
 \bibliographystyle{elsarticle-num}
 \bibliography{references}
 \end{document}

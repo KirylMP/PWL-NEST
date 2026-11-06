@@ -1,7 +1,10 @@
 # Таск-лист статьи
 
-Рабочая ветка: `paper`. Пишем и согласуем русский текст, затем переводим.
-Основной текст: `ru_text.tex`; сборка: `make -C paper`.
+Рабочая ветка: `paper`. Основной англоязычный черновик: `main.tex`;
+русский рабочий текст: `ru_text.tex`. Сборка: `make -C paper english` и
+`make -C paper ru`. Актуальный набор: AM 465, AFM 800, FM 474.
+Последний раздел этого файла содержит текущую сводку; более ранние пункты
+T01–T27 ниже сохранены как исторический журнал и не все актуальны.
 Отмечать задачу выполненной после сохранения результата и обновления связанных
 таблиц, подписей и утверждений в рукописи.
 
@@ -17,9 +20,14 @@
 ## 1. Зафиксировать модели и научные утверждения — сначала
 
 - [ ] **T01. Определить основной вклад статьи.** Согласовать, какие свойства мы заявляем: феноменологические режимы, аналитический региональный поток, точность и сетевое ускорение. Зафиксировать, какие бифуркационные совпадения доказаны, а какие лишь наблюдаются численно.
-- [ ] **T02. Собрать окончательный комплект кандидатов.** Для AM/AFM/FM и вариантов physical/mixed × fixed/free сохранить файлы параметров, происхождение и SHA256. Одна сводная таблица должна связывать каждый кандидат с ошибками, ветвями и сетевыми замерами; несовпадающие кандидаты явно разделить.
-- [ ] **T03. Устранить расхождение FM.** Получить окончательный frozen FM без ограничения складки и перестроить соответствующие панели рис. 5–6. Если выбираем архивный кандидат, пересчитать относящиеся к нему ошибки и согласовать все сравнения.
+- [ ] **T02. Собрать окончательный комплект кандидатов.** Для AM/AFM/FM сохранить физические трёхзонные кандидаты с заданной складкой, происхождение и SHA256; подтвердить их по T08. Для каждого исследовать добавление нижнего порога и сравнить с исходным полем при одинаковом протоколе. Свести ошибки, ветви и сетевые замеры по точным файлам; исходные модели без фиксации складки и смешанные координаты явно отделить.
+  Получены 96 запусков `a041899` с фиксацией покоя, двух пересечений равновесия и I складки. Предварительные лидеры по обучающей функции: AM seed 7, AFM seed 22, FM seed 8; это ещё не утверждённые модели. Все имеют 4/4 разрешённых проверочных циклов, но AM seed 7 остановлен по бюджету. Проверить погрешности и ветви, особенно амплитуду и период на самой складке.
+  В `1f4fae6` получены 95/96 новых отчётов: один AFM-старт не найден за 20 попыток. Лидеры по обучению — AM seed 16, AFM seed 10, FM seed 6; это не утверждённый комплект. У FM seed 6 проверочная ошибка Cmax снизилась с 0.1826 до 0.0930 мкМ, но ошибка периода выросла с 0.284 до 4.606 с; 14 других FM-орбит не прошли независимую проверку. Новые лидеры прижаты к расширенным границам. Проверить ветви, нелинейный маршрут, форму складок и обмен Cmax/период до выбора.
+  Рабочий выбор пользователя: AM seed 16 и AFM seed 10 (`1f4fae6`), FM seed 8 (`a041899`) — ради более точного периода. FM seed 6 сохранён как альтернатива. Точные файлы, источники и SHA256: `paper/data/selected_lr_candidates/manifest.json`. Финальную валидацию и актуализацию статьи ещё выполнить.
+- [ ] **T03. Обновить FM и связанные результаты.** Прежнее расхождение таблицы и сохранённого FM без фиксации складки устранено, но такой FM больше не считается финальным кандидатом. После выбора anchored FM согласовать данные и рисунки; проверить ветви и сходимость в T08/T09.
+  Локальная проба после `1f4fae6`: ограничения расширены до ±8, при прочих равных на 4 проверочных точках Cmax MAE 0.0930→0.0618 мкМ, period MAE 4.606→2.839 с, но Cmin MAE 0.00430→0.01196 мкМ. При весе ошибки периода ×4: Cmax 0.0748 мкМ, period 1.314 с, Cmin 0.00956 мкМ. Все три локальных запуска ограничены бюджетом 12 оценок, не финальные. Данные `results/fm_wide_local/`; результаты при постоянном I не определяют динамику при переменном I, в частности из-за сдвиговой степени свободы скрытой переменной.
 - [ ] **T04. Проверить спектральные ограничения финальных моделей.** Для каждой зоны привести T, D, дискриминант и положение действительного равновесия. Убедиться, что формулировки «средний и правый фокус, слева устойчивый узел или фокус» соответствуют всем выбранным файлам.
+  Проверены шесть mixed-моделей рис. 6: `spectral_audit.md`. Для завершения проверить также физические кандидаты после уточнения их окончательного состава и получения полных файлов (T02).
 
 Готовность этапа: каждый численный вывод в статье связан с конкретной моделью;
 иллюстративные HLB/BC-примеры отделены от подобранных астроцитарных моделей.
@@ -31,6 +39,7 @@
 - [ ] **T07. Описать BC1/BC2 через отображения возврата.** Выписать маршрут через зоны, уравнения согласования, трансверсальность и устойчивость. Сохранить различие: это две конфигурации, а не доказательство двух сосуществующих циклов.
 - [ ] **T08. Проверить верхние складки циклов.** Для финальных моделей подтвердить замыкание, M=1, невырожденность и соседние устойчивую/неустойчивую ветви; проверить сходимость по допускам. Учесть несовпадение маршрута фиксированной AM-орбиты с эталоном.
 - [ ] **T09. Уточнить нижние переходы.** Разделить установленные события равновесий, локальные PWA-кандидаты и глобальное окончание циклов. Высокоточные AFM/FM-кандидаты проверить независимым способом и по точности параметров либо явно исключить из доказательных утверждений. Не подписывать границу как SNIC по одному росту периода.
+- [ ] **T09a. Отображения возврата для трёх зон.** Выписаны оба маршрута: через оба порога и только через верхний; условия замыкания, устойчивости и обычной складки добавлены в `ru_text.tex`. Численные конечные разности для выбранных кандидатов сохранены в `results/selected_lr_branches/return_map_check.json`; проверить первые пересечения и уточнить близкое к касанию AM. Общую теорию N зон в текущую статью не включаем.
 
 Готовность этапа: для каждого используемого механизма есть проверяемые условия
 и данные; неустановленные глобальные события остаются явно обозначенными.
@@ -41,6 +50,8 @@
 - [ ] **T11. Уточнить сравнение fixed/free.** Документировать различия исторических протоколов и ограничений q. Если нужен причинный вывод о влиянии фиксации складки, выполнить сравнение при одинаковых остальных условиях; иначе описать результаты как сравнение сохранённых подборов.
 - [ ] **T12. Проверить новые временные входы без повторного подбора.** Для окончательных кандидатов оценить кальций и доставленный SIC: число и время пиков, форму, RMSE и площадь тока. Отделить эту проверку от фазово совмещённых стационарных циклов.
 - [ ] **T13. Согласовать все таблицы и рисунки.** Проверить valid/total, единицы, определения ошибок и соответствие файлов кандидатам. Не сравнивать средние по 3/4 циклам с 4/4 без явного пояснения.
+- [ ] **T13a. Сравнить 3 и 4 зоны для AM/AFM/FM.** Начать с неизменного поля, разделив нижнюю зону нулевым изломом; затем подобрать положение порога и коэффициенты при сохранении складки. Проверить равновесия, спектры, устойчивые и неустойчивые ветви, ошибки амплитуды и периода и независимые входы. Использовать одинаковые данные и бюджеты, отдельно зафиксировать неудачи и допуски.
+  У AFM-кандидатов `a494fe3` установлено: предыдущий refit фиксировал I складки, но не фиксировал исходные I пересечения равновесия со старыми порогами. Исходные 0.34125/0.77460 изменились на 0.32090/0.81112 (3 зоны, seed 0) и 0.29855/0.82552 (4 зоны, seed 1). У 4-зонного переход через новый нижний порог около I=0.20708 происходит между двумя устойчивыми зонами. При новом подборе отдельно решить, закреплять ли эти переходы жёстко, и не называть текущие модели соответствующими исходным точкам. Подробности: `results/afm_lower_zone_investigation/analysis.json`.
 
 ## 4. Вычисления и NEST
 
@@ -49,6 +60,7 @@
 - [ ] **T16. Проверить сетевой обмен точности на скорость.** Для тех же финальных кандидатов привести рядом время, кальциевые ошибки и ошибки SIC/нейронной активности. Ускорение полной сети отделить от ускорения одиночного решателя.
 - [ ] **T17. Закрыть вопрос о стоимости координат.** Если заявляем отдельный эффект преобразования, измерить считывание одной и той же последовательности состояний с одинаковым расписанием, с SIC и без него. Иначе ограничить вывод сравнением отдельно подобранных моделей и убрать неподтверждённые утверждения о существенности самой стоимости инверсии.
 - [ ] **T18. Проверить повторы замеров.** Сохранить сырые времена и подготовку отдельно от Run; для масштабирования восстановить отсутствующие повторы или повторить опыт. До этого явно указывать, где доступны только медианы.
+- [ ] **T18a. Измерить цену дополнительной зоны.** Сопоставить LR и 3-/4-зонные кандидаты для трёх режимов на одинаковой сетке IP₃, шагах, начальных состояниях и протоколе NEST; учитывать частоту переходов, точность и вариативность времени. Затем при необходимости повторить масштабирование сети.
 
 ## 5. Довести русский текст и оформление
 
@@ -67,3 +79,25 @@
 
 Ближайшая последовательность: T01 → T02 → T03/T04 → T05–T09.
 Обзор литературы T19 можно вести параллельно; перевод начинается после T25.
+# Current working selection (random fixed-fold protocol)
+
+- [x] Record candidate selection AM 465, AFM 800, FM 474 and the fitting loss and constraints in the English and Russian drafts.
+- [x] Recompute regional spectra and local finite-difference diagnostics for the prescribed neutral cycles; see `paper/data/random_selected/audit.json`. These numerical checks do not establish all hypotheses of any theorem.
+- [x] Plot extrema and periods at training and holdout inputs. These points are not full branch continuations.
+- [x] Check the local HLB2/HLB1 hypotheses at the two selected boundaries and record oriented coefficients in `paper/data/random_selected/local_hlb_audit.json`. These are local results, not global completeness.
+- [x] Continue both-threshold and upper-only branches from the fold/grazing, with independent numerical checks. The finite continuation terminates unresolved or at its budget; no global completeness claim.
+- [x] Benchmark LR against these exact candidates in NEST at a low input and an oscillatory input for each regime; retain raw timing, diagnostics and model hashes. No detected peaks does not by itself prove equilibrium.
+- [x] Check recorded PWA calcium against independent DOP853 integration at all six inputs; maximum discrepancy is $3.69\times10^{-8}$ µM at recorded samples.
+- [x] Measure and document calcium-threshold spike output with SIC disabled; verify event counts and sampled rising crossings, and compare saved diagnostic calcium with the SIC-output experiment.
+- [ ] If attributing the timing change to individual operations, isolate SIC evaluation, secondary-event delivery and recorder overhead in controlled variants. Compare spike times using declared matching rules and evaluate downstream use.
+- [x] Compare NEST LR recordings with independent DOP853 integration at the six fixed inputs; maximum discrepancy at saved samples $2.40\times10^{-12}$ µM. NEST 3.10 upstream uses RKF45; confirm installed wheel provenance.
+- [x] Test shared time-varying inputs independently of fitting. AM 465 becomes negative after an abrupt decrease and a 1 s ramp; 5 s and 10 s ramps stay positive in this finite test. Assess implications for candidate use.
+- [x] Test and document an optional continuous lower guard at 0.025 µM with gain 100 s⁻¹; compare three and four zones with event output in NEST and retain raw runs and the paper figure. The guard mitigates the tested AM/FM resets, but positivity for arbitrary states and inputs is not established.
+- [ ] Analyze the four-zone dynamics and conditions for positivity if a global guarantee is required; measure frequent guard activations separately if relevant to the intended workload.
+- [ ] Determine CPU model, confirm the installed LR source and repeat or validate time-varying inputs in NEST as needed. Two constant operating points do not establish universal or network speedup.
+- [ ] Complete editorial cross-check and reproducibility; English draft, numerical bibliography, author details and PDF layout need review.
+
+
+- [x] Reconcile SIC-output and calcium-event benchmarks; replay the figure-8 input with and without the lower guard and report sampled settling times and continuous crossing counts.
+- [x] Record selected candidate paths, hashes, fit and holdout inputs, fold crossing speeds and finite-difference sensitivity.
+- [ ] Publish an immutable repository revision and link it in the manuscript; confirm the server NEST wheel provenance. Consider moving the dimensionless illustration figures to an appendix.
