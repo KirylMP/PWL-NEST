@@ -1,0 +1,314 @@
+{
+  "AM_log": {
+    "directory": "AM_log_alt11",
+    "I_fold": 0.6383571385950001,
+    "matching_max": 9.414691248821327e-14,
+    "logM": -3.4768496177524077e-12,
+    "segments": [
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": 0.00016150452940877358,
+        "speed_exit": 0.8031619480888972,
+        "u_min": -1.8598917116807525,
+        "u_max": -1.12916273325024
+      },
+      {
+        "region": 2,
+        "valid_sampled": true,
+        "speed_entry": 0.8031619480864833,
+        "speed_exit": -0.07781604861460437,
+        "u_min": -1.1291627332502234,
+        "u_max": -0.8726233771498659
+      },
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": -0.07781604861483515,
+        "speed_exit": -0.00016402116294401273,
+        "u_min": -1.8598917116807456,
+        "u_max": -1.1291627332502234
+      },
+      {
+        "region": 0,
+        "valid_sampled": true,
+        "speed_entry": -0.00016402116300184844,
+        "speed_exit": 0.00016150452948693328,
+        "u_min": -1.85989177214752,
+        "u_max": -1.8598917116807525
+      }
+    ],
+    "min_C_sampled": 0.15568947939422245,
+    "max_C_sampled": 0.4178539217014528,
+    "min_u_sampled": -1.85989177214752,
+    "ivp_max_closure": 2.1316282072803006e-14,
+    "ivp_max_abs_logM": 1.0967414233842223e-07,
+    "matching_curvature": [
+      -7.032810561304505e-06,
+      -7.019317092390992e-06,
+      -6.976778890948178e-06
+    ],
+    "matching_input_derivative": -0.09544139727494631,
+    "scope": "501 samples per segment, finite difference diagnostic, independent IVP, not a proof of all crossings"
+  },
+  "AM_square": {
+    "directory": "AM_square",
+    "I_fold": 0.6383571385950001,
+    "matching_max": 7.327471962526033e-15,
+    "logM": 1.0502918990857144e-12,
+    "segments": [
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": 0.00021449840495435524,
+        "speed_exit": 0.3195304777339114,
+        "u_min": 0.39457507372902095,
+        "u_max": 0.5685981310945483
+      },
+      {
+        "region": 2,
+        "valid_sampled": true,
+        "speed_entry": 0.31953047773397714,
+        "speed_exit": -0.06415808008193391,
+        "u_min": 0.568598131094547,
+        "u_max": 0.9203971737104233
+      },
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": -0.06415808008191703,
+        "speed_exit": -0.0002178086566289977,
+        "u_min": 0.39457507372902256,
+        "u_max": 0.568598131094547
+      },
+      {
+        "region": 0,
+        "valid_sampled": true,
+        "speed_entry": -0.00021780865663627302,
+        "speed_exit": 0.00021449840492566985,
+        "u_min": 0.39457495052915975,
+        "u_max": 0.39457507372902095
+      }
+    ],
+    "min_C_sampled": 0.15568939158508888,
+    "max_C_sampled": 0.8471309573741351,
+    "min_u_sampled": 0.39457495052915975,
+    "ivp_max_closure": 4.579669976578771e-14,
+    "ivp_max_abs_logM": 9.096126081242862e-09,
+    "matching_curvature": [
+      -6.07662809626314e-05,
+      -6.0775744661102726e-05,
+      -6.0858761548518995e-05
+    ],
+    "matching_input_derivative": -0.22688514635686166,
+    "scope": "501 samples per segment, finite difference diagnostic, independent IVP, not a proof of all crossings"
+  },
+  "AFM_log": {
+    "directory": "AFM_log_alt3",
+    "I_fold": 0.9056635644477613,
+    "matching_max": 6.994405055138486e-15,
+    "logM": -6.466322321299972e-13,
+    "segments": [
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": 0.01802529754305837,
+        "speed_exit": 0.8780515408291212,
+        "u_min": -2.385311561579284,
+        "u_max": -0.9959642155889981
+      },
+      {
+        "region": 2,
+        "valid_sampled": true,
+        "speed_entry": 0.8780515408291594,
+        "speed_exit": -0.5395660074795696,
+        "u_min": -0.9959642155889976,
+        "u_max": 0.3136298294593445
+      },
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": -0.5395660074795314,
+        "speed_exit": -0.01939990691940721,
+        "u_min": -2.385311561579284,
+        "u_max": -0.9959642155889975
+      },
+      {
+        "region": 0,
+        "valid_sampled": true,
+        "speed_entry": -0.019399906919469245,
+        "speed_exit": 0.01802529754310811,
+        "u_min": -2.385918225588138,
+        "u_max": -2.385311561579284
+      }
+    ],
+    "min_C_sampled": 0.09200445993183591,
+    "max_C_sampled": 1.3683831076688282,
+    "min_u_sampled": -2.385918225588138,
+    "ivp_max_closure": 5.417888360170764e-14,
+    "ivp_max_abs_logM": 8.420680689194548e-11,
+    "matching_curvature": [
+      -0.00034541205998206285,
+      -0.00034540546025391583,
+      -0.00034535921904420324
+    ],
+    "matching_input_derivative": -0.07648904498714419,
+    "scope": "501 samples per segment, finite difference diagnostic, independent IVP, not a proof of all crossings"
+  },
+  "AFM_square": {
+    "directory": "AFM_square",
+    "I_fold": 0.9056635644477613,
+    "matching_max": 6.175060462965121e-13,
+    "logM": -1.2203594466719265e-13,
+    "segments": [
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": 0.011928222021297952,
+        "speed_exit": 0.28721148409998193,
+        "u_min": 0.3034143909910532,
+        "u_max": 0.6077558088970374
+      },
+      {
+        "region": 2,
+        "valid_sampled": true,
+        "speed_entry": 0.28721148409854513,
+        "speed_exit": -0.06285693016959637,
+        "u_min": 0.6077558088970374,
+        "u_max": 0.9241215292644885
+      },
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": -0.06285693016998639,
+        "speed_exit": -0.015863308492849396,
+        "u_min": 0.30341439099105294,
+        "u_max": 0.6077558088970374
+      },
+      {
+        "region": 0,
+        "valid_sampled": true,
+        "speed_entry": -0.015863308492837458,
+        "speed_exit": 0.011928222021298063,
+        "u_min": 0.3020453567490431,
+        "u_max": 0.3034143909910532
+      }
+    ],
+    "min_C_sampled": 0.09123139753365671,
+    "max_C_sampled": 0.854000600850137,
+    "min_u_sampled": 0.3020453567490431,
+    "ivp_max_closure": 2.738920201750261e-13,
+    "ivp_max_abs_logM": 4.39779541776264e-10,
+    "matching_curvature": [
+      -0.0007912023428881189,
+      -0.0007911925575530243,
+      -0.0007911062178276596
+    ],
+    "matching_input_derivative": -0.17744247284856055,
+    "scope": "501 samples per segment, finite difference diagnostic, independent IVP, not a proof of all crossings"
+  },
+  "FM_log": {
+    "directory": "FM_log",
+    "I_fold": 1.1231503496462252,
+    "matching_max": 4.388711616343244e-12,
+    "logM": -1.9888556352876437e-11,
+    "segments": [
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": 0.019307173731935023,
+        "speed_exit": 1.2909563627282665,
+        "u_min": -2.9538005707354626,
+        "u_max": -0.9348998285155687
+      },
+      {
+        "region": 2,
+        "valid_sampled": true,
+        "speed_entry": 1.2909563628319418,
+        "speed_exit": -0.20883738347126837,
+        "u_min": -0.934899828515562,
+        "u_max": -0.32994525134171937
+      },
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": -0.20883738346022085,
+        "speed_exit": -0.034891701503362925,
+        "u_min": -2.9538005707354387,
+        "u_max": -0.9348998285155619
+      },
+      {
+        "region": 0,
+        "valid_sampled": true,
+        "speed_entry": -0.034891701524891516,
+        "speed_exit": 0.019307173733047023,
+        "u_min": -2.956233365554221,
+        "u_max": -2.9538005707354626
+      }
+    ],
+    "min_C_sampled": 0.05201446814440572,
+    "max_C_sampled": 0.7189630946192139,
+    "min_u_sampled": -2.956233365554221,
+    "ivp_max_closure": 9.164358161228847e-11,
+    "ivp_max_abs_logM": 1.182155880929986e-07,
+    "matching_curvature": [
+      -6.40741314493006e-05,
+      -6.408620555893086e-05,
+      -6.411173242585587e-05
+    ],
+    "matching_input_derivative": -0.03230969162474803,
+    "scope": "501 samples per segment, finite difference diagnostic, independent IVP, not a proof of all crossings"
+  },
+  "FM_square": {
+    "directory": "FM_square",
+    "I_fold": 1.1231503496462252,
+    "matching_max": 5.544453784978032e-13,
+    "logM": -2.6943964929825086e-12,
+    "segments": [
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": 0.004512271695868764,
+        "speed_exit": 0.33013080089978136,
+        "u_min": 0.22834439498589956,
+        "u_max": 0.6265981115596908
+      },
+      {
+        "region": 2,
+        "valid_sampled": true,
+        "speed_entry": 0.3301308008990378,
+        "speed_exit": -0.10867440433363283,
+        "u_min": 0.6265981115596913,
+        "u_max": 1.619258402331055
+      },
+      {
+        "region": 1,
+        "valid_sampled": true,
+        "speed_entry": -0.10867440433340603,
+        "speed_exit": -0.007164248462625583,
+        "u_min": 0.22834439498589987,
+        "u_max": 0.6265981115596913
+      },
+      {
+        "region": 0,
+        "valid_sampled": true,
+        "speed_entry": -0.007164248463117473,
+        "speed_exit": 0.0045122716958682085,
+        "u_min": 0.22812368347097467,
+        "u_max": 0.22834439498589956
+      }
+    ],
+    "min_C_sampled": 0.05204041496036544,
+    "max_C_sampled": 2.6219977735197206,
+    "min_u_sampled": 0.22812368347097467,
+    "ivp_max_closure": 1.9068080447937064e-12,
+    "ivp_max_abs_logM": 8.994412242779859e-09,
+    "matching_curvature": [
+      -0.002143484698245677,
+      -0.0021434795342751443,
+      -0.0021435380800927275
+    ],
+    "matching_input_derivative": -0.3418451039778665,
+    "scope": "501 samples per segment, finite difference diagnostic, independent IVP, not a proof of all crossings"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "AM_log": {
+    "directory": "AM_log_alt11",
+    "training_loss": 116.799582656213,
+    "candidate_sha256": "ebf4a96d8a491845123ab2de8707c5e443cf0fb73763d2b0384080a22acf9975",
+    "selection": "lowest training loss among attempted starts"
+  },
+  "AM_square": {
+    "directory": "AM_square",
+    "training_loss": 42.512724635828704,
+    "candidate_sha256": "fa4ba976188705b8ba06bea74f44df68ecd96e3b601b3283fe83a611936f15dd",
+    "selection": "lowest training loss among attempted starts"
+  },
+  "AFM_log": {
+    "directory": "AFM_log_alt3",
+    "training_loss": 96.69194312469008,
+    "candidate_sha256": "bf0aeab2bd313560b66aa0739393a904ef11ceea93669bb1e99801ad929f9ac9",
+    "selection": "lowest training loss among attempted starts"
+  },
+  "AFM_square": {
+    "directory": "AFM_square",
+    "training_loss": 19.994764561131408,
+    "candidate_sha256": "1dec517e04cada2fca6a3863a69f5d7a34dc746cd6ea98be544e6539618ce86c",
+    "selection": "lowest training loss among attempted starts"
+  },
+  "FM_log": {
+    "directory": "FM_log",
+    "training_loss": 309.30316631854845,
+    "candidate_sha256": "dd446a061ba461842d1bc8d7da153bd5f101e8745beaf153b536a63c3ac8b638",
+    "selection": "lowest training loss among attempted starts"
+  },
+  "FM_square": {
+    "directory": "FM_square",
+    "training_loss": 144.94527730558195,
+    "candidate_sha256": "8558ebc722d6db42de817310d9ebbd59cead56f8298e440a587b5940eeb6ac42",
+    "selection": "lowest training loss among attempted starts"
+  }
+}
