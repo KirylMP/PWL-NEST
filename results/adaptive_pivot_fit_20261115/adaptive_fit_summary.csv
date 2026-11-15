@@ -1,0 +1,97 @@
+calls,case,elapsed_s,failure_counts,fit_returncode,ivp_max_abs_logM,ivp_max_closure,logM,loss,matching_max,nfev,optimizer_message,optimizer_success,seed,source,status,training_cycles,verify_returncode
+100,AFM,25.00339412689209,{'fold_unresolved': 25},0,2.2873092656028327e-09,2.929138709362178e-09,1.9777635085205247e-09,13.895426272804759,3.46874884371573e-09,22,`xtol` termination condition is satisfied.,True,43283,adaptive_pivot_candidates/AFM/candidate_seed_043283.json,verified,7,0
+111,AFM,25.826091051101685,"{'itinerary': 4, 'cycle_unresolved': 14}",0,3.7458637493908986e-10,5.436309180595345e-10,2.2269391886098333e-10,68.81072805408188,3.3795366505273705e-10,26,`xtol` termination condition is satisfied.,True,42733,adaptive_pivot_candidates/AFM/candidate_seed_042733.json,verified,7,0
+362,AFM,344.36433243751526,"{'cycle matching': 16, 'fold_unresolved': 19}",0,2.6263684005378707e-09,6.050045797678649e-09,1.4173593410049534e-09,85.86741252471649,4.707782608193156e-09,67,`xtol` termination condition is satisfied.,True,42947,adaptive_pivot_candidates/AFM/candidate_seed_042947.json,verified,7,0
+119,AFM,78.41002416610718,"{'fold_unresolved': 18, 'fold_branch_jump': 4}",0,1.637712188085061e-10,4.8055781576294976e-11,-1.7041923427996153e-14,134.39661662986498,4.618527782440651e-14,27,`xtol` termination condition is satisfied.,True,43359,adaptive_pivot_candidates/AFM/candidate_seed_043359.json,verified,7,0
+127,AFM,35.717252016067505,"{'fold_unresolved': 1, 'fold_branch_jump': 3, 'cycle matching': 16, 'singular flow': 1}",0,2.2599296392589174e-10,9.533351885693264e-11,8.765821402079155e-12,136.90643468698073,6.825473519711522e-11,28,`xtol` termination condition is satisfied.,True,42524,adaptive_pivot_candidates/AFM/candidate_seed_042524.json,verified,7,0
+52,AFM,60.189433574676514,{'fold_unresolved': 15},0,1.666877514199236e-11,1.2975966967587738e-09,-3.900645431653693e-11,190.0344768124142,6.780229711011998e-10,16,`xtol` termination condition is satisfied.,True,42835,adaptive_pivot_candidates/AFM/candidate_seed_042835.json,verified,7,0
+143,AFM,25.488635540008545,"{'fold_branch_jump': 3, 'cycle matching': 16}",0,2.0848260201815783e-10,4.841265166533049e-10,1.9094420489196295e-11,238.9187276801981,4.787850116372283e-10,30,`xtol` termination condition is satisfied.,True,43408,adaptive_pivot_candidates/AFM/candidate_seed_043408.json,verified,7,0
+145,AFM,28.878403902053833,"{'cycle_unresolved': 21, 'fold_branch_jump': 1}",0,2.9040533683312095e-09,2.8150139996796497e-09,-1.833311280563521e-10,327.02521297760194,1.8688020020363183e-09,32,`xtol` termination condition is satisfied.,True,42336,adaptive_pivot_candidates/AFM/candidate_seed_042336.json,verified,7,0
+119,AFM,28.70280122756958,"{'fold_unresolved': 1, 'fold_branch_jump': 1, 'itinerary': 1, 'cycle_unresolved': 3, 'cycle matching': 12}",0,1.1536186581202236e-10,6.3824501239651e-12,7.027600723574778e-12,1353.0247536921297,3.5491609651217004e-12,27,`xtol` termination condition is satisfied.,True,42576,adaptive_pivot_candidates/AFM/candidate_seed_042576.json,verified,7,0
+,AFM,1.0694029331207275,{},1,,,,,,,,,42030,adaptive_pivot_candidates/AFM/candidate_seed_042030.json,failed,0,
+,AFM,1.0672965049743652,{},1,,,,,,,,,42293,adaptive_pivot_candidates/AFM/candidate_seed_042293.json,failed,0,
+,AFM,1.06870436668396,{},1,,,,,,,,,42255,adaptive_pivot_candidates/AFM/candidate_seed_042255.json,failed,0,
+,AFM,1.0674231052398682,{},1,,,,,,,,,42521,adaptive_pivot_candidates/AFM/candidate_seed_042521.json,failed,0,
+,AFM,1.0668964385986328,{},1,,,,,,,,,42663,adaptive_pivot_candidates/AFM/candidate_seed_042663.json,failed,0,
+,AFM,1.1202082633972168,{},1,,,,,,,,,42328,adaptive_pivot_candidates/AFM/candidate_seed_042328.json,failed,0,
+,AFM,1.1670892238616943,{},1,,,,,,,,,42863,adaptive_pivot_candidates/AFM/candidate_seed_042863.json,failed,0,
+,AFM,1.2199153900146484,{},1,,,,,,,,,42147,adaptive_pivot_candidates/AFM/candidate_seed_042147.json,failed,0,
+,AFM,1.266535758972168,{},1,,,,,,,,,42562,adaptive_pivot_candidates/AFM/candidate_seed_042562.json,failed,0,
+,AFM,1.2672452926635742,{},1,,,,,,,,,42717,adaptive_pivot_candidates/AFM/candidate_seed_042717.json,failed,0,
+,AFM,1.2668256759643555,{},1,,,,,,,,,42872,adaptive_pivot_candidates/AFM/candidate_seed_042872.json,failed,0,
+,AFM,1.2681314945220947,{},1,,,,,,,,,42864,adaptive_pivot_candidates/AFM/candidate_seed_042864.json,failed,0,
+,AFM,1.3179011344909668,{},1,,,,,,,,,42168,adaptive_pivot_candidates/AFM/candidate_seed_042168.json,failed,0,
+,AFM,1.3199174404144287,{},1,,,,,,,,,42114,adaptive_pivot_candidates/AFM/candidate_seed_042114.json,failed,0,
+,AFM,1.3195977210998535,{},1,,,,,,,,,42291,adaptive_pivot_candidates/AFM/candidate_seed_042291.json,failed,0,
+,AFM,1.3180246353149414,{},1,,,,,,,,,42839,adaptive_pivot_candidates/AFM/candidate_seed_042839.json,failed,0,
+,AFM,1.3696386814117432,{},1,,,,,,,,,42854,adaptive_pivot_candidates/AFM/candidate_seed_042854.json,failed,0,
+,AFM,0.9656558036804199,{},1,,,,,,,,,43205,adaptive_pivot_candidates/AFM/candidate_seed_043205.json,failed,0,
+,AFM,2.1687631607055664,{},1,,,,,,,,,42711,adaptive_pivot_candidates/AFM/candidate_seed_042711.json,failed,0,
+,AFM,1.2166900634765625,{},1,,,,,,,,,43018,adaptive_pivot_candidates/AFM/candidate_seed_043018.json,failed,0,
+,AFM,1.2162673473358154,{},1,,,,,,,,,43138,adaptive_pivot_candidates/AFM/candidate_seed_043138.json,failed,0,
+,AFM,1.4162585735321045,{},1,,,,,,,,,43220,adaptive_pivot_candidates/AFM/candidate_seed_043220.json,failed,0,
+,AFM,1.366546869277954,{},1,,,,,,,,,43427,adaptive_pivot_candidates/AFM/candidate_seed_043427.json,failed,0,
+78,AM,18.10379433631897,{'fold_unresolved': 24},0,6.3874664054107e-10,1.046376318925013e-10,-4.7081533116610785e-11,15.355270383128204,5.413114401164876e-11,21,`xtol` termination condition is satisfied.,True,40437,adaptive_pivot_candidates/AM/candidate_seed_040437.json,verified,7,0
+169,AM,28.177703619003296,{'fold_unresolved': 28},0,1.58281946631509e-10,7.0956573949843005e-12,-8.461382636215653e-13,47.90937346013684,1.8048673666726245e-11,35,`xtol` termination condition is satisfied.,True,39413,adaptive_pivot_candidates/AM/candidate_seed_039413.json,verified,7,0
+53,AM,18.300506353378296,{'fold_unresolved': 19},0,1.2351255955921494e-10,2.8072655311461858e-11,-1.5244316226015187e-12,141.89988418932478,2.7128521651320625e-11,17,`xtol` termination condition is satisfied.,True,40626,adaptive_pivot_candidates/AM/candidate_seed_040626.json,verified,7,0
+94,AM,23.250755548477173,{'fold_unresolved': 22},0,4.740677710188783e-11,5.345057729755354e-12,-8.057625747182051e-13,190.21448009247217,1.241140523688955e-11,23,`xtol` termination condition is satisfied.,True,39348,adaptive_pivot_candidates/AM/candidate_seed_039348.json,verified,7,0
+,AM,0.8659408092498779,{},1,,,,,,,,,39186,adaptive_pivot_candidates/AM/candidate_seed_039186.json,failed,0,
+,AM,0.8654844760894775,{},1,,,,,,,,,39433,adaptive_pivot_candidates/AM/candidate_seed_039433.json,failed,0,
+,AM,1.0153260231018066,{},1,,,,,,,,,39175,adaptive_pivot_candidates/AM/candidate_seed_039175.json,failed,0,
+,AM,1.1159074306488037,{},1,,,,,,,,,39023,adaptive_pivot_candidates/AM/candidate_seed_039023.json,failed,0,
+,AM,1.1660425662994385,{},1,,,,,,,,,39159,adaptive_pivot_candidates/AM/candidate_seed_039159.json,failed,0,
+,AM,1.2167894840240479,{},1,,,,,,,,,39147,adaptive_pivot_candidates/AM/candidate_seed_039147.json,failed,0,
+,AM,0.9181573390960693,{},1,,,,,,,,,39541,adaptive_pivot_candidates/AM/candidate_seed_039541.json,failed,0,
+,AM,1.1157457828521729,{},1,,,,,,,,,39435,adaptive_pivot_candidates/AM/candidate_seed_039435.json,failed,0,
+,AM,1.015592098236084,{},1,,,,,,,,,39740,adaptive_pivot_candidates/AM/candidate_seed_039740.json,failed,0,
+,AM,1.1663506031036377,{},1,,,,,,,,,39567,adaptive_pivot_candidates/AM/candidate_seed_039567.json,failed,0,
+,AM,1.066007137298584,{},1,,,,,,,,,39717,adaptive_pivot_candidates/AM/candidate_seed_039717.json,failed,0,
+,AM,2.1704745292663574,{},1,,,,,,,,,39311,adaptive_pivot_candidates/AM/candidate_seed_039311.json,failed,0,
+,AM,0.9655718803405762,{},1,,,,,,,,,40280,adaptive_pivot_candidates/AM/candidate_seed_040280.json,failed,0,
+,AM,1.1677193641662598,{},1,,,,,,,,,39836,adaptive_pivot_candidates/AM/candidate_seed_039836.json,failed,0,
+,AM,1.3167235851287842,{},1,,,,,,,,,39710,adaptive_pivot_candidates/AM/candidate_seed_039710.json,failed,0,
+,AM,1.1663577556610107,{},1,,,,,,,,,40062,adaptive_pivot_candidates/AM/candidate_seed_040062.json,failed,0,
+,AM,1.1656880378723145,{},1,,,,,,,,,40196,adaptive_pivot_candidates/AM/candidate_seed_040196.json,failed,0,
+,AM,1.4164013862609863,{},1,,,,,,,,,39874,adaptive_pivot_candidates/AM/candidate_seed_039874.json,failed,0,
+,AM,1.6674473285675049,{},1,,,,,,,,,39636,adaptive_pivot_candidates/AM/candidate_seed_039636.json,failed,0,
+,AM,0.9156274795532227,{},1,,,,,,,,,40378,adaptive_pivot_candidates/AM/candidate_seed_040378.json,failed,0,
+,AM,0.96938157081604,{},1,,,,,,,,,40489,adaptive_pivot_candidates/AM/candidate_seed_040489.json,failed,0,
+,AM,0.9187119007110596,{},1,,,,,,,,,40728,adaptive_pivot_candidates/AM/candidate_seed_040728.json,failed,0,
+,AM,1.2197251319885254,{},1,,,,,,,,,40496,adaptive_pivot_candidates/AM/candidate_seed_040496.json,failed,0,
+,AM,1.1672430038452148,{},1,,,,,,,,,40698,adaptive_pivot_candidates/AM/candidate_seed_040698.json,failed,0,
+,AM,1.2168598175048828,{},1,,,,,,,,,40639,adaptive_pivot_candidates/AM/candidate_seed_040639.json,failed,0,
+,AM,1.1666007041931152,{},1,,,,,,,,,40758,adaptive_pivot_candidates/AM/candidate_seed_040758.json,failed,0,
+,AM,1.6665122509002686,{},1,,,,,,,,,40793,adaptive_pivot_candidates/AM/candidate_seed_040793.json,failed,0,
+,AM,2.8182616233825684,{},1,,,,,,,,,40470,adaptive_pivot_candidates/AM/candidate_seed_040470.json,failed,0,
+194,FM,32.38436985015869,"{'fold_unresolved': 1, 'itinerary': 29}",0,2.593133034689554e-10,3.8902214782865485e-13,2.0450308113595383e-13,227.42144672353967,2.5224267119483557e-13,39,`xtol` termination condition is satisfied.,True,43845,adaptive_pivot_candidates/FM/candidate_seed_043845.json,verified,7,0
+77,FM,20.328190326690674,{'itinerary': 12},0,2.945803132675673e-09,7.790943001850792e-09,3.648615520823739e-09,322.92614245503916,5.5989080038898464e-09,20,`xtol` termination condition is satisfied.,True,44455,adaptive_pivot_candidates/FM/candidate_seed_044455.json,verified,7,0
+108,FM,247.30009937286377,"{'fold_unresolved': 2, 'fold_branch_jump': 8, 'cycle matching': 15}",0,4.854784296792758e-09,1.0126246507979886e-09,-6.301170696332292e-10,340.7706415154283,2.75234057767193e-10,23,`xtol` termination condition is satisfied.,True,44727,adaptive_pivot_candidates/FM/candidate_seed_044727.json,verified,7,0
+317,FM,35.52482581138611,"{'fold_branch_jump': 5, 'cycle_unresolved': 1, 'cycle matching': 35}",0,3.1469042687578413e-07,2.86702306340203e-09,6.864602219991411e-10,455.7237032461861,2.343747418365183e-09,57,`xtol` termination condition is satisfied.,True,44016,adaptive_pivot_candidates/FM/candidate_seed_044016.json,verified,7,0
+138,FM,22.901899337768555,"{'fold_unresolved': 1, 'fold_branch_jump': 6, 'itinerary': 12}",0,1.9408775639928028e-09,5.180900153334278e-10,2.78442435774906e-10,570.8286392273609,2.6043656120577907e-10,32,`xtol` termination condition is satisfied.,True,43274,adaptive_pivot_candidates/FM/candidate_seed_043274.json,verified,7,0
+142,FM,22.787937879562378,{'cycle matching': 18},0,1.921449042062012e-10,4.531308661626099e-11,2.6506574712925612e-12,678.7421838556753,1.3779200003227743e-11,29,`xtol` termination condition is satisfied.,True,43262,adaptive_pivot_candidates/FM/candidate_seed_043262.json,verified,7,0
+137,FM,19.99247407913208,{'cycle_unresolved': 22},0,4.4161313928620105e-10,5.296119098829877e-11,-6.434852650727407e-12,1728.876809938465,3.246114488320018e-11,31,`xtol` termination condition is satisfied.,True,43273,adaptive_pivot_candidates/FM/candidate_seed_043273.json,verified,7,0
+,FM,1.2160933017730713,{},1,,,,,,,,,43060,adaptive_pivot_candidates/FM/candidate_seed_043060.json,failed,0,
+,FM,1.1663854122161865,{},1,,,,,,,,,43221,adaptive_pivot_candidates/FM/candidate_seed_043221.json,failed,0,
+,FM,1.1659202575683594,{},1,,,,,,,,,43228,adaptive_pivot_candidates/FM/candidate_seed_043228.json,failed,0,
+,FM,1.215759038925171,{},1,,,,,,,,,43317,adaptive_pivot_candidates/FM/candidate_seed_043317.json,failed,0,
+,FM,1.2161216735839844,{},1,,,,,,,,,43347,adaptive_pivot_candidates/FM/candidate_seed_043347.json,failed,0,
+,FM,1.0167882442474365,{},1,,,,,,,,,43372,adaptive_pivot_candidates/FM/candidate_seed_043372.json,failed,0,
+,FM,1.4161109924316406,{},1,,,,,,,,,43358,adaptive_pivot_candidates/FM/candidate_seed_043358.json,failed,0,
+,FM,3.0687577724456787,{},1,,,,,,,,,43025,adaptive_pivot_candidates/FM/candidate_seed_043025.json,failed,0,
+,FM,1.267329454421997,{},1,,,,,,,,,43419,adaptive_pivot_candidates/FM/candidate_seed_043419.json,failed,0,
+,FM,1.2157387733459473,{},1,,,,,,,,,43582,adaptive_pivot_candidates/FM/candidate_seed_043582.json,failed,0,
+,FM,2.72275972366333,{},1,,,,,,,,,43308,adaptive_pivot_candidates/FM/candidate_seed_043308.json,failed,0,
+,FM,1.2662148475646973,{},1,,,,,,,,,43805,adaptive_pivot_candidates/FM/candidate_seed_043805.json,failed,0,
+,FM,1.2659845352172852,{},1,,,,,,,,,43855,adaptive_pivot_candidates/FM/candidate_seed_043855.json,failed,0,
+,FM,1.2658777236938477,{},1,,,,,,,,,44015,adaptive_pivot_candidates/FM/candidate_seed_044015.json,failed,0,
+,FM,1.2168972492218018,{},1,,,,,,,,,44192,adaptive_pivot_candidates/FM/candidate_seed_044192.json,failed,0,
+,FM,4.07227349281311,{},1,,,,,,,,,43361,adaptive_pivot_candidates/FM/candidate_seed_043361.json,failed,0,
+,FM,2.017340898513794,{},1,,,,,,,,,44271,adaptive_pivot_candidates/FM/candidate_seed_044271.json,failed,0,
+,FM,2.5676465034484863,{},1,,,,,,,,,44129,adaptive_pivot_candidates/FM/candidate_seed_044129.json,failed,0,
+,FM,1.2660644054412842,{},1,,,,,,,,,44463,adaptive_pivot_candidates/FM/candidate_seed_044463.json,failed,0,
+,FM,1.316819667816162,{},1,,,,,,,,,44516,adaptive_pivot_candidates/FM/candidate_seed_044516.json,failed,0,
+,FM,3.1183907985687256,{},1,,,,,,,,,44441,adaptive_pivot_candidates/FM/candidate_seed_044441.json,failed,0,
+,FM,1.3160574436187744,{},1,,,,,,,,,44528,adaptive_pivot_candidates/FM/candidate_seed_044528.json,failed,0,
+,FM,3.368734836578369,{},1,,,,,,,,,44449,adaptive_pivot_candidates/FM/candidate_seed_044449.json,failed,0,
+,FM,3.0679972171783447,{},1,,,,,,,,,44764,adaptive_pivot_candidates/FM/candidate_seed_044764.json,failed,0,
+,FM,8.275437355041504,{},1,,,,,,,,,44675,adaptive_pivot_candidates/FM/candidate_seed_044675.json,failed,0,

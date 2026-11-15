@@ -1,0 +1,30 @@
+{
+  "elapsed_s": 304.0008752346039,
+  "workers": 24,
+  "quota_per_case": 32,
+  "max_attempts_per_case": 2000,
+  "accepted": {
+    "AFM": 32,
+    "FM": 32
+  },
+  "launched": {
+    "AFM": 1428,
+    "FM": 1765
+  },
+  "next_seed": {
+    "AFM": 43428,
+    "FM": 44765
+  },
+  "status_counts": {
+    "AFM": {
+      "unresolved": 1382,
+      "fold_valid": 32,
+      "no_spectral_start": 14
+    },
+    "FM": {
+      "unresolved": 1719,
+      "fold_valid": 32,
+      "no_spectral_start": 14
+    }
+  }
+}
