@@ -25,7 +25,7 @@ def flow(A,b,y,t):
 
 class Field:
  def __init__(self,case,kind,candidate):
-  self.case=case;self.kind=kind;self.j=candidate;self.cut=np.array(candidate['cuts']);self.Istar=candidate['I_fold'];m=json.loads((ROOT/'results/coordinate_experiment'/f'{case}_{kind}.json').read_text())['model'];self.rest=np.array(m['rest_state']);u0=self.rest[0];old=json.loads((ROOT/'paper/data/random_selected'/case/'candidate.json').read_text());self.I1,self.I2=old['fixed_equilibrium_threshold_I'];self.K=np.array([[1,0,max(u0-self.cut[0],0)],[1,self.I1,0],[1,self.I2,self.cut[1]-self.cut[0]]]);self.Z=np.array([u0,*self.cut]);self.u0=u0
+  self.case=case;self.kind=kind;self.j=candidate;self.cut=np.array(candidate['cuts']);self.Istar=candidate['I_fold'];m=json.loads((ROOT/'results/coordinate_experiment'/f'{case}_{kind}.json').read_text())['model'];self.rest=np.array(m['rest_state']);self.Cref=float(m.get('C_ref_uM',.05));u0=self.rest[0];old=json.loads((ROOT/'paper/data/random_selected'/case/'candidate.json').read_text());self.I1,self.I2=old['fixed_equilibrium_threshold_I'];self.K=np.array([[1,0,max(u0-self.cut[0],0)],[1,self.I1,0],[1,self.I2,self.cut[1]-self.cut[0]]]);self.Z=np.array([u0,*self.cut]);self.u0=u0
   n=np.array(candidate['n']);h=np.array(candidate['h']);self.p0=np.r_[n[1:],n[1]-h[1],n[4]-h[4],np.log(candidate['a']),np.log(candidate['b'])];self.fold0=np.log(candidate['times']);self.scale=np.maximum(abs(self.p0),.25)
  def coeff(self,p):
   n=np.r_[self.rest[1]-p[0]*self.u0,p[:4]];d1,d2=p[4:6];v=np.linalg.solve(self.K,-d1*self.Z);h=n-np.array([v[0],d1,v[1],v[2],d2]);return n,h,np.exp(p[6]),np.exp(p[7])
@@ -59,7 +59,10 @@ class Field:
    segments.append((clock,clock+T[k],A,b,starts[k]));peaks.extend([(val,clock+dt0) for val,dt0 in zip(u,dt)]);samples.extend(u);clock+=T[k]
   if self.kind=='square' and min(samples)<=0:raise ValueError('square branch crosses zero')
   if max(samples)-min(samples)<1e-5:raise ValueError('trivial')
-  def cv(u):return np.exp(u) if self.kind=='log' else u*u
+  def cv(u):
+   if self.kind=='log': return np.exp(u)
+   if self.kind=='square': return u*u
+   return self.Cref*np.logaddexp(0.,u)
   peak=max(peaks,key=lambda a:a[0])[1];period=sum(T);grid=(peak+period*np.arange(64)/64)%period;vals=np.empty(64)
   for start,end,A,b,y in segments:
    mask=(grid>=start)&(grid<end)
@@ -93,7 +96,7 @@ def initial_cycles(field,rows):
  return seeds
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--case',choices=['AM','AFM','FM'],required=True);p.add_argument('--kind',choices=['log','square'],required=True);p.add_argument('--candidate',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--max-nfev',type=int,default=30);args=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--case',choices=['AM','AFM','FM'],required=True);p.add_argument('--kind',choices=['log','square','softplus'],required=True);p.add_argument('--candidate',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--max-nfev',type=int,default=30);args=p.parse_args()
  j=json.loads(args.candidate.read_text());F=Field(args.case,args.kind,j);data=json.loads((ROOT/'results/coordinate_experiment'/f'{args.case}_{args.kind}.json').read_text())['results'];training=[r for r in data if r['set']=='train'];print('finding starting cycle routes',flush=True);seeds=initial_cycles(F,training);print('routes',[(x['route'],x['I']) for x in seeds],flush=True)
  # Choose a locally independent parameter eliminated by fold equations.
  def fold_res(pp,ft):
