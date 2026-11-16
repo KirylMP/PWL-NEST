@@ -46,6 +46,12 @@ verification. Each outcome is saved. Up to `--max-attempts` are allowed per
 combination. If fewer than the quota are found, the runner reports the deficit
 and optimizes those it did find; rejected starts do not prove nonexistence.
 
+Independent verification defaults to all training and holdout inputs. To rerun
+only the four holdouts for one saved candidate with per-input progress, use
+`python -u scripts/verify_transformed_fold.py CANDIDATE --subset holdout --progress`.
+This writes a separate `*_verification_holdout.json` file and preserves the
+original fit and full-verification outputs.
+
 The 7-point fitting objective and safeguards are described in
 `CYCLE_OPTIMIZATION.md`. The implicit fold solve, root trust region and fixed
 itinerary may prevent exploration of other branches. Optimizer status such as

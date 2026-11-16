@@ -97,10 +97,11 @@ def fit_model(kind,case,base,data):
             'spectral_constraint_residuals':spectral(opt.x).tolist(),'optimizer_message':opt.message,'optimizer_success':bool(opt.success),
             'fit':'constrained least squares on LR field along seven train cycles; not previous cycle loss'}
 
-def calc(model,data):
+def calc(model,data,progress=False):
     cuts=model['cuts_u'];a=np.array(model['coefficient_rows']);kind=model['transform'];out=[]
     for d in data:
         I=d['I']
+        if progress:print('integrating',d['set'],'I=',I,flush=True)
         def f(t,y):return a@features(y[0],y[1],I,cuts)
         v=integrate_cycle(f,model['rest_state'],600.)
         target=np.array(d['states'])[:,0];item={'I':I,'set':d['set'],'reference':{'Cmin':float(min(target)),'Cmax':float(max(target)),'period':d['period']}}
@@ -109,6 +110,7 @@ def calc(model,data):
             item['prediction']={'Cmin':float(min(C)),'Cmax':float(max(C)),'period':v['period'],'umin':float(min(u)),'umax':float(max(u)),'C':C.tolist()}
         else:item['prediction']=None
         item['target_C']=target.tolist();out.append(item)
+        if progress:print('finished',d['set'],'I=',I,'status=',('cycle' if v else 'no_cycle'),flush=True)
     return out
 
 def main():
