@@ -33,8 +33,11 @@ def main():
    T=np.array([np.trace(M) for M in matrices]);D=np.array([np.linalg.det(M) for M in matrices]);disc=T*T-4*D
    violated=np.maximum(0,-np.array([-T[0]-.001,D[0]-.00001,T[1]-.001,-disc[1]-.00001,-T[2]-.001,-disc[2]-.00001]))
    speed_violation=np.maximum(0,.00001-np.array(speeds)*np.array([1,1,-1,-1]))
-   return np.r_[1000*match,1000*logm,10*violated,10*speed_violation,.01*(w[:len(z0)]-z0)/zscale]
-  except (ValueError,OverflowError,FloatingPointError):return np.full(4+1+6+4+len(z0),1e4)
+   # Preserve the model form du/dt=a(q-...), dq/dt=b(...-q):
+   # the q coefficients must be +a and -b, with both rates positive.
+   coupling_violation=np.maximum(0,np.array([1e-4-c[2,0],1e-4+c[2,1]]))
+   return np.r_[1000*match,1000*logm,10*violated,10*speed_violation,1000*coupling_violation,.01*(w[:len(z0)]-z0)/zscale]
+  except (ValueError,OverflowError,FloatingPointError):return np.full(4+1+6+4+2+len(z0),1e4)
  lo=np.r_[np.full(len(z0),-np.inf),np.log(np.full(4,1e-5))];hi=np.r_[np.full(len(z0),np.inf),np.log(np.full(4,120.))]
  sol=least_squares(residual,np.r_[z0,np.log(t0)],bounds=(lo,hi),max_nfev=a.nfev,ftol=1e-9,xtol=1e-9,gtol=1e-9)
  match,logm,t,c,mats,q,speeds=parts(sol.x,True);checks=[]
