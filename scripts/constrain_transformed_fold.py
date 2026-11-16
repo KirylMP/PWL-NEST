@@ -12,7 +12,7 @@ from fit_transformed_coordinates import features
 
 ROOT=Path(__file__).resolve().parents[1]
 def main():
- p=argparse.ArgumentParser();p.add_argument('--case',required=True,choices=['AM','AFM','FM']);p.add_argument('--kind',required=True,choices=['log','square']);p.add_argument('--nfev',type=int,default=400);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--case',required=True,choices=['AM','AFM','FM']);p.add_argument('--kind',required=True,choices=['log','square','softplus']);p.add_argument('--nfev',type=int,default=400);a=p.parse_args()
  path=ROOT/'results/coordinate_experiment'/f'{a.case}_{a.kind}.json';d=json.loads(path.read_text());m=d['model'];base=json.loads((ROOT/'paper/data/random_selected'/a.case/'candidate.json').read_text());cuts=np.array(m['cuts_u']);anchors=m['anchors'];N=null_space(np.array([features(u,q,I,cuts) for I,u,q in anchors]));coeff=np.array(m['coefficient_rows']).T;z0=(N.T@coeff).ravel();foldI=base['reference_fold']['I'];reg=(1,2,1,0);bounds=(0,1,1,0,0)
  t0=np.array(base['numerical_fold']['times']);zscale=np.maximum(np.abs(z0),.1)
  def parts(w,full=False):
