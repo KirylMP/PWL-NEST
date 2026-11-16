@@ -15,7 +15,7 @@ from optimize_fixed_fold_cycles import Field
 from sample_transformed_fold import pivot_diagnostics
 
 ROOT=Path(__file__).resolve().parents[1]
-REFERENCES={('AM','log'):6,('AFM','log'):2,('FM','log'):7}
+REFERENCES={('AM','log'):6,('AFM','log'):2,('FM','log'):7,('AM','softplus'):0,('AFM','softplus'):0,('FM','softplus'):0}
 
 def atomic(path,obj):
  path.parent.mkdir(parents=True,exist_ok=True);tmp=path.with_suffix(path.suffix+'.tmp');tmp.write_text(json.dumps(obj,indent=2,allow_nan=False)+'\n');os.replace(tmp,path)
@@ -57,7 +57,10 @@ def check_fold(j):
  if closure>1e-6 or abs(ivplog)>1e-4:raise ValueError('independent IVP closure or logM')
  eps=1e-5;eye=np.eye(4);f=lambda x:orb.match(x,I);J=np.column_stack([(f(t+eps*v)-f(t-eps*v))/(2*eps) for v in eye]);L,S,V=np.linalg.svd(J);left=L[:,-1];right=V[-1];base=f(t);curv=[float(left@(f(t+s*right)-2*base+f(t-s*right))/(s*s)) for s in (1e-3,3e-4,1e-4)];di=float(left@(orb.match(t,I+eps)-orb.match(t,I-eps))/(2*eps))
  if not np.isfinite(curv+[di]).all() or min(map(abs,curv))<1e-10 or abs(di)<1e-8 or not(all(x>0 for x in curv) or all(x<0 for x in curv)):raise ValueError('nondegeneracy unresolved')
- U=np.array(U);C=np.exp(U) if j['kind']=='log' else U*U
+ U=np.array(U)
+ if j['kind']=='log': C=np.exp(U)
+ elif j['kind']=='square': C=U*U
+ else: C=float(coordinate.get('C_ref_uM',.05))*np.logaddexp(0.,U)
  if not np.isfinite(C).all():raise ValueError('readout overflow')
  return {'anchor_max_residual':anchor_error,'matching_max':float(max(abs(res))),'logM':float(np.asarray(j['trace'])[list(regions)]@t),'ivp_closure':closure,'ivp_logM':ivplog,'crossing_speeds':speed,'minimum_u_sampled':float(min(U)),'Cmin_sampled':float(min(C)),'Cmax_sampled':float(max(C)),'curvature_samples':curv,'input_derivative':di,'singular_values':S.tolist(),'scope':'finite differences, sampled residence and IVP; not a proof of first exit'}
 
