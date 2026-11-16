@@ -50,7 +50,9 @@ Independent verification defaults to all training and holdout inputs. To rerun
 only the four holdouts for one saved candidate with per-input progress, use
 `python -u scripts/verify_transformed_fold.py CANDIDATE --subset holdout --progress`.
 This writes a separate `*_verification_holdout.json` file and preserves the
-original fit and full-verification outputs.
+original fit and full-verification outputs. Subset mode skips the duplicate
+fold IVP/nondegeneracy audit; it records the fold values from the candidate and
+relies on the batch's independent `fold_validation` for that check.
 
 The 7-point fitting objective and safeguards are described in
 `CYCLE_OPTIMIZATION.md`. The implicit fold solve, root trust region and fixed
