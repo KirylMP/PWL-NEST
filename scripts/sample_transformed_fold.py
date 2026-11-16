@@ -27,7 +27,7 @@ def pivot_diagnostics(F,p,logs,eps=1e-5):
  return rows
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--case',required=True,choices=('AM','AFM','FM'));p.add_argument('--kind',required=True,choices=('log',),default='log');p.add_argument('--seed',type=int,required=True);p.add_argument('--sigma',type=float,default=.03);p.add_argument('--maxfev',type=int,default=1200);p.add_argument('--reference',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--case',required=True,choices=('AM','AFM','FM'));p.add_argument('--kind',required=True,choices=('log','square','softplus'),default='softplus');p.add_argument('--seed',type=int,required=True);p.add_argument('--sigma',type=float,default=.03);p.add_argument('--maxfev',type=int,default=1200);p.add_argument('--reference',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
  if a.sigma<=0:p.error('sigma must be positive')
  j=json.loads(a.reference.read_text());F=Field(a.case,a.kind,j);eps=1e-5
  def f(p,t):
