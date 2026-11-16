@@ -49,7 +49,14 @@ def main():
                    'source':'softplus constrained field fit; fixed equilibrium/fold geometry from previous physical candidate',
                    'coordinate_scale_uM':a.scale}
         F=Field(case,'softplus',candidate)
-        residual,lm=F.route(F.p0,F.Istar,np.log(candidate['times']),'both')
+        residual,lm,times,mats,starts,speeds=F.route(F.p0,F.Istar,np.log(candidate['times']),'both',True)
+        traces=np.array([np.trace(mats[r][0]) for r in range(3)])
+        dets=np.array([np.linalg.det(mats[r][0]) for r in range(3)])
+        discr=traces*traces-4*dets
+        spectral=bool(traces[0]<0 and dets[0]>0 and traces[1]>0 and discr[1]<-1e-6 and traces[2]<0 and discr[2]<-1e-6)
+        directions=bool(min(np.asarray(speeds)*[1,1,-1,-1])>1e-7)
+        if not spectral or not directions: raise ValueError(f'{case}: softplus neutral start fails spectral/direction conditions')
+        candidate.update({'trace':traces.tolist(),'determinant':dets.tolist(),'discriminant':discr.tolist(),'speeds':np.asarray(speeds).tolist()})
         candidate['matching_max']=float(max(abs(residual)));candidate['logM']=float(lm)
         if candidate['matching_max']>1e-7 or abs(lm)>1e-7: raise ValueError(f'{case}: converted parameterization no longer closes fold')
         out=ROOT/'results/fold_anchors'/case/'softplus'/'seed_0.json';out.parent.mkdir(parents=True,exist_ok=True)
