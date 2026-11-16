@@ -1,14 +1,14 @@
 # Server multistart: fixed-fold transformed-coordinate models
 
 `scripts/run_transformed_server_batch.py` first collects a requested number of
-numerically distinct fixed-fold candidates for each AM/AFM/FM × log/square
-combination, then optimizes all of them and evaluates four held-out inputs. It
+numerically distinct fixed-fold candidates for each of AM, AFM and FM in log
+coordinates, then optimizes all of them and evaluates four held-out inputs. It
 uses at most `--workers` child processes, with BLAS/OpenMP thread counts fixed
 to one. The simulation and analysis use NumPy/SciPy, not NEST.
 
 ## Search and admissibility
 
-Each combination starts with its previously found neutral-orbit candidate.
+Each mode starts with its previously found neutral-orbit candidate.
 Subsequent seeded starts perturb seven free normalized field coefficients and
 solve numerically for one dependent coefficient and four crossing times, with
 the fold input fixed. Noise standard deviations cycle over 0.1, 1/3, 1 and 3
@@ -23,8 +23,21 @@ segment. It independently integrates the orbit and accumulates divergence; it
 also estimates nondegeneracy in the segment matching system at several finite
 difference steps. Coefficients and flight times are compared for numerical
 duplicates using `--dedup-tol`. Tests are finite and are not proofs of first
-exit, fold nondegeneracy, uniqueness, or global branch completeness. Neither
-the square nor exponential calcium readout ensures an LR upper-pool bound.
+exit, fold nondegeneracy, uniqueness, or global branch completeness. The
+exponential calcium readout ensures nonnegative calcium but does not enforce an
+LR upper-pool bound.
+
+For each candidate the sampler checks all eight free field coefficients as
+possible dependent parameters in the fold equations. For each one it forms
+the 5×5 finite-difference Jacobian with respect to that scaled coefficient and
+the four log flight times. Full rank is the local implicit-function-theorem
+condition for solving those five unknowns near the current candidate while
+holding the other coefficients fixed. The sampler uses the best-conditioned
+pivot and records every coefficient's relative smallest singular value.
+`pivot_fixability.csv` reports how often each coefficient passes the local
+rank check and how often it was selected. This is a local numerical diagnostic;
+it does not guarantee a root after large parameter changes or global
+identifiability.
 
 The quota counts screened folds, **not** successful seven-cycle fits or
 four-cycle holdouts. A valid fold can have no numerically discoverable stable
@@ -45,7 +58,8 @@ All files are written beneath the explicit `--output` directory. It must be
 new or empty. Each attempt retains a `status.json`, a log and, where found,
 coefficients; distinct candidates are recorded in `accepted.json`. Fitting
 outputs have per-start logs, candidate, report, independent validation, and
-`status.json`. `summary.csv` and `batch_result.json` are written at completion.
+`status.json`. `summary.csv`, `pivot_fixability.csv` and `batch_result.json` are
+written at completion.
 The summary script also works while the batch is running. It chooses the best
 completed candidate by **training loss**, not by holdout performance.
 
@@ -69,6 +83,6 @@ python scripts/summarize_transformed_server_batch.py results/transformed_smoke_0
 
 `fit-nfev 1` only tests wiring. For research use increase it, e.g. to 80.
 Timing depends strongly on acceptance and convergence; no runtime estimate is
-guaranteed. `valid-per-combo 32` means up to 192 screened folds in total, 32
-for each of six combinations; use 64 for up to 384. The log/manifest gives the
+guaranteed. `valid-per-combo 32` means up to 96 screened folds in total, 32
+for each of three models; use 64 for up to 192. The log/manifest gives the
 actual number. NEST is not invoked and no benchmark is run.

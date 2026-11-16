@@ -2,6 +2,7 @@
 import argparse,json
 from collections import Counter,defaultdict
 from pathlib import Path
+import numpy as np
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('output',type=Path);a=p.parse_args();root=a.output
@@ -22,5 +23,18 @@ def main():
  for key in sorted(groups):
   g=groups[key];b=best.get(key,{});other=sum(n for k,n in g.items() if k.startswith('fit_') and k!='fit_completed')
   print(*key,g['attempts'],g['distinct_folds'],g['rejected'],g['fit_completed'],other,b.get('seed','-'),b.get('training_loss','-'),b.get('holdout_MAE_Cmax','-'),b.get('holdout_MAE_period','-'))
- print('Fold counts are numerically screened, not proofs; completed means four holdouts resolved, not that the fit is accurate.')
+ print('\nFold-parameter local fixability: parameter case kind candidates full_rank fraction median_sigma_min selected_as_pivot')
+ for folder in sorted((root/'search').glob('*_*')):
+  case,kind=folder.name.rsplit('_',1);diagnostics=[];selected=[]
+  for f in folder.glob('attempt_*/status.json'):
+   try:j=json.loads(f.read_text())
+   except (OSError,ValueError):continue
+   if j.get('fold_valid'):
+    selected.append(j.get('selected_pivot'))
+    diagnostics.extend(j.get('pivot_diagnostics',[]))
+  by_name=defaultdict(list)
+  for d in diagnostics:by_name[d['name']].append(d)
+  for name,rows in sorted(by_name.items()):
+   print(name,case,kind,len(rows),sum(r['locally_solvable'] for r in rows),f'{sum(r["locally_solvable"] for r in rows)/len(rows):.3f}',f'{np.median([r["relative_sigma_min"] for r in rows]):.3g}',sum(x==name for x in selected))
+ print('\nLocal full rank is finite-difference evidence at the sampled fold, not proof of global solvability; completed means four holdouts resolved, not that the fit is accurate.')
 if __name__=='__main__':main()

@@ -11,9 +11,11 @@ import numpy as np
 from scipy.integrate import solve_ivp
 from scipy.linalg import expm
 from physical_fold_routes import Route
+from optimize_fixed_fold_cycles import Field
+from sample_transformed_fold import pivot_diagnostics
 
 ROOT=Path(__file__).resolve().parents[1]
-REFERENCES={('AM','log'):6,('AM','square'):3,('AFM','log'):2,('AFM','square'):3,('FM','log'):7,('FM','square'):0}
+REFERENCES={('AM','log'):6,('AFM','log'):2,('FM','log'):7}
 
 def atomic(path,obj):
  path.parent.mkdir(parents=True,exist_ok=True);tmp=path.with_suffix(path.suffix+'.tmp');tmp.write_text(json.dumps(obj,indent=2,allow_nan=False)+'\n');os.replace(tmp,path)
@@ -107,9 +109,9 @@ def main():
     params=[ROOT/'scripts/sample_transformed_fold.py','--case',c,'--kind',k,'--seed',index,'--sigma',sigma,'--maxfev',args.fold_nfev,'--reference',source,'--output',candidate]
     code=invoke(params,attempt/'search.log',args.timeout,env)
     if code or not candidate.exists():raise ValueError(f'implicit fold search unresolved or timed out ({code})')
-    pre=json.loads(candidate.read_text())
+    pre=json.loads(candidate.read_text());state['pivot_diagnostics']=pre['pivot_diagnostics_at_candidate'];state['selected_pivot']=pre['pivot_name']
     if not pre['numerically_neutral_candidate']:raise ValueError('implicit solution failed spectral/direction/itinerary checks')
-   candidate=candidate.resolve();j=json.loads(candidate.read_text());state.update({'candidate':portable(candidate),'source_sha256':sha(source),'candidate_sha256':sha(candidate),'validation':check_fold(j),'fold_valid':True})
+    candidate=candidate.resolve();j=json.loads(candidate.read_text());F=Field(c,k,j);pivot_info=j.get('pivot_diagnostics_at_candidate') or pivot_diagnostics(F,F.p0,F.fold0);state.update({'candidate':portable(candidate),'source_sha256':sha(source),'candidate_sha256':sha(candidate),'validation':check_fold(j),'pivot_diagnostics':pivot_info,'selected_pivot':j.get('pivot_name',max(pivot_info,key=lambda x:x['sigma_min'])['name']),'fold_valid':True})
   except Exception as e:state['reason']=f'{type(e).__name__}: {e}'
   atomic(attempt/'status.json',state);return state
 
@@ -170,6 +172,18 @@ def main():
  fields=['case','kind','seed','status','training_loss','holdout_cycles','holdout_total','holdout_MAE_Cmin','holdout_MAE_Cmax','holdout_MAE_period','optimizer_message','reason']
  with (out/'summary.csv').open('w',newline='') as f:
   w=csv.DictWriter(f,fieldnames=fields,extrasaction='ignore');w.writeheader();w.writerows(sorted(results,key=lambda r:(r['case'],r['kind'],r['seed'])))
+ pivot_fields=['case','kind','parameter','n_candidates','n_locally_solvable','solvable_fraction','median_relative_sigma_min','min_relative_sigma_min','max_relative_sigma_min','selected_pivot_count']
+ with (out/'pivot_fixability.csv').open('w',newline='') as f:
+  w=csv.DictWriter(f,fieldnames=pivot_fields);w.writeheader()
+  for combo in combos:
+   c,k=combo;items=accepted[combo];records=[]
+   for item in items:
+    st=json.loads((out/'search'/f'{c}_{k}'/f"attempt_{item['seed']:06d}"/'status.json').read_text())
+    records.append((st.get('selected_pivot'),st.get('pivot_diagnostics',[])))
+   names=sorted({d['name'] for _,ds in records for d in ds})
+   for name in names:
+    values=[d for _,ds in records for d in ds if d['name']==name];ratios=[d['relative_sigma_min'] for d in values];solvable=sum(bool(d['locally_solvable']) for d in values)
+    w.writerow({'case':c,'kind':k,'parameter':name,'n_candidates':len(values),'n_locally_solvable':solvable,'solvable_fraction':solvable/len(values) if values else '', 'median_relative_sigma_min':float(np.median(ratios)) if ratios else '', 'min_relative_sigma_min':min(ratios) if ratios else '', 'max_relative_sigma_min':max(ratios) if ratios else '', 'selected_pivot_count':sum(sel==name for sel,_ in records)})
  missing={f'{c}_{k}':args.valid_per_combo-len(accepted[(c,k)]) for c,k in combos if len(accepted[(c,k)])<args.valid_per_combo}
  atomic(out/'batch_result.json',{'attempted':{f'{c}_{k}':nextid[(c,k)] for c,k in combos},'accepted':{f'{c}_{k}':len(accepted[(c,k)]) for c,k in combos},'missing':missing,'fit_statuses':{s:sum(r['status']==s for r in results) for s in sorted({r['status'] for r in results})}})
  print('Batch finished; inspect',out/'summary.csv','missing fold quotas:',missing,flush=True)
